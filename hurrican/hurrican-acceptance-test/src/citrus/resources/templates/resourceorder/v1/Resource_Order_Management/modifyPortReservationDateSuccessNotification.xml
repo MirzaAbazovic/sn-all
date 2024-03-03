@@ -1,0 +1,12 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <notifyPortOrderUpdate xmlns="http://www.mnet.de/esb/cdm/Resource/ResourceOrderManagementNotificationService/v1">
+            <orderId>${orderId}</orderId>
+            <notificationType>modifyPortReservationDateNotification</notificationType>
+            <notification>
+                <lineId>${lineId}</lineId>
+                <executionDate>${modifyDate}</executionDate>
+            </notification>
+        </notifyPortOrderUpdate>
+    </soap:Body>
+</soap:Envelope>

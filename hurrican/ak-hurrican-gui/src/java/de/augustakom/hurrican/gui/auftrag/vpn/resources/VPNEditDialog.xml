@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Edit-Dialog eines VPN-Auftrags.
+-->
+<sf>
+
+    <Label name="vpn.name"><text>VPN-Name:</text></Label>
+    <TextField name="vpn.name">
+        <tooltip>Eindeutiger Name fuer das VPN (max. 6 Zeichen)</tooltip>
+        <maxchars>6</maxchars>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="realm"><text>VPN REALM:</text></Label>
+    <TextField name="realm">
+        <tooltip>REALM fuer die Accounts des VPNs</tooltip>
+        <maxchars>30</maxchars>
+    </TextField>
+
+    <Label name="vpn.type"><text>VPN-Typ:</text></Label>
+    <ReferenceField name="vpn.type">
+        <tooltip>Angabe, um welchen VPN-Typ es sich handelt.</tooltip>
+    </ReferenceField>
+
+    <Label name="niederlassung"><text>Niederlassung:</text></Label>
+    <ReferenceField name="niederlassung">
+        <tooltip>Angabe, von welcher Niederlassung das VPN bearbeitet wird.</tooltip>
+    </ReferenceField>
+
+    <Label name="datum"><text>Datum:</text></Label>
+    <DateComponent name="datum">
+        <tooltip>Datum für den VPN-Auftrag</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>13</columns>
+    </DateComponent>
+
+    <Label name="einwahl"><text>Einwahlrufnummer:</text></Label>
+    <TextField name="einwahl">
+        <tooltip>Einwahlrufnummer für den VPN-Zugang</tooltip>
+        <maxchars>20</maxchars>
+    </TextField>
+
+    <Label name="projectlead"><text>Hauptprojektverantwortlicher:</text></Label>
+    <TextField name="projectlead">
+        <tooltip>Hauptprojektverantwortlicher für den VPN-Zugang</tooltip>
+        <maxchars>40</maxchars>
+    </TextField>
+
+    <Label name="salesrep"><text>Ansprechpartner Vertrieb:</text></Label>
+    <TextField name="salesrep">
+        <tooltip>Ansprechpartner im Vertrieb für den VPN-Zugang</tooltip>
+        <maxchars>40</maxchars>
+    </TextField>
+
+    <Label name="qos"><text>QOS:</text></Label>
+    <CheckBox name="salesrep">
+        <tooltip>Angabe, ob für das VPN QOS aktiv ist.</tooltip>
+    </CheckBox>
+
+    <Label name="bemerkung"><text>Bemerkung:</text></Label>
+    <TextArea name="bemerkung">
+        <tooltip>Bemerkung zu dem VPN-Auftrag</tooltip>
+        <maxchars>4000</maxchars>
+    </TextArea>
+
+</sf>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<table>
+    <column name="ID" property="id" type="java.lang.Long"/>
+    <column name="Typ" property="type" type="java.lang.String"/>
+    <column name="String-Value" property="strValue" type="java.lang.String"/>
+    <column name="Integer-Value" property="intValue" type="java.lang.Integer"/>
+    <column name="Float-Value" property="floatValue" type="java.lang.Float"/>
+    <column name="Unit-ID" property="unitId" type="java.lang.Long"/>
+    <column name="GUI sichtbar" property="guiVisible" type="java.lang.Boolean"/>
+    <column name="Order-No" property="orderNo" type="java.lang.Integer"/>
+</table>

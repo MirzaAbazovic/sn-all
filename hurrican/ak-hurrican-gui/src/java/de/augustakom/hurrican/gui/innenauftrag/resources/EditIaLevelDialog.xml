@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    <Label name="name">
+        <text>Name</text>
+    </Label>
+    <TextField name="name">
+        <columns>30</columns>
+    </TextField>
+
+    <Label name="sapId">
+        <text>SAP ID</text>
+    </Label>
+    <TextField name="sapId">
+        <columns>20</columns>
+    </TextField>
+</sf>

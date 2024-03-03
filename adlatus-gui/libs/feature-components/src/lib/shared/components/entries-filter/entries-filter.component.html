@@ -1,0 +1,15 @@
+<div class="filters" *ngIf="appliedFilters$ | async as appliedFilters">
+  <p class="title">Filters</p>
+
+  <div class="filterInputs">
+    <mat-form-field *ngFor="let filter of filters" class="filter">
+      <mat-label>{{filter.displayName}}</mat-label>
+      <input matInput [type]="filter.type" [name]="filter.name" #filterInput/>
+    </mat-form-field>
+  </div>
+
+  <div class="filterActions">
+    <button mat-raised-button class="successButton" (click)="applyFilters()">Apply</button>
+    <button mat-raised-button color="warn" *ngIf="appliedFilters.length > 0" (click)="clearFilters()">Clear</button>
+  </div>
+</div>

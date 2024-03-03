@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+
+    <!-- see http://www.redhat.com/docs/en-US/JBoss_Developer_Studio/3.0/html/Hibernate_Tools_Reference_Guide/hibernaterevengxmlfile.html
+        for more examples -->
+    <type-mapping>
+        <sql-type jdbc-type="NUMERIC" hibernate-type="java.lang.Long" />
+        <sql-type jdbc-type="CHAR" length='1' hibernate-type="java.lang.Boolean" />
+        <sql-type jdbc-type="DATE" hibernate-type="java.time.LocalDateTime" />
+    </type-mapping>
+
+    <table-filter match-name="NAVI_MIG_ICCS_WEG_ODER_ZURUECK" />
+    <!--<generator class="sequence"><param name="sequence"></param></generator> -->
+
+</hibernate-reverse-engineering>

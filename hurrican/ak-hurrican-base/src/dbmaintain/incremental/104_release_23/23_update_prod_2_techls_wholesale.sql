@@ -1,0 +1,16 @@
+Insert into T_PROD_2_TECH_LEISTUNG
+   (ID, PROD_ID, TECH_LS_ID, IS_DEFAULT, VERSION)
+ Values
+   (S_T_PROD_2_TECH_LEISTUNG_0.nextval, 600, 541, '0', 0);
+
+Insert into T_PROD_2_TECH_LEISTUNG
+   (ID, PROD_ID, TECH_LS_ID, IS_DEFAULT, VERSION)
+ Values
+   (S_T_PROD_2_TECH_LEISTUNG_0.nextval, 600, 542, '0', 0);
+
+Insert into T_PROD_2_TECH_LEISTUNG
+   (ID, PROD_ID, TECH_LS_ID, IS_DEFAULT, VERSION)
+ Values
+   (S_T_PROD_2_TECH_LEISTUNG_0.nextval, 600, 546, '0', 0);
+
+update T_PROD_2_TECH_LEISTUNG set IS_DEFAULT = '1' where PROD_ID = 600 and TECH_LS_DEPENDENCY is not null;

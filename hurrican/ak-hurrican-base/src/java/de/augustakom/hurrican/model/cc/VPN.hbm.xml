@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.VPN
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="VPN" table="T_VPN">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="VPN_ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_VPN_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="vpnType" column="VPN_TYPE" type="long"/>
+        <property name="vpnNr" column="VPN_NR" type="long" not-null="true"/>
+        <property name="projektleiter" column="VPN_PROJLEITER" type="string"/>
+        <property name="datum" column="VPN_DATUM" type="date" not-null="true"/>
+        <property name="kundeNo" column="VPN_KUNDEN__NO" type="long" not-null="true"/>
+        <property name="bemerkung" column="VPN_BEMERKUNG" type="string"/>
+        <property name="einwahl" column="VPN_EINWAHL" type="string"/>
+        <property name="vpnName" column="VPN_NAME" type="string"/>
+        <property name="realm" column="REALM" type="string"/>
+        <property name="niederlassungId" column="NIEDERLASSUNG_ID" type="long"/>
+        <property name="salesRep" column="VPN_SALESREP" type="string"/>
+        <property name="qos" column="VPN_QOS" type="boolean"/>
+
+    </class>
+
+</hibernate-mapping>

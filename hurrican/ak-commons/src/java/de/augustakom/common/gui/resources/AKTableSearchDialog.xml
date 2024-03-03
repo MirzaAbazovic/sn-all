@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Table Search-Dialog
+-->
+<sf>
+    
+    <Text name="title">Suche</Text>
+    <Text name="title.icon">de/augustakom/common/gui/images/search.gif</Text>
+    
+    <Label name="search"><text>Suche nach:</text></Label>
+    <TextField name="search">
+        <tooltip>Text, nach dem in der Tabelle gesucht werden soll.</tooltip>
+        <columns>15</columns>
+    </TextField>
+    
+    <Button name="search">
+        <text>Suchen</text>
+        <tooltip>Sucht nach einer Zelle, die den angegebenen Text enthält</tooltip>
+    </Button>
+    
+    <Button name="close">
+        <text>Schliessen</text>
+        <tooltip>Schliesst den Suchen-Dialog, ohne weitere Suche</tooltip>
+    </Button>
+    
+    <CheckBox name="chbWC">
+    	<text>Wildcards als standard?</text>
+    	<tooltip>Sucht immer mit Wildcards (*Suchtext*)</tooltip>
+    </CheckBox>
+    
+</sf>

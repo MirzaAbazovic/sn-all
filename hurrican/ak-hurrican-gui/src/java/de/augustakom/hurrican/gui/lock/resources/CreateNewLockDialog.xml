@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog, ueber den neue Sperren
+angelegt werden koennen.
+-->
+<sf>
+
+    <Text name="title">neue Sperre</Text>
+    <Text name="title.search">Suche</Text>
+    <Text name="title.lock">Sperr-Details</Text>
+    
+    <Label name="orders"><text>Aufträge:</text></Label>
+    
+	<Button name="search">
+        <text>Suchen</text>
+        <tooltip>Sucht nach den Aufträgen zu den Suchparametern</tooltip>
+    </Button>
+    
+    <Label name="debitor.id"><text>Debitor ID:</text></Label>
+    <TextField name="debitor.id">
+        <tooltip>Suchparameter: Debitor ID</tooltip>
+        <columns>20</columns>
+    </TextField>
+    
+    <Label name="lock.mode"><text>Sperr-Art:</text></Label>
+    <ReferenceField name="lock.mode">
+        <columns>20</columns>
+        <tooltip>Auswahl des Sperr-Art</tooltip>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+    
+    <Label name="lock.reason"><text>Grund für Sperre:</text></Label>
+    <ReferenceField name="lock.reason">
+        <columns>20</columns>
+        <tooltip>Grund für die Sperre</tooltip>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+    <TextArea name="lock.reason">
+        <tooltip>Freitext-Angabe</tooltip>
+        <columns>30</columns>
+        <rows>4</rows>
+    </TextArea>
+    
+    <Text name="error.no.selection">Bitte wählen Sie zuerst die zu sperrenden Aufträge (durch Selektion).</Text>
+    <Text name="error.no.lock.mode">Bitte definieren Sie die Art der Sperre, die ausgelöst werden soll.</Text>
+	
+</sf>

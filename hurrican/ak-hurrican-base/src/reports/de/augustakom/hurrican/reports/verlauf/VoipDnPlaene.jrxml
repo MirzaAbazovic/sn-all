@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="VoipDnPlaene"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Landscape"
+		 pageWidth="538"
+		 pageHeight="283"
+		 columnWidth="538"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="com.jasperassistant.designer.GridWidth" value="12" />
+	<property name="com.jasperassistant.designer.GridHeight" value="12" />
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false" />
+	<property name="com.jasperassistant.designer.Units" value="Millimeters" />
+	<property name="com.jasperassistant.designer.Grid" value="true" />
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+	<import value="de.augustakom.hurrican.model.cc.VoipDnPlanView" />
+	<reportFont name="Font_Title" isDefault="false" fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<reportFont name="Font_Detail" isDefault="false" fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+
+
+	<field name="GUELTIG_AB" class="java.util.Date"/>
+	<field name="VOIP_DN_PLAN" class="de.augustakom.hurrican.model.cc.VoipDnPlanView"/>
+    <field name="HAUPTRUFNR" class="java.lang.String"/>
+    <field name="SIP_LOGIN" class="java.lang.String"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="14"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="3"
+						y="0"
+						width="535"
+						height="13"
+						key="staticText-1"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Title" pdfFontName="Helvetica-Bold" size="9" isUnderline="true"/>
+					</textElement>
+				<text><![CDATA[Rufnummernpläne:]]></text>
+				</staticText>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+            <band height="35" isSplitAllowed="true">
+                <staticText>
+                    <reportElement
+                            x="3"
+                            y="0"
+                            width="47"
+                            height="13"
+                            key="staticText-2"
+                            positionType="Float"/>
+                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000"
+                         rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                    <textElement verticalAlignment="Middle">
+                        <font reportFont="Font_Title" pdfFontName="Helvetica-Bold" size="9"/>
+                    </textElement>
+                    <text><![CDATA[gültig ab]]></text>
+                </staticText>
+				<textField isStretchWithOverflow="false" pattern="dd.MM.yyyy" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="50"
+						y="0"
+                        width="50"
+						height="13"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{GUELTIG_AB} != null) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Detail" size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$F{GUELTIG_AB}]]></textFieldExpression>
+				</textField>
+                <staticText>
+                    <reportElement
+                            x="100"
+                            y="0"
+                            width="60"
+                            height="13"
+                            key="staticText"
+                            positionType="Float"
+                            isRemoveLineWhenBlank="true"
+                            isPrintInFirstWholeBand="true"/>
+                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000"
+                         rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                    <textElement verticalAlignment="Middle">
+                        <font reportFont="Font_Title" pdfFontName="Helvetica-Bold" size="9"/>
+                    </textElement>
+                    <text><![CDATA[HAUPTRUFNR.]]></text>
+                </staticText>
+                <textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Now"
+                           hyperlinkType="None" hyperlinkTarget="Self">
+                    <reportElement
+                            x="160"
+                            y="0"
+                            width="100"
+                            height="13"
+                            key="textField"
+                            positionType="Float">
+                        <printWhenExpression>
+                            <![CDATA[($F{HAUPTRUFNR} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+                    </reportElement>
+                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000"
+                         rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                    <textElement verticalAlignment="Middle">
+                        <font reportFont="Font_Detail" fontName="Trebuchet MS" size="8"/>
+                    </textElement>
+                    <textFieldExpression class="java.lang.String"><![CDATA[$F{HAUPTRUFNR}]]></textFieldExpression>
+                </textField>
+                <staticText>
+                    <reportElement
+                            x="260"
+                            y="0"
+                            width="60"
+                            height="13"
+                            key="staticText"
+                            positionType="Float"
+                            isRemoveLineWhenBlank="true"
+                            isPrintInFirstWholeBand="true"/>
+                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000"
+                         rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                    <textElement verticalAlignment="Middle">
+                        <font reportFont="Font_Title" pdfFontName="Helvetica-Bold" size="9"/>
+                    </textElement>
+                    <text><![CDATA[SIP-LOGIN]]></text>
+                </staticText>
+                <textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Now"
+                           hyperlinkType="None" hyperlinkTarget="Self">
+                    <reportElement
+                            x="320"
+                            y="0"
+                            width="120"
+                            height="13"
+                            key="textField"
+                            positionType="Float">
+                        <printWhenExpression>
+                            <![CDATA[($F{SIP_LOGIN} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+                    </reportElement>
+                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000"
+                         rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                    <textElement verticalAlignment="Middle">
+                        <font reportFont="Font_Detail" fontName="Trebuchet MS" size="8"/>
+                    </textElement>
+                    <textFieldExpression class="java.lang.String"><![CDATA[$F{SIP_LOGIN}]]></textFieldExpression>
+                </textField>
+				<subreport  isUsingCache="true">
+					<reportElement
+						mode="Transparent"
+                        x="3"
+                        y="15"
+						width="398"
+						height="13"
+						key="subreport-1"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"
+						isPrintInFirstWholeBand="true"/>
+					<dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.cc.impl.reportdata.VoipDnPlanJasperDs($F{VOIP_DN_PLAN})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/verlauf/VoipDnPlan.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

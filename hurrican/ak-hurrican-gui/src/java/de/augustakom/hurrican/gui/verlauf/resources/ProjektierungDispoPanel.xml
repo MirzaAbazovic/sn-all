@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Projektierungs-Panel DISPO.
+-->
+<sf>
+
+    <Button name="verteilen">
+        <text>Verteilen</text>
+        <tooltip>Verteilt die Projektierung an die einzelnen Abteilungen</tooltip>
+    </Button>
+
+    <Button name="move.to.rl">
+        <text>in RL verschieben</text>
+        <tooltip>Verschiebt die aktuelle Projektierung in die Ruecklaeufer - ohne Fachabteilungen</tooltip>
+    </Button>
+
+    <Button name="eingabe">
+        <text>Daten erfassen</text>
+        <tooltip>Möglichkeit, um spezielle Daten für die Projektierung zu erfassen</tooltip>
+    </Button>
+
+    <Button name="print">
+        <text>Drucken</text>
+        <tooltip>Druckt die Projektierung aus</tooltip>
+    </Button>
+
+    <Button name="bemerkungen">
+        <text>Bemerkungen</text>
+        <tooltip>Zeigt alle Bemerkungen zu der Projektierung an</tooltip>
+    </Button>
+
+    <Button name="show.ports">
+        <text>Ports</text>
+        <tooltip>Zeigt alle Ports des Verlaufes an</tooltip>
+    </Button>
+
+    <Text name="move.to.rl.title">Verschieben?</Text>
+    <Text name="move.to.rl.msg">Soll die Projektierung wirklich in die Rückläufer
+verschoben werden?</Text>
+
+    <Text name="assign.to.np.title">Verschieben?</Text>
+    <Text name="assign.to.np.msg">Soll die Projektierung wirklich der Netzplanung
+zugewiesen werden?</Text>
+
+</sf>

@@ -1,0 +1,1 @@
+alter table T_VERLAUF drop constraint UQ_WORKFORCE_ORDER_ID;

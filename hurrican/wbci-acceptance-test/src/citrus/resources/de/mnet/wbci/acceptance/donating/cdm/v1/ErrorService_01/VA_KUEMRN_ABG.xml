@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <v1:requestCarrierChange xmlns:v1="http://www.mnet.de/esb/cdm/SupplierPartner/CarrierNegotiationService/v1">
+            <v1:VA-KUE-MRN>
+                <aaa />
+            </v1:VA-KUE-MRN>
+        </v1:requestCarrierChange>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

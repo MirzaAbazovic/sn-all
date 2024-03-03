@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.EndstelleAnsprechpartner
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="EndstelleAnsprechpartner" table="T_ES_ANSP">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_ES_ANSP_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="endstelleId" column="ES_ID" type="long"/>
+        <property name="ansprechpartner" column="ANSPRECHPARTNER" type="string"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date"/>
+
+    </class>
+
+</hibernate-mapping>

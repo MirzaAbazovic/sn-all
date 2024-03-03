@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring App-Context Definition fuer das Projekt NGN-Interconnect. -->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+
+    <bean class="de.mnet.hurrican.webservice.ngn.service.impl.PortierungHelperService"
+          id="portierungHelperService">
+        <constructor-arg name="auftragService" ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+        <constructor-arg name="rufnummerService" ref="de.augustakom.hurrican.service.billing.RufnummerService"/>
+        <constructor-arg name="wbciCommonService" ref="de.mnet.wbci.service.WbciCommonService"/>
+        <constructor-arg name="wbciWitaServiceFacade" ref="de.mnet.wbci.service.WbciWitaServiceFacade"/>
+    </bean>
+
+    <bean class="de.mnet.hurrican.webservice.ngn.service.impl.PortierungskennungMigrationService"
+          id="portierungskennungMigrationService"/>
+
+    <bean class="de.mnet.hurrican.webservice.ngn.service.impl.WitaGfMigration" id="witaGfMigration"/>
+
+    <bean class="de.mnet.hurrican.webservice.ngn.service.impl.dn.DNLeistungMigration" id="dnLeistungMigration">
+        <constructor-arg type="de.augustakom.hurrican.service.billing.RufnummerService" ref="de.augustakom.hurrican.service.billing.RufnummerService"/>
+        <constructor-arg type="de.augustakom.hurrican.service.cc.CCRufnummernService" ref="de.augustakom.hurrican.service.cc.CCRufnummernService"/>
+    </bean>
+
+    <bean class="de.mnet.hurrican.webservice.ngn.service.impl.PortierungServiceImpl" id="portierungService">
+        <constructor-arg name="featureService" ref="de.augustakom.hurrican.service.cc.FeatureService"/>
+        <constructor-arg name="portierungHelperService" ref="portierungHelperService"/>
+        <constructor-arg name="portierungskennungMigrationService" ref="portierungskennungMigrationService"/>
+        <constructor-arg name="dnLeistungMigration" ref="dnLeistungMigration"/>
+    </bean>
+
+    <bean class="de.mnet.hurrican.webservice.ngn.endpoint.PortierungWebEndpoint" id="portierungWebEndpoint">
+        <constructor-arg name="portierungService" ref="portierungService"/>
+    </bean>
+
+    <!-- ENDPOINTS -->
+    <jaxws:endpoint implementor="#portierungWebEndpoint"
+                    address="/portierungService">
+        <jaxws:inInterceptors>
+            <bean class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+        </jaxws:inInterceptors>
+        <jaxws:outInterceptors>
+            <bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+        </jaxws:outInterceptors>
+    </jaxws:endpoint>
+
+</beans>

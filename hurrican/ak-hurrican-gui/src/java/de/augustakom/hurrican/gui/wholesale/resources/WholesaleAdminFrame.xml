@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Frame der Wholesale EKPs und A10-NSPs.
+-->
+<sf>
+    <Text name="title">EKPs / A10-NSPs</Text>
+    <Text name="wholesale.ekp.panel">EKPs</Text>
+    <Text name="wholesale.a10nsp.panel">A10-NSPs</Text>
+</sf>

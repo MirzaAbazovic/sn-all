@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Darstellung der
+Standardeigenschaften einer DB-Definition.
+-->
+<sf>
+    <Label name="db.id"><text>ID:</text></Label>
+    <FormattedTextField name="db.id">
+        <tooltip>ID der DB-Definition</tooltip>
+        <format type="number">######</format>
+    </FormattedTextField>
+
+    <Label name="db.name"><text>Name:</text></Label>
+    <TextField name="db.name">
+        <tooltip>Name der DB-Definition</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="db.driver"><text>Driver:</text></Label>
+    <TextField name="db.driver">
+        <tooltip>JDBC-Driver für die Datenbank</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="db.url"><text>URL:</text></Label>
+    <TextField name="db.url">
+        <tooltip>URL der Datenbank</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="db.schema"><text>Schema:</text></Label>
+    <TextField name="db.schema">
+        <tooltip>Name des zu verwendenden DB-Schemas</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="db.description"><text>Beschreibung:</text></Label>
+    <TextArea name="db.description">
+        <tooltip>Kurze Beschreibung der DB (max. 255 Zeichen)</tooltip>
+        <columns>30</columns>
+        <rows>5</rows>
+    </TextArea>
+
+</sf>

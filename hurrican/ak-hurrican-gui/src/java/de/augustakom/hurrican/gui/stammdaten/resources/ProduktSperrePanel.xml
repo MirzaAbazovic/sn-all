@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Sub-Panel mit den Sperren fuer die Produkte.
+-->
+<sf>
+  
+    <!-- Beginn von Panel mit 'Sperren' -->
+    <Label name="sperre.title"><text>Abteilungen für Sperren:</text></Label>
+    
+</sf>

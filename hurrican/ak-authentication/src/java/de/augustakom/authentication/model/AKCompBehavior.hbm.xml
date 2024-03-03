@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse de.augustakom.authentication.model.AKCompBehavior
+-->
+
+<hibernate-mapping package="de.augustakom.authentication.model">
+    <class name="AKCompBehavior" table="COMPBEHAVIOR">
+
+        <cache usage="read-write"/>
+
+        <!-- PrimaryKey von AKGUIComponent/GUICOMPONENT -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_COMPBEHAVIOR_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="componentId" column="COMP_ID" type="long" not-null="true"/>
+        <property name="roleId" column="ROLE_ID" type="long" not-null="true"/>
+        <property name="visible" column="VISIBLE" type="boolean"/>
+        <property name="executable" column="EXECUTABLE" type="boolean"/>
+    </class>
+
+</hibernate-mapping>
+

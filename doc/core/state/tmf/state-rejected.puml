@@ -1,0 +1,11 @@
+@startuml
+
+title State-transition for rejected resource order
+Acknowledged: Order received and passed message and basic business validation
+[*] --> Acknowledged
+Acknowledged --> Rejected: validation failed
+
+Rejected : Invalid information or failed business rules
+Rejected --> [*] : Final
+
+@enduml

@@ -1,0 +1,4 @@
+-- set the correct dslam type using the SOFTWARE_VERSION
+update T_HW_RACK_DSLAM d set d.DSLAM_TYPE = 'MA5600v3' where UPPER(TRIM(SOFTWARE_VERSION)) like 'MA5600V3';
+update T_HW_RACK_DSLAM d set d.DSLAM_TYPE = 'MA5600T'  where UPPER(TRIM(SOFTWARE_VERSION)) like 'MA5600T';
+update T_HW_RACK_DSLAM d set d.DSLAM_TYPE = 'MA5603T'  where UPPER(TRIM(SOFTWARE_VERSION)) like 'MA5603T';

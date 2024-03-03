@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://common.api.command.fnt.de" targetNamespace="http://common.api.command.fnt.de" elementFormDefault="qualified">
+    <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="SoapEncoding.xsd"/>
+    <xs:element name="cmdException" type="tns:CmdSoapException"/>
+    <xs:complexType name="CmdSoapException">
+        <xs:sequence>
+            <xs:element name="errorType" type="xs:string"/>
+            <xs:element name="errorCode" type="xs:int"/>
+            <xs:element name="errorMessage" type="xs:string"/>
+            <xs:element name="errorMessageLong" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CmdInfo">
+        <xs:sequence>
+            <xs:element name="exitstatus" type="xs:int" default="0"/>
+            <xs:element name="infoMessage" type="tns:ArrayOfInfoMessage" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ArrayOfInfoMessage">
+        <xs:complexContent>
+            <xs:restriction base="soapenc:Array">
+                <xs:attribute ref="soapenc:arrayType" wsdl:arrayType="tns:InfoMessage[]"/>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="InfoMessage">
+        <xs:sequence>
+            <xs:element name="infoMessage" type="xs:string"/>
+            <xs:element name="infoMessageLong" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ArrayOfCmdMap">
+        <xs:complexContent>
+            <xs:restriction base="soapenc:Array">
+                <xs:attribute ref="soapenc:arrayType" wsdl:arrayType="tns:CmdMap[]"/>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="CmdMap">
+        <xs:sequence>
+            <xs:element name="key" type="xs:string"/>
+            <xs:element name="value" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ArrayOfString">
+        <xs:complexContent>
+            <xs:restriction base="soapenc:Array">
+                <xs:attribute ref="soapenc:arrayType" wsdl:arrayType="xs:string[]"/>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="ArrayOfInt">
+        <xs:complexContent>
+            <xs:restriction base="soapenc:Array">
+                <xs:attribute ref="soapenc:arrayType" wsdl:arrayType="xs:int[]"/>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="CmdRestriction">
+        <xs:sequence>
+            <xs:element name="operator" type="xs:string" default="="/>
+            <xs:element name="operator2" type="xs:string" minOccurs="0"/>
+            <xs:element name="value" type="xs:string" minOccurs="0"/>
+            <xs:element name="value2" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ArrayOfCmdRestriction">
+        <xs:complexContent>
+            <xs:restriction base="soapenc:Array">
+                <xs:attribute ref="soapenc:arrayType" wsdl:arrayType="tns:CmdRestriction[]"/>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="CmdRestrictionDynamic">
+        <xs:sequence>
+            <xs:element name="attributeName" type="xs:string"/>
+            <xs:element name="restriction" type="tns:CmdRestriction"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ArrayOfCmdRestrictionDynamic">
+        <xs:complexContent>
+            <xs:restriction base="soapenc:Array">
+                <xs:attribute ref="soapenc:arrayType" wsdl:arrayType="tns:CmdRestrictionDynamic[]"/>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="CmdResultRow">
+        <xs:sequence>
+            <xs:element name="columnData" type="tns:ArrayOfString"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ArrayOfCmdResultRow">
+        <xs:complexContent>
+            <xs:restriction base="soapenc:Array">
+                <xs:attribute ref="soapenc:arrayType" wsdl:arrayType="tns:CmdResultRow[]"/>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="CmdColumnDefinition">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ArrayOfCmdColumnDefinition">
+        <xs:complexContent>
+            <xs:restriction base="soapenc:Array">
+                <xs:attribute ref="soapenc:arrayType" wsdl:arrayType="tns:CmdColumnDefinition[]"/>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="CmdAttribute">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="value" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ArrayOfCmdAttribute">
+        <xs:complexContent>
+            <xs:restriction base="soapenc:Array">
+                <xs:attribute ref="soapenc:arrayType" wsdl:arrayType="tns:CmdAttribute[]"/>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

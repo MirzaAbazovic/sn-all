@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxws:bindings
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+        xmlns="http://java.sun.com/xml/ns/jaxws"
+        xmlns:jaxws="http://java.sun.com/xml/ns/jaxws"
+        xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+        xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        jxb:extensionBindingPrefixes="xjc" jxb:version="2.1">
+    <enableWrapperStyle>false</enableWrapperStyle>
+
+    <jaxws:bindings
+        node="wsdl:definitions/wsdl:types/xs:schema[@targetNamespace='http://www.mnet.de/esb/cdm/Resource/Location/v1']">
+        <jxb:globalBindings>
+            <xjc:serializable uid="1"/>
+            <jxb:javaType name="java.util.Date" xmlType="xs:dateTime"
+                          parseMethod="org.apache.cxf.xjc.runtime.DataTypeAdapter.parseDateTime"
+                          printMethod="org.apache.cxf.xjc.runtime.DataTypeAdapter.printDateTime"/>
+        </jxb:globalBindings>
+    </jaxws:bindings>
+</jaxws:bindings>

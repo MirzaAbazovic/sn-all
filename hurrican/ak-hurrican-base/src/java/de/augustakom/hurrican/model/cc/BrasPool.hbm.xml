@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.EQCrossConnection
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="BrasPool" table="T_BRAS_POOLS">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="assigned"/> <!-- werden momentan nur manuell in der DB angelegt -->
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="name" column="NAME" type="string"/>
+        <property name="vp" column="VP" type="integer"/>
+        <property name="vcMin" column="VC_MIN" type="integer"/>
+        <property name="vcMax" column="VC_MAX" type="integer"/>
+        <property name="nasIdentifier" column="NAS_IDENTIFIER" type="string"/>
+        <property name="port" column="PORT" type="integer"/>
+        <property name="slot" column="SLOT" type="integer"/>
+        <property name="backupNasIdentifier" column="BACKUP_NAS_IDENTIFIER" type="string"/>
+        <property name="backupPort" column="BACKUP_PORT" type="integer"/>
+        <property name="backupSlot" column="BACKUP_SLOT" type="integer"/>
+    </class>
+</hibernate-mapping>

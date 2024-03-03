@@ -1,0 +1,10 @@
+<!--
+Konfiguration der Service-Initializer fuer die JUnit-TestCases
+-->
+<serviceinitializer>
+	<initializer>
+		<class>de.augustakom.authentication.service.impl.AKAuthenticationServiceLocatorInitializer</class>
+		<name>AuthenticationSerice-Initializer</name>
+		<description>Initializes the authentication service.</description>
+	</initializer>
+</serviceinitializer>

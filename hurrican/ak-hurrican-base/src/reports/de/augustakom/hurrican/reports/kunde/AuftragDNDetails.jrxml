@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="Rufnummern" pageWidth="709" pageHeight="71" orientation="Landscape" columnWidth="709" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="com.jasperassistant.designer.GridWidth" value="12"/>
+	<property name="com.jasperassistant.designer.GridHeight" value="12"/>
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+	<property name="com.jasperassistant.designer.Units" value="Millimeters"/>
+	<property name="com.jasperassistant.designer.Grid" value="true"/>
+	<reportFont name="Font_Header" isDefault="false" fontName="Arial" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<reportFont name="Font_Detail" isDefault="true" fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<field name="ONKZ" class="java.lang.String">
+	</field>
+	<field name="DN_BASE" class="java.lang.String">
+	</field>
+	<field name="RANGE_FROM" class="java.lang.String">
+	</field>
+	<field name="RANGE_TO" class="java.lang.String">
+	</field>
+	<field name="IS_MAIN" class="java.lang.Boolean">
+	</field>
+	<field name="DIRECT_DIAL" class="java.lang.String">
+	</field>
+	<field name="VALID_FROM" class="java.util.Date">
+	</field>
+	<field name="VALID_TO" class="java.util.Date">
+	</field>
+	<field name="REMARKS" class="java.lang.String">
+	</field>
+	<columnHeader>
+		<band height="15">
+			<staticText>
+				<reportElement positionType="Float" x="9" y="2" width="36" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font reportFont="Font_Header" size="8" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[ONKZ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="202" y="2" width="28" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font reportFont="Font_Header" size="8" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[MAIN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="104" y="2" width="59" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font reportFont="Font_Header" size="8" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[Direct/Range]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="51" y="2" width="35" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font reportFont="Font_Header" size="8" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[Base]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="378" y="2" width="66" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font reportFont="Font_Header" size="8" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[REMARKS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="305" y="2" width="52" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font reportFont="Font_Header" size="8" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[VALID_TO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="233" y="2" width="67" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font reportFont="Font_Header" size="8" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[VALID_FROM]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15">
+			<textField>
+				<reportElement positionType="Float" x="9" y="2" width="37" height="11">
+					<printWhenExpression><![CDATA[($F{ONKZ} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ONKZ}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="52" y="2" width="46" height="11">
+					<printWhenExpression><![CDATA[($F{DN_BASE} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DN_BASE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="129" y="2" width="29" height="11">
+					<printWhenExpression><![CDATA[($F{RANGE_FROM} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{RANGE_FROM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="163" y="2" width="31" height="11">
+					<printWhenExpression><![CDATA[($F{RANGE_TO} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{RANGE_TO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="202" y="2" width="27" height="11">
+					<printWhenExpression><![CDATA[($F{IS_MAIN} != null) ? (Boolean) $F{IS_MAIN} : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{IS_MAIN} != null && $F{IS_MAIN}.booleanValue()) ? "ja" : ""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="105" y="2" width="17" height="11">
+					<printWhenExpression><![CDATA[($F{DIRECT_DIAL} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DIRECT_DIAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="233" y="2" width="69" height="11">
+					<printWhenExpression><![CDATA[new Boolean($F{VALID_FROM} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("dd.MM.yyyy").format($F{VALID_FROM})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="305" y="2" width="63" height="11">
+					<printWhenExpression><![CDATA[new Boolean($F{VALID_TO} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("dd.MM.yyyy").format($F{VALID_TO})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="378" y="2" width="319" height="11">
+					<printWhenExpression><![CDATA[new Boolean($F{REMARKS} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{REMARKS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

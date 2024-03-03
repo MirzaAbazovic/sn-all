@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Basis Spring Context fuer alle Migrationen -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true"
+       profile="default, wita-wbci-atlas">
+
+    <bean id="propertyBean" class="de.augustakom.common.tools.spring.PropertyBean">
+        <property name="fileBaseNames">
+            <list>
+                <value>common</value>
+                <value>hurrican-base</value>
+            </list>
+        </property>
+        <property name="appendix" value="properties"/>
+    </bean>
+
+    <bean id="placeholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
+
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCServices.xml"/>
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCServerServices.xml"/>
+    <import resource="classpath:de/augustakom/hurrican/service/exmodules/tal/resources/TALServices.xml"/>
+    <import resource="classpath:de/augustakom/hurrican/service/internet/resources/InternetServices.xml"/>
+    <import resource="classpath:de/augustakom/hurrican/service/billing/resources/BillingServices.xml"/>
+    <import resource="classpath:de/augustakom/common/service/resources/HttpClient.xml"/>
+
+    <!-- Ueberschreibe CCAuftragService, damit bestehende Transaktionen unterstuetzt werden. -->
+    <!-- CCAuftrag-Service (Target) -->
+
+    <!-- CCAuftrag-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.CCAuftragService"
+          class="de.augustakom.hurrican.service.cc.impl.CCAuftragServiceImpl">
+        <property name="auftragViewDAO" ref="auftragViewDAO"/>
+        <property name="auftragStatusDAO" ref="auftragStatusDAO"/>
+        <property name="auftragDatenDAO" ref="auftragDatenDAO"/>
+        <property name="auftragTechnikDAO" ref="auftragTechnikDAO"/>
+        <property name="auftragDAO" ref="auftragDAO"/>
+        <property name="defaultDeleteDAO" ref="defaultDeleteDAO"/>
+        <property name="auftragAktionDAO" ref="auftragAktionDAO"/>
+    </bean>
+
+
+    <!-- Produkt-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.ProduktService"
+          class="de.augustakom.hurrican.service.cc.impl.ProduktServiceImpl">
+        <property name="DAO" ref="produktDAO"/>
+        <property name="produktGruppeDAO" ref="produktGruppeDAO"/>
+        <property name="schnittstelleDAO" ref="schnittstelleDAO"/>
+        <property name="produktViewDAO" ref="produktViewDAO"/>
+        <property name="leitungsartDAO" ref="leitungsartDAO"/>
+        <property name="physikTypDAO" ref="physikTypDAO"/>
+        <property name="defaultDeleteDAO" ref="defaultDeleteDAO"/>
+        <property name="validator" ref="produktValidator"/>
+    </bean>
+
+
+    <!-- Physik-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.PhysikService"
+          class="de.augustakom.hurrican.service.cc.impl.PhysikServiceImpl">
+        <property name="montageartDAO" ref="montageartDAO"/>
+        <property name="vbzDAO" ref="vbzDAO"/>
+        <property name="inhouseDAO" ref="inhouseDAO"/>
+        <property name="physikTypDAO" ref="physikTypDAO"/>
+        <property name="leitungsartDAO" ref="leitungsartDAO"/>
+        <property name="schnittstelleDAO" ref="schnittstelleDAO"/>
+        <property name="anschlussartDAO" ref="anschlussartDAO"/>
+        <property name="physikUebernahmeDAO" ref="physikUebernahmeDAO"/>
+        <property name="produktService" ref="de.augustakom.hurrican.service.cc.ProduktService"/>
+        <property name="auftragService" ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+        <property name="rangierungsService" ref="de.augustakom.hurrican.service.cc.RangierungsService"/>
+        <property name="endstellenService" ref="de.augustakom.hurrican.service.cc.EndstellenService"/>
+    </bean>
+
+
+    <!-- Rangierungs-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.RangierungsService"
+          class="de.augustakom.hurrican.service.cc.impl.RangierungsServiceImpl"
+          init-method="init">
+        <property name="rangierungDAO" ref="rangierungDAO"/>
+        <property name="equipmentDAO" ref="equipmentDAO"/>
+        <property name="physikUebernahmeDAO" ref="physikUebernahmeDAO"/>
+        <property name="rangierungsmatrixDAO" ref="rangierungsmatrixDAO"/>
+        <property name="rangierungsmatrixValidator" ref="rangierungsmatrixValidator"/>
+    </bean>
+
+
+    <!-- Endstellen-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.EndstellenService"
+          class="de.augustakom.hurrican.service.cc.impl.EndstellenServiceImpl">
+    </bean>
+
+
+    <!-- CCKundenService-Definition -->
+    <bean id="de.augustakom.hurrican.service.cc.CCKundenService"
+          class="de.augustakom.hurrican.service.cc.impl.CCKundenServiceImpl">
+        <property name="auftragViewDAO" ref="auftragViewDAO"/>
+        <property name="auftragDatenDAO" ref="auftragDatenDAO"/>
+        <property name="anredeDAO" ref="anredeDAO"/>
+        <property name="produktDAO" ref="produktDAO"/>
+        <property name="techLeistungDAO" ref="techLeistungDAO"/>
+        <property name="ccAddressDAO" ref="ccAddressDAO"/>
+        <property name="ccAddressValidator" ref="ccAddressValidator"/>
+        <property name="ccKundeNbzDAO" ref="ccKundeNbzDAO"/>
+    </bean>
+
+
+    <!-- Ueberschreiben wegen maxActive und maxIdle der Data-Source fuer die CC-Datenbank -->
+    <bean id="cc.dataSourceTarget" class="de.augustakom.common.tools.dao.jdbc.AKBasicDataSource" destroy-method="close">
+        <property name="driverClassName">
+            <value>${hurrican.cc.jdbc.driver}</value>
+        </property>
+        <property name="url">
+            <value>${hurrican.cc.jdbc.url}</value>
+        </property>
+        <property name="username">
+            <value>${hurrican.cc.jdbc.user}</value>
+        </property>
+        <property name="password">
+            <value>${hurrican.cc.jdbc.password}</value>
+        </property>
+        <property name="maxActive">
+            <value>${migration.jdbc.max.active}</value>
+        </property>
+        <property name="maxIdle">
+            <value>${migration.jdbc.max.idle}</value>
+        </property>
+        <property name="validationQuery">
+            <value>select 1 from dual</value>
+        </property>
+    </bean>
+
+    <!-- Ueberschreiben der Data-Source fuer die Taifun-Datenbank (inkl. Fallback-System) wegen maxActive und maxIdle-->
+    <bean id="billing.dataSourceTarget" class="de.augustakom.common.tools.dao.jdbc.AKBasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName">
+            <value>${hurrican.billing.jdbc.driver}</value>
+        </property>
+        <property name="url">
+            <value>${hurrican.billing.jdbc.url}</value>
+        </property>
+        <property name="username">
+            <value>${hurrican.billing.jdbc.user}</value>
+        </property>
+        <property name="password">
+            <value>${hurrican.billing.jdbc.password}</value>
+        </property>
+        <property name="maxActive">
+            <value>${migration.jdbc.max.active}</value>
+        </property>
+        <property name="maxIdle">
+            <value>${migration.jdbc.max.idle}</value>
+        </property>
+        <property name="validationQuery">
+            <value>select 1 from dual</value>
+        </property>
+    </bean>
+
+</beans>

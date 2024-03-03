@@ -1,0 +1,14 @@
+server:
+  port: '8080'
+spring:
+  data:
+    mongodb:
+      database: agreement_management
+      port: '27017'
+      host: mongodb
+    jackson:
+      date-format: de.bitconex.agreement.RFC3339DateFormat
+      serialization:
+        WRITE_DATES_AS_TIMESTAMPS: 'false'
+    liquibase:
+      enabled: ${INITIAL_LOAD:false}

@@ -1,0 +1,13 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+
+    <bean id="camelWitaJmsComponent" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="org.apache.activemq.camel.component.ActiveMQComponent" />
+    </bean>
+
+    <bean id="jmsTransactionManager" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="org.springframework.jms.connection.JmsTransactionManager" />
+    </bean>
+
+</beans>

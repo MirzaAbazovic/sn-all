@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit Baugruppen-Schwenks.
+-->
+<sf>
+
+    <Text name="affected.ports.and.orders">Ports u. Aufträge</Text>
+
+    <Button name="cps.init">
+        <tooltip>Führt eine CPS-Initialisierung für die betroffenen (aktiven) Aufträge durch (sofern noch nicht vorhanden)</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/flag_green.gif</icon>
+    </Button>
+
+    <Button name="cps.modify">
+        <tooltip>Führt einen modifySubscriber für die betroffenen (aktiven) Aufträge durch</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/flag_complete.gif</icon>
+    </Button>
+
+    <Button name="print.portmapping">
+        <tooltip>Öffnet einen Dialog mit ausführlicherem Port-Mapping; Druck kann von dort erfolgen.</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+    </Button>
+
+    <Text name="cps.init.title">CPS-Initialisierung?</Text>
+    <Text name="cps.init.msg">Soll die CPS-Initialisierung wirklich durchgeführt werden?</Text>
+
+    <Text name="cps.modify.title">CPS modifySubscriber</Text>
+    <Text name="cps.modify.msg">Soll für die betroffenen Aufträge wirklich eine
+CPS-Tx 'modifySubscriber' erstellt werden?</Text>
+
+    <Text name="cps.executed">Die CPS-Transaktionen wurden erzeugt.
+
+Aufgetretene Warnungen / Fehler:
+{0}</Text>
+
+</sf>

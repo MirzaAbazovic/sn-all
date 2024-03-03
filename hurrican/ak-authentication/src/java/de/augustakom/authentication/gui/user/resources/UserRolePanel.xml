@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Darstellung der
+Benutzer-Rollen-Zuordnung.
+-->    
+<sf>
+    <Label name="assigned.roles"><text>zugeordnete Rollen:</text></Label>
+    <List name="assigned.roles">
+    	<tooltip>Liste mit den Rollen, die dem Benutzer bereits zugeordnet sind</tooltip>
+    </List>
+    
+    <Label name="available.roles"><text>verfügbare Rollen:</text></Label>
+    <List name="available.roles">
+    	<tooltip>Liste mit den Rollen, die dem Benutzer zugeordnet werden können</tooltip>
+    </List>
+    
+    <Button name="assign">
+        <tooltip>Ordnet die ausgewählte Rolle dem Benutzer zu</tooltip>
+        <icon>de/augustakom/authentication/gui/images/left.gif</icon>
+    </Button>
+    
+    <Button name="remove">
+        <tooltip>Entfernt die ausgewählte Rolle aus der Benutzer-Rollen-Zuordnung</tooltip>
+        <icon>de/augustakom/authentication/gui/images/right.gif</icon>
+    </Button>
+    
+</sf>

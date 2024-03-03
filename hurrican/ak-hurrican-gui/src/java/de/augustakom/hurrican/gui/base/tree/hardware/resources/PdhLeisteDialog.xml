@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    GUI-Definitionen für den Dialog zum Anlegen einer PDH-Leiste
+-->
+<sf>
+    <Text name="title">PDH-Leiste anlegen</Text>
+
+    <Label name="leiste"><text>Leiste:</text></Label>
+    <FormattedTextField name="leiste">
+        <tooltip>Bezeichnung dieser PDH-Leiste, z.B. P02</tooltip>
+        <maxchars>12</maxchars>
+        <columns>10</columns>
+    </FormattedTextField>
+
+    <Label name="stifte"><text>Stifte:</text></Label>
+    <FormattedTextField name="stifte">
+        <tooltip>Anzahl der Stifte dieser PDH-Leiste, z.B. 24</tooltip>
+        <format type="number">##</format>
+        <maxchars>2</maxchars>
+        <columns>10</columns>
+    </FormattedTextField>
+</sf>

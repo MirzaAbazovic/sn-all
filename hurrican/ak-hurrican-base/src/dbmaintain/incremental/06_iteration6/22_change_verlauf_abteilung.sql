@@ -1,0 +1,2 @@
+alter table T_VERLAUF_ABTEILUNG add PARENT_VERLAUF_ID number(10);
+comment on column T_VERLAUF_ABTEILUNG.PARENT_VERLAUF_ID is 'Id des VerlaufAbteilung-Datensatzes, aus dem dieser untergeordnete Datensatz generiert wurde';

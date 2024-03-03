@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    <Text name="peering.partners.title">SIP Peering Partner</Text>
+    <Button name="new.peering.partner">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Neuen Peering Partner hinzufügen</tooltip>
+    </Button>
+    <Button name="edit.peering.partner">
+        <icon>de/augustakom/hurrican/gui/images/edit.gif</icon>
+        <tooltip>Ausgewählten Peering Partner bearbeiten</tooltip>
+    </Button>
+
+    <Text name="assigned.orders.title">zugeordnete Hurrican Auftrag-IDs</Text>
+    <Text name="assigned.orders">Folgende (aktive) Hurrican Auftrag-IDs sind dem Peering Partner aktuell zugeordnet:</Text>
+    <Text name="no.assigned.orders">Dem Peering Partner sind aktuell keine aktiven Aufträge zugeordnet!</Text>
+
+    <Text name="warning.peering.partner.already.exists">Der Peering Partner "%s" existiert bereits.</Text>
+
+    <Text name="ip.sets.title">SBC-Adressen</Text>
+    <Button name="new.ip.set">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Neuen Datensatz anlegen</tooltip>
+    </Button>
+    <Button name="del.ip.set">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Angezeigten Datensatz löschen</tooltip>
+    </Button>
+    <Label name="ip.set.gueltig.ab">
+        <text>gültig ab:</text>
+    </Label>
+    <TextField name="ip.set.gueltig.ab">
+        <tooltip>Datum ab dem die SBC-Adressen gültig sind</tooltip>
+        <columns>14</columns>
+    </TextField>
+    <Button name="cps.info">
+        <icon>de/augustakom/hurrican/gui/images/auftraege.gif</icon>
+        <tooltip>Zeigt eine Liste mit allen (aktiven) Aufträgen, die dem Peering Partner zugeordnet sind.</tooltip>
+    </Button>
+    <Button name="cps">
+        <icon>de/augustakom/hurrican/gui/images/flag_complete.gif</icon>
+        <tooltip>Ermittelt alle aktiven Aufträge zu dem PeeringPartner und führt einen CPS 'modifySubscriber' durch.
+        </tooltip>
+    </Button>
+    <Text name="confirm.del.ip.set">Soll der angezeigte Datensatz wirklich gelöscht werden?</Text>
+
+    <Text name="confirm.cps.modify.title">CPS 'modifySubscriber'?</Text>
+    <Text name="confirm.cps.modify">Soll für alle ermittelten {0} Aufträge zum PeeringPartner ein CPS 'modifySubscriber' generiert werden? Dies kann je nach Anzahl der Aufträge einige Zeit in Anspruch nehmen.</Text>
+
+    <Text name="cps.no.orders">Zu dem Peering-Partner konnten keine Aufträge ermittelt werden, die zu dem entsprechenden Zeitpunkt aktiv sind.</Text>
+
+    <Text name="cps.running">CPS modifySubscriber...</Text>
+
+    <Text name="cps.info.result.title">Liste der betroffenen Aufträge</Text>
+    <Text name="cps.info.result.message">Folgende Aufträge müssen mit modifySubscriber auf den neuesten Stand gebracht werden:
+
+{0}</Text>
+
+    <Text name="cps.result.title">CPS modifySubscriber abgeschlossen</Text>
+    <Text name="cps.result.message">Es wurden CPS-Transaktionen für die Aufträge generiert.
+Aufgetretene Warnungen:
+
+{0}</Text>
+
+</sf>

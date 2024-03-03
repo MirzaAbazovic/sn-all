@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Wizard-Panel mit der Produkt-Auswahl
+-->
+<sf>
+    
+    <Label name="produkt.gruppe"><text>Produktgruppe:</text></Label>
+    <TextField name="produkt.gruppe">
+        <tooltip>Auswahl der Produktgruppe</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="produkt"><text>Produkt:</text></Label>
+</sf>

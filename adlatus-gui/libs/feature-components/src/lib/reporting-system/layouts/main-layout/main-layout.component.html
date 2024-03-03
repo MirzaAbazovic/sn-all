@@ -1,0 +1,24 @@
+<mat-sidenav-container [hasBackdrop]="true">
+  <mat-sidenav #sidenav class="sidenav" opened="false" mode="side">
+    <button mat-icon-button *ngIf="sidenav.opened" (click)="sidenav.toggle()">
+      <mat-icon >keyboard_arrow_left</mat-icon>
+    </button>
+    <mat-nav-list>
+      <a
+        *ngFor="let linkData of secondaryNavigation"
+        mat-list-item
+        [routerLink]="['.', linkData.link]"
+        routerLinkActive="active"
+      >
+        {{linkData.title}}
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <button mat-icon-button *ngIf="!sidenav.opened" (click)="sidenav.toggle()">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

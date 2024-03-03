@@ -1,0 +1,9 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <getPublicOrderStatusResponse xmlns="http://www.mnet.de/esb/cdm/Customer/CustomerOrderService/v1" xmlns:ns2="http://www.mnet.de/esb/cdm/Shared/Common/v1">
+            <order customerOrderId="${customerOrderId}">
+                <status>${expectedPublicOrderStatus}</status>
+            </order>
+        </getPublicOrderStatusResponse>
+    </soap:Body>
+</soap:Envelope>

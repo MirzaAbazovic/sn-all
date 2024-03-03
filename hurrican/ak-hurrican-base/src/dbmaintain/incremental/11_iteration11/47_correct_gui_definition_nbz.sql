@@ -1,0 +1,2 @@
+
+DELETE FROM T_GUI_MAPPING WHERE gui_id = 327 AND referenz_id = 201;

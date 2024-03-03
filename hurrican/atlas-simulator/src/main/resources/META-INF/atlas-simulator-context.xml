@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:citrus="http://www.citrusframework.org/schema/config"
+       xmlns:citrus-jms="http://www.citrusframework.org/schema/jms/config"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.citrusframework.org/schema/config http://www.citrusframework.org/schema/config/citrus-config.xsd
+       http://www.citrusframework.org/schema/jms/config http://www.citrusframework.org/schema/jms/config/citrus-jms-config.xsd">
+
+    <context:component-scan base-package="de.mnet.hurrican.atlas.simulator.ffm.builder"/>
+    <context:component-scan base-package="de.mnet.hurrican.atlas.simulator.archive.builder"/>
+    <context:component-scan base-package="de.mnet.hurrican.atlas.simulator.wita.builder"/>
+
+    <citrus:schema-repository id="schemaRepository">
+        <citrus:schemas>
+            <citrus:schema id="soap11Xsd" location="classpath:schemas/soap/soap11-envelope.xsd"/>
+            <citrus:schema id="documentArchiveServiceV1Wsdl"
+                           location="classpath:schemas/cdm/v1/DocumentArchiveService.wsdl"/>
+            <citrus:schema id="workforceServiceV1Wsdl"
+                           location="classpath:schemas/cdm/v1/WorkforceService.wsdl"/>
+            <citrus:schema id="workforceNotificationServiceV1Wsdl"
+                           location="classpath:schemas/cdm/v1/WorkforceNotificationService.wsdl"/>
+            <citrus:schema id="lineOrderServiceWsdl"
+                           location="classpath:schemas/cdm/v1/LineOrderService.wsdl"/>
+            <citrus:schema id="lineOrderNotificationServiceWsdl"
+                           location="classpath:schemas/cdm/v1/LineOrderNotificationService.wsdl"/>
+            <citrus:schema id="errorHandlingServiceV1Wsdl"
+                           location="classpath:schemas/cdm/v1/ErrorHandlingService.wsdl"/>
+        </citrus:schemas>
+    </citrus:schema-repository>
+
+    <citrus:global-variables>
+        <citrus:variable name="simulator.name" value="M-net FFM Atlas Simulator"/>
+    </citrus:global-variables>
+
+    <citrus:namespace-context>
+        <citrus:namespace prefix="soap" uri="http://schemas.xmlsoap.org/soap/envelope/"/>
+        <citrus:namespace prefix="da" uri="http://www.mnet.de/esb/cdm/Customer/DocumentArchiveService/v1"/>
+        <citrus:namespace prefix="wfs" uri="http://www.mnet.de/esb/cdm/Resource/WorkforceService/v1"/>
+        <citrus:namespace prefix="wfns" uri="http://www.mnet.de/esb/cdm/Resource/WorkforceNotificationService/v1"/>
+    </citrus:namespace-context>
+
+    <!-- Custom validation matcher -->
+    <citrus:validation-matcher-library id="simulatorValidationMatcherLibrary" prefix="sim:">
+        <citrus:matcher name="isWeekDay" class="de.mnet.hurrican.simulator.matcher.WeekdayValidationMatcher"/>
+        <citrus:matcher name="containedInList" class="de.mnet.hurrican.simulator.matcher.ContainedInListValidationMatcher"/>
+    </citrus:validation-matcher-library>
+
+    <!-- Custom functions -->
+    <citrus:function-library id="simulatorFunctionLibrary" prefix="atlas:">
+        <citrus:function name="changeDate" class="de.mnet.hurrican.simulator.function.ChangeDateFunction"/>
+        <citrus:function name="currentDatePlusWorkingDays" class="de.mnet.hurrican.simulator.function.AddWorkingDaysToCurrentDate"/>
+        <citrus:function name="currentDatePlusWorkingDaysAndNextDayIsWorkingDay" class="de.mnet.hurrican.simulator.function.AddWorkingDaysAndNextDayIsWorkingDayToCurrentDate"/>
+        <citrus:function name="asWorkingDay" class="de.mnet.hurrican.simulator.function.AsWorkingDayFunction"/>
+        <citrus:function name="asWorkingDayAndNextDayNotHoliday" class="de.mnet.hurrican.simulator.function.AsWorkingDayAndNextDayNotHolidayFunction"/>
+        <citrus:function name="datePlusWorkingDaysAndNextDayIsWorkingDay" class="de.mnet.hurrican.simulator.function.AddWorkingDaysAndNextDayIsWorkingDayToDate"/>
+    </citrus:function-library>
+
+    <!-- Message Validators -->
+    <bean id="xmlMessageValidator" class="com.consol.citrus.validation.xml.DomXmlMessageValidator"/>
+
+    <!-- Atlas Simulator inbound channels -->
+    <citrus:channel id="simulator.inbound"/>
+    <citrus:channel id="simulator.notification.inbound"/>
+
+    <!-- Inbound order request endpoint -->
+    <citrus:channel-sync-endpoint id="simInboundEndpoint"
+                                  channel="simulator.inbound"
+                                  use-object-messages="true"
+                                  timeout="5000"/>
+
+    <!-- Incoming message is handled by this adapter, by default send request to message channel -->
+    <citrus:channel-endpoint-adapter id="simulatorInboundAdapter"
+                                     channel-name="simulator.inbound"
+                                     polling-interval="250"
+                                     timeout="5000"/>
+
+    <citrus:channel-endpoint-adapter id="notificationInboundAdapter"
+                                     channel-name="simulator.notification.inbound"
+                                     timeout="5000"/>
+
+    <!-- Notification inbound message endpoint -->
+    <citrus:channel-sync-endpoint id="notificationInboundEndpoint"
+                                  channel="simulator.notification.inbound"
+                                  timeout="5000"/>
+
+    <!-- FFM notification outbound message endpoint -->
+    <citrus-jms:endpoint id="ffmNotificationOutboundEndpoint"
+                         connection-factory="atlasConnectionFactory"
+                         destination-name="mnet.Hurrican.op.cdm.dst.v1.WorkforceNotificationService"/>
+
+    <!-- WITA notification outbound message endpoint -->
+    <citrus-jms:endpoint id="witaNotificationOutboundEndpoint"
+                         connection-factory="atlasConnectionFactory"
+                         destination-name="mnet.Hurrican.op.cdm.dst.v1.LineOrderNotificationService"/>
+
+</beans>

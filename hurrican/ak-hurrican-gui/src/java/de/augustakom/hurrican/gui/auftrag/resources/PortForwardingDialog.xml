@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den PortForwarding-Dialog.
+-->
+<sf>
+
+    <Text name="title">Port-Forwarding</Text>
+
+    <Label name="transportProtocol"><text>Transportprotokoll:</text></Label>
+    <ComboBox name="transportProtocol">
+        <tooltip>Auswahl des Transportprotokolls fuer das Port-Forwarding</tooltip>
+    </ComboBox>
+
+    <Label name="sourceIpAddress"><text>Quell-IP-Adresse:</text></Label>
+    <IPAddressComponent name="sourceIpAddress">
+        <tooltip>Definition der Quell-IP-Adresse fuer das Port-Forwarding</tooltip>
+        <IPTypesAllowed>
+            <IPType>1</IPType>
+        </IPTypesAllowed>
+    </IPAddressComponent>
+
+    <Label name="destIpAddress"><text>Ziel-IP-Adresse:</text></Label>
+    <IPAddressComponent name="destIpAddress">
+        <tooltip>Definition der Ziel-IP-Adresse fuer das Port-Forwarding</tooltip>
+        <IPTypesAllowed>
+            <IPType>1</IPType>
+        </IPTypesAllowed>
+    </IPAddressComponent>
+
+    <Label name="sourcePort"><text>Quell-Port:</text></Label>
+    <ComboBox name="sourcePort">
+        <tooltip>Auswahl des Quell-Ports fuer das Port-Forwarding</tooltip>
+    </ComboBox>
+    <FormattedTextField name="sourcePort">
+        <tooltip>Eingabe des Quell-Ports fuer das Port-Forwarding</tooltip>
+        <format type="number"></format>
+        <columns>5</columns>
+    </FormattedTextField>
+
+    <Label name="destPort"><text>Ziel-Port:</text></Label>
+    <ComboBox name="destPort">
+        <tooltip>Auswahl des Ziel-Port fuer das Port-Forwarding</tooltip>
+    </ComboBox>
+    <FormattedTextField name="destPort">
+        <tooltip>Eingabe des Ziel-Ports fuer das Port-Forwarding</tooltip>
+        <format type="number"></format>
+        <columns>5</columns>
+    </FormattedTextField>
+
+    <Label name="active"><text>Aktiv:</text></Label>
+    <CheckBox name="active">
+        <tooltip>Angabe, ob das Port-Forwarding noch aktiv ist</tooltip>
+    </CheckBox>
+
+    <Label name="bemerkung"><text>Bemerkung:</text></Label>
+    <TextArea name="bemerkung"/>
+
+</sf>

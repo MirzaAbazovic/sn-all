@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Routing" table="T_EG_ROUTING">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_EG_ROUTING_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="nextHop" column="NEXT_HOP" type="string" not-null="true"/>
+        <property name="bemerkung" column="BEMERKUNG" type="string"/>
+        <!--  destinationAdressRef is OneToOne! -->
+        <many-to-one name="destinationAdressRef" class="de.augustakom.hurrican.model.cc.IPAddress"
+            column="DESTINATION_ADRESS_ID" not-null="true" cascade="all" unique="true" lazy="false" />
+
+    </class>
+
+</hibernate-mapping>

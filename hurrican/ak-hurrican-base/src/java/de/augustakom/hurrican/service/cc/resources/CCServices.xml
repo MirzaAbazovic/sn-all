@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer den CustomerCare-Bereich der Hurrican-Applikation.
+In dieser Datei werden lediglich andere XML-Dateien importiert, in denen
+die eigentlichen Services-, DAO- und DataAccess-Definitionen etc. hinterlegt sind.
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+     default-lazy-init="true">
+
+    <context:annotation-config />
+    <context:component-scan base-package="de.augustakom.hurrican.service.cc.impl"/>
+
+    <!-- Import der DataSource- und Hibernate-Konfiguration -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCDataAccess.xml"/>
+
+    <!-- Import der Default-DAOs -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCDefaultDAOs.xml"/>
+
+    <!-- Import der Service-Commands -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCServiceCommands.xml"/>
+
+    <!-- Import der Leistung-Commands -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCLeistungCommands.xml"/>
+
+    <!-- Import der Commands, die fuer Physik-Aenderungen zustaendig sind -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCPhysikCommands.xml"/>
+
+    <!-- Import der Default-Services -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCDefaultServices.xml"/>
+
+    <!-- Import der Physik-Services -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCPhysikServices.xml"/>
+
+    <!-- Import der Verlauf-Services und -Commands -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCVerlaufServices.xml"/>
+
+    <!-- Import der TAL-Services und -Commands -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCTALServices.xml"/>
+
+    <!-- Import der HVTTool-Services -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCHVTToolServices.xml"/>
+
+    <!-- Import der Validator-Definitionen -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCValidators.xml"/>
+
+    <!-- Import der Archiv-Commands -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCArchiveCommands.xml"/>
+
+    <!-- Import der CPS-Services -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCCPSServices.xml"/>
+
+    <!-- Import der IPSec-Services -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCIPSecServices.xml"/>
+
+    <!-- Import der Fttx-Services -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/FttxServices.xml"/>
+
+    <!-- Import der Error-Services -->
+    <import resource="classpath:de/augustakom/hurrican/service/exceptions/resources/error-services-server-context.xml"/>
+
+</beans>

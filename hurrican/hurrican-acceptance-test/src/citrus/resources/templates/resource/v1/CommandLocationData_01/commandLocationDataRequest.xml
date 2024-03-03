@@ -1,0 +1,17 @@
+<ns:CommandLocationDataRequest xmlns:ns="http://mnet.de/hurricanweb/command/location/types">
+    <ns:bezeichnung>${ortsteil}</ns:bezeichnung>
+    <ns:geoId>${geoId}</ns:geoId>
+    <ns:strasse>Teststrasse</ns:strasse>
+    <ns:hausnummer>13</ns:hausnummer>
+    <ns:hausnummerZusatz></ns:hausnummerZusatz>
+    <ns:plz>12345</ns:plz>
+    <ns:ort>Testort</ns:ort>
+    <ns:niederlassung>Augsburg</ns:niederlassung>
+    <ns:betriebsraum>${ortsteil_betriebsraum}</ns:betriebsraum>
+    <ns:fcRaum>${ortsteil_funktionsraum}</ns:fcRaum>
+    <ns:standorttyp>FTTB</ns:standorttyp>
+    <ns:onkz></ns:onkz>
+    <ns:asb>${asb}</ns:asb>
+    <ns:versorger></ns:versorger>
+    <ns:clusterId></ns:clusterId>
+</ns:CommandLocationDataRequest>

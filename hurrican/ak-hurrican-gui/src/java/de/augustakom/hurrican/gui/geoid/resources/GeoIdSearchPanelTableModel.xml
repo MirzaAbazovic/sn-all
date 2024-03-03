@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TableModel Definition fuer das Geo ID Search Panel -->
+<table>
+
+    <column name="Geo ID" property="id" type="java.lang.Long" editable="false" width="70"/>
+    <column name="Strasse" property="street" type="java.lang.String" editable="false" width="150"/>
+    <column name="Hausnummer" property="completeHouseNum" type="java.lang.String" editable="false" width="70"/>
+    <column name="PLZ" property="zipCode" type="java.lang.String" editable="false" width="50"/>
+    <column name="Ort" property="city" type="java.lang.String" editable="false" width="120"/>
+    <column name="Ortsteil" property="district" type="java.lang.String" editable="false" width="120"/>
+    <column name="keine DTAG Versorgung" property="noDTAGTAL" type="java.lang.Boolean" editable="false" width="100"/>
+
+</table>

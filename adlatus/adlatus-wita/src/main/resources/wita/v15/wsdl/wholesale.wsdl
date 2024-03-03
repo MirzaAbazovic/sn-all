@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:tns="http://wholesale.telekom.de/oss/v15/wholesale"
+                  xmlns:envelope="http://wholesale.telekom.de/oss/v15/envelope"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  name="general" targetNamespace="http://wholesale.telekom.de/oss/v15/wholesale">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://wholesale.telekom.de/oss/v1.0/wholesale"
+                    xmlns:envelope="http://wholesale.telekom.de/oss/v15/envelope">
+            <xsd:import namespace="http://wholesale.telekom.de/oss/v15/envelope" schemaLocation="oss-envelope.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="annehmenAuftragRequest">
+        <wsdl:part name="request" element="envelope:annehmenAuftragRequest"/>
+    </wsdl:message>
+    <wsdl:message name="annehmenAuftragResponse">
+        <wsdl:part name="response" element="envelope:annehmenAuftragResponse"/>
+    </wsdl:message>
+    <wsdl:message name="annehmenMeldungRequest">
+        <wsdl:part name="request" element="envelope:annehmenMeldungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="annehmenMeldungResponse">
+        <wsdl:part name="response" element="envelope:annehmenMeldungResponse"/>
+    </wsdl:message>
+    <wsdl:message name="annehmenAuftragNachVPORequest">
+        <wsdl:part name="request" element="envelope:annehmenAuftragNachVPORequest"/>
+    </wsdl:message>
+    <wsdl:message name="annehmenAuftragNachVPOResponse">
+        <wsdl:part name="response" element="envelope:annehmenAuftragNachVPOResponse"/>
+    </wsdl:message>
+    <wsdl:message name="annehmenNotConnectedAuftragRequest">
+        <wsdl:part name="request" element="envelope:annehmenNotConnectedAuftragRequest"/>
+    </wsdl:message>
+    <wsdl:message name="annehmenNotConnectedAuftragResponse">
+        <wsdl:part name="response" element="envelope:annehmenNotConnectedAuftragResponse"/>
+    </wsdl:message>
+    <wsdl:message name="annehmenNgAuftragRequest">
+        <wsdl:part name="request" element="envelope:annehmenNgAuftragRequest"/>
+    </wsdl:message>
+    <wsdl:message name="annehmenNgAuftragResponse">
+        <wsdl:part name="response" element="envelope:annehmenNgAuftragResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="WholesalePort">
+        <wsdl:operation name="annehmenAuftrag">
+            <wsdl:documentation>Mit der Operation 'annehmenAufrag' übermittelt der Carrier einen Auftrag zur Bearbeitung
+                an die Telekom
+            </wsdl:documentation>
+            <wsdl:input message="tns:annehmenAuftragRequest"/>
+            <wsdl:output message="tns:annehmenAuftragResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="annehmenMeldung">
+            <wsdl:documentation>Bei der Prozessierung eines Auftrages kann es notwendig werden, dass von einem Carrier
+                Meldungen angefordert werden (z.B. Widerspruch bei Providerwechsel). Diese Meldungen werden vom Carrier
+                an die Telekom über diese Operation übermitelt
+            </wsdl:documentation>
+            <wsdl:input message="tns:annehmenMeldungRequest"/>
+            <wsdl:output message="tns:annehmenMeldungResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="annehmenAuftragNachVPO">
+            <wsdl:documentation>Mit der Operation 'annehmenAuftragNachVPO' übermittelt der Carrier einen Auftrag nach
+                einer erfolgreichen PreOrder zur Bearbeitung an die Telekom
+            </wsdl:documentation>
+            <wsdl:input message="tns:annehmenAuftragNachVPORequest"/>
+            <wsdl:output message="tns:annehmenAuftragNachVPOResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="annehmenNotConnectedAuftrag">
+            <wsdl:documentation>Mit der Operation 'annehmenNotConnectedAuftrag' übermittelt der Carrier einen
+                NotConnected-Auftrag zur Bearbeitung an die Telekom
+            </wsdl:documentation>
+            <wsdl:input message="tns:annehmenNotConnectedAuftragRequest"/>
+            <wsdl:output message="tns:annehmenNotConnectedAuftragResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="annehmenNgAuftrag">
+            <wsdl:documentation>Mit der Operation 'annehmenNgAuftrag' übermittelt der Carrier einen Ng(FTTB)-Auftrag zur
+                Bearbeitung an die Telekom
+            </wsdl:documentation>
+            <wsdl:input message="tns:annehmenNgAuftragRequest"/>
+            <wsdl:output message="tns:annehmenNgAuftragResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="WholesaleBinding" type="tns:WholesalePort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="annehmenAuftrag">
+            <soap:operation soapAction="http://wholesale.telekom.de/oss/v15/wholesale/annehmenAuftrag"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="annehmenMeldung">
+            <soap:operation soapAction="http://wholesale.telekom.de/oss/v15/wholesale/annehmenMeldung"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="annehmenAuftragNachVPO">
+            <soap:operation soapAction="http://wholesale.telekom.de/oss/v15/wholesale/annehmenAuftragNachVPO"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="annehmenNotConnectedAuftrag">
+            <soap:operation soapAction="http://wholesale.telekom.de/oss/v15/wholesale/annehmenNotConnectedAuftrag"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="annehmenNgAuftrag">
+            <soap:operation soapAction="http://wholesale.telekom.de/oss/v15/wholesale/annehmenNgAuftrag"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="WholesaleService">
+        <wsdl:documentation>Der WholesaleSerice definiert den Serviceanteil der T-Com an der Orderschnittstelle.
+        </wsdl:documentation>
+        <wsdl:port name="wholesale" binding="tns:WholesaleBinding">
+            <soap:address location="http://wholesale.telekom.de/oss/v15/wholesale"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

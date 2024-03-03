@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Darstellung der HVT-Standorte und
+Produkte einer HVT-Gruppe.
+-->
+<sf>
+    <Text name="title">Standort-Auswahl</Text>
+
+    <Label name="asb"><text>ASB:</text></Label>
+    <FormattedTextField name="asb">
+        <tooltip>ASB-Kennzahl des gesuchten Standorts</tooltip>
+        <columns>20</columns>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="onkz"><text>ONKZ:</text></Label>
+    <TextField name="onkz">
+        <tooltip>ONKZ des gesuchten Standorts</tooltip>
+    </TextField>
+
+    <Label name="ort"><text>Ort:</text></Label>
+    <TextField name="ort">
+        <tooltip>Ort des gesuchten Standorts</tooltip>
+    </TextField>
+
+    <Label name="name"><text>Name:</text></Label>
+    <TextField name="name">
+        <tooltip>Name des gesuchten Standorts</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="hvt.typ"><text>Typ:</text></Label>
+    <ReferenceField name="hvt.typ">
+        <tooltip>Auswahl des gesuchten Standort-Typs (z.B. HVT, FttB)</tooltip>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="niederlassung"><text>Niederlassung:</text></Label>
+    <ReferenceField name="niederlassung">
+        <tooltip>Auswahl der Niederlassung</tooltip>
+        <id.property>id</id.property>
+        <name.property>name</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Niederlassung</reference.class>
+    </ReferenceField>
+
+    <Button name="search">
+        <text>Suchen</text>
+        <tooltip>Sucht nach Standorten mit den angegebenen Parametern</tooltip>
+        <icon>de/augustakom/common/gui/images/search.gif</icon>
+    </Button>
+
+</sf>

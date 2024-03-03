@@ -1,0 +1,18 @@
+<SOAP-ENV:Fault xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <faultcode>SOAP-ENV:Server</faultcode>
+    <faultstring xml:lang="en">FaultMsg</faultstring>
+    <detail>
+        <CommandStiftDataRequestFailure xmlns="http://mnet.de/hurricanweb/command/stift/types">
+            <leiste>3</leiste>
+            <stifte>
+                <stift>
+                    <stift>1</stift>
+                </stift>
+                <stift>
+                    <stift>2</stift>
+                </stift>
+            </stifte>
+            <errorMsg>@contains('Stift 01 auf Leiste 3 bereits vorhanden')@</errorMsg>
+        </CommandStiftDataRequestFailure>
+    </detail>
+</SOAP-ENV:Fault>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TableModel Definition fuer VPNs -->
+<table>
+
+    <column name="VPN Id" property="vpnNr" type="java.lang.Long" editable="false"/>
+    <column name="VPN Name" property="vpnName" type="java.lang.String" editable="false"/>
+    <column name="VPN Typ" property="vpnType" type="java.lang.String" editable="false"/>
+    <column name="Kunde__No" property="kundeNo" type="java.lang.Long" editable="false"/>
+    <column name="Name" property="kundeName" type="java.lang.String" editable="false"/>
+    <column name="Niederlassung" property="niederlassung" type="de.augustakom.hurrican.model.cc.Niederlassung" editable="true"/>
+    <column name="Projektleiter" property="projektleiter" type="java.lang.String" editable="true"/>
+    <column name="Ansprechpartner Vertrieb" property="salesRep" type="java.lang.String" editable="true"/>
+    <column name="QOS" property="qos" type="java.lang.Boolean" editable="true"/>
+    <column name="Bemerkung" property="bemerkung" type="java.lang.String" editable="true"/>
+
+</table>

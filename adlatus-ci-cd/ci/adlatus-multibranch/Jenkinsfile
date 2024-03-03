@@ -1,0 +1,86 @@
+pipeline {
+    agent {
+        kubernetes {
+            inheritFrom 'maven-docker-pod'
+        }
+    }
+
+    environment{
+        REPO_SLUG = ''
+        COMMIT_ID = ''
+        DOCKER_AUTH_CONFIG = credentials('DOCKER_AUTH_CONFIG')
+    }
+
+    stages {
+        stage('Checkout Source') {
+            steps {
+                git credentialsId: 'adlatus_ssh-key',
+                    url: 'git@bitbucket.org:bitconex/adlatus.git',
+                    branch: '$BRANCH_NAME'
+            }
+        }
+
+        stage('Maven Test') {
+            steps {
+                container('maven') {
+                    configFileProvider([configFile(fileId: '6378b853-e085-4888-8d65-d36cdf692d46', variable: 'MAVEN_GLOBAL_SETTINGS')]) {
+                        script {
+                            // Access repoSlug and commitId
+                            REPO_SLUG = sh(script: 'basename -s .git `git config --get remote.origin.url`', returnStdout: true).trim()
+                            COMMIT_ID = env.GIT_COMMIT 
+
+                            bitbucketStatusNotify(buildState: 'INPROGRESS', commitId: COMMIT_ID, repoSlug: REPO_SLUG)
+                            // Run Maven clean and integration-test
+                            sh 'mvn clean -gs $MAVEN_GLOBAL_SETTINGS integration-test'
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            script {
+                sendEmail("SUCCESS")
+                bitbucketStatusNotify(buildState: 'SUCCESSFUL', commitId: COMMIT_ID, repoSlug: REPO_SLUG)
+            }
+        }
+        failure {
+            script {
+                sendEmail("FAILURE")
+                bitbucketStatusNotify(buildState: 'FAILED', commitId: COMMIT_ID, repoSlug: REPO_SLUG)
+            }
+        }
+    }
+}
+
+@NonCPS
+def sendEmail(buildStatus) {
+    // Read the build log
+    def buildLog = currentBuild.rawBuild.getLog()
+
+    // Define start and end regex patterns
+    def startRegex = /\[INFO\] Results:/
+    def endRegex = /\[INFO\] ------------------------------------------------------------------------/
+
+    // Perform regular expression matching and extraction using findAll
+    def matcher = buildLog =~ /(?s)${startRegex}(.*?${endRegex})/
+
+    // Convert the Matcher result to a serializable String
+    def logRange = matcher ? matcher.findAll().collect { it[1].toString() }.join('\n') : ""
+
+    emailext(
+        from: 'DoNotReply@a9304227-df26-4302-b089-5a0c28128ffc.azurecomm.net',
+        to: emailextrecipients(),
+        subject: "${buildStatus} : Job ${env.JOB_BASE_NAME} - ${env.BUILD_DISPLAY_NAME}",
+        body: "Build ${buildStatus}!\n\nBranch: ${env.BRANCH_NAME}\n\nCheck full console output: \n\n ${env.BUILD_URL}console \n\n" +
+                "Important Part:\n${logRange}",
+    )
+}
+
+@NonCPS
+def emailextrecipients() {
+    def commitAuthorEmail = env.GIT_COMMITER_EMAIL ?: 'halid.junior@bitconex.de' // Use a default email if no author email found
+    return commitAuthorEmail
+}

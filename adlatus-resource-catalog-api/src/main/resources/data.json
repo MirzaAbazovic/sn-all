@@ -1,0 +1,260 @@
+{
+  "resourceCatalog": [
+    {
+      "name": "Catalog 1",
+      "description": "Catalog 1 description",
+      "relatedParty": [
+        {
+          "id": "000000000000000000000000",
+          "href": "http://localhost:8081/organization/000000000000000000000000",
+          "name": "Provider 1",
+          "role": "provider"
+        },
+        {
+          "id": "000000000000000000000001",
+          "href": "http://localhost:8081/organization/000000000000000000000001",
+          "name": "Consumer 1",
+          "role": "consumer"
+        }
+      ],
+      "categories": [
+        {
+          "name": "L2BSA",
+          "description": "L2BSA",
+          "candidates": [
+            {
+              "name": "L2BSA 250",
+              "specification": {
+                "name": "L2BSA 250",
+                "resourceSpecCharacteristic": [
+                  {
+                    "description": "Downstream",
+                    "name": "Downstream",
+                    "valueType": "Integer",
+                    "resourceSpecCharacteristicValue": [
+                      {
+                        "unitOfMeasure": "Mbit/s",
+                        "valueType": "Integer",
+                        "value": 250
+                      }
+                    ]
+                  },
+                  {
+                    "description": "Upstream",
+                    "name": "Upstream",
+                    "valueType": "Integer",
+                    "resourceSpecCharacteristicValue": [
+                      {
+                        "unitOfMeasure": "Mbit/s",
+                        "valueType": "Integer",
+                        "value": 100
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "L2BSA 100",
+              "specification": {
+                "name": "L2BSA 100",
+                "resourceSpecCharacteristic": [
+                  {
+                    "description": "Downstream",
+                    "name": "Downstream",
+                    "valueType": "Integer",
+                    "resourceSpecCharacteristicValue": [
+                      {
+                        "unitOfMeasure": "Mbit/s",
+                        "valueType": "Integer",
+                        "value": 100
+                      }
+                    ]
+                  },
+                  {
+                    "description": "Upstream",
+                    "name": "Upstream",
+                    "valueType": "Integer",
+                    "resourceSpecCharacteristicValue": [
+                      {
+                        "unitOfMeasure": "Mbit/s",
+                        "valueType": "Integer",
+                        "value": 40
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "L2BSA 50",
+              "specification": {
+                "name": "L2BSA 50",
+                "resourceSpecCharacteristic": [
+                  {
+                    "description": "Downstream",
+                    "name": "Downstream",
+                    "valueType": "Integer",
+                    "resourceSpecCharacteristicValue": [
+                      {
+                        "unitOfMeasure": "Mbit/s",
+                        "valueType": "Integer",
+                        "value": 50
+                      }
+                    ]
+                  },
+                  {
+                    "description": "Upstream",
+                    "name": "Upstream",
+                    "valueType": "Integer",
+                    "resourceSpecCharacteristicValue": [
+                      {
+                        "unitOfMeasure": "Mbit/s",
+                        "valueType": "Integer",
+                        "value": 10
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Catalog 2",
+      "description": "Catalog 2 description",
+      "relatedParty": [
+        {
+          "id": "000000000000000000000000",
+          "href": "http://localhost:8081/organization/000000000000000000000000",
+          "name": "Provider 1",
+          "role": "provider"
+        },
+        {
+          "id": "000000000000000000000001",
+          "href": "http://localhost:8081/organization/000000000000000000000001",
+          "name": "Consumer 1",
+          "role": "consumer"
+        }
+      ],
+      "categories": [
+        {
+          "name": "Second category",
+          "description": "Second category description",
+          "candidates": [
+            {
+              "name": "First candidate",
+              "specification": {
+                "name": "First candidate",
+                "resourceSpecCharacteristic": [
+                  {
+                    "description": "First Characteristic",
+                    "name": "First Characteristic",
+                    "valueType": "Integer",
+                    "resourceSpecCharacteristicValue": [
+                      {
+                        "unitOfMeasure": "Mbit/s",
+                        "valueType": "Integer",
+                        "value": 250
+                      }
+                    ]
+                  },
+                  {
+                    "description": "Second Characteristic",
+                    "name": "Second Characteristic",
+                    "valueType": "Integer",
+                    "resourceSpecCharacteristicValue": [
+                      {
+                        "unitOfMeasure": "Mbit/s",
+                        "valueType": "Integer",
+                        "value": 100
+                      }
+                    ]
+                  },
+                  {
+                    "description": "Third Characteristic",
+                    "name": "Third Characteristic",
+                    "valueType": "Integer",
+                    "resourceSpecCharacteristicValue": [
+                      {
+                        "unitOfMeasure": "Mbit/s",
+                        "valueType": "Integer",
+                        "value": 250
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "Second candidate",
+              "specification": {
+                "name": "Second candidate",
+                "resourceSpecCharacteristic": [
+                  {
+                    "description": "First Characteristic",
+                    "name": "First Characteristic",
+                    "valueType": "Integer",
+                    "resourceSpecCharacteristicValue": [
+                      {
+                        "unitOfMeasure": "Mbit/s",
+                        "valueType": "Integer",
+                        "value": 100
+                      }
+                    ]
+                  },
+                  {
+                    "description": "Second Characteristic",
+                    "name": "Second Characteristic",
+                    "valueType": "Integer",
+                    "resourceSpecCharacteristicValue": [
+                      {
+                        "unitOfMeasure": "Mbit/s",
+                        "valueType": "Integer",
+                        "value": 40
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "name": "Third candidate",
+              "specification": {
+                "name": "Third candidate",
+                "resourceSpecCharacteristic": [
+                  {
+                    "description": "First Characteristic",
+                    "name": "First Characteristic",
+                    "valueType": "Integer",
+                    "resourceSpecCharacteristicValue": [
+                      {
+                        "unitOfMeasure": "Mbit/s",
+                        "valueType": "Integer",
+                        "value": 50
+                      }
+                    ]
+                  },
+                  {
+                    "description": "Second Characteristic",
+                    "name": "Second Characteristic",
+                    "valueType": "Integer",
+                    "resourceSpecCharacteristicValue": [
+                      {
+                        "unitOfMeasure": "Mbit/s",
+                        "valueType": "Integer",
+                        "value": 10
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Panel der HVT-Raeume.
+-->
+<sf>
+    <Label name="raum"><text>Raum:</text></Label>
+    <TextField name="raum">
+        <tooltip>Offizielle Raumbezeichnung</tooltip>
+        <columns>30</columns>
+    </TextField>   
+</sf>

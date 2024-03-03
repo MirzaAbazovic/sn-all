@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config />
+
+    <context:component-scan base-package="de.augustakom.hurrican.service.exmodules.archive"/>
+    <bean name="/exmodules/ArchiveService"
+        class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.augustakom.hurrican.service.exmodules.archive.ArchiveService" />
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.exmodules.archive.ArchiveService" />
+    </bean>
+
+    <!-- JAXWS-Client which must be used for synchronous communication -->
+    <jaxws:client xmlns:lns="http://www.mnet.de/esb/cdm/Customer/DocumentArchiveService/v1"
+                  id="documentArchiveService"
+                  serviceClass="de.mnet.esb.cdm.customer.documentarchiveservice.v1.DocumentArchiveService"
+                  address="jms://"
+                  serviceName="lns:DocumentArchiveService"
+                  endpointName="lns:DocumentArchiveServiceJMS"
+                  transportId="http://cxf.apache.org/transports/jms">
+        <jaxws:properties>
+            <entry key="schema-validation-enabled" value="true"/>
+        </jaxws:properties>
+        <jaxws:features>
+            <bean class="org.apache.cxf.feature.LoggingFeature"/>
+            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature">
+                <property name="jmsConfig">
+                    <bean class="org.apache.cxf.transport.jms.JMSConfiguration">
+                        <property name="connectionFactory" ref="atlasConsumerCachingConnectionFactory"/>
+                        <property name="targetDestination" value="mnet.Customer.op.cdm.src.v1.DocumentArchiveService"/>
+                        <property name="jmsProviderTibcoEms" value="true"/>
+                        <property name="receiveTimeout" value="60000"/>
+                    </bean>
+                </property>
+            </bean>
+        </jaxws:features>
+        <jaxws:outInterceptors>
+            <ref bean="esbTrackingOutInterceptor"/>
+            <bean class="de.mnet.common.webservice.tools.TibcoSoapActionWithoutQuotesInterceptor"/>
+            <bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+        </jaxws:outInterceptors>
+        <jaxws:inInterceptors>
+            <bean class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+        </jaxws:inInterceptors>
+        <jaxws:outFaultInterceptors>
+            <ref bean="esbTrackingOutInterceptor"/>
+        </jaxws:outFaultInterceptors>
+    </jaxws:client>
+
+    <!-- JAXWS-Client which should and can only be used for asynchronous communication -->
+    <jaxws:client xmlns:lns="http://www.mnet.de/esb/cdm/Customer/DocumentArchiveService/v1"
+                  id="documentArchiveServiceTransacted"
+                  serviceClass="de.mnet.esb.cdm.customer.documentarchiveservice.v1.DocumentArchiveService"
+                  address="jms://"
+                  serviceName="lns:DocumentArchiveService"
+                  endpointName="lns:DocumentArchiveServiceJMS"
+                  transportId="http://cxf.apache.org/transports/jms">
+        <jaxws:properties>
+            <entry key="schema-validation-enabled" value="true"/>
+        </jaxws:properties>
+        <jaxws:features>
+            <bean class="org.apache.cxf.feature.LoggingFeature"/>
+            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature">
+                <property name="jmsConfig">
+                    <bean class="org.apache.cxf.transport.jms.JMSConfiguration">
+                        <property name="connectionFactory" ref="atlasConsumerCachingConnectionFactory"/>
+                        <property name="targetDestination" value="mnet.Customer.op.cdm.src.v1.DocumentArchiveService"/>
+                        <property name="jmsProviderTibcoEms" value="true"/>
+                        <property name="sessionTransacted" value="true"/>
+                    </bean>
+                </property>
+            </bean>
+        </jaxws:features>
+        <jaxws:outInterceptors>
+            <ref bean="esbTrackingOutInterceptor"/>
+            <bean class="de.mnet.common.webservice.tools.TibcoSoapActionWithoutQuotesInterceptor"/>
+            <bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+        </jaxws:outInterceptors>
+        <jaxws:outFaultInterceptors>
+            <ref bean="esbTrackingOutInterceptor"/>
+        </jaxws:outFaultInterceptors>
+    </jaxws:client>
+</beans>

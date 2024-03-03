@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Zuordnung von Aufträgen bei den abgebenden Leitungen
+-->
+<sf>
+
+    <Text name="title">Auftrag zuordnen</Text>
+
+    <Button name="add.auftrag">
+        <icon>de/augustakom/hurrican/gui/images/plus.gif</icon>
+        <tooltip>Einen neuen Auftrag per technischer Auftragsnummer in die Liste hinzufügen.</tooltip>
+    </Button>
+
+    <Button name="del.auftrag">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Den markierten Auftrag aus der Liste löschen.</tooltip>
+    </Button>
+
+</sf>

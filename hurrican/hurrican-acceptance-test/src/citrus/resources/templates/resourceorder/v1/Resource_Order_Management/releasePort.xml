@@ -1,0 +1,4 @@
+<wfs:releasePort xmlns:wfs="http://www.mnet.de/esb/cdm/Resource/ResourceOrderManagementService/v1">
+    <wfs:orderId>${orderId}</wfs:orderId>
+    <wfs:lineId>${lineId}</wfs:lineId>
+</wfs:releasePort>

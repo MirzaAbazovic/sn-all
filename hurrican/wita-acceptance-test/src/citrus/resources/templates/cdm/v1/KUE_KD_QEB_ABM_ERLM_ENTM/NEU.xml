@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<createOrder xmlns="http://www.mnet.de/esb/cdm/SupplierPartner/LineOrderService/v1">
+    <order>
+        <externeAuftragsnummer>@ignore@</externeAuftragsnummer>
+        <kunde>
+            <kundennummer>@ignore@</kundennummer>
+            <leistungsnummer>@ignore@</leistungsnummer>
+        </kunde>
+        <besteller>
+            <kundennummer>@ignore@</kundennummer>
+            <leistungsnummer>@ignore@</leistungsnummer>
+        </besteller>
+        <geschaeftsfall>
+            <KUE-KD>
+                <BKTOFaktura>5883000391</BKTOFaktura>
+                <vertragsnummer>@ignore@</vertragsnummer>
+                <ansprechpartner>
+                    <auftragsmanagement>
+                        <anrede>9</anrede>
+                        <vorname>TestFirstName</vorname>
+                        <nachname>KUE_KD_QEB_ABM_ERLM_ENTM</nachname>
+                        <telefonnummer>089 0000000</telefonnummer>
+                        <emailadresse>hurrican_developer@m-net.de</emailadresse>
+                    </auftragsmanagement>
+                </ansprechpartner>
+                <termine>
+                    <kundenwunschtermin>
+                        <datum>atlas:currentDatePlusWorkingDays('yyyy-MM-dd', 14)</datum>
+                        <zeitfenster>2</zeitfenster>
+                    </kundenwunschtermin>
+                </termine>
+                <auftragsposition>
+                    <produkt>
+                        <kategorie>TAL</kategorie>
+                        <bezeichner>@ignore@</bezeichner>
+                    </produkt>
+                    <geschaeftsfallProdukt>
+                        <TAL>
+                            <bestandsvalidierung-2>
+                                <leitungsschluesselzahl>@ignore@</leitungsschluesselzahl>
+                                <onkzA>821</onkzA>
+                                <onkzB>821</onkzB>
+                                <ordnungsnummer>@ignore@</ordnungsnummer>
+                            </bestandsvalidierung-2>
+                        </TAL>
+                    </geschaeftsfallProdukt>
+                </auftragsposition>
+            </KUE-KD>
+        </geschaeftsfall>
+    </order>
+</createOrder>

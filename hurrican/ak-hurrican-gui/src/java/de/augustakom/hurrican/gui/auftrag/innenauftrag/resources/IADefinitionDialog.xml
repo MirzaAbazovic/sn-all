@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Definition der IA-Nummer.
+-->
+<sf>
+
+    <Text name="title">IA-Nummer definieren</Text>
+
+    <ComboBox name="ia.prefix">
+        <tooltip>Bereich der das Projekt verantwortet</tooltip>
+    </ComboBox>
+
+    <TextField name="ia.vbz">
+        <tooltip>Code fuer Innenauftragsnummer (Taifun-Auftragsnummer od. fortlaufene Nr)</tooltip>
+        <columns>10</columns>
+    </TextField>
+
+    <CheckBox name="kind.of.use.product">
+        <tooltip>Nutzungsart Produktgruppe</tooltip>
+    </CheckBox>
+
+    <ComboBox name="kind.of.use.type">
+        <tooltip>Nutzungsart Typ</tooltip>
+    </ComboBox>
+
+    <ComboBox name="ia.serviceRoom">
+        <tooltip>B=Betriebsraum;O=OVSt/HVT;K=KVZ;F=Fttx</tooltip>
+    </ComboBox>
+
+    <ComboBox name="ia.equipment">
+        <tooltip>G=Grundausstattung;E=Erweiterungsinvestition</tooltip>
+    </ComboBox>
+
+    <Label name="ia.kostenstelle"><text>Kostenstelle:</text></Label>
+
+    <TextField name="ia.kostenstelle">
+        <tooltip>Kostenstelle</tooltip>
+        <columns>20</columns>
+        <maxchars>255</maxchars>
+    </TextField>
+
+</sf>

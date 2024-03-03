@@ -1,0 +1,2 @@
+grant delete on T_CARRIERBESTELLUNG to HURRICANWRITER;
+

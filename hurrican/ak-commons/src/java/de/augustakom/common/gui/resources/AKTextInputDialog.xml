@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+GUI-Definitionen fuer AKTextDialog.
+-->
+
+<sf>
+    
+    <Label name="sub.title"><text></text></Label>
+    
+    <Label name="text"><text>Text:</text></Label>
+    <DateComponent name="text">
+        <columns>20</columns>
+		<rows>3</rows>
+    </DateComponent>
+    
+    <Button name="ok">
+        <text>Ok</text>
+        <tooltip>Übernimmt den eingetragenen Text</tooltip>
+    </Button>
+    
+    <Button name="cancel">
+        <text>Abbrechen</text>
+        <tooltip>Schliesst den Dialog, ohne den Text zu übernehmen</tooltip>
+    </Button>
+    
+</sf>

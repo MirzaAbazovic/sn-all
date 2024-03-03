@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Angabe von Details zur el. TAL-Bestellung.
+-->
+<sf>
+
+    <Label name="sub.title"><text>Details für die el. TAL-Bestellung:</text></Label>
+
+    <Label name="vorabstimmung.id">
+        <text>WBCI-Vorabstimmung:</text>
+    </Label>
+    <ComboBox name="vorabstimmung.id">
+        <tooltip>ID der WBCI-Vorabstimmung</tooltip>
+    </ComboBox>
+
+    <Label name="vorgabe.mnet"><text>Vorgabedatum:</text></Label>
+    <DateComponent name="vorgabe.mnet">
+        <tooltip>Datum, zu dem die TAL-Bestellung durchgeführt werden soll (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="zeitfenster"><text>Zeitfenster:</text></Label>
+    <ComboBox name="zeitfenster">
+        <tooltip>Zeitfenster zur TAL</tooltip>
+    </ComboBox>
+
+    <Label name="montagehinweis"><text>Montagehinweis:</text></Label>
+    <TextArea name="montagehinweis">
+        <tooltip>Falls ein Montagehinweis übermittelt werden soll, muss auch ein Endstellenansprechpartner mit gültiger Adresse und Telefonnummer erfasst sein.</tooltip>
+        <rows>3</rows>
+        <columns>25</columns>
+        <prevented-keys>
+            <key-stroke>pressed ENTER</key-stroke>
+            <key-stroke>pressed TAB</key-stroke>
+            <key-stroke>typed ;</key-stroke>
+        </prevented-keys>
+    </TextArea>
+
+    <Label name="projektkenner"><text>Projektkenner:</text></Label>
+    <TextField name="projektkenner">
+        <tooltip>Projektkenner der übermittelt werden soll. Maximal 30 Zeichen.))</tooltip>
+        <maxchars>30</maxchars>
+    </TextField>
+
+    <Label name="kopplungkenner"><text>Kopplungskenner:</text></Label>
+    <TextField name="kopplungkenner">
+        <tooltip>Kopplungskenner der übermittelt werden soll. Maximal 30 Zeichen.))</tooltip>
+        <maxchars>30</maxchars>
+    </TextField>
+
+    <Text name="no.date">Bitte ein gültiges Datum für die TAL-Bestellung angeben!</Text>
+
+    <Label name="rufnummern"><text>Zu portierende Rufnummern:</text></Label>
+
+    <Label name="anbieterwechsel46tkg"><text>Anbieterwechsel nach §46TKG:</text></Label>
+    <CheckBox name="anbieterwechsel46tkg">
+        <tooltip>Anbieterwechsel nach §46TKG</tooltip>
+    </CheckBox>
+    
+    <Label name="rueckmeldung.automatisch.verarbeiten"><text>Rückmeldung automatisch verarbeiten:</text></Label>
+    <CheckBox name="rueckmeldung.automatisch.verarbeiten">
+        <tooltip>Rückmeldung automatisch verarbeiten</tooltip>
+    </CheckBox>
+</sf>

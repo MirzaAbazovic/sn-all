@@ -1,0 +1,1 @@
+delete from T_DB_QUERIES where NAME='OLD: Sperren - aktiv';

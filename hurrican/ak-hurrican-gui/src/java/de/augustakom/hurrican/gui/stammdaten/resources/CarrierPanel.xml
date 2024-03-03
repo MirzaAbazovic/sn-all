@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Details eines Carriers
+-->
+<sf>
+
+    <!-- ************ Panel fuer die Darstellung der Carrier-Details  **************** -->
+    <Label name="carrier.bezeichnung">
+        <text>Bezeichnung:</text>
+    </Label>
+    <TextField name="carrier.bezeichnung">
+        <tooltip>Kurzbezeichnung für den Carrier</tooltip>
+        <maxchars>30</maxchars>
+    </TextField>
+
+    <Label name="carrier.besterfoderlich">
+        <text>Bestellung erforderlich:</text>
+    </Label>
+    <CheckBox name="carrier.besterfoderlich">
+        <text></text>
+        <tooltip>Gibt an, ob bei dem Carrier eine Leitungsbestellung erforderlich ist</tooltip>
+    </CheckBox>
+
+    <Label name="carrier.netzbetreiber">
+        <text>Netzbetreiber (ESAA):</text>
+    </Label>
+    <TextField name="carrier.netzbetreiber">
+        <tooltip>Portierungskennung des Carriers</tooltip>
+        <maxchars>45</maxchars>
+    </TextField>
+
+    <Label name="carrier.firmenname">
+        <text>Firmenname:</text>
+    </Label>
+    <TextField name="carrier.firmenname">
+        <tooltip>Firmenname des Carriers</tooltip>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="carrier.portierungskennung">
+        <text>Portierungskennung:</text>
+    </Label>
+    <TextField name="carrier.portierungskennung">
+        <tooltip>Portierungskennung</tooltip>
+        <maxchars>4</maxchars>
+    </TextField>
+
+    <Label name="carrier.itu.carrier.code">
+        <text>ITU Carrier Code:</text>
+    </Label>
+    <TextField name="carrier.itu.carrier.code">
+        <tooltip>ITU Carrier Code</tooltip>
+        <maxchars>15</maxchars>
+    </TextField>
+
+    <Label name="carrier.vorabstimmungsmodus">
+      <text>Vorabstimmung Modus:</text>
+    </Label>
+    <TextField name="carrier.vorabstimmungsmodus">
+      <tooltip>Modus für Vorabstimmung</tooltip>
+      <maxchars>30</maxchars>
+    </TextField>
+
+    <Label name="carrier.orderno">
+        <text>ORDER-NO:</text>
+    </Label>
+    <TextField name="carrier.orderno">
+        <tooltip>ORDER-NO</tooltip>
+        <maxchars>10</maxchars>
+    </TextField>
+
+    <Label name="has.wita">
+        <text>Auf WITA:</text>
+    </Label>
+    <CheckBox name="has.wita">
+        <text></text>
+        <tooltip>Gibt an, ob der Carrier die WITA-Schnittstelle implementiert</tooltip>
+    </CheckBox>
+
+    <Label name="needs.cuda.kuendigung">
+        <text>Cuda-Kündigung notwendig:</text>
+    </Label>
+    <CheckBox name="needs.cuda.kuendigung">
+        <text></text>
+        <tooltip>Gibt an, ob eine Cuda-Kündigung bei der Carrierbestellung ausgewählt werden muss</tooltip>
+    </CheckBox>
+</sf>

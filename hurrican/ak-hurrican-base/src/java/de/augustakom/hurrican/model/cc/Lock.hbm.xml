@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Lock
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Lock" table="T_LOCK">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_LOCK_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="lockModeRefId" column="LOCK_MODE_REF_ID" type="long" not-null="true"/>
+        <property name="lockStateRefId" column="LOCK_STATE_REF_ID" type="long" not-null="true"/>
+        <property name="createdAt" column="CREATED_AT" type="timestamp" not-null="true"/>
+        <property name="createdFrom" column="CREATED_FROM" type="string" not-null="true"/>
+        <property name="kundeNo" column="CUSTOMER_NO" type="long" not-null="true"/>
+        <property name="debId" column="DEB_ID" type="string"/>
+        <property name="auftragNoOrig" column="TAIFUN_ORDER__NO" type="long"/>
+        <property name="auftragId" column="AUFTRAG_ID" type="long"/>
+        <property name="lockReasonRefId" column="LOCK_REASON_REF_ID" type="long" />
+        <property name="lockReasonText" column="LOCK_REASON_TEXT" type="string"/>
+        <property name="manualProvisioning" column="MANUAL_PROVISIONING" type="boolean"/>
+        <property name="parentLockId" column="PARENT_LOCK_ID" type="long"/>
+
+    </class>
+
+</hibernate-mapping>

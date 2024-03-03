@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<envelope:annehmenMeldungRequest xmlns:envelope="http://wholesale.telekom.de/oss/v7/envelope" xmlns:complex="http://wholesale.telekom.de/oss/v7/complex" xmlns:enum="http://wholesale.telekom.de/oss/v7/enm" xmlns:f="uri:local-functions" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:message="http://wholesale.telekom.de/oss/v7/message" xmlns:order="http://wholesale.telekom.de/oss/v7/order" xmlns:simple="http://wholesale.telekom.de/oss/v7/simple" xmlns:tal="http://wholesale.telekom.de/oss/v7/tal" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <control>
+        <zeitstempel>citrus:currentDate(yyyy-MM-dd'T'HH:mm:ss)</zeitstempel>
+        <majorRelease>7</majorRelease>
+        <minorRelease>00</minorRelease>
+        <signaturId>
+            <issuer>Flexagon</issuer>
+            <serial>00000001</serial>
+        </signaturId>
+    </control>
+    <meldung xsi:type="message:MeldungType">
+        <auftragstyp>
+            <geschaeftsfall>NEU</geschaeftsfall>
+            <aenderungsKennzeichen>Standard</aenderungsKennzeichen>
+            <geschaeftsfallart>Bereitstellung</geschaeftsfallart>
+        </auftragstyp>
+        <meldungstyp xsi:type="message:MeldungstypQEBType">
+            <meldungsattribute xsi:type="message:MeldungsattributeQEBType">
+                <externeAuftragsnummer>${externalOrderId}</externeAuftragsnummer>
+                <kundennummer>${customerId}</kundennummer>
+                <kundennummerBesteller></kundennummerBesteller>
+            </meldungsattribute>
+            <meldungspositionen>
+                <position>
+                    <meldungscode>0000</meldungscode>
+                    <meldungstext>keine Änderung zum Auftrag</meldungstext>
+                    <positionsattribute xsi:type="message:MeldungspositionsattributeQEBType">
+                        <ansprechpartnerTelekom>
+                            <anrede>1</anrede>
+                            <vorname>Steve</vorname>
+                            <nachname>Vollmann</nachname>
+                            <telefonnummer>1682076651</telefonnummer>
+                            <emailadresse>sv@web.de</emailadresse>
+                        </ansprechpartnerTelekom>
+                    </positionsattribute>
+                </position>
+            </meldungspositionen>
+        </meldungstyp>
+    </meldung>
+</envelope:annehmenMeldungRequest>

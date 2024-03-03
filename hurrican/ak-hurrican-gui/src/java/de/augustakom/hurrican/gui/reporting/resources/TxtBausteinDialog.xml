@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den TextBausteine-Dialog.
+-->
+<sf>
+    <Text name="title">Auswahl Text-Bausteine</Text>
+    
+    <Label name="id"><text>ID:</text></Label>
+    <FormattedTextField name="id">
+        <tooltip>ID des Text-Bausteins</tooltip>
+        <maxchars>11</maxchars>
+        <format type="number">#</format>
+    </FormattedTextField>
+    
+    <Label name="name"><text>Name:</text></Label>
+    <TextField name="name">
+        <tooltip>Name für den aktuellen Text-Baustein</tooltip>
+        <maxchars>50</maxchars>
+    </TextField>
+    
+    <Label name="text"><text>Text:</text></Label>
+    <TextArea name="text">
+        <tooltip>Text-Baustein</tooltip>
+  	</TextArea>
+    
+    <Label name="gueltig.von"><text>Gültig von:</text></Label>
+    <DateComponent name="gueltig.von">
+        <tooltip>Gültigkeit des Text-Bausteins</tooltip>
+    </DateComponent>
+    
+    <Label name="gueltig.bis"><text>Gültig bis:</text></Label>
+    <DateComponent name="gueltig.bis">
+        <tooltip>Gültigkeit des Text-Bausteins</tooltip>
+    </DateComponent>
+    
+    
+</sf>

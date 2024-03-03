@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den DISPO-Dialog zur Eingabe von Zusatz-Daten.
+-->
+<sf>
+
+    <Label name="vorgabe.am"><text>Vorgabe AM:</text></Label>
+    <DateComponent name="vorgabe.am">
+        <tooltip>Datum zu dem die Projektierung abgeschlossen sein soll</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>15</columns>
+    </DateComponent>
+
+    <Label name="anschlussart.a"><text>Anschlussart ES A:</text></Label>
+    <ComboBox name="anschlussart.a">
+        <tooltip>Auswahl der Anschlussart für die Endstelle A</tooltip>
+    </ComboBox>
+
+    <Label name="anschlussart.b"><text>Anschlussart ES B:</text></Label>
+    <ComboBox name="anschlussart.b">
+        <tooltip>Auswahl der Anschlussart für die Endstelle B</tooltip>
+    </ComboBox>
+
+</sf>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns="http://www.mnet.de/hurrican/tvfeed/1.0/"
+            attributeFormDefault="unqualified" elementFormDefault="unqualified"
+            targetNamespace="http://www.mnet.de/hurrican/tvfeed/1.0/">
+
+	<xsd:element name="getTVFeedData4GeoIdsRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="geoIds" type="xsd:long" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="getTVFeedData4GeoIdsResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="geoIdResponses" type="GeoIdResponseType"
+					maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="getTVFeedData4TechLocationsRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="techLocationQuerys" type="TechLocationQueryType"
+					maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name="getTVFeedData4TechLocationsResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="techLocationResponses" type="TechLocationResponseType"
+					maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="TechLocationQueryType">
+		<xsd:sequence>
+			<xsd:element name="techLocationName" type="xsd:string" />
+			<xsd:element name="deviceIdentifier" type="xsd:string" minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="GeoIdResponseType">
+		<xsd:sequence>
+			<xsd:element name="queriedGeoId" type="xsd:long" />
+			<xsd:element name="resultSets" type="GeoIdResultSetType" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+    <xsd:complexType name="GeoIdResultSetType">
+        <xsd:sequence>
+            <xsd:element name="techOrder" type="xsd:long" />
+            <xsd:element name="techOrderState" type="xsd:string" />
+            <xsd:element name="billingOrder" type="xsd:long" />
+            <xsd:element name="techLocationName" type="xsd:string" minOccurs="0" />
+            <xsd:element name="deviceIdentifier" type="xsd:string" minOccurs="0" />
+            <xsd:element name="portIdentifier" type="xsd:string" minOccurs="0" />
+            <xsd:element name="ontIdentifier" type="xsd:string" minOccurs="0" />
+            <xsd:element name="geoId" type="GeoIdType" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+	<xsd:complexType name="TechLocationResponseType">
+		<xsd:sequence>
+			<xsd:element name="queriedTechLocation" type="TechLocationQueryType" />
+			<xsd:element name="resultSets" type="TechLocationResultSetType" minOccurs="0" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="TechLocationResultSetType">
+		<xsd:sequence>
+			<xsd:element name="techOrder" type="xsd:long" />
+			<xsd:element name="techOrderState" type="xsd:string" />
+			<xsd:element name="billingOrder" type="xsd:long" />
+			<xsd:element name="techLocationName" type="xsd:string" />
+			<xsd:element name="deviceIdentifier" type="xsd:string" minOccurs="0" />
+			<xsd:element name="portIdentifier" type="xsd:string" minOccurs="0" />
+            <xsd:element name="ontIdentifier" type="xsd:string" minOccurs="0" />
+			<xsd:element name="geoIds" type="GeoIdType" maxOccurs="unbounded" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="GeoIdType">
+		<xsd:sequence>
+			<xsd:element name="geoId" type="xsd:long" />
+			<xsd:element name="validFrom" type="xsd:date" />
+			<xsd:element name="validTo" type="xsd:date" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>

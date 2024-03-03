@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    <Text name="plain.title">Nachricht</Text>
+    <Text name="plain.icon">de/augustakom/common/gui/images/noicon.gif</Text>
+    <Text name="plain.tabtitle">Nachrichtentext</Text>
+
+    <Text name="info.title">Information</Text>
+    <Text name="info.icon">de/augustakom/common/gui/images/info.gif</Text>
+    <Text name="info.tabtitle">Info-Text</Text>
+
+    <Text name="question.title">Frage</Text>
+    <Text name="question.icon">de/augustakom/common/gui/images/question.gif</Text>
+    <Text name="question.tabtitle">Frage-Text</Text>
+
+    <Text name="warning.title">Warnung</Text>
+    <Text name="warning.icon">de/augustakom/common/gui/images/warning.gif</Text>
+    <Text name="warning.tabtitle">Warnungstext</Text>
+
+    <Text name="error.title">Fehler</Text>
+    <Text name="error.icon">de/augustakom/common/gui/images/error.gif</Text>
+    <Text name="error.tabtitle">Fehlermeldung</Text>
+
+    <TextArea name="message.area">
+        <text></text>
+        <columns>180</columns>
+        <rows>10</rows>
+        <active>message.area.bg.active</active>
+        <inactive>message.area.bg.inactive</inactive>
+    </TextArea>
+
+    <Color name="message.area.bg.active">
+        <red>204</red>
+        <green>204</green>
+        <blue>204</blue>
+    </Color>
+
+    <Color name="message.area.bg.inactive">
+        <red>204</red>
+        <green>204</green>
+        <blue>204</blue>
+    </Color>
+</sf>

@@ -1,0 +1,13 @@
+globalProperties:
+  apis: ""
+  supportingFiles: false
+  apiTests: ""
+  models: false
+
+additionalProperties:
+  library: spring-boot
+  modelsLibrary: de.bitconex.tmf.rim.model
+  basePackage: de.bitconex.rim
+  invokerPackage: de.bitconex.rim
+  apiPackage: de.bitconex.rim.api
+  configPackage: de.bitconex.rim.configuration

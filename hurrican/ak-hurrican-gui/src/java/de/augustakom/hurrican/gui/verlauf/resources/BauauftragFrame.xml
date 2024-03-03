@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Verlaufs-Frame
+-->
+<sf>
+
+    <!-- abteilungs-uebergreifend -->
+    <Text name="title.universal">Bauaufträge</Text>
+
+    <!-- ST Connect -->
+    <Text name="title.abteilung.1">Bauaufträge für ST Connect</Text>
+
+    <!-- ST Online -->
+    <Text name="title.abteilung.2">Bauaufträge für ST Online</Text>
+
+    <!-- ST Voice -->
+    <Text name="title.abteilung.3">Bauaufträge für ST Voice</Text>
+
+    <!-- DISPO -->
+    <Text name="title.abteilung.4">Bauaufträge für DISPO</Text>
+    <Text name="title.ruecklaeufer.4">BA-Rückläufer für DISPO</Text>
+
+    <!-- Netzplanung -->
+    <Text name="title.abteilung.11">Bauaufträge für Netzplanung</Text>
+    <Text name="title.ruecklaeufer.11">BA-Rückläufer für Netzplanung</Text>
+
+    <!-- FieldService -->
+    <Text name="title.abteilung.5">Bauaufträge für FieldService</Text>
+
+    <!-- AM -->
+    <Text name="title.abteilung.7">Bauaufträge für AM</Text>
+    <Text name="title.ruecklaeufer.7">BA-Rückläufer für AM</Text>
+
+    <!-- EXTERN -->
+    <Text name="title.abteilung.12">Bauaufträge für EXTERN</Text>
+
+    <!-- M-Queue -->
+    <Text name="title.abteilung.13">Bauaufträge für M-Queue</Text>
+
+    <!-- FFM -->
+    <Text name="title.abteilung.14">Bauaufträge für FFM</Text>
+</sf>

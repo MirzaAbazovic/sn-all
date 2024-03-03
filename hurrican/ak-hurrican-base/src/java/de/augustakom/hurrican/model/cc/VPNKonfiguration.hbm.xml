@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.VPNKonfiguration
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="VPNKonfiguration" table="T_VPN_KONF">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_VPN_KONF_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="kanalbuendelung" column="KANALB" type="boolean"/>
+        <property name="anzahlKanaele" column="ANZ_KAN" type="short"/>
+        <property name="dialOut" column="DIAL_OUT" type="boolean"/>
+        <property name="auftragId" column="NR" type="long" not-null="true"/>
+        <property name="physAuftragId" column="PHYS_AUFTRAG_ID" type="long"/>
+        <property name="vplsId" column="VPLS_ID" type="string"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date"/>
+
+    </class>
+
+</hibernate-mapping>

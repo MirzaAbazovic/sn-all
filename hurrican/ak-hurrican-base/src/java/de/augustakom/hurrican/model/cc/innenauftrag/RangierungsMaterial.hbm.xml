@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.innenauftrag.RangierungsMaterial
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.innenauftrag">
+    <class name="RangierungsMaterial" table="T_RANGIERUNGS_MATERIAL">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_RANGIERUNGS_MATERIAL_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="hwBgTypName" column="HW_BG_TYP_NAME" type="string" not-null="true"/>
+        <property name="materialNr" column="MATERIAL_NR" type="string" not-null="true"/>
+        <property name="lfdNr" column="LFD_NR" type="integer"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date" not-null="true"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date" not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

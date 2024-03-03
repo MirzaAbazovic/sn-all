@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Housing-Panel.
+-->
+<sf>
+
+    <Text name="title.building">Gebäude</Text>
+    <Text name="title.circuit">Stromkreis</Text>
+    <Text name="title.keys">Transponder</Text>
+
+    <Label name="building">
+        <text>Gebäude:</text>
+    </Label>
+    <ReferenceField name="building">
+        <tooltip>Angabe des Gebäudes</tooltip>
+        <id.property>id</id.property>
+        <name.property>building</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.housing.HousingBuilding</reference.class>
+        <columns>15</columns>
+    </ReferenceField>
+
+    <Label name="building.street">
+        <text>Strasse:</text>
+    </Label>
+    <TextField name="building.street">
+        <tooltip>Strasse des Housing-Gebäudes</tooltip>
+    </TextField>
+
+    <Label name="building.city">
+        <text>PLZ/Ort:</text>
+    </Label>
+    <TextField name="building.city">
+        <tooltip>PLZ/Ort des Housing-Gebäudes</tooltip>
+    </TextField>
+
+    <Label name="floor">
+        <text>Stockwerk:</text>
+    </Label>
+    <ReferenceField name="floor">
+        <tooltip>Angabe des Stockwerks</tooltip>
+        <id.property>id</id.property>
+        <name.property>floor</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.housing.HousingFloor</reference.class>
+        <columns>15</columns>
+    </ReferenceField>
+
+    <Label name="room">
+        <text>Raum:</text>
+    </Label>
+    <ReferenceField name="room">
+        <tooltip>Angabe des Raums</tooltip>
+        <id.property>id</id.property>
+        <name.property>room</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.housing.HousingRoom</reference.class>
+        <columns>15</columns>
+    </ReferenceField>
+
+    <Label name="parcel">
+        <text>Parzelle:</text>
+    </Label>
+    <ReferenceField name="parcel">
+        <tooltip>Angabe der Parzelle</tooltip>
+        <id.property>id</id.property>
+        <name.property>parcel</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.housing.HousingParcel</reference.class>
+        <columns>10</columns>
+    </ReferenceField>
+
+    <Label name="rack">
+        <text>Schrank:</text>
+    </Label>
+    <TextField name="rack">
+        <tooltip>Bezeichnung des Schranks</tooltip>
+    </TextField>
+
+    <Label name="rack.units">
+        <text>HE:</text>
+    </Label>
+    <FormattedTextField name="rack.units">
+        <tooltip>Höheneinheiten</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="circuit.count">
+        <text>Anzahl Stromkreise:</text>
+    </Label>
+    <ComboBox name="circuit.count">
+        <tooltip>Anzahl der verfügbaren Stromkreise</tooltip>
+        <items>
+            <item text=" "></item>
+            <item text="1" value="1" class="java.lang.Long"></item>
+            <item text="2" value="2" class="java.lang.Long"></item>
+            <item text="3" value="3" class="java.lang.Long"></item>
+            <item text="4" value="4" class="java.lang.Long"></item>
+            <item text="5" value="5" class="java.lang.Long"></item>
+            <item text="6" value="6" class="java.lang.Long"></item>
+        </items>
+    </ComboBox>
+
+    <Label name="circuit.capacity">
+        <text>Leistung (KW):</text>
+    </Label>
+    <ComboBox name="circuit.capacity">
+        <tooltip>zur Verfügung gestellte Leistung</tooltip>
+        <items>
+            <item text=" "></item>
+            <item text="0,5" value="0.5" class="java.lang.Float"></item>
+            <item text="1" value="1" class="java.lang.Float"></item>
+            <item text="2" value="2" class="java.lang.Float"></item>
+            <item text="3" value="3" class="java.lang.Float"></item>
+            <item text="4" value="4" class="java.lang.Float"></item>
+            <item text="5" value="5" class="java.lang.Float"></item>
+            <item text="6" value="6" class="java.lang.Float"></item>
+        </items>
+    </ComboBox>
+
+    <Label name="safeguard">
+        <text>Sicherung</text>
+    </Label>
+    <FormattedTextField name="safeguard">
+        <tooltip>Absicherung des Stromkreises</tooltip>
+        <columns>10</columns>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="counter">
+        <text>Zähler 1:</text>
+    </Label>
+
+    <Label name="counter.number">
+        <text>Zählernr:</text>
+    </Label>
+    <FormattedTextField name="counter.number">
+        <tooltip>Zählernummer</tooltip>
+        <columns>10</columns>
+        <maxchars>20</maxchars>
+    </FormattedTextField>
+    <Label name="counter.start">
+        <text>Bereitstellung:</text>
+    </Label>
+    <FormattedTextField name="counter.start">
+        <tooltip>Zählerstand bei Bereitstellung des Auftrags</tooltip>
+        <columns>10</columns>
+        <format type="number">0.00</format>
+        <maxchars>12</maxchars>
+    </FormattedTextField>
+    <Label name="counter.end">
+        <text>Kündigung:</text>
+    </Label>
+    <FormattedTextField name="counter.end">
+        <tooltip>Zählerstand bei Kündigung des Auftrags</tooltip>
+        <columns>10</columns>
+        <format type="number">0.00</format>
+    </FormattedTextField>
+
+
+    <Label name="counter2">
+        <text>Zähler 2:</text>
+    </Label>
+
+    <Label name="counter2.number">
+        <text>Zählernr:</text>
+    </Label>
+    <FormattedTextField name="counter2.number">
+        <tooltip>Zählernummer</tooltip>
+        <columns>10</columns>
+        <maxchars>20</maxchars>
+    </FormattedTextField>
+    <Label name="counter2.start">
+        <text>Bereitstellung:</text>
+    </Label>
+    <FormattedTextField name="counter2.start">
+        <tooltip>Zählerstand bei Bereitstellung des Auftrags</tooltip>
+        <columns>10</columns>
+        <format type="number">0.00</format>
+        <maxchars>12</maxchars>
+    </FormattedTextField>
+    <Label name="counter2.end">
+        <text>Kündigung:</text>
+    </Label>
+    <FormattedTextField name="counter2.end">
+        <tooltip>Zählerstand bei Kündigung des Auftrags</tooltip>
+        <columns>10</columns>
+        <format type="number">0.00</format>
+        <maxchars>12</maxchars>
+    </FormattedTextField>
+
+    <Label name="counter3">
+        <text>Zähler 3:</text>
+    </Label>
+    <Label name="counter3.number">
+        <text>Zählernr:</text>
+    </Label>
+    <FormattedTextField name="counter3.number">
+        <tooltip>Zählernummer</tooltip>
+        <columns>10</columns>
+        <maxchars>20</maxchars>
+    </FormattedTextField>
+    <Label name="counter3.start">
+        <text>Bereitstellung:</text>
+    </Label>
+    <FormattedTextField name="counter3.start">
+        <tooltip>Zählerstand bei Bereitstellung des Auftrags</tooltip>
+        <columns>10</columns>
+        <format type="number">0.00</format>
+        <maxchars>12</maxchars>
+    </FormattedTextField>
+    <Label name="counter3.end">
+        <text>Kündigung:</text>
+    </Label>
+    <FormattedTextField name="counter3.end">
+        <tooltip>Zählerstand bei Kündigung des Auftrags</tooltip>
+        <columns>10</columns>
+        <format type="number">0.00</format>
+        <maxchars>12</maxchars>
+    </FormattedTextField>
+
+    <Label name="counter4">
+        <text>Zähler 4:</text>
+    </Label>
+    <Label name="counter4.number">
+        <text>Zählernr:</text>
+    </Label>
+    <FormattedTextField name="counter4.number">
+        <tooltip>Zählernummer</tooltip>
+        <columns>10</columns>
+        <maxchars>20</maxchars>
+    </FormattedTextField>
+    <Label name="counter4.start">
+        <text>Bereitstellung:</text>
+    </Label>
+    <FormattedTextField name="counter4.start">
+        <tooltip>Zählerstand bei Bereitstellung des Auftrags</tooltip>
+        <columns>10</columns>
+        <format type="number">0.00</format>
+        <maxchars>12</maxchars>
+    </FormattedTextField>
+    <Label name="counter4.end">
+        <text>Kündigung:</text>
+    </Label>
+    <FormattedTextField name="counter4.end">
+        <tooltip>Zählerstand bei Kündigung des Auftrags</tooltip>
+        <columns>10</columns>
+        <format type="number">0.00</format>
+        <maxchars>12</maxchars>
+    </FormattedTextField>
+
+
+    <Button name="add.key">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Fuegt dem Housing-Auftrag einen Transponder hinzu.</tooltip>
+    </Button>
+
+    <Button name="remove.key">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Entfernt den aktuell selektierten Transponder.</tooltip>
+    </Button>
+    <Text name="delete.msg">Soll der Transponder bzw. die Zuordnung der Tansponder-Gruppe wirklich gelöscht werden?
+    </Text>
+    <Text name="delete.title">Löschen?</Text>
+</sf>

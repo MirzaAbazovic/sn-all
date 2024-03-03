@@ -1,0 +1,3 @@
+Aktuelle Version von ant-contrib:
+------------------------------------------------
+26.08.2009:	ant-contrib-1.0b3.jar

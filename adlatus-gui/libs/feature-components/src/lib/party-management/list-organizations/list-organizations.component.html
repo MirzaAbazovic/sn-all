@@ -1,0 +1,5 @@
+<h2>List organizations</h2>
+
+<adlatus-gui-entries-table *ngIf="organizations | async as organizationsSource" [data]="organizationsSource"
+                           [columns]="columns"
+                           (clickHandler)="handleOpenCurrentOrganization($event)"></adlatus-gui-entries-table>

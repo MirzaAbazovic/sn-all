@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definition fuer das Panel, ueber das der Rechnungs-Export (Maxi)
+gestartet werden kann.
+-->
+<sf>
+	
+	<Label name="taifun"><text>Taifun-Daten:</text></Label>
+    
+    <Label name="taifun.base.dir.pdf"><text>EVN PDF-Dir.:</text></Label>
+    <TextField name="taifun.base.dir.pdf">
+        <tooltip>Verzeichnis, in dem die zu exportierenden EVNs im PDF-Format liegen</tooltip>
+    </TextField>
+    
+	<Label name="taifun.base.dir.ascii"><text>EVN ASCII-Dir.:</text></Label>
+    <TextField name="taifun.base.dir.ascii">
+        <tooltip>Basis-Verzeichnis, in dem die zu exportierenden EVNs im ASCII-Format liegen</tooltip>
+    </TextField>
+	
+	<Label name="export"><text>Export-Daten:</text></Label>  
+	
+	<Label name="portal.evn.import.dir.pdf"><text>EVN-Import PDF:</text></Label>
+    <TextField name="portal.evn.import.dir.pdf">
+        <tooltip>Portal-Verzeichnis fuer den Export der PDF EVNs</tooltip>
+    </TextField>
+
+    <Label name="portal.evn.import.dir.ascii"><text>EVN-Import ASCII:</text></Label>
+    <TextField name="portal.evn.import.dir.ascii">
+        <tooltip>Portal Basis-Verzeichnis fuer den Export der ASCII EVNs</tooltip>
+    </TextField>
+	
+    <Button name="start">
+        <text>Starte Export</text>
+        <tooltip>Startet den EVN-Export</tooltip>
+    </Button>
+    
+    <Button name="cancel">
+        <text>Export abbrechen</text>
+        <tooltip>Bricht den EVN-Export ab.</tooltip>
+    </Button>
+
+</sf>

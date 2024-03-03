@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="ipAddressInfo" resourceRoot="" soapui-version="3.6.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="IpAddressInfoSoap11" type="wsdl" bindingName="{http://mnet.de/hurricanweb/netid/customer/}IpAddressInfoSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/hurricanweb/ipAddressInfo/ipAddressInfo.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/hurricanweb/ipAddressInfo/ipAddressInfo.wsdl"><con:part><con:url>http://localhost:8080/hurricanweb/ipAddressInfo/ipAddressInfo.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://mnet.de/hurricanweb/netid/customer/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://mnet.de/hurricanweb/netid/customer/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://mnet.de/hurricanweb/netid/customer/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://mnet.de/hurricanweb/netid/customer/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns0="http://mnet.de/hurricanweb/netid/customer/">
+      <xs:element name="GetCustomerByIpRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="netId" type="xs:long"/>
+            <xs:element name="date" type="xs:dateTime"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="CustomerOrderCombination">
+        <xs:sequence>
+          <xs:element name="customerNo" type="xs:long"/>
+          <xs:element name="orderNo" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="GetCustomerByIpResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="customerOrderCombination" type="ns0:CustomerOrderCombination"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCustomerByIpRequest">
+    <wsdl:part element="tns:GetCustomerByIpRequest" name="GetCustomerByIpRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCustomerByIpResponse">
+    <wsdl:part element="tns:GetCustomerByIpResponse" name="GetCustomerByIpResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IpAddressInfo">
+    <wsdl:operation name="GetCustomerByIp">
+      <wsdl:input message="tns:GetCustomerByIpRequest" name="GetCustomerByIpRequest"></wsdl:input>
+      <wsdl:output message="tns:GetCustomerByIpResponse" name="GetCustomerByIpResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="IpAddressInfoSoap11" type="tns:IpAddressInfo">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetCustomerByIp">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="GetCustomerByIpRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetCustomerByIpResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IpAddressInfoService">
+    <wsdl:port binding="tns:IpAddressInfoSoap11" name="IpAddressInfoSoap11">
+      <soap:address location="http://localhost:8080/hurricanweb/ipAddressInfo/ipAddressInfo.wsdl"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/hurricanweb/ipAddressInfo/ipAddressInfo.wsdl</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="GetCustomerByIp" bindingOperationName="GetCustomerByIp" type="Request-Response" outputName="GetCustomerByIpResponse" inputName="GetCustomerByIpRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/hurricanweb/ipAddressInfo/ipAddressInfo.wsdl</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cus="http://mnet.de/hurricanweb/netid/customer/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cus:GetCustomerByIpRequest>
+         <cus:netId>1234</cus:netId>
+         <cus:date>2011-09-15T10:00:00</cus:date>
+      </cus:GetCustomerByIpRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mnet.de/hurricanweb/netid/customer/IpAddressInfo/GetCustomerByIpRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>

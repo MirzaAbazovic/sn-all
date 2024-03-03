@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den Rangierungs-Daten.
+-->
+<sf>
+
+    <Label name="warning">
+        <icon>de/augustakom/hurrican/gui/images/warning.gif</icon>
+    </Label>
+
+    <Button name="physik.zuordnen">
+        <text>Physik zuordnen</text>
+        <tooltip>Ordnet der aktuellen Endstelle eine Physik zu</tooltip>
+        <mnemonic>VK_Z</mnemonic>
+    </Button>
+
+    <Button name="physik.uebernehmen">
+        <text>Physik übernehmen</text>
+        <tooltip>Ordnet der aktuellen Endstelle eine Physik aus einem anderen Auftrag zu</tooltip>
+        <mnemonic>VK_N</mnemonic>
+    </Button>
+
+    <Button name="physik.manuell">
+        <text>manuell zuordnen</text>
+        <tooltip>Manuelle Auswahl der zu verwendeten Physik</tooltip>
+    </Button>
+
+    <Button name="physik.detailed">
+        <text>detail. Zuordnung</text>
+        <tooltip>Physikzuordnung mit vorhergehender Auswahl der notwendigen Port-Typen</tooltip>
+    </Button>
+
+    <Button name="create.rangierung">
+        <text>Rang. erzeugen</text>
+        <tooltip>Bietet die Möglichkeit, eine Rangierung manuell aufzubauen (manuelle Auswahl von EQ_IN/OUT)</tooltip>
+    </Button>
+
+    <Button name="ndraht.sdsl.zuordnung">
+        <text>N-Draht SDSL</text>
+        <tooltip>Automatische Zuordnung von N-Draht SDSL Physiken</tooltip>
+    </Button>
+
+    <Button name="rangierungs.history">
+        <text>Rang. History</text>
+        <tooltip>Öffnet einen Dialog, um die Historisierungen der Rangierung anzuzeigen</tooltip>
+    </Button>
+
+    <Button name="cross.connections.zuordnung">
+        <text>Cross Connections</text>
+        <tooltip>Cross Connections bearbeiten</tooltip>
+    </Button>
+
+    <Button name="doppelte.belegung">
+        <text>Doppelte Belegung?</text>
+        <tooltip>Prüft, ob die Rangierung auf mehreren Aufträgen geschalten ist</tooltip>
+    </Button>
+
+    <Button name="port.change">
+        <text>Port-Wechsel</text>
+        <tooltip>Öffnet einen Dialog, über den ein Port-Wechsel (z.B. DSLAM, DLU) durchgeführt werden kann</tooltip>
+    </Button>
+
+    <Button name="break.rangierung">
+        <text>Rangierung ändern</text>
+        <tooltip>Öffnet einen Dialog, über den Teile der Rangierung entfernt werden können</tooltip>
+    </Button>
+
+    <Button name="rangierung.entfernen">
+        <text>Rang. entfernen</text>
+        <tooltip>Nach erfolgreicher Konsistenzprüfung wird die aktuelle Rangierung entfernt.</tooltip>
+    </Button>
+
+    <Text name="keine.endstelle">Es ist keine Endstelle ausgewählt! Physik kann nicht vergeben werden.</Text>
+
+    <Text name="endstelle.speichern">Bitte speichern Sie die Endstelle zuerst ab. Anschliessend können Sie die Physik vergeben.</Text>
+
+    <Text name="keine.rangierung">Es ist keine Rangierung vorhanden, für die nach einer doppelten Belegung gesucht werden könnte.</Text>
+
+    <Text name="keine.rangierung.historie">Es ist keine Rangierung vorhanden, für die eine Historie angezeigt werden könnte.</Text>
+
+    <Text name="endstelle.not.saved">Bitte speichern Sie die Änderungen der Endstelle zuerst ab, bevor Sie eine Physik zuordnen oder ändern.</Text>
+
+    <Text name="uebernahme.title">Physik übernehmen?</Text>
+    <Text name="uebernahme.text">Wollen Sie wirklich die Physik von einem
+vorhandenen Auftrag übernehmen?</Text>
+
+    <Text name="uebernahme.dsl.title">DSL-Kreuzung?</Text>
+    <Text name="uebernahme.dsl.text">Wollen Sie wirklich eine DSL-Kreuzung
+von Analog auf S0 (bzw. umgekehrt) durchführen?</Text>
+
+    <Text name="uebernahme.tal.title">TAL-Nutzungsänderung?</Text>
+    <Text name="uebernahme.tal.text">Wollen Sie die TAL-Nutzungsänderung
+wirklich durchführen?</Text>
+
+    <Text name="no.geo.id">Bitte ordnen Sie der Endstelle zuerst eine GeoID zu.</Text>
+
+    <Text name="rangierung.vorhanden">Sie können für die Endstelle keine Physik übernehmen, da ihr bereits eine Rangierung zugeordnet ist.</Text>
+
+    <Text name="rangierung.nicht.vorhanden"><![CDATA[Bei der gewählten Physik-Änderung muss für den neuen Auftrag bereits eine Physik vergeben sein.
+Bitte vergeben Sie für den neuen Auftrag zuerst eine Physik und führen Sie anschließend die Wandlung durch.
+Bei einer Wandlung von ADSLplus S0 auf Analog (oder umgekehrt) wählen Sie bitte DSL-Kreuzung auf der DV-Leitung.]]></Text>
+
+    <Text name="physik.uebernommen">Die Physik wurde übernommen.
+Bitte überprüfen Sie noch einmal alle Endstellen-Daten auf ihre Richtigkeit.</Text>
+
+    <Text name="dsl.kreuzung.impossible"><![CDATA[Die DSL-Kreuzung kann nicht durchgeführt werden, da die benötigten Daten nicht ermittelt werden konnten!
+Grund: ]]></Text>
+
+    <Text name="dsl.kreuzung.auftrag.fehlt"><![CDATA[Die Auftrags-Daten zur Endstelle konnten nicht ermittelt werden!]]></Text>
+
+    <Text name="ask.auftrag.kuendigen.title"><![CDATA[*alten* Auftrag kündigen?]]></Text>
+    <Text name="ask.auftrag.kuendigen"><![CDATA[Soll der ursprüngliche Auftrag (ID: {0}) auf den
+Status *gekündigt* gesetzt werden?
+
+Falls Sie *Nein* wählen (z.B. bei Wechsel von SDSL auf SDSLoffice),
+müssen Sie den Kündigungsbauauftrag selbst erstellen!
+Bei *Ja* wird der Auftrag automatisch gekündigt.]]></Text>
+
+    <Text name="ask.4.account.uebernahme.title"><![CDATA[Account übernehmen?]]></Text>
+    <Text name="ask.4.account.uebernahme"><![CDATA[Soll der Account {0} des
+alten Auftrags übernommen werden?]]></Text>
+
+    <Text name="ask.4.vpn.uebernahme.title"><![CDATA[VPN-Daten übernehmen?]]></Text>
+    <Text name="ask.4.vpn.uebernahme"><![CDATA[Soll der Auftrag in das VPN {0}
+übernommen werden (inkl. VPN-Konfiguration)?]]></Text>
+
+    <Text name="ask.4.kuend.date.title"><![CDATA[Kündigungsdatum?]]></Text>
+    <Text name="ask.4.kuend.date.sub"><![CDATA[Kündigungsdatum für den Ursprungs-Auftrag eingeben.]]></Text>
+    <Text name="ask.4.kuend.date"><![CDATA[Kündigungsdatum:]]></Text>
+
+    <Text name="ask.4.real.date.title"><![CDATA[Realisierungsdatum?]]></Text>
+    <Text name="ask.4.real.date.sub"><![CDATA[Realisierungsdatum fuer den Auftrag eingeben.]]></Text>
+    <Text name="ask.4.real.date"><![CDATA[Realisierungsdatum:]]></Text>
+
+    <Text name="ask.4.ip.adress.uebernahme.title"><![CDATA[IP Adressen übernehmen?]]></Text>
+    <Text name="ask.4.ip.adress.uebernahme"><![CDATA[Sollen die IP Adressen des alten
+Auftrags übernommen werden?]]></Text>
+
+</sf>

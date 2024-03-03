@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updateResource xmlns="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1 /ResourceInventoryService.xsd">
+    <resource>
+        <id>ONT-987654_2-1</id>
+        <inventory>command</inventory>
+        <resourceSpec>
+            <id>ontport-1</id>
+            <inventory>command</inventory>
+        </resourceSpec>
+        <name>2-1</name>
+        <characteristic>
+            <name>schnittstelle</name>
+            <value>POTS</value>
+        </characteristic>
+        <parentResource>
+            <id>ONT-987654</id>
+            <inventory>command</inventory>
+        </parentResource>
+    </resource>
+</updateResource>

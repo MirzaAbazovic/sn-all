@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Konfiguration des EQ-Monitors.
+-->
+<sf>
+    
+    <Button name="del">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht den selektierten Eintrag</tooltip>
+    </Button>
+    
+    <Button name="add">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Erstellt einen neuen Eintrag</tooltip>
+    </Button>
+
+    <Button name="change">
+        <icon>de/augustakom/hurrican/gui/images/edit.gif</icon>
+        <tooltip>Ändert einen bestehenden Eintrag</tooltip>
+    </Button>
+</sf>

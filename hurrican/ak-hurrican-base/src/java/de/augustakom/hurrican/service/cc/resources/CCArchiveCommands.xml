@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+     default-lazy-init="true">
+
+    <context:annotation-config />
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.archiv.SVGetDebitor4AuftragIdCommand"
+        class="de.augustakom.hurrican.service.cc.impl.command.archiv.SVGetDebitor4AuftragIdCommand"
+        scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.archiv.SVGetKundeNoCommand"
+        class="de.augustakom.hurrican.service.cc.impl.command.archiv.SVGetKundeNoCommand"
+        scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.archiv.SVGetKundenVertragNoCommand"
+        class="de.augustakom.hurrican.service.cc.impl.command.archiv.SVGetKundenVertragNoCommand"
+        scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.archiv.SVGetSapAuftragNoCommand"
+        class="de.augustakom.hurrican.service.cc.impl.command.archiv.SVGetSapAuftragNoCommand"
+        scope="prototype">
+    </bean>
+
+    <bean id= "de.augustakom.hurrican.service.cc.impl.command.archiv.SVGetVbz4AuftragCommand"
+        class="de.augustakom.hurrican.service.cc.impl.command.archiv.SVGetVbz4AuftragCommand"
+        scope="prototype">
+    </bean>
+</beans>
+

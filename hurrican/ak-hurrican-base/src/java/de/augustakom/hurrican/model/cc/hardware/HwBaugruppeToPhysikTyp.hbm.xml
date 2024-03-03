@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Mapping fuer eine n:m Relation, das nach einem Hibernate
+Upgrade entfallen sollte.
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.hardware">
+    <class name="HwBaugruppeToPhysikTyp" table="T_HW_BG_TYP_2_PHYSIK_TYP">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_HW_BG_TYP_2_PHYSIK_TYP_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="hwBaugruppenTypId" column="BAUGRUPPEN_TYP_ID" type="long" not-null="true"/>
+        <property name="physikTypId" column="PHYSIKTYP_ID" type="long" not-null="true"/>
+    </class>
+</hibernate-mapping>

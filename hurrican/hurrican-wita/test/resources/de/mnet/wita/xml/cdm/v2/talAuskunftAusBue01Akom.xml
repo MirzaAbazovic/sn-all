@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+        xmlns="http://www.mnet.de/esb/cdm/SupplierPartner/LineOrderService/v2"
+        xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <createOrder xmlns="http://www.mnet.de/esb/cdm/SupplierPartner/LineOrderService/v2">
+            <order>
+                <externeAuftragsnummer>${externe.auftrags.nummer}</externeAuftragsnummer>
+                <kunde>
+                    <kundennummer>${kunde.kunden.nummer}</kundennummer>
+                    <leistungsnummer>${kunde.leistungs.nummer}</leistungsnummer>
+                </kunde>
+                <besteller>
+                    <kundennummer>${besteller.kunden.nummer}</kundennummer>
+                    <leistungsnummer>${besteller.leistungs.nummer}</leistungsnummer>
+                </besteller>
+                <geschaeftsfall>
+                    <AUS-BUE>
+                        <BKTOBestand>${bkto.bestand}</BKTOBestand>
+                        <ansprechpartner>
+                            <auftragsmanagement>
+                                <anrede>9</anrede>
+                                <vorname>TestFirstName</vorname>
+                                <nachname>${ansprechpartner.nachname}</nachname>
+                                <telefonnummer>089 0000000</telefonnummer>
+                                <emailadresse>hurrican_developer@m-net.de</emailadresse>
+                            </auftragsmanagement>
+                        </ansprechpartner>
+                    </AUS-BUE>
+                </geschaeftsfall>
+            </order>
+        </createOrder>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

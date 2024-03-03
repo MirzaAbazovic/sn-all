@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse 
+de.augustakom.hurrican.model.cc.BAVerlaufAG2Produkt
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+	<class name="BAVerlaufAG2Produkt" table="T_BA_VERL_AEND_PROD_2_GRUPPE">
+	    
+	    <!-- PrimaryKey -->
+		<composite-id>
+			<key-property name="produktId" column="PROD_ID" type="long"/>
+			<key-property name="baVerlaufAenderungGruppeId" column="BA_VERL_AEND_GRUPPE_ID" type="long"/>
+		</composite-id>
+
+	</class>
+	
+</hibernate-mapping>

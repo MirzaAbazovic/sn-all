@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Body>
+        <SOAP-ENV:Fault>
+            <faultcode xmlns="">SOAP-ENV:Server</faultcode>
+            <faultstring xmlns="">This is an operation implementation generated fault</faultstring>
+            <faultactor xmlns=""/>
+            <detail xmlns="">
+                <ns:ESBFault xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns="http://www.mnet.de/esb/cdm/Shared/Common/v1" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/">
+                    <ns:errorCode>s:APIFault</ns:errorCode>
+                    <ns:errorMessage>Falscher Benutzername oder Passwort. Bitte versuchen Sie es noch einmal.</ns:errorMessage>
+                    <ns:errorDetail>
+                        <ns1:ErrorReport xmlns:ns1="http://www.tibco.com/pe/EngineTypes">
+                            <StackTrace xmlns="">Job-56353 Error in [Services/Customer/Impl/DocumentArchiveService/V1/SearchDocuments/Main.process/searchDocuments]
+
+                                at com.tibco.plugin.soap.SOAPSendReceiveActivity.postEval(Unknown Source)
+                                at com.tibco.pe.core.TaskImpl.eval(Unknown Source)
+                                at com.tibco.pe.core.Job.a(Unknown Source)
+                                at com.tibco.pe.core.Job.k(Unknown Source)
+                                at com.tibco.pe.core.JobDispatcher$JobCourier.a(Unknown Source)
+                                at com.tibco.pe.core.JobDispatcher$JobCourier.run(Unknown Source)
+                            </StackTrace>
+                            <Msg xmlns=""/>
+                            <FullClass xmlns="">com.tibco.pe.plugin.ActivityException</FullClass>
+                            <Class xmlns="">ActivityException</Class>
+                            <ProcessStack xmlns="">Services/Customer/Impl/DocumentArchiveService/V1/SearchDocuments/SearchDocuments.process/Main&gt;Services/Customer/Impl/DocumentArchiveService/V1/SearchDocuments/Main.process/searchDocuments</ProcessStack>
+                            <MsgCode xmlns="">SOAPPLUGIN-100023</MsgCode>
+                            <Data xmlns="">
+                                <ESBFault xmlns="">
+                                    <faultcode xmlns="">SOAP-ENV:Server</faultcode>
+                                    <faultstring xmlns="">This is an operation implementation generated fault</faultstring>
+                                    <faultactor xmlns=""/>
+                                    <detail xmlns="">
+                                        <ns:ESBFault>
+                                            <ns:errorCode>s:APIFault</ns:errorCode>
+                                            <ns:errorMessage>Falscher Benutzername oder Passwort. Bitte versuchen Sie es noch einmal.</ns:errorMessage>
+                                            <ns:errorDetail>
+                                                <ns1:ErrorReport>
+                                                    <StackTrace xmlns="">Job-91480 Error in [Services/DMS/Impl/DocumentArchiveService/SearchDocuments/Main.process/Search]
+
+                                                        at com.tibco.plugin.soap.SOAPSendReceiveActivity.postEval(Unknown Source)
+                                                        at com.tibco.pe.core.TaskImpl.eval(Unknown Source)
+                                                        at com.tibco.pe.core.Job.a(Unknown Source)
+                                                        at com.tibco.pe.core.Job.k(Unknown Source)
+                                                        at com.tibco.pe.core.JobDispatcher$JobCourier.a(Unknown Source)
+                                                        at com.tibco.pe.core.JobDispatcher$JobCourier.run(Unknown Source)
+                                                    </StackTrace>
+                                                    <Msg xmlns=""/>
+                                                    <FullClass xmlns="">com.tibco.pe.plugin.ActivityException</FullClass>
+                                                    <Class xmlns="">ActivityException</Class>
+                                                    <ProcessStack xmlns="">Services/DMS/Impl/DocumentArchiveService/SearchDocuments/SearchDocuments.process/Main&gt;Services/DMS/Impl/DocumentArchiveService/SearchDocuments/Main.process/Search</ProcessStack>
+                                                    <MsgCode xmlns="">SOAPPLUGIN-100023</MsgCode>
+                                                    <Data xmlns="">
+                                                        <defaultFaultElement xmlns="">
+                                                            <faultcode xmlns="">s:APIFault</faultcode>
+                                                            <faultstring xmlns="">Falscher Benutzername oder Passwort. Bitte versuchen Sie es noch einmal.</faultstring>
+                                                        </defaultFaultElement>
+                                                    </Data>
+                                                </ns1:ErrorReport>
+                                            </ns:errorDetail>
+                                        </ns:ESBFault>
+                                    </detail>
+                                    <ns2:_applicationProperties xmlns:ns2="http://tibco.com/namespaces/tnt/plugins/soap">
+                                        <ESB_TrackingId xmlns="">ID:ESB-TST-1.54DB54B3D59D531DA6:11</ESB_TrackingId>
+                                        <ESB_Comp xmlns="">DMSIntegration</ESB_Comp>
+                                        <ESB_Process xmlns="">Services/DMS/Impl/DocumentArchiveService/SearchDocuments/SearchDocuments.process,91480</ESB_Process>
+                                        <ESB_Service xmlns="">DocumentArchiveService</ESB_Service>
+                                        <ESB_Operation xmlns="">searchDocuments</ESB_Operation>
+                                    </ns2:_applicationProperties>
+                                </ESBFault>
+                            </Data>
+                        </ns1:ErrorReport>
+                    </ns:errorDetail>
+                </ns:ESBFault>
+            </detail>
+        </SOAP-ENV:Fault>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

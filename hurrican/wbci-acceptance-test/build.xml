@@ -1,0 +1,44 @@
+<project basedir="." name="wbci-acceptance-test" default="tibco.ems.all">
+
+  <description>
+      Build-Script to work (init, start, stop) with a local tibco ems.
+  </description>
+
+  <!-- Importieren des globalen Build-Scripts, um die dortige Funktionalitaet zu nutzen -->
+  <import file="${basedir}/../common-build/common_maven_layout.xml" />
+  <import file="${basedir}/../common-build/common_ant.xml" />
+  <import file="${basedir}/../common-build/common_tibco.xml" />
+
+  <target name="tibco.ems.start" description="Starts the TIBCO EMS server">
+    <ems.start spawn="false"/>
+  </target>
+
+  <target name="tibco.ems.start.ft.p" description="Starts the TIBCO EMS server in Fault-Tolerant mode (primary)">
+    <ems.start spawn="false" emsConfig="tibemsd-ft-p.conf"/>
+  </target>
+
+  <target name="tibco.ems.start.ft.s" description="Starts the TIBCO EMS server in Fault-Tolerant mode (secondary)">
+    <ems.start spawn="false" emsConfig="tibemsd-ft-s.conf"/>
+  </target>
+
+  <target name="tibco.ems.start.background" description="Starts the TIBCO EMS server in background">
+    <ems.start spawn="true" buildId="dontKillMe"/>
+  </target>
+
+  <target name="tibco.ems.stop" description="Stops the TIBCO EMS server">
+    <ems.stop/>
+  </target>
+
+  <target name="tibco.ems.stop.ft.p" description="Stops the TIBCO EMS server">
+    <ems.stop serverUrl="tcp://localhost:7222"/>
+  </target>
+
+  <target name="tibco.ems.stop.ft.s" description="Stops the TIBCO EMS server">
+    <ems.stop serverUrl="tcp://localhost:7223"/>
+  </target>
+
+  <target name="tibco.ems.all" depends="tibco.ems.init, tibco.ems.start.background, tibco.ems.configure" description="Stops, prepares, starts (in background) and configures EMS">
+  </target>
+
+
+</project>

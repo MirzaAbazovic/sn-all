@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Netzplanungsauswahl
+-->
+<sf>
+>
+    <Text name="proj.title">Projektierung: Manuelle Verteilung</Text>
+
+    <Text name="btn.save.text">Verteilen</Text>
+    <Text name="btn.save.tooltip">Verteilt den Bauauftrag bzw. die Projektierung an die selektierten Abteilungen</Text>
+
+    <Text name="btn.cancel.text">Abbrechen</Text>
+    <Text name="btn.cancel.tooltip">Dialog schliessen, ohne Verteilung</Text>
+
+</sf>

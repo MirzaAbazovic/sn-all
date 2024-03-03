@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel, um eine Kündigung rückgängig zu machen.
+-->
+<sf>
+
+    <Text name="dialog.title">Port-Wechsel</Text>
+
+    <Label name="title.source.ports"><text>Ursprungs-Ports</text></Label>
+    <Label name="title.dest.ports"><text>Ziel-Ports</text></Label>
+    <Label name="title.rangierung"><text>Rangierung 1</text></Label>
+    <Label name="title.rangierung.add"><text>Rangierung 2</text></Label>
+    <Label name="title.details"><text>Details</text></Label>
+
+    <Label name="eq.in"><text>EQ_IN</text></Label>
+    <Label name="eq.out"><text>EQ_OUT</text></Label>
+    <Label name="eq.in.change"><text>EQ_IN</text></Label>
+    <Label name="eq.out.change"><text>EQ_OUT</text></Label>
+
+    <TextField name="eq.in">
+        <tooltip>Port Nummer EQ_IN</tooltip>
+        <columns>15</columns>
+    </TextField>
+    <TextField name="eq.out">
+        <tooltip>Port Nummer EQ_OUT</tooltip>
+    </TextField>
+
+    <TextField name="eq.in.add">
+        <tooltip>Port Nummer EQ_IN Zusatz</tooltip>
+        <columns>15</columns>
+    </TextField>
+    <TextField name="eq.out.add">
+        <tooltip>Port Nummer EQ_OUT Zusatz</tooltip>
+    </TextField>
+
+    <TextField name="eq.in.change">
+        <tooltip>Ziel-Port Nummer EQ_IN</tooltip>
+    </TextField>
+    <TextField name="eq.out.change">
+        <tooltip>Ziel-Port Nummer EQ_OUT</tooltip>
+    </TextField>
+
+    <TextField name="eq.in.add.change">
+        <tooltip>Ziel-Port Nummer EQ_IN Zusatz</tooltip>
+    </TextField>
+    <TextField name="eq.out.add.change">
+        <tooltip>Ziel-Port Nummer EQ_OUT Zusatz</tooltip>
+    </TextField>
+
+    <Button name="select.port">
+        <text>Auswahl...</text>
+    </Button>
+
+    <Label name="change.reason"><text>Grund:</text></Label>
+    <ReferenceField name="change.reason">
+        <tooltip>Angabe, wieso der Port-Wechsel durchgefuehrt wird</tooltip>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+</sf>

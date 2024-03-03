@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit DB-Kontrollabfragen.
+-->
+<sf>
+    
+    <Label name="db.queries"><text>Mögliche Datenbank-Abfragen:</text></Label>
+    <Label name="result"><text>Abfrage-Ergebnis:</text></Label>
+    
+    <Button name="execute.query">
+        <text>Ausführen</text>
+        <tooltip>Führt die selektierte Datenbank-Abfrage aus</tooltip>
+    </Button>
+    
+</sf>

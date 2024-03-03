@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:tns="http://www.mnet.de/esb/cdm/Shared/ErrorHandlingService/v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:jms="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  name="Untitled" targetNamespace="http://www.mnet.de/esb/cdm/Shared/ErrorHandlingService/v1">
+    <wsdl:documentation>Version 1.0</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema xmlns="http://www.mnet.de/esb/cdm/Shared/ErrorHandlingService/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.mnet.de/esb/cdm/Shared/ErrorHandlingService/v1" version="1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="handleError">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="trackingId" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>Uniquely identifies the communication scenario</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="component">
+                            <xs:annotation>
+                                <xs:documentation>information about the component the reported the error</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="name" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>name of the component</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="processName" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>process or class name within the component</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="host" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>name of the host the component is deployed</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="service" type="xs:string" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>service the process is implementing</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="operation" type="xs:string" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>service operation the process is implementing</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="processId" type="xs:string" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>identifier of the process </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="error">
+                            <xs:annotation>
+                                <xs:documentation>information about the actual error</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="code" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>error code</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="message" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>error message</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="time" type="xs:dateTime">
+                                        <xs:annotation>
+                                            <xs:documentation>exact date and time the error occurred</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="errorDetails" type="xs:string" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>additional details about the error like process or java stack traces</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="message" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>information about the ESB message that caused the error</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="payload" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>the ESB message payload</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="JMSEndpoint" type="xs:string" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Queue or topic name of the ESB message</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="JMSProperty" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                            <xs:documentation>a complete list of all JMS properties of the EMS message</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="key" type="xs:string"/>
+                                                <xs:element name="value" type="xs:string"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="context" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                            <xs:documentation>in case of an error retry this information will be resubmitted as part of the ESB_Context property and can be used to restore the state before the error occurred</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="key" type="xs:string"/>
+                                                <xs:element name="value" type="xs:string"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="retryInfo" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>additional infos if the message was already retried</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="origErrorId" type="xs:string">
+                                                    <xs:annotation>
+                                                        <xs:documentation>Id of the original error. Copied from the JMS property: ESB_OrigErrorId</xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:element>
+                                                <xs:element name="retryCount" type="xs:integer">
+                                                    <xs:annotation>
+                                                        <xs:documentation>amount of already ececuted retries. Copied from the JMS property: ESB_RetryCount</xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:element>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="businessKey" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>key/value infos about the business context of this error. E.g.: OrderId, CustomerId etc </xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="key" type="xs:string"/>
+                                    <xs:element name="value" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="ErrorHandlingService">
+        <wsdl:port name="ErrorHandlingServiceJMS" binding="tns:ErrorHandlingServiceJMSBinding">
+            <soap:address location=""/>
+            <jms:connectionFactory>QueueConnectionFactory</jms:connectionFactory>
+            <jms:targetAddress destination="queue">mnet.Shared.x.cdm.src.v1.ErrorHandlingService</jms:targetAddress>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="ErrorHandlingService">
+        <wsdl:operation name="handleError">
+            <wsdl:input message="tns:handleError"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ErrorHandlingServiceJMSBinding" type="tns:ErrorHandlingService">
+        <soap:binding style="document" transport="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"/>
+        <jms:binding messageFormat="Text"/>
+        <wsdl:operation name="handleError">
+            <soap:operation style="document" soapAction="/ErrorHandlingService/handleError"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="handleError">
+        <wsdl:part name="in" element="tns:handleError"/>
+    </wsdl:message>
+</wsdl:definitions>

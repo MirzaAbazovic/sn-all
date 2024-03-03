@@ -1,0 +1,132 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans    http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <bean id="de.mnet.wbci.service.WbciCommonService" class="org.mockito.Mockito" factory-method="mock"
+          lazy-init="false">
+        <constructor-arg value="de.mnet.wbci.service.WbciCommonService"/>
+    </bean>
+    <bean id="de.mnet.wita.aggregator.KundeAggregator" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.aggregator.KundeAggregator"/>
+    </bean>
+    <bean id="de.mnet.wita.aggregator.GeschaeftsfallAggregator" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.aggregator.GeschaeftsfallAggregator"/>
+    </bean>
+    <bean id="de.mnet.wita.dao.MwfEntityDao" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.dao.MwfEntityDao"/>
+    </bean>
+    <bean id="de.mnet.wita.service.WitaConfigService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.service.WitaConfigService"/>
+    </bean>
+    <bean id="de.mnet.wita.dao.VorabstimmungDao" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.dao.VorabstimmungDao"/>
+    </bean>
+    <bean id="de.mnet.wita.dao.VorabstimmungAbgebendDao" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.dao.VorabstimmungAbgebendDao"/>
+    </bean>
+    <bean id="de.mnet.wita.service.MwfEntityService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.service.impl.MwfEntityServiceImpl"/>
+    </bean>
+    <bean id="de.augustakom.authentication.service.AKUserService" class="org.mockito.Mockito" factory-method="mock"
+          lazy-init="false">
+        <constructor-arg value="de.augustakom.authentication.service.AKUserService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.CarrierElTALService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.CarrierElTALService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.exmodules.archive.ArchiveService" class="org.mockito.Mockito"
+          factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.exmodules.archive.ArchiveService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.billing.RufnummerService" class="org.mockito.Mockito"
+          factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.billing.RufnummerService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.CCKundenService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.CCKundenService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.CCAuftragService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.CarrierService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.CarrierService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.ConnectService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.ConnectService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.EndstellenService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.EndstellenService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.PhysikService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.PhysikService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.NiederlassungService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.NiederlassungService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.AvailabilityService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.AvailabilityService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.HVTService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.HVTService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.RangierungsService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.RangierungsService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.AnsprechpartnerService" class="org.mockito.Mockito"
+          factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.AnsprechpartnerService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.ReferenceService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.ReferenceService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.billing.KundenService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.billing.KundenService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.billing.BillingAuftragService" class="org.mockito.Mockito"
+          factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.billing.BillingAuftragService"/>
+    </bean>
+    <bean id="de.mnet.wita.service.WitaWbciServiceFacade" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.service.WitaWbciServiceFacade"/>
+    </bean>
+    <bean id="de.mnet.wita.service.WitaTalOrderService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.service.WitaTalOrderService"/>
+    </bean>
+    <bean id="de.mnet.wita.service.WitaCheckConditionService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.service.WitaCheckConditionService"/>
+    </bean>
+
+    <bean id="cbVorgangDAO" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.dao.cc.CBVorgangDAO"/>
+    </bean>
+    <bean id="carrierbestellungDAO" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.dao.cc.CarrierbestellungDAO"/>
+    </bean>
+    <bean id="anbieterwechselConfigDAO" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.dao.AnbieterwechselConfigDao"/>
+    </bean>
+    <bean id="taskDAO" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.dao.TaskDao"/>
+    </bean>
+    <bean id="witaCBVorgangDao" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.dao.WitaCBVorgangDao"/>
+    </bean>
+    <bean id="de.mnet.wita.service.WitaUsertaskService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.service.WitaUsertaskService"/>
+    </bean>
+    <bean id="de.mnet.wita.bpm.WorkflowTaskValidationService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.bpm.WorkflowTaskValidationService"/>
+    </bean>
+
+    <bean id="lineOrderService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.integration.LineOrderService"/>
+    </bean>
+
+    <bean id="featureService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.FeatureService"/>
+    </bean>
+
+</beans>

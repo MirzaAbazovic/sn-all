@@ -1,0 +1,15 @@
+useSpringBoot3: true
+
+globalProperties:
+  apis: ""
+  supportingFiles: false
+  apiTests: ""
+  models: false
+
+additionalProperties:
+  library: spring-boot
+  modelsLibrary: de.bitconex.tmf.rom.model
+  basePackage: de.bitconex.rom
+  invokerPackage: de.bitconex.rom
+  apiPackage: de.bitconex.rom.api
+  configPackage: de.bitconex.rom.configuration

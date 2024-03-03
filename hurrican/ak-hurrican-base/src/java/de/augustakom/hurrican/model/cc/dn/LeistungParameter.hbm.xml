@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.dn.LeistungParamater
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.dn">
+    <class name="LeistungParameter" table="T_LEISTUNG_PARAMETER">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_LEISTUNG_PARAMETER_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="leistungParameterBeschreibung" column="BESCHREIBUNG" type="string"/>
+        <property name="leistungParameterMehrfach" column="MEHRFACH" type="integer"/>
+        <property name="leistungParameterMehrfachIms" column="MEHRFACH_IMS" type="integer"/>
+        <property name="leistungParameterTyp" column="TYP" type="integer"/>
+
+    </class>
+
+</hibernate-mapping>

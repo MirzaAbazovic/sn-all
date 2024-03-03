@@ -1,0 +1,32 @@
+<definitions id="Definition" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+    xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    targetNamespace="Examples" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
+
+    <process id="parallel-usertasks" name="usertask">
+
+        <!-- START -->
+        <startEvent id="start" name="Start" />
+        <sequenceFlow sourceRef="start" targetRef="fork" id="start-fork" />
+
+        <parallelGateway id="fork"/>
+
+        <sequenceFlow sourceRef="fork" targetRef="usertask" id="fork-usertask" />
+        <userTask id="usertask" name="User Task" />
+        <sequenceFlow sourceRef="usertask" targetRef="join" id="usertask-join" />
+
+        <sequenceFlow sourceRef="fork" targetRef="receive" id="fork-receive" />
+        <receiveTask id="receive" />
+        <sequenceFlow sourceRef="receive" targetRef="join" id="receive-join" />
+
+        <parallelGateway id="join"/>
+
+        <sequenceFlow sourceRef="join" targetRef="end" id="join-end" />
+
+        <!-- END -->
+        <endEvent id="end" name="End">
+            <terminateEventDefinition />
+        </endEvent>
+
+        <userTask id="workflowError" name="Error State" activiti:candidateGroups="clearance" />
+    </process>
+</definitions>

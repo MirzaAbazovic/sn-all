@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.dn.Lb2Leistung
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.dn">
+    <class name="Lb2Leistung" table="T_LB_2_LEISTUNG">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_LB_2_LEISTUNG_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="lbId" column="LB_ID" type="long"/>
+        <property name="leistungId" column="LEISTUNG_ID" type="long"/>
+        <property name="oeNo" column="OE__NO" type="long"/>
+        <property name="standard" column="STANDARD" type="boolean"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date"/>
+        <property name="verwendenVon" column="VERWENDEN_VON" type="date"/>
+        <property name="verwendenBis" column="VERWENDEN_BIS" type="date"/>
+        <property name="defParamValue" column="PARAM_VALUE" type="string">
+
+        </property>
+
+    </class>
+
+</hibernate-mapping>

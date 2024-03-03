@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer ServiceCommand-Objekte im CustomerCare-Bereich.
+Die Datei wird von CCServices.xml importiert!
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+
+    <!-- ServiceCommand um eine Rangierungsmatrix anzulegen. -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.CreateMatrixCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.CreateMatrixCommand"
+          scope="prototype">
+        <property name="rangierungsmatrixDAO" ref="rangierungsmatrixDAO"/>
+    </bean>
+
+    <!--
+    ServiceCommand um einer Endstelle eine freie Rangierung zu uebergeben.
+    -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.AssignRangierung2ESCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.AssignRangierung2ESCommand" scope="prototype">
+        <property name="rangierungDAO" ref="rangierungDAO"/>
+        <property name="endstelleDAO" ref="endstelleDAO"/>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.FindRangierung4ESCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.FindRangierung4ESCommand" scope="prototype">
+        <property name="rangierungDAO" ref="rangierungDAO"/>
+        <property name="endstelleDAO" ref="endstelleDAO"/>
+    </bean>
+
+    <!--
+    ServiceCommand um einer Endstelle eine freie Rangierung zu uebergeben. Die Ermittlung der
+    freien Rangierung erfolgt ueber Details aus dem Carrier-Equipment.
+    -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.AssignRangierungByCarrierDetailsCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.AssignRangierungByCarrierDetailsCommand"
+          scope="prototype">
+        <property name="rangierungDAO" ref="rangierungDAO"/>
+        <property name="endstelleDAO" ref="endstelleDAO"/>
+    </bean>
+
+    <!-- ServiceCommand fuer die Stiftvergabe an einem UEVT -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.FillUevtCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.FillUevtCommand"
+          scope="prototype">
+        <property name="hvtBestellungDAO" ref="hvtBestellungDAO"/>
+        <property name="equipmentDAO" ref="equipmentDAO"/>
+    </bean>
+
+    <!-- ServiceCommand, um einen Auftrag anzulegen. -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.CreateAuftragCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.CreateAuftragCommand"
+          scope="prototype">
+    </bean>
+
+    <!-- ServiceCommand, um eine Kündigung rückgängig zu machen. -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.RevokeTerminationCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.RevokeTerminationCommand"
+          scope="prototype">
+        <property name="auftragService" ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+        <property name="produktService" ref="de.augustakom.hurrican.service.cc.ProduktService"/>
+        <property name="rangierungsService" ref="de.augustakom.hurrican.service.cc.RangierungsService"/>
+        <property name="baService" ref="de.augustakom.hurrican.service.cc.BAService"/>
+        <property name="ccLeistungsService" ref="de.augustakom.hurrican.service.cc.CCLeistungsService"/>
+        <property name="endstellenService" ref="de.augustakom.hurrican.service.cc.EndstellenService"/>
+        <property name="accountService" ref="de.augustakom.hurrican.service.cc.AccountService"/>
+        <property name="cpsService" ref="de.augustakom.hurrican.service.cc.CPSService"/>
+    </bean>
+
+    <!-- ServiceCommand, um eine Kündigung rückgängig zu machen. -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.RevokeCreationCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.RevokeCreationCommand"
+          scope="prototype">
+        <property name="auftragService" ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+        <property name="baService" ref="de.augustakom.hurrican.service.cc.BAService"/>
+        <property name="cpsService" ref="de.augustakom.hurrican.service.cc.CPSService"/>
+    </bean>
+
+    <!-- ServiceCommand, um einen Produktwechsel durchzufuehren. -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.ChangeProductCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.ChangeProductCommand"
+          scope="prototype">
+    </bean>
+
+    <!-- ServiceCommand, um einen Auftrag zu kopieren. -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.CopyAuftragCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.CopyAuftragCommand"
+          scope="prototype">
+    </bean>
+
+    <!-- ServiceCommand fuer die Physiktyp-Ueberpruefung -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.PhysiktypConsistenceCheckCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.PhysiktypConsistenceCheckCommand"
+          scope="prototype">
+        <property name="ccAuftragDAO" ref="auftragDAO"/>
+        <property name="physikTypDAO" ref="physikTypDAO"/>
+        <property name="auftragDatenDAO" ref="auftragDatenDAO"/>
+    </bean>
+
+    <!-- ServiceCommand fuer Endgeraete-Checks. -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.eg.EGCheckExistingBillPosCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.eg.EGCheckExistingBillPosCommand"
+          scope="prototype">
+    </bean>
+
+    <!-- ServiceCommand fuer Ermittlung von Hauptauftraegen. -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.FindMainOrder4SIPCustomer"
+          class="de.augustakom.hurrican.service.cc.impl.command.FindMainOrder4SIPCustomer"
+          scope="prototype">
+    </bean>
+
+    <!-- ServiceCommand um VoIP Rufnummern oder Bloecke auf Endgeräte Ports automatisch zu verteilen -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.voip.AssignVoIPDNs2EGPortsCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.voip.AssignVoIPDNs2EGPortsCommand"
+          scope="prototype">
+    </bean>
+
+    <!-- ServiceCommand um VoIP Rufnummern auf Endgeräte Ports automatisch zu verteilen -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.voip.AssignDNs2EGPortsCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.voip.AssignDNs2EGPortsCommand"
+          scope="prototype">
+    </bean>
+
+    <!-- ServiceCommand um VoIP Rufnummernbloecke auf Endgeräte Ports automatisch zu verteilen -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.voip.AssignBlocks2EGPortsCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.voip.AssignBlocks2EGPortsCommand"
+          scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.dslamprofilemonitor.CheckNeedsDSLAMProfileMonitoringCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.dslamprofilemonitor.CheckNeedsDSLAMProfileMonitoringCommand"
+          scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.FindNextHigherDSLAMProfile4DSL18000Command"
+          class="de.augustakom.hurrican.service.cc.impl.command.FindNextHigherDSLAMProfile4DSL18000Command"
+          scope="prototype">
+    </bean>
+
+    <!--  Commands fuer Ressourcenmonitor -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.rs.monitor.AlarmierungEQCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.rs.monitor.AlarmierungEQCommand"
+          scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.rs.monitor.AlarmierungRangCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.rs.monitor.AlarmierungRangCommand"
+          scope="prototype"/>
+
+    <!-- Command zur Auftragsanlage -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.CreateTechAuftragCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.CreateTechAuftragCommand"
+          scope="prototype"/>
+
+    <!-- XLS import commands -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.ImportFTTXKvzRowCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.ImportFTTXKvzRowCommand"
+          scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.ImportFTTXKvzAdresseRowCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.ImportFTTXKvzAdresseRowCommand"
+          scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.ImportUevtStifteCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.ImportUevtStifteCommand"
+          scope="prototype"/>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.ImportFTTXBaugruppenCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.ImportFTTXBaugruppenCommand"
+          scope="prototype"/>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.ImportFTTXKVZRangierungenCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.ImportFTTXKVZRangierungenCommand"
+          scope="prototype"/>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.ImportKvzAdresseCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.ImportKvzAdresseCommand"
+          scope="prototype"/>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.ImportHvtAdresseCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.ImportHvtAdresseCommand"
+          scope="prototype"/>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.ImportHvtUmzugDetailsCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.ImportHvtUmzugDetailsCommand"
+          scope="prototype"/>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.verlauf.CheckVoipDnPlanCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.verlauf.CheckVoipDnPlanCommand"
+          scope="prototype"/>
+
+</beans>
+

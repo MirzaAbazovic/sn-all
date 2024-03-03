@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer die Availability-Services(Vento bzw. Verfügbarkeit) im CustomerCare-Bereich.
+-->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+
+    <!--  Import der abhängigen Beans, die Client als auch Server benötigen  -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCAvailabilityService.xml"/>
+
+    <!--  SERVICES  -->
+
+    <bean id="de.augustakom.hurrican.service.cc.BAService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/cc/BAService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.augustakom.hurrican.service.cc.BAService</value>
+        </property>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.HvtUmzugService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/cc/HvtUmzugService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.augustakom.hurrican.service.cc.HvtUmzugService</value>
+        </property>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.ProduktService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/cc/ProduktService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.augustakom.hurrican.service.cc.ProduktService</value>
+        </property>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.HWSwitchService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/cc/HWSwitchService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.augustakom.hurrican.service.cc.HWSwitchService</value>
+        </property>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.DummySocketService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/cc/DummySocketService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.augustakom.hurrican.service.cc.DummySocketService</value>
+        </property>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.SipPeeringPartnerService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/cc/SipPeeringPartnerService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.augustakom.hurrican.service.cc.SipPeeringPartnerService</value>
+        </property>
+    </bean>
+
+    <!-- AvailabilityService -->
+    <bean id="de.augustakom.hurrican.service.cc.AvailabilityService"
+          class="de.augustakom.hurrican.service.cc.impl.AvailabilityServiceImpl">
+        <property name="DAO" ref="de.augustakom.hurrican.dao.cc.impl.AvailabilityDAO"/>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.EndgeraeteService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/cc/EndgeraeteService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.augustakom.hurrican.service.cc.EndgeraeteService</value>
+        </property>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.location.LocationServiceDispatcher" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/cc/LocationServiceDispatcher</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.augustakom.hurrican.service.location.LocationServiceDispatcher</value>
+        </property>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.ProfileService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/cc/ProfileService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.augustakom.hurrican.service.cc.ProfileService</value>
+        </property>
+    </bean>
+
+</beans>

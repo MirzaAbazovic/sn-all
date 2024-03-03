@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE table [
+    <!ELEMENT table (column+)>
+    <!ELEMENT column EMPTY>
+    <!ATTLIST column name CDATA #REQUIRED>
+    <!ATTLIST column property CDATA #REQUIRED>
+    <!ATTLIST column type CDATA #REQUIRED>
+    <!ATTLIST column editable CDATA #REQUIRED>
+    <!ATTLIST column width CDATA #IMPLIED>
+]>
+<table>
+
+    <column name="Auswahl"
+            property="selected"
+            type="java.lang.Boolean"
+            editable="true"
+            width="50"/>
+    <column name="Auftrag ID"
+            property="auftragId"
+            type="java.lang.Long"
+            editable="false"
+            width="65"/>
+    <column name="Verbindungsbezeichnung (VBZ)"
+            property="vbz"
+            type="java.lang.String"
+            editable="false"
+            width="125"/>
+    <column name="DTAG Port"
+            property="dtagPort"
+            type="java.lang.String"
+            editable="false"
+            width="75"/>
+    <column name="Vorabstimmung LBZ"
+            property="returnLBZ"
+            type="java.lang.Integer"
+            editable="false"
+            width="150"/>
+    <column name="Anlagen Anzahl"
+            property="anzahlSelectedAnlagen"
+            type="java.lang.Integer"
+            editable="false"
+            width="70"/>
+</table>

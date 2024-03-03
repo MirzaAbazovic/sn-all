@@ -1,0 +1,38 @@
+@echo off
+SETLOCAL
+rem #######################################################
+rem
+rem Start-Skript fuer die Administrations-GUI von
+rem ak-authentication
+rem
+rem #######################################################
+
+FOR /D %%G in ("jre*") DO SET AUTH_JAVA_HOME=%%G
+
+IF NOT EXIST %AUTH_JAVA_HOME%\bin\java.exe (
+   SET AUTH_JAVA_HOME=%JAVA_HOME%
+   goto classpath
+)
+
+IF NOT EXIST %AUTH_JAVA_HOME%\bin\java.exe (
+   goto nojava
+)
+
+:classpath
+set CLASSPATH=.\authentication.jar;.\config
+
+rem Starte Authentication-System
+%AUTH_JAVA_HOME%\bin\java -cp %CLASSPATH% -Duse.config=${use.config} de.augustakom.authentication.gui.system.AuthenticationStart
+
+
+GOTO shutdown
+
+:nojava
+@echo Es konnte keine Java Runtime gefunden werden!
+pause
+
+:shutdown
+ENDLOCAL
+exit
+
+:done

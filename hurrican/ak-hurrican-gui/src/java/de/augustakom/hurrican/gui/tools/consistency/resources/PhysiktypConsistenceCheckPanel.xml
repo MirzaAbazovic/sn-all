@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel PhysiktypConsistenceCheckPanel.
+-->
+<sf>
+    
+    <Label name="start.id"><text>Auftrag Start-ID:</text></Label>
+    <FormattedTextField name="start.id">
+        <tooltip>Auftrags-ID ab der der Physiktyp-Check gestartet werden soll (leer für Auftrags-ID 1)</tooltip>
+        <columns>10</columns>
+        <format type="number">0</format>
+    </FormattedTextField>
+    
+    <Label name="end.id"><text>Auftrag Ende-ID:</text></Label>
+    <FormattedTextField name="end.id">
+        <tooltip>Auftrags-ID, bei der der Physiktyp-Check beendet werden soll (leer für max. Auftrags-ID)</tooltip>
+        <columns>10</columns>
+        <format type="number">0</format>
+    </FormattedTextField>
+    
+</sf>

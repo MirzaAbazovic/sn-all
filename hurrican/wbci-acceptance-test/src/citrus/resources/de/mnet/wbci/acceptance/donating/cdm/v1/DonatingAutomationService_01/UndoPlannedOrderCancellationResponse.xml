@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns3:undoPlannedOrderCancellationResponse xmlns:ns3="http://www.mnet.de/elektra/services/1.0/">
+    <status>OK</status>
+    <modifications>Citrus modification</modifications>
+    <reclaimPositions>true</reclaimPositions>
+</ns3:undoPlannedOrderCancellationResponse>
+

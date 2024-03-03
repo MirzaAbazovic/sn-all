@@ -1,0 +1,1 @@
+grant delete on T_PROFILE_AUFTRAG_VALUE to R_HURRICAN_USER;

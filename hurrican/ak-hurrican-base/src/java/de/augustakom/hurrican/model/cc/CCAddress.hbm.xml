@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.CCAddress
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="CCAddress" table="T_ADDRESS">
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_ADDRESS_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="kundeNo" column="KUNDE__NO" type="long"/>
+        <property name="addressType" column="ADDRESS_TYPE" type="long" not-null="true"/>
+        <property name="formatName" column="FORMAT_NAME" type="string" not-null="true"/>
+        <property name="titel" column="TITEL" type="string"/>
+        <property name="titel2" column="TITEL2" type="string"/>
+        <property name="name" column="NAME" type="string"/>
+        <property name="name2" column="NAME2" type="string"/>
+        <property name="vorname" column="VORNAME" type="string"/>
+        <property name="vorname2" column="VORNAME2" type="string"/>
+        <property name="strasse" column="STRASSE" type="string"/>
+        <property name="strasseAdd" column="STRASSE_ADD" type="string"/>
+        <property name="nummer" column="HAUSNUMMER" type="string"/>
+        <property name="hausnummerZusatz" column="HAUSNUMMER_ZUSATZ" type="string"/>
+        <property name="postfach" column="POSTFACH" type="string"/>
+        <property name="plz" column="PLZ" type="string"/>
+        <property name="ort" column="ORT" type="string"/>
+        <property name="ortsteil" column="ORT_ZUSATZ" type="string"/>
+        <property name="landId" column="LAND_ID" type="string"/>
+        <property name="telefon" column="TELEFON" type="string"/>
+        <property name="handy" column="HANDY" type="string"/>
+        <property name="fax" column="FAX" type="string"/>
+        <property name="email" column="EMAIL" type="string"/>
+        <property name="bemerkung" column="BEMERKUNG" type="string"/>
+        <property name="prioBrief" column="PRIO_BRIEF" type="integer"/>
+        <property name="prioFax" column="PRIO_FAX" type="integer"/>
+        <property name="prioEmail" column="PRIO_EMAIL" type="integer"/>
+        <property name="prioSMS" column="PRIO_SMS" type="integer"/>
+        <property name="prioTel" column="PRIO_TEL" type="integer"/>
+        <property name="gebaeudeteilName" column="GEBAEUDETEILNAME" type="string"/>
+        <property name="gebaeudeteilZusatz" column="GEBAEUDETEILZUSATZ" type="string"/>
+    </class>
+</hibernate-mapping>

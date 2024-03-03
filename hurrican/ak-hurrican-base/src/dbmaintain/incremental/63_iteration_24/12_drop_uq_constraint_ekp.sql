@@ -1,0 +1,1 @@
+alter table T_FTTX_EKP_FRAME_CONTRACT drop constraint CONSTR_EKP_CONTRACT_ID_UNIQUE;

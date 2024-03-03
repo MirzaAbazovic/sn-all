@@ -1,0 +1,20 @@
+@startuml
+
+title State-transition diagram for a completed and partially completed resource order
+Acknowledged: Order received and passed message and basic business validation
+[*] --> Acknowledged
+
+Acknowledged --> InProgress : Start order
+InProgress: Resource delivery has started
+
+InProgress --> Completed : Order completed
+Completed: Order has been provisioned and the resource is now active
+Completed --> [*] : Final
+
+InProgress --> Partial : Order partially completed or failed
+Partial: Some items failed some items succeeded
+Partial --> [*] : Final
+
+
+
+@enduml

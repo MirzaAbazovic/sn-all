@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das VoIP-Panel.
+-->
+<sf>
+
+    <Text name="voip.data">VoIP-Daten</Text>
+
+    <Label name="active">
+        <text>Aktiv:</text>
+    </Label>
+
+    <Button name="rufnrAbgleich">
+        <text>Rufnummern abgleichen</text>
+    </Button>
+    <Button name="assignPortsAutomatically">
+        <text>autom. Portzuordnung</text>
+    </Button>
+    <Button name="assignPortsManually">
+        <text>Ports zuweisen (manuell)</text>
+    </Button>
+
+    <ComboBox name="active">
+        <tooltip>Gibt an, ob die dargestellten VoIP-Daten aktiv sind.</tooltip>
+    </ComboBox>
+
+    <Label name="sippassword">
+        <text>SIP-Passwort:</text>
+    </Label>
+
+    <TextField name="sippassword">
+        <tooltip>Passwort fuer den SIP-Account</tooltip>
+        <columns>10</columns>
+    </TextField>
+
+    <Button name="create.sippassword">
+        <text>Neues Passwort</text>
+        <tooltip>Erzeugt ein neues SIP-Login Passwort</tooltip>
+    </Button>
+
+    <Label name="sipuri">
+        <text>SIP-URI:</text>
+    </Label>
+
+    <TextField name="sipuri">
+        <tooltip>"SIP-URI: +49[ONKZ][DN-Base][Start(mit Zentrale)/Range from(ohne Zentrale)]@[SIP Domain]</tooltip>
+        <columns>30</columns>
+    </TextField>
+
+    <Label name="sipbenutzername">
+    <text>SIP-Benutzername:</text>
+</Label>
+
+    <TextField name="sipbenutzername">
+        <tooltip>SIP-Benutzername: +49[ONKZ][DN-Base][Start]</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="sipregistrar">
+        <text>SIP-Registrar:</text>
+    </Label>
+
+    <TextField name="sipregistrar">
+        <tooltip>SIP-Registrar enstpricht der SIP-Domain</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+
+    <Label name="eg.mode">
+        <text>Endgerät-Modus:</text>
+    </Label>
+    <ReferenceField name="eg.mode">
+        <tooltip>Modus, in dem das VoIP-Endgeraet betrieben werden soll.</tooltip>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+        <columns>20</columns>
+    </ReferenceField>
+
+    <Button name="add.dn">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Portzuordnung zu einer Rufnummer anlegen</tooltip>
+    </Button>
+
+    <Button name="del.dn">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Portzuordnung beenden</tooltip>
+    </Button>
+
+    <Button name="new.dn.block">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Legt einen neuen Block an</tooltip>
+    </Button>
+    <Button name="delete.dn.block">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht den ausgewählten Block</tooltip>
+    </Button>
+
+    <Label name="dnplan.gueltig.ab">
+        <text>gültig ab:</text>
+    </Label>
+    <TextField name="dnplan.gueltig.ab">
+        <tooltip>Zeitpunkt ab dem der Plan aktiv ist</tooltip>
+        <columns>14</columns>
+    </TextField>
+
+    <DateComponent name="dnplan.gueltig.ab">
+        <tooltip>Zeitpunkt ab dem der Plan aktiv ist</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Button name="new.dn.plan">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Legt einen neuen Rufnummernplan an</tooltip>
+    </Button>
+
+    <Button name="del.dn.plan">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht den Rufnummernplan</tooltip>
+    </Button>
+</sf>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Definition von EWSD-Baugruppen.
+-->
+<sf>
+
+	<Text name="sel.title">Baugruppen-Typ</Text>
+	<Text name="sel.msg">Auswahl des Typs für die EWSD-Baugruppe</Text>
+	<Text name="sel.label">Typ: </Text>
+                
+</sf>

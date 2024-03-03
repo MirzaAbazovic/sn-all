@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das TextBausteinGruppe-Panel der Reports
+-->
+<sf>
+    
+    <Label name="id"><text>ID:</text></Label>
+    <FormattedTextField name="id">
+        <tooltip>ID des Text-Baustein-Gruppe</tooltip>
+        <maxchars>11</maxchars>
+        <format type="number">#</format>
+    </FormattedTextField>
+    
+    <Label name="name"><text>Name:</text></Label>
+    <TextField name="name">
+        <tooltip>Name der aktuellen Text-Baustein-Gruppe</tooltip>
+        <maxchars>50</maxchars>
+    </TextField>
+    
+    <Label name="desc"><text>Beschreibung:</text></Label>
+    <TextArea name="text">
+        <tooltip>Beschreibung Text-Baustein-Gruppe</tooltip>
+  	</TextArea>
+    
+    <Label name="gueltig.von"><text>Gültig von:</text></Label>
+    <DateComponent name="gueltig.von">
+        <tooltip>Gültigkeit der Text-Baustein-Gruppe</tooltip>
+    </DateComponent>
+    
+    <Label name="gueltig.bis"><text>Gültig bis:</text></Label>
+    <DateComponent name="gueltig.bis">
+        <tooltip>Gültigkeit der Text-Baustein-Gruppe</tooltip>
+    </DateComponent>
+    
+    <Label name="mandatory"><text>Mandatory:</text></Label>
+    <CheckBox name="mandatory">
+        <tooltip>Mindestens ein Text-Baustein der Gruppe muss ausgewählt werden</tooltip>
+    </CheckBox> 
+    
+    <Button name="save">
+        <text>Speichern</text>
+        <tooltip>Speichert die Text-Baustein-Gruppe</tooltip>
+    </Button>
+    
+    <Button name="new">
+        <text>Neu</text>
+        <tooltip>Erstellt eine neue Text-Baustein-Gruppe</tooltip>
+    </Button>  
+    
+   	<Button name="delete">
+      	<text>Löschen</text>
+        <tooltip>Aktuelle Text-Baustein-Gruppe löschen</tooltip>
+	</Button>
+    
+ </sf>

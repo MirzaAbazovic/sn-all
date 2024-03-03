@@ -1,0 +1,6 @@
+--
+-- Aendert den Name von TYP zu TYPE in T_EG_IP
+--
+
+ALTER TABLE T_EG_IP
+RENAME COLUMN TYP TO ADDRESS_TYPE;

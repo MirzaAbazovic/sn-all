@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse de.augustakom.hurrican.reporting.model.Report
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.reporting">
+    <class name="Report" table="t_report">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_REPORT_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Felder -->
+        <property name="name" column="NAME" type="string" not-null="true"/>
+        <property name="userw" column="USERW" type="string" not-null="true"/>
+        <property name="description" column="DESCRIPTION" type="string" />
+        <property name="type" column="TYPE" type="long" not-null="true"/>
+        <property name="reportGruppeId" column="REPORT_GRUPPE_ID" type="long" />
+        <property name="firstPage" column="FIRST_PAGE" type="long"/>
+        <property name="secondPage" column="SECOND_PAGE" type="long"/>
+        <property name="duplexDruck" column="DUPLEX_DRUCK" type="boolean"/>
+        <property name="disabled" column="DISABLED" type="boolean"/>
+
+    </class>
+
+</hibernate-mapping>

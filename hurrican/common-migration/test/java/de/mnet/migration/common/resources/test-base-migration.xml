@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Basis Spring Context fuer alle Migrationen -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config />
+
+    <bean id="propertyBean" class="de.augustakom.common.tools.spring.PropertyBean">
+        <property name="fileBaseNames">
+            <list>
+                <value>migration</value>
+            </list>
+        </property>
+        <property name="appendix" value="properties" />
+    </bean>
+
+    <bean class="de.augustakom.common.tools.spring.ExtendedPropertyPlaceholderConfigurer">
+        <property name="propertyBean" ref="propertyBean" />
+    </bean>
+
+    <!-- ============================================= -->
+    <!-- = STANDARD-DAOs ============================= -->
+    <!-- ============================================= -->
+    <!--
+        DAO fuer Migrations-Ergebnisse
+        Beans, die in spezifischem Kontext ge-aliast werden muessen:
+        * logDataSource
+     -->
+    <bean id="migrationResultDao"
+        class="de.mnet.migration.common.main.MigrationResultDaoImpl">
+        <property name="dataSource" ref="logDataSource" />
+        <property name="simulate" value="${migration.simulate}"/>
+        <property name="migLogTableName" value="HURRICAN_MIG_LOG"/>
+        <property name="migResultTableName" value="HURRICAN_MIG_RESULT"/>
+        <property name="migResultSequenceName" value="SEQ_HURRICAN_MIG_RESULT"/>
+    </bean>
+
+     <!-- ============================================= -->
+    <!-- = HURRICAN ================================== -->
+    <!-- ============================================= -->
+    <!-- Interceptor, um das Default-Schema der Datenbank-Connection zu setzen -->
+    <bean id="hurricanSchemaInterceptor"
+        class="de.augustakom.common.tools.dao.SetDefaultSchemaInterceptor">
+        <property name="schemaName" value="${db.hurrican.migration.user.schema}" />
+    </bean>
+
+    <!-- DataSource fuer Hurrican -->
+    <bean id="hurricanDataSourceTarget"
+        class="de.augustakom.common.tools.dao.jdbc.AKBasicDataSource"  destroy-method="close">
+        <property name="driverClassName" value="${db.hurrican.jdbc.driver}" />
+        <property name="url" value="${db.hurrican.jdbc.url}" />
+        <property name="username" value="${db.hurrican.migration.user.schema}" />
+        <property name="password" value="${db.hurrican.migration.user.password}" />
+        <property name="maxActive"><value>10</value></property>
+        <property name="maxIdle"><value>30</value></property>
+        <property name="validationQuery"><value>select 1 from dual</value></property>
+    </bean>
+    <bean id="hurricanDataSource" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="javax.sql.DataSource" />
+        <property name="target">
+            <ref bean="hurricanDataSourceTarget" />
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hurricanSchemaInterceptor</value>
+            </list>
+        </property>
+    </bean>
+</beans>

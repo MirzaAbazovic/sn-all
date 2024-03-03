@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Anzeige der Auftraege, die einem
+VPN zuegordnet sind.
+-->
+<sf>
+    <Text name="title">Client2Site Tokens</Text>
+
+    <Label name="serial.number.search"><text>Seriennummer:</text></Label>
+    <TextField name="serial.number.search">
+        <columns>15</columns>
+        <tooltip>Sucht nach der Seriennummer. Wildcards erlaubt</tooltip>
+    </TextField>
+
+    <Button name="save.token.detail">
+        <text>Speichern</text>
+        <tooltip>Speichert den Token</tooltip>
+    </Button>
+
+    <Button name="new.token">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Legt einen neuen Client2Site Token an</tooltip>
+    </Button>
+
+   <Button name="del.token">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht den ausgewählten Client2Site Token</tooltip>
+    </Button>
+
+
+
+    <Button name="import.csv">
+        <icon>de/augustakom/hurrican/gui/images/import.gif</icon>
+        <tooltip>Tokenliste importieren (erwartete Daten im CSV-File: Seriennummer;SAP-Bestellung;Lieferdatum;Laufzeit;Batterie Ende)</tooltip>
+    </Button>
+
+</sf>

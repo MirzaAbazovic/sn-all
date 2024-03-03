@@ -1,0 +1,1 @@
+alter table t_rsm_port_usage add VERSION NUMBER(18) DEFAULT 0 NOT NULL;

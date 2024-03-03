@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="AKMailHostingPortal" language="java" pageWidth="468" pageHeight="198" columnWidth="468" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="com.jasperassistant.designer.GridWidth" value="12"/>
+	<property name="com.jasperassistant.designer.GridHeight" value="12"/>
+	<property name="com.jasperassistant.designer.DataSource" value="emptyDS"/>
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+	<property name="com.jasperassistant.designer.Units" value="Millimeters"/>
+	<property name="com.jasperassistant.designer.Grid" value="true"/>
+	<reportFont name="Font_Default" isDefault="true" fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<field name="ACCOUNT" class="java.lang.String">
+	</field>
+	<field name="PASSWORD" class="java.lang.String">
+	</field>
+	<detail>
+		<band height="69">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="0" width="307" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[In das AK-Kundenportal gelangen Sie mit folgenden Daten:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="13" width="147" height="11"/>
+				<textElement/>
+				<text><![CDATA[Internetadresse des AK-Kundenportals:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="35" width="147" height="11"/>
+				<textElement/>
+				<text><![CDATA[Ihr Passwort:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="24" width="147" height="11"/>
+				<textElement/>
+				<text><![CDATA[Ihre Kundennummer:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="48" width="466" height="21"/>
+				<textElement/>
+				<text><![CDATA[Bitte das Passwort nach Ihrer Erstanmeldung ändern. Sollten Sie Ihr Passwort bereits geändert haben, hat das oben angedruckte
+Passwort keine Gültigkeit.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="159" y="13" width="147" height="11"/>
+				<textElement/>
+				<text><![CDATA[http://service.augustakom.net]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="159" y="24" width="147" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ACCOUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="159" y="35" width="148" height="12"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PASSWORD}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

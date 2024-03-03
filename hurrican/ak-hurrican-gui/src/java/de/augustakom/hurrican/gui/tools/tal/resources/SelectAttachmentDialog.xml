@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Angabe von Anhaengen zur el. TAL-Bestellung.
+-->
+<sf>
+
+    <Text name="title">Anlagen anhängen</Text>
+
+    <Label name="sub.title"><text>ScanView Dokumente:</text></Label>
+
+</sf>

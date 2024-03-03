@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.exmodules.tal.TALReturnOkView
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.exmodules.tal">
+	<class name="TALReturnOkView" table="V1TTALBEST_B005_I1_OK">
+
+		<cache usage="read-only"/>
+
+	    <!-- PrimaryKey -->
+		<id name="id" column="B009_ID" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+
+		<!-- Sonstige Fields -->
+		<property name="talBestellungId" column="TBS_ID" type="long" insert="false" update="false"/>
+		<property name="b005_2" column="B005_2" type="string"/>
+		<property name="b005_3" column="B005_3" type="string"/>
+		<property name="b005_4" column="B005_4" type="integer"/>
+		<property name="tbvId" column="TBS_TBV_ID" type="long"/>
+		<property name="srcId" column="TBS_SRC_ID" type="long"/>
+		<property name="tbsTbsId" column="TBS_TBS_ID" type="long"/>
+		<property name="tbsFirstId" column="TBS_TBS_FIRST_ID" type="long"/>
+		<property name="tbsStatus" column="TBS_STATUS" type="long"/>
+		<property name="tbsDatei" column="TBS_DATEI" type="string"/>
+		<property name="tbsSender" column="TBS_SENDER" type="string"/>
+		<property name="tbsRecipient" column="TBS_RECIPIENT" type="string"/>
+		<property name="b017_2" column="B017_2" type="string"/>
+		<property name="tfeId" column="TFE_ID" type="long"/>
+		<property name="tfeKlasse" column="TFE_KLASSE" type="string"/>
+		<property name="tfeBeschreibung" column="TFE_BESCHREIBUNG" type="string"/>
+		<property name="b002_2" column="B002_2" type="string"/>
+		<property name="b002_4" column="B002_4" type="integer"/>
+		<property name="b001_2" column="B001_2" type="string"/>
+		<property name="b001_4" column="B001_4" type="long"/>
+		<property name="b001_5" column="B001_5" type="string"/>
+		<property name="b001_6" column="B001_6" type="string"/>
+		<property name="b015_2" column="B015_2" type="string"/>
+		<property name="b015_3" column="B015_3" type="string"/>
+		<property name="b015_4" column="B015_4" type="string"/>
+		<property name="b015_5" column="B015_5" type="string"/>
+		<property name="b015_6" column="B015_6" type="string"/>
+		<property name="b015_2_Snd" column="B015_2_SND" type="string"/>
+		<property name="b015_3_Snd" column="B015_3_SND" type="string"/>
+		<property name="b015_4_Snd" column="B015_4_SND" type="string"/>
+		<property name="b015_5_Snd" column="B015_5_SND" type="string"/>
+		<property name="b015_6_Snd" column="B015_6_SND" type="string"/>
+		<property name="b009_2" column="B009_2" type="string"/>
+		<property name="b009_3" column="B009_3" type="string"/>
+		<property name="b009_4" column="B009_4" type="integer"/>
+		<property name="b009_5" column="B009_5" type="string"/>
+		<property name="b009_6" column="B009_6" type="string"/>
+		<property name="b009_7" column="B009_7" type="string"/>
+		<property name="b009_8" column="B009_8" type="string"/>
+		<property name="b009_9" column="B009_9" type="string"/>
+		<property name="b009_10" column="B009_10" type="string"/>
+		<property name="b009_11" column="B009_11" type="string"/>
+		<property name="b009_12" column="B009_12" type="string"/>
+		<property name="b009_13" column="B009_13" type="string"/>
+
+	</class>
+
+</hibernate-mapping>

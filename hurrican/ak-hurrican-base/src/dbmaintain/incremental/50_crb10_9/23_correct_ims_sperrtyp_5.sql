@@ -1,0 +1,2 @@
+-- Innovativen Dienst fuer IMS Sperrklasse 5 setzen
+UPDATE T_SPERRKLASSEN SET INNOVATIVE_DIENSTE='1' WHERE SPERRKLASSE_IMS=5;

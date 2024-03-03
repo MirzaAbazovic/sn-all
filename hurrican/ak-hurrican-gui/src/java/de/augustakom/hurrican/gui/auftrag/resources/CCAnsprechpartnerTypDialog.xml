@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <!--
+        GUI-Definitionen fuer den Dialog zur Auswahl eines Adresstyps und eines Ansprechpartnertyps.
+    -->
+<sf>
+
+    <Text name="title">Eigenschaften des neuen Ansprechpartners</Text>
+
+    <Label name="ansprechpartner.type"><text>Ansprechpartnertyp:</text></Label>
+    <ReferenceField name="ansprechpartner.type">
+        <tooltip>Angabe des Ansprechpartner-Typs</tooltip>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+        <columns>20</columns>
+    </ReferenceField>
+
+    <Label name="address.type"><text>Adresstyp:</text></Label>
+    <ReferenceField name="address.type">
+        <tooltip>Angabe des Adress-Typs</tooltip>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+        <columns>20</columns>
+    </ReferenceField>
+
+    <Label name="ansprechpartner.preferred"><text>Standard:</text></Label>
+    <CheckBox name="ansprechpartner.preferred">
+        <tooltip>Ansprechpartner für Benachrichtigungen verwenden</tooltip>
+    </CheckBox>
+
+</sf>

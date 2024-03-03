@@ -1,0 +1,75 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <v1:searchBuildingsResponse xmlns:v1="http://www.mnet.de/esb/cdm/Resource/LocationService/v1" xmlns:ns1="http://www.mnet.de/esb/cdm/Resource/Location/v1">
+      <v1:limit>100</v1:limit>
+      <v1:offset>0</v1:offset>
+      <v1:building>
+        <ns1:id>citrus:randomNumber(10)</ns1:id>
+        <ns1:modified>citrus:currentDate('yyyy-MM-dd'T'HH:mm:ss', -1y)</ns1:modified>
+        <ns1:serviceable>true</ns1:serviceable>
+        <ns1:houseNumber>2</ns1:houseNumber>
+        <ns1:houseNumberExtension>a</ns1:houseNumberExtension>
+        <ns1:numberOfApartments>15</ns1:numberOfApartments>
+        <ns1:street>
+          <ns1:id>citrus:randomNumber(10)</ns1:id>
+          <ns1:modified>citrus:currentDate('yyyy-MM-dd'T'HH:mm:ss', -1y)</ns1:modified>
+          <ns1:serviceable>true</ns1:serviceable>
+          <ns1:name>Emmy-Nöther-Straße</ns1:name>
+          <ns1:zipCode>
+            <ns1:id>citrus:randomNumber(10)</ns1:id>
+            <ns1:modified>citrus:currentDate('yyyy-MM-dd'T'HH:mm:ss', -1y)</ns1:modified>
+            <ns1:serviceable>true</ns1:serviceable>
+            <ns1:zipCode>80992</ns1:zipCode>
+            <ns1:city>
+              <ns1:id>citrus:randomNumber(10)</ns1:id>
+              <ns1:modified>citrus:currentDate('yyyy-MM-dd'T'HH:mm:ss', -1y)</ns1:modified>
+              <ns1:serviceable>true</ns1:serviceable>
+              <ns1:name>München</ns1:name>
+              <ns1:country>
+                <ns1:id>citrus:randomNumber(10)</ns1:id>
+                <ns1:modified>citrus:currentDate('yyyy-MM-dd'T'HH:mm:ss', -1y)</ns1:modified>
+                <ns1:serviceable>true</ns1:serviceable>
+                <ns1:countryCode>DE</ns1:countryCode>
+                <ns1:name>Deutschland</ns1:name>
+              </ns1:country>
+            </ns1:city>
+          </ns1:zipCode>
+        </ns1:street>
+      </v1:building>
+      <v1:building>
+        <ns1:id>citrus:randomNumber(10)</ns1:id>
+        <ns1:modified>citrus:currentDate('yyyy-MM-dd'T'HH:mm:ss', -1y)</ns1:modified>
+        <ns1:serviceable>true</ns1:serviceable>
+        <ns1:houseNumber>2</ns1:houseNumber>
+        <ns1:houseNumberExtension>b</ns1:houseNumberExtension>
+        <ns1:numberOfApartments>15</ns1:numberOfApartments>
+        <ns1:street>
+          <ns1:id>citrus:randomNumber(10)</ns1:id>
+          <ns1:modified>citrus:currentDate('yyyy-MM-dd'T'HH:mm:ss', -1y)</ns1:modified>
+          <ns1:serviceable>true</ns1:serviceable>
+          <ns1:name>Emmy-Nöther-Straße</ns1:name>
+          <ns1:zipCode>
+            <ns1:id>citrus:randomNumber(10)</ns1:id>
+            <ns1:modified>citrus:currentDate('yyyy-MM-dd'T'HH:mm:ss', -1y)</ns1:modified>
+            <ns1:serviceable>true</ns1:serviceable>
+            <ns1:zipCode>80992</ns1:zipCode>
+            <ns1:city>
+              <ns1:id>citrus:randomNumber(10)</ns1:id>
+              <ns1:modified>citrus:currentDate('yyyy-MM-dd'T'HH:mm:ss', -1y)</ns1:modified>
+              <ns1:serviceable>true</ns1:serviceable>
+              <ns1:name>München</ns1:name>
+              <ns1:country>
+                <ns1:id>citrus:randomNumber(10)</ns1:id>
+                <ns1:modified>citrus:currentDate('yyyy-MM-dd'T'HH:mm:ss', -1y)</ns1:modified>
+                <ns1:serviceable>true</ns1:serviceable>
+                <ns1:countryCode>DE</ns1:countryCode>
+                <ns1:name>Deutschland</ns1:name>
+              </ns1:country>
+            </ns1:city>
+          </ns1:zipCode>
+        </ns1:street>
+      </v1:building>
+    </v1:searchBuildingsResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

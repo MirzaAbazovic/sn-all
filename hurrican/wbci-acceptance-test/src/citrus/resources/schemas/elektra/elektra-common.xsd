@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.mnet.de/elektra/common/1.0/">
+    <xsd:complexType name="fault">
+        <xsd:sequence>
+            <xsd:element name="uuid" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+            <xsd:element name="errorCode" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+            <xsd:element name="errorDescription" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

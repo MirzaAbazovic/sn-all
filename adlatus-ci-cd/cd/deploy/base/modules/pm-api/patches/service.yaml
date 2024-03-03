@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pm-api-service
+  namespace: adl
+spec:
+  $patch: replace
+  selector:
+    app: pm-api
+  ports:
+    - $patch: replace
+    - port: 8080
+      targetPort: 8080

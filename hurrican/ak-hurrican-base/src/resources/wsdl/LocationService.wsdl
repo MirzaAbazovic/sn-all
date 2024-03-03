@@ -1,0 +1,945 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:ns1="http://www.mnet.de/esb/cdm/Resource/Location/v1"
+                  xmlns:tns="http://www.mnet.de/esb/cdm/Resource/LocationService/v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:ns0="http://www.mnet.de/esb/cdm/Shared/Common/v1"
+                  xmlns:jms="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:jndi="http://www.tibco.com/namespaces/ws/2004/soap/apis/jndi"
+                  name="LocationService"
+                  targetNamespace="http://www.mnet.de/esb/cdm/Resource/LocationService/v1">
+    <wsdl:documentation>Version 1.1</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema xmlns="http://www.mnet.de/esb/cdm/Resource/Location/v1"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   targetNamespace="http://www.mnet.de/esb/cdm/Resource/Location/v1"
+                   version="1.0"
+                   elementFormDefault="qualified"
+                   attributeFormDefault="unqualified">
+            <xs:complexType name="Building">
+                <xs:complexContent>
+                    <xs:extension base="ns1:Location">
+                        <xs:sequence>
+                            <xs:element name="houseNumber" type="xs:string" minOccurs="0"/>
+                            <xs:element name="houseNumberExtension" type="xs:string" minOccurs="0"/>
+                            <xs:element name="numberOfApartments" type="xs:unsignedInt" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>reported number of apartments in the building</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="carrierAddress" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>carrier specific address information for this building. This data is providied in case the spelling differs for a certain network carrier (e.g. DTAG)</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="city" type="xs:string">
+                                            <xs:annotation>
+                                                <xs:documentation>name of the city in carrier specific notation</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="zipCode" type="xs:string">
+                                            <xs:annotation>
+                                                <xs:documentation>Zip Code in in carrier specific notation</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="district" type="xs:string" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>District in in carrier specific notation</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="street" type="xs:string">
+                                            <xs:annotation>
+                                                <xs:documentation>street name in in carrier specific notation</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="houseNumber" type="xs:string" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>house number in carrier specific notation</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="houseNumberExtension" type="xs:string" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>house number extension in in carrier specific notation</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="carrier" use="required" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>name of the carrier. Currently known values are: DTAG</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="TAL" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Information relvant for the Teilnehmeranschlussleitung (TAL) of this building</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="onkz" type="xs:string">
+                                            <xs:annotation>
+                                                <xs:documentation>"Ortznetzkennzahl" for this building</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="asb" type="xs:string" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Anschlussbereich for this building</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="kvz" type="xs:string" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Kabelverzweiger for this building</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="infas" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Infas data for the building</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="anzfa" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="bakz" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="coordSource" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="distance" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="dsl" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="gk3X" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="gk3XT" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="gk3Y" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="gk3YT" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="kgs22" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="kgs36" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="kgs44" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="kgs44Id" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="lcgchar" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="lchh" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="po" type="xs:string" minOccurs="0"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="agsn" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Amtlicher Gemeindeschlüssel für den Notruf for this building</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="street" type="ns1:StreetSection"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="City">
+                <xs:complexContent>
+                    <xs:extension base="ns1:Location">
+                        <xs:sequence>
+                            <xs:element name="name" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>city name</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="kgs8" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Unique Infas idientifier of the city. E.g.: 09162000</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="country" type="ns1:Country"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="Country">
+                <xs:complexContent>
+                    <xs:extension base="ns1:Location">
+                        <xs:sequence>
+                            <xs:element name="countryCode" type="ns1:CountryCode">
+                                <xs:annotation>
+                                    <xs:documentation>Country code as defined by the ISO 3166-1 alpha-2 standard</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="name" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>country name</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:simpleType name="CountryCode">
+                <xs:annotation>
+                    <xs:documentation>Country code as defined by the ISO 3166-1 alpha-2 standard</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[A-Z]{2}"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="District">
+                <xs:complexContent>
+                    <xs:extension base="ns1:Location">
+                        <xs:sequence>
+                            <xs:element name="name" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>the district name</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="locationRelevant" type="xs:boolean">
+                                <xs:annotation>
+                                    <xs:documentation>indicates if the district is relevant to uniquely identify a post address</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="kgs12" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>infas kgs12 key</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="Location" abstract="true">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long">
+                        <xs:annotation>
+                            <xs:documentation>unique identifier of the location</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="technicalId" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Unique M-net OSS identifier of the location.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="modified" type="xs:dateTime">
+                        <xs:annotation>
+                            <xs:documentation>date and time (inluding time zone) the location was updated the last time</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="serviceable" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation>indicates whether M-net service is available at this location</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="StreetSection">
+                <xs:complexContent>
+                    <xs:extension base="ns1:Location">
+                        <xs:sequence>
+                            <xs:element name="name" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>Street Name</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="zipCode" type="ns1:ZipCode"/>
+                            <xs:element name="district" type="ns1:District" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="ZipCode">
+                <xs:complexContent>
+                    <xs:extension base="ns1:Location">
+                        <xs:sequence>
+                            <xs:element name="zipCode" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>Zip Code. E.g 80337</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="city" type="ns1:City"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns="http://www.mnet.de/esb/cdm/Shared/Common/v1"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   targetNamespace="http://www.mnet.de/esb/cdm/Shared/Common/v1"
+                   version="1.0"
+                   elementFormDefault="qualified"
+                   attributeFormDefault="unqualified">
+            <xs:element name="ESBFault">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="errorCode" type="xs:string"/>
+                        <xs:element name="errorMessage" type="xs:string"/>
+                        <xs:element name="errorDetail" minOccurs="0">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:any minOccurs="0" processContents="skip" namespace="##any"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns="http://www.mnet.de/esb/cdm/Resource/LocationService/v1"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   targetNamespace="http://www.mnet.de/esb/cdm/Resource/LocationService/v1"
+                   version="1.0"
+                   elementFormDefault="qualified"
+                   attributeFormDefault="unqualified">
+            <xs:import namespace="http://www.mnet.de/esb/cdm/Resource/Location/v1"/>
+            <xs:complexType name="BuildingQuery">
+                <xs:complexContent>
+                    <xs:extension base="tns:Query">
+                        <xs:sequence>
+                            <xs:element name="houseNumber" type="xs:string" minOccurs="0"/>
+                            <xs:element name="houseNumberExtension" type="xs:string" minOccurs="0"/>
+                            <xs:element name="TAL" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>TAL specific information for a building.</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="onkz" type="xs:string" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>"Ortznetzkennzahl" of the building</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="asb" type="xs:string" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Anschlussbereich of the building</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="kvz" type="xs:string" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Kabelverzweiger of the building</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="CityQuery">
+                <xs:complexContent>
+                    <xs:extension base="tns:Query">
+                        <xs:sequence>
+                            <xs:element name="name" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>city name</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="kgs8" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Unique Infas idientifier of the city. E.g.: 09162000</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="CountryQuery">
+                <xs:complexContent>
+                    <xs:extension base="tns:Query">
+                        <xs:sequence>
+                            <xs:element name="name" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>country name</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="countryCode" type="ns1:CountryCode" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>country code as defined by the ISO 3166-1 alpha-2 standard</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="DistrictQuery">
+                <xs:complexContent>
+                    <xs:extension base="tns:Query">
+                        <xs:sequence>
+                            <xs:element name="name" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>district name</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="kgs12" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>infas kgs12 key</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="Query">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>id of the location</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="technicalId" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Unique M-net OSS identifier of the location.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SearchRequest">
+                <xs:sequence>
+                    <xs:element name="limit" type="xs:unsignedInt" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Maximum amount of search results. This can be used to implement paging when the result set is large.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="offset" type="xs:unsignedInt" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Returns the search results from this position. In combination with limit used to implement incremental loading of search results (paging). Default = 0</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="serviceable" type="xs:boolean" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>return only location entities with M-net service available</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="strategy" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>The search strategy used for the search request. Currently implemented strategies are:
+                                - LIKE (default)
+                                - PHONETIC
+                                Please see the service repository for details and limitations.
+                            </xs:documentation>
+                        </xs:annotation>
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="LIKE"/>
+                                <xs:enumeration value="PHONETIC"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="SearchResponse">
+                <xs:sequence>
+                    <xs:element name="limit" type="xs:unsignedInt">
+                        <xs:annotation>
+                            <xs:documentation>Maximum amount of search results per request. If not specified in the request, the server default is returned.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="offset" type="xs:unsignedInt">
+                        <xs:annotation>
+                            <xs:documentation>currently used offset</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="StreetSectionQuery">
+                <xs:complexContent>
+                    <xs:extension base="tns:Query">
+                        <xs:sequence>
+                            <xs:element name="name" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>street name</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="ZipCodeQuery">
+                <xs:complexContent>
+                    <xs:extension base="tns:Query">
+                        <xs:sequence>
+                            <xs:element name="zipCode" type="xs:string" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:element name="createBuilding">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="countryCode" type="ns1:CountryCode">
+                            <xs:annotation>
+                                <xs:documentation>Country code as defined by the ISO 3166-1 alpha-2 standard</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="city" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>city name</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="district" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>district information</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="name" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>district name</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="locationRelevant" type="xs:boolean">
+                                        <xs:annotation>
+                                            <xs:documentation>indicates if the district is relevant to uniquely identify this address</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="zipCode" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>zip code</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="street" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>street name</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="houseNumber" type="xs:string" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>house number</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="houseNumberExtension" type="xs:string" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>house number addon</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createBuildingResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="building" type="ns1:Building">
+                            <xs:annotation>
+                                <xs:documentation>created building</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchBuildings">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="tns:SearchRequest">
+                            <xs:sequence>
+                                <xs:element name="country" type="tns:CountryQuery" minOccurs="0"/>
+                                <xs:element name="city" type="tns:CityQuery" minOccurs="0"/>
+                                <xs:element name="zipCode" type="tns:ZipCodeQuery" minOccurs="0"/>
+                                <xs:element name="district" type="tns:DistrictQuery" minOccurs="0"/>
+                                <xs:element name="streetSection" type="tns:StreetSectionQuery" minOccurs="0"/>
+                                <xs:element name="building" type="tns:BuildingQuery" minOccurs="0"/>
+                            </xs:sequence>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchBuildingsResponse">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="tns:SearchResponse">
+                            <xs:sequence>
+                                <xs:element name="building"
+                                            type="ns1:Building"
+                                            minOccurs="0"
+                                            maxOccurs="unbounded"/>
+                            </xs:sequence>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchCities">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="tns:SearchRequest">
+                            <xs:sequence>
+                                <xs:element name="country" type="tns:CountryQuery" minOccurs="0"/>
+                                <xs:element name="city" type="tns:CityQuery" minOccurs="0"/>
+                            </xs:sequence>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchCitiesResponse">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="tns:SearchResponse">
+                            <xs:sequence>
+                                <xs:element name="city" type="ns1:City" minOccurs="0" maxOccurs="unbounded"/>
+                            </xs:sequence>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchCountries">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="tns:SearchRequest">
+                            <xs:sequence>
+                                <xs:element name="country" type="tns:CountryQuery" minOccurs="0"/>
+                            </xs:sequence>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchCountriesResponse">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="tns:SearchResponse">
+                            <xs:sequence>
+                                <xs:element name="country"
+                                            type="ns1:Country"
+                                            minOccurs="0"
+                                            maxOccurs="unbounded"/>
+                            </xs:sequence>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchStreetSections">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="tns:SearchRequest">
+                            <xs:sequence>
+                                <xs:element name="country" type="tns:CountryQuery" minOccurs="0"/>
+                                <xs:element name="city" type="tns:CityQuery" minOccurs="0"/>
+                                <xs:element name="zipCode" type="tns:ZipCodeQuery" minOccurs="0"/>
+                                <xs:element name="district" type="tns:DistrictQuery" minOccurs="0"/>
+                                <xs:element name="streetSection" type="tns:StreetSectionQuery" minOccurs="0"/>
+                            </xs:sequence>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchStreetSectionsResponse">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="tns:SearchResponse">
+                            <xs:sequence>
+                                <xs:element name="streetSection"
+                                            type="ns1:StreetSection"
+                                            minOccurs="0"
+                                            maxOccurs="unbounded"/>
+                            </xs:sequence>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchZipCodes">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="tns:SearchRequest">
+                            <xs:sequence>
+                                <xs:element name="country" type="tns:CountryQuery" minOccurs="0"/>
+                                <xs:element name="city" type="tns:CityQuery" minOccurs="0"/>
+                                <xs:element name="zipCode" type="tns:ZipCodeQuery" minOccurs="0"/>
+                            </xs:sequence>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchZipCodesResponse">
+                <xs:complexType>
+                    <xs:complexContent>
+                        <xs:extension base="tns:SearchResponse">
+                            <xs:sequence>
+                                <xs:element name="zipCode"
+                                            type="ns1:ZipCode"
+                                            minOccurs="0"
+                                            maxOccurs="unbounded"/>
+                            </xs:sequence>
+                        </xs:extension>
+                    </xs:complexContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateBuilding">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:long"/>
+                        <xs:element name="numberOfApartments" type="xs:unsignedInt"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateBuildingResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="building" type="ns1:Building">
+                            <xs:annotation>
+                                <xs:documentation>updated building</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="LocationService">
+        <wsdl:port name="LocationServiceJMS" binding="tns:LocationServiceJMSBinding">
+            <soap:address location="mnet.Resource.op.cdm.src.v1.LocationService"/>
+            <jms:connectionFactory>QueueConnectionFactory</jms:connectionFactory>
+            <jms:targetAddress destination="queue">mnet.Resource.op.cdm.src.v1.LocationService</jms:targetAddress>
+        </wsdl:port>
+        <wsdl:port name="LocationServiceHTTP" binding="tns:LocationServiceHTTPBinding">
+            <soap:address location="http://@domain.loadbalancer.url@/esb/Resource/LocationService/v1"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="LocationService">
+        <wsdl:operation name="searchBuildings">
+            <wsdl:input message="tns:searchBuildings"/>
+            <wsdl:output message="tns:searchBuildingsResponse"/>
+            <wsdl:fault name="fault1" message="tns:ESBFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchCities">
+            <wsdl:input message="tns:searchCities"/>
+            <wsdl:output message="tns:searchCitiesResponse"/>
+            <wsdl:fault name="fault1" message="tns:ESBFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchCountries">
+            <wsdl:input message="tns:searchCountries"/>
+            <wsdl:output message="tns:searchCountriesResponse"/>
+            <wsdl:fault name="fault1" message="tns:ESBFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchStreetSections">
+            <wsdl:input message="tns:searchStreetSections"/>
+            <wsdl:output message="tns:searchStreetSectionsResponse"/>
+            <wsdl:fault name="fault1" message="tns:ESBFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="createBuilding">
+            <wsdl:input message="tns:createBuilding"/>
+            <wsdl:output message="tns:createBuildingResponse"/>
+            <wsdl:fault name="fault1" message="tns:ESBFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchZipCodes">
+            <wsdl:input message="tns:searchZipCodes"/>
+            <wsdl:output message="tns:searchZipCodesResponse"/>
+            <wsdl:fault name="fault1" message="tns:ESBFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateBuilding">
+            <wsdl:input message="tns:updateBuilding"/>
+            <wsdl:output message="tns:updateBuildingResponse"/>
+            <wsdl:fault name="fault1" message="tns:ESBFault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="LocationServiceJMSBinding" type="tns:LocationService">
+        <soap:binding style="document"
+                      transport="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"/>
+        <jms:binding messageFormat="Text"/>
+        <wsdl:operation name="searchBuildings">
+            <soap:operation style="document" soapAction="/LocationService/searchBuildings"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchCities">
+            <soap:operation style="document" soapAction="/LocationService/searchCities"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchCountries">
+            <soap:operation style="document" soapAction="/LocationService/searchCountries"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchStreetSections">
+            <soap:operation style="document" soapAction="/LocationService/searchStreetSections"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createBuilding">
+            <soap:operation style="document" soapAction="/LocationService/createBuilding"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchZipCodes">
+            <soap:operation style="document" soapAction="/LocationService/searchZipCodes"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateBuilding">
+            <soap:operation style="document" soapAction="/LocationService/updateBuilding"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="LocationServiceHTTPBinding" type="tns:LocationService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="searchBuildings">
+            <soap:operation style="document" soapAction="/LocationService/searchBuildings"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchCities">
+            <soap:operation style="document" soapAction="/LocationService/searchCities"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchCountries">
+            <soap:operation style="document" soapAction="/LocationService/searchCountries"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchStreetSections">
+            <soap:operation style="document" soapAction="/LocationService/searchStreetSections"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="createBuilding">
+            <soap:operation style="document" soapAction="/LocationService/createBuilding"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchZipCodes">
+            <soap:operation style="document" soapAction="/LocationService/searchZipCodes"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateBuilding">
+            <soap:operation style="document" soapAction="/LocationService/updateBuilding"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="searchBuildings">
+        <wsdl:part name="in" element="tns:searchBuildings"/>
+    </wsdl:message>
+    <wsdl:message name="searchBuildingsResponse">
+        <wsdl:part name="out" element="tns:searchBuildingsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ESBFault">
+        <wsdl:part name="fault" element="ns0:ESBFault"/>
+    </wsdl:message>
+    <wsdl:message name="searchCities">
+        <wsdl:part name="in" element="tns:searchCities"/>
+    </wsdl:message>
+    <wsdl:message name="searchCitiesResponse">
+        <wsdl:part name="out" element="tns:searchCitiesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="searchCountries">
+        <wsdl:part name="in" element="tns:searchCountries"/>
+    </wsdl:message>
+    <wsdl:message name="searchCountriesResponse">
+        <wsdl:part name="out" element="tns:searchCountriesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="searchStreetSections">
+        <wsdl:part name="in" element="tns:searchStreetSections"/>
+    </wsdl:message>
+    <wsdl:message name="searchStreetSectionsResponse">
+        <wsdl:part name="out" element="tns:searchStreetSectionsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="createBuilding">
+        <wsdl:part name="in" element="tns:createBuilding"/>
+    </wsdl:message>
+    <wsdl:message name="createBuildingResponse">
+        <wsdl:part name="out" element="tns:createBuildingResponse"/>
+    </wsdl:message>
+    <wsdl:message name="searchZipCodes">
+        <wsdl:part name="in" element="tns:searchZipCodes"/>
+    </wsdl:message>
+    <wsdl:message name="searchZipCodesResponse">
+        <wsdl:part name="out" element="tns:searchZipCodesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="updateBuilding">
+        <wsdl:part name="in" element="tns:updateBuilding"/>
+    </wsdl:message>
+    <wsdl:message name="updateBuildingResponse">
+        <wsdl:part name="out" element="tns:updateBuildingResponse"/>
+    </wsdl:message>
+</wsdl:definitions>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <notifyPortOrderUpdate
+                xmlns="http://www.mnet.de/esb/cdm/Resource/ResourceOrderManagementNotificationService/v1">
+            <orderId>${orderId}</orderId>
+            <notificationType>${notificationType}</notificationType>
+            <error>
+                <errorCode>${errorCode}</errorCode>
+                <errorDescription>${errorDescription}</errorDescription>
+            </error>
+        </notifyPortOrderUpdate>
+    </soap:Body>
+</soap:Envelope>

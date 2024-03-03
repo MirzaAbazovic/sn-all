@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse 
+de.augustakom.hurrican.model.billing.change.ChangeBillSpec
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing.history">
+	<class name="ChangeBillSpec" table="CHANGE_BILL_SPEC">
+	    
+	    <!-- PrimaryKey -->
+		<id name="changeNo" column="CHANGE_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+	    <property name="billSpecNo" column="BILL_SPEC_NO" type="long"/>
+     	<property name="adresseNo" column="INV_ADDR_NO" type="long"/>
+		<property name="gueltigVon" column="VALID_FROM" type="date"/>
+        <property name="ungueltigVon" column="INVALID_FROM" type="date"/>
+		<property name="userw" column="USERW" type="string"/>
+		<property name="datew" column="DATEW" type="date"/>
+
+	</class>
+	
+</hibernate-mapping>

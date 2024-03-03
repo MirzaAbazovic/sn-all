@@ -1,0 +1,5 @@
+<por:migratePortierungskennung xmlns:por="http://mnet.de/hurrican/ngn/portierungService">
+<billingOrderNumbers>
+    <billingOrderNumber>${billingOrderNumber}</billingOrderNumber>
+</billingOrderNumbers>
+</por:migratePortierungskennung>

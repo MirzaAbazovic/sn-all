@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+
+    <alias name="hurricanDataSource" alias="logDataSource"/>
+    <alias name="hurricanDataSource" alias="targetDataSource"/>
+
+    <bean id="migrationTransformator" class="de.mnet.migration.hurrican.dummy.DummyTransformator" scope="prototype"/>
+
+    <bean id="migrationController" parent="migrationControllerParent">
+        <property name="migrationName" value="DummyMigration"/>
+        <property name="numberOfThreadsInThreadPool" value="4" />
+    </bean>
+
+    <bean id="migrationDao" class="de.mnet.migration.common.dao.ResultSetMigrationDao">
+        <property name="blockSize" value="2000" />
+        <property name="rowMapper">
+            <bean class="de.mnet.migration.common.util.ReflectionMapper">
+                <property name="entityClass"
+                    value="de.mnet.migration.hurrican.dummy.Dummy" />
+            </bean>
+        </property>
+        <property name="dataSource" ref="hurricanDataSource" />
+        <property name="tableName" value="MIGRATION_DUMMY" />
+    </bean>
+
+</beans>

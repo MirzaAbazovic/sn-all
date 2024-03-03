@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Text name="functions">Funktionen</Text>
+
+    <ToggleButton name="eigene.tasks">
+        <icon>de/augustakom/hurrican/gui/images/user_icon.png</icon>
+        <tooltip>Zeigt nur die eigenen Tasks an</tooltip>
+    </ToggleButton>
+
+    <ToggleButton name="alle.tasks">
+        <icon>de/augustakom/hurrican/gui/images/user_all_icon.png</icon>
+        <tooltip>Zeigt die Tasks aller User/Teams an (auch nicht zugeordnete Tasks)</tooltip>
+    </ToggleButton>
+
+    <Button name="task.bearbeiten">
+        <text>Task(s) bearbeiten</text>
+        <tooltip>Beginne die Bearbeitung eines Tasks.</tooltip>
+    </Button>
+
+    <Button name="task.freigeben">
+        <text>Task(s) freigeben</text>
+        <tooltip>Gibt einen Taks wieder frei.</tooltip>
+    </Button>
+
+    <Button name="tam.ta.task.schliessen">
+        <text>Abschliessen</text>
+        <tooltip>Schliessen der TA TAM</tooltip>
+    </Button>
+
+    <Button name="wiedervorlage">
+        <text>Wiedervorlage</text>
+        <tooltip>Selektierten Task auf Wiedervorlage setzen.</tooltip>
+    </Button>
+
+    <Button name="history">
+        <text>History ...</text>
+        <tooltip>Zeigt die History zur ausgewähtlen TAL-Bestellung an</tooltip>
+    </Button>
+
+    <Button name="erlmk">
+        <text>ERLM-K</text>
+        <tooltip>Sckickt eine Erledigmeldung-Kunde für die Carrierbestellung.</tooltip>
+    </Button>
+
+    <Button name="tv">
+        <text>TV</text>
+        <tooltip>Verschickt eine Terminverschiebung für die Carrierbestellung.</tooltip>
+    </Button>
+
+    <Button name="storno">
+        <text>Storno</text>
+        <tooltip>Schickt ein Storno für die Carrierbestellung.</tooltip>
+    </Button>
+
+    <Button name="30tage">
+        <text>30 Tage</text>
+        <tooltip>Schickt eine Terminverschiebung mit KWT + 30 Tage.</tooltip>
+    </Button>
+
+
+    <Label name="kunde">
+        <text>Kunde</text>
+    </Label>
+
+    <Label name="kunde.name">
+        <text>Name:</text>
+    </Label>
+    <TextField name="kunde.name">
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="kunde.vorname">
+        <text>Vorname:</text>
+    </Label>
+    <TextField name="kunde.vorname">
+    </TextField>
+
+
+    <Text name="kontaktdaten">Kontaktdaten</Text>
+
+    <Label name="kunde.hauptrufnummer">
+        <text>Hauptrufnummer:</text>
+    </Label>
+    <TextField name="kunde.hauptrufnummer">
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="kunde.geschaeftsnummer">
+        <text>Geschäftsnummer:</text>
+    </Label>
+    <TextField name="kunde.geschaeftsnummer">
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="kunde.privatnummer">
+        <text>Privatnummer:</text>
+    </Label>
+    <TextField name="kunde.privatnummer">
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="kunde.mobilnummer">
+        <text>Mobilnummer:</text>
+    </Label>
+    <TextField name="kunde.mobilnummer">
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="kunde.voipnummer">
+        <text>Voip Nummer:</text>
+    </Label>
+    <TextField name="kunde.voipnummer">
+        <columns>20</columns>
+    </TextField>
+
+
+    <Label name="kunde.email">
+        <text>Email:</text>
+    </Label>
+    <TextField name="kunde.email">
+        <columns>20</columns>
+    </TextField>
+
+
+    <Label name="endstelle">
+        <text>Endstelle</text>
+    </Label>
+
+    <Label name="es.name">
+        <text>Endstelle:</text>
+    </Label>
+    <TextField name="es.name">
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="es.strasse">
+        <text>Strasse:</text>
+    </Label>
+    <TextField name="es.strasse">
+    </TextField>
+
+    <Label name="es.plz.ort">
+        <text>PLZ/Ort:</text>
+    </Label>
+    <TextField name="es.plz">
+        <columns>5</columns>
+    </TextField>
+    <TextField name="es.ort">
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="es.hvt">
+        <text>HVT:</text>
+    </Label>
+    <TextField name="es.hvt">
+    </TextField>
+
+    <Label name="bemerkungen">
+        <text>TAM-Task-Bemerkungen</text>
+    </Label>
+
+    <TextArea name="bemerkungen">
+        <tooltip>Bemerkungen zur TAM-Bearbeitung</tooltip>
+        <columns>40</columns>
+        <rows>10</rows>
+    </TextArea>
+
+    <Label name="status">
+        <text>TAM-Task-Status</text>
+    </Label>
+
+    <ComboBox name="tam.status">
+        <tooltip>Status des TAM-Usertasks</tooltip>
+    </ComboBox>
+
+    <ComboBox name="tam.status.filter">
+        <tooltip>Filtert mit dem Status des TAM-Usertasks</tooltip>
+    </ComboBox>
+
+
+
+    <Button name="save.tam.user.task">
+        <text>Speichern</text>
+        <tooltip>Speichert den User Task.</tooltip>
+    </Button>
+
+    <Action name="erlmk">
+        <class>de.augustakom.hurrican.gui.tools.tal.actions.SendErledigtMeldungAction</class>
+        <text>ERLM-K</text>
+        <tooltip>Sckickt eine Erledigmeldung-Kunde für die Carrierbestellung.</tooltip>
+    </Action>
+
+
+</sf>

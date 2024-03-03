@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.dn.Leistung4Dn
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.dn">
+    <class name="Leistung4Dn" table="T_LEISTUNG_4_DN">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_LEISTUNG_4_DN_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="leistung" column="LEISTUNG" type="string"/>
+        <property name="beschreibung" column="BESCHREIBUNG" type="string"/>
+        <property name="externLeistungNo" column="EXTERN_LEISTUNG__NO" type="long"/>
+        <property name="externSonstigesNo" column="EXTERN_SONSTIGES__NO" type="long"/>
+        <property name="provisioningName" column="PROVISIONING_NAME" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

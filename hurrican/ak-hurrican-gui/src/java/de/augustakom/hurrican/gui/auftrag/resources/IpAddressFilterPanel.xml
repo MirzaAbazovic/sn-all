@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das IP-Address-Filterpanel.
+-->
+<sf>
+    <Label name="ip.address"><text>IP-Adresse:</text></Label>
+    <TextField name="ip.address">
+        <tooltip>IP-Adresse: v4 oder v6</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="ip.onlyactive"><text>inklusive historisierte IPs:</text></Label>
+    <CheckBox name="ip.onlyactive">
+        <tooltip>Angabe, ob auch nach historisierten IP Adressen gesucht werden soll</tooltip>
+    </CheckBox>
+</sf>

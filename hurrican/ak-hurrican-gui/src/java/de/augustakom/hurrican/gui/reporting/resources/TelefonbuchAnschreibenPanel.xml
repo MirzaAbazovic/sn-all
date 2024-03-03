@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den TelefonbuchAnschreiben-Dialog.
+-->
+<sf>
+ 
+    <Label name="anschreiben.id"><text>ID:</text></Label>
+    <FormattedTextField name="anschreiben.id">
+        <tooltip>ID des Telefonbuch-Anschreibens</tooltip>
+        <columns>20</columns>
+    </FormattedTextField>
+    
+    <Label name="anschreiben.buendel.no"><text>Bündelnr.:</text></Label>
+    <FormattedTextField name="anschreiben.buendel.no">
+        <tooltip>Bündelnummer des Serienbriefs</tooltip>
+        <columns>20</columns>
+    </FormattedTextField>
+    
+    <Label name="anschreiben.name"><text>Dateiname:</text></Label>
+    <TextField name="anschreiben.name">
+        <tooltip>Dateiname der CSV-Datei</tooltip>
+        <columns>100</columns>
+    </TextField>
+
+    <Label name="anschreiben.error"><text>Fehler:</text></Label>
+    <TextArea name="anschreiben.error">
+        <tooltip>Fehler bei der Sereinbrief-Erstellung</tooltip>
+    </TextArea>
+    
+    <Label name="anschreiben.at"><text>Erstellt am:</text></Label>
+    <DateComponent name="anschreiben.at">
+        <tooltip>Erstellt am:</tooltip>
+        <format type="date">dd.MM.yyyy HH:mm</format>
+    </DateComponent>
+    
+    <Button name="download.serienbrief">
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <text>Download Serienbrief</text>
+        <tooltip>Zeigt den Serienbrief an</tooltip>
+    </Button>
+    
+    <Button name="generate.serienbrief">
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <text>Erzeuge Serienbrief</text>
+        <tooltip>Erzeuge die Telefonbuch-Anschreiben</tooltip>
+    </Button>
+    
+   
+</sf>

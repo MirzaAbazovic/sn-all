@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Spring Konfigurationsfile - definiert eine ConnectionFactory auf den ATLAS ESB ueber JNDI. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+        EMS Connection factory used by camel.
+        Be careful *NOT* to use spring's CachingConnectionFactory here as this can lead to messages becoming stuck. For more
+        details refer to https://jira.m-net.de/browse/HUR-20115.
+    -->
+    <bean id="atlasConnectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+        <property name="targetConnectionFactory" ref="atlasUserCredentialConnectionFactory"/>
+        <property name="reconnectOnException" value="true"/>
+    </bean>
+
+    <!--
+    EMS connection factory which is "transaction aware".
+    Can be used if a service has to create a JMS message but should be rolled back if for example a following
+    DB transaction fails.
+    (see http://www.javaworld.com/article/2077963/open-source-tools/distributed-transactions-in-spring- -with-and-without-xa.html?page=2)
+    -->
+    <bean id="atlasTransactionAwareConnectionFactory"
+          class="org.springframework.jms.connection.TransactionAwareConnectionFactoryProxy">
+        <property name="targetConnectionFactory" ref="atlasConsumerCachingConnectionFactory"/>
+        <property name="synchedLocalTransactionAllowed" value="true" />
+    </bean>
+
+
+    <bean id="atlasConsumerCachingConnectionFactory"
+          class="org.springframework.jms.connection.CachingConnectionFactory">
+        <property name="targetConnectionFactory" ref="atlasUserCredentialConnectionFactory"/>
+        <property name="sessionCacheSize" value="${atlas.session.cache.size}"/>
+        <property name="cacheConsumers" value="false"/>
+    </bean>
+
+    <bean id="atlasUserCredentialConnectionFactory"
+          class="org.springframework.jms.connection.UserCredentialsConnectionFactoryAdapter">
+        <property name="targetConnectionFactory" ref="atlasJndiConnectionFactory"/>
+        <!-- authenticate against jms provider -->
+        <property name="username" value="${atlas.username}"/>
+        <property name="password" value="${atlas.password}"/>
+    </bean>
+
+    <bean id="atlasJndiConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiTemplate" ref="atlasEmsJndiTemplate"/>
+        <property name="jndiName" value="QueueConnectionFactory"/>
+    </bean>
+
+    <bean id="atlasEmsJndiTemplate" class="org.springframework.jndi.JndiTemplate" lazy-init="true">
+        <property name="environment">
+            <props>
+                <prop key="java.naming.provider.url">${atlas.url}</prop>
+                <prop key="java.naming.factory.initial">${atlas.initial.context.factory}</prop>
+                <!-- authenticate against jndi service -->
+                <prop key="java.naming.security.principal">${atlas.username}</prop>
+                <prop key="java.naming.security.credentials">${atlas.password}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="atlasTransactionManager" class="org.springframework.jms.connection.JmsTransactionManager">
+        <property name="connectionFactory" ref="atlasConnectionFactory" />
+    </bean>
+
+    <bean id="esbTrackingOutInterceptor" class="de.mnet.hurrican.location.EsbTrackingOutInterceptor">
+        <property name="component" value="Hurrican"/>
+    </bean>
+
+</beans>

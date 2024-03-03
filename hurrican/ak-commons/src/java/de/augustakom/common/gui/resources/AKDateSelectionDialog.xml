@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+GUI-Definitionen fuer AKDateSelectionDialog.
+-->
+
+<sf>
+    
+    <Label name="sub.title"><text></text></Label>
+    
+    <Label name="date"><text>Datum:</text></Label>
+    <DateComponent name="date">
+        <tooltip>Eingabe bzw. Auswahl des Datums</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>15</columns>
+    </DateComponent>
+    
+    <Button name="ok">
+        <text>Ok</text>
+        <tooltip>Übernimmt das eingegebene/ausgewählte Datum</tooltip>
+    </Button>
+    
+    <Button name="cancel">
+        <text>Abbrechen</text>
+        <tooltip>Schliesst den Dialog, ohne das Datum zu übernehmen</tooltip>
+    </Button>
+    
+</sf>

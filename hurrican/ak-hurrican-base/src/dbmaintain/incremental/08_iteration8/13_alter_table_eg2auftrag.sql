@@ -1,0 +1,1 @@
+alter table T_EG_2_AUFTRAG add GEBAEUDE VARCHAR2(100);

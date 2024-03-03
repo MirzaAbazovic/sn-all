@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Spring Konfigurationsfile - definiert eine ConnectionFactory auf den ATLAS ESB ueber JNDI. -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="atlasConnectionFactory" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="org.springframework.jms.connection.UserCredentialsConnectionFactoryAdapter" />
+    </bean>
+
+    <bean id="atlasConsumerCachingConnectionFactory" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="org.springframework.jms.connection.UserCredentialsConnectionFactoryAdapter" />
+    </bean>
+
+    <bean id="atlasJndiConnectionFactory" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="org.springframework.jndi.JndiObjectFactoryBean" />
+    </bean>
+
+    <bean id="atlasEmsJndiTemplate" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="org.springframework.jndi.JndiTemplate" />
+    </bean>
+
+    <bean id="atlasTransactionManager" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="org.springframework.jms.connection.JmsTransactionManager" />
+    </bean>
+
+    <bean id="esbTrackingOutInterceptor" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="org.apache.cxf.phase.PhaseInterceptor" />
+    </bean>
+
+</beans>

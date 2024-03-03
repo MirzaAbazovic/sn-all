@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.AK0800
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="AK0800" table="T_AK0800">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_AK0800_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="auftragId" column="AUFTRAG_ID" type="long" not-null="true"/>
+        <property name="auftragsEingang" column="AUFTRAGSEINGANG" type="date"/>
+        <property name="uebernahme" column="UEBERNAHME" type="boolean"/>
+        <property name="neuschaltung" column="NEUSCHALTUNG" type="boolean"/>
+        <property name="wunschtermin" column="WUNSCHTERMIN" type="date"/>
+        <property name="codeNummer" column="CODENUMMER" type="string"/>
+        <property name="kuendigung" column="KUENDIGUNG" type="date"/>
+        <property name="inbetriebnahme" column="INBETRIEBNAHME" type="date"/>
+        <property name="wirksamAb" column="WIRKSAM_AB" type="date"/>
+        <property name="regAn" column="REG_AN" type="date"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date" not-null="true"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date" not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

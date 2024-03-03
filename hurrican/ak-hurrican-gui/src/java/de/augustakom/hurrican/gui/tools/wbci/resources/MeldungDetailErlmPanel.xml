@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Text name="title">ERLM Details</Text>
+
+    <Label name="wechseltermin"><text>Wechseltermin:</text></Label>
+    <DateComponent name="wechseltermin">
+        <tooltip>bestätigter Wechseltermin</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+</sf>

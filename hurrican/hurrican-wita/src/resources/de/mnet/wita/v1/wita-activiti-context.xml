@@ -1,0 +1,117 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+        <property name="dataSource" ref="cc.dataSource" />
+        <property name="transactionManager" ref="cc.hibernateTxManager" />
+        <property name="mailServerHost" value="smtp.intern.m-net.de" />
+        <property name="mailServerDefaultFrom" value="hurrican_developer@m-net.de" />
+        <property name="deploymentResources" value="classpath*:/de/mnet/wita/v1/bpm/*.bpmn20.xml"/>
+
+        <!-- Database managed by dbMaintain -->
+        <property name="databaseSchemaUpdate" value="false" />
+        <!-- timers are only fired when the job executor is enabled (i.e. jobExecutorActivate needs to be set to true) -->
+        <property name="jobExecutorActivate" value="false" />
+
+        <property name="customPreVariableTypes">
+            <list>
+                <ref bean="ruemPvAntwortCodeVariableType" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+        <property name="processEngineConfiguration" ref="processEngineConfiguration" />
+    </bean>
+
+    <bean id="ruemPvAntwortCodeVariableType" class="de.mnet.wita.bpm.variables.RuemPvAntwortCodeVariableType" />
+
+    <bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService" />
+    <bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService" />
+    <bean id="taskService" factory-bean="processEngine" factory-method="getTaskService" />
+    <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
+    <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
+    <bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService" />
+
+    <!-- Fully qualified names for tasks do not work with Activiti -->
+    <!-- Nach Produktionsgang diese Beans nicht mehr umbenennen, da bestehende Prozesse nach der alten Workflow-Definition
+        ablaufen. -->
+    <bean id="processAkmPvTask" class="de.mnet.wita.bpm.tasks.ProcessAkmPvTask" />
+    <bean id="processMessageTask" class="de.mnet.wita.bpm.tasks.ProcessMessageTask" />
+    <bean id="processENTMMessageTask" class="de.mnet.wita.bpm.tasks.ProcessENTMMessageTask" />
+    <bean id="processPvMessageTask" class="de.mnet.wita.bpm.tasks.ProcessPvMessageTask" />
+    <bean id="processSecondAkmPvMessageTask" class="de.mnet.wita.bpm.tasks.ProcessSecondAkmPvMessageTask" />
+    <bean id="processKueDtTask" class="de.mnet.wita.bpm.tasks.ProcessKueDtTask" />
+    <bean id="processTeqTask" class="de.mnet.wita.bpm.tasks.ProcessTeqTask" />
+    <bean id="sendMessageTask" class="de.mnet.wita.bpm.tasks.SendMessageTask" />
+    <bean id="sendErlmkTask" class="de.mnet.wita.bpm.tasks.SendErlmkTask" />
+    <bean id="sendRuemPvTask" class="de.mnet.wita.bpm.tasks.SendRuemPvTask" />
+    <bean id="witaDataAggregationTask" class="de.mnet.wita.bpm.tasks.WitaDataAggregationTask" depends-on="lineOrderOutRoute" />
+
+    <bean id="processMessageGateway" class="de.mnet.wita.bpm.gateways.ProcessMessageGateway" />
+    <bean id="processTamGateway" class="de.mnet.wita.bpm.gateways.ProcessTamGateway" />
+    <bean id="processTeqGateway" class="de.mnet.wita.bpm.gateways.ProcessTeqGateway" />
+
+    <bean id="de.mnet.wita.bpm.WorkflowTaskService" class="de.mnet.wita.bpm.impl.WorkflowTaskServiceImpl" />
+    <bean id="de.mnet.wita.service.WitaUsertaskService" class="de.mnet.wita.service.impl.WitaUsertaskServiceImpl" />
+    <bean id="de.mnet.wita.bpm.CommonWorkflowService" class="de.mnet.wita.bpm.impl.CommonWorkflowServiceImpl" />
+    <bean id="de.mnet.wita.bpm.TalOrderWorkflowService" class="de.mnet.wita.bpm.impl.TalOrderWorkflowServiceImpl" />
+    <bean id="de.mnet.wita.bpm.AbgebendPvWorkflowService" class="de.mnet.wita.bpm.impl.AbgebendPvWorkflowServiceImpl" />
+    <bean id="de.mnet.wita.bpm.KueDtWorkflowService" class="de.mnet.wita.bpm.impl.KueDtWorkflowServiceImpl" />
+
+    <bean id="de.mnet.wita.service.WitaVorabstimmungService" class="de.mnet.wita.service.impl.WitaVorabstimmungServiceImpl" />
+    <bean id="de.mnet.wita.service.impl.RufnummerPortierungService" class="de.mnet.wita.service.impl.RufnummerPortierungService"/>
+
+    <bean id="de.mnet.wita.service.DateTimeCalculationService" class="de.mnet.wita.service.impl.DateTimeCalculationService" />
+
+    <bean id="de.mnet.wita.service.WitaSendMessageService" class="de.mnet.wita.service.impl.WitaSendMessageServiceImpl" />
+
+    <bean id="de.mnet.wita.service.WitaReceiveMessageService" class="de.mnet.wita.service.impl.WitaReceiveMessageServiceImpl" />
+
+    <bean id="de.mnet.wita.service.impl.WitaDataService" class="de.mnet.wita.service.impl.WitaDataService" />
+
+    <bean id="de.mnet.wita.aggregator.AbgebenderProviderAggregator" class="de.mnet.wita.aggregator.AbgebenderProviderAggregator" />
+    <bean id="de.mnet.wita.aggregator.AktionsCodeAenderungAggregator" class="de.mnet.wita.aggregator.AktionsCodeAenderungAggregator" />
+    <bean id="de.mnet.wita.aggregator.AnlagenAggregator" class="de.mnet.wita.aggregator.AnlagenAggregator" />
+    <bean id="de.mnet.wita.aggregator.AnsprechpartnerAmAggregator" class="de.mnet.wita.aggregator.AnsprechpartnerAmAggregator" />
+    <bean id="de.mnet.wita.aggregator.AnsprechpartnerTechnikAggregator" class="de.mnet.wita.aggregator.AnsprechpartnerTechnikAggregator" />
+    <bean id="de.mnet.wita.aggregator.AuftragsKennerAggregator" class="de.mnet.wita.aggregator.AuftragsKennerAggregator" />
+    <bean id="de.mnet.wita.aggregator.AuftragspositionAggregator" class="de.mnet.wita.aggregator.AuftragspositionAggregator" />
+    <bean id="de.mnet.wita.aggregator.AuftragspositionLmaeAggregator" class="de.mnet.wita.aggregator.AuftragspositionLmaeAggregator" />
+    <bean id="de.mnet.wita.aggregator.BestandsSucheRexMkAggregator" class="de.mnet.wita.aggregator.BestandsSucheRexMkAggregator" />
+    <bean id="de.mnet.wita.aggregator.BestandsSucheVblAggregator" class="de.mnet.wita.aggregator.BestandsSucheVblAggregator" />
+    <bean id="de.mnet.wita.aggregator.GeschaeftsfallAggregator" class="de.mnet.wita.aggregator.GeschaeftsfallAggregator" />
+    <bean id="de.mnet.wita.aggregator.GeschaeftsfallProduktAggregator" class="de.mnet.wita.aggregator.GeschaeftsfallProduktAggregator" />
+    <bean id="de.mnet.wita.aggregator.KundeAggregator" class="de.mnet.wita.aggregator.KundeAggregator" />
+    <bean id="de.mnet.wita.aggregator.KundenwunschterminAggregator" class="de.mnet.wita.aggregator.KundenwunschterminAggregator" />
+    <bean id="de.mnet.wita.aggregator.LeitungsbezeichnungAggregator" class="de.mnet.wita.aggregator.LeitungsbezeichnungAggregator" />
+    <bean id="de.mnet.wita.aggregator.ReferencingLeitungsbezeichnungAggregator" class="de.mnet.wita.aggregator.ReferencingLeitungsbezeichnungAggregator" />
+    <bean id="de.mnet.wita.aggregator.LeitungsbezeichnungPvAggregator" class="de.mnet.wita.aggregator.LeitungsbezeichnungPvAggregator" />
+    <bean id="de.mnet.wita.aggregator.MontageleistungAggregator" class="de.mnet.wita.aggregator.MontageleistungAggregator" />
+    <bean id="de.mnet.wita.aggregator.ProduktBezeichnerAggregator" class="de.mnet.wita.aggregator.ProduktBezeichnerAggregator" />
+    <bean id="de.mnet.wita.aggregator.ProduktBezeichnerKueKdAggregator" class="de.mnet.wita.aggregator.ProduktBezeichnerKueKdAggregator" />
+    <bean id="de.mnet.wita.aggregator.ProjektAggregator" class="de.mnet.wita.aggregator.ProjektAggregator" />
+    <bean id="de.mnet.wita.aggregator.RufnummernPortierungAggregator" class="de.mnet.wita.aggregator.RufnummernPortierungAggregator" />
+    <bean id="de.mnet.wita.aggregator.SchaltangabenAggregator" class="de.mnet.wita.aggregator.SchaltangabenAggregator" />
+    <bean id="de.mnet.wita.aggregator.ReferencingSchaltangabenAggregator" class="de.mnet.wita.aggregator.ReferencingSchaltangabenAggregator" />
+    <bean id="de.mnet.wita.aggregator.StandortKollokationAggregator" class="de.mnet.wita.aggregator.StandortKollokationAggregator" />
+    <bean id="de.mnet.wita.aggregator.StandortKundeAggregator" class="de.mnet.wita.aggregator.StandortKundeAggregator" />
+    <bean id="de.mnet.wita.aggregator.StandortKundeRexMkAggregator" class="de.mnet.wita.aggregator.StandortKundeRexMkAggregator" />
+    <bean id="de.mnet.wita.aggregator.StandortKundeVblAggregator" class="de.mnet.wita.aggregator.StandortKundeVblAggregator" />
+    <bean id="de.mnet.wita.aggregator.VertragsNummerAggregator" class="de.mnet.wita.aggregator.VertragsNummerAggregator" />
+    <bean id="de.mnet.wita.aggregator.VertragsNummerPvAggregator" class="de.mnet.wita.aggregator.VertragsNummerPvAggregator" />
+    <bean id="de.mnet.wita.aggregator.VormieterAggregator" class="de.mnet.wita.aggregator.VormieterAggregator" />
+    <bean id="de.mnet.wita.aggregator.ZeitfensterAggregator" class="de.mnet.wita.aggregator.ZeitfensterAggregator" />
+
+    <bean id="de.mnet.wita.bpm.converter.MwfCbVorgangConverterService" class="de.mnet.wita.bpm.converter.MwfCbVorgangConverterService" />
+    <bean id="de.mnet.wita.bpm.converter.cbvorgang.AbmCbVorgangConverter" class="de.mnet.wita.bpm.converter.cbvorgang.AbmCbVorgangConverter" />
+    <bean id="de.mnet.wita.bpm.converter.cbvorgang.AbbmCbVorgangConverter" class="de.mnet.wita.bpm.converter.cbvorgang.AbbmCbVorgangConverter" />
+    <bean id="de.mnet.wita.bpm.converter.cbvorgang.ErlmCbVorgangConverter" class="de.mnet.wita.bpm.converter.cbvorgang.ErlmCbVorgangConverter" />
+    <bean id="de.mnet.wita.bpm.converter.cbvorgang.TamCbVorgangConverter" class="de.mnet.wita.bpm.converter.cbvorgang.TamCbVorgangConverter" />
+
+    <bean id="de.mnet.wita.bpm.converter.usertask.RuemPvUserTaskConverter" class="de.mnet.wita.bpm.converter.usertask.RuemPvUserTaskConverter" />
+    <bean id="de.mnet.wita.bpm.converter.usertask.AbbmPvUserTaskConverter" class="de.mnet.wita.bpm.converter.usertask.AbbmPvUserTaskConverter" />
+    <bean id="de.mnet.wita.bpm.converter.usertask.AbmPvUserTaskConverter" class="de.mnet.wita.bpm.converter.usertask.AbmPvUserTaskConverter" />
+
+</beans>

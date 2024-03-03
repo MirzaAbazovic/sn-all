@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Scheduler-Controler Panel.
+-->
+<sf>
+
+    <Text name="caption">Cron Trigger Einstellungen</Text>
+
+    <Label name="lbl.fullName"><text>Full Name:</text></Label>
+    <TextField name="tfn.fullName">
+        <tooltip>Der Name des Triggers (Gruppe + '.' + Name)</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="lbl.cronExpression"><text>Cron Expression:</text></Label>
+    <TextField name="tfn.cronExpression">
+        <tooltip>Der Cron Ausdruck</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Button name="btn.save">
+        <text>Speichern</text>
+        <tooltip>Trigger Einstellungen speichern</tooltip>
+        <mnemonic>VK_S</mnemonic>
+    </Button>
+
+    <Button name="btn.cancel">
+        <text>Abbrechen</text>
+        <tooltip>Trigger Einstellungen verwerfen</tooltip>
+        <mnemonic>VK_A</mnemonic>
+    </Button>
+
+</sf>

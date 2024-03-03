@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sf>
+    <Text name="KvzAdresse.title">KVZ Adresse</Text>
+
+    <Label name="KvzAdresse.kvzNummer"><text>KVZ-Nummer</text></Label>
+    <TextField name="KvzAdresse.kvzNummer">
+        <tooltip>KVZ-Nummer</tooltip>
+        <maxchars>5</maxchars>
+        <columns>5</columns>
+    </TextField>
+    
+    <Label name="KvzAdresse.strasse"><text>Straße</text></Label>
+    <TextField name="KvzAdresse.strasse">
+        <tooltip>Straße</tooltip>
+        <maxchars>50</maxchars>
+        <columns>50</columns>
+    </TextField>
+    
+    <Label name="KvzAdresse.hausNr"><text>Hausnr.</text></Label>
+    <TextField name="KvzAdresse.hausNr">
+        <tooltip>Hausnr.</tooltip>
+        <maxchars>10</maxchars>
+        <columns>10</columns>
+    </TextField>
+    
+    <Label name="KvzAdresse.plz"><text>PLZ</text></Label>
+    <TextField name="KvzAdresse.plz">
+        <tooltip>PLZ</tooltip>
+        <maxchars>10</maxchars>
+        <columns>10</columns>
+    </TextField>
+    
+    <Label name="KvzAdresse.ort"><text>Ort</text></Label>
+    <TextField name="KvzAdresse.ort">
+        <tooltip>Ort</tooltip>
+        <maxchars>50</maxchars>
+        <columns>50</columns>
+    </TextField>
+    
+    <Button name="delete">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>KVZ-Adresse löschen</tooltip>
+    </Button>
+    
+    <Button name="edit">
+        <icon>de/augustakom/hurrican/gui/images/edit.gif</icon>
+        <tooltip>KVZ-Adresse bearbeiten</tooltip>
+    </Button>
+</sf>

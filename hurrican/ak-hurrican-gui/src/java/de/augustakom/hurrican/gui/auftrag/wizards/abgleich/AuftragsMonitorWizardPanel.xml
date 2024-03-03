@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den AuftragsMonitor-Wizard.
+-->
+<sf>
+
+    <Text name="keine.selektion.msg">Bitte wählen Sie zuerst einen Auftrag aus, der abgeglichen werden soll.</Text>
+    <Text name="aktion.unbekannt">Es konnte nicht ermittelt werden, welche Abgleichaktion (Kündigung/Anlage) für den selektierten Auftrag ausgeführt werden muss.</Text>
+    <Text name="anzahl.nicht.ok">Die Anzahl der gefundenen Aufträge stimmt nicht mit der erwarteten Anzahl überein. Der Auftrag kann nicht gekündigt werden!</Text>
+
+</sf>

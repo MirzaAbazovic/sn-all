@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Wizard-Panel mit der Auswahl der Auftragsarten.
+-->
+<sf>
+    <Text name="auftragsart">Auftragsart:</Text>
+    <RadioButton name="neuschaltung">
+        <text>Neuschaltung</text>
+        <tooltip>Bei dem Auftrag handelt es sich um eine Neuschaltung</tooltip>
+        <mnemonic>VK_N</mnemonic>
+    </RadioButton>
+
+    <RadioButton name="uebernahme">
+        <text>Übernahme</text>
+        <tooltip>Bei dem Auftrag handelt es sich um eine Übernahme</tooltip>
+        <mnemonic>VK_U</mnemonic>
+    </RadioButton>
+</sf>

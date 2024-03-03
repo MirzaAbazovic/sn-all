@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxb:bindings
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    jaxb:extensionBindingPrefixes="xjc"
+    jaxb:version="2.1">
+    <jaxb:bindings schemaLocation="HurricanService.wsdl" node="//xsd:schema">
+        <jaxb:globalBindings>
+           <jaxb:javaType name="java.time.LocalDate" xmlType="xsd:date" parseMethod="de.mnet.hurrican.webservice.common.XmlSchemaDateToLocalDateBinder.parseDate"
+               printMethod="de.mnet.hurrican.webservice.common.XmlSchemaDateToLocalDateBinder.printDate" />
+        </jaxb:globalBindings>
+        <jaxb:schemaBindings>
+            <jaxb:package name="de.mnet.hurrican.wholesale.workflow"/>
+        </jaxb:schemaBindings>
+    </jaxb:bindings>
+</jaxb:bindings>

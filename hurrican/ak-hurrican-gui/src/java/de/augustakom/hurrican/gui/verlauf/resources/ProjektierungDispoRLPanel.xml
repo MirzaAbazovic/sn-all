@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Projektierungs-Panel DISPO.
+-->
+<sf>
+
+    <Label name="table"><text>Projektierungen:</text></Label>
+
+    <Button name="erledigen">
+        <text>Abschliessen</text>
+        <tooltip>Schliesst die Projektierung ab</tooltip>
+    </Button>
+
+    <Button name="uebernehmen">
+        <text>Übernehmen</text>
+        <tooltip>Aktueller Benutzer übernimmt die Projektierung</tooltip>
+    </Button>
+
+    <Button name="eingabe">
+        <text>Daten erfassen</text>
+        <tooltip>Möglichkeit, um spezielle Daten für die Projektierung zu erfassen</tooltip>
+    </Button>
+
+    <Button name="print">
+        <text>Drucken</text>
+        <tooltip>Druckt die Projektierung aus</tooltip>
+    </Button>
+
+    <Button name="bemerkungen">
+        <text>Bemerkungen</text>
+        <tooltip>Zeigt alle Bemerkungen zu der Projektierung an</tooltip>
+    </Button>
+
+     <Button name="stornieren">
+        <text>Proj storno</text>
+        <tooltip>Stornier ausgewählte Projektierung</tooltip>
+    </Button>
+
+    <Button name="show.ports">
+        <text>Ports</text>
+        <tooltip>Zeigt alle Ports des Verlaufes an</tooltip>
+    </Button>
+
+    <Text name="ask.rl.am.title">Rückläufer AM?</Text>
+    <Text name="ask.rl.am.msg">Soll die Projektierung zurueck an AM gehen?</Text>
+
+    <Text name="ask.uebernehmen.title">Projektierung übernehmen?</Text>
+    <Text name="ask.uebernehmen.msg">Wollen Sie die Projektierung wirklich übernehmen?</Text>
+
+</sf>

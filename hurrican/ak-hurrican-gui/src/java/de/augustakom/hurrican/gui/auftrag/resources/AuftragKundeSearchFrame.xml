@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Kunden-Suchfenster.
+-->
+<sf>
+    <!-- Titel -->
+    <Text name="title">Auftrags-/Kundensuche</Text>
+    <Icon name="icon">de/augustakom/hurrican/gui/images/search.gif</Icon>
+    
+</sf>

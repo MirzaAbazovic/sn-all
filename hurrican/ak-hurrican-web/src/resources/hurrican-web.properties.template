@@ -1,0 +1,7 @@
+# Template file for properties of Hurrican web
+# Beim Deployment werden die Platzhalter mit den aus den build.properties geladenen Properties ersetzt.
+# Achtung: der PropertyUtil laedt nach dieser File noch die hosts, ip-Adressen und use.config property Dateien.
+# Die hier gesetzten Properties duerfen deshalb nicht mehr in diesen auftauchen.
+
+autologin.password=${autologin.password}
+

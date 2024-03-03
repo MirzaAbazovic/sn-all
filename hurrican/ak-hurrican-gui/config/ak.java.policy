@@ -1,0 +1,9 @@
+// Copyright 2006 - Augustakom Telekommunikation GmbH
+
+// Policy-Definitionen
+// Speziell benoetigt fuer RMI-Zugriffe
+
+grant {
+  permission java.security.AllPermission;
+};
+ 

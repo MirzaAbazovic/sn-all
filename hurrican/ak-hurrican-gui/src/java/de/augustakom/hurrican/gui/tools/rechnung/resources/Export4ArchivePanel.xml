@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definition fuer das Panel fuer den ScanView-Export
+-->
+<sf>
+	
+	<Label name="taifun"><text>Taifun-Daten:</text></Label>
+    
+	<Label name="taifun.base.dir.bill"><text>Rechnungs-Dir.:</text></Label>
+    <TextField name="taifun.base.dir.bill">
+        <tooltip>Basis-Verzeichnis, in dem die zu exportierenden Rechnungen im PDF-Format liegen</tooltip>
+    </TextField>
+	
+    <Label name="taifun.base.dir.evn.pdf"><text>EVN PDF-Dir.:</text></Label>
+    <TextField name="taifun.base.dir.evn.pdf">
+        <tooltip>Basis-Verzeichnis, in dem die zu exportierenden EVNs im PDF-Format liegen</tooltip>
+    </TextField>
+    
+	<Label name="taifun.base.dir.evn.ascii"><text>EVN ASCII-Dir.:</text></Label>
+    <TextField name="taifun.base.dir.evn.ascii">
+        <tooltip>Basis-Verzeichnis, fuer EVNs im ASCII-Format (falls nicht erwuenscht, TextField loeschen)</tooltip>
+    </TextField>
+	
+	<Label name="export"><text>Export-Daten:</text></Label>  
+	
+	<Label name="archive.import.dir"><text>Archiv-Import:</text></Label>
+    <TextField name="archive.import.dir">
+        <tooltip>Import-Verzeichnis vom ScanView-Archiv</tooltip>
+    </TextField>
+			
+	<Label name="archive.db"><text>Archiv-DB:</text></Label>
+    <TextField name="archive.db">
+        <tooltip>Datenbank des ScanView-Archiv</tooltip>
+    </TextField>
+	
+    <Button name="start">
+        <text>Starte Export</text>
+        <tooltip>Startet den Archiv-Export</tooltip>
+    </Button>
+    
+    <Button name="cancel">
+        <text>Export abbrechen</text>
+        <tooltip>Bricht den Archiv-Export ab.</tooltip>
+    </Button>
+
+</sf>

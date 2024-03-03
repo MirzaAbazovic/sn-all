@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.IntAccount
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="IntAccount" table="T_INT_ACCOUNT">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_INT_ACCOUNT_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="account" column="ACCOUNT" type="string" not-null="true"/>
+        <property name="passwort" column="PASSWORT" type="string"/>
+        <property name="url" column="URL" type="string"/>
+        <property name="gesperrt" column="GESPERRT" type="boolean"/>
+        <property name="rufnummer" column="RUFNUMMER" type="string"/>
+        <property name="loeschdatum" column="LOESCHDATUM" type="date"/>
+        <property name="kuendigungsdatum" column="KUENDIGUNGSDATUM" type="date"/>
+        <property name="aenderungsdatum" column="AENDERUNGSDATUM" type="date"/>
+        <property name="erstelldatum" column="ERSTELLDATUM" type="date"/>
+        <property name="nummer" column="NUMMER" type="string"/>
+        <property name="status" column="STATUS" type="short"/>
+        <property name="freigabe" column="FREIGABE" type="short"/>
+        <property name="bemerkung" column="BEMERKUNG" type="string"/>
+        <property name="liNr" column="LI_NR" type="integer"/>
+        <property name="abrechnungsmonat" column="ABRECHNUNGSMONAT" type="short"/>
+        <property name="hostingNeu" column="HOSTING_NEU" type="integer"/>
+        <property name="mailNeu" column="MAIL_NEU" type="integer"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date"/>
+        <property name="bearbeiter" column="BEARBEITER" type="string"/>
+        <property name="evnStatus" column="EVN_STATUS" type="boolean"/>
+        <property name="evnStatusPending" column="PENDING_EVN_STATUS" type="boolean"/>
+    </class>
+
+</hibernate-mapping>

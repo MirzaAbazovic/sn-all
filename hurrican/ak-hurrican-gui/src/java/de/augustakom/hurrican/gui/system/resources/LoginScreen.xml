@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Login-Screen.
+-->
+<sf>
+    <!-- Titel und Hintergrundbild fuer Login-Screen -->
+    <Text name="title">M-net HURRICAN</Text>
+    <Icon name="mnet.logo">de/augustakom/hurrican/gui/images/M-net_logo.jpg</Icon>
+
+    <Text name="initialize.gui">Hurrican-Oberfläche</Text>
+
+    <!-- Labels fuer die Applikationsnamen und Versionsnummer der Applikation -->
+    <Label name="application.name1">
+        <text>M-net</text>
+    </Label>
+    <Label name="application.name">
+        <text>H U R R I C A N</text>
+        <foreground>mnetBlau</foreground>
+    </Label>
+    <Label name="version">
+        <text>Version: </text>
+        <foreground>mnetBlau</foreground>
+    </Label>
+    <Color name="mnetBlau">
+        <red>2</red>
+        <green>141</green>
+        <blue>206</blue>
+    </Color>
+
+    <!-- Labels fuer die Anzeige des Initialisierungsfortschritts -->
+    <Label name="init.title">
+        <text>Starte: </text>
+    </Label>
+    <Label name="init.text">
+    </Label>
+
+
+    <!-- Labels, TextFields, Buttons fuer den Login -->
+    <Button name="login">
+        <text>Login</text>
+        <tooltip>Fuehrt den Login in das Hurrican-System durch</tooltip>
+        <mnemonic>VK_L</mnemonic>
+    </Button>
+
+    <Button name="cancel">
+        <text>Abbrechen</text>
+        <tooltip>Bricht den Login-Vorgang ab</tooltip>
+        <mnemonic>VK_A</mnemonic>
+    </Button>
+
+    <Label name="datenbank"><text>Datenbank:</text></Label>
+    <ComboBox name="datenbank">
+        <tooltip>Auswahl der Datenbank, die verwendet werden soll</tooltip>
+        <active>bg.color.white</active>
+        <inactive>bg.color.white</inactive>
+        <selection>bg.color.white</selection>
+    </ComboBox>
+    <Color name="bg.color.white">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+    </Color>
+
+    <Label name="user.name"><text>Name:</text></Label>
+    <TextField name="user.name">
+        <tooltip>Benutzername fuer das Hurrican-System</tooltip>
+    </TextField>
+
+    <Label name="user.password"><text>Passwort:</text></Label>
+    <PasswordField name="user.password">
+        <tooltip>Passwort fuer das Hurrican-System</tooltip>
+    </PasswordField>
+</sf>

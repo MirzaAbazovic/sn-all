@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Bauauftrags-RL-Panel DISPO.
+-->
+<sf>
+
+    <Text name="abgeschlossen">Bauauftrag wurde abgeschlossen</Text>
+    <Text name="storniert">Bauauftrag wurde storniert</Text>
+
+    <Label name="anlass"><text>Anlass:</text></Label>
+    <TextField name="anlass">
+        <tooltip></tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="oe.name"><text>Produkt (M.):</text></Label>
+    <TextField name="oe.name">
+        <tooltip>Produkt-Name aus Mistral</tooltip>
+    </TextField>
+
+    <Label name="produkt"><text>Produkt (H.):</text></Label>
+    <TextField name="produkt">
+        <tooltip>Produkt-Name aus Hurrican</tooltip>
+    </TextField>
+
+    <Label name="realisierungstermin"><text>Realisierung:</text></Label>
+    <DateComponent name="realisierungstermin">
+        <tooltip>Geplantes Realisierungsdatum fuer den gesamten Auftrag</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="inbetriebnahme"><text>Inbetriebnahme:</text></Label>
+    <DateComponent name="inbetriebnahme">
+        <tooltip>Datum der Inbetriebnahme</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="vbz">
+        <text>Verbindungsbezeichnung (VBZ):</text>
+    </Label>
+    <TextField name="vbz">
+        <tooltip></tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="auftrag.id"><text>Tech. Auftragsnr.:</text></Label>
+    <FormattedTextField name="auftrag.id">
+        <tooltip>Auftragsnr. aus Hurrican</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="vpn.nr"><text>VPN-Nr:</text></Label>
+    <FormattedTextField name="vpn.nr">
+        <tooltip></tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="kunde.name"><text>Kunde:</text></Label>
+    <TextField name="kunde.name">
+        <tooltip></tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="schnittstelle"><text>Schnittstelle:</text></Label>
+    <TextField name="schnittstelle">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="montage.akom"><text>Montage M-net?</text></Label>
+    <CheckBox name="montage.akom">
+        <tooltip>Flag ist gesetzt, wenn die Montage durch M-net erfolgen soll</tooltip>
+    </CheckBox>
+
+    <Label name="hvt.anschlussart"><text>Anschlussart:</text></Label>
+    <TextField name="hvt.anschlussart">
+        <tooltip>Art der Leitungsanbindung (HVT oder Direktanschluss)</tooltip>
+    </TextField>
+
+    <Label name="bearbeiter"><text>Bearbeiter AM:</text></Label>
+    <TextField name="bearbeiter">
+        <tooltip>Name des Bearbeiters, der den Bauauftrag erstellt hat</tooltip>
+    </TextField>
+
+    <Label name="install.time.slot"><text>TimeSlot:</text></Label>
+    <TextField name="install.time.slot">
+        <tooltip>Zeit-Fenster fuer die ERSTE Realisierung</tooltip>
+    </TextField>
+
+    <Text name="border.bauauftraege">Bauaufträge (techn. Abteilungen): </Text>
+
+    <Button name="bemerkungen">
+        <text>Bemerkungen</text>
+        <tooltip>Zeigt alle Bemerkungen des Verlaufs an</tooltip>
+    </Button>
+
+    <Button name="storno">
+        <text>BA stornieren</text>
+        <tooltip>Storniert den Bauauftrag</tooltip>
+    </Button>
+
+    <Button name="abschliessen">
+        <text>Abschliessen</text>
+        <tooltip>Schliesst den BA ab</tooltip>
+    </Button>
+
+    <Button name="abschluss.manuell">
+        <text>manuell abschl.</text>
+        <tooltip>Abschluss des Bauauftrags mit Bestätigung des Inbetriebnahme-Datums</tooltip>
+    </Button>
+
+    <Button name="show.ports">
+        <text>Ports</text>
+        <tooltip>Zeigt alle Ports des Verlaufes an</tooltip>
+    </Button>
+
+    <Text name="ask.inbetriebnahme.title">Inbetriebnahmedatum</Text>
+    <Text name="ask.inbetriebnahme.msg">Bitte Inbetriebnahmedatum für den Auftrag eingeben</Text>
+    <Text name="ask.inbetriebnahme.label">Inbetriebnahmedatum: </Text>
+
+    <Text name="ba.not.finished">Bauauftrag wurde nicht abgeschlossen, da kein Inbetriebnahmedatum angegeben wurde!</Text>
+
+    <Text name="cannot.finish.title">Abschluss nicht möglich</Text>
+    <Text name="cannot.finish.msg">Der Bauauftrag kann nicht abgeschlossen werden, da noch nicht alle Abteilungen den Bauauftrag erledigt haben.</Text>
+
+    <Text name="ask.rl.am.title">Rückläufer AM?</Text>
+    <Text name="ask.rl.am.msg">Soll der Bauauftrag für Auftrag {0} (VBZ: {1}) zurueck an AM gehen?</Text>
+
+
+</sf>

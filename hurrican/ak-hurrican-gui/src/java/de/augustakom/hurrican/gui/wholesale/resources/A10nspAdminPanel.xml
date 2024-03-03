@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Frame der Wholesale A10-NSPs.
+-->
+<sf>
+    <Button name="btn.new">
+        <text>Neu</text>
+        <tooltip>Erstellt einen neuen Eintrag</tooltip>
+    </Button>
+    <Button name="btn.edit">
+        <text>Bearbeiten</text>
+        <tooltip>Bearbeitet die selektierte Zeile</tooltip>
+    </Button>
+    <Button name="btn.delete">
+        <text>Löschen</text>
+        <tooltip>Löscht die selektierte Zeile</tooltip>
+    </Button>
+
+    <Text name="A10Nsp.title">A10-NSP</Text>
+    <Label name="A10Nsp.nummer">
+        <text>Nummer</text>
+    </Label>
+    <FormattedTextField name="A10Nsp.nummer">
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Label name="A10Nsp.name">
+        <text>Name (Nomenklatur: WSEKPX)</text>
+    </Label>
+    <FormattedTextField name="A10Nsp.name">
+        <maxchars>6</maxchars>
+    </FormattedTextField>
+
+    <Label name="A10NspPort.vbz.vbz">
+        <text>VBZ</text>
+    </Label>
+
+    <Label name="HWOlt.oltNr">
+        <text>Nummer</text>
+    </Label>
+    <Label name="HWOlt.geraeteBez">
+        <text>Gerätebez</text>
+    </Label>
+    <Label name="HWOlt.vlanAktivAb">
+        <text>VLANs aktiv ab</text>
+    </Label>
+
+    <Button name="btn.assign.olt">
+        <tooltip>Ordnet die ausgewählte OLT dem selektierten A10-NSP Port zu</tooltip>
+        <icon>de/augustakom/authentication/gui/images/left.gif</icon>
+    </Button>
+    <Button name="btn.withdraw.olt">
+        <tooltip>Ordnet die ausgewählte OLT dem selektierten A10-NSP Port zu</tooltip>
+        <icon>de/augustakom/authentication/gui/images/right.gif</icon>
+    </Button>
+</sf>

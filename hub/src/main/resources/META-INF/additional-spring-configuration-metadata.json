@@ -1,0 +1,25 @@
+{
+  "properties": [
+    {
+      "name": "hub.eventRegistrationService",
+      "type": "java.lang.String",
+      "description": "The service responsible for managing event subscription persistence within the Hub.",
+      "defaultValue": "EventRegistrationServiceMem"
+    }
+  ],
+  "hints": [
+    {
+      "name": "hub.eventRegistrationService",
+      "values": [
+        {
+          "value": "EventRegistrationServiceJpa",
+          "description": "Use JPA (Java Persistence API) for persisting event subscriptions to a relational database."
+        },
+        {
+          "value": "EventRegistrationServiceMongo",
+          "description": "Use MongoDB for persisting event subscriptions in a NoSQL document-based database."
+        }
+      ]
+    }
+  ]
+}

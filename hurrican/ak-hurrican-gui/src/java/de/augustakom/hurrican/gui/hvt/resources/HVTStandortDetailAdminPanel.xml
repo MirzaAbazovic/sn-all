@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Panel der HVT-Standorte.
+-->
+<sf>
+    <Label name="hvt.standort.asb"><text>ASB:</text></Label>
+    <TextField name="hvt.standort.asb">
+        <tooltip>ASB-Kennzahl für den HVT-Standort</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Button name="create.asb.kennung">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Unterstützung bei der Erstellung der ASB für diesen HVT.</tooltip>
+    </Button>
+
+    <Label name="hvt.standort.realisierung"><text>Realisierung:</text></Label>
+    <ComboBox name="hvt.standort.realisierung">
+        <tooltip>Kommentar zum Realisierungsstand des HVTs</tooltip>
+        <items>
+            <item> </item>
+            <item>nicht in Betrieb</item>
+            <item>in Betrieb</item>
+        </items>
+    </ComboBox>
+
+    <Label name="hvt.standort.ewsd1"><text>EWSD OR1:</text></Label>
+    <TextField name="hvt.standort.ewsd1">
+        <tooltip>Ursprungskennung Leitweg</tooltip>
+    </TextField>
+
+    <Label name="hvt.standort.ewsd2"><text>EWSD OR2:</text></Label>
+    <TextField name="hvt.standort.ewsd2">
+        <tooltip>Ursprungskennung Verzonung</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="hvt.standort.beschreibung"><text>Beschreibung:</text></Label>
+    <TextField name="hvt.standort.beschreibung">
+        <tooltip>Kurze Beschreibung für den HVT-Standort</tooltip>
+    </TextField>
+
+    <Label name="hvt.standort.clusterId"><text>Cluster-Kennung:</text></Label>
+    <TextField name="hvt.standort.clusterId">
+        <tooltip>Clusterinformation für FttX</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="hvt.standort.gueltig.von"><text>Gültig von:</text></Label>
+    <DateComponent name="hvt.standort.gueltig.von">
+        <tooltip>Datum, ab dem der HVT-Standort verwendet werden kann (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="hvt.standort.gueltig.bis"><text>Gültig bis:</text></Label>
+    <DateComponent name="hvt.standort.gueltig.bis">
+        <tooltip>Datum, ab dem der HVT-Standort nicht mehr verwendet werden darf (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="hvt.standort.anschlussart"><text>Anschlussart:</text></Label>
+    <ComboBox name="hvt.standort.anschlussart">
+        <tooltip>Anschlussart des HVTs</tooltip>
+    </ComboBox>
+
+    <Label name="hvt.standort.gruppe"><text>HVT-Gruppe:</text></Label>
+    <ComboBox name="hvt.standort.gruppe">
+        <tooltip>Auswahl der HVT-Gruppe</tooltip>
+        <id.property>id</id.property>
+        <name.property>ortsteil</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.HVTGruppe</reference.class>
+    </ComboBox>
+
+    <Label name="hvt.standort.fc"><text>FC-Raum:</text></Label>
+    <ReferenceField name="hvt.standort.fc">
+        <tooltip>Auswahl des FC-Raums</tooltip>
+        <id.property>hvtIdStandort</id.property>
+        <name.property>ortsteil</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.view.HVTGruppeStdView</reference.class>
+        <selection.dialog.class>de.augustakom.hurrican.gui.hvt.HVTSelectionDialog</selection.dialog.class>
+    </ReferenceField>
+
+    <Label name="hvt.standort.br"><text>Betriebsraum / HVT des MFG:</text></Label>
+    <ReferenceField name="hvt.standort.br">
+        <tooltip>Auswahl des Betriebsraums (FttX) bzw. Auswahl des passenden HVT-Standorts für diesen MFG/KVZ</tooltip>
+        <id.property>hvtIdStandort</id.property>
+        <name.property>ortsteil</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.view.HVTGruppeStdView</reference.class>
+        <selection.dialog.class>de.augustakom.hurrican.gui.hvt.HVTSelectionDialog</selection.dialog.class>
+    </ReferenceField>
+
+    <Label name="hvt.standort.virtuell"><text>Virtuell:</text></Label>
+    <CheckBox name="hvt.standort.virtuell">
+        <tooltip>Angabe, ob es sich um einen virtuellen HVT handelt</tooltip>
+    </CheckBox>
+
+    <Label name="hvt.standort.cps.provisioning"><text>CPS-Prov.:</text></Label>
+    <CheckBox name="hvt.standort.cps.provisioning">
+        <tooltip>Angabe, ob an die Provisionierung an dem Standort ueber den CPS erfolgen kann</tooltip>
+    </CheckBox>
+
+    <Label name="hvt.standort.carrier"><text>Carrier:</text></Label>
+    <ComboBox name="hvt.standort.carrier">
+        <tooltip>Carrier, an dem der HVT-Standort angschlossen ist</tooltip>
+    </ComboBox>
+
+    <Label name="hvt.standort.carrier.kennung"><text>Kennung:</text></Label>
+    <ComboBox name="hvt.standort.carrier.kennung">
+        <tooltip>Angabe der Carrier-Kennung, unter der der HVT bestellt ist</tooltip>
+    </ComboBox>
+
+    <Label name="hvt.standort.carrier.contact"><text>Carrier-Kontakt:</text></Label>
+    <ComboBox name="hvt.standort.carrier.contact">
+        <tooltip>Angabe von Kontaktinformationen des zustaendigen Carriers</tooltip>
+    </ComboBox>
+
+    <Label name="hvt.standort.breakRang"><text>Rangierung auftrennen:</text></Label>
+    <CheckBox name="hvt.standort.breakRang">
+        <tooltip>Angabe, ob nach der Auftragskündigung der EQ-Out Stift von der Rangierung entfernt werden soll.</tooltip>
+    </CheckBox>
+
+    <Label name="hvt.standort.standortTyp"><text>Standorttyp:</text></Label>
+    <ComboBox name="hvt.standort.standortTyp">
+        <tooltip>Typ des Standorts</tooltip>
+    </ComboBox>
+
+    <Label name="hvt.standort.automatic"><text>Auto-Vert.:</text></Label>
+    <CheckBox name="hvt.standort.automatic">
+        <tooltip>Angabe, ob Bauaufträge an diesem HVT-Standort automatisch verteilt werden können</tooltip>
+    </CheckBox>
+
+    <Label name="hvt.standort.gfast.startfreq"><text>G.fast Line Spectrum:</text></Label>
+    <TextField name="hvt.standort.gfast.startfreq">
+        <columns>15</columns>
+    </TextField>
+
+</sf>

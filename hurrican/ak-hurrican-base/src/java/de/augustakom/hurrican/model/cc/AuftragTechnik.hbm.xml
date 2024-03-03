@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.AuftragTechnik
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="AuftragTechnik" table="T_AUFTRAG_TECHNIK">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_AUFTRAG_TECHNIK_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="auftragId" column="AUFTRAG_ID" type="long" not-null="true"/>
+        <property name="vbzId" column="TDN_ID" type="long"/>
+        <property name="auftragTechnik2EndstelleId" column="AT_2_ES_ID" type="long"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date"/>
+        <property name="intAccountId" column="INT_ACCOUNT_ID" type="long"/>
+        <property name="vpnId" column="VPN_ID" type="long"/>
+        <property name="projektierung" column="PROJEKTIERUNG" type="boolean"/>
+        <property name="auftragsart" column="AUFTRAGSART" type="long"/>
+        <property name="niederlassungId" column="NIEDERLASSUNG_ID" type="long"/>
+        <property name="preventCPSProvisioning" column="PREVENT_CPS_PROV" type="boolean"/>
+        <property name="projectResponsibleUserId" column="PROJECT_RESPONSIBLE" type="long"/>
+        <property name="projectLeadUserId" column="PROJECT_LEAD" type="long"/>
+        <property name="vplsId" column="VPLS_ID" type="string"/>
+        <many-to-one name="hwSwitch" class="de.augustakom.hurrican.model.cc.hardware.HWSwitch"
+                     column="HW_SWITCH" not-null="false" lazy="false"/>
+    </class>
+
+</hibernate-mapping>

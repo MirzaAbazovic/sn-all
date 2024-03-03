@@ -1,0 +1,101 @@
+--
+-- Shell-Commands, um die Produktkonsolidierung auf Taifun-Seite durchzufuehren
+--
+
+--
+-- SQL, um die Produkte ab 01.10. aktiv zu setzen
+-- update oe set gueltig_von='01.10.2006' where oe__no=2003;
+-- update leistung set gueltig_von='01.10.2006' where oe__no=2003;
+-- update oe set gueltig_von='01.10.2006' where oe__no=2004;
+-- update leistung set gueltig_von='01.10.2006' where oe__no=2004;
+
+-- Befehl, um Prozesse vom User <taifun> anzuzeigen
+ps -ef | grep eval | grep console | grep taifun
+
+
+
+--
+-- WICHTIG !!!
+-- Vor Konsolidierung unbedingt das Datum in consolidation.eval kontrollieren!!!
+--
+
+-- MaxiDSL
+./DO_CONSOLIDATE.sh 3 execute > /export/home/taifun/ergon/migration_log/p2p_003.log
+./DO_CONSOLIDATE.sh 4 execute > /export/home/taifun/ergon/migration_log/p2p_004.log
+./DO_CONSOLIDATE.sh 5 execute > /export/home/taifun/ergon/migration_log/p2p_005.log
+./DO_CONSOLIDATE.sh 6 execute > /export/home/taifun/ergon/migration_log/p2p_006.log
+
+-- MaxiKomplett
+./DO_CONSOLIDATE.sh 19 execute > /export/home/taifun/ergon/migration_log/p2p_019.log
+./DO_CONSOLIDATE.sh 20 execute > /export/home/taifun/ergon/migration_log/p2p_020.log
+./DO_CONSOLIDATE.sh 21 execute > /export/home/taifun/ergon/migration_log/p2p_021.log
+./DO_CONSOLIDATE.sh 22 execute > /export/home/taifun/ergon/migration_log/p2p_022.log
+./DO_CONSOLIDATE.sh 23 execute > /export/home/taifun/ergon/migration_log/p2p_023.log
+
+-- Premium PMX (DSS1 und 1TR6)
+./DO_CONSOLIDATE.sh 11 execute > /export/home/taifun/ergon/migration_log/p2p_011.log
+./DO_CONSOLIDATE.sh 12 execute > /export/home/taifun/ergon/migration_log/p2p_012.log
+
+-- PremiumDSL
+./DO_CONSOLIDATE.sh 13 execute > /export/home/taifun/ergon/migration_log/p2p_013.log
+./DO_CONSOLIDATE.sh 14 execute > /export/home/taifun/ergon/migration_log/p2p_014.log
+./DO_CONSOLIDATE.sh 15 execute > /export/home/taifun/ergon/migration_log/p2p_015.log
+./DO_CONSOLIDATE.sh 16 execute > /export/home/taifun/ergon/migration_log/p2p_016.log
+
+-- AK-ADSL
+./DO_CONSOLIDATE.sh 166 execute > /export/home/taifun/ergon/migration_log/p2p_166.log
+./DO_CONSOLIDATE.sh 167 execute > /export/home/taifun/ergon/migration_log/p2p_167.log
+./DO_CONSOLIDATE.sh 168 execute > /export/home/taifun/ergon/migration_log/p2p_168.log
+./DO_CONSOLIDATE.sh 169 execute > /export/home/taifun/ergon/migration_log/p2p_169.log
+./DO_CONSOLIDATE.sh 170 execute > /export/home/taifun/ergon/migration_log/p2p_170.log
+./DO_CONSOLIDATE.sh 171 execute > /export/home/taifun/ergon/migration_log/p2p_171.log
+./DO_CONSOLIDATE.sh 172 execute > /export/home/taifun/ergon/migration_log/p2p_172.log
+./DO_CONSOLIDATE.sh 173 execute > /export/home/taifun/ergon/migration_log/p2p_173.log
+
+-- AK-DSLplus
+./DO_CONSOLIDATE.sh 188 execute > /export/home/taifun/ergon/migration_log/p2p_188.log
+./DO_CONSOLIDATE.sh 189 execute > /export/home/taifun/ergon/migration_log/p2p_189.log
+./DO_CONSOLIDATE.sh 190 execute > /export/home/taifun/ergon/migration_log/p2p_190.log
+./DO_CONSOLIDATE.sh 191 execute > /export/home/taifun/ergon/migration_log/p2p_191.log
+./DO_CONSOLIDATE.sh 192 execute > /export/home/taifun/ergon/migration_log/p2p_192.log
+./DO_CONSOLIDATE.sh 193 execute > /export/home/taifun/ergon/migration_log/p2p_193.log
+./DO_CONSOLIDATE.sh 194 execute > /export/home/taifun/ergon/migration_log/p2p_194.log
+./DO_CONSOLIDATE.sh 195 execute > /export/home/taifun/ergon/migration_log/p2p_195.log
+
+
+--
+-- SQL-Commands, um die Beziehungstypen zu aendern
+--
+update PRODUCT2PRODUCT set RELATION_TYPE='DOWNGRADE' where PRODUCT2PRODUCT_NO=1;
+update PRODUCT2PRODUCT set RELATION_TYPE='DOWNGRADE' where PRODUCT2PRODUCT_NO=2;
+update PRODUCT2PRODUCT set RELATION_TYPE='DOWNGRADE' where PRODUCT2PRODUCT_NO=7;
+update PRODUCT2PRODUCT set RELATION_TYPE='DOWNGRADE' where PRODUCT2PRODUCT_NO=8;
+update PRODUCT2PRODUCT set RELATION_TYPE='DOWNGRADE' where PRODUCT2PRODUCT_NO=9;
+update PRODUCT2PRODUCT set RELATION_TYPE='DOWNGRADE' where PRODUCT2PRODUCT_NO=10;
+
+-- Maxi (ISDN+analog)
+./DO_CONSOLIDATE.sh 1 execute > /export/home/taifun/ergon/migration_log/p2p_001.log
+./DO_CONSOLIDATE.sh 2 execute > /export/home/taifun/ergon/migration_log/p2p_002.log
+
+-- Premium (ISDN, TK, analog)
+./DO_CONSOLIDATE.sh 7 execute > /export/home/taifun/ergon/migration_log/p2p_007.log
+./DO_CONSOLIDATE.sh 8 execute > /export/home/taifun/ergon/migration_log/p2p_008.log
+./DO_CONSOLIDATE.sh 9 execute > /export/home/taifun/ergon/migration_log/p2p_009.log
+./DO_CONSOLIDATE.sh 10 execute > /export/home/taifun/ergon/migration_log/p2p_010.log
+
+--
+-- Relation-Types wieder auf MERGE_SUB umstellen
+--
+update PRODUCT2PRODUCT set RELATION_TYPE='MERGE_SUB' where PRODUCT2PRODUCT_NO=1;
+update PRODUCT2PRODUCT set RELATION_TYPE='MERGE_SUB' where PRODUCT2PRODUCT_NO=2;
+update PRODUCT2PRODUCT set RELATION_TYPE='MERGE_SUB' where PRODUCT2PRODUCT_NO=7;
+update PRODUCT2PRODUCT set RELATION_TYPE='MERGE_SUB' where PRODUCT2PRODUCT_NO=8;
+update PRODUCT2PRODUCT set RELATION_TYPE='MERGE_SUB' where PRODUCT2PRODUCT_NO=9;
+update PRODUCT2PRODUCT set RELATION_TYPE='MERGE_SUB' where PRODUCT2PRODUCT_NO=10;
+
+
+
+
+
+
+

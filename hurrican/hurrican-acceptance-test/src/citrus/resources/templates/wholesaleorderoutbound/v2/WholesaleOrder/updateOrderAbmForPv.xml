@@ -1,0 +1,27 @@
+<v2:updateOrder xmlns:v2="http://www.mnet.de/esb/cdm/SupplierPartner/WholesaleOrderService/v2"
+                xmlns:mes="http://www.mnet.de/esb/cdm/SupplierPartner/WholesaleOrderService/v2/message">
+            <v2:sendingCarrier>MNET</v2:sendingCarrier>
+            <v2:receivingCarrier>MNETH</v2:receivingCarrier>
+            <v2:version>4</v2:version>
+            <v2:orderType>
+                <geschaeftsfall>PV</geschaeftsfall>
+                <aenderungsKennzeichen>STANDARD</aenderungsKennzeichen>
+                <geschaeftsfallArt>Anbieterwechsel</geschaeftsfallArt>
+            </v2:orderType>
+            <v2:message>
+                <mes:ABM>
+                    <meldungsattribute>
+                        <externeAuftragsnummer>123</externeAuftragsnummer>
+                        <auftraggebernummer>4334</auftraggebernummer>
+                        <vorabstimmungId>testVaId-123</vorabstimmungId>
+                    </meldungsattribute>
+                    <meldungspositionen>
+                        <position>
+                            <meldungscode>0000</meldungscode>
+                            <meldungstext>keine Änderung zum Auftrag.</meldungstext>
+                        </position>
+                    </meldungspositionen>
+                </mes:ABM>
+            </v2:message>
+        </v2:updateOrder>
+

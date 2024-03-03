@@ -1,0 +1,12 @@
+server:
+  port: '8585'
+spring:
+  jmx:
+    enabled: 'false'
+  data:
+    mongodb:
+      database: appointment_management
+      port: '27017'
+      host: localhost
+hub:
+  eventRegistrationService: EventRegistrationServiceMongo

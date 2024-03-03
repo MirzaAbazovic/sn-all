@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den Metro Ethernet-Daten.
+-->
+<sf>
+    <Label name="vplsId"><text>VPLS-Id</text></Label>
+    <TextField name="vplsId">
+        <columns>23</columns>
+        <tooltip>VPLS-Id</tooltip>
+        <maxchars>30</maxchars>
+    </TextField>
+    <Label name="vlan"><text>S-VLAN</text></Label>
+    <TextField name="vlan">
+        <columns>23</columns>
+        <tooltip>S-VLAN</tooltip>
+        <maxchars>30</maxchars>
+    </TextField>
+</sf>

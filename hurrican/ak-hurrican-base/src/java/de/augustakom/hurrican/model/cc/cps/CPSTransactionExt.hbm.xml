@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.exmodules.cps.CPSTransactionExt
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.cps">
+    <class name="CPSTransactionExt" table="T_CPS_TX">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_CPS_TX_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="orderNoOrig" column="TAIFUN_ORDER__NO" type="long" not-null="true"/>
+        <property name="auftragId" column="AUFTRAG_ID" type="long" not-null="true" insert="false" update="false"/>
+        <property name="verlaufId" column="VERLAUF_ID" type="long"/>
+        <property name="hwRackId" column="HW_RACK_ID" type="long"/>
+        <property name="txState" column="TX_STATE" type="long" not-null="true" insert="false" update="false"/>
+        <property name="txSource" column="TX_SOURCE" type="long" not-null="true" insert="false" update="false"/>
+        <property name="serviceOrderType" column="SERVICE_ORDER_TYPE" type="long" not-null="true" insert="false" update="false"/>
+        <property name="serviceOrderPrio" column="SERVICE_ORDER_PRIO" type="long" insert="false" update="false"/>
+        <property name="serviceOrderStackId" column="SO_STACK_ID" type="long"/>
+        <property name="serviceOrderStackSeq" column="SO_STACK_SEQ" type="long"/>
+        <property name="region" column="REGION" type="long" insert="false" update="false"/>
+        <property name="estimatedExecTime" column="ESTIMATED_EXEC_TIME" type="timestamp" not-null="true"/>
+        <property name="requestAt" column="REQUEST_AT" type="timestamp"/>
+        <property name="responseAt" column="RESPONSE_AT" type="timestamp"/>
+        <property name="serviceOrderData" column="SERVICE_ORDER_DATA" type="binary"/>
+        <property name="requestData" column="REQUEST_DATA" type="binary"/>
+        <property name="responseData" column="RESPONSE_DATA" type="binary"/>
+        <property name="txUser" column="TX_USER" type="string"/>
+        <property name="userW" column="USERW" type="string" not-null="true"/>
+        <property name="timestamp" column="timest" type="timestamp" insert="false" update="false"/>
+
+        <many-to-one name="auftrag" class="de.augustakom.hurrican.model.cc.Auftrag">
+            <column name="AUFTRAG_ID" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="soTypeReference" class="de.augustakom.hurrican.model.cc.Reference">
+            <column name="SERVICE_ORDER_TYPE" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="statusReference" class="de.augustakom.hurrican.model.cc.Reference">
+            <column name="TX_STATE" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="txSourceReference" class="de.augustakom.hurrican.model.cc.Reference">
+            <column name="TX_SOURCE" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="niederlassung" class="de.augustakom.hurrican.model.cc.Niederlassung">
+            <column name="REGION" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="soPrioReference" class="de.augustakom.hurrican.model.cc.Reference">
+            <column name="SERVICE_ORDER_PRIO" />
+        </many-to-one>
+        <set name="cpsTxLog" table="T_CPS_TX" lazy="false" order-by="ID desc" outer-join="false">
+            <key column="CPS_TX_ID"/>
+            <one-to-many class="de.augustakom.hurrican.model.cc.cps.CPSTransactionLog" />
+        </set>
+        <set name="cpsTxSubOrder" table="T_CPS_TX_SUB_ORDERS" lazy="false" order-by="ID asc" outer-join="false">
+            <key column="CPS_TX_ID"/>
+            <one-to-many class="de.augustakom.hurrican.model.cc.cps.CPSTransactionSubOrder" />
+        </set>
+    </class>
+</hibernate-mapping>

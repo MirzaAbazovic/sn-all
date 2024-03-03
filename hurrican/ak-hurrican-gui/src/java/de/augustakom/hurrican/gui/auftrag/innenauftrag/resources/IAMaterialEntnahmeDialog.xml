@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Materialentnahme.
+-->
+<sf>
+
+	<Text name="title">Materialentnahme</Text>
+	    
+	<Label name="entnahmetyp"><text>Typ:</text></Label>
+	<ComboBox name="entnahmetyp">
+		<tooltip>Typ der Materialentnahme</tooltip>
+		<items>
+			<item text="Reservierung" value="1" class="java.lang.Short"/>
+			<item text="Entnahme" value="2" class="java.lang.Short"/>
+		</items>
+	</ComboBox>
+
+	<Label name="lager"><text>Lager:</text></Label>
+	<ComboBox name="lager">
+		<tooltip>Lager, aus dem das Material entnommen werden soll</tooltip>
+	</ComboBox>
+	
+	<Label name="hvt.standort"><text>Service-Raum:</text></Label>
+    <ReferenceField name="hvt.standort">
+		<tooltip>Auswahl des Service-Raums</tooltip>
+		<columns>25</columns>
+		<id.property>hvtIdStandort</id.property>
+		<name.property>ortsteil</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.view.HVTGruppeStdView</reference.class>
+		<selection.dialog.class>de.augustakom.hurrican.gui.hvt.HVTSelectionDialog</selection.dialog.class>
+	</ReferenceField>
+		
+</sf>

@@ -1,0 +1,667 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:tns="http://www.mnet.de/esb/cdm/Customer/DocumentArchiveService/v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:ns0="http://www.mnet.de/esb/cdm/Shared/Common/v1"
+                  xmlns:jms="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  name="DocumentArchiveService"
+                  targetNamespace="http://www.mnet.de/esb/cdm/Customer/DocumentArchiveService/v1">
+    <wsdl:documentation>Version 1.2</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema xmlns="http://www.mnet.de/esb/cdm/Shared/Common/v1"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   targetNamespace="http://www.mnet.de/esb/cdm/Shared/Common/v1"
+                   version="1.0"
+                   elementFormDefault="qualified"
+                   attributeFormDefault="unqualified">
+            <xs:element name="ESBFault">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="errorCode" type="xs:string"/>
+                        <xs:element name="errorMessage" type="xs:string"/>
+                        <xs:element name="errorDetail" minOccurs="0">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:any minOccurs="0" processContents="skip" namespace="##any"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+        <xs:schema xmlns="http://www.mnet.de/esb/cdm/Customer/DocumentArchiveService/v1"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   targetNamespace="http://www.mnet.de/esb/cdm/Customer/DocumentArchiveService/v1"
+                   version="1.2"
+                   elementFormDefault="qualified"
+                   attributeFormDefault="unqualified">
+            <xs:complexType name="ArchiveDocument">
+                <xs:sequence>
+                    <xs:element name="endUserId" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>The end user id for the archive request </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="document">
+                        <xs:annotation>
+                            <xs:documentation>document to be archived</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="class" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>the document class</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element name="item" minOccurs="0" maxOccurs="unbounded">
+                                    <xs:annotation>
+                                        <xs:documentation>a document can have 0 or multiple items</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="fileName" type="xs:string">
+                                                <xs:annotation>
+                                                    <xs:documentation>file name of the document item. The file type is derived from the file names postfix</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                            <xs:element name="fileData" type="xs:base64Binary">
+                                                <xs:annotation>
+                                                    <xs:documentation>data of the document item</xs:documentation>
+                                                </xs:annotation>
+                                            </xs:element>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="archiveKey" maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>in order to archive a document one more keys have to be defined</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="name" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>name of the key</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                                <xs:element name="value" type="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>value of the key</xs:documentation>
+                                    </xs:annotation>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="archiveDocument" type="tns:ArchiveDocument"/>
+            <xs:element name="archiveDocumentAsync" type="tns:ArchiveDocument"/>
+            <xs:element name="archiveDocumentResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="document">
+                            <xs:annotation>
+                                <xs:documentation>The document's meta information as archived in the DMS system</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="id" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>Unique Id of the document</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="class" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>Document class in the archive system</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="key" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                            <xs:documentation>keys that identify the document in the archive system</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="name" type="xs:string">
+                                                    <xs:annotation>
+                                                        <xs:documentation>name of the key</xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:element>
+                                                <xs:element name="value" type="xs:string">
+                                                    <xs:annotation>
+                                                        <xs:documentation>value of the key</xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:element>
+                                                <xs:element name="type" type="xs:string">
+                                                    <xs:annotation>
+                                                        <xs:documentation>type of the key. Possible values are:
+                                                            - String
+                                                            - Number
+                                                            - Currency
+                                                            - DateTime
+                                                            - FullText
+                                                            - Counter
+                                                            - User
+                                                            - BLOB</xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:element>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element ref="tns:item" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="document">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>Unique Id of the document</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="class" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>Document class in the archive system</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="key" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>keys that identify the document in the archive system</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="name" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>name of the key</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="value" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>value of the key</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="type" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>type of the key. Possible values are:
+                                                - String
+                                                - Number
+                                                - Currency
+                                                - DateTime
+                                                - FullText
+                                                - Counter
+                                                - User
+                                                - BLOB</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element ref="tns:item" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getDocument">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="endUserId" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>end user id for the getDocument request</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="documentId" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>the id of the requested document</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getDocumentResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="document" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>the requested document including the content/binary data</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="id" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>Unique Id of the document</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="class" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>Document class in the archive system</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="key" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                            <xs:documentation>keys that identify the document in the archive system</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="name" type="xs:string">
+                                                    <xs:annotation>
+                                                        <xs:documentation>name of the key</xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:element>
+                                                <xs:element name="value" type="xs:string">
+                                                    <xs:annotation>
+                                                        <xs:documentation>value of the key</xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:element>
+                                                <xs:element name="type" type="xs:string">
+                                                    <xs:annotation>
+                                                        <xs:documentation>type of the key. Possible values are:
+                                                            - String
+                                                            - Number
+                                                            - Currency
+                                                            - DateTime
+                                                            - FullText
+                                                            - Counter
+                                                            - User
+                                                            - BLOB</xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:element>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element ref="tns:item" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="item">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>Unique Id of the item</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="name" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>Name of the item</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="extension" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>file extension of the item</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="creationDate" type="xs:dateTime">
+                            <xs:annotation>
+                                <xs:documentation>creation date and time of the item</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="size" type="xs:nonNegativeInteger">
+                            <xs:annotation>
+                                <xs:documentation>size of the item</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="data" type="xs:base64Binary" minOccurs="0">
+                            <xs:annotation>
+                                <xs:documentation>The item data is only populated in the getDocument response message</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchDocuments">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="endUserId" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>the end user iid for the search request</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="docClass" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>document class to be searched in</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="searchCriteria">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="key" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                            <xs:documentation>doc keys for the seach</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="name" type="xs:string">
+                                                    <xs:annotation>
+                                                        <xs:documentation>name of the doc key on which the search criteria is based on</xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:element>
+                                                <xs:element name="value" type="xs:string">
+                                                    <xs:annotation>
+                                                        <xs:documentation>The serach result must be equal or like this value. Wildcards are specified with: *,? and _</xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:element>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="maxHits" type="xs:positiveInteger" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Limit the maximum amount of search results. </xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="operator" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>Defines how different search keys are combined. Possible values: OR,AND
+                                                Default: AND</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:pattern value="OR"/>
+                                                <xs:pattern value="AND"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="recursive" type="xs:boolean" minOccurs="0">
+                                        <xs:annotation>
+                                            <xs:documentation>If set to true the search is performed in the specified document class and all child classes. Default: false</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="searchDocumentsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="document" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>List of matching documents. Only the meta data is returned</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="id" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>Unique Id of the document</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="class" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>Document class in the archive system</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="key" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:annotation>
+                                            <xs:documentation>keys that identify the document in the archive system</xs:documentation>
+                                        </xs:annotation>
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="name" type="xs:string">
+                                                    <xs:annotation>
+                                                        <xs:documentation>name of the key</xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:element>
+                                                <xs:element name="value" type="xs:string">
+                                                    <xs:annotation>
+                                                        <xs:documentation>value of the key</xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:element>
+                                                <xs:element name="type" type="xs:string">
+                                                    <xs:annotation>
+                                                        <xs:documentation>type of the key. Possible values are:
+                                                            - String
+                                                            - Number
+                                                            - Currency
+                                                            - DateTime
+                                                            - FullText
+                                                            - Counter
+                                                            - User
+                                                            - BLOB</xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:element>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element ref="tns:item" minOccurs="0" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateDocument">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="endUserId" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>The end user id for the archive request </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="documentId" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>the Id of the document to be updated</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="archiveKey" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>the meta data that should be updated. It is enough to specify only changed keys</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="name" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>name of the key</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                    <xs:element name="value" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>value of the key</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateDocumentResponse">
+                <xs:complexType/>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="DocumentArchiveService">
+        <wsdl:port name="DocumentArchiveServiceJMS"
+                   binding="tns:DocumentArchiveServiceJMSBinding">
+            <soap:address location="mnet.Customer.op.cdm.src.v1.DocumentArchiveService"/>
+            <jms:connectionFactory>QueueConnectionFactory</jms:connectionFactory>
+            <jms:targetAddress destination="queue">mnet.Customer.op.cdm.src.v1.DocumentArchiveService</jms:targetAddress>
+        </wsdl:port>
+        <wsdl:port name="DocumentArchiveServiceHTTP"
+                   binding="tns:DocumentArchiveServiceHTTPBinding">
+            <soap:address location="http://mnetatlasdev01:12080/esb/Customer/DocumentArchiveService/v1"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="DocumentArchiveService">
+        <wsdl:operation name="archiveDocumentAsync">
+            <wsdl:input message="tns:archiveDocumentAsync"/>
+        </wsdl:operation>
+        <wsdl:operation name="updateDocument">
+            <wsdl:input message="tns:updateDocument"/>
+            <wsdl:output message="tns:updateDocumentResponse"/>
+            <wsdl:fault name="fault1" message="tns:ESBFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="archiveDocument">
+            <wsdl:input message="tns:archiveDocument"/>
+            <wsdl:output message="tns:archiveDocumentResponse"/>
+            <wsdl:fault name="fault1" message="tns:ESBFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="getDocument">
+            <wsdl:input message="tns:getDocument"/>
+            <wsdl:output message="tns:getDocumentResponse"/>
+            <wsdl:fault name="fault1" message="tns:ESBFault"/>
+        </wsdl:operation>
+        <wsdl:operation name="searchDocuments">
+            <wsdl:input message="tns:searchDocuments"/>
+            <wsdl:output message="tns:searchDocumentsResponse"/>
+            <wsdl:fault name="fault1" message="tns:ESBFault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="DocumentArchiveServiceJMSBinding"
+                  type="tns:DocumentArchiveService">
+        <soap:binding style="document"
+                      transport="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"/>
+        <jms:binding messageFormat="Text"/>
+        <wsdl:operation name="archiveDocumentAsync">
+            <soap:operation style="document"
+                            soapAction="/DocumentArchiveService/archiveDocumentAsync"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="updateDocument">
+            <soap:operation style="document" soapAction="/DocumentArchiveService/updateDocument"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="archiveDocument">
+            <soap:operation style="document" soapAction="/DocumentArchiveService/archiveDocument"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getDocument">
+            <soap:operation style="document" soapAction="/DocumentArchiveService/getDocument"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchDocuments">
+            <soap:operation style="document" soapAction="/DocumentArchiveService/searchDocuments"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="DocumentArchiveServiceHTTPBinding"
+                  type="tns:DocumentArchiveService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="archiveDocumentAsync">
+            <soap:operation style="document"
+                            soapAction="/DocumentArchiveService/archiveDocumentAsync"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="updateDocument">
+            <soap:operation style="document" soapAction="/DocumentArchiveService/updateDocument"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="archiveDocument">
+            <soap:operation style="document" soapAction="/DocumentArchiveService/archiveDocument"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getDocument">
+            <soap:operation style="document" soapAction="/DocumentArchiveService/getDocument"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="searchDocuments">
+            <soap:operation style="document" soapAction="/DocumentArchiveService/searchDocuments"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="out"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault use="literal" name="fault1"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="archiveDocumentAsync">
+        <wsdl:part name="in" element="tns:archiveDocumentAsync"/>
+    </wsdl:message>
+    <wsdl:message name="updateDocument">
+        <wsdl:part name="in" element="tns:updateDocument"/>
+    </wsdl:message>
+    <wsdl:message name="updateDocumentResponse">
+        <wsdl:part name="out" element="tns:updateDocumentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="ESBFault">
+        <wsdl:part name="fault" element="ns0:ESBFault"/>
+    </wsdl:message>
+    <wsdl:message name="archiveDocument">
+        <wsdl:part name="in" element="tns:archiveDocument"/>
+    </wsdl:message>
+    <wsdl:message name="archiveDocumentResponse">
+        <wsdl:part name="out" element="tns:archiveDocumentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="getDocument">
+        <wsdl:part name="in" element="tns:getDocument"/>
+    </wsdl:message>
+    <wsdl:message name="getDocumentResponse">
+        <wsdl:part name="out" element="tns:getDocumentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="searchDocuments">
+        <wsdl:part name="in" element="tns:searchDocuments"/>
+    </wsdl:message>
+    <wsdl:message name="searchDocumentsResponse">
+        <wsdl:part name="out" element="tns:searchDocumentsResponse"/>
+    </wsdl:message>
+</wsdl:definitions>

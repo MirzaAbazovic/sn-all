@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse 
+de.augustakom.hurrican.model.billing.Person
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="Person" table="PERSON">
+	    
+	    <!-- PrimaryKey -->
+		<id name="personNo" column="PERSON_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+        <property name="language" column="LANGUAGE" type="string"/>
+        <property name="geschlecht" column="GENDER" type="string"/>
+		<property name="name" column="NAME" type="string"/>
+        <property name="vorname" column="FIRSTNAME" type="string"/>
+
+    </class>
+	
+</hibernate-mapping>

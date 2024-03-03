@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.DeviceFritzBox
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+    <class name="DeviceFritzBox" table="DEVICE__FRITZBOX">
+
+        <cache usage="read-only"/>
+
+        <!-- PrimaryKey -->
+        <id name="deviceNo" column="DEV_NO" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+
+        <!-- Sonstige Fields -->
+        <property name="cwmpId" column="CWMP_ID" type="string"/>
+        <property name="passphrase" column="PASSPHRASE" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

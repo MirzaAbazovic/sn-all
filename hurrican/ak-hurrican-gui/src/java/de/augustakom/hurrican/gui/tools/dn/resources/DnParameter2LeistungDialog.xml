@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den About-Dialog.
+-->
+<sf>
+	
+	<Label name="wert"><text>Parameterwert:</text></Label>
+    <TextField name="wert">
+        <tooltip>Wert des Paramters</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+	<Label name="rufnummer"><text>Rufnummer:</text></Label>
+    <TextField name="rufnummer">
+        <tooltip>Rufnummer</tooltip>
+        <columns>20</columns>
+    </TextField>
+	
+	<Label name="zielrufnummer"><text>Ziel-Rufnummer:</text></Label>
+    <TextField name="zielrufnummer">
+        <tooltip>Ziel-Rufnummer (die komplette Rufnummer inkl. ONKZ, z.B. 0821998870)</tooltip>
+        <columns>20</columns>
+    </TextField>
+	
+	<Label name="nebenstelle"><text>Nebenstelle:</text></Label>
+    <TextField name="nebenstelle">
+        <tooltip>Nebenstelle, auf die das Routing zutrifft (bei Rufnummer 0821/998877 z.B. nur die 77)</tooltip>
+        <columns>20</columns>
+    </TextField>
+	
+	<Button name="add">
+        <text>Übernehmen</text>
+        <tooltip>Fügt den Parameterwert der Liste hinzu</tooltip>
+    </Button>
+    
+	<Button name="ok">
+        <text>Ok</text>
+        <tooltip>Speichert die Parameterwerte und schliesst den Dialog</tooltip>
+    </Button>
+ 
+	<Button name="cancel">
+        <text>Abbrechen</text>
+        <tooltip>Schliesst den Dialog</tooltip>
+    </Button>
+ 
+	
+</sf>

@@ -1,0 +1,18 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified"
+        targetNamespace="http://mnet.de/hurricanweb/loadtest/types"
+        xmlns:ns0="http://mnet.de/hurricanweb/loadtest/types">
+
+    <xs:element name="LoadTestRequest" type="ns0:LoadTestRequest" />
+
+    <xs:complexType name="LoadTestRequest">
+        <xs:sequence>
+            <xs:element name="customerNo" type="xs:long"/>
+            <xs:element name="orderNo" type="xs:long"/>
+            <xs:element name="requestType" type="xs:string"/>
+            <xs:element name="transactionId" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog, um einen neuen HWBaugruppenChange
+Datensatz anzulegen.
+-->
+<sf>
+
+    <Text name="title">neue Planung</Text>
+
+    <Label name="standort"><text>HVT-Standort:</text></Label>
+    <ReferenceField name="standort">
+        <tooltip>Auswahl des Standorts, an dem der Baugruppen-Schwenk erfolgen soll</tooltip>
+        <columns>25</columns>
+        <id.property>hvtIdStandort</id.property>
+        <name.property>ortsteil</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.view.HVTGruppeStdView</reference.class>
+        <selection.dialog.class>de.augustakom.hurrican.gui.hvt.HVTSelectionDialog</selection.dialog.class>
+    </ReferenceField>
+
+    <Label name="change.type"><text>Typ:</text></Label>
+    <ReferenceField name="change.type">
+        <tooltip>Auswahl der Art des Baugruppen-Schwenks</tooltip>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="physiktyp.new"><text>Physiktyp (neu):</text></Label>
+    <ReferenceField name="physiktyp.new">
+        <tooltip>Angabe des neuen Physiktyps fuer die Rangierungen. (Falls leer, wird der bestehende Physiktyp weiter verwendet)</tooltip>
+        <id.property>id</id.property>
+        <name.property>name</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.PhysikTyp</reference.class>
+    </ReferenceField>
+
+    <Label name="planned.date"><text>geplant für:</text></Label>
+    <DateComponent name="planned.date">
+        <tooltip>voraussichtliches Datum für die Ausführung</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+</sf>

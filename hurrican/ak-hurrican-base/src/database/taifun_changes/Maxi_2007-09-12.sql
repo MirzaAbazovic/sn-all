@@ -1,0 +1,54 @@
+--
+-- Maxi-Preisaenderungen zum 10.09.2007
+--
+  
+insert into leistung_modification (ID, DESCRIPTION, CANCEL_DATE, CHANGE_DATE, 
+	LEISTUNG_NO, VALUE, LEISTUNG__NO_NEW, VALUE_NEW, NETTO_OLD, NETTO_NEW, NETTO_NEW_S, UPDATE_REFERENCE)
+    values (190, 'Maxi-Aenderung 2007-09-10', '2007-09-09', '2007-09-10',
+    38363, '.', 20402, '.', 39.41, 36.89, '36,89', 0);
+insert into leistung_modification (ID, DESCRIPTION, CANCEL_DATE, CHANGE_DATE, 
+	LEISTUNG_NO, VALUE, LEISTUNG__NO_NEW, VALUE_NEW, NETTO_OLD, NETTO_NEW, NETTO_NEW_S, UPDATE_REFERENCE)
+    values (191, 'Maxi-Aenderung 2007-09-10', '2007-09-09', '2007-09-10',
+    38363, 'AKW', 20402, 'AKW', 7.57, 5.05, '5,05', 0);
+insert into leistung_modification (ID, DESCRIPTION, CANCEL_DATE, CHANGE_DATE, 
+	LEISTUNG_NO, VALUE, LEISTUNG__NO_NEW, VALUE_NEW, NETTO_OLD, NETTO_NEW, NETTO_NEW_S, UPDATE_REFERENCE)
+    values (192, 'Maxi-Aenderung 2007-09-10', '2007-09-09', '2007-09-10',
+    38363, 'AÜW', 20402, 'AÜW', 7.57, 5.05, '5,05', 0);
+insert into leistung_modification (ID, DESCRIPTION, CANCEL_DATE, CHANGE_DATE, 
+	LEISTUNG_NO, VALUE, LEISTUNG__NO_NEW, VALUE_NEW, NETTO_OLD, NETTO_NEW, NETTO_NEW_S, UPDATE_REFERENCE)
+    values (193, 'Maxi-Aenderung 2007-09-10', '2007-09-09', '2007-09-10',
+    38363, 'EVO', 20402, 'EVO', 7.57, 5.05, '5,05', 0);
+insert into leistung_modification (ID, DESCRIPTION, CANCEL_DATE, CHANGE_DATE, 
+	LEISTUNG_NO, VALUE, LEISTUNG__NO_NEW, VALUE_NEW, NETTO_OLD, NETTO_NEW, NETTO_NEW_S, UPDATE_REFERENCE)
+    values (194, 'Maxi-Aenderung 2007-09-10', '2007-09-09', '2007-09-10',
+    38363, 'LEW', 20402, 'LEW', 7.57, 5.05, '5,05', 0);
+insert into leistung_modification (ID, DESCRIPTION, CANCEL_DATE, CHANGE_DATE, 
+	LEISTUNG_NO, VALUE, LEISTUNG__NO_NEW, VALUE_NEW, NETTO_OLD, NETTO_NEW, NETTO_NEW_S, UPDATE_REFERENCE)
+    values (195, 'Maxi-Aenderung 2007-09-10', '2007-09-09', '2007-09-10',
+    38363, 'STAWA', 20402, 'STAWA', 7.57, 5.05, '5,05', 0);
+
+insert into leistung_modification (ID, DESCRIPTION, CANCEL_DATE, CHANGE_DATE, 
+	LEISTUNG_NO, NETTO_OLD, NETTO_NEW, NETTO_NEW_S, UPDATE_REFERENCE)
+    values (196, 'Maxi-Aenderung 2007-09-10', '2007-09-09', '2007-09-10', 
+    37663, -5.89, -3.36, '-3,36', 0);
+    
+insert into leistung_modification (ID, DESCRIPTION, CANCEL_DATE, CHANGE_DATE, 
+	LEISTUNG_NO, NETTO_OLD, NETTO_NEW, NETTO_NEW_S, UPDATE_REFERENCE)
+    values (197, 'Maxi-Aenderung 2007-09-10', '2007-09-09', '2007-09-10', 
+    38365, -39.41, -36.89, '-36,89', 0);
+    
+insert into leistung_modification (ID, DESCRIPTION, CANCEL_DATE, CHANGE_DATE, 
+	LEISTUNG_NO, NETTO_OLD, NETTO_NEW, NETTO_NEW_S, UPDATE_REFERENCE)
+    values (198, 'Maxi-Aenderung 2007-09-10', '2007-09-09', '2007-09-10', 
+    38366, -1.18, -1.11, '-1,11', 0);
+
+insert into leistung_modification (ID, DESCRIPTION, CANCEL_DATE, CHANGE_DATE, 
+	LEISTUNG_NO, VALUE, LEISTUNG__NO_NEW, VALUE_NEW, NETTO_OLD, NETTO_NEW, NETTO_NEW_S, UPDATE_REFERENCE)
+    values (199, 'Maxi-Aenderung 2007-09-10', '2007-09-09', '2007-09-10',
+    38386, 'Flatrate', 37219, 'Flatrate', 31.00, 30.16, '30,16', 0);
+
+--insert into leistung_modification (ID, DESCRIPTION, CANCEL_DATE, CHANGE_DATE, 
+--	LEISTUNG_NO, NETTO_OLD, NETTO_NEW, NETTO_NEW_S, UPDATE_REFERENCE)
+--    values (200, 'Maxi-Aenderung 2007-09-10', '2007-09-09', '2007-09-10', 
+--    38038, 0, 4.95, '4,95', 0);
+

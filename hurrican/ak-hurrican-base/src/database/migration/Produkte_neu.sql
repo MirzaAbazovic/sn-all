@@ -1,0 +1,344 @@
+--
+-- SQL-Script zur Konfiguration der Kombi-Produkte
+--
+
+-- Maxi DSL ISDN
+INSERT INTO T_PRODUKT (PROD_ID, PRODUKTGRUPPE_ID, PRODUKT_NR, ANSCHLUSSART, PROD_NAME_PATTERN, LEITUNGSART, AKTIONS_ID,
+	BRAUCHT_DN, AUFTRAGSERSTELLUNG, LTGNR_VORS, LTGNR_ANLEGEN, BRAUCHT_BUENDEL, 
+	ELVERLAUF, ABRECHNUNG_IN_HURRICAN, ENDSTELLEN_TYP, ACCOUNT_VORS, LI_NR, VPN_PHYSIK, IS_PARENT,
+	CHECK_CHILD, IS_COMBI_PRODUKT, VERTEILUNG_DURCH, MAX_DN_COUNT, DN_BLOCK, DN_TYP, GUELTIG_VON, GUELTIG_BIS) 
+	VALUES (420, 17, '', 'Maxi DSL + ISDN', 'Maxi DSL {DOWNSTREAM} ISDN', null, 1, 1, 0, 'DV', 1, 0, 
+	1, 0, 1, 'as', 1, 1, 0, 0, 1, 4, 10, 0, 60, '2006-03-01', '2200-01-01');
+INSERT INTO T_PRODUKT_2_SCHNITTSTELLE (PROD_ID, SCHNITTSTELLE_ID) VALUES (420, 8);
+INSERT INTO T_SPERRE_VERTEILUNG (PROD_ID, ABTEILUNG_ID) VALUES (420,2);
+INSERT INTO T_SPERRE_VERTEILUNG (PROD_ID, ABTEILUNG_ID) VALUES (420,3);
+INSERT INTO T_PRODUKT_2_PHYSIKTYP (PROD_ID, PHYSIKTYP, PHYSIKTYP_ADDITIONAL) 
+	VALUES (420,7,8),(420,507,508),(420,513,508);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (420,13,8,1);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (420,13,9,1);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (420,13,10,1);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (420,14,11,1);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (420,15,12,1);
+INSERT INTO T_BA_VERL_NEU (PROD_ID, EWSD, SDH, SCT, IPS) VALUES (420,1,1,0,1);	
+INSERT INTO T_BA_VERL_AEND_PROD_2_GRUPPE (PROD_ID, BA_VERL_AEND_GRUPPE_ID) VALUES (420,1),(420,2),(420,4);
+INSERT INTO T_PROD_2_EG (PROD_ID, EG_ID, IS_DEFAULT) VALUES (420,10,1);
+INSERT INTO T_PROD_2_EG (PROD_ID, EG_ID, IS_DEFAULT) VALUES (420,11,1);
+INSERT INTO T_PROD_2_EG (PROD_ID, EG_ID, IS_DEFAULT) VALUES (420,13,0);
+
+-- Maxi DSL analog
+INSERT INTO T_PRODUKT (PROD_ID, PRODUKTGRUPPE_ID, PRODUKT_NR, ANSCHLUSSART, PROD_NAME_PATTERN, LEITUNGSART, AKTIONS_ID,
+	BRAUCHT_DN, AUFTRAGSERSTELLUNG, LTGNR_VORS, LTGNR_ANLEGEN, BRAUCHT_BUENDEL, 
+	ELVERLAUF, ABRECHNUNG_IN_HURRICAN, ENDSTELLEN_TYP, ACCOUNT_VORS, LI_NR, VPN_PHYSIK, IS_PARENT,
+	CHECK_CHILD, IS_COMBI_PRODUKT, VERTEILUNG_DURCH, MAX_DN_COUNT, DN_BLOCK, DN_TYP, GUELTIG_VON, GUELTIG_BIS) 
+	VALUES (421, 17, '', 'Maxi DSL + analog', 'Maxi DSL {DOWNSTREAM} analog', null, 1, 1, 0, 'DV', 1, 0, 
+	1, 0, 1, 'as', 1, 1, 0, 0, 1, 4, 1, 0, 60, '2006-03-01', '2200-01-01');	
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (421,13,8,1);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (421,13,9,1);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (421,13,10,1);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (421,14,11,1);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (421,15,12,1);
+INSERT INTO T_SPERRE_VERTEILUNG (PROD_ID, ABTEILUNG_ID) VALUES (421,2);
+INSERT INTO T_SPERRE_VERTEILUNG (PROD_ID, ABTEILUNG_ID) VALUES (421,3);
+INSERT INTO T_PRODUKT_2_PHYSIKTYP (PROD_ID, PHYSIKTYP, PHYSIKTYP_ADDITIONAL) 
+	VALUES (421,7,12),(421,507,512),(421,513,512);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, IS_DEFAULT) VALUES (421,13,1);
+INSERT INTO T_BA_VERL_NEU (PROD_ID, EWSD, SDH, SCT, IPS) VALUES (421,1,1,0,1);	
+INSERT INTO T_BA_VERL_AEND_PROD_2_GRUPPE (PROD_ID, BA_VERL_AEND_GRUPPE_ID) VALUES (421,1),(421,2),(421,4);
+INSERT INTO T_PROD_2_EG (PROD_ID, EG_ID, IS_DEFAULT) VALUES (421,11,1);
+INSERT INTO T_PROD_2_EG (PROD_ID, EG_ID, IS_DEFAULT) VALUES (421,13,0);
+
+-- Premium DSL
+INSERT INTO T_PRODUKT (PROD_ID, PRODUKTGRUPPE_ID, PRODUKT_NR, ANSCHLUSSART, PROD_NAME_PATTERN, LEITUNGSART, AKTIONS_ID,
+	BRAUCHT_DN, AUFTRAGSERSTELLUNG, LTGNR_VORS, LTGNR_ANLEGEN, BRAUCHT_BUENDEL, 
+	ELVERLAUF, ABRECHNUNG_IN_HURRICAN, ENDSTELLEN_TYP, ACCOUNT_VORS, LI_NR, VPN_PHYSIK, IS_PARENT,
+	CHECK_CHILD, IS_COMBI_PRODUKT, VERTEILUNG_DURCH, MAX_DN_COUNT, DN_BLOCK, DN_TYP, GUELTIG_VON, GUELTIG_BIS) 
+	VALUES (430, 18, '', 'Premium DSL + ISDN', 'Premium DSL {DOWNSTREAM} ISDN', null, 1, 1, 0, 'DV', 1, 0, 
+	1, 0, 1, 'as', 1, 1, 0, 0, 1, 4, 10, 0, 60, '2006-03-01', '2200-01-01');
+INSERT INTO T_PRODUKT_2_SCHNITTSTELLE (PROD_ID, SCHNITTSTELLE_ID) VALUES (430, 8);
+INSERT INTO T_SPERRE_VERTEILUNG (PROD_ID, ABTEILUNG_ID) VALUES (430,2);
+INSERT INTO T_SPERRE_VERTEILUNG (PROD_ID, ABTEILUNG_ID) VALUES (430,3);
+INSERT INTO T_PRODUKT_2_PHYSIKTYP (PROD_ID, PHYSIKTYP, PHYSIKTYP_ADDITIONAL) 
+	VALUES (430,7,8),(430,507,508),(430,513,508);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (430,13,8,1);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (430,13,9,1);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (430,13,10,1);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (430,14,11,1);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (430,15,12,1);
+INSERT INTO T_BA_VERL_NEU (PROD_ID, EWSD, SDH, SCT, IPS) VALUES (430,1,1,0,1);	
+INSERT INTO T_BA_VERL_AEND_PROD_2_GRUPPE (PROD_ID, BA_VERL_AEND_GRUPPE_ID) VALUES (430,1),(430,2),(430,4);
+INSERT INTO T_PROD_2_EG (PROD_ID, EG_ID, IS_DEFAULT) VALUES (430,10,1);
+INSERT INTO T_PROD_2_EG (PROD_ID, EG_ID, IS_DEFAULT) VALUES (430,11,1);
+INSERT INTO T_PROD_2_EG (PROD_ID, EG_ID, IS_DEFAULT) VALUES (430,13,0);
+
+-- Premium DSL analog
+INSERT INTO T_PRODUKT (PROD_ID, PRODUKTGRUPPE_ID, PRODUKT_NR, ANSCHLUSSART, PROD_NAME_PATTERN, LEITUNGSART, AKTIONS_ID,
+	BRAUCHT_DN, AUFTRAGSERSTELLUNG, LTGNR_VORS, LTGNR_ANLEGEN, BRAUCHT_BUENDEL, 
+	ELVERLAUF, ABRECHNUNG_IN_HURRICAN, ENDSTELLEN_TYP, ACCOUNT_VORS, LI_NR, VPN_PHYSIK, IS_PARENT,
+	CHECK_CHILD, IS_COMBI_PRODUKT, VERTEILUNG_DURCH, MAX_DN_COUNT, DN_BLOCK, DN_TYP, GUELTIG_VON, GUELTIG_BIS) 
+	VALUES (431, 18, '', 'Premium DSL + analog', 'Premium DSL {DOWNSTREAM} analog', null, 1, 1, 0, 'DV', 1, 0, 
+	1, 0, 1, 'as', 1, 1, 0, 0, 1, 4, 1, 0, 60, '2006-03-01', '2200-01-01');
+INSERT INTO T_PRODUKT_2_SCHNITTSTELLE (PROD_ID, SCHNITTSTELLE_ID) VALUES (431, 8);
+INSERT INTO T_SPERRE_VERTEILUNG (PROD_ID, ABTEILUNG_ID) VALUES (431,2);
+INSERT INTO T_SPERRE_VERTEILUNG (PROD_ID, ABTEILUNG_ID) VALUES (431,3);
+INSERT INTO T_PRODUKT_2_PHYSIKTYP (PROD_ID, PHYSIKTYP, PHYSIKTYP_ADDITIONAL) 
+	VALUES (431,7,12),(431,507,512),(431,513,512);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (431,13,8,1);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (431,13,9,1);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (431,13,10,1);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (431,14,11,1);
+INSERT INTO T_PROD_2_TECH_LS (PROD_ID, TECH_LS_ID, TECH_LS_DEPENDENCY, IS_DEFAULT) VALUES (431,15,12,1);
+INSERT INTO T_BA_VERL_NEU (PROD_ID, EWSD, SDH, SCT, IPS) VALUES (431,1,1,0,1);	
+INSERT INTO T_BA_VERL_AEND_PROD_2_GRUPPE (PROD_ID, BA_VERL_AEND_GRUPPE_ID) VALUES (431,1),(431,2),(431,4);
+INSERT INTO T_PROD_2_EG (PROD_ID, EG_ID, IS_DEFAULT) VALUES (431,11,1);
+INSERT INTO T_PROD_2_EG (PROD_ID, EG_ID, IS_DEFAULT) VALUES (431,13,0);
+
+--
+-- Produktwechsel (AK-ADSL auf DSLplus, MaxiDSL und PremiumDSL)
+-- Anschlussuebernahmen
+--insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (400,410,5000,1);
+--insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (400,420,5000,1);
+--insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (400,430,5000,1);
+-- DSL-Kreuzungen
+--insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (400,411,5005,5);
+--insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (400,421,5005,5);
+--insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (400,431,5005,5);
+-- Produktwechsel (DSLplus auf MaxiDSL und PremiumDSL)
+-- Anschlussuebernahmen
+--insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (410,420,5000,1);
+--insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (410,430,5000,1);
+-- DSL-Kreuzungen
+--insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (410,421,5005,5);
+--insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (410,431,5005,5);
+-- Produktwechsel (DSLplus auf MaxiDSL und PremiumDSL)
+-- Anschlussuebernahmen
+--insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (411,421,5000,1);
+--insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (411,431,5000,1);
+-- DSL-Kreuzungen
+--insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (411,420,5005,5);
+--insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (411,430,5005,5);
+
+-- Produktwechsel (alt-Produkte auf MaxiDSL ISDN)
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (9,420,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (56,420,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (57,420,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (315,420,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (316,420,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (317,420,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (320,420,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (321,420,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (324,420,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (325,420,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (326,420,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (327,420,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (330,420,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (331,420,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (332,420,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (333,420,5000,10);
+--  DSL-Kreuzung (alt-DSL auf MaxiDSL ISDN)
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (9,420,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (56,420,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (57,420,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (315,420,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (316,420,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (317,420,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (320,420,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (321,420,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (324,420,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (325,420,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (326,420,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (327,420,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (330,420,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (331,420,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (332,420,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (333,420,5005,5);
+
+-- Produktwechsel (alt-Produkte auf MaxiDSL analog)
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (9,421,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (56,421,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (57,421,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (315,421,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (316,421,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (317,421,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (320,421,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (321,421,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (324,421,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (325,421,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (326,421,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (327,421,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (330,421,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (331,421,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (332,421,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (333,421,5000,10);
+-- DSL-Kreuzung (alt-DSL auf MaxiDSL analog
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (9,421,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (56,421,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (57,421,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (315,421,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (316,421,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (317,421,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (320,421,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (321,421,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (324,421,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (325,421,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (326,421,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (327,421,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (330,421,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (331,421,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (332,421,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (333,421,5005,5);
+
+-- Produktwechsel (alt-Produkte auf PremiumDSL ISDN)
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (9,430,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (56,430,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (57,430,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (315,430,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (316,430,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (317,430,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (320,430,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (321,430,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (324,430,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (325,430,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (326,430,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (327,430,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (330,430,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (331,430,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (332,430,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (333,430,5000,10);
+--   DSL-Kreuzung (alt-DSL auf PremiumDSL ISDN)
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (9,430,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (56,430,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (57,430,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (315,430,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (316,430,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (317,430,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (320,430,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (321,430,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (324,430,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (325,430,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (326,430,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (327,430,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (330,430,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (331,430,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (332,430,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (333,430,5005,5);
+-- Produktwechsel (alt-Produkte auf PremiumDSL analog)
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (9,431,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (56,431,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (57,431,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (315,431,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (316,431,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (317,431,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (320,431,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (321,431,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (324,431,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (325,431,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (326,431,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (327,431,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (330,431,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (331,431,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (332,431,5000,10);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (333,431,5000,10);
+--   DSL-Kreuzung (alt-DSL auf PremiumDSL analog)
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (9,431,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (56,431,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (57,431,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (315,431,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (316,431,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (317,431,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (320,431,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (321,431,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (324,431,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (325,431,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (326,431,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (327,431,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (330,431,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (331,431,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (332,431,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (333,431,5005,5);
+
+-- Produktwechsel (MaxiDSL auf PremiumDSL)
+-- Anschlussuebernahme
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (420,430,5000,1);
+-- DSL-Kreuzung
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (420,431,5005,5);
+-- Produktwechsel (MaxiDSL auf PremiumDSL)
+-- Anschlussuebernahmen
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (421,431,5000,1);
+-- DSL-Kreuzungen
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (421,430,5005,5);
+-- Produktwechsel (PremiumDSL auf MaxiDSL)
+-- Anschlussuebernahme
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (430,420,5000,1);
+-- DSL-Kreuzung
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (430,421,5005,5);
+-- Produktwechsel (PremiumDSL auf MaxiDSL)
+-- Anschlussuebernahmen
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (431,421,5000,1);
+-- DSL-Kreuzungen
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (431,420,5005,5);
+
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (430,431,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (431,430,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (420,421,5005,5);
+insert into t_prod_2_prod (PROD_SRC, PROD_DEST, PHYSIKAEND_TYP, CHAIN_ID) values (421,420,5005,5);
+
+-- ProduktMappings konfigurieren
+-- Maxi DSL analog
+INSERT INTO T_PRODUKT_MAPPING (MAPPING_GROUP, EXT_PROD__NO, PROD_ID, MAPPING_PART_TYPE) values (1000, 322, 421, 'phone');
+INSERT INTO T_PRODUKT_MAPPING (MAPPING_GROUP, EXT_PROD__NO, PROD_ID, MAPPING_PART_TYPE) values (1000, 420, 421, 'dsl');
+-- Maxi DSL ISDN
+INSERT INTO T_PRODUKT_MAPPING (MAPPING_GROUP, EXT_PROD__NO, PROD_ID, MAPPING_PART_TYPE) values (1001, 323, 420, 'phone');
+INSERT INTO T_PRODUKT_MAPPING (MAPPING_GROUP, EXT_PROD__NO, PROD_ID, MAPPING_PART_TYPE) values (1001, 420, 420, 'dsl');
+
+-- Premium DSL analog
+INSERT INTO T_PRODUKT_MAPPING (MAPPING_GROUP, EXT_PROD__NO, PROD_ID, MAPPING_PART_TYPE) values (1002, 340, 431, 'phone');
+INSERT INTO T_PRODUKT_MAPPING (MAPPING_GROUP, EXT_PROD__NO, PROD_ID, MAPPING_PART_TYPE) values (1002, 430, 431, 'dsl');
+-- Premium DSL ISDN (MSN)
+INSERT INTO T_PRODUKT_MAPPING (MAPPING_GROUP, EXT_PROD__NO, PROD_ID, MAPPING_PART_TYPE) values (1003, 336, 430, 'phone');
+INSERT INTO T_PRODUKT_MAPPING (MAPPING_GROUP, EXT_PROD__NO, PROD_ID, MAPPING_PART_TYPE) values (1003, 430, 430, 'dsl');
+-- Premium DSL ISDN (TK)
+INSERT INTO T_PRODUKT_MAPPING (MAPPING_GROUP, EXT_PROD__NO, PROD_ID, MAPPING_PART_TYPE) values (1004, 337, 430, 'phone');
+INSERT INTO T_PRODUKT_MAPPING (MAPPING_GROUP, EXT_PROD__NO, PROD_ID, MAPPING_PART_TYPE) values (1004, 430, 430, 'dsl');
+
+
+-- DN-Leistungskonfig fuer MaxiKomplett
+insert into T_LB_2_PRODUKT (LB_ID, LEISTUNG__NO, PRODUCT_OE__NO, DESCRIPTION) VALUES (4, 20395, 2000, 'MaxiKomplett Analog');
+insert into T_LB_2_PRODUKT (LB_ID, LEISTUNG__NO, PRODUCT_OE__NO, DESCRIPTION) VALUES (5, 20426, 2000, 'MaxiKomplett ISDN');
+
+-- TODO: Rangierungsmatrix ueber GUI erstellen
+
+
+-- Strassenkonfiguration
+create table p2sl_tmp (
+	prod_id integer(9) not null,
+	sl_id integer(9) not null,
+	freigabe_id integer(9) not null);
+-- Konfiguration fuer MaxiDSL+ISDN
+insert into p2sl_tmp (prod_id, sl_id, freigabe_id)
+	select 420, src.sl_id, src.freigabe_id from t_prod_2_sl src where src.prod_id=324;
+insert into t_prod_2_sl (prod_id, sl_id, freigabe_id) 
+	select src.prod_id, src.sl_id, src.freigabe_id from p2sl_tmp src;
+delete from p2sl_tmp;
+-- Konfiguration fuer MaxiDSL+analog
+insert into p2sl_tmp (prod_id, sl_id, freigabe_id)
+	select 421, src.sl_id, src.freigabe_id from t_prod_2_sl src where src.prod_id=324;
+insert into t_prod_2_sl (prod_id, sl_id, freigabe_id) 
+	select src.prod_id, src.sl_id, src.freigabe_id from p2sl_tmp src;
+delete from p2sl_tmp;
+
+-- Konfiguration fuer PremiumDSL+ISDN
+insert into p2sl_tmp (prod_id, sl_id, freigabe_id)
+	select 430, src.sl_id, src.freigabe_id from t_prod_2_sl src where src.prod_id=324;
+insert into t_prod_2_sl (prod_id, sl_id, freigabe_id) 
+	select src.prod_id, src.sl_id, src.freigabe_id from p2sl_tmp src;
+delete from p2sl_tmp;
+-- Konfiguration fuer PremiumDSL+analog
+insert into p2sl_tmp (prod_id, sl_id, freigabe_id)
+	select 431, src.sl_id, src.freigabe_id from t_prod_2_sl src where src.prod_id=324;
+insert into t_prod_2_sl (prod_id, sl_id, freigabe_id) 
+	select src.prod_id, src.sl_id, src.freigabe_id from p2sl_tmp src;
+delete from p2sl_tmp;
+-- temp. Tabelle wieder entfernen
+drop table p2sl_tmp;
+
+

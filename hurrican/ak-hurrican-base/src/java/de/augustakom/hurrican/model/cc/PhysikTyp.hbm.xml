@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.PhysikTyp
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="PhysikTyp" table="T_PHYSIKTYP">
+
+        <cache usage="nonstrict-read-write"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="name" column="NAME" type="string"/>
+        <property name="beschreibung" column="BESCHREIBUNG" type="string"/>
+        <property name="hvtTechnikId" column="HVT_TECHNIK_ID" type="long"/>
+        <component name="maxBandwidth" class="de.augustakom.hurrican.model.cc.Bandwidth">
+            <property name="upstream" type="int">
+            <column name="max_Bandwidth_upstream"/>
+            </property>
+            <property name="downstream" type="int">
+            <column name="max_Bandwidth_downstream"/>
+            </property>
+        </component>
+        <property name="hwSchnittstelle" column="HW_SCHNITTSTELLE" type="string"/>
+        <property name="ptGroup" column="PT_GROUP" type="long"/>
+        <property name="cpsTransferMethod" column="CPS_TRANSFER_METHOD" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

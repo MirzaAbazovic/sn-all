@@ -1,0 +1,6 @@
+update T_HW_BAUGRUPPEN_TYP set NAME='O-0881V-P_VDSL2' where ID=172;
+update T_HW_BAUGRUPPEN_TYP set NAME='O-0881V-P_POTS' where ID=173;
+
+
+
+

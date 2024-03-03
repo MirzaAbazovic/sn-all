@@ -1,0 +1,6 @@
+Aktuelle Version von ojdbc6.jar:
+----------------------------------------
+Classes for use with JDK 1.6. It contains the JDBC driver classes except
+classes for NLS support in Oracle Object and Collection types.
+
+Oracle Database 11g Release 2 (11.2.0.1.0) JDBC Drivers

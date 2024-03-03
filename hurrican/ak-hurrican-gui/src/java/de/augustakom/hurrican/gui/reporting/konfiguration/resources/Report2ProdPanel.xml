@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Report-Produkt-Zuordnung.
+-->
+<sf>
+      
+     <Button name="save.config">
+        <icon>de/augustakom/hurrican/gui/images/save.gif</icon>
+        <tooltip>Speichert die aktuelle Report-Produkt-Zuordnung</tooltip>
+    </Button> 
+    
+    <Button name="delete.config">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht die aktuelle Report-Produkt-Zuordnung</tooltip>
+    </Button>
+    
+    <Button name="add.command">
+        <icon>de/augustakom/hurrican/gui/images/left.gif</icon>
+        <tooltip>Fügt die selektierten Produkte hinzu</tooltip>
+    </Button>
+    
+    <Button name="remove.command">
+        <icon>de/augustakom/hurrican/gui/images/right.gif</icon>
+        <tooltip>Entfernt die selektierten Produkte</tooltip>
+    </Button>
+    
+    <Text name="assigned.products">Zugeordnete Produkte</Text>
+    <Text name="available.products">Verfügbare Produkte</Text>
+    <Text name="available.stati">Produkt-Stati</Text>
+    
+    <Text name="ask.save.title">Änderungen speichern?</Text>
+    <Text name="ask.save.msg">Sollen die vorgenommenen Änderungen wirklich
+gespeichert werden?</Text>
+
+    <Text name="ask.delete.title">Zuordnung löschen?</Text>
+    <Text name="ask.delete.msg">Soll die aktuell angezeigte Zuordnung
+wirklich gelöscht werden?</Text>
+    
+</sf>

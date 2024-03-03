@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Citrus Simulator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simulator Logging">
+    <meta name="author" content="M-net Telekommunikations GmbH">
+
+    <link href="{{contextPath}}/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+        padding-top: 60px;
+        }
+
+        .dl-horizontal dt {
+        width: 200px;
+        }
+
+        .dl-horizontal dd {
+        margin-left: 220px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" id="nav-brand" href="{{contextPath}}/status">Simulator</a>
+            <div class="nav-collapse">
+                <ul id="header-nav" class="nav">
+                    <li><a href="{{contextPath}}/status">Status</a></li>
+                    <li><a href="{{contextPath}}/activity">Activity</a></li>
+                    <li><a href="{{contextPath}}/invoke">Invoke</a></li>
+                    <li class="active"><a href="{{contextPath}}/logs">Logs</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1 class="page-header">Logging <small>Simulator log files</small></h1>
+
+    <p>Log directory: {{logDirectory}}</p>
+    <div id="logs">
+        {{#each logFiles}}
+        <p><a href="{{contextPath}}/logs/content?file={{this}}" target="_blank">{{this}}</a></p>
+        {{/each}}
+        {{#unless logFiles}}
+        <p>No log files found in log directory!</p>
+        {{/unless}}
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Abteilungsauswahl
+-->
+<sf>
+    
+    <Text name="ba.title">Bauauftrag: Manuelle Verteilung</Text>
+    <Text name="proj.title">Projektierung: Manuelle Verteilung</Text>
+    <Text name="termin.title">Termin Verschiebung</Text>
+   
+    <Text name="btn.save.text">Verteilen</Text>
+    <Text name="btn.save.tooltip">Verteilt den Bauauftrag bzw. die Projektierung an die selektierten Abteilungen</Text>
+   
+   	<Text name="btn.termin.text">Abschliessen</Text>
+    <Text name="btn.termin.tooltip">Verschiebt den Realisierungstermin</Text>
+    
+    <Text name="btn.cancel.text">Abbrechen</Text>
+    <Text name="btn.cancel.tooltip">Dialog schliessen, ohne Verteilung</Text>
+    
+    <Text name="cb.nl.tooltip">ausführende Niederlassung der Abteilung {0}</Text>
+    <Text name="real.date.tooltip">Vorgabe-Termin für die Abteilung {0}</Text>
+    
+  	<ReferenceField name="ext.service.provider">
+		<tooltip>Auswahl des zu beauftragenden externen Dienstleisters</tooltip>
+		<id.property>id</id.property>
+		<name.property>shortName</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.ExtServiceProvider</reference.class>
+	</ReferenceField>
+
+    <CheckBox name="ffm.system">
+        <text>FFM-System</text>
+        <tooltip>Übergibt den Bauauftrag an das FFM-System zur Techniker-Disposition</tooltip>
+    </CheckBox>
+    
+</sf>

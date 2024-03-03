@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <getCustomerLoginDetailsResponse
+                xmlns="http://www.mnet.de/esb/cdm/Customer/CustomerOrderService/v1">
+            <customerOrder>
+                <customerOrderId>${customerOrderId}</customerOrderId>
+                <login>
+                    <technologyType>DataInternet</technologyType>
+                    <detail>
+                        <key>PppUser</key>
+                        <value>@ignore@</value>
+                    </detail>
+                    <detail>
+                        <key>PppPassword</key>
+                        <value>@ignore@</value>
+                    </detail>
+                    <detail>
+                        <key>IpMode</key>
+                        <value>IPv6 DS-Lite</value>
+                    </detail>
+                    <detail>
+                        <key>VlanIdDaten</key>
+                        <value>40</value>
+                    </detail>
+                    <detail>
+                        <key>AftrAddress</key>
+                        <value>aftr.prod.m-online.net</value>
+                    </detail>
+                </login>
+            </customerOrder>
+        </getCustomerLoginDetailsResponse>
+    </soap:Body>
+</soap:Envelope>

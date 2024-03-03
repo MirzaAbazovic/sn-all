@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse de.augustakom.authentication.model.AKUserSession
+-->
+
+<hibernate-mapping package="de.augustakom.authentication.model">
+    <class name="AKUserSession" table="USERSESSION">
+
+        <!-- PrimaryKey von AKUserSession/USERSESSION -->
+        <id name="sessionId" column="SESSION_ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_USERSESSION_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields von AKUserSession/USERSESSION -->
+        <property name="userId" column="USER_ID" type="long" not-null="true"/>
+        <property name="loginTime" column="LOGIN_TIME" type="timestamp" not-null="true"/>
+        <property name="deprecationTime" column="DEPRECATION_TIME" type="timestamp" not-null="true"/>
+        <property name="hostUser" column="HOSTUSER" type="string"/>
+        <property name="hostName" column="HOSTNAME" type="string"/>
+        <property name="ipAddress" column="IP" type="string"/>
+        <property name="applicationId" column="APP_ID" type="long"/>
+        <property name="applicationVersion" column="APP_VERSION" type="string"/>
+    </class>
+
+</hibernate-mapping>
+

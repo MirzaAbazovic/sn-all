@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:tns="http://www.mnet.de/esb/cdm/Resource/ResourceOrderManagementNotificationService/v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:jms="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  name="ResourceOrderManagementNotificationService"
+                  targetNamespace="http://www.mnet.de/esb/cdm/Resource/ResourceOrderManagementNotificationService/v1">
+    <wsdl:documentation>Version 1.0</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema xmlns="http://www.mnet.de/esb/cdm/Resource/ResourceOrderManagementNotificationService/v1"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   targetNamespace="http://www.mnet.de/esb/cdm/Resource/ResourceOrderManagementNotificationService/v1"
+                   version="1.0"
+                   elementFormDefault="qualified"
+                   attributeFormDefault="unqualified">
+            <xs:complexType name="ErrorType">
+                <xs:sequence>
+                    <xs:element name="errorCode" type="xs:string"/>
+                    <xs:element name="errorDescription" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="NotificationDetailType">
+                <xs:sequence>
+                    <xs:element name="key" type="xs:string"/>
+                    <xs:element name="value" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="NotificationType">
+                <xs:sequence>
+                    <xs:element name="lineId" type="xs:string" minOccurs="0"/>
+                    <xs:element name="executionDate" type="xs:date" minOccurs="0"/>
+                    <xs:element name="notificationDetail"
+                                type="tns:NotificationDetailType"
+                                minOccurs="0"
+                                maxOccurs="unbounded"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="OrderIdType">
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[A-Za-z0-9]{3}_.{1,96}"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:element name="notifyPortOrderUpdate">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="orderId" type="tns:OrderIdType">
+                            <xs:annotation>
+                                <xs:documentation>The orderId from the service consumer</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="notificationType" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>Captures the type of notification being sent. For example
+                                    'notifyReservePort', 'notifyReleasePort', etc.
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:choice>
+                            <xs:element name="error" type="tns:ErrorType"/>
+                            <xs:element name="notification" type="tns:NotificationType"/>
+                        </xs:choice>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="ResourceOrderManagementNotificationService">
+        <wsdl:port name="ResourceOrderManagementNotificationServiceJMSQueue"
+                   binding="tns:ResourceOrderManagementNotificationServiceJMSBinding">
+            <soap:address location="mnet.Resource.op.cdm.src.v1.ResourceOrderManagementNotificationService"/>
+            <jms:connectionFactory>QueueConnectionFactory</jms:connectionFactory>
+            <jms:targetAddress destination="queue">
+                mnet.Resource.op.cdm.src.v1.ResourceOrderManagementNotificationService
+            </jms:targetAddress>
+        </wsdl:port>
+        <wsdl:port name="ResourceOrderManagementNotificationServiceJMSTopic"
+                   binding="tns:ResourceOrderManagementNotificationServiceJMSBinding">
+            <soap:address location="mnet.Resource.op.cdm.ntf.v1.ResourceOrderManagementNotificationService"/>
+            <jms:connectionFactory>TopicConnectionFactory</jms:connectionFactory>
+            <jms:targetAddress destination="topic">
+                mnet.Resource.op.cdm.ntf.v1.ResourceOrderManagementNotificationService
+            </jms:targetAddress>
+        </wsdl:port>
+        <wsdl:port name="ResourceOrderManagementNotificationServiceHTTP"
+                   binding="tns:ResourceOrderManagementNotificationServiceHTTPBinding">
+            <soap:address
+                    location="http://mnetatlasdev01:12080/esb/Resource/ResourceOrderManagementNotificationService/v1"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="ResourceOrderManagementNotificationService">
+        <wsdl:operation name="notifyPortOrderUpdate">
+            <wsdl:input message="tns:notifyPortOrderUpdate"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ResourceOrderManagementNotificationServiceJMSBinding"
+                  type="tns:ResourceOrderManagementNotificationService">
+        <soap:binding style="document"
+                      transport="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"/>
+        <jms:binding messageFormat="Text"/>
+        <wsdl:operation name="notifyPortOrderUpdate">
+            <soap:operation style="document"
+                            soapAction="/ResourceOrderManagementNotificationService/notifyPortOrderUpdate"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="ResourceOrderManagementNotificationServiceHTTPBinding"
+                  type="tns:ResourceOrderManagementNotificationService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="notifyPortOrderUpdate">
+            <soap:operation style="document"
+                            soapAction="/ResourceOrderManagementNotificationService/notifyPortOrderUpdate"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="notifyPortOrderUpdate">
+        <wsdl:part name="in" element="tns:notifyPortOrderUpdate"/>
+    </wsdl:message>
+</wsdl:definitions>

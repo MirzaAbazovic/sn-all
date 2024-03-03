@@ -1,0 +1,22 @@
+@startuml
+
+title State-transition diagram for a sunny day scenario
+Acknowledged: Order received and passed message and basic business validation
+[*] --> Acknowledged
+
+InProgress: Order processing has started with WITA messages to DTAG
+state InProgress {
+  Acknowledged --> OrderingStarted : Start provision product. New order WITA message send
+  OrderingStarted --> OrderConfirmed : Order confirmed. QEB (confirmation of receipt) message received
+  OrderConfirmed --> OrderAccepted : ABM (order confirmation) message received
+  OrderAccepted --> PaymentNotificationDone: ENTM message received
+  PaymentNotificationDone --> OrderCompletionDone: ERLM message received
+ 
+}
+OrderCompletionDone --> Completed
+Completed: Order has been provisioned and the resource is now active
+Completed --> [*] : Final
+
+
+
+@enduml

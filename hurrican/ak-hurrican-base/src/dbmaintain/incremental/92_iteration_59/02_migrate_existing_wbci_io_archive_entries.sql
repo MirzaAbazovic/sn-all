@@ -1,0 +1,2 @@
+
+UPDATE T_IO_ARCHIVE SET REQUEST_TYP = 'VA' where REQUEST_TYP like 'VA_%' and IO_SOURCE like 'WBCI';

@@ -1,0 +1,1 @@
+update T_PROD_2_TECH_LEISTUNG set PRIORITY = 10 where TECH_LS_ID = 492 and PROD_ID in (512, 513);

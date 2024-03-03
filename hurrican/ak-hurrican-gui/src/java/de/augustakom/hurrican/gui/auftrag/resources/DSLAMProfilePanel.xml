@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+GUI-Definitionen fuer das DSLAM-Profile Panel.
+-->
+<sf>
+	
+	<Button name="new.profile">
+		<icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+		<tooltip>Auswahl und Zuordnung eines DSLAM-Profils</tooltip>
+	</Button>
+	
+</sf>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Generierung von ProduktEQConfig-Objekten.
+-->
+<sf>
+
+	<Text name="title">Produkt-EQ Konfiguration</Text>
+
+	<Label name="config.group"><text>Gruppe:</text></Label>
+	<FormattedTextField name="config.group">
+        <tooltip>Gruppierungskennung</tooltip>
+        <columns>20</columns>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="eq.typ"><text>EQ-Typ:</text></Label>
+    <ComboBox name="eq.typ">
+        <tooltip>Auswahl der zu konfigurierenden Equipment-Seite</tooltip>
+		<items>
+			<item>EQ_IN</item>
+			<item>EQ_OUT</item>
+		</items>
+    </ComboBox>
+
+    <Label name="rangierung.default"><text>Default-Rangierung:</text></Label>
+    <CheckBox name="rangierung.default">
+        <tooltip>Flag, wenn die Konfiguration fuer die Default-Rangierung gueltig ist</tooltip>
+    </CheckBox>
+
+    <Label name="rangierung.additional"><text>Zusatz-Rangierung:</text></Label>
+    <CheckBox name="rangierung.additional">
+        <tooltip>Flag, wenn die Konfiguration fuer die Zusatz-Rangierung gueltig ist</tooltip>
+    </CheckBox>
+
+	<Label name="eq.param"><text>EQ-Parameter:</text></Label>
+	<TextField name="eq.param">
+		<tooltip>Angabe des Equipment-Parameters (Property-Name aus Java-Klasse Equipment)</tooltip>
+		<maxchars>30</maxchars>
+	</TextField>
+
+	<Label name="eq.value"><text>EQ-Wert:</text></Label>
+	<TextField name="eq.value">
+		<tooltip>gewuenschter Wert fuer den Parameter</tooltip>
+		<maxchars>30</maxchars>
+	</TextField>
+
+</sf>

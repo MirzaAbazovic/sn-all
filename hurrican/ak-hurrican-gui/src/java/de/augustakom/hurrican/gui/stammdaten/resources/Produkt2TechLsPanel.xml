@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Produkt2TechLs Konfiguration
+-->
+<sf>
+	
+	<Text name="border.title">techn. Leistungen</Text>
+
+    <Button name="add.p2tls">
+		<icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+		<tooltip></tooltip>
+	</Button>
+	
+	<Button name="save.p2tls">
+		<icon>de/augustakom/hurrican/gui/images/save.gif</icon>
+		<tooltip></tooltip>
+	</Button>
+	
+	<Button name="del.p2tls">
+		<icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+		<tooltip></tooltip>
+	</Button>
+	
+	<Label name="tech.leistung"><text>techn. Leistung:</text></Label>
+	<ComboBox name="tech.leistung">
+		<tooltip>Auswahl der technischen Leistung</tooltip>
+	</ComboBox>
+	
+	<Label name="tech.leistung.dep"><text>abhaengige Leistung:</text></Label>
+	<ComboBox name="tech.leistung.dep">
+		<tooltip>Auswahl der Leistung, von der die oben ausgewählte Leistung abhängig ist</tooltip>
+	</ComboBox>
+	
+	<Label name="is.default"><text>Default:</text></Label>
+	<CheckBox name="is.default">
+		<tooltip>Angabe, ob es sich um eine Default-Leistung für das Produkt handelt</tooltip>
+	</CheckBox>
+
+	<Label name="priority"><text>Priorität:</text></Label>
+	<FormattedTextField name="priority">
+		<tooltip>Priorität der Leistung wenn mehrere Leistungen des gleichen Typs gemappt werden (0 = niedrig)</tooltip>
+		<format type="number">###</format>
+		<columns>20</columns>
+	</FormattedTextField>
+
+</sf>

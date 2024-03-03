@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions
+    name="IPProviderService"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://monline.mnet.de/IPProviderService/IPP/"
+    targetNamespace="http://monline.mnet.de/IPProviderService/IPP">
+
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://monline.mnet.de/IPProviderService/">
+
+    <xsd:element name="AssignIPV4Request" type="tns:AssignIPV4Request" />
+    <xsd:element name="AssignIPV4Response" type="tns:AssignIPV4Response" />
+    <xsd:element name="ReleaseIPV4Request" type="tns:ReleaseIPV4Request" />
+    <xsd:element name="ReleaseIPV4Response" type="tns:ReleaseIPV4Response" />
+
+    <xsd:element name="AssignIPV6Request" type="tns:AssignIPV6Request" />
+    <xsd:element name="AssignIPV6Response" type="tns:AssignIPV6Response" />
+    <xsd:element name="ReleaseIPV6Request" type="tns:ReleaseIPV6Request" />
+    <xsd:element name="ReleaseIPV6Response" type="tns:ReleaseIPV6Response" />
+
+    <xsd:element name="InvalidArgumentException" type="tns:InvalidArgumentException"/>
+
+    <xsd:complexType name="AssignIPV4Request">
+        <xsd:sequence>
+            <xsd:element name="productGroup" type="tns:productGroup"/>
+            <xsd:element name="vpnId" type="xsd:long"/>
+            <xsd:element name="purpose" type="tns:purpose"/>
+            <xsd:element name="netmaskSize" type="xsd:int"/>
+            <xsd:element name="site" type="tns:site"/>
+            <xsd:element name="user" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="AssignIPV4Response">
+        <xsd:sequence>
+            <xsd:element name="success" type="tns:success"/>
+            <xsd:element minOccurs="0" name="errorDetails" type="xsd:string"/>
+            <xsd:element name="netId" type="xsd:long"/>
+            <xsd:element name="netAddress" type="xsd:string"/>
+            <xsd:element name="netmaskSize" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ReleaseIPV4Request">
+        <xsd:sequence>
+            <xsd:element name="netId" type="xsd:long"/>
+            <xsd:element name="netAddress" type="xsd:string"/>
+            <xsd:element name="netmaskSize" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ReleaseIPV4Response">
+        <xsd:sequence>
+            <xsd:element name="success" type="tns:success"/>
+            <xsd:element minOccurs="0" name="errorDetails" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="AssignIPV6Request">
+        <xsd:sequence>
+            <xsd:element name="productGroup" type="tns:productGroup"/>
+            <xsd:element name="vpnId" type="xsd:long"/>
+            <xsd:element name="netmaskSize" type="xsd:int"/>
+            <xsd:element name="site" type="tns:site"/>
+            <xsd:element name="user" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="AssignIPV6Response">
+        <xsd:sequence>
+            <xsd:element name="success" type="tns:success"/>
+            <xsd:element minOccurs="0" name="errorDetails" type="xsd:string"/>
+            <xsd:element name="netId" type="xsd:long"/>
+            <xsd:element name="netAddress" type="xsd:string"/>
+            <xsd:element name="netmaskSize" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ReleaseIPV6Request">
+        <xsd:sequence>
+            <xsd:element name="netId" type="xsd:long"/>
+            <xsd:element name="netAddress" type="xsd:string"/>
+            <xsd:element name="netmaskSize" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ReleaseIPV6Response">
+        <xsd:sequence>
+            <xsd:element name="success" type="tns:success"/>
+            <xsd:element minOccurs="0" name="errorDetails" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="InvalidArgumentException">
+      <xsd:sequence/>
+    </xsd:complexType>
+    <xsd:simpleType name="productGroup">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="XDSL" />
+            <xsd:enumeration value="DirectAccess" />
+            <xsd:enumeration value="C2S" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="purpose">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Kundennetz" />
+            <xsd:enumeration value="Transfernetz" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="site">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="MUC" />
+            <xsd:enumeration value="AGB" />
+            <xsd:enumeration value="NUE" />
+            <xsd:enumeration value="MKK" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="success">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="yes" />
+            <xsd:enumeration value="no" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="AssignIPV4Request">
+    <wsdl:part element="tns:AssignIPV4Request" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="AssignIPV4Response">
+    <wsdl:part element="tns:AssignIPV4Response" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ReleaseIPV4Request">
+    <wsdl:part element="tns:ReleaseIPV4Request" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ReleaseIPV4Response">
+    <wsdl:part element="tns:ReleaseIPV4Response" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="AssignIPV6Request">
+    <wsdl:part element="tns:AssignIPV6Request" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="AssignIPV6Response">
+    <wsdl:part element="tns:AssignIPV6Response" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ReleaseIPV6Request">
+    <wsdl:part element="tns:ReleaseIPV6Request" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ReleaseIPV6Response">
+    <wsdl:part element="tns:ReleaseIPV6Response" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="InvalidArgumentException">
+    <wsdl:part name="InvalidArgumentException" element="tns:InvalidArgumentException"/>
+  </wsdl:message>
+
+  <wsdl:portType name="IPProviderService">
+    <wsdl:operation name="AssignIPV4">
+      <wsdl:input message="tns:AssignIPV4Request"/>
+      <wsdl:output message="tns:AssignIPV4Response"/>
+    </wsdl:operation>
+    <wsdl:operation name="ReleaseIPV4">
+      <wsdl:input message="tns:ReleaseIPV4Request"/>
+      <wsdl:output message="tns:ReleaseIPV4Response"/>
+    </wsdl:operation>
+    <wsdl:operation name="AssignIPV6">
+      <wsdl:input message="tns:AssignIPV6Request"/>
+      <wsdl:output message="tns:AssignIPV6Response"/>
+    </wsdl:operation>
+    <wsdl:operation name="ReleaseIPV6">
+      <wsdl:input message="tns:ReleaseIPV6Request"/>
+      <wsdl:output message="tns:ReleaseIPV6Response"/>
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="IPProviderServiceSOAP" type="tns:IPProviderService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="AssignIPV4">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReleaseIPV4">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AssignIPV6">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ReleaseIPV6">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="IPProviderService">
+    <wsdl:port binding="tns:IPProviderServiceSOAP" name="IPProviderServiceSOAP">
+      <soap:address location="http://monline.mnet.de/IPService/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

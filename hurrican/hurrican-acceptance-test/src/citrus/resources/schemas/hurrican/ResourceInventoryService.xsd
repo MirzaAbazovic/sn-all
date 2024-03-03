@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1" targetNamespace="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+
+    <!--############ Operations ###############-->
+	<xs:element name="updateResource">
+		<xs:complexType>
+			<xs:sequence>
+                <xs:element ref="resource" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:documentation>Resources which should be created or updated by the receiver. For every child
+                            resource there must be a previously updated parent resource - either in the same
+                            request/message or previous request/message.
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="updateResourceResponse">
+		<xs:complexType/>
+	</xs:element>
+	<xs:element name="getResourceUsage">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:group ref="ResourceIdGroup"/>
+				<xs:element name="date" type="xs:date" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Returns the usage of the resource for a certrain date</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getResourceUsageResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="contactPerson" type="ContactPerson" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Customer contact persons for the resource</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="cpe" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Consumer premise equipment used with the resource</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="type" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Device type e.g. Fritzbox</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="serialNumber" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>serial number of the device</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="deviceId" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>device specific id. Eg. CWMP ID in the case it is a Fritzbox</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="service" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Information about the service assigned to the resource</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="orderState" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Order state </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="productName" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Product name</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="vbz" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Verbindungsbezeichnung</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="locationTAE" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Lage TAE Dose</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="serviceOrderId" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Service Order Id</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="customerOrderId" type="xs:string">
+								<xs:annotation>
+									<xs:documentation>Customer Order Id</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="usage" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>Information about the usage state of the resource. E.g.: defect, used, free, reserved,..</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getResourceSpecs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="resourceSpecId" type="ResourceSpecId" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="getResourceSpecsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="resourceSpec" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ServiceFault">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="errorCode" type="xs:string"/>
+				<xs:element name="errorMessage" type="xs:string"/>
+				<xs:element name="errorDetail" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:any namespace="##any" processContents="skip" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--############ Types and Elements ###############-->
+	<xs:element name="resource" type="Resource"/>
+	<xs:element name="resourceSpec" type="ResourceSpec"/>
+	<xs:complexType name="ResourceSpec">
+		<xs:sequence>
+			<xs:group ref="ResourceSpecIdGroup"/>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Name of the resource specification</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="type">
+				<xs:annotation>
+					<xs:documentation>Type of the resource specification. Possible values:
+- LOGICAL
+- PHYSICAL</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="LOGICAL"/>
+						<xs:enumeration value="PHYSICAL"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="description" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Additional information about the resource specification.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="maxUsage" type="zeroToUnbound" default="1" minOccurs="0">
+            <xs:annotation>
+                    <xs:documentation>Maximum amount of services that can use/reference a resource based on this
+                        specification
+                        Default = 1
+                    </xs:documentation>
+                </xs:annotation>
+			</xs:element>
+			<xs:element name="characteristic" type="ResourceSpecCharacteristic" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Characteristics of the resource specification</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="parentSpec" type="ResourceSpecId" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>The parent resources specification</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="childSpec" type="ResourceSpecId" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>The resource specifications consists of these child resources specifications</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResourceSpecCharacteristic">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique name of the characteristic</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="type" type="xs:string">
+				<xs:annotation>
+                    <xs:documentation>Data type of the resource specification characteristic value which MUST be one of
+                        the XML-Schema data types, see
+                        http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/datatypes.html#d0e11239
+                    </xs:documentation>
+                </xs:annotation>
+			</xs:element>
+            <xs:element name="default" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The default value for this characteristic if no value is given (only allowed if
+                        cardinality min = 0).
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="description" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Additional information about the resource specification characteristic</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="cardinality" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The cardinality of the characteristic. min and max defines the amount limit of the
+                        value occurrences.
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+					<xs:sequence>
+                        <xs:element name="min" type="xs:nonNegativeInteger" default="1" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Minimum cardinality of the characteristic. Specify 0 if optional which
+                                mean the characteristic has no value (is null at database level).
+                                    Default = 1
+                                </xs:documentation>
+                            </xs:annotation>
+						</xs:element>
+                        <xs:element name="max" type="oneToUnbound" default="1" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Maximum cardinality of the characteristic. Must be greater or equal to
+                                "min" value. Specify "unbound" for unlimited values.
+                                    Default = 1
+                                </xs:documentation>
+                            </xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="restrictions" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Restrictions for possible characteristic values. The respective data types must conform with the specified "type" element of the characteristic.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+                    <xs:choice>
+                        <xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                        <xs:annotation>
+                                <xs:documentation>Enumeration of valid values for a characteristic value
+                                </xs:documentation>
+                            </xs:annotation>
+						</xs:element>
+						<xs:element name="range" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Valid value ranges for a characteristic value</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="from" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>lower bound (including)</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="to" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>upper bound (excluding)</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+	<xs:complexType name="ResourceSpecId">
+		<xs:sequence>
+			<xs:group ref="ResourceSpecIdGroup"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="ResourceSpecIdGroup">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique id of the resource specification within the resource inventory</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="inventory" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Name of the resource inventory</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="Resource">
+		<xs:sequence>
+			<xs:group ref="ResourceIdGroup"/>
+			<xs:element name="resourceSpec" type="ResourceSpecId">
+				<xs:annotation>
+					<xs:documentation>The Resource Specification this resource is based on.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Name of the resource</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="role" type="ResourceRole" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Roles the resource fulfills</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="characteristic" type="ResourceCharacteristic" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+                    <xs:documentation>Characteristics of the resource. Every characteristic MUST have a corresponding
+                        specification. This list of characteristics MAY be a subset of all specified characteristics.
+                    </xs:documentation>
+                </xs:annotation>
+			</xs:element>
+			<xs:element name="parentResource" type="ResourceId" minOccurs="0">
+				<xs:annotation>
+                    <xs:documentation>The resource is part of this parent resource. The parent must be known threw a
+                        previously updated parent resource - either in the same request/message or previous
+                        request/message.
+                    </xs:documentation>
+                </xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResourceRole">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Name of the role</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="description" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Additional information about the role</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResourceCharacteristic">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string">
+				<xs:annotation>
+                    <xs:documentation>Unique name of the characteristic. This name MUST match the name in the resource
+                        specification.
+                    </xs:documentation>
+                </xs:annotation>
+			</xs:element>
+			<xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+                    <xs:documentation>Value(s) of the characteristic. The format MUST correspond to the XML-Schema type
+                        representations, see http://www.w3.org/TR/2004/REC-xmlschema-2-20041028/datatypes.html#d0e11239
+                    </xs:documentation>
+                </xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResourceId">
+		<xs:sequence>
+			<xs:group ref="ResourceIdGroup"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:group name="ResourceIdGroup">
+		<xs:sequence>
+			<xs:element name="id" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Unique id of the resource within the resource inventory</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="inventory" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Name of the resource inventory</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="ContactPerson">
+		<xs:sequence>
+			<xs:element name="role" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Role of the contact person. E.g: CUSTOMER, ENDSTELLE</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="gender" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MALE or FEMALE</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="MALE"/>
+						<xs:enumeration value="FEMALE"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="title" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Academic title. E.g.: Prof. Dr. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="firstName" type="xs:string" minOccurs="0"/>
+			<xs:element name="lastName" type="xs:string"/>
+			<xs:element name="communication">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="phone" type="xs:string" minOccurs="0"/>
+						<xs:element name="mobile" type="xs:string" minOccurs="0"/>
+						<xs:element name="fax" type="xs:string" minOccurs="0"/>
+						<xs:element name="eMail" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="oneToUnbound">
+		<xs:union memberTypes="xs:positiveInteger">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="unbounded"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+	<xs:simpleType name="zeroToUnbound">
+		<xs:union memberTypes="xs:nonNegativeInteger">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="unbounded"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:union>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="AKOnlineMaster" language="java" pageWidth="595" pageHeight="842" columnWidth="518" leftMargin="57" rightMargin="20" topMargin="113" bottomMargin="28">
+	<property name="com.jasperassistant.designer.GridWidth" value="12"/>
+	<property name="com.jasperassistant.designer.GridHeight" value="12"/>
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+	<property name="com.jasperassistant.designer.Units" value="Millimeters"/>
+	<property name="com.jasperassistant.designer.Grid" value="true"/>
+	<reportFont name="Arial_Small" isDefault="false" fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<reportFont name="Arial_Default" isDefault="true" fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<reportFont name="Arial_Big" isDefault="false" fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<parameter name="KUNDE__NO" class="java.lang.Long">
+	</parameter>
+	<title>
+		<band height="230">
+			<staticText>
+				<reportElement positionType="Float" x="1" y="193" width="362" height="26"/>
+				<textElement isStyledText="true"/>
+				<text><![CDATA[zur Einrichtung und Administration ihres Anschlusses benötigen Sie folgende Zugangsdaten:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="1" y="174" width="229" height="14"/>
+				<textElement>
+					<font reportFont="Arial_Default" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sehr geehrte Kundin, sehr geehrter Kunde,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="1" y="129" width="343" height="15"/>
+				<textElement>
+					<font reportFont="Arial_Big" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Zugangsdaten für Ihre AK-Dienste]]></text>
+			</staticText>
+			<subreport>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="1" y="1" width="219" height="79"/>
+				<dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.cc.impl.reportdata.AdresseJasperDS($P{KUNDE__NO})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/Adresse.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement positionType="Float" x="328" y="2" width="80" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font reportFont="Arial_Small" size="8"/>
+				</textElement>
+				<text><![CDATA[Ihre Kundennummer]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="415" y="2" width="99" height="12">
+					<printWhenExpression><![CDATA[new Boolean($P{KUNDE__NO} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font reportFont="Arial_Small" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""+$P{KUNDE__NO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="415" y="13" width="97" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font reportFont="Arial_Small" size="8"/>
+				</textElement>
+				<text><![CDATA[(bitte immer angeben)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="415" y="27" width="76" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font reportFont="Arial_Small" size="8"/>
+				</textElement>
+				<text><![CDATA[01805-995602]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="415" y="40" width="76" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font reportFont="Arial_Small" size="8"/>
+				</textElement>
+				<text><![CDATA[0821/4500-285]]></text>
+			</staticText>
+			<textField pattern="d. MMMM yyyy">
+				<reportElement positionType="Float" x="415" y="53" width="101" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font reportFont="Arial_Small"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="345" y="53" width="63" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font reportFont="Arial_Small" size="8"/>
+				</textElement>
+				<text><![CDATA[Datum]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="346" y="40" width="62" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font reportFont="Arial_Small" size="8"/>
+				</textElement>
+				<text><![CDATA[Telefax]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="346" y="27" width="62" height="12"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font reportFont="Arial_Small" size="8"/>
+				</textElement>
+				<text><![CDATA[Telefon]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="168">
+			<subreport>
+				<reportElement positionType="Float" x="0" y="1" width="515" height="22" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true"/>
+				<subreportParameter name="KUNDE__NO">
+					<subreportParameterExpression><![CDATA[$P{KUNDE__NO}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.cc.impl.reportdata.CheckKdportalJasperDS($P{KUNDE__NO})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/auftrag/AKMailHosting.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="47" width="516" height="20" isRemoveLineWhenBlank="true"/>
+				<subreportParameter name="ACCOUNT_TITLE">
+					<subreportParameterExpression><![CDATA["AK-ADSL"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PRINT_NAMESERVER">
+					<subreportParameterExpression><![CDATA[new Boolean(true)]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.cc.impl.reportdata.Account4PGJasperDS($P{KUNDE__NO}, new Long[]{new Long(3L), new Long(16L)})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/auftrag/AKDSLAccounts.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement positionType="Float" x="0" y="73" width="516" height="20" isRemoveLineWhenBlank="true"/>
+				<subreportParameter name="ACCOUNT_TITLE">
+					<subreportParameterExpression><![CDATA["SDSL"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PRINT_NAMESERVER">
+					<subreportParameterExpression><![CDATA[new Boolean(true)]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.cc.impl.reportdata.Account4PGJasperDS($P{KUNDE__NO}, new Long[]{new Long(4L)})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/auftrag/AKDSLAccounts.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement positionType="Float" x="0" y="99" width="516" height="20" isRemoveLineWhenBlank="true"/>
+				<subreportParameter name="ACCOUNT_TITLE">
+					<subreportParameterExpression><![CDATA["Maxi"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PRINT_NAMESERVER">
+					<subreportParameterExpression><![CDATA[new Boolean(true)]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.cc.impl.reportdata.Account4PGJasperDS($P{KUNDE__NO}, new Long[]{new Long(17L)})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/auftrag/AKDSLAccounts.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement positionType="Float" x="0" y="23" width="516" height="20" isRemoveLineWhenBlank="true"/>
+				<subreportParameter name="ACCOUNT_TITLE">
+					<subreportParameterExpression><![CDATA[null]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PRINT_NAMESERVER">
+					<subreportParameterExpression><![CDATA[new Boolean(false)]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.cc.impl.reportdata.Account4PGJasperDS($P{KUNDE__NO}, new Long[]{new Long(5L)})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/auftrag/AKDSLAccounts.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement positionType="Float" isPrintRepeatedValues="false" x="0" y="148" width="515" height="20" isPrintWhenDetailOverflows="true"/>
+				<subreportExpression class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/auftrag/AKHotline.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport isUsingCache="true">
+				<reportElement positionType="Float" x="0" y="124" width="516" height="20" isRemoveLineWhenBlank="true"/>
+				<subreportParameter name="ACCOUNT_TITLE">
+					<subreportParameterExpression><![CDATA["PremiumCall"]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="PRINT_NAMESERVER">
+					<subreportParameterExpression><![CDATA[new Boolean(true)]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.cc.impl.reportdata.Account4PGJasperDS($P{KUNDE__NO}, new Long[]{new Long(18L)})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/auftrag/AKDSLAccounts.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" isSplitAllowed="false">
+			<printWhenExpression><![CDATA[new Boolean(true)]]></printWhenExpression>
+			<subreport>
+				<reportElement positionType="Float" x="0" y="0" width="517" height="54"/>
+				<subreportExpression class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/AKomFooter.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageFooter>
+</jasperReport>

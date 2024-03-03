@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Bauauftrags-Panel Extern.
+-->
+<sf>
+
+    <Label name="erledigt"><text>Bauauftrag wurde erledigt</text></Label>
+
+    <Label name="anlass"><text>Anlass:</text></Label>
+    <TextField name="anlass">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="oe.name"><text>Produkt (M.):</text></Label>
+    <TextField name="oe.name">
+        <tooltip>Produkt-Name aus Mistral</tooltip>
+    </TextField>
+
+    <Label name="produkt"><text>Produkt (H.):</text></Label>
+    <TextField name="produkt">
+        <tooltip>Produkt-Name aus Hurrican</tooltip>
+    </TextField>
+
+    <Label name="realisierungstermin"><text>Realisierung:</text></Label>
+    <DateComponent name="realisierungstermin">
+        <tooltip>Geplantes Realisierungsdatum fuer die Abteilung</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="gesamt.realisierung"><text>Gesamt-Real.:</text></Label>
+    <DateComponent name="gesamt.realisierung">
+        <tooltip>Geplantes Realisierungsdatum fuer den gesamten Auftrag</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="carrier"><text>Carrier:</text></Label>
+    <TextField name="carrier">
+        <tooltip>Name des Carriers</tooltip>
+    </TextField>
+
+    <Label name="bereitstellung"><text>Bereitstellung:</text></Label>
+    <DateComponent name="bereitstellung">
+        <tooltip>Datum der Bereitstellung</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="status"><text>BA-Status:</text></Label>
+    <TextField name="status">
+        <tooltip>Status des Bauauftrags</tooltip>
+    </TextField>
+
+    <Label name="montage.akom"><text>Montage M-net?</text></Label>
+    <CheckBox name="montage.akom">
+        <tooltip>Flag ist gesetzt, wenn die Montage durch M-net erfolgen soll</tooltip>
+    </CheckBox>
+
+    <Label name="portierungsart"><text>Portierungsart:</text></Label>
+    <TextField name="portierungsart">
+    </TextField>
+
+    <Label name="vbz">
+        <text>Verbindungsbezeichnung (VBZ):</text>
+    </Label>
+    <TextField name="vbz">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="auftrag.id"><text>Tech. Auftragsnr.:</text></Label>
+    <FormattedTextField name="auftrag.id">
+        <tooltip>Auftragsnr. aus Hurrican</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="kunde.name"><text>Kunde:</text></Label>
+    <TextField name="kunde.name">
+        <tooltip>Name des Kunden</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="es.a.name"><text>ES-A Name:</text></Label>
+    <TextField name="es.a.name">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="es.a.ort"><text>ES-A Ort:</text></Label>
+    <TextField name="es.a.ort">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="es.a.ansp"><text>ES-A Ansp.:</text></Label>
+    <TextField name="es.a.ansp">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="es.b.name"><text>ES-B Name:</text></Label>
+    <TextField name="es.b.name">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="es.b.ort"><text>ES-B Ort:</text></Label>
+    <TextField name="es.b.ort">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="es.b.ansp"><text>ES-B Ansp.:</text></Label>
+    <TextField name="es.b.ansp">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="ext.service.provider.name"><text>Dienstleister:</text></Label>
+    <TextField name="ext.service.provider.name">
+        <tooltip>Externer Dienstleister</tooltip>
+    </TextField>
+
+    <Label name="physik.info"><text>Physik-Info:</text></Label>
+    <TextField name="physik.info">
+        <tooltip>Information zur verwendeten Physik</tooltip>
+    </TextField>
+
+    <Label name="install.time.slot"><text>TimeSlot:</text></Label>
+    <TextField name="install.time.slot">
+        <tooltip>Zeit-Fenster fuer die ERSTE Realisierung</tooltip>
+    </TextField>
+
+    <Label name="bemerkung"><text>Bemerkungen:</text></Label>
+    <TextArea name="bemerkung">
+        <tooltip></tooltip>
+        <columns>50</columns>
+        <rows>5</rows>
+    </TextArea>
+
+    <Button name="print">
+        <text>Drucken</text>
+        <tooltip>Druckt den Bauauftrag</tooltip>
+    </Button>
+
+    <Button name="print.compact">
+        <text>Drucken (kompakt)</text>
+        <tooltip>Druckt eine kompakte Version des Bauauftrags</tooltip>
+    </Button>
+
+    <Button name="ba.erledigen.ext">
+        <text>Erledigen</text>
+        <tooltip>Setzt den Verlauf auf erledigt</tooltip>
+    </Button>
+
+    <Button name="bemerkungen">
+        <text>Bemerkungen</text>
+        <tooltip>Zeigt alle Bemerkungen des Verlaufs an</tooltip>
+    </Button>
+
+    <Button name="rufnummern">
+        <text>Rufnummern</text>
+        <tooltip>Zeigt die Rufnummern zu dem Auftrag an</tooltip>
+    </Button>
+
+    <Button name="show.ports">
+        <text>Ports</text>
+        <tooltip>Zeigt alle Ports des Verlaufes an</tooltip>
+    </Button>
+
+    <Icon name="has.relations">de/augustakom/hurrican/gui/images/plus.gif</Icon>
+
+</sf>

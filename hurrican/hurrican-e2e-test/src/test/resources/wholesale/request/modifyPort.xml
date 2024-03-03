@@ -1,0 +1,17 @@
+<ns:modifyPortRequest xmlns:ns="http://www.mnet.de/hurrican/wholesale/workflow/1.0/">
+ <lineId>${lineId}</lineId>
+ <ekp>
+    <id>${ekpId}</id>
+    <frameContractId>${frameContractId}</frameContractId>
+  </ekp>
+ <product>
+    <productGroup>FTTB BSA</productGroup>
+    <productName>FTTB 50</productName>
+    <productAttributes>
+       <serviceAttribute>TP</serviceAttribute>
+       <serviceAttribute>ExpEnt</serviceAttribute>
+    </productAttributes>
+ </product>
+ <desiredExecutionDate>${desiredModifyDate}</desiredExecutionDate>
+ <changeOfPortAllowed>true</changeOfPortAllowed>
+</ns:modifyPortRequest>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den ReprintReason-Dialog.
+-->
+<sf>
+    <Text name="title">Grund für wiederholten Druck</Text>
+    
+    <ComboBox name="reason">
+        <tooltip>Grund für erneuten Druck</tooltip>
+    </ComboBox> 
+    
+    <TextArea name="info">
+		<text>Dieser Report (oder ein Report der gleichen Reportgruppe) wurde für den aktuellen Auftrag/Kunden bereits gedruckt. Bitte geben Sie einen Grund für den erneuten Druck an: </text>
+		<columns>90</columns>
+		<rows>4</rows>
+		<active>bg.active</active>
+		<inactive>bg.inactive</inactive>
+	</TextArea>
+	
+	<Color name="bg.active">
+	    <red>204</red>
+	    <green>204</green>
+	    <blue>204</blue>
+	</Color>
+	
+	<Color name="bg.inactive">
+	    <red>204</red>
+	    <green>204</green>
+	    <blue>204</blue>
+	</Color>
+</sf>

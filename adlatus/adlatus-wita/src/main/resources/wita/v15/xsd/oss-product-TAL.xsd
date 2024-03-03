@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tal="http://wholesale.telekom.de/oss/v15/tal" xmlns:order="http://wholesale.telekom.de/oss/v15/order" xmlns:message="http://wholesale.telekom.de/oss/v15/message" xmlns:complex="http://wholesale.telekom.de/oss/v15/complex" xmlns:simple="http://wholesale.telekom.de/oss/v15/simple" xmlns:enum="http://wholesale.telekom.de/oss/v15/enm" targetNamespace="http://wholesale.telekom.de/oss/v15/tal" version="15.00.00/2020-05-09">
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/order" schemaLocation="oss-order.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/message" schemaLocation="oss-message.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/complex" schemaLocation="oss-type-complex.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/simple" schemaLocation="oss-type-simple.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/enm" schemaLocation="oss-type-enum.xsd"/>
+	<!-- 
+		!
+		!	Produkt im Auftrag
+		!
+	-->
+	<xsd:element name="produktAuftrag" type="tal:ProduktTALType"/>
+	<xsd:complexType name="ProduktTALType">
+		<xsd:complexContent>
+			<xsd:extension base="complex:ProduktType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		!	Bereitstellung
+		!
+	-->
+	<xsd:element name="NEU" type="tal:TALBereitstellungType"/>
+	<xsd:complexType name="TALBereitstellungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:BereitstellungProduktType">
+				<xsd:sequence>
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0"/>
+					<xsd:element name="standortA" type="complex:StandortAType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Es ist die Wohnadresse anzugeben, nicht der Standort des Leitungsabschlusses</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="standortB" type="complex:StandortBType"/>
+					<xsd:element name="vormieter" type="complex:VormieterAnschlussType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Daten zur Identifikation eines vorhandenen Netzanschlusses (Telefon, Anlagenanschluss)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ansprechpartnerMontage" type="complex:AnsprechpartnerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>der Ansprechpartner, mit dem die Montageleistung abzustimmen ist</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="montagehinweis" type="simple:MontagehinweisType" minOccurs="0"/>
+					<xsd:element name="terminReservierungsID" type="simple:ReservierungsnummerType" minOccurs="0"/>
+					<xsd:element name="uebertragungsverfahren" type="tal:Uebertragungsverfahren-TAL-Type" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Kennzeichnet das Übertragungsverfahren</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nur gültige  Übertragungsverfahren für Produktvariante zulässig</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Übertragungsverfahren 'H21' wird zu einem späteren Zeitpunkt unterstützt</xsd:documentation>							
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="schaltangaben" type="complex:SchaltangabenType">
+						<xsd:annotation>
+							<xsd:documentation>beschreibt die technischen Vorgaben zur Schaltung</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		!	Kündigung
+		!
+	-->
+	<xsd:element name="KUE-KD" type="tal:TALKuendigungType"/>
+	<xsd:complexType name="TALKuendigungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:KuendigungProduktType">
+				<xsd:sequence>
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0"/>
+					<xsd:element name="bestandsvalidierung-2" type="complex:LeitungsbezeichnungType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Bestandsvalidierung über Leitungsbezeichnung</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angabe wird bei Durchwahlanlagen ignoriert</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		!	Providerwechsel
+		!
+	-->
+	<xsd:element name="PV" type="tal:TALProviderwechselType"/>
+	<xsd:complexType name="TALProviderwechselType">
+		<xsd:complexContent>
+			<xsd:extension base="order:ProviderwechselProduktType">
+				<xsd:sequence>
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0"/>
+					<xsd:element name="standortA" type="complex:StandortAnbieterWechselErweitertType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Im Dreierprozess werden die Adressdaten aus den Vertragsdaten übernommen, Angaben zur Person, zum Gebäudeteil und Lage TAE_ONT werden berücksichtigt.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="standortB" type="complex:StandortBType"/>
+					<xsd:element name="ansprechpartnerMontage" type="complex:AnsprechpartnerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>der Ansprechpartner, mit dem die Montageleistung abzustimmen ist</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="montagehinweis" type="simple:MontagehinweisType" minOccurs="0"/>
+					<xsd:element name="terminReservierungsID" type="simple:ReservierungsnummerType" minOccurs="0"/>
+					<xsd:element name="uebertragungsverfahren" type="tal:Uebertragungsverfahren-TAL-Type" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Kennzeichnet das Übertragungsverfahren</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nur gültige  Übertragungsverfahren für Produktvariante zulässig</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Übertragungsverfahren 'H21' wird zu einem späteren Zeitpunkt unterstützt</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="schaltangaben" type="complex:SchaltangabenType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		!	Providerwechsel
+		!
+	-->
+	<xsd:element name="VBL" type="tal:TALVerbundleistungType"/>
+	<xsd:complexType name="TALVerbundleistungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:VerbundleistungProduktType">
+				<xsd:sequence>
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Pflichtangabe bei Wechsel von Telekom zu Provider</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="standortA" type="complex:StandortAnbieterWechselErweitertType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Beim Wechsel von Telekom zu Provider werden die Angaben aus der Vorabstimmung übernommen. Angaben zur Person, zum Gebäudeteil und Lage TAE_ONT werden berücksichtigt.</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Im Dreierprozess werden die Adressdaten aus den Vertragsdaten übernommen, Angaben zur Person, zum Gebäudeteil und Lage TAE_ONT werden berücksichtigt.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="standortB" type="complex:StandortBType"/>
+					<xsd:element name="ansprechpartnerMontage" type="complex:AnsprechpartnerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>der Ansprechpartner, mit dem die Montageleistung abzustimmen ist</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="montagehinweis" type="simple:MontagehinweisType" minOccurs="0"/>
+					<xsd:element name="terminReservierungsID" type="simple:ReservierungsnummerType" minOccurs="0"/>
+					<xsd:element name="uebertragungsverfahren" type="tal:Uebertragungsverfahren-TAL-Type" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Kennzeichnet das Übertragungsverfahren</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nur gültige  Übertragungsverfahren für Produktvariante zulässig</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Übertragungsverfahren 'H21' wird zu einem späteren Zeitpunkt unterstützt</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="schaltangaben" type="complex:SchaltangabenType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		!	Produktgruppenwechsel
+		!
+	-->
+	<xsd:element name="PGW" type="tal:TALProduktgruppenWechselType"/>
+	<xsd:complexType name="TALProduktgruppenWechselType">
+		<xsd:complexContent>
+			<xsd:extension base="order:ProduktgruppenwechselProduktType">
+				<xsd:sequence>
+					<xsd:element name="standortA" type="complex:StandortAType"/>
+					<xsd:element name="standortB" type="complex:StandortBType"/>
+					<xsd:element name="ansprechpartnerMontage" type="complex:AnsprechpartnerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>der Ansprechpartner, mit dem die Montageleistung abzustimmen ist</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="montagehinweis" type="simple:MontagehinweisType" minOccurs="0"/>
+					<xsd:element name="bestandsvalidierung-2" type="complex:LeitungsbezeichnungType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Bestandsvalidierung über Leitungsbezeichnung</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angabe wird bei Durchwahlanlagen ignoriert</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="uebertragungsverfahren" type="tal:Uebertragungsverfahren-TAL-Type" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Kennzeichnet das Übertragungsverfahren</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nur gültige  Übertragungsverfahren für Produktvariante zulässig</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Übertragungsverfahren 'H21' wird zu einem späteren Zeitpunkt unterstützt</xsd:documentation>							
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="schaltangaben" type="complex:SchaltangabenType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		!	Leistungsänderung
+		!
+	-->
+	<xsd:element name="LAE" type="tal:TALLeistungsaenderungType"/>
+	<xsd:complexType name="TALLeistungsaenderungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:LeistungsaenderungProduktType">
+				<xsd:sequence>
+					<xsd:element name="standortA" type="complex:StandortAType"/>
+					<xsd:element name="standortB" type="complex:StandortBType"/>
+					<xsd:element name="ansprechpartnerMontage" type="complex:AnsprechpartnerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>der Ansprechpartner, mit dem die Montageleistung abzustimmen ist</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="montagehinweis" type="simple:MontagehinweisType" minOccurs="0"/>
+					<xsd:element name="bestandsvalidierung-2" type="complex:LeitungsbezeichnungType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Bestandsvalidierung über Leitungsbezeichnung</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angabe wird bei Durchwahlanlagen ignoriert</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="uebertragungsverfahren" type="tal:Uebertragungsverfahren-TAL-Type" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Kennzeichnet das Übertragungsverfahren</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nur gültige  Übertragungsverfahren für Produktvariante zulässig</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Übertragungsverfahren 'H21' wird zu einem späteren Zeitpunkt unterstützt</xsd:documentation>							
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="schaltangaben" type="complex:SchaltangabenType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		!	Leistungsmerkmal-Änderung
+		!
+	-->
+	<xsd:element name="AEN-LMAE" type="tal:TALLeistungsmerkmalAenderungType"/>
+	<xsd:complexType name="TALLeistungsmerkmalAenderungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:LeistungsmerkmalAenderungProduktType">
+				<xsd:sequence>
+					<xsd:element name="standortA" type="complex:StandortAType"/>
+					<xsd:element name="standortB" type="complex:StandortBType"/>
+					<xsd:element name="bestandsvalidierung-2" type="complex:LeitungsbezeichnungType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Bestandsvalidierung über Leitungsbezeichnung</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angabe wird bei Durchwahlanlagen ignoriert</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="uebertragungsverfahren" type="tal:Uebertragungsverfahren-TAL-Type" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Kennzeichnet das Übertragungsverfahren</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nur gültige  Übertragungsverfahren für Produktvariante zulässig</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Übertragungsverfahren 'H21' wird zu einem späteren Zeitpunkt unterstützt</xsd:documentation>							
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="schaltangaben" type="complex:SchaltangabenType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">es dürfen in keinem Fall (weder bei Änderung des Übertragungsverfahrens noch bei Portänderung) die bereits geschalteten (belegten) Schaltangaben im Auftrag angegeben werden</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">bei einer Änderung des Übertragungsverfahrens innerhalb von niederbitratig oder hochbitratig können die Schaltangaben weggelassen werden oder es müssen neue freie Schaltangaben angegeben werden</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">bei einer Änderung des Übertragungsverfahrens von niederbitratig auf hochbitratig müssen neue freie Schaltangaben angegeben werden</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">bei einer Portänderung müssen immer freie Schaltangaben angegeben werden</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		!	Portwechsel
+		!
+	-->
+	<xsd:element name="SER-POW" type="tal:TALPortwechselType"/>
+	<xsd:complexType name="TALPortwechselType">
+		<xsd:complexContent>
+			<xsd:extension base="order:PortwechselProduktType">
+				<xsd:sequence>
+					<xsd:element name="standortB" type="complex:StandortBType"/>
+					<xsd:element name="ansprechpartnerMontage" type="complex:AnsprechpartnerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>der Ansprechpartner, mit dem die Montageleistung abzustimmen ist</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="montagehinweis" type="simple:MontagehinweisType" minOccurs="0"/>
+					<xsd:element name="bestandsvalidierung-2" type="complex:LeitungsbezeichnungType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Bestandsvalidierung über Leitungsbezeichnung</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angabe wird bei Durchwahlanlagen ignoriert</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="schaltangaben" type="complex:SchaltangabenType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		!	spezifische Datentypen
+		!
+	-->
+	<xsd:simpleType name="Uebertragungsverfahren-TAL-Type">
+		<xsd:annotation>
+			<xsd:documentation>Ausprägung des Übertragungsverfahrens</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="enum:UebertragungsverfahrenType"/>
+	</xsd:simpleType>
+	<!-- 
+		!
+		!	Produktattribute für Meldungen 
+		!
+	-->
+	<xsd:element name="produktMeldung" type="tal:ProduktTALMeldungType"/>
+	<xsd:complexType name="ProduktTALMeldungType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungProduktType">
+				<xsd:sequence>
+					<xsd:element name="uebertragungsVerfahren" type="tal:Uebertragungsverfahren-TAL-Type" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! Meldungsattribute
+		!
+	-->
+	<xsd:element name="ABM" type="tal:MeldungsattributeTAL-ABMType"/>
+	<xsd:complexType name="MeldungsattributeTAL-ABMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeABMType">
+				<xsd:sequence>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Keine Angabe bei GF REX-MK</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="leitung" type="complex:AngabenZurLeitungABMType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Hinweise zur beauftragten Teilnehmeranschlussleitung</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Keine Angabe bei GF REX-MK</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="anschluss" type="complex:AnschlussType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Hinweise zum beauftragen Anschluss</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Rufnummer aus der Bestandssuche des Auftrages</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="schaltangaben" type="complex:SchaltungIsisOpalMeldungType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Hinweise zur Schaltung bei ISIS/OPAL</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="rnrPortierung" type="complex:RufnummernportierungMeldungType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="ABM-PV" type="tal:MeldungsattributeTAL-ABM-PVType"/>
+	<xsd:complexType name="MeldungsattributeTAL-ABM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeABM-PVType">
+				<xsd:sequence>
+					<xsd:element name="leitung" type="complex:AngabenZurLeitungType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Hinweise zur beauftragten Teilnehmeranschlussleitung</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Es ist die Leitungsbezeichnung des abgebenden Providers aufgeführt</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="anschluss" type="complex:AnschlussType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Hinweise zum beauftragen Anschluss</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">1.MSN als Rufnummer</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="ABBM-PV" type="tal:MeldungsattributeTAL-ABBM-PVType"/>
+	<xsd:complexType name="MeldungsattributeTAL-ABBM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeABBM-PVType">
+				<xsd:sequence>
+					<xsd:element name="leitung" type="complex:AngabenZurLeitungType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Hinweise zur beauftragten Teilnehmeranschlussleitung</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Es ist die Leitungsbezeichnung des abgebenden Providers aufgeführt</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="AKM-PV" type="tal:MeldungsattributeTAL-AKM-PVType"/>
+	<xsd:complexType name="MeldungsattributeTAL-AKM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeAKM-PVType">
+				<xsd:sequence>
+					<xsd:element name="leitung" type="complex:AngabenZurLeitungType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Hinweise zur beauftragten Teilnehmeranschlussleitung</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Es ist die Leitungsbezeichnung des abgebenden Providers aufgeführt</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="anschluss" type="complex:AnschlussType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Hinweise zum beauftragen Anschluss</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">1.MSN als Rufnummer</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="ERLM-PV" type="tal:MeldungsattributeTAL-ERLM-PVType"/>
+	<xsd:complexType name="MeldungsattributeTAL-ERLM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeERLM-PVType">
+				<xsd:sequence>
+					<xsd:element name="leitung" type="complex:AngabenZurLeitungType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Hinweise zur beauftragten Teilnehmeranschlussleitung</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Es ist die Leitungsbezeichnung des abgebenden Providers aufgeführt</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="anschluss" type="complex:AnschlussType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Hinweise zum beauftragen Anschluss</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">1.MSN als Rufnummer</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="RUEM-PV" type="tal:MeldungsattributeTAL-RUEM-PVType"/>
+	<xsd:complexType name="MeldungsattributeTAL-RUEM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeRUEM-PVType">
+				<xsd:sequence>
+					<xsd:element name="leitung" type="complex:BasisAngabenZurLeitungType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Hinweise zur beauftragten Teilnehmeranschlussleitung</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Es ist die Leitungsbezeichnung des abgebenden Providers aufgeführt</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="anschluss" type="complex:AnschlussType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Hinweise zum beauftragen Anschluss</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="ERLM" type="tal:MeldungsattributeTAL-ERLMType"/>
+	<xsd:complexType name="MeldungsattributeTAL-ERLMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeERLMType">
+				<xsd:sequence>
+					<xsd:element name="anschluss" type="complex:AnschlussType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Hinweise zum beauftragen Anschluss</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Rufnummer aus der Bestandssuche des Auftrages</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! Meldungspositionsattribute
+		!
+	-->
+	<xsd:element name="ABBM" type="tal:MeldungspositionsattributeTAL-ABBMType"/>
+	<xsd:complexType name="MeldungspositionsattributeTAL-ABBMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungspositionsattributeABBMType">
+				<xsd:sequence>
+					<xsd:element name="doppeladerBelegt" type="complex:DoppeladerBelegtType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Bezeichnung der Leitung, mit der die Doppelader 1/2 belegt ist (falls eine Buchung nicht möglich ist)</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angabe Leitungsbezeichnung 1 wenn 4-Draht/2-Faser und PG: TAL CUDA</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angabe Leitungsbezeichnung 2 wenn 4-Draht/2-Faser und PG: TAL CUDA</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

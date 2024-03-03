@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.exmodules.cps.CPSTransaction
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.cps">
+    <class name="CPSTransaction" table="T_CPS_TX">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_CPS_TX_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="orderNoOrig" column="TAIFUN_ORDER__NO" type="long"/>
+        <property name="auftragId" column="AUFTRAG_ID" type="long"/>
+        <property name="verlaufId" column="VERLAUF_ID" type="long"/>
+        <property name="hwRackId" column="HW_RACK_ID" type="long"/>
+        <property name="txState" column="TX_STATE" type="long" not-null="true"/>
+        <property name="txSource" column="TX_SOURCE" type="long" not-null="true"/>
+        <property name="serviceOrderType" column="SERVICE_ORDER_TYPE" type="long" not-null="true"/>
+        <property name="serviceOrderPrio" column="SERVICE_ORDER_PRIO" type="long"/>
+        <property name="serviceOrderStackId" column="SO_STACK_ID" type="long"/>
+        <property name="serviceOrderStackSeq" column="SO_STACK_SEQ" type="long"/>
+        <property name="region" column="REGION" type="long"/>
+        <property name="estimatedExecTime" column="ESTIMATED_EXEC_TIME" type="timestamp" not-null="true"/>
+        <property name="requestAt" column="REQUEST_AT" type="timestamp"/>
+        <property name="responseAt" column="RESPONSE_AT" type="timestamp"/>
+        <property name="serviceOrderData" column="SERVICE_ORDER_DATA" type="binary"/>
+        <property name="requestData" column="REQUEST_DATA" type="binary"/>
+        <property name="responseData" column="RESPONSE_DATA" type="binary"/>
+        <property name="txUser" column="TX_USER" type="string"/>
+        <property name="userW" column="USERW" type="string" not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

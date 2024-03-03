@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Darstellung der
+Benutzer-Account-Zuordnung.
+-->    
+<sf>
+    <Label name="assigned.accounts"><text>zugeordnete Accounts:</text></Label>
+    <List name="assigned.accounts">
+    	<tooltip>Liste mit den Accounts, die dem Benutzer bereits zugeordnet sind</tooltip>
+    </List>
+    
+    <Label name="available.accounts"><text>verfügbare Accounts:</text></Label>
+    <List name="available.accounts">
+    	<tooltip>Liste mit den Accounts, die dem Benutzer zugeordnet werden können</tooltip>
+    </List>
+    
+    <Button name="assign">
+        <tooltip>Ordnet die ausgewählten Accounts dem Benutzer zu</tooltip>
+        <icon>de/augustakom/authentication/gui/images/left.gif</icon>
+    </Button>
+    
+    <Button name="remove">
+        <tooltip>Entfernt die ausgewählten Accounts aus der Benutzer-Account-Zuordnung</tooltip>
+        <icon>de/augustakom/authentication/gui/images/right.gif</icon>
+    </Button>
+    
+</sf>

@@ -1,0 +1,9 @@
+server:
+  port: '8080'
+
+spring:
+  data:
+    mongodb:
+      database: geographic_location_management
+      port: '27017'
+      host: mongodb

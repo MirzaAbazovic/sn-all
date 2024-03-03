@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Frame der Geo IDs.
+-->
+<sf>
+    <Text name="title">Geo IDs</Text>
+    <Text name="geoid.search.panel">Suche</Text>
+    <Text name="geoid.clarification.panel">Klärungen</Text>
+
+</sf>

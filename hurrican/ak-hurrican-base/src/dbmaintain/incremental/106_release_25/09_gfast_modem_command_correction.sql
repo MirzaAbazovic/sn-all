@@ -1,0 +1,5 @@
+--CLEANUP WRONG COMMAND
+DELETE FROM T_SERVICE_COMMAND_MAPPING WHERE ID = 3540;
+DELETE FROM T_SERVICE_COMMANDS WHERE ID = 5017;
+-- ADD MAPPING FOR 03_check_gfast_modem_command.sql to service chain VoIP_GK_with_ShortTerm_Check
+INSERT INTO T_SERVICE_COMMAND_MAPPING VALUES(S_T_SERVICE_COMMAND_MAPPI_0.nextval, 2032, 125, 'de.augustakom.hurrican.model.cc.command.ServiceChain', 23, 0);

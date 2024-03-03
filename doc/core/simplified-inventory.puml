@@ -1,0 +1,40 @@
+@startuml core system
+
+
+package ResourceCatalogManement {
+  object ResourceCatalog
+  object RelatedParty
+  object ResourceCategory
+  object ResourceCandidate
+  object ResourceSpecification
+}
+
+
+ResourceCatalog *--> "0..*" RelatedParty
+ResourceCatalog *--> "0..*" ResourceCategory
+ResourceCategory *..> "0..*" ResourceCategory
+ResourceCategory *..> "0..*" ResourceCandidate
+ResourceCandidate *..> "0..1" ResourceSpecification
+
+package ResourceOrderManagement {
+  object ResourceOrder 
+  object ResourceOrderItem 
+}
+
+ResourceOrder *..> "0..1" ResourceOrderItem
+ResourceSpecification *..> "0..1" ResourceOrderItem: Resource specification is referenced by ResourceOrderItem\nResource defines a specific instance that is based on a particular ResourceSpecification.
+
+
+package ResourceInventory {
+  object Resource 
+}
+
+ResourceSpecification *..> "0..1" Resource: Resource specification is referenced by Resource
+
+
+legend top left
+1. Doted line is TMF relation with url as Ref
+2. Solid line is "real" relation
+end legend
+
+@enduml

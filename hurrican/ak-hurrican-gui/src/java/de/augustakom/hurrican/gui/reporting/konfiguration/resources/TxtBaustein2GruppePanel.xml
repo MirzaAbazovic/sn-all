@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur TextBaustein zu Gruppe-Zuordnung.
+-->
+<sf>
+      
+    <Button name="save">
+        <icon>de/augustakom/hurrican/gui/images/save.gif</icon>
+        <tooltip>Speichert die aktuelle Report-TextBaustein-Zuordnung</tooltip>
+    </Button>
+    
+    <Button name="delete">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+  	    <tooltip>Löscht die aktuelle Report-TextBaustein-Zuordnung</tooltip>
+    </Button>
+    
+    <Button name="refresh">
+        <icon>de/augustakom/hurrican/gui/images/refresh.png</icon>
+      	<tooltip>Aktualisiert die Darstellung</tooltip>
+    </Button>
+    
+    <Button name="add">
+        <icon>de/augustakom/hurrican/gui/images/left.gif</icon>
+        <tooltip>Fügt die selektierten Bausteine hinzu</tooltip>
+    </Button>
+    
+    <Button name="remove">
+        <icon>de/augustakom/hurrican/gui/images/right.gif</icon>
+        <tooltip>Entfernt die selektierten Bausteine</tooltip>
+    </Button> 
+    
+    <Text name="gruppen">Text-Bausteingruppen</Text>
+    <Text name="assigned.bausteine">Zugeordnete Text-Bausteine</Text>
+    <Text name="available.bausteine">Verfügbare Text-Bausteine</Text>
+    
+    <Text name="ask.save.title">Änderungen speichern?</Text>
+    <Text name="ask.save.msg">Sollen die vorgenommenen Änderungen wirklich gespeichert werden?</Text>
+
+    <Text name="ask.delete.title">Konfiguration löschen?</Text>
+    <Text name="ask.delete.msg">Soll die aktuell angezeigte Konfiguration wirklich gelöscht werden?</Text>
+    
+</sf>

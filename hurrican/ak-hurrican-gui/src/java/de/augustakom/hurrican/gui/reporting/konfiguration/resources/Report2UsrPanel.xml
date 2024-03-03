@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Report-User-Zuordnung.
+-->
+<sf>
+      
+    <Button name="save.config">
+        <icon>de/augustakom/hurrican/gui/images/save.gif</icon>
+        <tooltip>Speichert die aktuelle Report-User-Zuordnung</tooltip>
+    </Button>
+    
+    <Button name="delete.config">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht die aktuelle Report-User-Zuordnung</tooltip>
+    </Button>
+    
+    <Button name="add.command">
+        <icon>de/augustakom/hurrican/gui/images/left.gif</icon>
+        <tooltip>Fügt die selektierten User hinzu</tooltip>
+    </Button>
+    
+    <Button name="remove.command">
+        <icon>de/augustakom/hurrican/gui/images/right.gif</icon>
+        <tooltip>Entfernt die selektierten User</tooltip>
+    </Button>
+    
+    <Text name="assigned.commands">Zugeordnete Benutzer-Rollen</Text>
+    <Text name="available.commands">Verfügbare Benutzer-Rollen</Text>
+    
+    <Text name="ask.save.title">Änderungen speichern?</Text>
+    <Text name="ask.save.msg">Sollen die vorgenommenen Änderungen wirklich gespeichert werden?</Text>
+
+    <Text name="ask.delete.title">Konfiguration löschen?</Text>
+    <Text name="ask.delete.msg">Soll die aktuell angezeigte Konfiguration wirklich gelöscht werden?</Text>
+    
+</sf>

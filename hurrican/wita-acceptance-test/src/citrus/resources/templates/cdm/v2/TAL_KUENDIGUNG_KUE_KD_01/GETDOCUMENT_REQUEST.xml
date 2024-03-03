@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <getDocument
+                xmlns="http://www.mnet.de/esb/cdm/Customer/DocumentArchiveService/v1">
+            <endUserId>AIL_HURRICAN</endUserId>
+            <documentId>@ignore@</documentId>
+        </getDocument>
+    </soap:Body>
+</soap:Envelope>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TableModel Definition fuer die Equipmentbearbeitung -->
+<table>
+
+    <column name="ID" property="id" type="java.lang.Long" editable="false"/>
+    <column name="Switch" property="hwSwitch.name" type="java.lang.String" editable="true"/>
+    <column name="EQN" property="hwEQN" type="java.lang.String" editable="true"/>
+    <column name="HW-Schnittstelle" property="hwSchnittstelle" type="java.lang.String" editable="true"/>
+    <column name="TS1" property="ts1" type="java.lang.String" editable="true"/>
+    <column name="TS2" property="ts2" type="java.lang.String" editable="true"/>
+    <column name="Verteiler" property="rangVerteiler" type="java.lang.String" editable="true"/>
+    <column name="Reihe" property="rangReihe" type="java.lang.String" editable="true"/>
+    <column name="Bucht" property="rangBucht" type="java.lang.String" editable="true"/>
+    <column name="Leiste1" property="rangLeiste1" type="java.lang.String" editable="true"/>
+    <column name="Stift1" property="rangStift1" type="java.lang.String" editable="true"/>
+    <column name="Leiste2" property="rangLeiste2" type="java.lang.String" editable="true"/>
+    <column name="Stift2" property="rangStift2" type="java.lang.String" editable="true"/>
+    <column name="Schnittstelle" property="rangSchnittstelle" type="de.augustakom.hurrican.model.cc.RangSchnittstelle" editable="true"/>
+    <column name="Carrier" property="carrier" type="java.lang.String" editable="true"/>
+    <column name="Status" property="status" type="de.augustakom.hurrican.model.cc.EqStatus" editable="true"/>
+    <column name="ÜVt-Cluster-Nr" property="uevtClusterNo" type="java.lang.Integer" editable="true"/>
+    <column name="Bemerkung" property="bemerkung" type="java.lang.String" editable="true"/>
+    <column name="SS Typ" property="rangSSType" type="java.lang.String" editable="true"/>
+    <column name="UETV" property="uetv" type="de.augustakom.hurrican.model.cc.Uebertragungsverfahren" editable="true"/>
+    <column name="CVLAN" property="cvlan" type="java.lang.Integer" editable="true"/>
+    <column name="V5-Port" property="v5Port" type="java.lang.String" editable="true"/>
+    <column name="Verwendung" property="verwendung" type="de.augustakom.hurrican.model.cc.EqVerwendung" editable="true"/>
+    <column name="Schicht2" property="schicht2Protokoll" type="de.augustakom.hurrican.model.cc.Schicht2Protokoll" editable="true"/>
+    <column name="KVZ Nummer" property="kvzNummer" type="java.lang.String" editable="true"/>
+    <column name="KVZ DA" property="kvzDoppelader" type="java.lang.String" editable="true"/>
+
+</table>

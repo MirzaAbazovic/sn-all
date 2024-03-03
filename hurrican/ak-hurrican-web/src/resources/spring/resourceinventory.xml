@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+            http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="de.mnet.hurrican.webservice.resource"/>
+
+    <jaxws:endpoint implementor="de.mnet.hurrican.webservice.resource.inventory.ResourceInventoryServiceProvider"
+                    address="/resource/inventory">
+        <jaxws:features>
+            <bean class="org.apache.cxf.feature.LoggingFeature"/>
+            <!-- Loglevel = INFO, landet daher in hurrican.norotate.log -->
+        </jaxws:features>
+    </jaxws:endpoint>
+
+    <bean id="resourceValidator"
+          class="de.mnet.hurrican.webservice.resource.inventory.ResourceValidator"/>
+
+</beans>

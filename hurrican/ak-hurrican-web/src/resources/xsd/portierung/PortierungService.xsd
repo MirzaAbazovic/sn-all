@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://mnet.de/hurrican/ngn/portierungService"
+           attributeFormDefault="unqualified"
+           elementFormDefault="unqualified"
+           targetNamespace="http://mnet.de/hurrican/ngn/portierungService">
+    <xs:complexType name="validationRequestWeb">
+        <xs:sequence>
+            <xs:element name="billingOrderNumber" type="tns:billingOrderNumberWeb"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="billingOrderNumberWeb">
+        <xs:sequence>
+            <xs:element name="billingOrderNumber" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="phoneNumber">
+        <xs:sequence>
+            <xs:element name="dnNo" type="xs:long">
+                <xs:annotation>
+                    <xs:documentation>Phone number Id from DN_NO field</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="validationResponseWeb">
+        <xs:sequence>
+            <xs:element name="billingOrderNumber" type="tns:billingOrderNumberWeb"/>
+            <xs:element name="validationStatus" type="tns:validationStatusWeb"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="validationStatusWeb">
+        <xs:sequence>
+            <xs:element name="validationStatusEnum" type="tns:validationStatusEnumWeb"/>
+            <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="faultDetails">
+        <xs:sequence>
+            <xs:element name="errorCode" type="xs:string"/>
+            <xs:element name="errorMessage" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="portierungRequestWeb">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="billingOrderNumbers" type="tns:billingOrderNumberWeb"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="portierungResponseWeb">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="portierungStatusEntries" type="tns:portierungStatusEntryWeb"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="phoneNumbersMigrationRequest">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="newPhoneNumbers" type="tns:phoneNumber">
+                <xs:annotation>
+                    <xs:documentation>Phone numbers recently added on NGN migration</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="phoneNumbersMigrationResponse">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="phoneNumberMigrationStatus" type="tns:phoneNumberMigrationStatus"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="portierungStatusEntryWeb">
+        <xs:sequence>
+            <xs:element name="billingOrderNumber" type="tns:billingOrderNumberWeb"/>
+            <xs:element name="portierungStatus" type="tns:portierungStatusWeb"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="phoneNumberMigrationStatus">
+        <xs:sequence>
+            <xs:element name="phoneNumber" type="tns:phoneNumber"/>
+            <xs:element name="portierungStatus" type="tns:portierungStatusWeb"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="portierungStatusWeb">
+        <xs:sequence>
+            <xs:element name="portierungStatusEnum" type="tns:portierungStatusEnumWeb"/>
+            <xs:element minOccurs="0" name="message" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="hints" type="tns:portierungWarningWeb"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="portierungWarningWeb">
+        <xs:sequence>
+            <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="validationStatusEnumWeb">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MIGRATION_POSSIBLE"/>
+            <xs:enumeration value="MIGRATION_NOT_POSSIBLE"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="portierungStatusEnumWeb">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SUCCESSFUL"/>
+            <xs:enumeration value="ERROR"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="faultDetails" nillable="true" type="tns:faultDetails"/>
+    <xs:element name="validatePortierungskennung" nillable="true" type="tns:validationRequestWeb"/>
+    <xs:element name="validatePortierungskennungResponse" nillable="true" type="tns:validationResponseWeb"/>
+    <xs:element name="migratePortierungskennung" nillable="true" type="tns:portierungRequestWeb"/>
+    <xs:element name="migratePortierungskennungResponse" nillable="true" type="tns:portierungResponseWeb"/>
+    <xs:element name="migratePhoneNumbers" nillable="true" type="tns:phoneNumbersMigrationRequest"/>
+    <xs:element name="migratePhoneNumbersResponse" nillable="true" type="tns:phoneNumbersMigrationResponse"/>
+</xs:schema>

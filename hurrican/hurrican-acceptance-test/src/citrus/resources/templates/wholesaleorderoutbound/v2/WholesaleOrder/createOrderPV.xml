@@ -1,0 +1,53 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <ns2:createOrder xmlns:ns3="http://www.mnet.de/esb/cdm/SupplierPartner/WholesaleOrderService/v2/order"
+                         xmlns:ns2="http://www.mnet.de/esb/cdm/SupplierPartner/WholesaleOrderService/v2">
+            <ns2:sendingCarrier>MNETH</ns2:sendingCarrier>
+            <ns2:receivingCarrier>MNET</ns2:receivingCarrier>
+            <ns2:version>4</ns2:version>
+            <ns2:order>
+                <externeAuftragsnummer>testVaId-123</externeAuftragsnummer>
+                <auftraggeber>
+                    <auftraggebernummer>MNETH</auftraggebernummer>
+                    <leistungsnummer>MNETH-001</leistungsnummer>
+                </auftraggeber>
+                <ns3:geschaeftsfall>
+                    <ns3:PV>
+                        <lineId>DEU.MNET.123456789</lineId>
+                        <vorabstimmungId>testVaId-123</vorabstimmungId>
+                        <ansprechpartner>
+                            <auftragsmanagement>
+                                <anrede>9</anrede>
+                                <nachname>MNET</nachname>
+                                <telefonnummer>089 452000</telefonnummer>
+                            </auftragsmanagement>
+                        </ansprechpartner>
+                        <termine>
+                            <auftraggeberWunschtermin>
+                                <datum>${wunschtermin}</datum>
+                            </auftraggeberWunschtermin>
+                        </termine>
+                        <standortA>
+                            <person>
+                                <anrede>1</anrede>
+                                <vorname>Hans</vorname>
+                                <nachname>Mayer</nachname>
+                            </person>
+                            <strasse>
+                                <strassenname>Emmy-Noether-Straße</strassenname>
+                                <hausnummer>2</hausnummer>
+                                <hausnummernZusatz>a</hausnummernZusatz>
+                            </strasse>
+                            <postleitzahl>80992</postleitzahl>
+                            <ort>
+                                <ortsname>München</ortsname>
+                            </ort>
+                        </standortA>
+                        <produkt>FttB BSA 100/40</produkt>
+                    </ns3:PV>
+                </ns3:geschaeftsfall>
+                <geschaeftsfallArt>Endkundenanbieterwechsel</geschaeftsfallArt>
+            </ns2:order>
+        </ns2:createOrder>
+    </soap:Body>
+</soap:Envelope>

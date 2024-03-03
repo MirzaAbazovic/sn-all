@@ -1,0 +1,584 @@
+<project name="database">
+    <import file="common_ant.xml" />
+
+    <macrodef name="calltargetforschemas"
+        description="
+            For each given schema in the list schemas set the property
+            db.property.schema and call the given target via antcall">
+        <attribute name="schemas" />
+        <attribute name="target" />
+        <sequential>
+            <for list="@{schemas}" param="schema" trim="true">
+                <sequential>
+                    <echo message="Calling target @{target} with schema @{schema}" />
+                    <antcall target="@{target}">
+                        <param name="db.property.schema" value="@{schema}" />
+                    </antcall>
+                </sequential>
+            </for>
+        </sequential>
+    </macrodef>
+
+    <!--
+    Example usage:
+        <propconcat list="one,two" iterator="num" localvar="local.var" property="result">
+            <var name="local.var" value="${local.var}@{num}" />
+        </propconcat>
+           The property result will then be "one,two"
+    -->
+    <macrodef name="propconcat"
+        description="
+            Given a list of Strings, list, separated by commas, run a for loop
+            and do the stuff defined in the implicit element rewrite.var.
+            In the loop you have access to a local variable with name localvar
+            initialized to initvalue and an attribute called iterator containing the
+            current element from the list.
+            If localvar is not empty, a separator is appended.
+            The final result of this variable is
+            set to the property defined in the attribute property.
+        ">
+        <attribute name="list" />
+        <attribute name="iterator" />
+        <attribute name="localvar" />
+        <attribute name="separator" default="," />
+        <attribute name="initvalue" default="" />
+        <attribute name="property" />
+        <element name="rewrite.var" implicit="yes" />
+        <sequential>
+            <var name="@{localvar}" value="" />
+            <for list="@{list}" param="@{iterator}" trim="true">
+                <sequential>
+                    <if>
+                        <not>
+                            <equals arg1="${@{localvar}}" arg2="@{initvalue}" />
+                        </not>
+                        <then>
+                            <var name="@{localvar}" value="${@{localvar}}@{separator}" />
+                        </then>
+                    </if>
+                    <rewrite.var />
+                </sequential>
+            </for>
+            <property name="@{property}" value="${@{localvar}}" />
+            <echo message="set property @{property} to ${@{localvar}}" />
+        </sequential>
+    </macrodef>
+
+    <macrodef name="setremapschemas"
+        description="
+            Creates the remap-schema Strings for the impdp command via reading the properties
+            for the schemas given in db.schemas. Via setting the attribute prefix the properties
+        prefixed by this prefix are used.
+
+            e.g.: db.schemas=authentication,hurrican
+        => db.dump.source.remap.schemas=
+            remap_schema=${db.authentication.dump.source.schema}:${db.authentication.user.schema}
+            remap_schema=${db.hurrican.dump.source.schema}:${db.hurrican.user.schema}
+        ">
+        <attribute name="prefix" default=""/>
+        <sequential>
+            <propconcat list="${db.schemas}" iterator="schema" localvar="local.var" separator=" " property="db.dump.source.remap.schemas">
+                <var name="local.var" value="${local.var}remap_schema=${@{prefix}db.@{schema}.dump.source.schema}:${db.@{schema}.user.schema}" />
+            </propconcat>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="setsourceschemas"
+        description="
+            Creates the schemas string for the impdp/expdp commands via appending the properties
+            for the schemas given in db.schemas. The properties of the form db.database.dump.source.schema
+            are used.
+            Via setting the attribute prefix the properties
+            prefixed by this prefix are used.
+
+            e.g.: db.schemas=authentication,hurrican
+        => db.dump.source.schemas=${db.authentication.dump.source.schema},${db.hurrican.dump.source.schema}
+        ">
+        <attribute name="prefix" default=""/>
+        <sequential>
+            <propconcat list="${db.schemas}" iterator="schema" localvar="local.var" property="db.dump.source.schemas">
+                <var name="local.var" value="${local.var}${@{prefix}db.@{schema}.dump.source.schema}" />
+            </propconcat>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="setuserschemas"
+        description="
+            Creates the schemas string for the impdp/expdp commands via appending the properties
+            for the schemas given in db.schemas. The properties of the form db.database.user.schema
+            are used.
+            Via setting the attribute prefix the properties
+            prefixed by this prefix are used.
+
+            e.g.: db.schemas=authentication,hurrican
+        => db.dump.source.schemas=${db.authentication.dump.source.schema},${db.hurrican.dump.source.schema}
+        ">
+        <sequential>
+            <propconcat list="${db.schemas}" iterator="schema" localvar="local.var" property="db.dump.user.schemas">
+                <var name="local.var" value="${local.var}${db.@{schema}.user.schema}" />
+            </propconcat>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="createdbpropertyfile"
+        description="
+            Creates a propertyfile file for a database dump containing properties
+            which define which schemas of the database have been dumped.
+        ">
+        <attribute name="file"/>
+        <sequential>
+            <delete file="@{file}" quiet="true"/>
+            <for list="${db.schemas}" param="schema" trim="true">
+                <sequential>
+                    <propertyfile file="@{file}" comment="Propertyfile for database dump of same name">
+                        <entry key="db.@{schema}.dump.source.schema" value="${db.@{schema}.user.schema}"/>
+                    </propertyfile>
+                </sequential>
+            </for>
+        </sequential>
+    </macrodef>
+
+    <!-- ClassPath-Definition zum Kompilieren -->
+    <path id="project.class.path">
+        <pathelement location="${common.lib}/oracle/ojdbc6.jar" />
+        <pathelement location="${common.lib}/antelope/antelopetasks.jar" />
+    </path>
+
+    <target name="init.schema.properties">
+        <propcopy property="db.modify.db4devel" from="db.${db.property.schema}.modify.db4devel" />
+        <propcopy property="db.interconnect.file" from="db.${db.property.schema}.interconnect.file" />
+        <propcopy property="db.user.schema" from="db.${db.property.schema}.user.schema" />
+        <propcopy property="db.user.password" from="db.${db.property.schema}.user.password" />
+    </target>
+
+    <target name="init.name.properties">
+        <setbuildmode />
+        <propcopy property="db.dump.target.parameterfile" from="db.${db.property.name}.dump.target.parameterfile" />
+        <propcopy property="db.dump.target.directory" from="db.${db.property.name}.dump.target.directory" />
+        <propcopy property="db.dump.filename" from="db.${db.property.name}.dump.filename" />
+
+        <propcopy property="db.target.server.name" from="db.${db.property.name}.${build.mode}.server.name" />
+        <propcopy property="db.target.server.user" from="db.${db.property.name}.${build.mode}.server.user" />
+        <propcopy property="db.target.server.env.file" from="db.${db.property.name}.${build.mode}.server.env.file" />
+
+        <propcopy property="db.jdbc.driver" from="db.${db.property.name}.${build.mode}.jdbc.driver" />
+        <propcopy property="db.jdbc.url" from="db.${db.property.name}.${build.mode}.jdbc.url" />
+
+        <propcopy property="db.system.user" from="db.${db.property.name}.${build.mode}.system.user" />
+        <propcopy property="db.system.password" from="db.${db.property.name}.${build.mode}.system.password" />
+
+        <propcopy property="db.schemas" from="db.${db.property.name}.schemas" />
+    </target>
+
+    <target name="clean">
+        <delete dir="${basedir.target}" quiet="true" />
+        <mkdir dir="${basedir.target}" />
+    </target>
+
+    <target name="init.datapump.dir.on.disk" depends="clean,init.name.properties">
+        <echo>Getting location of on-disk directory for database ${db.jdbc.url}</echo>
+        <echo>for directory ${db.dump.target.directory}</echo>
+        <mkdir dir="${basedir.target}" />
+        <sql
+            driver="${db.jdbc.driver}"
+            url="${db.jdbc.url}"
+            userid="${db.system.user}"
+            password="${db.system.password}"
+            classpathref="project.class.path"
+            delimiter="/"
+            delimitertype="row"
+            print="yes"
+            output="${basedir.target}/datapump_dir.properties"
+            showheaders="false"
+            showtrailers="false">
+            <![CDATA[
+            SELECT directory_path from dba_directories where directory_name='${db.dump.target.directory}'
+            ]]>
+            </sql>
+        <loadproperties srcfile="${basedir.target}/datapump_dir.properties">
+            <filterchain>
+                <ignoreblank/>
+                <prefixlines prefix="db.server.datadump.dir="/>
+            </filterchain>
+        </loadproperties>
+        <echo message="Property is ${db.server.datadump.dir}"/>
+        <fail unless="db.server.datadump.dir"/>
+    </target>
+
+
+    <target name="copy.remote.dump.properties" depends="clean,init.name.properties,init.datapump.dir.on.disk">
+        <scp
+            file="${db.target.server.user}@${db.target.server.name}:${db.server.datadump.dir}/${db.dump.filename}.properties"
+            todir="${basedir.target}/${db.dump.filename}.properties"
+            trust="true"
+            keyfile="${user.home}/.ssh/id_dsa"
+            passphrase=""
+            failonerror="false"/>
+        <if>
+            <available file="${basedir.target}/${db.dump.filename}.properties"/>
+            <then>
+                <echo message="*** Reading ${basedir.target}/${db.dump.filename}.properties" />
+                <loadproperties srcfile="${basedir.target}/${db.dump.filename}.properties" prefix="db.dump.filename."/>
+                <property name="db.properties.prefix" value="db.dump.filename."/>
+            </then>
+            <else>
+                <property name="db.properties.prefix" value=""/>
+            </else>
+        </if>
+    </target>
+
+    <target name="init.import.dump.properties" depends="init.name.properties,init.datapump.dir.on.disk,copy.remote.dump.properties">
+        <setremapschemas prefix="${db.properties.prefix}" />
+        <setsourceschemas prefix="${db.properties.prefix}" />
+    </target>
+
+    <target name="init.export.dump.properties" depends="init.datapump.dir.on.disk">
+        <echo message="Dump target to ${db.server.datadump.dir}"/>
+
+        <setuserschemas />
+    </target>
+
+    <target name="init.modify.db4devel.properties" />
+
+    <target name="init.optional.dump.parameter">
+        <!-- one may overwirte the property "db.dump.optional.parameter.init" with additional impdp parameter -->
+        <property name="db.dump.optional.parameter.init" value=" "/>
+    </target>
+    <target name="import.dump.postprocess" />
+
+    <!-- Erstellt eine neue User DB - fuehrt nur den Teil der Erstellung aus, der parallelisiert werden kann -->
+    <target name="prepare.user.db">
+        <!-- must use antcall instead of "depends", otherwise init.name.properties is called twice => propcopy would fail ... -->
+        <antcall target="drop"/>
+        <antcall target="prepare.user.db.withoutdrop"/>
+    </target>
+    <target name="prepare.user.db.withoutdrop" depends="init.optional.dump.parameter">
+        <!-- must use antcall instead of "depends", otherwise init.name.properties is called twice => propcopy would fail ... -->
+        <antcall target="import.dump">
+            <param name="db.dump.optional.parameter" value="${db.dump.optional.parameter.init}" />
+        </antcall>
+        <antcall target="modify.system"/>
+        <antcall target="modify.db4devel"/>
+        <antcall target="import.dump.postprocess"/>
+    </target>
+
+    <!-- Erstellt eine komplette neue User DB -->
+    <target name="create.user.db" depends="prepare.user.db,interconnect.database" />
+
+    <target name="drop" depends="init.name.properties">
+        <calltargetforschemas target="drop.single" schemas="${db.schemas}" />
+    </target>
+
+    <!-- Create a dump of the current database written to db.dump.filename in the db.server.datapump.dir
+         This also creates a propertyfile with name ${db.dump.filename}.properties containing the
+         dumped schemas.
+    -->
+    <target name="create.database.dump" depends="clean,init.name.properties,init.export.dump.properties"
+        description="Target creates a dump file of a given database by Oracle EXPDP function
+           and copies the file to a defined test server">
+        <mkdir dir="${basedir.target}"/>
+        <echo message="Datapump dir: ${db.dump.target.directory}"/>
+        <echo message="Filename: ${db.dump.filename}"/>
+        <echo>Delete old dumps and logs</echo>
+        <sshexec
+            host="${db.target.server.name}"
+            port="22"
+            username="${db.target.server.user}"
+            trust="true"
+            keyfile="${user.home}/.ssh/id_dsa"
+            command="
+                rm ${db.server.datadump.dir}/${db.dump.filename};
+                rm ${db.server.datadump.dir}/${db.dump.filename}.properties;"
+            failonerror="false">
+        </sshexec>
+        <echo message="Writing property file ${db.dump.filename}.properties"/>
+        <createdbpropertyfile file="${basedir.target}/${db.dump.filename}.properties"/>
+        <echo message="Copying propertyfile to server"/>
+        <scp
+            file="${basedir.target}/${db.dump.filename}.properties"
+            remoteTofile="${db.target.server.user}@${db.target.server.name}:${db.server.datadump.dir}/${db.dump.filename}.properties"
+            trust="true"
+            keyfile="${user.home}/.ssh/id_dsa"
+            passphrase="" />
+        <echo>Copying parameterfile to DB-Server</echo>
+        <scp
+            file="${db.dump.target.parameterfile}"
+            remoteTofile="${db.target.server.user}@${db.target.server.name}:${db.property.name}.${build.mode}.${db.user.postfix}.par"
+            trust="true"
+            keyfile="${user.home}/.ssh/id_dsa"
+            passphrase="" />
+        <echo message="EXPORT database: ${db.dump.user.schemas}" />
+        <sshexec
+            host="${db.target.server.name}"
+            port="22"
+            username="${db.target.server.user}"
+            trust="true"
+            keyfile="${user.home}/.ssh/id_dsa"
+            command="
+            ${db.target.server.env.file};
+            expdp '/'
+               parfile=~/${db.property.name}.${build.mode}.${db.user.postfix}.par
+               directory=${db.dump.target.directory}
+               dumpfile=${db.dump.filename}
+               logfile=${db.property.name}.${build.mode}.${db.user.postfix}.expdp.log
+               schemas=${db.dump.user.schemas}
+               parallel=2;">
+        </sshexec>
+    </target>
+
+
+    <target name="import.dump" description="Imports an existing dump" depends="init.name.properties,init.import.dump.properties">
+        <echo>Copying parameterfile to DB-Server</echo>
+        <scp
+            file="${db.dump.target.parameterfile}"
+            remoteTofile="${db.target.server.user}@${db.target.server.name}:${db.property.name}.${build.mode}.${db.user.postfix}.par"
+            trust="true"
+            keyfile="${user.home}/.ssh/id_dsa"
+            passphrase="" />
+        <!-- Empty passphrase required since if left out authentication with keyfile fails -->
+
+        <!-- set defaults if not already set -->
+        <property name="db.dump.parfile.option" value="parfile=~/${db.property.name}.${build.mode}.${db.user.postfix}.par"/>
+
+        <echo>Try to import ORACLE DB ${db.dump.source.schemas}</echo>
+        <echo>remap String: ${db.dump.source.remap.schemas}</echo>
+        <echo>optional parameter: ${db.dump.optional.parameter} parfile.option=${db.dump.parfile.option}</echo>
+        <!-- The perl snippet derefences the symlink (if it is one) and then gets the relative path by
+             deleting all characters before the last slash. -->
+        <sshexec
+            host="${db.target.server.name}"
+            port="22"
+            username="${db.target.server.user}"
+            trust="true"
+            keyfile="${user.home}/.ssh/id_dsa"
+        	failonerror="false"
+            command="
+            ${db.target.server.env.file};
+            echo &quot;Dump file is: &quot; `perl -e '$t=readlink(&quot;${db.server.datadump.dir}/${db.dump.filename}&quot;) || &quot;${db.dump.filename}&quot;; $t =~ s/.*\///g; print $t'`;
+            impdp '/'
+               ${db.dump.parfile.option}
+               directory=${db.dump.target.directory}
+               dumpfile=${db.dump.target.directory}:`perl -e '$t=readlink(&quot;${db.server.datadump.dir}/${db.dump.filename}&quot;) || &quot;${db.dump.filename}&quot;; $t =~ s/.*\///g; print $t'`
+               logfile=${db.property.name}.${build.mode}.${db.user.postfix}.impdp.log
+               ${db.dump.source.remap.schemas}
+               schemas=${db.dump.source.schemas}
+               ${db.dump.optional.parameter}
+               transform=OID:n:TYPE
+               parallel=2;">
+        </sshexec>
+    </target>
+
+    <target name="modify.system" depends="init.name.properties">
+        <calltargetforschemas target="modify.system.single" schemas="${db.schemas}" />
+    </target>
+
+    <target name="modify.db4devel" depends="init.name.properties,init.modify.db4devel.properties">
+        <calltargetforschemas target="modify.db4devel.single" schemas="${db.schemas}" />
+    </target>
+
+    <target name="interconnect.database" depends="init.name.properties,init.modify.db4devel.properties">
+        <calltargetforschemas target="interconnect.database.single" schemas="${db.schemas}" />
+    </target>
+
+    <target name="interconnect.database.single" description="Runs interconnect scripts on the devel DB" depends="init.schema.properties">
+        <echo>schema ${db.user.schema}</echo>
+        <echo>url ${db.jdbc.url}</echo>
+        <echo>driver ${db.jdbc.driver}</echo>
+        <sql
+            driver="${db.jdbc.driver}"
+            url="${db.jdbc.url}"
+            userid="${db.user.schema}"
+            password="${db.user.password}"
+            classpathref="project.class.path"
+            delimiter="/"
+            delimitertype="row"
+            src="${db.interconnect.file}">
+        </sql>
+        <sql
+            driver="${db.jdbc.driver}"
+            url="${db.jdbc.url}"
+            userid="${db.user.schema}"
+            password="${db.user.password}"
+            classpathref="project.class.path"
+            delimiter="/"
+            delimitertype="row"
+            keepformat="true">
+            <transaction>
+               BEGIN
+                  SYS.UTL_RECOMP.RECOMP_SERIAL();
+               END;
+            </transaction>
+        </sql>
+    </target>
+
+    <target name="gather.schema.stats" depends="init.name.properties">
+        <calltargetforschemas target="gather.schema.stats.single" schemas="${db.schemas}" />
+    </target>
+
+    <!-- Target, um einen bestimmten User (= Test DB) zu droppen. -->
+    <target name="drop.single" description="Drops a Test DB" depends="init.schema.properties">
+        <echo>Try to kill all sessions of user ${db.user.schema} on ${db.jdbc.url} as user ${db.system.user}</echo>
+        <sql
+            driver="${db.jdbc.driver}"
+            url="${db.jdbc.url}"
+            userid="${db.system.user}"
+            password="${db.system.password}"
+            classpathref="project.class.path"
+            delimiter="/"
+            delimitertype="row"
+            keepformat="yes">
+            <transaction>
+                   declare
+                   begin
+                    for c1 in (select count(1) cnt from dba_users where username='${db.user.schema}') loop
+                      begin
+                        if (c1.cnt = 1) then
+                          execute immediate 'alter user ${db.user.schema} account lock';
+                        end if;
+                      end;
+                    end loop;
+                   for c1 in (select sid||','||serial# as session_id from v$session where username = '${db.user.schema}'
+                         or schemaname = '${db.user.schema}') loop
+                     begin
+                         execute immediate 'alter system kill session '''||c1.session_id||''' immediate';
+                     EXCEPTION
+                        WHEN OTHERS THEN
+                           NULL;
+                     end;
+                   end loop;
+                   end;
+            </transaction>
+        </sql>
+        <echo>${common.basedir}</echo>
+        <echo>Try to drop ORACLE user ${db.user.schema}</echo>
+        <echo>on Database with url ${db.jdbc.url}</echo>
+        <sql
+            driver="${db.jdbc.driver}"
+            url="${db.jdbc.url}"
+            userid="${db.system.user}"
+            password="${db.system.password}"
+            classpathref="project.class.path"
+            delimiter="/"
+            delimitertype="row"
+            keepformat="yes">
+            <!-- Try to drop user. If user cannot be dropped (due to connections still up),
+                 sleep for 60 seconds and try again (up to  20 times). -->
+            <transaction>
+                DECLARE
+                BEGIN
+                  FOR c1 IN (SELECT COUNT(1) cnt
+                               FROM dba_users
+                              WHERE username = '${db.user.schema}')
+                  LOOP
+                    BEGIN
+                      IF (c1.cnt = 1)
+                      THEN
+                        FOR cntr IN 1 .. ${db.drop.single.tries}
+                        LOOP
+                          BEGIN
+                            EXECUTE IMMEDIATE 'DROP USER ${db.user.schema} CASCADE';
+
+                            EXIT;
+                          EXCEPTION
+                            WHEN OTHERS
+                            THEN
+                              IF (cntr = ${db.drop.single.tries})
+                              THEN
+                                RAISE;
+                              END IF;
+
+                              DBMS_LOCK.sleep(${db.drop.single.timeout});
+                          END;
+                        END LOOP;
+                      END IF;
+                    END;
+                  END LOOP;
+                END;
+            </transaction>
+        </sql>
+    </target>
+
+    <!-- Target, das Schema des neuen Users (= Test DB) vorzubereiten (Passwort...). -->
+    <target name="modify.system.single" description="Modifies a new Test DB" depends="init.schema.properties">
+        <echo>Modify password for ORACLE user ${db.user.schema}</echo>
+        <sql
+            driver="${db.jdbc.driver}"
+            url="${db.jdbc.url}"
+            userid="${db.system.user}"
+            password="${db.system.password}"
+            delimiter="/"
+            delimitertype="row"
+            classpathref="project.class.path">
+            <transaction>
+               ALTER USER "${db.user.schema}" IDENTIFIED BY "${db.user.password}"
+            </transaction>
+            <transaction>
+                ALTER USER "${db.user.schema}" ACCOUNT UNLOCK
+            </transaction>
+            <transaction>
+               GRANT EXECUTE ON SYS.UTL_RECOMP TO ${db.user.schema}
+            </transaction>
+            <transaction>
+                GRANT CREATE DATABASE LINK TO ${db.user.schema}
+            </transaction>
+            <transaction>
+               ALTER SYSTEM SET job_queue_processes = 0
+            </transaction>
+        </sql>
+    </target>
+
+    <target name="modify.db4devel.single" description="Runs modify scrips on the devel DB" depends="init.schema.properties">
+        <echo>schema ${db.user.schema}</echo>
+        <echo>url ${db.jdbc.url}</echo>
+        <echo>driver ${db.jdbc.driver}</echo>
+        <sql
+            driver="${db.jdbc.driver}"
+            url="${db.jdbc.url}"
+            userid="${db.user.schema}"
+            password="${db.user.password}"
+            classpathref="project.class.path"
+            delimiter="/"
+            delimitertype="row"
+            src="${db.modify.db4devel}">
+        </sql>
+        <sql
+            driver="${db.jdbc.driver}"
+            url="${db.jdbc.url}"
+            userid="${db.user.schema}"
+            password="${db.user.password}"
+            classpathref="project.class.path"
+            delimiter="/"
+            delimitertype="row"
+            keepformat="true">
+            <transaction>
+               BEGIN
+                  SYS.UTL_RECOMP.RECOMP_SERIAL();
+               END;
+            </transaction>
+        </sql>
+    </target>
+
+    <target name="gather.schema.stats.single" description="Gathers schema stats to speed up the database" depends="init.schema.properties">
+        <sql
+            driver="${db.jdbc.driver}"
+            url="${db.jdbc.url}"
+            userid="${db.user.schema}"
+            password="${db.user.password}"
+            classpathref="project.class.path"
+            delimiter="/"
+            delimitertype="row"
+            keepformat="true">
+            <![CDATA[
+              BEGIN
+                 DBMS_STATS.GATHER_SCHEMA_STATS (
+                    OWNNAME            => '${db.user.schema}',
+                    CASCADE            => TRUE,
+                    DEGREE             => 2,
+                    METHOD_OPT         => 'FOR ALL COLUMNS SIZE AUTO',
+                    ESTIMATE_PERCENT   => 100
+                 );
+              END;
+            ]]>
+    </sql>
+    </target>
+</project>

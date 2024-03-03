@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zum Bearbeiten von DTAG Ports.
+-->
+<sf>
+    <Text name="title">DTAG-Port editieren</Text>
+
+    <Label name="uetv"><text>Übertragungsverfahren:</text></Label>
+    <ComboBox name="uetv">
+        <tooltip>Gibt an, für welches Übertragungsverfahren der Port konfiguriert ist.</tooltip>
+    </ComboBox>
+
+    <Label name="sendTalOrder"><text>TAL-Bestellung auslösen:</text></Label>
+    <CheckBox name="sendTalOrder">
+        <tooltip>Angabe, ob bei der Änderung des Übertragungsverfahrens auch eine TAL-Bestellung über die WITA-Schnittstelle ausgelöst werden soll.</tooltip>
+    </CheckBox>
+
+    <Label name="vorgabeDatum"><text>Vorgabedatum für Änderung:</text></Label>
+    <DateComponent name="vorgabeDatum">
+        <tooltip>Datum, an dem die Leistungsmerkmaländerung durchgeführt werden soll (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+</sf>

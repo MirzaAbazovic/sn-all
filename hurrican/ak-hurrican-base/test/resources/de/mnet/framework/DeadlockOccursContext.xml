@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer die Definition der 'Standard' CC-Services.
+Die Datei wird von CCServices.xml importiert!
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="de.mnet.framework"/>
+
+    <bean id="abstract.cps.command" class="de.augustakom.hurrican.service.cc.impl.command.cps.AbstractCPSCommand"
+          abstract="true">
+    </bean>
+
+    <bean id="cc.hibernateTxManager" class="de.mnet.framework.MockedTransactionManager">
+    </bean>
+
+    <bean id="createCPSTx4BATarget"
+          class="de.mnet.framework.MockedCreateCPSTx4BACommand"
+          scope="prototype" parent="abstract.cps.command"
+          autowire-candidate="false">
+    </bean>
+
+    <!-- scope="singleton" fuehrt zu einem Deadlock -->
+    <bean id="de.mnet.framework.CreateCPSTx4BACommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="singleton">
+        <property name="proxyTargetClass" value="true"/>
+        <property name="proxyInterfaces">
+            <value>de.augustakom.common.service.iface.IServiceCommand</value>
+        </property>
+        <property name="singleton">
+            <value>false</value>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>createCPSTx4BATxInterceptor</value>
+                <value>createCPSTx4BATarget</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="createCPSTx4BATxInterceptor"
+          class="org.springframework.transaction.interceptor.TransactionInterceptor">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="execute">PROPAGATION_MANDATORY,
+                    -de.augustakom.hurrican.service.base.exceptions.HurricanServiceCommandException
+                </prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.framework.WitaBsiProtokollService"
+          class="de.mnet.framework.MockedWitaBsiProtokollService" scope="singleton">
+    </bean>
+
+</beans>

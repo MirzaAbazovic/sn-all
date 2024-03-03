@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Auftrags-Vorlauf Panel.
+***************************************************
+File created: 02.02.2005 11:31:20
+--> 
+<sf>
+    
+    <Button name="refresh">
+        <icon>de/augustakom/hurrican/gui/images/refresh.png</icon>
+        <tooltip>Aktualisiert die Ansicht</tooltip>
+    </Button>
+    
+    <ToggleButton name="filter">
+        <icon>de/augustakom/hurrican/gui/images/filter.gif</icon>
+        <tooltip>Filtert die Tabelle nach allen Datensätzen, die der selektierten Zelle entsprechen</tooltip>
+        <tooltip.selected>Entfernt den aktuellen Filter</tooltip.selected>
+    </ToggleButton>
+    
+    <Icon name="filter.apply">de/augustakom/hurrican/gui/images/filter.gif</Icon>
+    <Icon name="filter.remove">de/augustakom/hurrican/gui/images/filter_undo.gif</Icon>
+    
+</sf>

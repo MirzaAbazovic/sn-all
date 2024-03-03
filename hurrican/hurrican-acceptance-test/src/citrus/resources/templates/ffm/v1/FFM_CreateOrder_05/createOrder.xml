@@ -1,0 +1,91 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Body>
+        <wfs:createOrder xmlns:wfs="http://www.mnet.de/esb/cdm/Resource/WorkforceService/v1">
+            <wfs:order>
+                <wfs:id>@startsWith('HUR_')@</wfs:id>
+                <wfs:displayId>@startsWith('${order.no}-')@</wfs:displayId>
+                <wfs:customerOrderId>${order.no}</wfs:customerOrderId>
+                <wfs:description>
+                    <wfs:summary>Housing</wfs:summary>
+                    <wfs:techParams>
+                        <wfs:common>
+                            <wfs:lineId>@ignore@</wfs:lineId>
+                            <wfs:contractId>@ignore@</wfs:contractId>
+                            <wfs:customerNumber>@ignore@</wfs:customerNumber>
+                            <wfs:additionalContractInfo>${order.no}</wfs:additionalContractInfo>
+                        </wfs:common>
+                        <wfs:technicalService>
+                            <wfs:tsType>DOWNSTREAM</wfs:tsType>
+                            <wfs:tsName>16000 kbit/s</wfs:tsName>
+                        </wfs:technicalService>
+                        <wfs:technicalService>
+                            <wfs:tsType>UPSTREAM</wfs:tsType>
+                            <wfs:tsName>256 kbit/s</wfs:tsName>
+                        </wfs:technicalService>
+                        <wfs:housing>
+                            <wfs:building>@ignore@</wfs:building>
+                            <wfs:street>@ignore@</wfs:street>
+                            <wfs:zipCode>99293 Freierfunden</wfs:zipCode>
+                            <wfs:floor>@ignore@</wfs:floor>
+                            <wfs:room>@ignore@</wfs:room>
+                            <wfs:plot>@ignore@</wfs:plot>
+                            <wfs:rack>@ignore@</wfs:rack>
+                            <wfs:rackUnits>@ignore@</wfs:rackUnits>
+                            <wfs:circuitCount>@ignore@</wfs:circuitCount>
+                            <wfs:wattage>@ignore@</wfs:wattage>
+                            <wfs:fuse>@ignore@</wfs:fuse>
+                            <wfs:electricMeter>
+                                <wfs:emId>@ignore@</wfs:emId>
+                                <wfs:provisioning>@ignore@</wfs:provisioning>
+                                <wfs:termination>@ignore@</wfs:termination>
+                            </wfs:electricMeter>
+                            <wfs:electricMeter>
+                                <wfs:emId>@ignore@</wfs:emId>
+                                <wfs:provisioning>@ignore@</wfs:provisioning>
+                                <wfs:termination>@ignore@</wfs:termination>
+                            </wfs:electricMeter>
+                            <wfs:electricMeter>
+                                <wfs:emId>@ignore@</wfs:emId>
+                                <wfs:provisioning>@ignore@</wfs:provisioning>
+                                <wfs:termination>@ignore@</wfs:termination>
+                            </wfs:electricMeter>
+                            <wfs:electricMeter>
+                                <wfs:emId>@ignore@</wfs:emId>
+                                <wfs:provisioning>@ignore@</wfs:provisioning>
+                                <wfs:termination>@ignore@</wfs:termination>
+                            </wfs:electricMeter>
+                        </wfs:housing>
+                    </wfs:techParams>
+                </wfs:description>
+                <wfs:type>Surf+Fon-Flat</wfs:type>
+                <wfs:activityType>RTL_NEU_IK</wfs:activityType>
+                <wfs:activitySubtype>Neuschaltung</wfs:activitySubtype>
+                <wfs:contactPerson>
+                    <wfs:role>Endkunde Montageleistung</wfs:role>
+                    <wfs:firstName>Sepp</wfs:firstName>
+                    <wfs:lastName>Huber</wfs:lastName>
+                    <wfs:communication>
+                        <wfs:phone>+49 89 555222</wfs:phone>
+                        <wfs:mobile>+49 176 123456</wfs:mobile>
+                        <wfs:email>ncuhwniodvasdfhjn@mailinator.com</wfs:email>
+                        <wfs:fax>+49 89 321</wfs:fax>
+                    </wfs:communication>
+                </wfs:contactPerson>
+                <wfs:qualification>Housing</wfs:qualification>
+                <wfs:location>
+                    <wfs:street>Komischweg</wfs:street>
+                    <wfs:houseNumber>@ignore@</wfs:houseNumber>
+                    <wfs:zipCode>99293</wfs:zipCode>
+                    <wfs:city>Freierfunden</wfs:city>
+                    <wfs:country>DE</wfs:country>
+                </wfs:location>
+                <wfs:requestedTimeSlot>
+                    <wfs:earliestStart>@matches('${realisierungstermin}T08:00:00.000+.*')@</wfs:earliestStart>
+                    <wfs:latestStart>@matches('${realisierungstermin}T16:59:00.000+.*')@</wfs:latestStart>
+                    <wfs:latestEnd>@matches('${realisierungstermin}T20:59:00.000+.*')@</wfs:latestEnd>
+                </wfs:requestedTimeSlot>
+                <wfs:plannedDuration>240</wfs:plannedDuration>
+            </wfs:order>
+        </wfs:createOrder>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

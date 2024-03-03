@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@adlatus-gui/business/*": ["libs/business/src/lib/*"],
+      "@adlatus-gui/domain/*": ["libs/domain/src/lib/*"],
+      "@adlatus-gui/feature-components/*": [
+        "libs/feature-components/src/lib/*"
+      ],
+      "@adlatus-gui/locales": ["libs/locales/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

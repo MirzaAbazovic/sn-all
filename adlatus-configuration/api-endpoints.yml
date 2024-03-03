@@ -1,0 +1,11 @@
+core:
+  resource-order-management: http://localhost:8080
+  resource-inventory-management: http://localhost:8181
+  resource-catalog-management: http://localhost:8282
+  agreement-management: http://localhost:8686
+
+supporting:
+  party-management: http://localhost:8383
+  geographic-location-management: http://localhost:8484
+  appointment-management: http://localhost:8585
+

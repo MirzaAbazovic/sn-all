@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../base/modules/SERVICE-APP
+
+namespace: NAMESPACE-ENV
+nameSuffix: "-ENV"
+
+images: 
+- name: SERVICE-APP
+  newName: IMAGE
+  newTag: TAG

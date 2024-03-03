@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!-- Datei zur Konfiguration der Scheduler-Jobs. Die Konfiguration erfolgt zur Zeit ueber die Spring-Implementierungen von Quartz.-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="placeholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
+
+    <bean id="org.quartz.SimpleTrigger.MISFIRE_INSTRUCTION_FIRE_NOW"
+          class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+    <bean id="org.quartz.SimpleTrigger.MISFIRE_INSTRUCTION_RESCHEDULE_NEXT_WITH_EXISTING_COUNT"
+          class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+    <bean id="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_FIRE_ONCE_NOW"
+          class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+    <bean id="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"
+          class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+
+    <!-- Alle Jobs, die fuer die WITA benoetigt werden -->
+    <import resource="classpath:de/mnet/hurrican/scheduler/job/resources/scheduler-wita-jobs.xml"/>
+    <!-- Alle Jobs, die fuer die WBCI benoetigt werden -->
+    <import resource="classpath:de/mnet/hurrican/scheduler/job/resources/scheduler-wbci-jobs.xml"/>
+    <!-- Antivirus-Service-Context, wird nur im Scheduler benoetigt -->
+    <import resource="classpath:de/mnet/antivirus/scan/resources/AntivirusScanContext.xml"/>
+
+    <!-- Definition des Schedulers - die Bean-Id nicht umbenennen - oder Clients, die per RMI darauf zugreifen ebenfalls anpassen. -->
+    <bean id="ak.scheduler" class="de.mnet.hurrican.scheduler.utils.HurricanSchedulerFactoryBean">
+        <property name="autoStartup" value="true"/>
+        <property name="dataSource" ref="scheduler.dataSource"/>
+        <!-- Definition der Quartz-Properties - statt quartz.properties -->
+        <property name="quartzProperties">
+            <map>
+                <entry key="org.quartz.scheduler.instanceName" value="ak.quartz.scheduler"/>
+                <!-- RMI-Daten -->
+                <entry key="org.quartz.scheduler.rmi.export" value="true"/>
+                <entry key="org.quartz.scheduler.rmi.proxy" value="false"/>
+                <entry key="org.quartz.scheduler.rmi.registryHost" value="${rmi.registry.host}"/>
+                <entry key="org.quartz.scheduler.rmi.registryPort" value="${hurricanweb.rmi.port}"/>
+                <entry key="org.quartz.scheduler.rmi.createRegistry" value="true"/>
+                <!-- Konfiguration der Scheduler-Threads (z.B. ThreadCount) -->
+                <entry key="org.quartz.scheduler.wrapJobExecutionInUserTransaction" value="false"/>
+                <entry key="org.quartz.threadPool.class" value="org.quartz.simpl.SimpleThreadPool"/>
+                <entry key="org.quartz.threadPool.threadCount" value="20"/>
+                <entry key="org.quartz.threadPool.threadPriority" value="5"/>
+                <entry key="org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread" value="true"/>
+                <entry key="org.quartz.jobStore.misfireThreshold" value="60000"/>
+                <!-- Konfiguration des Job-Store -->
+                <entry key="org.quartz.jobStore.class" value="org.quartz.impl.jdbcjobstore.JobStoreTX"/>
+                <entry key="org.quartz.jobStore.driverDelegateClass"
+                       value="org.quartz.impl.jdbcjobstore.StdJDBCDelegate"/>
+                <!-- Konfiguration von Plugins -->
+                <entry key="org.quartz.plugin.shutdownhook.class"
+                       value="org.quartz.plugins.management.ShutdownHookPlugin"/>
+                <entry key="org.quartz.plugin.shutdownhook.cleanShutdown" value="true"/>
+            </map>
+        </property>
+        <property name="triggers">
+            <ref bean="triggers"/>
+        </property>
+        <!-- Zuordnung von Jobs, die keinen Trigger besitzen -->
+        <property name="jobDetails">
+            <ref bean="jobDetails"/>
+        </property>
+        <property name="jobListeners">
+            <list>
+                <ref bean="log.job.listener"/>
+            </list>
+        </property>
+        <property name="globalTriggerListeners">
+            <list>
+                <ref bean="vetoMultiplePDFSignatureJobsListener"/>
+                <ref bean="vetoMultipleExportEVNJobsListener"/>
+                <ref bean="vetoMultipleExport2ArchiveJobsListener"/>
+                <ref bean="vetoMultipleEqRessourcenMonitorJobsListener"/>
+                <ref bean="vetoMultipleRangRessourcenMonitorJobsListener"/>
+                <ref bean="vetoProcessWbciAutomatableStrAufErlmsDonatingJobListener"/>
+                <ref bean="vetoProcessWbciAutomatableStrAufErlmsJobListener"/>
+                <ref bean="vetoProcessWbciAutomatableErlmTvsJobListener"/>
+                <ref bean="vetoProcessWbciAutomatableIncomingAkmTRsJobListener"/>
+                <ref bean="vetoProcessWbciAutomatableAkmTRsJobListener"/>
+                <ref bean="vetoProcessWbciAutomatableOutgoingRuemVAsJobListener"/>
+                <ref bean="vetoProcessWbciAutomatableRuemVAsJobListener"/>
+                <ref bean="vetoSendWbciRequestsJobListener"/>
+                <ref bean="vetoAutomaticallyProcessWitaOrdersJobListener"/>
+                <ref bean="vetoAutomaticallyProcessWitaCancellationsJobListener"/>
+                <ref bean="vetoWitaMeldungBsiProtocolEntryJobListener"/>
+                <ref bean="vetoWitaBsiRemoveDeadPvMeldungenJobListener"/>
+                <ref bean="vetoScanAndArchiveWitaFilesJobListener"/>
+                <ref bean="vetoSendWitaRequestsJobListener"/>
+            </list>
+        </property>
+    </bean>
+
+    <util:list id="jobDetails" value-type="org.springframework.scheduling.quartz.JobDetailBean">
+        <ref bean="signatureBillPDFsJob"/>
+        <ref bean="exportEVN2PortalJob"/>
+        <ref bean="exportBillsAndEVNs2ArchiveJob"/>
+        <ref bean="validateLeistungSnapshotJob"/>
+        <ref bean="deleteLoggingsJob"/>
+        <ref bean="removeExpiredSessionsJob"/>
+        <ref bean="finishExpiredCPSTransactionsJob"/>
+        <ref bean="gatherPortStatisticJob"/>
+        <ref bean="processPendingEmailsJob"/>
+        <ref bean="deleteReportsJob"/>
+        <ref bean="cleanLeistungenDNJob"/>
+        <ref bean="deleteReportDataJob"/>
+        <ref bean="automaticClearanceOfPhysics"/>
+        <ref bean="importEWSDFilesJob"/>
+        <ref bean="startRessourcenMonitor"/>
+        <ref bean="startEQRessourcenMonitor"/>
+        <ref bean="startRangRessourcenMonitor"/>
+        <ref bean="startMonitorAlarm"/>
+        <ref bean="createCPSTx4BAJob"/>
+        <ref bean="createCPSTx4BATodayJob"/>
+        <ref bean="createCPSTx4DNServicesJob"/>
+        <ref bean="createCPSTx4LocksJob"/>
+        <ref bean="ipDeallocationJob"/>
+        <ref bean="sendExceptionLogsMailJob"/>
+        <ref bean="checkMonitoredDSLAMProfileJob"/>
+        <ref bean="sendWitaRequestsJob"/>
+        <ref bean="scanAndArchiveWitaFilesJob"/>
+        <ref bean="witaMeldungBsiProtocolEntryJob"/>
+        <ref bean="witaBsiRemoveDeadPvMeldungenJob"/>
+        <ref bean="automaticallyProcessWitaOrdersJob"/>
+        <ref bean="automaticallyProcessWitaCancellationsJob"/>
+        <ref bean="houseKeepingJob"/>
+        <ref bean="escalationReportJob"/>
+        <ref bean="sendWbciRequestsJob"/>
+        <ref bean="processWbciAutomatableRuemVAsJob"/>
+        <ref bean="processWbciAutomatableOutgoingRuemVAsJob"/>
+        <ref bean="processWbciAutomatableAkmTRsJob"/>
+        <ref bean="processWbciAutomatableIncomingAkmTRsJob"/>
+        <ref bean="processWbciAutomatableErlmTvsJob"/>
+        <ref bean="processWbciAutomatableStrAufErlmsJob"/>
+        <ref bean="processWbciAutomatableStrAufErlmsDonatingJob"/>
+        <ref bean="smsSendJob"/>
+        <ref bean="notifyMaterialFeedbackJob"/>
+        <ref bean="ffmUpdateOrders4BAsTodayJob"/>
+        <ref bean="ffmUpdateOrders4BAsIn8DaysJob"/>
+        <ref bean="executeHvtUmzugAndSendCpsTxJob"/>
+        <ref bean="processExpiredServicesJob"/>
+    </util:list>
+
+    <bean id="rmiSchedulerConnectServer" class="de.mnet.hurrican.scheduler.job.rmi.RMISchedulerConnect">
+    </bean>
+    <bean id="rmiSchedulerConnect" class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <property name="registryPort" value="${hurricanweb.rmi.schedulerConnect.port}"/>
+        <property name="serviceName" value="schedulerConnect"/>
+        <property name="service" ref="rmiSchedulerConnectServer"/>
+        <property name="serviceInterface" value="de.mnet.common.scheduler.IRMISchedulerConnect"/>
+    </bean>
+
+    <!-- Langlaufende Jobs -->
+    <!-- Job, um die Rechnungs-PDFs zu signieren und zum Kundenportal Muenchen zu exportieren.-->
+    <bean id="signatureBillPDFsJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.exports.SignatureBillPDFsJob"/>
+        <property name="group" value="billingJobGroup"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <!-- Trigger-Listener, um nur einen signatureBillPDFsJob ausfuehren zu lassen.-->
+    <bean id="vetoMultiplePDFSignatureJobsListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoMultiplePDFSignatureJobsListener"/>
+        <property name="jobName" value="signatureBillPDFsJob"/>
+        <property name="jobGroup" value="billingJobGroup"/>
+    </bean>
+
+    <!-- Job, um die EVNs (PDF und ASCII) zum Kundenportal Muenchen zu exportieren.-->
+    <bean id="exportEVN2PortalJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.exports.ExportEVN2PortalJob"/>
+        <property name="group" value="billingJobGroup"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <!-- Trigger-Listener, um nur einen signatureBillPDFsJob ausfuehren zu lassen.-->
+    <bean id="vetoMultipleExportEVNJobsListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoMultipleExportEVNJobsListener"/>
+        <property name="jobName" value="exportEVN2PortalJob"/>
+        <property name="jobGroup" value="billingJobGroup"/>
+    </bean>
+
+    <!-- Job, um die Rechnungen und EVNs zu archivieren. -->
+    <bean id="exportBillsAndEVNs2ArchiveJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.exports.ExportBillsAndEVNs2ArchiveJob"/>
+        <property name="group" value="billingJobGroup"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <!-- Trigger-Listener, um nur einen signatureBillPDFsJob ausfuehren zu lassen.-->
+    <bean id="vetoMultipleExport2ArchiveJobsListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoMultipleExport2ArchiveJobsListener"/>
+        <property name="jobName" value="exportBillsAndEVNs2ArchiveJob"/>
+        <property name="jobGroup" value="billingJobGroup"/>
+    </bean>
+    <!-- Ende langlaufende Jobs -->
+
+
+    <!-- Job-Definition zur Ueberpruefung der Leistungs-Snapshots und Verlauf-Actions. -->
+    <bean id="validateLeistungSnapshotJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.validation.ValidateLeistungSnapshotJob"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="emailTo" value="${mail.info.recipients}"/>
+            </map>
+        </property>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <!-- Trigger-Definition zur Ueberpruefung der Leistungs-Snapshots und Verlauf-Actions. -->
+    <bean id="validateLeistungSnapshotTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="validateLeistungSnapshotJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.validateLeistungSnapshotTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <!-- Job, um 'alte' Job-Protokollierungen zu loeschen. -->
+    <bean id="deleteLoggingsJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.base.DeleteOldLoggingsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="deleteLoggingsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="deleteLoggingsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.deleteLoggingsTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <!-- Job, um abgelaufene User-Sessions aus der Authentication-DB zu entfernen. -->
+    <bean id="removeExpiredSessionsJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.base.DeleteExpiredSessionsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="removeExpiredSessionsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="removeExpiredSessionsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.removeExpiredSessionsTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <!-- Job, um abgelaufene CPS Transaktionen zu schließen. -->
+    <bean id="finishExpiredCPSTransactionsJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.cps.CPSFinishExpiredTxJob"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="finishExpiredCPSTransactionsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="finishExpiredCPSTransactionsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.finishExpiredCPSTransactionsTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <!-- Job generiert einmal monatlich Statistiken über benutzte und freie Ports -->
+    <bean id="gatherPortStatisticJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.statistics.PortUsageStatisticsGatheringJob"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="gatherPortStatisticTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="gatherPortStatisticJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.gatherPortStatisticTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <!-- Job fuer den Versand von eMails -->
+    <bean id="processPendingEmailsJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.base.ProcessPendingEmailsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="processPendingEmailsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="processPendingEmailsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.processPendingEmailsTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <!-- Job-Definition fuer Report-Server um alte Reports zu loeschen -->
+    <bean id="deleteReportsJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.reporting.DeleteOldReportsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="days" value="7"/>
+            </map>
+        </property>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="deleteReportsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="deleteReportsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.deleteReportsTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <!-- Aufraeumen der Rufnummernleistungen -->
+    <bean id="cleanLeistungenDNJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.maintainance.ClearLeistungDn"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <!-- Trigger-Definition fuer das regelmaessigen Aufraeumen der Rufnummernleistungen -->
+    <bean id="cleanLeistungDNTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="cleanLeistungenDNJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.cleanLeistungDNTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <!-- Job-Definition fuer Report-Server um alte ReportData-Datensaetze zu loeschen -->
+    <bean id="deleteReportDataJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.reporting.DeleteOldReportDataJob"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="days" value="7"/>
+            </map>
+        </property>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="deleteReportDataTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="deleteReportDataJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.deleteReportDataTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <bean id="automaticClearanceOfPhysicsTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="automaticClearanceOfPhysics"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.automaticClearanceOfPhysics}"/>
+    </bean>
+
+    <!-- Job, um eine automatische Freigabe von Ports zu realisieren -->
+    <bean id="automaticClearanceOfPhysics" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.clearance.AutomaticClearanceOfPhysicsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Automatisierter EWSD-Daten Import -->
+    <bean id="importEWSDFilesTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="importEWSDFilesJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.importEWSDFilesTrigger}"/>
+    </bean>
+    <bean id="importEWSDFilesJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.imports.ImportEWSDFilesJob"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="import.dir" value="${importEWSDFilesJob.ewsd.import.dir}"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- Job-Definition fuer Ressourcenmonitor -->
+    <!-- Job ohne Trigger zum manuellen Start eines Monitorlaufs -->
+    <bean id="startRessourcenMonitor" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.validation.StartRessourcenMonitorJob"/>
+        <property name="group" value="rmJobGroup"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Job startet den Port-Monitor -->
+    <bean id="startEQRessourcenMonitor" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.validation.StartRessourcenMonitorJob"/>
+        <property name="group" value="rmJobGroup"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="monitor.type" value="351"/>
+            </map>
+        </property>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="startEQRessourcenMonitorTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="startEQRessourcenMonitor"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.startEQRessourcenMonitorTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+    <!-- Trigger-Listener, um nur einen EQ-RessourcenMonitor ausfuehren zu lassen.-->
+    <bean id="vetoMultipleEqRessourcenMonitorJobsListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoMultipleEqRessourcenMonitorJobsListener"/>
+        <property name="jobName" value="startEQRessourcenMonitor"/>
+    </bean>
+
+    <!-- Job startet den Rangierungs-Monitor -->
+    <bean id="startRangRessourcenMonitor" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.validation.StartRessourcenMonitorJob"/>
+        <property name="group" value="rmJobGroup"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="monitor.type" value="350"/>
+            </map>
+        </property>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="startRangRessourcenMonitorTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="startRangRessourcenMonitor"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.startRangRessourcenMonitorTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+    <!-- Trigger-Listener, um nur einen Rang-RessourcenMonitor ausfuehren zu lassen.-->
+    <bean id="vetoMultipleRangRessourcenMonitorJobsListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoMultipleRangRessourcenMonitorJobsListener"/>
+        <property name="jobName" value="startRangRessourcenMonitor"/>
+    </bean>
+
+    <!-- Job startet die Alarmierung des Ressourcenmonitors -->
+    <bean id="startMonitorAlarm" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.validation.RessourcenMonitorAlarmierungJob"/>
+        <property name="group" value="rmJobGroup"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="startMonitorAlarmTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="startMonitorAlarm"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.startMonitorAlarmTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <!-- CPS-Jobs -->
+    <!-- Job erzeugt CPS-Transactions aus den Bauauftraegen des naechsten Werktags -->
+    <bean id="createCPSTx4BAJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.cps.CPSCreateCPSTx4BAJob"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="createCPSTx4BATrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="createCPSTx4BAJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.createCPSTx4BATrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <!-- Job erzeugt CPS-Transactions aus den heutigen Bauauftraegen -->
+    <bean id="createCPSTx4BATodayJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.cps.CPSCreateCPSTx4BATodayJob"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="createCPSTx4BATodayTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="createCPSTx4BATodayJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.createCPSTx4BATodayTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <!-- Job erzeugt CPS-Transactions aus den DN-Services -->
+    <bean id="createCPSTx4DNServicesJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.cps.CPSCreateCPSTx4DNServicesJob"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="createCPSTx4DNServicesTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="createCPSTx4DNServicesJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.createCPSTx4DNServicesTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <!-- Job erzeugt CPS-Transactions aus den Sperren -->
+    <bean id="createCPSTx4LocksJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.cps.CPSCreateCPSTx4LocksJob"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="createCPSTx4LocksJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="createCPSTx4LocksJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.createCPSTx4LocksJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+
+    <!-- Job fuehrt HVT-Umzuege zum aktuellen Tag aus und erstellt CPS modifySubscribers  -->
+    <bean id="executeHvtUmzugAndSendCpsTxJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.cps.ExecuteHvtUmzugAndSendCpsTxJob"/>
+        <property name="volatility" value="true"/>
+        <property name="durability" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="executeHvtUmzugAndSendCpsTxJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="executeHvtUmzugAndSendCpsTxJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.executeHvtUmzugAndSendCpsTxJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <!--     IP-Addressen freigeben -->
+    <bean id="ipDeallocationJobTriggerNight" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="ipDeallocationJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.ipDeallocationJobTriggerNight}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <bean id="ipDeallocationJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.ip.IpDeallocationJob"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Job, der Exception-Log ueberprueft und gegebenenfalls eine Email rausschickt -->
+    <bean id="sendExceptionLogsMailJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.exceptions.SendExceptionLogsMailJob"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="sendExceptionLogsMailJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="sendExceptionLogsMailJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.sendExceptionLogsMailJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <!-- Job, der Exception-Log ueberprueft und gegebenenfalls eine Email rausschickt -->
+    <bean id="checkMonitoredDSLAMProfileJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.validation.CheckMonitoredDSLAMProfileJob"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="checkMonitoredDSLAMProfileJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="checkMonitoredDSLAMProfileJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.checkMonitoredDSLAMProfileJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <bean id="notifyMaterialFeedbackJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.ffm.NotifyMaterialFeedbackJob"/>
+        <property name="group" value="ffm"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="notifyMaterialFeedbackJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="notifyMaterialFeedbackJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.ffm.notifyMaterialFeedbackJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+
+    <bean id="ffmUpdateOrders4BAsTodayJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.ffm.FfmUpdateOrder4BAsTodayJob"/>
+        <property name="group" value="ffm"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="emailTo" value="${mail.info.recipients}"/>
+            </map>
+        </property>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="ffmUpdateOrders4BAsTodayJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="ffmUpdateOrders4BAsTodayJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.ffm.ffmUpdateOrders4BAsTodayJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <bean id="ffmUpdateOrders4BAsIn8DaysJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.ffm.FfmUpdateOrder4BAsIn8DaysJob"/>
+        <property name="group" value="ffm"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="emailTo" value="${mail.info.recipients}"/>
+            </map>
+        </property>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="ffmUpdateOrders4BAsIn8DaysJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="ffmUpdateOrders4BAsIn8DaysJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.ffm.ffmUpdateOrders4BAsIn8DaysJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <bean id="processExpiredServicesJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.maintainance.ProcessExpiredServicesJob"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="processExpiredServicesJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="processExpiredServicesJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.processExpiredServicesJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+
+    <!-- Listener, um den Beginn und das Ende eines Jobs zu protokollieren -->
+    <bean id="log.job.listener" class="de.mnet.hurrican.scheduler.job.listener.LogJobExecutionListener">
+        <property name="name" value="log.job.execution.listener"/>
+        <property name="schedulerJobService" ref="de.mnet.hurrican.scheduler.service.SchedulerJobService"/>
+    </bean>
+
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.smtp.server}"/>
+        <property name="port" value="${mail.smtp.port}"/>
+    </bean>
+    <bean id="errorMailMsg" class="org.springframework.mail.SimpleMailMessage" scope="prototype">
+        <!-- Angabe von mehreren EMails: durch Komma (,) getrennt. -->
+        <property name="to" value="${mail.error.recipients}"/>
+        <property name="from" value="Hurrican-Scheduler"/>
+        <property name="subject" value="Job Execution Error"/>
+    </bean>
+
+    <bean id="exceptionMailMsg" class="org.springframework.mail.SimpleMailMessage" scope="prototype">
+        <property name="to" value="${mail.exception.log.recipients}"/>
+        <property name="from" value="Hurrican-Scheduler"/>
+        <property name="subject" value="Hurrican-Exception-Log: Es sind Fehlereintraege vorhanden!"/>
+    </bean>
+
+    <bean id="warningsMailMsg" class="org.springframework.mail.SimpleMailMessage" scope="prototype">
+        <!-- Angabe von mehreren EMails: durch Komma (,) getrennt. -->
+        <property name="to" value="${mail.warnings.recipients}"/>
+        <property name="from" value="Hurrican-Scheduler"/>
+        <property name="subject" value="Job Execution Warning"/>
+    </bean>
+
+    <bean id="ovstInfoMailMsg" class="org.springframework.mail.SimpleMailMessage" scope="prototype">
+        <!-- Angabe von mehreren EMails: durch Komma (,) getrennt. -->
+        <property name="to" value="${mail.ovst.info.recipients}"/>
+        <property name="from" value="Hurrican-Scheduler"/>
+        <property name="subject" value="EWSD Import/Rangierung Freigeben Info"/>
+    </bean>
+
+    <bean id="ipDeallocationMailMsg" class="org.springframework.mail.SimpleMailMessage" scope="prototype">
+        <!-- Angabe von mehreren EMails: durch Komma (,) getrennt. -->
+        <property name="to" value="${mail.ip.deallocation.recipients}"/>
+        <property name="from" value="Hurrican-Scheduler"/>
+        <property name="subject" value="Job Execution Warning"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,15 @@
+server:
+  port: '8282'
+spring:
+  jackson:
+    date-format: de.bitconex.tmf.resource_catalog.RFC3339DateFormat
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: 'false'
+  data:
+    mongodb:
+      database: resource_catalog
+      port: '27017'
+      host: localhost
+seed:
+  data:
+    enabled: 'true'

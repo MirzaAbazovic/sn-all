@@ -1,0 +1,5 @@
+--
+-- Erweiterung fuer Tabelle T_STRASSENLISTE
+--
+
+ALTER TABLE T_STRASSENLISTE ADD (KVZ_NUMMER VARCHAR(10));

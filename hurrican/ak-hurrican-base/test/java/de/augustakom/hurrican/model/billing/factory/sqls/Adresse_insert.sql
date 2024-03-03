@@ -1,0 +1,32 @@
+Insert into ADDRESS
+   (ADDR_NO, VALID_FROM, IS_ACTIVE, CUST_NO, IS_LOCATION, FORMAT_NAME, SALUTATION, FIRSTNAME, NAME, ZIP_CODE, CITY,
+   DISTRICT, STREET, HOUSE_NUM, HOUSE_NUM_ADD, LANGUAGE, NO_MAILING,
+   GEO_COUNTRY_ID, USERW, DATEW, CREATED_AT, FORMAT, IS_COMPANYADDRESS, ADDRESS_TYPE, FLOOR, VENTO_GEO_ID)
+ Values (
+   ${adresseNo:-NULL},
+   TO_DATE('01/01/2011 00:00:00', 'MM/DD/YYYY HH24:MI:SS'),
+   '1',
+   ${kundeNo:-NULL},
+   '1',
+   '${formatName:-RESIDENTIAL}',
+   '${anrede:-HERR}',
+   '${vorname:-NULL}',
+   '${name:-NULL}',
+   '${plz:-NULL}',
+   '${ort:-NULL}',
+   '${ortsteil:-NULL}',
+   '${strasse:-NULL}',
+   '${nummer:-NULL}',
+   '${hausnummerZusatz:-NULL}',
+   'DE',
+   '0',
+   'DE',
+   'WITA',
+   TO_DATE('01/01/2011 00:00:00', 'MM/DD/YYYY HH24:MI:SS'),
+   TO_DATE('01/21/2000 00:00:00', 'MM/DD/YYYY HH24:MI:SS'),
+   '${format:-HERR}',
+   '0',
+   'mailbox',
+   '${floor:-NULL}',
+   ${geoId:-NULL}
+   )

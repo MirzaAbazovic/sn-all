@@ -1,0 +1,104 @@
+<project basedir="." name="hurrican-migrations">
+
+    <!-- override this property in order to do local migrations -->
+    <property name="run.classpath.basedir" value="${basedir}"/>
+
+    <path id="run.class.path" description="Java classpath for migrations">
+        <fileset dir="${run.classpath.basedir}" includes="*"/>
+    </path>
+
+    <import file="${basedir}/../common-build/common_ant.xml"/>
+    <import file="${basedir}/../common-build/common_build.xml"/>
+    <import file="${basedir}/../common-build/common_migration.xml"/>
+
+    <!-- INFO: Additionally, you should add the migration context configuration to the tests in
+         "de.mnet.migration.common.main.MigrationStartupTests" -->
+    <target name="run.all.migration.suites" depends="
+        run.dummy.suites,
+    	run.ip.suite"/>
+
+    <target name="run.dummy.suites" depends="run.DummySuite" />
+	<target name="run.ip.suite" depends="run.IpSuite" />
+
+    <target name="dump.all.db" depends="dump.hurrican.db"/>
+
+    <!-- parallel execution -->
+    <target name="run.all.migration.suites.parallel">
+        <parallel>
+            <antcall target="run.hurrican.standalone.part1.suites"/>
+        </parallel>
+        <antcall target="dump.all.archive"/>
+        <parallel>
+            <antcall target="run.hurrican.standalone.part2.suites"/>
+        </parallel>
+    </target>
+
+    <!-- Hurrican Migrationen -->
+
+	<!-- Dummy-Suite bestehen lassen, damit auch ein 'leeres' Migrations-Projekt gestartet werden kann! -->
+    <target name="run.DummySuite" depends="run.DummyMigration"/>
+    <target name="run.DummyMigration" depends="query.passwordsForMigration">
+        <antcall target="run.migrationSuite">
+            <param name="migrationSuiteName" value="DummyMigrationSuite"/>
+            <param name="migrationSuiteStarters" value="hurrican.dummy.DummyTransformator"/>
+        </antcall>
+    </target>
+	
+	<!-- MigrationSuite fuer die unterschiedlichen IP-Migrationen -->
+	<target name="run.IpSuite" depends="run.IpMigration"/>
+    <target name="run.IpMigration" depends="query.passwordsForMigration">
+        <antcall target="run.migrationSuite">
+            <param name="migrationSuiteName" value="IPMigrationSuite"/>
+            <param name="migrationSuiteStarters" 
+            	value="hurrican.ipbinary.IpBinaryTransformator,hurrican.ipsubnet.IpSubnetTransformator,hurrican.iproute.IpRouteTransformator"/>
+        </antcall>
+    </target>
+
+	
+	<!-- DB-Operationen -->
+
+    <macrodef name="dump-migration-db">
+        <attribute name="scriptdir"/>
+        <attribute name="database"/>
+        <attribute name="dbscript" default="build_test_database.xml"/>
+        <attribute name="basedir" default="${basedir}/../../../.."/>
+        <attribute name="dumpname" default="latest-nightly-${use.config}.dmp"/>
+        <attribute name="dumpdir" default="DATA_DEV_DUMP_DIR"/>
+
+        <sequential>
+            <local name="db.script.location"/>
+            <property name="db.script.location" location="@{basedir}/@{scriptdir}/@{dbscript}"/>
+            <echo message="@{scriptdir} DB-Script: ${db.script.location}"/>
+            <fail message="@{scriptdir} Build Database Skript nicht gefunden">
+                <condition>
+                    <not>
+                        <available file="${db.script.location}"/>
+                    </not>
+                </condition>
+            </fail>
+            <ant inheritall="false" antfile="${db.script.location}" target="create.database.dump">
+                <property name="use.config" value="${use.config}"/>
+                <property name="db.@{database}.dump.filename" value="@{dumpname}"/>
+                <property name="db.@{database}.dump.target.directory" value="@{dumpdir}"/>
+            </ant>
+
+        </sequential>
+    </macrodef>
+
+    <!-- beware: these targets are only useful for E2E environments
+         the directories taifun, ak-hurrican-base and bsi have to be checked
+         out from SVN in the Hudson job executing this task -->
+    <target name="dump.hurrican.db" if="${database.dumps.enabled}">
+        <dump-migration-db scriptdir="ak-hurrican-base"  basedir="${svn.relative.basedir}" database="hurrican"/>
+    </target>
+
+    <target name="dump.all.archive" if="${database.dumps.enabled}">
+        <parallel>
+            <dump-migration-db scriptdir="ak-hurrican-base"
+                               database="hurrican"
+                               dumpname="latest-intermediate.dmp"
+                               dumpdir="DATA_ARCHIV_DUMP_DIR"/>
+        </parallel>
+    </target>
+
+</project>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.RSMonitorRun
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="RSMonitorRun" table="T_RS_MONITOR_RUN">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_RS_MONITOR_RUN_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="monitorType" column="MONITOR_TYPE" type="long" not-null="true"/>
+        <property name="state" column="STATE" type="long" not-null="true"/>
+        <property name="startedAt" column="STARTED_AT" type="timestamp" not-null="true"/>
+        <property name="finishedAt" column="FINISHED_AT" type="timestamp" />
+        <property name="runExecutedBy" column="RUN_EXECUTED_BY" type="string" not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

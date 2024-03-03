@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Anzeige der Leistungs-Differenzen 
+fuer einen Verlauf/Bauauftrag.
+-->
+<sf>
+    
+    <Label name="leistungs.diff"><text>Leistungs-Differenz für den Verlauf:</text></Label>
+    
+</sf>

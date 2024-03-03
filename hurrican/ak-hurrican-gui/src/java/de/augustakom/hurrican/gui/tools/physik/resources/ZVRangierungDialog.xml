@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel, um eine Kündigung rückgängig zu machen.
+-->
+<sf>
+
+    <Text name="dialog.title">Information zu Rangierung</Text>
+
+    <Label name="cpp.status"><text>Status</text></Label>
+    <Label name="cpp.beschreibung"><text>Beschreibung</text></Label>
+
+    <TextField name="cpp.status">
+        <tooltip>Status der Rangierung (geplant / in Betrieb)</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <TextArea name="cpp.beschreibung">
+        <tooltip>Command Planungsprotokoll: Beschreibung / Rangierinformation im Klartext</tooltip>
+    </TextArea>
+
+    <Text name="progress.text">lade Informationen ...</Text>
+
+</sf>

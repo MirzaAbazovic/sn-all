@@ -1,0 +1,1 @@
+update T_PRODUKT set MIN_DN_COUNT=0 where PROD_ID=512;

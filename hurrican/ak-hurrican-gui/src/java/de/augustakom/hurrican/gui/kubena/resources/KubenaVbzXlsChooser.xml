@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Definition der GUI-Komponenten fuer den Dialog zur Angabe des Xls-Files, das
+die Leitungsnummern fuer die Kubena enthaelt.
+-->
+<sf>
+
+    <Text name="title">Verbindungsbezeichnung-Angabe</Text>
+
+    <Label name="file"><text>Datei:</text></Label>
+    <TextField name="file">
+        <columns>20</columns>
+        <tooltip>Excel-Datei, die die Verbindungsbezeichnungen enthält</tooltip>
+    </TextField>
+
+    <Button name="file.chooser">
+        <text>...</text>
+        <tooltip>Öffnet einen Filechooser, um die Excel-Datei mit den Verbindungsbezeichnungen zu wählen</tooltip>
+    </Button>
+
+    <Label name="worksheets"><text>Arbeitsblätter:</text></Label>
+    <List name="worksheets">
+        <tooltip>Auswahl des Arbeitsblatts, das die Verbindungsbezeichnung enthält</tooltip>
+    </List>
+
+</sf>

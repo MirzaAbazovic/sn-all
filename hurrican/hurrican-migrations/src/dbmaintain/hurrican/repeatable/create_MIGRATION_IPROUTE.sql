@@ -1,0 +1,23 @@
+--
+-- View zur Ermittlung der IP-Routes, deren Prefix-Length auf die IP-Adresse
+-- uebertragen werden soll.
+--
+--create or replace force VIEW MIGRATION_IPROUTE as
+--  select
+--    route.ID as ID,
+    --route.PREFIX_LENGTH as PREFIX_LENGTH,
+--    NULL as PREFIX_LENGTH,
+--    ip.ID as IP_ADDRESS_ID,
+--    ip.ADDRESS as IP_ADDRESS,
+--    ip.ADDRESS_TYPE as ADDRESS_TYPE
+--  from
+--    T_IP_ROUTE route
+--    inner join T_IP_ADDRESS ip on route.IP_ADDRESS_ID=ip.ID
+--  where
+--    route.PREFIX_LENGTH is not null
+--    and route.PREFIX_LENGTH between 1 and 254
+--  order by
+--    route.ID ASC
+--;
+
+--grant select on MIGRATION_IPROUTE to R_HURRICAN_USER;

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.ProduktMapping
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="ProduktMapping" table="T_PRODUKT_MAPPING">
+
+        <cache usage="read-write"/>
+
+        <!-- PrimaryKey -->
+        <composite-id>
+            <key-property name="mappingGroup" column="MAPPING_GROUP" type="long"/>
+            <key-property name="extProdNo" column="EXT_PROD__NO" type="long"/>
+            <key-property name="prodId" column="PROD_ID" type="long"/>
+        </composite-id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <property name="mappingPartType" column="MAPPING_PART_TYPE" type="string"/>
+        <property name="priority" column="PRIORITY" type="long"/>
+
+    </class>
+
+</hibernate-mapping>

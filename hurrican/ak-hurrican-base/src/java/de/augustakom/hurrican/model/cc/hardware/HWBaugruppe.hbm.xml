@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.hardware.HWBaugruppe
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.hardware">
+    <class name="HWBaugruppe" table="T_HW_BAUGRUPPE">
+
+        <cache usage="read-write"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_HW_BAUGRUPPE_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="rackId" column="RACK_ID" type="long" not-null="true"/>
+        <property name="subrackId" column="SUBRACK_ID" type="long" not-null="false"/>
+        <many-to-one name="hwBaugruppenTyp" column="HW_BG_TYP_ID" not-null="true" lazy="false" cascade="none" />
+        <property name="inventarNr" column="INVENTAR_NR" type="string"/>
+        <property name="modNumber" column="MOD_NUMBER" type="string" not-null="true"/>
+        <property name="eingebaut" column="EINGEBAUT" type="boolean"/>
+        <property name="bemerkung" column="BEMERKUNG" type="string"/>
+        <property name="modName" column="MOD_NAME" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

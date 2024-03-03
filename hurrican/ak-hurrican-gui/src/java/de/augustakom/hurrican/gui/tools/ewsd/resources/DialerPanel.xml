@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Dialer-Panel.
+-->
+<sf>
+    
+    <Label name="kennzahl"><text>Kennzahl:</text></Label>
+    <TextField name="kennzahl">
+        <tooltip>die zu sperrende Rufnummer</tooltip>
+        <columns>20</columns>
+    </TextField>
+    
+    <Label name="description"><text>Beschreibung:</text></Label>
+    <TextArea name="description">
+        <tooltip>Kurze Beschreibung zu der Rufnummer (z.B. das Zielland)</tooltip>
+    </TextArea>
+    
+    <Label name="typ"><text>Typ:</text></Label>
+    <ComboBox name="typ">
+        <items>
+            <item> </item>
+            <item>Dialer</item>
+        </items>
+        <tooltip>Typ der gesperrten Rufnummer</tooltip>
+    </ComboBox>
+    
+    <Label name="gueltig.von"><text>Gültig von:</text></Label>
+    <DateComponent name="gueltig.von">
+        <tooltip>Datum, ab dem die Kennzahl gesperrt werden soll</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>15</columns>
+    </DateComponent>
+    
+    <Label name="gueltig.bis"><text>Gültig bis:</text></Label>
+    <DateComponent name="gueltig.bis">
+        <tooltip>Datum, ab dem die Kennzahl wieder entsperrt werden soll</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+    
+    <Label name="gesperrt.ab"><text>Gesperrt ab:</text></Label>
+    <DateComponent name="gesperrt.ab">
+        <tooltip>Datum, zu dem die Sperre technisch eingerichtet wurde</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+    
+    <Label name="gesperrt.bis"><text>Gesperrt bis:</text></Label>
+    <DateComponent name="gesperrt.bis">
+        <tooltip>Datum, an dem die Sperre technisch aufgehoben wurde</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+    
+    <Button name="new">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Erstellt einen neuen Dialer-Eintrag</tooltip>
+    </Button>
+    
+    <Button name="save">
+        <icon>de/augustakom/hurrican/gui/images/save.gif</icon>
+        <tooltip>Speichert die eingetragenen Daten</tooltip>
+    </Button>
+    
+</sf>

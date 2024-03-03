@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:tns="http://www.mnet.de/esb/cdm/Resource/ResourceCharacteristicsService/v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:jms="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  name="ResourceCharacteristicsService"
+                  targetNamespace="http://www.mnet.de/esb/cdm/Resource/ResourceCharacteristicsService/v1">
+   <wsdl:documentation>Version 1.1</wsdl:documentation>
+   <wsdl:types>
+      <xs:schema xmlns="http://www.mnet.de/esb/cdm/Resource/ResourceCharacteristicsService/v1"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 targetNamespace="http://www.mnet.de/esb/cdm/Resource/ResourceCharacteristicsService/v1"
+                 version="1.1"
+                 elementFormDefault="qualified"
+                 attributeFormDefault="unqualified">
+         <xs:complexType name="ResourceAttribute">
+            <xs:sequence>
+               <xs:element name="key" type="xs:string"/>
+               <xs:element name="value" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="updateResourceCharacteristics">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="inventory">
+                     <xs:annotation>
+                        <xs:documentation>The Target inventory</xs:documentation>
+                     </xs:annotation>
+                     <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                           <xs:enumeration value="Callisto"/>
+                           <xs:enumeration value="Hurrican"/>
+                        </xs:restriction>
+                     </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="resourceId" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>Unique id, used for identifying the resource</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="serialNumber" type="xs:string" minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>The serial number of the resource</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="attribute"
+                              type="tns:ResourceAttribute"
+                              minOccurs="0"
+                              maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:schema>
+   </wsdl:types>
+   <wsdl:service name="ResourceCharacteristicsService">
+      <wsdl:port name="ResourceCharacteristicsServiceJMS"
+                 binding="tns:ResourceCharacteristicsServiceJMSBinding">
+         <soap:address location="mnet.Resource.op.cdm.src.v1.ResourceCharacteristicsService"/>
+         <jms:connectionFactory>QueueConnectionFactory</jms:connectionFactory>
+         <jms:targetAddress destination="queue">mnet.Resource.op.cdm.src.v1.ResourceCharacteristicsService</jms:targetAddress>
+      </wsdl:port>
+      <wsdl:port name="ResourceCharacteristicsServiceHTTP"
+                 binding="tns:ResourceCharacteristicsServiceHTTPBinding">
+         <soap:address location="http://@domain.loadbalancer.url@/esb/Resource/ResourceCharacteristicsService/v1"/>
+      </wsdl:port>
+   </wsdl:service>
+   <wsdl:portType name="ResourceCharacteristicsService">
+      <wsdl:operation name="updateResourceCharacteristics">
+         <wsdl:input message="tns:updateResourceCharacteristics"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="ResourceCharacteristicsServiceJMSBinding"
+                 type="tns:ResourceCharacteristicsService">
+      <soap:binding style="document"
+                    transport="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"/>
+      <jms:binding messageFormat="Text"/>
+      <wsdl:operation name="updateResourceCharacteristics">
+         <soap:operation style="document"
+                         soapAction="/ResourceCharacteristicsService/updateResourceCharacteristics"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="ResourceCharacteristicsServiceHTTPBinding"
+                 type="tns:ResourceCharacteristicsService">
+      <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="updateResourceCharacteristics">
+         <soap:operation style="document"
+                         soapAction="/ResourceCharacteristicsService/updateResourceCharacteristics"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:message name="updateResourceCharacteristics">
+      <wsdl:part name="in" element="tns:updateResourceCharacteristics"/>
+   </wsdl:message>
+</wsdl:definitions>

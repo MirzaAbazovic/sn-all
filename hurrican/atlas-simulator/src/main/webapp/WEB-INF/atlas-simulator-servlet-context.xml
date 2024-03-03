@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <description>Automatically loaded via ContextloaderListener in web.xml - context is shared by all servlets</description>
+
+    <!-- Common properties -->
+    <bean id="appProps" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="locations">
+            <!-- Note: last property file loaded overwrites properties set earlier in previously loaded property files -->
+            <list>
+                <value>classpath:META-INF/atlas-simulator.properties</value>
+                <value>classpath:META-INF/atlas-simulator.${user.name}.properties</value>
+                <value>classpath:META-INF/atlas-simulator.user.${user.name}.properties</value>
+                <value>classpath:META-INF/atlas-simulator.${use.config}.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+    </bean>
+
+    <bean id="citrusBaseConfig" class="com.consol.citrus.config.CitrusBaseConfig"/>
+    <import resource="classpath*:/META-INF/atlas-*-context.xml"/>
+</beans>

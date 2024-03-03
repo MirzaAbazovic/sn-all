@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse 
+de.augustakom.hurrican.model.cc.dn.Lesitung2Parameter
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.dn">
+	<class name="Leistung2Parameter" table="T_LEISTUNG_2_PARAMETER">
+	    
+	    <!-- PrimaryKey -->
+		<composite-id>
+        	<key-property name="leistungId" column="LEISTUNG_ID" type="long"/>
+    		<key-property name="parameterId" column="LEISTUNG_PARAMETER_ID" type="long"/>
+		</composite-id>
+
+	</class>
+	
+</hibernate-mapping>

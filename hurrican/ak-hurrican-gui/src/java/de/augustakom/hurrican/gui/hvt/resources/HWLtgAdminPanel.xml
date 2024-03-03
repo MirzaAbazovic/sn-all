@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Administration der HW-DLUs.
+-->
+<sf>
+
+    <Label name="type"><text>LTG-Typ:</text></Label>
+    <ReferenceField name="type">
+        <tooltip>Typ des LTGs</tooltip>
+        <id.property>strValue</id.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="number"><text>LTG-Nummer:</text></Label>
+    <TextField name="number">
+        <tooltip>Nummer der LTG</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="ldarp"><text>LTG-LDARP:</text></Label>
+    <TextField name="ldarp">
+        <tooltip>LTG-LDARP</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="switch"><text>Switch:</text></Label>
+    <TextField name="switch">
+        <tooltip>Switch-Bezeichnung</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="mg.name"><text>Media-Gateway (HiG):</text></Label>
+    <TextField name="mg.name">
+        <tooltip>Bezeichnung des Media-Gateways</tooltip>
+        <columns>50</columns>
+    </TextField>
+</sf>

@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:jms="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:tns="http://www.mnet.de/esb/cdm/Customer/CustomerOrderService/v1"
+                  xmlns:jndi="http://www.tibco.com/namespaces/ws/2004/soap/apis/jndi"
+                  xmlns:ns0="http://www.mnet.de/esb/cdm/Shared/Common/v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  name="CustomerOrderService"
+                  targetNamespace="http://www.mnet.de/esb/cdm/Customer/CustomerOrderService/v1">
+   <wsdl:documentation>Version 1.4</wsdl:documentation>
+   <wsdl:types>
+      <xs:schema xmlns="http://www.mnet.de/esb/cdm/Customer/CustomerOrderService/v1"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 targetNamespace="http://www.mnet.de/esb/cdm/Customer/CustomerOrderService/v1"
+                 version="1.4"
+                 elementFormDefault="qualified"
+                 attributeFormDefault="unqualified">
+         <xs:simpleType name="CallType">
+            <xs:restriction base="xs:string">
+               <xs:enumeration value="SearchCall"/>
+               <xs:enumeration value="CourtesyCall"/>
+            </xs:restriction>
+         </xs:simpleType>
+         <xs:complexType name="Communication">
+            <xs:sequence>
+               <xs:element name="phoneNumber" type="xs:string"/>
+               <xs:element name="result" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="ContactDetails">
+            <xs:sequence>
+               <xs:element name="role" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>Role of the contact person.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="number" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>Contact phone number.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="ContactPerson">
+            <xs:sequence>
+               <xs:element name="role" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>Role of the contact person.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="gender" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>MALE or FEMALE</xs:documentation>
+                  </xs:annotation>
+                  <xs:simpleType>
+                     <xs:restriction base="xs:string">
+                        <xs:enumeration value="MALE"/>
+                        <xs:enumeration value="FEMALE"/>
+                     </xs:restriction>
+                  </xs:simpleType>
+               </xs:element>
+               <xs:element name="title" type="xs:string" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>Academic title. E.g.: Prof. Dr. </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+               <xs:element name="lastName" type="xs:string"/>
+               <xs:element name="communication">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="phone" type="xs:string" minOccurs="0"/>
+                        <xs:element name="mobile" type="xs:string" minOccurs="0"/>
+                        <xs:element name="fax" type="xs:string" minOccurs="0"/>
+                        <xs:element name="eMail" type="xs:string" minOccurs="0"/>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="CustomerOrderLogin">
+            <xs:sequence>
+               <xs:element name="customerOrderId" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>the customer order id</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="login"
+                           type="tns:CustomerOrderLoginDetail"
+                           minOccurs="0"
+                           maxOccurs="unbounded"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="CustomerOrderLoginDetail">
+            <xs:sequence>
+               <xs:element name="technologyType" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>the technology type for the login. For example VOIP or DataInternet </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="detail" type="tns:LoginDetailParameter" maxOccurs="unbounded"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="DataUsageDetails">
+            <xs:sequence>
+               <xs:element name="customerOrderId" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>the customer order id</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="account"
+                           type="tns:DataUsageDetailsStatus"
+                           maxOccurs="unbounded"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="DataUsageDetailsStatus">
+            <xs:sequence>
+               <xs:element name="radiusAccountId" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>the radius account id or number</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="status" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>the data usage details status. Example Activated, Deactivated, ChangeInProgress, Unknown</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="LineIdsPerCustomerOrderId">
+            <xs:sequence>
+               <xs:element name="customerOrderId" type="xs:string"/>
+               <xs:element name="lineId" type="xs:string" maxOccurs="unbounded"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="LoginDetailParameter">
+            <xs:sequence>
+               <xs:element name="key" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>the login detail key. For example pppUser, sipDomain, etc</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="value" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="OrderStatus">
+            <xs:sequence>
+               <xs:element name="status" type="xs:string"/>
+               <xs:element name="detail"
+                           type="tns:OrderStatusParameter"
+                           minOccurs="0"
+                           maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute name="customerOrderId" type="xs:string"/>
+         </xs:complexType>
+         <xs:complexType name="OrderStatusParameter">
+            <xs:sequence>
+               <xs:element name="key" type="xs:string"/>
+               <xs:element name="value" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="activateDataUsageDetails">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="radiusAccountId" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>the radius account id or number</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="activateSIM">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="customerId" type="xs:string"/>
+                  <xs:element name="ICCID" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="activateSIMResponse">
+            <xs:complexType/>
+         </xs:element>
+         <xs:element name="deactivateDataUsageDetails">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="radiusAccountId" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>the radius account id or number</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getCustomerLoginDetails">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="customerOrderId" type="xs:string" maxOccurs="unbounded">
+                     <xs:annotation>
+                        <xs:documentation>the customer order id</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getCustomerLoginDetailsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="customerOrder"
+                              type="tns:CustomerOrderLogin"
+                              maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getDataUsageDetailsStatus">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="customerOrderId" type="xs:string" maxOccurs="unbounded">
+                     <xs:annotation>
+                        <xs:documentation>the customer order id</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getDataUsageDetailsStatusResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="customerOrder"
+                              type="tns:DataUsageDetails"
+                              maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getIncidentContactInformation">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="lineId" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>The line identifier (also known as the 'Leitungsbezeichnung' or 'LBZ')</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getIncidentContactInformationResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="customerId" type="xs:string" minOccurs="0"/>
+                  <xs:element name="customerOrderId" type="xs:string" minOccurs="0"/>
+                  <xs:element name="contactPerson"
+                              type="tns:ContactPerson"
+                              minOccurs="0"
+                              maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getLineIds">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="customerOrderId" type="xs:string" maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getLineIdsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="lineIds"
+                              type="tns:LineIdsPerCustomerOrderId"
+                              minOccurs="0"
+                              maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getOrderDetails">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="lineContractId" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>Carrier contract id for the line in case the line is provided by an external carrier. E.g. "DTAG Vertragsnummer" in case of TAL. </xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getOrderDetailsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="customerId" type="xs:string"/>
+                  <xs:element name="customerOrderId" type="xs:string"/>
+                  <xs:element name="contactPerson"
+                              type="tns:ContactPerson"
+                              minOccurs="0"
+                              maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getPublicOrderStatus">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="customerOrderId" type="xs:string" maxOccurs="unbounded">
+                     <xs:annotation>
+                        <xs:documentation>the customer order id</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getPublicOrderStatusResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="order" type="tns:OrderStatus" maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="requestCustomerCommunication">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="lineContractId" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>Carrier contract id for the line in case the line is provided by an external carrier. E.g. "DTAG Vertragsnummer" in case of TAL. </xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="lineId" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>The line identifier (also known as the 'Leitungsbezeichnung' or 'LBZ')</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="callType" type="tns:CallType"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="requestCustomerCommunicationResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="contactDetails"
+                              type="tns:ContactDetails"
+                              minOccurs="0"
+                              maxOccurs="unbounded">
+                     <xs:annotation>
+                        <xs:documentation>Contact details for communicating with contact.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="updateCustomerCommunication">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="lineContractId" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>Carrier contract id for the line in case the line is provided by an external carrier. E.g. "DTAG Vertragsnummer" in case of TAL. </xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="lineId" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>The line identifier (also known as the 'Leitungsbezeichnung' or 'LBZ')</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="callType" type="tns:CallType"/>
+                  <xs:element name="callResult" type="xs:string"/>
+                  <xs:element name="responseDate" type="xs:dateTime"/>
+                  <xs:element name="communication" type="tns:Communication" maxOccurs="3"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:schema>
+      <xs:schema xmlns="http://www.mnet.de/esb/cdm/Shared/Common/v1"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 targetNamespace="http://www.mnet.de/esb/cdm/Shared/Common/v1"
+                 version="1.0"
+                 elementFormDefault="qualified"
+                 attributeFormDefault="unqualified">
+         <xs:element name="ESBFault">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="errorCode" type="xs:string"/>
+                  <xs:element name="errorMessage" type="xs:string"/>
+                  <xs:element name="errorDetail" minOccurs="0">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:any minOccurs="0" processContents="skip" namespace="##any"/>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:schema>
+   </wsdl:types>
+   <wsdl:service name="CustomerOrderService">
+      <wsdl:port name="CustomerOrderServiceJMS"
+                 binding="tns:CustomerOrderServiceJMSBinding">
+         <soap:address location="mnet.Customer.op.cdm.src.v1.CustomerOrderService"/>
+         <jms:connectionFactory>QueueConnectionFactory</jms:connectionFactory>
+         <jms:targetAddress destination="queue">mnet.Customer.op.cdm.src.v1.CustomerOrderService</jms:targetAddress>
+      </wsdl:port>
+      <wsdl:port name="CustomerOrderServiceHTTP"
+                 binding="tns:CustomerOrderServiceHTTPBinding">
+         <soap:address location="http://@domain.loadbalancer.url@/esb/Customer/CustomerOrderService/v1"/>
+      </wsdl:port>
+   </wsdl:service>
+   <wsdl:portType name="CustomerOrderService">
+      <wsdl:operation name="getCustomerLoginDetails">
+         <wsdl:input message="tns:getCustomerLoginDetails"/>
+         <wsdl:output message="tns:getCustomerLoginDetailsResponse"/>
+         <wsdl:fault name="fault1" message="tns:ESBFault"/>
+      </wsdl:operation>
+      <wsdl:operation name="getOrderDetails">
+         <wsdl:input message="tns:getOrderDetails"/>
+         <wsdl:output message="tns:getOrderDetailsResponse"/>
+         <wsdl:fault name="fault1" message="tns:ESBFault"/>
+      </wsdl:operation>
+      <wsdl:operation name="getPublicOrderStatus">
+         <wsdl:input message="tns:getPublicOrderStatus"/>
+         <wsdl:output message="tns:getPublicOrderStatusResponse"/>
+         <wsdl:fault name="fault1" message="tns:ESBFault"/>
+      </wsdl:operation>
+      <wsdl:operation name="getLineIds">
+         <wsdl:input message="tns:getLineIds"/>
+         <wsdl:output message="tns:getLineIdsResponse"/>
+         <wsdl:fault name="fault1" message="tns:ESBFault"/>
+      </wsdl:operation>
+      <wsdl:operation name="activateSIM">
+         <wsdl:input message="tns:activateSIM"/>
+         <wsdl:output message="tns:activateSIMResponse"/>
+         <wsdl:fault name="fault1" message="tns:ESBFault"/>
+      </wsdl:operation>
+      <wsdl:operation name="deactivateDataUsageDetails">
+         <wsdl:input message="tns:deactivateDataUsageDetails"/>
+      </wsdl:operation>
+      <wsdl:operation name="updateCustomerCommunication">
+         <wsdl:input message="tns:updateCustomerCommunication"/>
+      </wsdl:operation>
+      <wsdl:operation name="getDataUsageDetailsStatus">
+         <wsdl:input message="tns:getDataUsageDetailsStatus"/>
+         <wsdl:output message="tns:getDataUsageDetailsStatusResponse"/>
+         <wsdl:fault name="fault1" message="tns:ESBFault"/>
+      </wsdl:operation>
+      <wsdl:operation name="activateDataUsageDetails">
+         <wsdl:input message="tns:activateDataUsageDetails"/>
+      </wsdl:operation>
+      <wsdl:operation name="requestCustomerCommunication">
+         <wsdl:input message="tns:requestCustomerCommunication"/>
+         <wsdl:output message="tns:requestCustomerCommunicationResponse"/>
+         <wsdl:fault name="fault1" message="tns:ESBFault"/>
+      </wsdl:operation>
+      <wsdl:operation name="getIncidentContactInformation">
+         <wsdl:input message="tns:getIncidentContactInformation"/>
+         <wsdl:output message="tns:getIncidentContactInformationResponse"/>
+         <wsdl:fault name="fault1" message="tns:ESBFault"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="CustomerOrderServiceJMSBinding" type="tns:CustomerOrderService">
+      <soap:binding style="document"
+                    transport="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"/>
+      <jms:binding messageFormat="Text"/>
+      <wsdl:operation name="getCustomerLoginDetails">
+         <soap:operation style="document"
+                         soapAction="/CustomerOrderService/getCustomerLoginDetails"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getOrderDetails">
+         <soap:operation style="document" soapAction="/CustomerOrderService/getOrderDetails"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getPublicOrderStatus">
+         <soap:operation style="document"
+                         soapAction="/CustomerOrderService/getPublicOrderStatus"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getLineIds">
+         <soap:operation style="document" soapAction="/CustomerOrderService/getLineIds"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="activateSIM">
+         <soap:operation style="document" soapAction="/CustomerOrderService/activateSIM"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="deactivateDataUsageDetails">
+         <soap:operation style="document"
+                         soapAction="/CustomerOrderService/deactivateDataUsageDetails"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="updateCustomerCommunication">
+         <soap:operation style="document"
+                         soapAction="/CustomerOrderService/updateCustomerCommunication"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="getDataUsageDetailsStatus">
+         <soap:operation style="document"
+                         soapAction="/CustomerOrderService/getDataUsageDetailsStatus"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="activateDataUsageDetails">
+         <soap:operation style="document"
+                         soapAction="/CustomerOrderService/activateDataUsageDetails"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="requestCustomerCommunication">
+         <soap:operation style="document"
+                         soapAction="/CustomerOrderService/requestCustomerCommunication"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getIncidentContactInformation">
+         <soap:operation style="document"
+                         soapAction="/CustomerOrderService/getIncidentContactInformation"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="CustomerOrderServiceHTTPBinding" type="tns:CustomerOrderService">
+      <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="getCustomerLoginDetails">
+         <soap:operation style="document"
+                         soapAction="/CustomerOrderService/getCustomerLoginDetails"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getOrderDetails">
+         <soap:operation style="document" soapAction="/CustomerOrderService/getOrderDetails"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getPublicOrderStatus">
+         <soap:operation style="document"
+                         soapAction="/CustomerOrderService/getPublicOrderStatus"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getLineIds">
+         <soap:operation style="document" soapAction="/CustomerOrderService/getLineIds"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="activateSIM">
+         <soap:operation style="document" soapAction="/CustomerOrderService/activateSIM"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="deactivateDataUsageDetails">
+         <soap:operation style="document"
+                         soapAction="/CustomerOrderService/deactivateDataUsageDetails"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="updateCustomerCommunication">
+         <soap:operation style="document"
+                         soapAction="/CustomerOrderService/updateCustomerCommunication"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="getDataUsageDetailsStatus">
+         <soap:operation style="document"
+                         soapAction="/CustomerOrderService/getDataUsageDetailsStatus"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="activateDataUsageDetails">
+         <soap:operation style="document"
+                         soapAction="/CustomerOrderService/activateDataUsageDetails"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="requestCustomerCommunication">
+         <soap:operation style="document"
+                         soapAction="/CustomerOrderService/requestCustomerCommunication"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="getIncidentContactInformation">
+         <soap:operation style="document"
+                         soapAction="/CustomerOrderService/getIncidentContactInformation"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:message name="getCustomerLoginDetails">
+      <wsdl:part name="in" element="tns:getCustomerLoginDetails"/>
+   </wsdl:message>
+   <wsdl:message name="getCustomerLoginDetailsResponse">
+      <wsdl:part name="out" element="tns:getCustomerLoginDetailsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="ESBFault">
+      <wsdl:part name="fault" element="ns0:ESBFault"/>
+   </wsdl:message>
+   <wsdl:message name="getOrderDetails">
+      <wsdl:part name="in" element="tns:getOrderDetails"/>
+   </wsdl:message>
+   <wsdl:message name="getOrderDetailsResponse">
+      <wsdl:part name="out" element="tns:getOrderDetailsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getPublicOrderStatus">
+      <wsdl:part name="in" element="tns:getPublicOrderStatus"/>
+   </wsdl:message>
+   <wsdl:message name="getPublicOrderStatusResponse">
+      <wsdl:part name="out" element="tns:getPublicOrderStatusResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getLineIds">
+      <wsdl:part name="in" element="tns:getLineIds"/>
+   </wsdl:message>
+   <wsdl:message name="getLineIdsResponse">
+      <wsdl:part name="out" element="tns:getLineIdsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="activateSIM">
+      <wsdl:part name="in" element="tns:activateSIM"/>
+   </wsdl:message>
+   <wsdl:message name="activateSIMResponse">
+      <wsdl:part name="out" element="tns:activateSIMResponse"/>
+   </wsdl:message>
+   <wsdl:message name="deactivateDataUsageDetails">
+      <wsdl:part name="in" element="tns:deactivateDataUsageDetails"/>
+   </wsdl:message>
+   <wsdl:message name="updateCustomerCommunication">
+      <wsdl:part name="in" element="tns:updateCustomerCommunication"/>
+   </wsdl:message>
+   <wsdl:message name="getDataUsageDetailsStatus">
+      <wsdl:part name="in" element="tns:getDataUsageDetailsStatus"/>
+   </wsdl:message>
+   <wsdl:message name="getDataUsageDetailsStatusResponse">
+      <wsdl:part name="out" element="tns:getDataUsageDetailsStatusResponse"/>
+   </wsdl:message>
+   <wsdl:message name="activateDataUsageDetails">
+      <wsdl:part name="in" element="tns:activateDataUsageDetails"/>
+   </wsdl:message>
+   <wsdl:message name="requestCustomerCommunication">
+      <wsdl:part name="in" element="tns:requestCustomerCommunication"/>
+   </wsdl:message>
+   <wsdl:message name="requestCustomerCommunicationResponse">
+      <wsdl:part name="out" element="tns:requestCustomerCommunicationResponse"/>
+   </wsdl:message>
+   <wsdl:message name="getIncidentContactInformation">
+      <wsdl:part name="in" element="tns:getIncidentContactInformation"/>
+   </wsdl:message>
+   <wsdl:message name="getIncidentContactInformationResponse">
+      <wsdl:part name="out" element="tns:getIncidentContactInformationResponse"/>
+   </wsdl:message>
+</wsdl:definitions>

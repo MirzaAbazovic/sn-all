@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Template-Panel der Reports
+-->
+<sf>
+    
+    <Label name="id"><text>ID:</text></Label>
+    <FormattedTextField name="id">
+        <tooltip>ID der Report-Vorlage</tooltip>
+        <maxchars>11</maxchars>
+        <format type="number">#</format>
+    </FormattedTextField>
+    
+    <Label name="filename"><text>Pfad:</text></Label>
+    <TextArea name="filename">
+        <tooltip>Dateiname der Report-Vorlage</tooltip>
+        <maxchars>255</maxchars>
+    </TextArea>
+    
+    <Label name="beschreibung"><text>Beschreibung:</text></Label>
+    <TextArea name="beschreibung">
+        <tooltip>Kurze Beschreibung der Report-Vorlage</tooltip>
+        <maxchars>255</maxchars>
+    </TextArea>
+    
+    <Label name="gueltig.von"><text>Gültig von:</text></Label>
+    <DateComponent name="gueltig.von">
+        <tooltip>Gültigkeit der Report-Vorlage</tooltip>
+    </DateComponent>
+    
+    <Label name="gueltig.bis"><text>Gültig bis:</text></Label>
+    <DateComponent name="gueltig.bis">
+        <tooltip>Gültigkeit der Report-Vorlage</tooltip>
+    </DateComponent>
+  
+    <Text name="assigned.templates">Zugeordnete Report-Vorlagen</Text>
+  
+    <Button name="save">
+        <text>Speichern</text>
+        <tooltip>Speichert die die Report-Vorlage</tooltip>
+    </Button>
+    
+    <Button name="new">
+        <text>Neu</text>
+        <tooltip>Erstellt einen neuen Report-Vorlage</tooltip>
+    </Button>  
+    
+    <Button name="upload">
+        <icon>de/augustakom/hurrican/gui/images/up.gif</icon>
+        <tooltip>Neue Vorlage speichern</tooltip>
+    </Button>
+    
+    <Button name="download">
+        <icon>de/augustakom/hurrican/gui/images/down.gif</icon>
+        <tooltip>Neue Vorlage herunterladen</tooltip>
+    </Button>
+</sf>

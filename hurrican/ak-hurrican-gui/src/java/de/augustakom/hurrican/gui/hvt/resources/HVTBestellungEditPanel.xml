@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Bearbeitung von
+HVT-Bestellungen.
+-->
+<sf>
+
+    <Text name="bestellung">Bestell-Daten</Text>
+
+    <Label name="angebot"><text>Angebot am:</text></Label>
+    <DateComponent name="angebot">
+        <tooltip>Datum, an dem das Angebot eingeholt wurde</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>10</columns>
+    </DateComponent>
+
+    <Label name="bestelldatum"><text>Bestellt am:</text></Label>
+    <DateComponent name="bestelldatum">
+        <tooltip>Datum, an dem die Stifte bestellt wurden</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="bestellnr.akom"><text>Bestell-Nr M-net:</text></Label>
+    <TextField name="bestellnr.akom">
+        <tooltip>Bestell-Nr von M-net</tooltip>
+    </TextField>
+
+    <Label name="bestellnr.dtag"><text>Bestell-Nr DTAG:</text></Label>
+    <TextField name="bestellnr.dtag">
+        <tooltip>Bestell-Nr von DTAG</tooltip>
+    </TextField>
+
+    <Label name="physiktyp"><text>Physiktyp:</text></Label>
+    <ComboBox name="physiktyp">
+        <tooltip>Auswahl des Physiktyps für die Bestellung</tooltip>
+        <items>
+            <item> </item>
+            <item>N</item>
+            <item>H</item>
+        </items>
+    </ComboBox>
+
+    <Label name="anzahl.cuda"><text>Anzahl CuDA:</text></Label>
+    <FormattedTextField name="anzahl.cuda">
+        <tooltip>Anzahl der bestellten Stifte</tooltip>
+        <format type="number">#####</format>
+    </FormattedTextField>
+
+    <Label name="bereitgestellt"><text>Bereitgestellt:</text></Label>
+    <DateComponent name="bereitgestellt">
+        <tooltip>Datum, zu dem die Stifte bereitgestellt werden</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="real.dtag"><text>Realisierung DTAG bis:</text></Label>
+    <DateComponent name="real.dtag">
+        <tooltip>Datum, zu dem die DTAG die Bestellung bereitstellt</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="eq.verwendung"><text>Verwendungszweck</text></Label>
+    <ComboBox name="eq.verwendung">
+        <tooltip>Verwendungszweck der Ports</tooltip>
+    </ComboBox>
+
+    <Button name="save">
+        <icon>de/augustakom/hurrican/gui/images/save.gif</icon>
+        <text>Speichern</text>
+        <tooltip>Speichert die Daten der HVT-Bestellung</tooltip>
+    </Button>
+
+    <Button name="new">
+        <text>Neue Bestellung</text>
+        <tooltip>Erstellt eine neue HVT-Bestellung</tooltip>
+    </Button>
+
+</sf>

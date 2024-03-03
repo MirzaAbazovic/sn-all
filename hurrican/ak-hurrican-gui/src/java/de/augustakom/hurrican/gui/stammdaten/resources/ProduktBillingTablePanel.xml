@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Panel fuer die Billing-Produkte.
+-->
+<sf>
+    
+	<Button name="flt.all">
+        <text>alle</text>
+        <tooltip>alle Billing-Produkte</tooltip>
+    </Button>
+	
+    <Button name="flt.dn">
+        <text>hat DN</text>
+        <tooltip>Produkte, die eine Rufnummer enthalten</tooltip>
+    </Button>
+	
+	
+	
+    
+</sf>

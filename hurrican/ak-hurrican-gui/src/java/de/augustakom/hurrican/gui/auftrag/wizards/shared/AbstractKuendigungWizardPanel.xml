@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Basis Kuendigungs-Panel.
+-->
+<sf>
+    
+    <Text name="physik.kuendigen.title">Physik kündigen?</Text>
+    <Text name="physik.kuendigen.msg">Sollen die Physiken der Aufträge ebenfalls gekündigt werden?</Text>
+    
+    <Text name="keine.cb.vorhanden.title">Keine CuDa-Bestellung gefunden</Text>
+    <Text name="keine.cb.vorhanden.msg">Bitte erfassen Sie die CuDa-Kündigung für den Hurrican-Auftrag {0} selbst. 
+Zu der Endstelle mit der ID {1} konnte nämlich keine CuDa-Bestellungen gefunden werden.</Text>
+    
+    <Text name="mehrere.cbs.vorhanden.title">Mehrere CuDa-Bestellungen gefunden</Text>
+    <Text name="mehrere.cbs.vorhanden.msg">Bitte erfassen Sie die CuDa-Kündigung für den Hurrican-Auftrag {0} selbst. 
+Zu der Endstelle mit der ID {1} wurden mehrere CuDa-Bestellungen gefunden.</Text>
+    
+    <Text name="vpn.vorhanden">Der gekündigte Auftrag besitzt eine VPN-Konfiguration.
+Bitte ordnen Sie die phys. Leitung der VPN-Konfiguration einem anderen Auftrag zu oder entfernen Sie sie zum Kündigungstermin.</Text>
+    
+</sf>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.BAVerlaufZusatz
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="BAVerlaufZusatz" table="T_BA_ZUSATZ">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_BA_ZUSATZ_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="baVerlaufConfigId" column="BA_VERL_CONFIG_ID" type="long"/>
+        <property name="abtId" column="ABT_ID" type="long"/>
+        <property name="hvtGruppeId" column="HVT_GRUPPE_ID" type="long"/>
+        <property name="auchSelbstmontage" column="AUCH_SM" type="boolean"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date" not-null="true"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date" not-null="true"/>
+        <property name="userW" column="USERW" type="string" not-null="true"/>
+        <property name="standortTypRefId" column="STANDORT_TYP_REF_ID" type="long"/>
+    </class>
+
+</hibernate-mapping>

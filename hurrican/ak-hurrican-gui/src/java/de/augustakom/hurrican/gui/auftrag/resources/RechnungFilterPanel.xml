@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Rechnung-Filterpanel.
+-->
+<sf>
+    
+    <Label name="sap.debitor"><text>SAP-Debitorennummer:</text></Label>
+    <TextField name="sap.debitor">
+        <tooltip>SAP-Debitorennummer</tooltip>
+        <columns>15</columns>
+    </TextField>
+    
+    <Label name="re.no"><text>Rechnungsnummer:</text></Label>
+    <TextField name="re.no">
+        <tooltip>Rechnungsnummer</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+</sf>

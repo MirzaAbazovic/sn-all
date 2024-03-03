@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Body>
+        <ns2:handleError xmlns:ns2="http://www.mnet.de/esb/cdm/Shared/ErrorHandlingService/v1">
+            <ns2:trackingId>@ignore@</ns2:trackingId>
+            <ns2:component>
+                <ns2:name>Hurrican</ns2:name>
+                <ns2:processName>de.augustakom.hurrican.service.interceptor.SchemaValidationInterceptor</ns2:processName>
+                <ns2:host>@ignore@</ns2:host>
+                <ns2:service>LocationNotificationService</ns2:service>
+                <ns2:operation>notifyReplaceLocation</ns2:operation>
+                <ns2:processId>@ignore@</ns2:processId>
+            </ns2:component>
+            <ns2:error>
+                <ns2:code>HURRICAN-TECH-009</ns2:code>
+                <ns2:message>@contains('"" ist kein gültiger Wert für "integer"')@</ns2:message>
+                <ns2:time>@ignore@</ns2:time>
+                <ns2:errorDetails>@ignore@</ns2:errorDetails>
+            </ns2:error>
+            <ns2:message>
+                <ns2:payload>citrus:cdataSection('@matchesXml('
+                    <?xml version='1.0' encoding='UTF-8'?>
+                    <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+                        <SOAP-ENV:Body>
+                            <lns:notifyReplaceLocation
+                                    xmlns:lns="http://www.mnet.de/esb/cdm/Resource/LocationNotificationService/v1"
+                                    xmlns="http://www.mnet.de/esb/cdm/Resource/Location/v1">
+                                @ignore@
+                            </lns:notifyReplaceLocation>
+                        </SOAP-ENV:Body>
+                    </SOAP-ENV:Envelope>
+                    ')@')
+                </ns2:payload>
+                <ns2:JMSEndpoint>mnet.Hurrican.op.cdm.dst.v1.LocationNotificationService</ns2:JMSEndpoint>
+                <ns2:JMSProperty>
+                    <ns2:key>ESB_TrackingId</ns2:key>
+                    <ns2:value>@ignore@</ns2:value>
+                </ns2:JMSProperty>
+                <ns2:JMSProperty>
+                    <ns2:key>SoapAction</ns2:key>
+                    <ns2:value>/LocationNotificationService/notifyReplaceLocation</ns2:value>
+                </ns2:JMSProperty>
+                <ns2:JMSProperty>
+                    <ns2:key>timestamp</ns2:key>
+                    <ns2:value>@ignore@</ns2:value>
+                </ns2:JMSProperty>
+            </ns2:message>
+        </ns2:handleError>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

@@ -1,0 +1,67 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:env="http://wholesale.telekom.de/oss/v15/envelope" xmlns:message="http://wholesale.telekom.de/oss/v15/message">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <env:annehmenMeldungRequest>
+            <control>
+                <zeitstempel>2023-05-12T09:33:51.816+02:00</zeitstempel>
+                <majorRelease>14</majorRelease>
+                <minorRelease>10</minorRelease>
+                <signaturId>
+                    <issuer>EMAILADDRESS=wholesale-dialog@telekom.de, CN=ws-wholesale-portal.telekom.de, OU=Deutsche Telekom IT GmbH, O=Deutsche Telekom AG, L=Bonn, ST=NRW, C=DE</issuer>
+                    <serial>cf3fc7a3d509abfd</serial>
+                </signaturId>
+            </control>
+            <meldung>
+                <auftragstyp>
+                    <geschaeftsfall>NEU</geschaeftsfall>
+                    <aenderungsKennzeichen>Standard</aenderungsKennzeichen>
+                    <geschaeftsfallart>Bereitstellung</geschaeftsfallart>
+                </auftragstyp>
+                <meldungstyp xsi:type="message:MeldungstypABMType">
+                    <meldungsattribute xsi:type="message:MeldungsattributeXDSL-ABMType">
+                        <externeAuftragsnummer>H_00854543</externeAuftragsnummer>
+                        <kundennummer>5920312290</kundennummer>
+                        <verbindlicherLiefertermin>2023-05-26</verbindlicherLiefertermin>
+                        <produktpositionen>
+                            <position>
+                                <aktionscode>Z</aktionscode>
+                                <produkt xsi:type="message:ProduktXDSLMeldungType">
+                                    <bezeichner>VDSL SA 100 Mbit/s</bezeichner>
+                                </produkt>
+                            </position>
+                            <position>
+                                <aktionscode>Z</aktionscode>
+                                <produkt xsi:type="message:ProduktXDSLMeldungType">
+                                    <bezeichner>Search Call</bezeichner>
+                                </produkt>
+                            </position>
+                            <position>
+                                <aktionscode>Z</aktionscode>
+                                <produkt xsi:type="message:ProduktXDSLMeldungType">
+                                    <bezeichner>Courtesy Call</bezeichner>
+                                </produkt>
+                            </position>
+                        </produktpositionen>
+                        <vertragsnummer>3092475159</vertragsnummer>
+                        <LineID>DEU.DTAG.7HPR2</LineID>
+                    </meldungsattribute>
+                    <meldungspositionen>
+                        <position>
+                            <meldungscode>0011</meldungscode>
+                            <meldungstext>Montage beim Endkunden erforderlich.</meldungstext>
+                            <positionsattribute xsi:type="message:MeldungspositionsattributeABMType">
+                                <ansprechpartnerTelekom>
+                                    <anrede>1</anrede>
+                                    <vorname>Ali</vorname>
+                                    <nachname>Geyik</nachname>
+                                    <telefonnummer>08003309366923</telefonnummer>
+                                    <emailadresse>z-w-113bp10@telekom.de</emailadresse>
+                                </ansprechpartnerTelekom>
+                            </positionsattribute>
+                        </position>
+                    </meldungspositionen>
+                </meldungstyp>
+            </meldung>
+        </env:annehmenMeldungRequest>
+    </soapenv:Body>
+</soapenv:Envelope>

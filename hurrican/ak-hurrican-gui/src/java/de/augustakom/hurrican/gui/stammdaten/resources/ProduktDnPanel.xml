@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    GUI-Definitionen fuer das Sub-Panel mit den DN-Daten fuer die Produkte.
+-->
+<sf>
+    <Label name="min.dn.count"><text>min. Anzahl DN:</text></Label>
+    <FormattedTextField name="min.dn.count">
+        <tooltip>minimale Anzahl möglicher Rufnummern</tooltip>
+        <columns>20</columns>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="max.dn.count"><text>max. Anzahl DN:</text></Label>
+    <FormattedTextField name="max.dn.count">
+        <tooltip>maximale Anzahl möglicher Rufnummern</tooltip>
+        <columns>20</columns>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="dn.block"><text>DN-Block:</text></Label>
+    <CheckBox name="dn.block">
+        <tooltip>Angabe, ob DN-Bloecke beruecksichtigt werden sollen (Rufnummern mit gleicher DN-Base als eine DN erkennen)</tooltip>
+    </CheckBox>
+
+    <Label name="dn.typ"><text>DN-Typ:</text></Label>
+    <ComboBox name="dn.typ">
+        <tooltip>Auswahl des DN-Typs, der fuer das Produkt gueltig ist - Referenz von Taifun.</tooltip>
+    </ComboBox>
+
+    <Label name="switch"><text>Switch:</text></Label>
+    <ComboBox name="switch">
+        <tooltip>Optionale Angabe des Switches, welcher die Switchkennung auf dem zugewiesenem Port übersteuert.</tooltip>
+    </ComboBox>
+</sf>

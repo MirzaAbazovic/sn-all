@@ -1,0 +1,1 @@
+alter table T_HVT_GRUPPE add ORT_ZUSATZ VARCHAR2(40);

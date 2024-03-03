@@ -1,0 +1,1035 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="Bauauftrag"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="595"
+		 pageHeight="842"
+		 columnWidth="538"
+		 columnSpacing="0"
+		 leftMargin="43"
+		 rightMargin="14"
+		 topMargin="20"
+		 bottomMargin="33"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="com.jasperassistant.designer.DataSource" value="emptyDS" />
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false" />
+	<property name="com.jasperassistant.designer.Units" value="Millimeters" />
+	<property name="com.jasperassistant.designer.Grid" value="true" />
+	<property name="com.jasperassistant.designer.GridHeight" value="12" />
+	<property name="com.jasperassistant.designer.GridWidth" value="12" />
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+	<reportFont name="Font_Default" isDefault="true" fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<reportFont name="Font_Big" isDefault="false" fontName="Arial" size="9" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<reportFont name="Font_DATA" isDefault="false" fontName="Trebuchet MS" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+
+
+	<field name="VBZ" class="java.lang.String"/>
+	<field name="AUFTRAG_ID" class="java.lang.Long"/>
+	<field name="BEARBEITER" class="java.lang.String"/>
+	<field name="AUFTRAGSART" class="java.lang.String"/>
+	<field name="PRODUKT" class="java.lang.String"/>
+	<field name="PRODUKTNAME" class="java.lang.String"/>
+	<field name="REALISIERUNGSTERMIN" class="java.util.Date"/>
+	<field name="KUNDE__NO" class="java.lang.Long"/>
+	<field name="VPN_KANALB" class="java.lang.Boolean"/>
+	<field name="VPN_PHYS_VBZ" class="java.lang.String"/>
+	<field name="INT_ACCOUNT" class="java.lang.String"/>
+	<field name="AUFTRAG_BEMERKUNG" class="java.lang.String"/>
+	<field name="VPN_ANZAHLK" class="java.lang.Short"/>
+	<field name="ES_ID_A" class="java.lang.Long"/>
+	<field name="ES_ID_B" class="java.lang.Long"/>
+	<field name="INT_ACCOUNT_TYP" class="java.lang.String"/>
+	<field name="PORTIERUNGSDATUM" class="java.util.Date"/>
+	<field name="PORTIERUNG_VON" class="java.util.Date"/>
+	<field name="PORTIERUNG_BIS" class="java.util.Date"/>
+	<field name="INT_ACCOUNT_PW" class="java.lang.String"/>
+	<field name="AUFTRAG__NO" class="java.lang.Long"/>
+	<field name="VPN_NR" class="java.lang.Long"/>
+	<field name="VERLAUF_ID" class="java.lang.Long"/>
+	<field name="MONTAGE_AKOM" class="java.lang.Boolean"/>
+	<field name="INSTALLATION_FROM" class="java.lang.String"/>
+	<field name="DISPO_PHONE" class="java.lang.String"/>
+	<field name="TIME_SLOT" class="java.lang.String"/>
+	<field name="VPLS_ID" class="java.lang.String"/>
+	<field name="PROJEKTLEITER" class="java.lang.String"/>
+	<field name="KOSTENSTELLE" class="java.lang.String"/>
+	<field name="INNENAUFTRAG" class="java.lang.String"/>
+	<field name="PPPOE_USER" class="java.lang.String"/>
+	<field name="PPPOE_PW" class="java.lang.String"/>
+
+	<variable name="REAL_STAWA" class="java.util.Date" resetType="Page" calculation="Nothing">
+		<variableExpression><![CDATA[de.augustakom.common.tools.lang.DateTools.changeDate($F{REALISIERUNGSTERMIN}, java.util.Calendar.DAY_OF_MONTH, 7)]]></variableExpression>
+	</variable>
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="83"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="73"
+						y="5"
+						width="297"
+						height="22"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font reportFont="Font_Default" size="18" isBold="true"/>
+					</textElement>
+				<text><![CDATA[technische Auftragsdaten]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="33"
+						width="92"
+						height="10"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Big" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Verbindungsbez:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="100"
+						y="33"
+						width="115"
+						height="10"
+						key="textField"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Big" fontName="Trebuchet MS" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{VBZ}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="274"
+						y="33"
+						width="92"
+						height="10"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font reportFont="Font_Big" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Auftrag-Nr. (Hurr.):]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="371"
+						y="33"
+						width="115"
+						height="10"
+						key="textField"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Big" fontName="Trebuchet MS" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[""+$F{AUFTRAG_ID}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="3"
+						y="73"
+						width="92"
+						height="10"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font reportFont="Font_Big" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Bearbeiter:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="100"
+						y="73"
+						width="115"
+						height="10"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{BEARBEITER} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Big" fontName="Trebuchet MS" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{BEARBEITER}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="274"
+						y="53"
+						width="92"
+						height="10"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font reportFont="Font_Big" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Auftragsart:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="371"
+						y="53"
+						width="115"
+						height="10"
+						key="textField"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Big" fontName="Trebuchet MS" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{AUFTRAGSART}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="3"
+						y="43"
+						width="92"
+						height="10"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Big" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[VPN-Nr.:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="100"
+						y="43"
+						width="115"
+						height="10"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{VPN_NR} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Big" fontName="Trebuchet MS" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Long"><![CDATA[$F{VPN_NR}]]></textFieldExpression>
+				</textField>
+				<image  scaleImage="RetainShape" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						mode="Opaque"
+						x="480"
+						y="2"
+						width="54"
+						height="29"
+						key="image-1"
+						isPrintRepeatedValues="false"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<graphicElement stretchType="NoStretch"/>
+					<imageExpression class="java.net.URL"><![CDATA[getClass().getClassLoader().getResource("de/augustakom/hurrican/images/M-net_Logo_5cm.jpg")]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement
+						x="3"
+						y="53"
+						width="92"
+						height="10"
+						key="staticText-3"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Big" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[VPLS-Id.:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="100"
+						y="53"
+						width="115"
+						height="10"
+						key="textField-3"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{VPLS_ID} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Big" fontName="Trebuchet MS" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{VPLS_ID}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="274"
+						y="73"
+						width="92"
+						height="10"
+						key="staticText-4"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font reportFont="Font_Big" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Projektleiter:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="371"
+						y="73"
+						width="115"
+						height="10"
+						key="textField-4"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{PROJEKTLEITER} != null) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Big" fontName="Trebuchet MS" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{PROJEKTLEITER}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="274"
+						y="43"
+						width="92"
+						height="10"
+						key="staticText-5"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font reportFont="Font_Big" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Auftrag-Nr. (Taifun):]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="371"
+						y="43"
+						width="115"
+						height="10"
+						key="textField-5"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Big" fontName="Trebuchet MS" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[""+$F{AUFTRAG__NO}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="3"
+						y="63"
+						width="92"
+						height="10"
+						key="staticText-6"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font reportFont="Font_Big" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Kostenstelle:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="100"
+						y="63"
+						width="115"
+						height="10"
+						key="textField-10"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{KOSTENSTELLE} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Big" fontName="Trebuchet MS" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{KOSTENSTELLE}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="274"
+						y="63"
+						width="92"
+						height="10"
+						key="staticText-7"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Left">
+						<font reportFont="Font_Big" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Innenauftragsnummer:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="371"
+						y="63"
+						width="115"
+						height="10"
+						key="textField-11"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{INNENAUFTRAG} != null) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Big" fontName="Trebuchet MS" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{INNENAUFTRAG}]]></textFieldExpression>
+				</textField>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="310"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="248"
+						y="8"
+						width="105"
+						height="14"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font reportFont="Font_Default" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Produkt:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="248"
+						y="49"
+						width="105"
+						height="14"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font reportFont="Font_Default" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Installationstermin:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="360"
+						y="49"
+						width="176"
+						height="14"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{TIME_SLOT} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_DATA" fontName="Arial" pdfFontName="Helvetica" size="9" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{TIME_SLOT}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="360"
+						y="8"
+						width="176"
+						height="14"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{PRODUKT} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_DATA" fontName="Arial" pdfFontName="Helvetica" size="9" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{PRODUKT} + (($F{PRODUKTNAME} != null) ? " / " + $F{PRODUKTNAME} : "")]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="248"
+						y="22"
+						width="105"
+						height="14"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font reportFont="Font_Default" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Realisierungstermin:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="EEEE, dd.MM.yyyy" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="360"
+						y="22"
+						width="176"
+						height="14"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{REALISIERUNGSTERMIN} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_DATA" fontName="Arial" pdfFontName="Helvetica" size="9" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$F{REALISIERUNGSTERMIN}]]></textFieldExpression>
+				</textField>
+				<rectangle>
+					<reportElement
+						x="248"
+						y="65"
+						width="286"
+						height="31"
+						key="rectangle"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</rectangle>
+				<staticText>
+					<reportElement
+						x="249"
+						y="67"
+						width="104"
+						height="13"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font reportFont="Font_Default" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Portierungsdatum:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="360"
+						y="81"
+						width="22"
+						height="13"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[von:]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="1"
+						y="8"
+						width="243"
+						height="97"
+						key="subreport"
+						positionType="Float"/>
+					<dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.billing.impl.reportdata.KundeAdresseJasperDS($F{KUNDE__NO})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/AdresseIntern.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="456"
+						y="81"
+						width="22"
+						height="13"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<text><![CDATA[bis:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="dd.MM.yyyy" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="360"
+						y="67"
+						width="161"
+						height="13"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{PORTIERUNGSDATUM} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" pdfFontName="Helvetica-Bold" size="9" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$F{PORTIERUNGSDATUM}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="385"
+						y="81"
+						width="42"
+						height="13"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{PORTIERUNG_VON} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[new SimpleDateFormat("k").format($F{PORTIERUNG_VON})+":00"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="479"
+						y="81"
+						width="42"
+						height="13"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{PORTIERUNG_BIS} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" size="9"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[new SimpleDateFormat("k").format($F{PORTIERUNG_BIS})+":00"]]></textFieldExpression>
+				</textField>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="272"
+						width="538"
+						height="17"
+						key="subreport"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.cc.impl.reportdata.AKInetIPJasperDS($F{AUFTRAG_ID})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/verlauf/compact/IPAddress.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="236"
+						width="538"
+						height="17"
+						key="subreport"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.cc.impl.reportdata.RufnummernJasperDS($F{AUFTRAG__NO}, $F{AUFTRAG_ID})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/verlauf/compact/Rufnummern.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="164"
+						width="538"
+						height="17"
+						key="subreport"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<dataSourceExpression><![CDATA[new de.augustakom.hurrican.service.cc.impl.reportdata.VerlaufActionJasperDS($F{VERLAUF_ID})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/verlauf/compact/VerlaufAction.jasper"]]></subreportExpression>
+				</subreport>
+				<rectangle>
+					<reportElement
+						x="11"
+						y="1"
+						width="98"
+						height="15"
+						key="rectangle"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</rectangle>
+				<staticText>
+					<reportElement
+						x="29"
+						y="2"
+						width="62"
+						height="13"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Default" fontName="Trebuchet MS" size="10"/>
+					</textElement>
+				<text><![CDATA[Kundendaten]]></text>
+				</staticText>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="146"
+						width="538"
+						height="17"
+						key="subreport"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<dataSourceExpression><![CDATA[new de.augustakom.hurrican.service.cc.impl.reportdata.Endgeraete4AuftragJasperDS($F{AUFTRAG_ID})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/verlauf/compact/EndgeraeteDetails.jasper"]]></subreportExpression>
+				</subreport>
+				<staticText>
+					<reportElement
+						x="248"
+						y="36"
+						width="105"
+						height="13"
+						key="staticText-2"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font reportFont="Font_Big" pdfFontName="Helvetica" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Installation durch:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="360"
+						y="36"
+						width="176"
+						height="13"
+						key="textField-1"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{MONTAGE_AKOM} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_DATA" fontName="Arial" pdfFontName="Helvetica" size="9" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[($F{INSTALLATION_FROM} != null) ? $F{INSTALLATION_FROM} : "M-net"]]></textFieldExpression>
+				</textField>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="128"
+						width="538"
+						height="17"
+						key="subreport-1"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<dataSourceExpression><![CDATA[new de.augustakom.hurrican.service.cc.impl.reportdata.EQCrossConnectionJasperDS($F{AUFTRAG_ID})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/verlauf/compact/EQCrossConnection.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="182"
+						width="538"
+						height="17"
+						key="subreport-2"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<dataSourceExpression><![CDATA[new de.augustakom.hurrican.service.cc.impl.reportdata.AnsprechpartnerJasperDS($F{AUFTRAG_ID})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/verlauf/compact/Ansprechpartner.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="110"
+						width="538"
+						height="17"
+						key="subreport-3"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<subreportParameter  name="ES_ID_B">
+						<subreportParameterExpression><![CDATA[$F{ES_ID_B}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="ES_ID_A">
+						<subreportParameterExpression><![CDATA[$F{ES_ID_A}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="VERLAUF_ID">
+						<subreportParameterExpression><![CDATA[$F{VERLAUF_ID}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.cc.impl.reportdata.EndstellenJasperDS($F{AUFTRAG_ID}, $F{VERLAUF_ID})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/verlauf/compact/BEndstelleSub.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="200"
+						width="538"
+						height="17"
+						key="subreport-4"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<subreportParameter  name="VPN_KANALB">
+						<subreportParameterExpression><![CDATA[$F{VPN_KANALB}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="VPN_PHYS_VBZ">
+						<subreportParameterExpression><![CDATA[$F{VPN_PHYS_VBZ}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="VPN_ANZAHLK">
+						<subreportParameterExpression><![CDATA[$F{VPN_ANZAHLK}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="AUFTRAG_BEMERKUNG">
+						<subreportParameterExpression><![CDATA[$F{AUFTRAG_BEMERKUNG}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="INT_ACCOUNT">
+						<subreportParameterExpression><![CDATA[$F{INT_ACCOUNT}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="INT_ACCOUNT_PW">
+						<subreportParameterExpression><![CDATA[$F{INT_ACCOUNT_PW}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="INT_ACCOUNT_TYP">
+						<subreportParameterExpression><![CDATA[$F{INT_ACCOUNT_TYP}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="PPPOE_USER">
+						<subreportParameterExpression><![CDATA[$F{PPPOE_USER}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter  name="PPPOE_PW">
+						<subreportParameterExpression><![CDATA[$F{PPPOE_PW}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportExpression  class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/verlauf/compact/OnlineDaten.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="218"
+						width="538"
+						height="17"
+						key="subreport-6"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.cc.impl.reportdata.QoSProfilJasperDS($F{AUFTRAG_ID}, $F{REALISIERUNGSTERMIN})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/verlauf/compact/QoSProfil.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="254"
+						width="538"
+						height="17"
+						key="subreport-7"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.cc.impl.reportdata.VoipDnPlaeneJasperDs($F{AUFTRAG_ID})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/verlauf/compact/VoipDnPlaene.jasper"]]></subreportExpression>
+				</subreport>
+				<subreport  isUsingCache="true">
+					<reportElement
+						x="0"
+						y="290"
+						width="538"
+						height="17"
+						key="subreport-8"
+						positionType="Float"
+						isRemoveLineWhenBlank="true"/>
+					<dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.cc.impl.reportdata.SipSbcIpJasperDs($F{AUFTRAG_ID})]]></dataSourceExpression>
+					<subreportExpression  class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/verlauf/compact/SipSbcIp.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="11"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="222"
+						y="0"
+						width="50"
+						height="10"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Seite " + $V{PAGE_NUMBER} + " von "]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Report" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="298"
+						y="0"
+						width="50"
+						height="10"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER} + ""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="336"
+						y="0"
+						width="200"
+						height="10"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Verbindungsbez.: " + $F{VBZ}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="0"
+						width="200"
+						height="10"
+						key="textField"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Auftrag-Nr. (Hurr/Taifun): " + $F{AUFTRAG_ID} + " / " + $F{AUFTRAG__NO}]]></textFieldExpression>
+				</textField>
+			</band>
+		</pageFooter>
+		<lastPageFooter>
+			<band height="28"  isSplitAllowed="true" >
+				<rectangle>
+					<reportElement
+						x="0"
+						y="1"
+						width="538"
+						height="14"
+						key="rectangle"
+						positionType="Float"
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[($F{DISPO_PHONE} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</rectangle>
+				<staticText>
+					<reportElement
+						x="236"
+						y="3"
+						width="56"
+						height="10"
+						key="staticText"
+						positionType="Float"
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[($F{DISPO_PHONE} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" size="6"/>
+					</textElement>
+				<text><![CDATA[Inbetriebnahme]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="310"
+						y="3"
+						width="46"
+						height="10"
+						key="staticText"
+						positionType="Float"
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[($F{DISPO_PHONE} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" size="6" isBold="true"/>
+					</textElement>
+				<text><![CDATA[DATUM]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="403"
+						y="3"
+						width="43"
+						height="10"
+						key="staticText"
+						positionType="Float"
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[($F{DISPO_PHONE} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" size="6" isBold="true"/>
+					</textElement>
+				<text><![CDATA[NAME]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="6"
+						y="3"
+						width="211"
+						height="10"
+						key="textField-2"
+						positionType="Float"
+						isRemoveLineWhenBlank="true">
+							<printWhenExpression><![CDATA[($F{DISPO_PHONE} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_DATA" fontName="Arial" pdfFontName="Helvetica" size="6" isBold="false"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Telefonische R\u00fcckfragen unter: "+$F{DISPO_PHONE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="222"
+						y="18"
+						width="50"
+						height="10"
+						key="textField-6"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Seite " + $V{PAGE_NUMBER} + " von "]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Report" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="274"
+						y="18"
+						width="50"
+						height="10"
+						key="textField-7"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER} + ""]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="336"
+						y="18"
+						width="200"
+						height="10"
+						key="textField-8"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Right">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Verbindungsbez.: " + $F{VBZ}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="18"
+						width="200"
+						height="10"
+						key="textField-9"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA["Auftrag-Nr. (Hurr/Taifun): " + $F{AUFTRAG_ID} + " / " + $F{AUFTRAG__NO}]]></textFieldExpression>
+				</textField>
+			</band>
+		</lastPageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

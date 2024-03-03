@@ -1,0 +1,4 @@
+<ns:modifyPortReservationDateRequest xmlns:ns="http://www.mnet.de/hurrican/wholesale/workflow/1.0/">
+ <lineId>${lineId}</lineId>
+ <desiredExecutionDate>${desiredModifyPortReservationDate}</desiredExecutionDate>
+</ns:modifyPortReservationDateRequest>

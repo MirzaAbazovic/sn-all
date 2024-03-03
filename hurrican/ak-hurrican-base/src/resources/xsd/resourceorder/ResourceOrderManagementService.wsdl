@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:jms="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:tns="http://www.mnet.de/esb/cdm/Resource/ResourceOrderManagementService/v1"
+                  xmlns:jndi="http://www.tibco.com/namespaces/ws/2004/soap/apis/jndi"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  name="ResourceOrderManagementService"
+                  targetNamespace="http://www.mnet.de/esb/cdm/Resource/ResourceOrderManagementService/v1">
+   <wsdl:documentation>Version 1.1</wsdl:documentation>
+   <wsdl:types>
+      <xs:schema xmlns="http://www.mnet.de/esb/cdm/Resource/ResourceOrderManagementService/v1"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 targetNamespace="http://www.mnet.de/esb/cdm/Resource/ResourceOrderManagementService/v1"
+                 version="1.1"
+                 elementFormDefault="qualified"
+                 attributeFormDefault="unqualified">
+         <xs:simpleType name="OrderIdType">
+            <xs:restriction base="xs:string">
+               <xs:pattern value="[A-Za-z0-9]{3}_.{1,96}"/>
+            </xs:restriction>
+         </xs:simpleType>
+         <xs:complexType name="contactPersonType">
+            <xs:sequence>
+               <xs:element name="salutation" type="xs:string"/>
+               <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+               <xs:element name="lastName" type="xs:string"/>
+               <xs:element name="phoneNumber" type="xs:string" minOccurs="0"/>
+               <xs:element name="mobilePhoneNumber" type="xs:string" minOccurs="0"/>
+               <xs:element name="faxNumber" type="xs:string" minOccurs="0"/>
+               <xs:element name="emailAddress" type="xs:string" minOccurs="0"/>
+               <xs:element name="role" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="ekp">
+            <xs:sequence>
+               <xs:element name="id" type="xs:string"/>
+               <xs:element name="frameContractId" type="xs:string"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="product">
+            <xs:sequence>
+               <xs:element name="productGroup" type="xs:string"/>
+               <xs:element name="productName" type="xs:string"/>
+               <xs:element name="productAttributes" minOccurs="0">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="serviceAttribute" type="xs:string" maxOccurs="unbounded"/>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="cancelModifyPort">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="orderId" type="tns:OrderIdType">
+                     <xs:annotation>
+                        <xs:documentation>The orderId from the service consumer</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="lineId" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>The LineId returned by modifyPort</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="modifyPort">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="orderId" type="tns:OrderIdType">
+                     <xs:annotation>
+                        <xs:documentation>The orderId from the service consumer</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="lineId" type="xs:string"/>
+                  <xs:element name="ekp" type="tns:ekp"/>
+                  <xs:element name="reseller" type="tns:ekp" minOccurs="0"/>
+                  <xs:element name="product" type="tns:product"/>
+                  <xs:element name="desiredExecutionDate" type="xs:date"/>
+                  <xs:element name="changeOfPortAllowed" type="xs:boolean"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="modifyPortReservationDate">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="orderId" type="tns:OrderIdType">
+                     <xs:annotation>
+                        <xs:documentation>The orderId from the service consumer</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="lineId" type="xs:string"/>
+                  <xs:element name="desiredExecutionDate" type="xs:date"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="releasePort">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="orderId" type="tns:OrderIdType">
+                     <xs:annotation>
+                        <xs:documentation>The orderId from the service consumer</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="lineId" type="xs:string"/>
+                  <xs:element name="releaseDate" type="xs:date"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="reservePort">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="orderId" type="tns:OrderIdType">
+                     <xs:annotation>
+                        <xs:documentation>Unique orderId generated by consumer, which is used later on when routing notifications back to consumer. The length of the id is limited to 100 characters and must follow the pattern: XXX_generatedId 
+where XXX is the unique identifier of consumer system. 
+.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="extOrderId" type="xs:string"/>
+                  <xs:element name="ekp" type="tns:ekp"/>
+                  <xs:element name="reseller" type="tns:ekp" minOccurs="0"/>
+                  <xs:element name="geoId" type="xs:long"/>
+                  <xs:element name="contactPersons" minOccurs="0">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element name="contactPerson"
+                                       type="tns:contactPersonType"
+                                       maxOccurs="unbounded"/>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element name="product" type="tns:product"/>
+                  <xs:element name="desiredExecutionDate" type="xs:date"/>
+                  <xs:element name="timePeriod" minOccurs="0">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element name="begin" type="xs:time"/>
+                           <xs:element name="end" type="xs:time"/>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element name="connectionUnitLocation" type="xs:string" minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>The location of the connection unit or socket (e.g. TAE ONT) at the customers premises</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:schema>
+   </wsdl:types>
+   <wsdl:service name="ResourceOrderManagementService">
+      <wsdl:port name="ResourceOrderManagementServiceJMS"
+                 binding="tns:ResourceOrderManagementServiceJMSBinding">
+         <soap:address location="mnet.Resource.op.cdm.src.v1.ResourceOrderManagementService"/>
+         <jms:connectionFactory>QueueConnectionFactory</jms:connectionFactory>
+         <jms:targetAddress destination="queue">mnet.Resource.op.cdm.src.v1.ResourceOrderManagementService</jms:targetAddress>
+      </wsdl:port>
+      <wsdl:port name="ResourceOrderManagementServiceHTTP"
+                 binding="tns:ResourceOrderManagementServiceHTTPBinding">
+         <soap:address location="http://mnetatlasdev01:12080/esb/Resource/ResourceOrderManagementService/v1"/>
+      </wsdl:port>
+   </wsdl:service>
+   <wsdl:portType name="ResourceOrderManagementService">
+      <wsdl:operation name="reservePort">
+         <wsdl:input message="tns:reservePort"/>
+      </wsdl:operation>
+      <wsdl:operation name="modifyPortReservationDate">
+         <wsdl:input message="tns:modifyPortReservationDate"/>
+      </wsdl:operation>
+      <wsdl:operation name="modifyPort">
+         <wsdl:input message="tns:modifyPort"/>
+      </wsdl:operation>
+      <wsdl:operation name="releasePort">
+         <wsdl:input message="tns:releasePort"/>
+      </wsdl:operation>
+      <wsdl:operation name="cancelModifyPort">
+         <wsdl:input message="tns:cancelModifyPort"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="ResourceOrderManagementServiceJMSBinding"
+                 type="tns:ResourceOrderManagementService">
+      <soap:binding style="document"
+                    transport="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"/>
+      <jms:binding messageFormat="Text"/>
+      <wsdl:operation name="reservePort">
+         <soap:operation style="document"
+                         soapAction="/ResourceOrderManagementService/reservePort"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="modifyPortReservationDate">
+         <soap:operation style="document"
+                         soapAction="/ResourceOrderManagementService/modifyPortReservationDate"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="modifyPort">
+         <soap:operation style="document"
+                         soapAction="/ResourceOrderManagementService/modifyPort"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="releasePort">
+         <soap:operation style="document"
+                         soapAction="/ResourceOrderManagementService/releasePort"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="cancelModifyPort">
+         <soap:operation style="document"
+                         soapAction="/ResourceOrderManagementService/cancelModifyPort"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="ResourceOrderManagementServiceHTTPBinding"
+                 type="tns:ResourceOrderManagementService">
+      <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="reservePort">
+         <soap:operation style="document"
+                         soapAction="/ResourceOrderManagementService/reservePort"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="modifyPortReservationDate">
+         <soap:operation style="document"
+                         soapAction="/ResourceOrderManagementService/modifyPortReservationDate"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="modifyPort">
+         <soap:operation style="document"
+                         soapAction="/ResourceOrderManagementService/modifyPort"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="releasePort">
+         <soap:operation style="document"
+                         soapAction="/ResourceOrderManagementService/releasePort"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="cancelModifyPort">
+         <soap:operation style="document"
+                         soapAction="/ResourceOrderManagementService/cancelModifyPort"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:message name="reservePort">
+      <wsdl:part name="in" element="tns:reservePort"/>
+   </wsdl:message>
+   <wsdl:message name="modifyPortReservationDate">
+      <wsdl:part name="in" element="tns:modifyPortReservationDate"/>
+   </wsdl:message>
+   <wsdl:message name="modifyPort">
+      <wsdl:part name="in" element="tns:modifyPort"/>
+   </wsdl:message>
+   <wsdl:message name="releasePort">
+      <wsdl:part name="in" element="tns:releasePort"/>
+   </wsdl:message>
+   <wsdl:message name="cancelModifyPort">
+      <wsdl:part name="in" element="tns:cancelModifyPort"/>
+   </wsdl:message>
+</wsdl:definitions>

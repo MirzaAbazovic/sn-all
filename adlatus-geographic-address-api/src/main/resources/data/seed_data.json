@@ -1,0 +1,98 @@
+[
+  {
+    "id": "1",
+    "href": "http://api-gate/tmf-api/geographicAddressManagement/v4/geographicAddress/1",
+    "city": "München",
+    "country": "Deutschland",
+    "locality": "Beethovenplatz",
+    "name": "",
+    "postcode": "80336",
+    "stateOrProvince": "Deutschland",
+    "streetName": "Beethovenplatz",
+    "streetNr": "4",
+    "streetNrLast": "",
+    "streetNrLastSuffix": "",
+    "streetNrSuffix": "",
+    "streetSuffix": "",
+    "streetType": "",
+    "geographicSubAddress": [
+      {
+        "id": "",
+        "href": "",
+        "buildingName": "",
+        "levelNumber": "",
+        "levelType": "",
+        "name": "",
+        "privateStreetName": "",
+        "privateStreetNumber": "",
+        "subAddressType": "",
+        "subUnitNumber": "",
+        "subUnitType": ""
+      }
+    ]
+  },
+{
+    "id": "2",
+    "href": "http://api-gate/tmf-api/geographicAddressManagement/v4/geographicAddress/2",
+    "city": "München",
+    "country": "Deutschland",
+    "locality": "Beethovenplatz",
+    "name": "",
+    "postcode": "80336",
+    "stateOrProvince": "Deutschland",
+    "streetName": "Beethovenplatz",
+    "streetNr": "3",
+    "streetNrLast": "",
+    "streetNrLastSuffix": "",
+    "streetNrSuffix": "",
+    "streetSuffix": "",
+    "streetType": "",
+    "geographicSubAddress": [
+      {
+        "id": "",
+        "href": "",
+        "buildingName": "",
+        "levelNumber": "",
+        "levelType": "",
+        "name": "",
+        "privateStreetName": "",
+        "privateStreetNumber": "",
+        "subAddressType": "",
+        "subUnitNumber": "",
+        "subUnitType": ""
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "href": "http://api-gate/tmf-api/geographicAddressManagement/v4/geographicAddress/3",
+    "city": "München",
+    "country": "Deutschland",
+    "locality": "Beethovenplatz",
+    "name": "",
+    "postcode": "80336",
+    "stateOrProvince": "Deutschland",
+    "streetName": "Beethovenplatz",
+    "streetNr": "2",
+    "streetNrLast": "",
+    "streetNrLastSuffix": "",
+    "streetNrSuffix": "",
+    "streetSuffix": "",
+    "streetType": "",
+    "geographicSubAddress": [
+      {
+        "id": "",
+        "href": "",
+        "buildingName": "",
+        "levelNumber": "",
+        "levelType": "",
+        "name": "",
+        "privateStreetName": "",
+        "privateStreetNumber": "",
+        "subAddressType": "",
+        "subUnitNumber": "",
+        "subUnitType": ""
+      }
+    ]
+  }
+]

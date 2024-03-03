@@ -1,0 +1,17 @@
+<ns:reservePortRequest xmlns:ns="http://www.mnet.de/hurrican/wholesale/workflow/1.0/">
+ <extOrderId>?</extOrderId>
+ <ekp>
+    <id>${ekpId}</id>
+    <frameContractId>${frameContractId}</frameContractId>
+  </ekp>
+ <geoId>${geoId}</geoId>
+ <product>
+    <productGroup>FTTB BSA</productGroup>
+    <productName>FTTB 50</productName>
+    <productAttributes>
+       <serviceAttribute>TP</serviceAttribute>
+       <serviceAttribute>ExpEnt</serviceAttribute>
+    </productAttributes>
+ </product>
+ <desiredExecutionDate>2025-02-14</desiredExecutionDate>
+</ns:reservePortRequest>

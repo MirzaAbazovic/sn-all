@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog mit den Verlaufs-Bemerkungen.
+-->
+<sf>
+    <Text name="title">Bemerkungen zum Verlauf</Text>
+</sf>

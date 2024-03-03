@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GUI-Definitionen fuer den TaifunOrderIdSelect Dialog -->
+<sf>
+    <Text name="dialog.title">Taifun Auftrags-Id zuordnen</Text>
+
+    <Text name="hinweis.msg">Es existieren ein oder mehrere aktive Geschäftsfälle zum angegebenen%nTaifunauftrag mit der Id: %s%n%s%nSoll der Taifunauftrag trotzdem zum aktuell ausgewählten Geschäftsfall zugewiesen werden?%nDies ist mit einer automatischen Ablehnung des ausgewählten Geschäeftsfalls verbunden.</Text>
+    <Text name="hinweis.storno.msg">Es existiert ein aktiver Geschäftsfall mit Storno-Änderung zum angegebenen%nTaifunauftrag mit der Id: %s%n        VorabstimmungsId: %s%n%nSoll der Taifunauftrag zum aktuell ausgewählten Geschäftsfall zugewiesen%nund der aktive Geschäftsfall mit Storno-Änderung geschlossen werden?</Text>
+    <Text name="hinweis.already.assigned">Die Vorabstimmung ist dem Taifun-Auftrag %s bereits zugeordnet.%nBitte wählen Sie einen anderen Taifun-Auftrag und beenden Sie den Dialog.</Text>
+    <Text name="hinweis.already.assigned.title">Zuordnung schon vorhanden</Text>
+    <Text name="hinweis.non.billing.relevant.assigned.title">Nicht Billing relevante Aufträge zugeordnet</Text>
+    <Text name="hinweis.non.billing.relevant.assigned">Es wurden folgende Taifunaufträge automatisch zugeordnet, da
+        diese Aufträge keine Billing relevanten Rufnummern enthalten:%n %s
+    </Text>
+    <Text name="hinweis.gfwechsel.rrnp.mrnorn">Zu dem Taifun Auftrag existiert noch eine aktive Vorabstimmung mit Storno-Änderung mit Geschäftsfall RRNP.
+        Ein Wechsel des Geschäftsfall-Typs von RRNP zu MRN/ORN ist nicht erlaubt.%n
+        Soll eine entsprechende ABBM erstellt werden?
+    </Text>
+    <Text name="hinweis.gfwechsel.rrnp.mrnorn.title">Wechsel RRNP zu MRN/ORN nicht erlaubt</Text>
+    <Text name="hinweis.new-va-expired.exists">Es existiert noch ein Geschäftsfall im Status "neue VA überfällig" zu dem
+        angegebenen Taifun Auftrag.%n
+        Dieser Vorgang (VA-Id: %s) muss erst vollständig abgearbeitet werden, bevor der neue Vorgang dem Taifun-Auftrag
+        zugeordnet werden kann.
+    </Text>
+
+    <Label name="suggested.orders"><text>vorgeschlagene Aufträge</text></Label>
+
+    <Label name="taifun.orderid"><text>manuelle Eingabe Taifun Auftrags-Id:</text></Label>
+    <FormattedTextField name="taifun.orderid">
+        <tooltip>manuelle Eingabe des Taifunauftrags (Taifun Auftrags-Id)</tooltip>
+        <format type="number">######</format>
+        <columns>15</columns>
+    </FormattedTextField>
+
+    <Button name="save.btn">
+        <text>Zuordnen</text>
+        <tooltip>Ordnet den selektierten bzw. eingegebenen Taifun Auftrag der Vorabstimmung zu</tooltip>
+    </Button>
+
+    <Button name="abbm.btn">
+        <text>Kunde nicht identifizierbar</text>
+        <tooltip>Weiter mit Abbruchmeldung zur Vorabstimmung: Kunde nicht identifizierbar (KNI)</tooltip>
+    </Button>
+
+    <Button name="cancel.btn">
+        <text>Abbrechen</text>
+        <tooltip>Schliesst den Dialog ohne zu speichern</tooltip>
+    </Button>
+
+</sf>

@@ -1,0 +1,180 @@
+<project basedir="." name="taifun" default="create.user.db">
+
+    <description>Build-Script to create Taifun Test DBs</description>
+
+    <property name="db.property.name" value="taifun" />
+    <property name="db.property.schema" value="taifun" />
+
+    <!-- Importieren des globalen Common-Scripts, um die dortige Funktionalitaet zu nutzen -->
+    <import file="${basedir}/../common-build/common_create_database.xml" />
+    <import file="${basedir}/common_taifun.xml" />
+
+    <property name="sqlplus.startup.script" location="${basedir}/src/database/sqlplus_startup.sql"/>
+    <property name="taifun.dbupdate.name" value="taifun-db-migrate.zip"/>
+    <property name="dbupdate.dir" value="${basedir.target}/dbupdate"/>
+
+    <!-- Needed for modify.db4devel -->
+    <target name="init.modify.db4devel.properties">
+        <propertycopy name="db.bsi.tns.name" from="db.bsi.${build.bsi.mode}.tns.name"/>
+        <propertycopy name="db.hurrican.tns.name" from="db.hurrican.${build.hurrican.mode}.tns.name"/>
+        <propertycopy name="db.kup.tns.name" from="db.kup.${build.kup.mode}.tns.name"/>
+        <propertycopy name="db.monline.tns.name" from="db.monline.${build.monline.mode}.tns.name"/>
+        <propertycopy name="db.taifun.tns.name" from="db.taifun.${build.taifun.mode}.tns.name"/>
+    </target>
+
+    <target name="modify.db4devel" depends="database.modify.db4devel,init.name.properties,create.billing.tables,modify.system.global,taifun.postRelease"/>
+
+    <!-- Directories und Grants. -->
+    <target name="modify.system.global" description="Modifies a new Test DB" depends="clean.init.properties">
+        <antcall target="modify.system.global.internal"/>
+    </target>
+
+    <target name="modify.system.global.internal" depends="init.schema.properties">
+        <echo>Modify password for ORACLE user ${db.user.schema}</echo>
+        <sql
+            driver="${db.jdbc.driver}"
+            url="${db.jdbc.url}"
+            userid="${db.system.user}"
+            password="${db.system.password}"
+            classpathref="project.class.path"
+            delimiter="/"
+            delimitertype="row"
+            src="${db.taifun.modify.db4devel.system}"/>
+    </target>
+
+    <target name="taifun.postRelease" depends="clean.init.properties">
+        <antcall target="taifun.postRelease.single">
+            <param name="db.property.schema" value="taifun" />
+            <param name="db.modify.post.release" value="${db.taifun.modify.post.release}"/>
+        </antcall>
+    </target>
+
+    <target name="taifun.postRelease.single" depends="init.schema.properties">
+        <echo>Run post-release scripts for ${db.user.schema}</echo>
+        <sql
+            driver="${db.jdbc.driver}"
+            url="${db.jdbc.url}"
+            userid="${db.user.schema}"
+            password="${db.user.password}"
+            classpathref="project.class.path"
+            delimiter="/"
+            delimitertype="row"
+            src="${db.modify.post.release}"/>
+    </target>
+
+    <target name="taifun.modify.post" depends="clean.init.properties">
+        <antcall target="taifun.modify.db.post">
+            <param name="db.property.schema" value="taifun" />
+            <param name="db.modify.db.post.release" value="${db.taifun.modify.db.views.post}"/>
+        </antcall>
+    </target>
+
+	<target name="taifun.modify.db.post" depends="init.schema.properties">
+	        <echo>Run post-release scripts for ${db.user.schema}</echo>
+		    <echo>driver = ${db.jdbc.driver}</echo>
+		    <echo>url = ${db.jdbc.url}</echo>
+		    <echo>userid = ${db.system.user}</echo>
+		    <echo>src = ${db.modify.db.post.release}</echo>
+	        
+		    <sql
+	            driver="${db.jdbc.driver}"
+	            url="${db.jdbc.url}"
+	        	userid="${db.system.user}"
+	        	password="${db.system.password}"
+	            classpathref="project.class.path"
+	            delimiter="/"
+	            delimitertype="row"
+	            src="${db.modify.db.post.release}"/>
+	        <sql
+	            driver="${db.jdbc.driver}"
+	            url="${db.jdbc.url}"
+	            userid="${db.user.schema}"
+	            password="${db.user.password}"
+	            classpathref="project.class.path"
+	            delimiter="/"
+	            delimitertype="row"
+	            keepformat="true">
+	            <transaction>
+	               BEGIN
+	                  SYS.UTL_RECOMP.RECOMP_SERIAL();
+	               END;
+	            </transaction>
+	        </sql>
+	    </target>
+
+    <target name="clean.init.properties" depends="clean,init.name.properties,init.modify.db4devel.properties"/>
+
+    <!-- Needs to use antcall, if not when called as part of reseting of the database
+         init.schema.properties will complain that property already exists -->
+    <target name="create.billing.tables" depends="clean.init.properties">
+        <antcall target="create.billing.tables.internal"/>
+    </target>
+    <target name="create.billing.tables.internal" depends="init.schema.properties">
+        <echo>Creating billing tables for ${db.user.schema}</echo>
+        <sql
+            driver="${db.jdbc.driver}"
+            url="${db.jdbc.url}"
+            userid="${db.user.schema}"
+            password="${db.user.password}"
+            classpathref="project.class.path"
+            delimiter="/"
+            delimitertype="row"
+            src="${basedir}/src/database/create_billing_tables.sql"
+            onerror="continue"
+        />
+        <for list="2010,2011,2012,2013,2014" param="year">
+            <sequential>
+            <for list="01,02,03,04,05,06,07,08,09,10,11,12" param="month">
+                <sequential>
+                    <local name="var.billing.period"/>
+                    <property name="var.billing.period" value="@{year}@{month}"/>
+                    <sql
+                        driver="${db.jdbc.driver}"
+                        url="${db.jdbc.url}"
+                        userid="${db.user.schema}"
+                        password="${db.user.password}"
+                        classpathref="project.class.path"
+                        delimiter="/"
+                        delimitertype="row"
+                        src="${basedir}/src/database/create_periodic_billing_tables.sql"
+                        onerror="continue"
+                    />
+                </sequential>
+                </for>
+            </sequential>
+        </for>
+    </target>
+
+    <target name="create.accounting.check.views" depends="clean.init.properties,init.schema.properties">
+        <echo>Creating check views for CDR-Accounting for ${db.user.schema}</echo>
+        <sql
+            driver="${db.jdbc.driver}"
+            url="${db.jdbc.url}"
+            userid="${db.user.schema}"
+            password="${db.user.password}"
+            classpathref="project.class.path"
+            delimiter="/"
+            delimitertype="row"
+            src="${basedir}/src/database/create_accounting_check_views.sql"/>
+    </target>
+
+    <target name="create.billrun.check.views" depends="clean.init.properties">
+        <antcall target="create.billrun.check.views.internal">
+            <param name="db.property.schema" value="taifun.migration" />
+        </antcall>
+    </target>
+
+    <target name="create.billrun.check.views.internal" depends="init.schema.properties">
+        <echo>Creating check views for Billrun for ${db.user.schema}</echo>
+        <sql
+            driver="${db.jdbc.driver}"
+            url="${db.jdbc.url}"
+            userid="${db.user.schema}"
+            password="${db.user.password}"
+            classpathref="project.class.path"
+            delimiter="/"
+            delimitertype="row"
+            src="${basedir}/src/database/create_billrun_check_views.sql"/>
+    </target>
+
+</project>

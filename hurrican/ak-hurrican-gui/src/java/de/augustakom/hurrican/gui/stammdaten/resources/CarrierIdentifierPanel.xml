@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Details eines Carrier-Kontakts
+-->
+<sf>
+
+    <!-- ************ Panel fuer die Darstellung der Carrier-Kontakts  **************** -->
+    <Label name="carrieridentifier.carrier"><text>Carrier:</text></Label>
+    <ReferenceField name="carrieridentifier.carrier">
+        <tooltip>Auswahl des Carriers</tooltip>
+    </ReferenceField>
+
+    <Label name="carrieridentifier.bezeichnung"><text>Bezeichnung:</text></Label>
+    <TextField name="carrieridentifier.bezeichnung">
+        <tooltip>Bezeichnung der Carrier-Kennung</tooltip>
+        <maxchars>15</maxchars>
+    </TextField>
+
+    <Label name="carrieridentifier.kundennummer"><text>Kundennummer:</text></Label>
+    <TextField name="carrieridentifier.kundennummer">
+        <tooltip>Kundennummer der M-net bei dem Carrier</tooltip>
+        <maxchars>15</maxchars>
+    </TextField>
+
+    <Label name="carrieridentifier.portierungskennung"><text>Portierungskennung:</text></Label>
+    <TextField name="carrieridentifier.portierungskennung">
+        <tooltip>Portierungskennung für die Carrier-Kennung</tooltip>
+        <maxchars>10</maxchars>
+    </TextField>
+     
+    <Label name="carrieridentifier.name"><text>Name:</text></Label>
+    <TextField name="carrieridentifier.name">
+        <tooltip>Firmenname der M-net, wie er bei dem Carrier hinterlegt ist</tooltip>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="carrieridentifier.strasse"><text>Straße:</text></Label>
+    <TextField name="carrieridentifier.strasse">
+        <tooltip>Straße der M-net, wie sie in den Kundendaten des Carriers hinterlegt ist</tooltip>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="carrieridentifier.postleitzahl"><text>PLZ:</text></Label>
+    <TextField name="carrieridentifier.postleitzahl">
+        <tooltip>PLZ der M-net, wie sie in den Kundendaten des Carriers hinterlegt ist</tooltip>
+        <maxchars>10</maxchars>
+    </TextField>
+
+    <Label name="carrieridentifier.ort"><text>Ort:</text></Label>
+    <TextField name="carrieridentifier.ort">
+        <tooltip>Ort der M-net, wie sie in den Kundendaten des Carriers hinterlegt ist</tooltip>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="carrieridentifier.netzbetreiber"><text>Auftraggebender Netzbetreiber:</text></Label>
+    <TextField name="carrieridentifier.netzbetreiber">
+        <tooltip>Auftraggebender Netzbetreiber der Carrier-Kennung (für TAL-Bestellung)</tooltip>
+        <maxchars>45</maxchars>
+    </TextField>
+    
+</sf>

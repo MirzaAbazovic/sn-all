@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse 
+de.augustakom.hurrican.model.billing.history.ModificationLog
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing.history">
+	<class name="ModificationLog" table="UTI_MODIFICATION_LOG">
+	    
+	    <!-- PrimaryKey -->
+		<id name="id" column="MOD_ID" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+	    <property name="tableName" column="TABLENAME" type="string"/>
+     	<property name="recordId" column="RECORD_ID" type="long"/>
+		<property name="fieldName" column="FIELD_NAME" type="string"/>
+        <property name="oldValue" column="OLD_VALUE" type="string"/>
+		<property name="newValue" column="NEW_VALUE" type="string"/>
+		<property name="modDate" column="MOD_TIME" type="date"/>
+
+	</class>
+	
+</hibernate-mapping>

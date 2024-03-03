@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Zuordnung eines Artikels
+zu einer Materialentnahme.
+-->
+<sf>
+
+	<Text name="title">Artikel zuordnen</Text>
+	    
+	<Label name="artikel"><text>Artikel:</text></Label>
+	<TextField name="artikel">
+		<tooltip>Name des Artikels</tooltip>
+		<columns>20</columns>
+	</TextField>
+	
+	<Button name="select.artikel">
+		<text>...</text>
+		<tooltip>Artikel-Auswahl über einen Dialog</tooltip>
+	</Button>
+	
+	<Label name="material.nr"><text>Material-Nr.:</text></Label>
+	<TextField name="material.nr">
+		<tooltip>M-net Materialnummer</tooltip>
+	</TextField>
+	
+	<Label name="anzahl"><text>Anzahl:</text></Label>
+	<FormattedTextField name="anzahl">
+		<tooltip>Anzahl für den Artikel</tooltip>
+		<format type="number">#</format>
+	</FormattedTextField>
+	
+	<Label name="einzelpreis"><text>Einzelpreis (€):</text></Label>
+	<FormattedTextField name="einzelpreis">
+		<tooltip>Einzelpreis des Artikels</tooltip>
+		<format type="number">#0.00</format>
+	</FormattedTextField>
+	
+	<Label name="anlagenbezeichnung"><text>Anlagen-Bez.:</text></Label>
+	<TextField name="anlagenbezeichnung">
+		<tooltip>zugehoerige Anlagenbezeichnung</tooltip>
+		<maxchars>50</maxchars>
+	</TextField>
+	
+	<Button name="select.anlagenbezeichnung">
+		<text>...</text>
+		<tooltip>Auswahl moeglicher Anlagenbezeichnungen ueber die HW-Racks</tooltip>
+	</Button>
+		
+</sf>

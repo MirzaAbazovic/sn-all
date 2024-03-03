@@ -1,0 +1,13 @@
+@startuml
+
+title State-transition diagram for a failed resource order
+Acknowledged: Order received and passed message and basic business validation
+[*] --> Acknowledged
+Acknowledged --> InProgress : Start order
+InProgress: Resource delivery has started
+InProgress --> Failed : All Order items have failed which results in the entire Order to fail
+Failed: Order has been provisioned and the resource is now active
+Failed --> [*] : Final
+
+
+@enduml

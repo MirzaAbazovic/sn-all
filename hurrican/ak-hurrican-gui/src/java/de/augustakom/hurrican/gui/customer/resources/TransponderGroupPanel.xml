@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sf>
+    
+    <Label name="transponder.groups"><text>Gruppen</text></Label>
+    <Label name="transponder"><text>Transponder</text></Label>
+    
+    <Button name="add.group">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Erstellt eine neue Transponder-Gruppe</tooltip>
+    </Button>
+    
+    <Button name="remove.group">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Entfernt die ausgewählte Transponder-Gruppe</tooltip>
+    </Button>
+    
+    <Button name="rename.group">
+        <icon>de/augustakom/hurrican/gui/images/edit.gif</icon>
+        <tooltip>Bietet die Möglichkeit, die Transponder-Gruppe umzubenennen</tooltip>
+    </Button>
+    
+    <Button name="add.transponder">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Ordnet einen neuen Transponder der Gruppe hinzu</tooltip>
+    </Button>
+    
+    <Button name="remove.transponder">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Entfernt den ausgewählten Transponder von der Gruppe</tooltip>
+    </Button>
+    
+</sf>

@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:ns1="http://mnet.de/hurrican/ngn/portierungService"
+                  targetNamespace="http://mnet.de/hurrican/ngn/portierungService">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://mnet.de/hurrican/ngn/portierungService">
+            <xsd:include schemaLocation="PortierungService.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="migratePortierungskennungResponse">
+        <wsdl:part element="ns1:migratePortierungskennungResponse" name="migratePortierungskennungResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="PortierungFault">
+        <wsdl:part element="ns1:faultDetails" name="PortierungFault">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="validatePortierungskennung">
+        <wsdl:part element="ns1:validatePortierungskennung" name="validatePortierungskennung">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="validatePortierungskennungResponse">
+        <wsdl:part element="ns1:validatePortierungskennungResponse" name="validatePortierungskennungResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="migratePortierungskennung">
+        <wsdl:part element="ns1:migratePortierungskennung" name="migratePortierungskennung">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="migratePhoneNumbers">
+        <wsdl:part element="ns1:migratePhoneNumbers" name="migratePhoneNumbers">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="migratePhoneNumbersResponse">
+        <wsdl:part element="ns1:migratePhoneNumbersResponse" name="migratePhoneNumbersResponse">
+        </wsdl:part>
+    </wsdl:message>
+
+    <wsdl:portType name="portierungServiceWeb">
+        <wsdl:operation name="validatePortierungskennung">
+            <wsdl:input message="ns1:validatePortierungskennung" name="validatePortierungskennung">
+            </wsdl:input>
+            <wsdl:output message="ns1:validatePortierungskennungResponse" name="validatePortierungskennungResponse">
+            </wsdl:output>
+            <wsdl:fault message="ns1:PortierungFault" name="PortierungFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="migratePortierungskennung">
+            <wsdl:input message="ns1:migratePortierungskennung" name="migratePortierungskennung">
+            </wsdl:input>
+            <wsdl:output message="ns1:migratePortierungskennungResponse" name="migratePortierungskennungResponse">
+            </wsdl:output>
+            <wsdl:fault message="ns1:PortierungFault" name="PortierungFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="migratePhoneNumbers">
+            <wsdl:input message="ns1:migratePhoneNumbers" name="migratePhoneNumbers">
+            </wsdl:input>
+            <wsdl:output message="ns1:migratePhoneNumbersResponse" name="migratePhoneNumbersResponse">
+            </wsdl:output>
+            <wsdl:fault message="ns1:PortierungFault" name="PortierungFault">
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="PortierungServiceWebServiceSoapBinding" type="ns1:portierungServiceWeb">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="validatePortierungskennung">
+            <soap:operation soapAction="/validatePortierungskennung" style="document"/>
+            <wsdl:input name="validatePortierungskennung">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="validatePortierungskennungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="PortierungFault">
+                <soap:fault name="PortierungFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="migratePortierungskennung">
+            <soap:operation soapAction="/migratePortierungskennung" style="document"/>
+            <wsdl:input name="migratePortierungskennung">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="migratePortierungskennungResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="PortierungFault">
+                <soap:fault name="PortierungFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="migratePhoneNumbers">
+            <soap:operation soapAction="/migratePhoneNumbers" style="document"/>
+            <wsdl:input name="migratePhoneNumbers">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="migratePhoneNumbersResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="PortierungFault">
+                <soap:fault name="PortierungFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="PortierungServiceWebService">
+        <wsdl:port binding="ns1:PortierungServiceWebServiceSoapBinding" name="PortierungServiceWebPort">
+            <soap:address location="http://localhost:8080/hurricanweb/portierungService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das WizardPanel fuer einen Produkt-Wechsel.
+-->
+<sf>
+
+    <Label name="title.question"><text>Wollen Sie den Produktwechsel per Wizard durchführen?</text></Label>
+
+    <RadioButton name="yes">
+        <text>Ja</text>
+        <tooltip>Leitet sie wizard-gesteuert durch den Produktwechsel</tooltip>
+    </RadioButton>
+
+    <RadioButton name="no">
+        <text>Nein</text>
+        <tooltip>Produktwechsel manuell durchfuehren</tooltip>
+    </RadioButton>
+
+    <Label name="vorgabe.am"><text>Kündigungs- und Vorgabedatum AM:</text></Label>
+    <DateComponent name="vorgabe.am">
+        <tooltip>Vorgabe von AM, an dem der Auftrag realisiert werden soll (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>10</columns>
+    </DateComponent>
+
+    <Label name="possible.actions"><text>Mögliche Aktionen (Basis-Auftrag {0}):</text></Label>
+
+</sf>

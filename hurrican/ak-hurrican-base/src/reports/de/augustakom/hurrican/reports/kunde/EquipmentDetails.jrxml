@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="EquipmentDetails" pageWidth="737" pageHeight="142" orientation="Landscape" columnWidth="737" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="com.jasperassistant.designer.GridHeight" value="12"/>
+	<property name="com.jasperassistant.designer.GridWidth" value="12"/>
+	<property name="com.jasperassistant.designer.DataSource" value="emptyDS"/>
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+	<property name="com.jasperassistant.designer.Units" value="Millimeters"/>
+	<property name="com.jasperassistant.designer.Grid" value="true"/>
+	<reportFont name="Font_Default" isDefault="true" fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<field name="SWITCH" class="java.lang.String">
+	</field>
+	<field name="TS1" class="java.lang.String">
+	</field>
+	<field name="TS2" class="java.lang.String">
+	</field>
+	<field name="HWPORT" class="java.lang.String">
+	</field>
+	<field name="HWEQN" class="java.lang.String">
+	</field>
+	<field name="VERTEILER" class="java.lang.String">
+	</field>
+	<field name="REIHE" class="java.lang.String">
+	</field>
+	<field name="BUCHT" class="java.lang.String">
+	</field>
+	<field name="LEISTE1" class="java.lang.String">
+	</field>
+	<field name="STIFT1" class="java.lang.String">
+	</field>
+	<field name="LEISTE2" class="java.lang.String">
+	</field>
+	<field name="STIFT2" class="java.lang.String">
+	</field>
+	<field name="SCHNITTSTELLE" class="java.lang.String">
+	</field>
+	<field name="HWSCHNITTSTELLE" class="java.lang.String">
+	</field>
+	<field name="EQ_IN" class="java.lang.Boolean">
+	</field>
+	<columnHeader>
+		<band height="14">
+			<staticText>
+				<reportElement positionType="Float" x="54" y="1" width="30" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[Switch]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="88" y="1" width="46" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[VPI_TS1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="136" y="1" width="50" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[VPI_TS2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="189" y="1" width="62" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[HW-Port]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="330" y="1" width="43" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[Verteiler]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="377" y="1" width="32" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[Reihe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="413" y="1" width="32" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[Bucht]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="449" y="1" width="32" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[Leiste 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="485" y="1" width="32" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[Stift 1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="521" y="1" width="32" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[Leiste 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="557" y="1" width="32" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[Stift 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="593" y="1" width="59" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[Schnittstelle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="656" y="1" width="70" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[HW-Schnittstelle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="254" y="1" width="74" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[HW-EQN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="2" y="1" width="46" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" pdfFontName="Times-BoldItalic"/>
+				</textElement>
+				<text><![CDATA[Equipment]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="13">
+			<textField>
+				<reportElement positionType="Float" x="20" y="0" width="28" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{EQ_IN} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[($F{EQ_IN} != null && $F{EQ_IN}.booleanValue()) ? "In" : "Out"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="53" y="0" width="31" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{SWITCH} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{SWITCH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="88" y="0" width="46" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{TS1} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{TS1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="136" y="0" width="50" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{TS2} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{TS2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="189" y="0" width="62" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{HWPORT} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{HWPORT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="254" y="0" width="74" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{HWEQN} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{HWEQN}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="330" y="0" width="43" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{VERTEILER} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{VERTEILER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="377" y="0" width="32" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{REIHE} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{REIHE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="413" y="0" width="32" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{BUCHT} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BUCHT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="449" y="0" width="32" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{LEISTE1} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{LEISTE1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="485" y="0" width="32" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{STIFT1} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{STIFT1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="521" y="0" width="32" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{LEISTE2} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{LEISTE2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="557" y="0" width="32" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{STIFT2} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{STIFT2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="593" y="0" width="59" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{SCHNITTSTELLE} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{SCHNITTSTELLE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="656" y="0" width="70" height="12">
+					<printWhenExpression><![CDATA[new Boolean($F{HWSCHNITTSTELLE} != null)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{HWSCHNITTSTELLE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

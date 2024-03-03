@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.DNTNB
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="DNTNB" table="DN_TNB">
+	    
+	    <!-- PrimaryKey -->
+		<id name="tnb" column="TNB" unsaved-value="null" type="string">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<property name="name" column="NAME" type="string"/>
+        <property name="portKennung" column="PORT_KENNUNG" type="string"/>
+        <property name="serviceType" column="SERVICE_TYPE" type="string"/>
+	</class>
+	
+</hibernate-mapping>

@@ -1,0 +1,1 @@
+drop PROCEDURE P_LK_UPD1;

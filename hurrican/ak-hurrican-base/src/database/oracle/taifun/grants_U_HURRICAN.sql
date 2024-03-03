@@ -1,0 +1,15 @@
+--
+-- Script mit create/grant Befehlen, um den DB-User
+-- 'HURRICAN' in der Taifun-DB anzulegen.
+--
+
+-- Benutzer HURRICAN fuer Taifun-DB anlegen
+CREATE USER "HURRICAN" PROFILE "DEFAULT" IDENTIFIED BY "#life4you2#" 
+  DEFAULT TABLESPACE "TAIFUN_DATA" TEMPORARY TABLESPACE "TEMP" ACCOUNT UNLOCK;
+GRANT "CONNECT" TO "HURRICAN";
+GRANT R_MNET_READ_ONLY TO "HURRICAN";
+GRANT R_BILLING_READER TO "HURRICAN";
+commit;
+
+
+

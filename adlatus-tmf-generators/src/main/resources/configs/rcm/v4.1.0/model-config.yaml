@@ -1,0 +1,12 @@
+globalProperties:
+  models: ""
+  supportingFiles: false
+  apis: false
+
+additionalProperties:
+  library: webclient
+  basePackage: de.bitconex.tmf.rcm
+  invokerPackage: de.bitconex.tmf.rcm
+  modelPackage: de.bitconex.tmf.rcm.model
+  useLombok: true
+  useSerializable: true

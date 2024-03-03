@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.command.ServiceCommand
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.command">
+    <class name="ServiceCommand" table="T_SERVICE_COMMANDS">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="name" column="NAME" type="string" not-null="true"/>
+        <property name="className" column="CLASS" type="string" not-null="true"/>
+        <property name="type" column="TYPE" type="string" not-null="true"/>
+        <property name="description" column="DESCRIPTION" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

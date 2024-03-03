@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse 
+de.augustakom.hurrican.model.billing.WebgatePW
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="WebgatePW" table="WEBGATE_PW">
+	    
+	    <!-- PrimaryKey -->
+		<id name="pwNo" column="PW_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<!--property name="rinfoNoOrig" column="R_INFO__NO" type="long"/-->
+		<property name="rinfoNo" column="BILL_SPEC_NO" type="long"/>
+		<!--property name="kundeNoOrig" column="KUNDE__NO" type="long"/-->
+		<property name="kundeNo" column="CUST_NO" type="long"/>
+		<property name="userId" column="USERID" type="string"/>
+		<property name="password" column="PASSWORD" type="string"/>
+		<property name="changePW" column="CHANGE_PW" type="boolean"/>
+
+	</class>
+	
+</hibernate-mapping>

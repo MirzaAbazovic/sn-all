@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server-deployment
+  namespace: adl
+spec:
+  template:
+    spec:
+      containers:
+        - name: config-server
+          ports:
+            - $patch: replace
+            - containerPort: 8888
+          envFrom:
+            - configMapRef:
+                name: git-token
+      imagePullSecrets:
+        - name: docker-regcred

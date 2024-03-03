@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+    xmlns="http://www.mnet.de/esb/cdm/SupplierPartner/LineOrderNotificationService/v2" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <notifyUpdateOrder>
+            <order>
+                <geschaeftsfall>VBL</geschaeftsfall>
+                <aenderungsKennzeichen>Standard</aenderungsKennzeichen>
+                <geschaeftsfallart>Anbieterwechsel</geschaeftsfallart>
+            </order>
+            <message>
+                <MTAM>
+                    <meldungsattribute>
+                        <vertragsnummer>${contractId}</vertragsnummer>
+                        <externeAuftragsnummer>${externalOrderId}</externeAuftragsnummer>
+                        <kundennummer>${customerId}</kundennummer>
+                        <kundennummerBesteller>${3rdPartySalesmanCustomerId}</kundennummerBesteller>
+                    </meldungsattribute>
+                    <meldungspositionen>
+                        <position>
+                            <meldungscode>6002</meldungscode>
+                            <meldungstext>nicht ausführbar aus Endkundengrund</meldungstext>
+                        </position>
+                    </meldungspositionen>
+                </MTAM>
+            </message>
+            <captured>citrus:currentDate(yyyy-MM-dd'T'HH:mm:ss)</captured>
+        </notifyUpdateOrder>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

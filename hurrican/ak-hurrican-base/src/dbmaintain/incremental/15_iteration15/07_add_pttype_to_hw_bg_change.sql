@@ -1,0 +1,8 @@
+alter table T_HW_BG_CHANGE add PHYSIKTYP_ID_NEW NUMBER(10);
+comment on column T_HW_BG_CHANGE.PHYSIKTYP_ID_NEW
+  is 'Angabe des neuen Physiktyps fuer die Rangierung; falls leer, wird alter Physiktyp wieder verwendet!';
+
+CREATE INDEX IX_FK_HWBGC_2_PT ON T_HW_BG_CHANGE (PHYSIKTYP_ID_NEW) TABLESPACE "I_HURRICAN";
+ALTER TABLE T_HW_BG_CHANGE ADD CONSTRAINT FK_HWBGC_2_PT
+  FOREIGN KEY (PHYSIKTYP_ID_NEW) REFERENCES T_PHYSIKTYP (ID);
+

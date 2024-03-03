@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1>{{appTitle}}</h1>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav class="sidenav" opened="true" mode="side">
+    <mat-nav-list>
+      <a *ngFor="let linkData of mainNavigation" mat-list-item [routerLink]="linkData.link">{{linkData.title}}</a>
+
+      <!--            <mat-expansion-panel class="mat-elevation-z0">-->
+      <!--                <mat-expansion-panel-header> Test</mat-expansion-panel-header>-->
+      <!--                <a mat-list-item routerLink="/">Sub 1</a>-->
+      <!--                <a mat-list-item routerLink="/">Sub 2</a>-->
+      <!--            </mat-expansion-panel>-->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

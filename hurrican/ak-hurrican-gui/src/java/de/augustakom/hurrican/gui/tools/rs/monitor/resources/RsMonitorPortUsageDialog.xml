@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel, um eine Kündigung rückgängig zu machen.
+-->
+<sf>
+    <Text name="dialog.title">Ø Port-Verbrauch (letzte {0} Monate): {1}</Text>
+
+    <Text name="progress.text">lade Informationen ...</Text>
+
+    <Label name="month.count"><text>Anzahl Monate</text></Label>
+    <FormattedTextField name="month.count">
+        <tooltip>Anzahl Monate</tooltip>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+    <Button name="ok">
+        <icon>de/augustakom/hurrican/gui/images/search.gif</icon>
+    </Button>
+</sf>

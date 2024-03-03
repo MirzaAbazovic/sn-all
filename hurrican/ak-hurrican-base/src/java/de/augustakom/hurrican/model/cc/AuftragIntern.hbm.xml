@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.AuftragIntern
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="AuftragIntern" table="T_AUFTRAG_INTERN">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_AUFTRAG_INTERN_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="auftragId" column="AUFTRAG_ID" type="long" not-null="true"/>
+        <property name="hvtStandortId" column="HVT_ID_STANDORT" type="long"/>
+        <property name="workingTypeRefId" column="WORKING_TYPE_REF_ID" type="long"/>
+        <property name="contactName" column="CONTACT_NAME" type="string"/>
+        <property name="contactPhone" column="CONTACT_PHONE" type="string"/>
+        <property name="contactMail" column="CONTACT_MAIL" type="string"/>
+        <property name="extServiceProviderId" column="EXT_SERVICE_PROVIDER_ID" type="long"/>
+        <property name="extOrderDate" column="EXT_ORDER_DATE" type="date"/>
+        <property name="bedarfsnummer" column="BEDARFSNUMMER" type="string"/>
+        <property name="workingHours" column="WORKING_HOURS" type="float"/>
+        <property name="description" column="DESCRIPTION" type="string"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date" not-null="true"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date" not-null="true"/>
+        <property name="projectDirectory" column="PROJECT_DIRECTORY" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

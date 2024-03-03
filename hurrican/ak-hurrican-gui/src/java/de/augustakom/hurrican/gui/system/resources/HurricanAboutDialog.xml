@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den About-Dialog.
+-->
+<sf>
+    <Label name="info.icon">
+        <icon>de/augustakom/hurrican/gui/images/info_big.png</icon>
+    </Label>
+    
+    <Label name="company">
+        <text><![CDATA[M-net Telekommunikations GmbH]]></text>
+    </Label>
+    
+    <Label name="application">
+        <text>Applikation: </text>
+    </Label>
+    <Label name="application.name">
+        <foreground>red</foreground>
+    </Label>
+    
+    <Label name="version">
+        <text>Version: </text>
+    </Label>
+    <Label name="version.number"/>
+    
+    <Label name="system.mode"><text>System-Modus: </text></Label>
+    <Label name="system.mode.value"></Label>
+    
+    <Color name="red">
+        <red>255</red>
+        <green>0</green>
+        <blue>0</blue>
+    </Color>
+    
+    <Button name="ok">
+        <text>Ok</text>
+        <tooltip>Schliesst den Dialog</tooltip>
+    </Button>
+
+    <Button name="btn.socket.test">
+        <text>Socket test starten</text>
+        <tooltip>Socket Test starten</tooltip>
+    </Button>
+
+    <TextField name="socket.test.duration">
+        <tooltip>Zeitdauer des Socket-Tests in ms</tooltip>
+        <columns>14</columns>
+    </TextField>
+
+    <Label name="socket.test.info">
+        <text>Socket test info</text>
+    </Label>
+
+
+</sf>

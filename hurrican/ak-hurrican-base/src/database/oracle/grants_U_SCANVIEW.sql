@@ -1,0 +1,13 @@
+--
+-- Script mit create/grant Befehlen, um den DB-User
+-- 'SCANVIEW' anzulegen.
+-- (Datenbankbenutzer mit Leseberechtigungen auf der DB HURRICAN.)
+--
+
+CREATE USER "SCANVIEW" PROFILE "DEFAULT" IDENTIFIED BY "1weivnacs"
+  DEFAULT TABLESPACE "T_HURRICAN" TEMPORARY TABLESPACE "TEMPORARY" ACCOUNT UNLOCK;
+GRANT "CONNECT" TO "SCANVIEW";
+GRANT "R_HURRICAN_SCANVIEW_VIEWS" TO "SCANVIEW";
+
+commit;
+

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.HVTBestellung
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="HVTBestellung" table="T_HVT_BESTELLUNG">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_HVT_BESTELLUNG_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="uevtId" column="UEVT_ID" type="long" not-null="true"/>
+        <property name="physiktyp" column="PHYSIKTYP" type="string" not-null="true"/>
+        <property name="angebotDatum" column="ANGEBOT_DATUM" type="date" not-null="true"/>
+        <property name="anzahlCuDA" column="ANZAHL_CUDA" type="integer" not-null="true"/>
+        <property name="bestelldatum" column="BESTELLDATUM" type="date"/>
+        <property name="realDTAGBis" column="REAL_DTAG_BIS" type="date"/>
+        <property name="bestellNrAKom" column="BESTELLNR_AKOM" type="string"/>
+        <property name="bestellNrDTAG" column="BESTELLNR_DTAG" type="string"/>
+        <property name="bereitgestellt" column="BEREITGESTELLT" type="date"/>
+        <property name="eqVerwendung" column="EQ_VERWENDUNG">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">de.augustakom.hurrican.model.cc.EqVerwendung</param>
+                <param name="type">12</param> <!-- java.sql.Types -->
+            </type>
+        </property>
+
+    </class>
+
+</hibernate-mapping>

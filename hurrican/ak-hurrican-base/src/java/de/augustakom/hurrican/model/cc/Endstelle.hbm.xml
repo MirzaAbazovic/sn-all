@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Endstelle
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Endstelle" table="T_ENDSTELLE">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_ENDSTELLE_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="cb2EsId" column="CB_2_ES_ID" type="long"/>
+        <property name="endstelle" column="ENDSTELLE" type="string"/>
+        <property name="name" column="NAME" type="string"/>
+        <property name="ort" column="ORT" type="string"/>
+        <property name="plz" column="PLZ" type="string"/>
+        <property name="geoId" column="GEO_ID" type="long"/>
+        <property name="anschlussart" column="ANSCHLUSSART" type="long"/>
+        <property name="bemerkungStawa" column="BEMSTAWA" type="string"/>
+        <property name="rangierId" column="RANGIER_ID" type="long"/>
+        <property name="rangierIdAdditional" column="RANGIER_ID_ADDITIONAL" type="long"/>
+        <property name="hvtIdStandort" column="HVT_ID_STANDORT" type="long"/>
+        <property name="endstelleGruppeId" column="ES_GRUPPE" type="long"/>
+        <property name="endstelleTyp" column="ES_TYP" type="string"/>
+        <property name="lastChange" column="LAST_CHANGE" type="timestamp"/>
+        <property name="addressId" column="ADDRESS_ID" type="long"/>
+        <property name="vlan" column="VLAN" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

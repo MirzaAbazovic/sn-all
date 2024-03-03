@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resource-catalog-api-deployment
+  namespace: adl
+spec:
+  template:
+    spec:
+      containers:
+        - name: resource-catalog-api
+          env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: "testenv"
+          - name: CONFIG_SERVER
+            value: http://config-server-service-test.adl-test.svc.cluster.local:8888

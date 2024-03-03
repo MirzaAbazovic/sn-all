@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Adress-Eingabe bzw. -Anzeige.
+-->
+<sf>
+    <Color name="red">
+        <red>255</red>
+        <green>0</green>
+        <blue>0</blue>
+    </Color>
+
+    <Text name="border.ansprechpartner">Ansprechpartner: </Text>
+
+    <Label name="ansprechpartner.type"><text>Ansprechpartner:</text></Label>
+    <ReferenceField name="ansprechpartner.type">
+        <tooltip>Angabe des Ansprechpartner-Typs</tooltip>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="ansprechpartner.text"><text>Ansp. Bemerkung:</text></Label>
+    <TextArea name="ansprechpartner.text">
+        <columns>20</columns>
+        <maxchars>255</maxchars>
+        <tooltip>Bemerkung zu dem Ansprechpartner</tooltip>
+    </TextArea>
+
+    <Label name="ansprechpartner.preferred"><text>Standard:</text></Label>
+    <CheckBox name="ansprechpartner.preferred">
+        <tooltip>Ansprechpartner für Benachrichtigungen verwenden</tooltip>
+    </CheckBox>
+
+    <Text name="border.address.new">Adresse (neu): </Text>
+    <Text name="border.address">Adresse (ID {0}): </Text>
+
+    <Label name="address.new.warning">
+        <text> </text>
+        <foreground>red</foreground>
+        <style>bold</style>
+    </Label>
+
+    <Button name="address.new">
+        <text>Neue Adresse</text>
+        <tooltip>Erzeugt eine neue Adresse mit Standard-Werten.</tooltip>
+        <mnemonic>VK_N</mnemonic>
+    </Button>
+
+    <Button name="address.search">
+        <text>Adresse suchen</text>
+        <tooltip>Öffnet einen Dialog, um eine vorhandene Adresse zu suchen und zu übernehmen.</tooltip>
+        <mnemonic>VK_F</mnemonic>
+    </Button>
+
+    <Button name="address.copy">
+        <text>Adresse kopieren</text>
+        <tooltip>Öffnet einen Dialog, um eine vorhandene Adresse zu suchen und zu kopieren.</tooltip>
+        <mnemonic>VK_C</mnemonic>
+    </Button>
+
+    <Label name="address.type"><text>Typ:</text></Label>
+    <ReferenceField name="address.type">
+        <tooltip>Angabe des Adress-Typs</tooltip>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="format.name"><text>Format:</text></Label>
+    <ReferenceField name="format.name">
+        <tooltip>Angabe des Format-Namens</tooltip>
+        <id.property>formatName</id.property>
+        <reference.class>de.augustakom.hurrican.model.billing.AddressFormat</reference.class>
+    </ReferenceField>
+
+    <Label name="name"><text>Titel/Name/Vorname:</text></Label>
+    <TextField name="titel">
+        <columns>6</columns>
+        <maxchars>40</maxchars>
+    </TextField>
+    <TextField name="name">
+        <columns>17</columns>
+        <maxchars>50</maxchars>
+    </TextField>
+    <TextField name="vorname">
+        <columns>17</columns>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="name2"><text>Titel2/Name2/Vorname2:</text></Label>
+    <TextField name="titel2">
+        <columns>6</columns>
+        <maxchars>40</maxchars>
+    </TextField>
+    <TextField name="name2">
+        <tooltip>zusätzlicher Name</tooltip>
+        <columns>17</columns>
+        <maxchars>50</maxchars>
+    </TextField>
+    <TextField name="vorname2">
+        <tooltip>zusätzlicher Vorname</tooltip>
+        <columns>17</columns>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="strasse"><text>Strasse/Nr/Nr-Zusatz:</text></Label>
+    <TextField name="strasse">
+        <columns>20</columns>
+        <maxchars>60</maxchars>
+    </TextField>
+    <TextField name="hnr">
+        <tooltip>Hausnummer</tooltip>
+        <columns>3</columns>
+        <maxchars>16</maxchars>
+    </TextField>
+    <TextField name="hnr.zusatz">
+        <tooltip>Hausnummernzusatz</tooltip>
+        <columns>2</columns>
+        <maxchars>6</maxchars>
+    </TextField>
+
+    <Label name="strasse.zusatz"><text>Strassenzusatz:</text></Label>
+    <TextField name="strasse.zusatz">
+        <tooltip>Strassenzusatz (z.B. "1. Stock, links" bei Standortadressen)</tooltip>
+        <columns>40</columns>
+        <maxchars>60</maxchars>
+    </TextField>
+
+    <Label name="postfach"><text>Postfach:</text></Label>
+    <TextField name="postfach">
+        <columns>40</columns>
+        <maxchars>20</maxchars>
+    </TextField>
+
+    <Label name="plz.ort"><text>Land/PLZ/Ort:</text></Label>
+    <TextField name="land">
+        <tooltip>Landeskennung (z.B. DE)</tooltip>
+        <columns>2</columns>
+        <maxchars>2</maxchars>
+    </TextField>
+    <TextField name="plz">
+        <columns>6</columns>
+        <maxchars>10</maxchars>
+    </TextField>
+    <TextField name="ort">
+        <columns>20</columns>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="ortsteil"><text>Ortsteil:</text></Label>
+    <TextField name="ortsteil">
+        <tooltip>Ortsteil</tooltip>
+        <columns>40</columns>
+        <maxchars>60</maxchars>
+    </TextField>
+
+    <Label name="phone"><text>Telefon:</text></Label>
+    <TextField name="phone">
+        <tooltip>Telefonnummer</tooltip>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="fax"><text>Fax:</text></Label>
+    <TextField name="fax">
+        <tooltip>Faxnummer</tooltip>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="mobil"><text>Mobil:</text></Label>
+    <TextField name="mobil">
+        <tooltip>Mobil-Nummer</tooltip>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="mail"><text>E-Mail:</text></Label>
+    <TextField name="mail">
+        <tooltip>E-Mail</tooltip>
+        <maxchars>255</maxchars>
+    </TextField>
+
+    <Label name="bemerkung"><text>Bemerkung:</text></Label>
+    <TextArea name="bemerkung">
+        <columns>20</columns>
+        <maxchars>255</maxchars>
+        <tooltip>Bemerkung zu der Adresse</tooltip>
+    </TextArea>
+
+    <Label name="prio"><text>Priorität:</text></Label>
+    <FormattedTextField name="prio">
+        <tooltip>Prio des Ansprechpartners</tooltip>
+        <columns>3</columns>
+        <format type="number">###</format>
+    </FormattedTextField>
+
+    <Label name="prio.brief"><text>Priorität (Brief):</text></Label>
+    <FormattedTextField name="prio.brief">
+        <tooltip>Prio Brief</tooltip>
+        <columns>3</columns>
+        <format type="number">###</format>
+    </FormattedTextField>
+
+    <Label name="prio.fax"><text>Priorität (Fax):</text></Label>
+    <FormattedTextField name="prio.fax">
+        <tooltip>Prio Fax</tooltip>
+        <columns>3</columns>
+        <format type="number">###</format>
+    </FormattedTextField>
+
+    <Label name="prio.sms"><text>Priorität (SMS):</text></Label>
+    <FormattedTextField name="prio.sms">
+        <tooltip>Prio SMS</tooltip>
+        <columns>3</columns>
+        <format type="number">###</format>
+    </FormattedTextField>
+
+    <Label name="prio.email"><text>Priorität (Email):</text></Label>
+    <FormattedTextField name="prio.email">
+        <tooltip>Prio Email</tooltip>
+        <columns>3</columns>
+        <format type="number">###</format>
+    </FormattedTextField>
+
+    <Label name="prio.tel"><text>Priorität (Telefon):</text></Label>
+    <FormattedTextField name="prio.tel">
+        <tooltip>Prio Telefon</tooltip>
+        <columns>3</columns>
+        <format type="number">###</format>
+    </FormattedTextField>
+
+    <Button name="show.kunden.auftraege.for.address">
+        <text>Kunden/Aufträge zur Adresse anzeigen</text>
+        <tooltip>Öffnet einen Dialog, der alle zu dieser Adresse gehörigen Kunden und deren Aufträge anzeigt.</tooltip>
+    </Button>
+
+    <Text name="border.kunden.auftraege.for.address">Kunden/Aufträge zur Adresse</Text>
+</sf>

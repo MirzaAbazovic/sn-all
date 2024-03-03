@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zum Bearbeiten von DTAG Ports.
+-->
+<sf>
+    <Text name="title">Schicht2-Protokoll festlegen</Text>
+
+    <Label name="count"><text>Anzahl der zu ändernden Ports:</text></Label>
+    <TextField name="count">
+        <tooltip>Gibt an, wieviele Ports umkonfiguriert werden sollen.</tooltip>
+    </TextField>
+
+    <Label name="layer2"><text>Schicht2-Protokoll:</text></Label>
+    <ComboBox name="layer2">
+        <tooltip>Gibt an, ob ATM oder EFM verwendet werden soll.</tooltip>
+    </ComboBox>
+</sf>

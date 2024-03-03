@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Definition des Realisierungstermins
+fuer einen Bauauftrag.
+-->
+<sf>
+
+    <Text name="title">Realisierungstermin für BA</Text>
+
+    <Label name="real.date"><text>Realisierungstermin:</text></Label>
+    <DateComponent name="real.date">
+        <format type="date">dd.MM.yyyy</format>
+        <tooltip>Angabe des Realisierungstermins für den Bauauftrag</tooltip>
+        <columns>15</columns>
+    </DateComponent>
+
+	<Label name="anlass"><text>Anlass:</text></Label>
+	<ComboBox name="anlass">
+		<tooltip>Auswahl des Anlasses fuer den Bauauftrag</tooltip>
+	</ComboBox>
+
+	<Label name="install.type"><text>Installation durch:</text></Label>
+	<ReferenceField name="install.type">
+		<tooltip>Angabe, durch wen eine evtl. Installation erfolgen nsoll</tooltip>
+		<id.property>id</id.property>
+		<name.property>strValue</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+	</ReferenceField>
+
+    <Label name="bemerkung"><text>Bemerkung:</text></Label>
+    <TextArea name="bemerkung">
+        <tooltip>Bemerkung für den Bauauftrag</tooltip>
+        <rows></rows>
+        <maxchars>2000</maxchars>
+    </TextArea>
+
+</sf>

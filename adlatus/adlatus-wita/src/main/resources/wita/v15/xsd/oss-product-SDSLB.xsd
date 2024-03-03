@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sdslb="http://wholesale.telekom.de/oss/v15/sdslb" xmlns:order="http://wholesale.telekom.de/oss/v15/order" xmlns:message="http://wholesale.telekom.de/oss/v15/message" xmlns:complex="http://wholesale.telekom.de/oss/v15/complex" xmlns:simple="http://wholesale.telekom.de/oss/v15/simple" xmlns:enum="http://wholesale.telekom.de/oss/v15/enm" targetNamespace="http://wholesale.telekom.de/oss/v15/sdslb" version="15.00.00/2020-05-09">
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/order" schemaLocation="oss-order.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/message" schemaLocation="oss-message.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/complex" schemaLocation="oss-type-complex.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/simple" schemaLocation="oss-type-simple.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/enm" schemaLocation="oss-type-enum.xsd"/>
+	<!-- 
+		!
+		!	Produkt im Auftrag
+		!
+	-->
+	<xsd:element name="produktAuftrag" type="sdslb:ProduktSDSLBType"/>
+	<xsd:complexType name="ProduktSDSLBType">
+		<xsd:complexContent>
+			<xsd:extension base="complex:ProduktType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		!	Bereitstellung
+		!
+	-->
+	<xsd:element name="NEU" type="sdslb:SDSLBBereitstellungType"/>
+	<xsd:complexType name="SDSLBBereitstellungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:BereitstellungProduktType">
+				<xsd:sequence>
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0"/>				
+					<xsd:element name="standortA" type="complex:StandortAType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Es ist die Wohnadresse anzugeben, nicht der Standort des Leitungsabschlusses</xsd:documentation>
+						</xsd:annotation>	
+					</xsd:element>					
+					<xsd:element name="vormieter" type="complex:VormieterAnschlussType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Daten zur Identifikation eines vorhandenen Netzanschlusses (Telefon, Anlagenanschluss)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ansprechpartnerMontage" type="complex:AnsprechpartnerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>der Ansprechpartner, mit dem die Montageleistung abzustimmen ist</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="montagehinweis" type="simple:MontagehinweisType" minOccurs="0"/>
+					<xsd:element name="terminReservierungsID" type="simple:ReservierungsnummerType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		!	Kündigung
+		!
+	-->
+	<xsd:element name="KUE-KD" type="sdslb:SDSLBKuendigungType"/>
+	<xsd:complexType name="SDSLBKuendigungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:KuendigungProduktType">
+				<xsd:sequence>
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0"/>				
+					<xsd:element name="ansprechpartnerMontage" type="complex:AnsprechpartnerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>der Ansprechpartner, mit dem die Montageleistung abzustimmen ist</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="montagehinweis" type="simple:MontagehinweisType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		!	Providerwechsel
+		!
+	-->
+	<xsd:element name="PV" type="sdslb:SDSLBProviderwechselType"/>
+	<xsd:complexType name="SDSLBProviderwechselType">
+		<xsd:complexContent>
+			<xsd:extension base="order:ProviderwechselProduktType">
+				<xsd:sequence>
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0"/>				
+					<xsd:element name="standortA" type="complex:StandortAnbieterWechselErweitertType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Im Dreierprozess werden die Adressdaten aus den Vertragsdaten übernommen, Angaben zur Person, zum Gebäudeteil und Lage TAE_ONT werden berücksichtigt.</xsd:documentation>							
+						</xsd:annotation>	
+					</xsd:element>					
+					<xsd:element name="ansprechpartnerMontage" type="complex:AnsprechpartnerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>der Ansprechpartner, mit dem die Montageleistung abzustimmen ist</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="montagehinweis" type="simple:MontagehinweisType" minOccurs="0"/>
+					<xsd:element name="terminReservierungsID" type="simple:ReservierungsnummerType" minOccurs="0"/>				
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+		
+	
+	<!-- 
+		!
+		!	Produktgruppenwechsel
+		!
+	-->
+	<xsd:element name="PGW" type="sdslb:SDSLBProduktgruppenWechselType"/>
+	<xsd:complexType name="SDSLBProduktgruppenWechselType">
+		<xsd:complexContent>
+			<xsd:extension base="order:ProduktgruppenwechselProduktType">
+				<xsd:sequence>				
+					<xsd:element name="standortA" type="complex:StandortAType"/>
+					<xsd:element name="ansprechpartnerMontage" type="complex:AnsprechpartnerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>der Ansprechpartner, mit dem die Montageleistung abzustimmen ist</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="montagehinweis" type="simple:MontagehinweisType" minOccurs="0"/>
+					<xsd:element name="terminReservierungsID" type="simple:ReservierungsnummerType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		!	Produktattribute für Meldungen 
+		!
+	-->
+	<xsd:element name="produktMeldung" type="sdslb:ProduktSDSLBMeldungType"/>
+	<xsd:complexType name="ProduktSDSLBMeldungType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungProduktType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="ABM" type="sdslb:MeldungsattributeSDSLB-ABMType"/>
+	<xsd:complexType name="MeldungsattributeSDSLB-ABMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeABMType">
+				<xsd:sequence>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType"/>				
+					<xsd:element name="rnrPortierung" type="complex:RufnummernportierungMeldungType" minOccurs="0"/>
+					<xsd:element name="LineID" type="simple:LineIDType" minOccurs="0"/>									
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="AKM-PV" type="sdslb:MeldungsattributeSDSLB-AKM-PVType"/>
+	<xsd:complexType name="MeldungsattributeSDSLB-AKM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeAKM-PVType">
+				<xsd:sequence>
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0"/>					
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="RUEM-PV" type="sdslb:MeldungsattributeSDSLB-RUEM-PVType"/>
+	<xsd:complexType name="MeldungsattributeSDSLB-RUEM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeRUEM-PVType">
+				<xsd:sequence>
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0"/>					
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<!-- 
+		!
+		! Meldungspositionsattribute
+		!
+	-->
+	<xsd:element name="ABBM" type="sdslb:MeldungspositionsattributeSDSLB-ABBMType"/>
+	<xsd:complexType name="MeldungspositionsattributeSDSLB-ABBMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungspositionsattributeABBMType"/>			
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns3:getTvAvailabilityInformationResponse xmlns:ns3="http://www.mnet.de/hurrican/tvprovider/">
+    <tvAvailabilityInformation>
+        <billingOrderNo>${order.no}</billingOrderNo>
+        <productName>TV Signallieferung</productName>
+        <productGroup>TV</productGroup>
+        <orderState>AKTIV</orderState>
+        <geoId>${geoId}</geoId>
+    </tvAvailabilityInformation>
+</ns3:getTvAvailabilityInformationResponse>

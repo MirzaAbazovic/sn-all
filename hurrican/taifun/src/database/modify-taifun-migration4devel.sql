@@ -1,0 +1,1 @@
+-- ATTENTION: File must not contain ; to close a statement instead each statement is closed by / in a separate line

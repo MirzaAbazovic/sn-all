@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE table [
+	<!ELEMENT table (column+)>
+	<!ELEMENT column EMPTY>
+	<!ATTLIST column name CDATA #REQUIRED>
+	<!ATTLIST column property CDATA #REQUIRED>
+	<!ATTLIST column type CDATA #REQUIRED>
+	<!ATTLIST column editable CDATA #REQUIRED>
+	<!ATTLIST column width CDATA #IMPLIED>
+]>
+<table>
+	<column name="Exec-Date"
+			property="estimatedExecTime"
+			type="java.sql.Timestamp"
+			editable="false"
+			width="120"
+			/>
+	<column name="Cust-No"
+			property="custNo"
+			type="java.lang.Long"
+			editable="false"
+			width="70"
+			/>
+	<column name="Order-No"
+			property="orderNoOrig"
+			type="java.lang.Long"
+			editable="false"
+			width="70"
+			/>
+	<column name="tech Order-No"
+			property="auftragId"
+			type="java.lang.Integer"
+			editable="false"
+			width="80"
+			/>
+	<column name="TX-Id"
+			property="id"
+			type="java.lang.Long"
+			editable="false"
+			width="70"
+			/>
+	<column name="SO-Type"
+			property="soType"
+			type="java.lang.String"
+			editable="false"
+			width="110"
+			/>
+	<column name="Status"
+			property="status"
+			type="java.lang.String"
+			editable="false"
+			width="140"
+			/>
+	<column name="Stack Id"
+			property="serviceOrderStackId"
+			type="java.lang.Integer"
+			editable="false"
+			width="70"
+			/>
+	<column name="Stack Seq"
+			property="serviceOrderStackSeq"
+			type="java.lang.Integer"
+			editable="false"
+			width="70"
+			/>
+	<column name="Req At"
+			property="requestAt"
+			type="java.sql.Timestamp"
+			editable="false"
+			width="120"
+			/>
+	<column name="Resp At"
+			property="responseAt"
+			type="java.sql.Timestamp"
+			editable="false"
+			width="120"
+			/>
+	<column name="Nl"
+			property="nl"
+			type="java.lang.String"
+			editable="false"
+			width="70"
+			/>
+</table>

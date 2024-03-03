@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Generierung von CPSDataChainConfig-Objekten.
+-->
+<sf>
+  
+	<Text name="title">CPS Konfiguration</Text>
+	
+	<Label name="cps.service.order.type"><text>SO-Type:</text></Label>
+    <ReferenceField name="cps.service.order.type">
+    	<columns>20</columns>
+		<tooltip>Auswahl des ServiceOrder Types, dem eine Data-Chain zugeordnet werden soll</tooltip>
+		<id.property>id</id.property>
+		<name.property>strValue</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+	</ReferenceField>
+	
+	<Label name="cps.chain"><text>Data-Chain:</text></Label>
+	<ReferenceField name="cps.chain">
+		<tooltip>Auswahl der Data-Chain, die fuer den SO-Type ausgefuehrt werden soll</tooltip>
+		<id.property>id</id.property>
+		<name.property>name</name.property>
+		<tooltip.property>description</tooltip.property>
+		<reference.class>de.augustakom.hurrican.model.cc.command.ServiceChain</reference.class>
+	</ReferenceField>
+	
+</sf>

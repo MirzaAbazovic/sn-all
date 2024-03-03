@@ -1,0 +1,31 @@
+<div *ngIf="(resourceSpecification$ | async) as resourceSpecification">
+  <mat-card class="card custom-card">
+    <mat-card-header>
+      <mat-card-title>{{resourceSpecification.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="property">Lifecycle Status: <b>{{resourceSpecification.lifecycleStatus}}</b></div>
+
+      <mat-list *ngFor="let characteristic of resourceSpecification.resourceSpecCharacteristic">
+        <mat-list-item>
+          <div class="property">Characteristic Name: <b>{{characteristic.name}}</b></div>
+        </mat-list-item>
+        <mat-list-item *ngFor="let value of characteristic.resourceSpecCharacteristicValue">
+          <div class="property">Unit of Measure: <b>{{value.unitOfMeasure}}</b></div>
+          <div class="property">Value: <b>{{value.value}}</b></div>
+        </mat-list-item>
+      </mat-list>
+
+      <button *ngIf="resourceSpecification.id" mat-button color="warn"
+              (click)="deleteResourceSpecification(resourceSpecification.id)">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+      <button *ngIf="resourceSpecification.id" mat-button color="primary"
+              (click)="editResourceSpecification(resourceSpecification.id)">
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,4 @@
+<v1:updateResourceCharacteristics xmlns:v1="http://www.mnet.de/esb/cdm/Resource/ResourceCharacteristicsService/v1">
+    <v1:resourceId>${geraeteBezeichnung}</v1:resourceId>
+    <v1:serialNumber>${serialNumber}</v1:serialNumber>
+</v1:updateResourceCharacteristics>

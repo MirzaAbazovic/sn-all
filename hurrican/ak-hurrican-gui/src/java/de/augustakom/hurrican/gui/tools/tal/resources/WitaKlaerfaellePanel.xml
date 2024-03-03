@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Text name="functions">Funktionen</Text>
+
+    <ToggleButton name="eigene.tasks">
+        <icon>de/augustakom/hurrican/gui/images/user_icon.png</icon>
+        <tooltip>Zeigt nur die eigenen Tasks an</tooltip>
+    </ToggleButton>
+
+    <ToggleButton name="alle.tasks">
+        <icon>de/augustakom/hurrican/gui/images/user_all_icon.png</icon>
+        <tooltip>Zeigt die Tasks aller User/Teams an (auch nicht zugeordnete Tasks)</tooltip>
+    </ToggleButton>
+
+    <Button name="error.workflows">
+        <text>Alle Error Workflows</text>
+        <tooltip>Zeigt alle Workflows die im Fehlerzustand sind an.</tooltip>
+    </Button>
+
+    <Button name="workflows.suchen">
+        <text>Workflows suchen</text>
+        <tooltip>Workflows-Suche nach BusinessKey.</tooltip>
+    </Button>
+
+    <Button name="task.bearbeiten">
+        <text>Task(s) bearbeiten</text>
+        <tooltip>Beginne die Bearbeitung eines Tasks.</tooltip>
+    </Button>
+
+    <Button name="task.freigeben">
+        <text>Task(s) freigeben</text>
+        <tooltip>Gibt einen Taks wieder frei.</tooltip>
+    </Button>
+
+    <Button name="wiedervorlage">
+        <text>Wiedervorlage</text>
+        <tooltip>Selektierten Task auf Wiedervorlage setzen.</tooltip>
+    </Button>
+
+    <Button name="correct">
+        <text>Korrigieren</text>
+        <tooltip>Setze den Workflow Status oder sende eine Nachricht erneut</tooltip>
+    </Button>
+
+    <Button name="history">
+        <text>History ...</text>
+        <tooltip>Zeigt die History zur ausgewähtlen TAL-Bestellung an</tooltip>
+    </Button>
+
+    <Button name="error.zustand.setzen">
+        <text>Error Zustand setzen</text>
+        <tooltip>Setzt den ausgewähtlen Workflow in den Error Zustand</tooltip>
+    </Button>
+
+    <Button name="single.error.zustand.setzen">
+        <text>Error Zustand einzeln setzen</text>
+        <tooltip>Setzt eine Workflow mit dem einzugebenen BusinessKey in den Error Zustand</tooltip>
+    </Button>
+
+    <Text name="details">Details</Text>
+
+</sf>

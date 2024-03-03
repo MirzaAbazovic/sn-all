@@ -1,0 +1,2 @@
+-- Insert a new WBCI feature flag for RRNP auto processing
+INSERT INTO T_FEATURE (ID, NAME, FLAG) VALUES (S_T_FEATURE_0.NEXTVAL,'WBCI_RRNP_AUTO_PROCESSING', '0');

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Bauauftrags-Panel ST Connect.
+-->
+<sf>
+
+    <Label name="erledigt"><text>Bauauftrag wurde erledigt</text></Label>
+
+    <Label name="anlass"><text>Anlass:</text></Label>
+    <TextField name="anlass">
+        <tooltip></tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="oe.name"><text>Produkt (M.):</text></Label>
+    <TextField name="oe.name">
+        <tooltip>Produkt-Name aus Mistral</tooltip>
+    </TextField>
+
+    <Label name="produkt"><text>Produkt (H.):</text></Label>
+    <TextField name="produkt">
+        <tooltip>Produkt-Name aus Hurrican</tooltip>
+    </TextField>
+
+    <Label name="realisierungstermin"><text>Realisierung:</text></Label>
+    <DateComponent name="realisierungstermin">
+        <tooltip>Geplantes Realisierungsdatum fuer die Abteilung</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="gesamt.realisierung"><text>Gesamt-Real.:</text></Label>
+    <DateComponent name="gesmat.realisierung">
+        <tooltip>Geplantes Realisierungsdatum fuer den gesamten Auftrag</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="status.sdh"><text>ST Connect Status:</text></Label>
+    <TextField name="status.sdh">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="bearbeiter.sdh"><text>ST Connect Bearbeiter:</text></Label>
+    <TextField name="bearbeiter.sdh">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="vbz">
+        <text>Verbindungsbezeichnung (VBZ):</text>
+    </Label>
+    <TextField name="vbz">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="auftrag.id"><text>Tech. Auftragsnr.:</text></Label>
+    <FormattedTextField name="auftrag.id">
+        <tooltip>Auftragsnr. aus Hurrican</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="vpn.nr"><text>VPN-Nr:</text></Label>
+    <FormattedTextField name="vpn.nr">
+        <tooltip></tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="phys.leitung"><text>Phys.Ltg:</text></Label>
+    <TextField name="phys.leitung">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="kanalbuendelung"><text>Kanalb.:</text></Label>
+    <CheckBox name="kanalbuendelung">
+        <tooltip></tooltip>
+    </CheckBox>
+
+    <Label name="anz.kanaele"><text>Anz. Kanäle:</text></Label>
+    <FormattedTextField name="anz.kanaele">
+        <tooltip></tooltip>
+        <format type="number">###</format>
+    </FormattedTextField>
+
+    <Label name="kunde.name"><text>Kunde:</text></Label>
+    <TextField name="kunde.name">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="ltg.a"><text>Leitung A:</text></Label>
+    <TextField name="ltg.a">
+        <tooltip>Bezeichnung der Leitung A (AKom-Seite)</tooltip>
+    </TextField>
+
+    <Label name="ltg.b"><text>Leitung B:</text></Label>
+    <TextField name="ltg.b">
+        <tooltip>Bezeichnung der Leitung B (Kunden-Seite)</tooltip>
+    </TextField>
+
+    <Label name="schnittstelle"><text>Schnittstelle:</text></Label>
+    <TextField name="schnittstelle">
+        <tooltip>Bezeichnung der Schnittstelle (B-Seite)</tooltip>
+    </TextField>
+
+    <Label name="es.a.name"><text>ES-A Name:</text></Label>
+    <TextField name="es.a.name">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="es.a.ort"><text>ES-A Ort:</text></Label>
+    <TextField name="es.a.ort">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="es.a.ansp"><text>ES-A Ansp.:</text></Label>
+    <TextField name="es.a.ansp">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="es.b.name"><text>ES-B Name:</text></Label>
+    <TextField name="es.b.name">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="es.b.ort"><text>ES-B Ort:</text></Label>
+    <TextField name="es.b.ort">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="es.b.ansp"><text>ES-B Ansp.:</text></Label>
+    <TextField name="es.b.ansp">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="physik.info"><text>Physik-Info:</text></Label>
+    <TextField name="physik.info">
+        <tooltip>Information zur verwendeten Physik</tooltip>
+    </TextField>
+
+    <Label name="bemerkung"><text>Bemerkungen:</text></Label>
+    <TextArea name="bemerkung">
+        <tooltip></tooltip>
+        <columns>40</columns>
+        <rows>5</rows>
+    </TextArea>
+
+    <Label name="max.bitrate.a"><text>Max. Bitrate ES-A:</text></Label>
+    <TextField name="max.bitrate.a">
+        <tooltip>Maximale Brutto-Bitrate Endstelle A</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="max.bitrate.b"><text>Max. Bitrate ES-B:</text></Label>
+    <TextField name="max.bitrate.b">
+        <tooltip>Maximale Brutto-Bitrate Endstelle B</tooltip>
+    </TextField>
+
+    <Button name="uebernahme">
+        <text>Übernehmen</text>
+        <tooltip>Übernahme des Bauauftrags</tooltip>
+    </Button>
+
+    <Button name="print">
+        <text>Drucken</text>
+        <tooltip>Druckt den Bauauftrag</tooltip>
+    </Button>
+
+    <Button name="print.compact">
+        <text>Drucken (kompakt)</text>
+        <tooltip>Druckt eine kompakte Version des Bauauftrags</tooltip>
+    </Button>
+
+    <Button name="ba.erledigen">
+        <text>Erledigen</text>
+        <tooltip>Setzt den Verlauf auf erledigt</tooltip>
+    </Button>
+
+    <Button name="bemerkungen">
+        <text>Bemerkungen</text>
+        <tooltip>Zeigt alle Bemerkungen des Verlaufs an</tooltip>
+    </Button>
+
+    <Button name="show.cps.tx.history">
+        <text>CPS-Tx History</text>
+        <tooltip>Zeigt die CPS-Tx History des Auftrags an</tooltip>
+    </Button>
+
+    <Button name="create.cps.tx">
+        <text>CPS-Tx erstellen</text>
+        <tooltip>Erstellt fuer den selektierten Bauauftrag eine neue CPS-Tx</tooltip>
+    </Button>
+
+    <Button name="show.ports">
+        <text>Ports</text>
+        <tooltip>Zeigt alle Ports des Verlaufes an</tooltip>
+    </Button>
+
+</sf>

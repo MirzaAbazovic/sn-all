@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Festlegung und Bearbeitung der Cross Connections
+-->
+<sf>
+
+    <Text name="title">Gewofag Wohnung auswählen</Text>
+
+    <Text name="ok">Ok</Text>
+
+    <Text name="name">Name</Text>
+    <Text name="onkz">Onkz</Text>
+    <Text name="ort">Ort</Text>
+    <Text name="strasse">Straße</Text>
+    <Text name="hausnr">Hausnummer</Text>
+    <Text name="etage">Etage</Text>
+    <Text name="lage">Lage</Text>
+    <Text name="tae">TAE</Text>
+
+</sf>

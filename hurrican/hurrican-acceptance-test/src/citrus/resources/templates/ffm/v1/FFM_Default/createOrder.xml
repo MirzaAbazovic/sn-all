@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Body>
+        <wfs:createOrder xmlns:wfs="http://www.mnet.de/esb/cdm/Resource/WorkforceService/v1">
+            <wfs:order>
+                <wfs:id>${workforceOrderId}</wfs:id>
+                <wfs:displayId>citrus:randomString(10)</wfs:displayId>
+                <wfs:customerOrderId>citrus:randomString(8)</wfs:customerOrderId>
+                <wfs:priority>PRIO1</wfs:priority>
+                <wfs:description>
+                    <wfs:summary>Summary of description</wfs:summary>
+                    <wfs:details>More details about the order</wfs:details>
+                    <wfs:techParams>
+                        <wfs:common>
+                            <wfs:lineId>citrus:randomNumber(5)</wfs:lineId>
+                            <wfs:contractId>citrus:randomString(5)</wfs:contractId>
+                            <wfs:productName>FTTB</wfs:productName>
+                            <wfs:contractPartner>QSC</wfs:contractPartner>
+                        </wfs:common>
+                        <wfs:VLAN>
+                            <wfs:type>VLAN_TYPE1</wfs:type>
+                            <wfs:CVLAN>1</wfs:CVLAN>
+                            <wfs:SVLAN>2</wfs:SVLAN>
+                            <wfs:SVLANBackbone>4</wfs:SVLANBackbone>
+                            <wfs:service>vlanService1</wfs:service>
+                        </wfs:VLAN>
+                        <wfs:VLAN>
+                            <wfs:type>VLAN_TYPE2</wfs:type>
+                            <wfs:CVLAN>3</wfs:CVLAN>
+                            <wfs:SVLAN>4</wfs:SVLAN>
+                            <wfs:SVLANBackbone>5</wfs:SVLANBackbone>
+                            <wfs:service>vlanService2</wfs:service>
+                        </wfs:VLAN>
+                        <wfs:site>
+                            <wfs:type>EndstelleB</wfs:type>
+                            <wfs:location>
+                                <wfs:TAE1>TAE-location ABC</wfs:TAE1>
+                                <wfs:street>Beispielstraße</wfs:street>
+                                <wfs:houseNumber>21</wfs:houseNumber>
+                                <wfs:city>München</wfs:city>
+                                <wfs:zipCode>81245</wfs:zipCode>
+                            </wfs:location>
+                            <wfs:device>
+                                <wfs:manufacturer>Hersteller 123</wfs:manufacturer>
+                                <wfs:description>MDU</wfs:description>
+                                <wfs:serialNumber>SERIAL_1234</wfs:serialNumber>
+                                <wfs:connection>conn1</wfs:connection>
+                            </wfs:device>
+                            <wfs:HVT>HVT ABC</wfs:HVT>
+                            <wfs:portType>PortType</wfs:portType>
+                            <wfs:areaDialingCode>89</wfs:areaDialingCode>
+                            <wfs:downstream>1024</wfs:downstream>
+                            <wfs:upstream>512</wfs:upstream>
+                            <wfs:ASB>ASB</wfs:ASB>
+                            <wfs:wiringData>
+                                <wfs:type>In-Seite</wfs:type>
+                                <wfs:deviceName>MDU-Name</wfs:deviceName>
+                                <wfs:moduleType>MduType_PortType</wfs:moduleType>
+                                <wfs:physicType>TechType_PortType</wfs:physicType>
+                                <wfs:HWEQN>bgPort</wfs:HWEQN>
+                                <wfs:distributor>Verteiler1</wfs:distributor>
+                                <wfs:panelPin1>PanelPin1</wfs:panelPin1>
+                            </wfs:wiringData>
+                        </wfs:site>
+                    </wfs:techParams>
+                </wfs:description>
+                <wfs:type>FTTB</wfs:type>
+                <wfs:activityType>RTL_Bereitstellung</wfs:activityType>
+                <wfs:contactPerson>
+                    <wfs:role>Hausmeister</wfs:role>
+                    <wfs:gender>MALE</wfs:gender>
+                    <wfs:firstName>Thorsten</wfs:firstName>
+                    <wfs:lastName>Beispiel</wfs:lastName>
+                    <wfs:communication>
+                        <wfs:phone>089/1234561</wfs:phone>
+                        <wfs:phone>089/12345612</wfs:phone>
+                        <wfs:mobile>0160/12345671</wfs:mobile>
+                        <wfs:mobile>0160/12345672</wfs:mobile>
+                        <wfs:email>thorsten.beispiel@nomail.com</wfs:email>
+                        <wfs:email>thorsten@beispiel.com</wfs:email>
+                        <wfs:fax>089/1239991</wfs:fax>
+                        <wfs:fax>089/1239992</wfs:fax>
+                    </wfs:communication>
+                </wfs:contactPerson>
+                <wfs:contactPerson>
+                    <wfs:role>Kunde</wfs:role>
+                    <wfs:gender>FEMALE</wfs:gender>
+                    <wfs:firstName>Angela</wfs:firstName>
+                    <wfs:lastName>Mustermann</wfs:lastName>
+                    <wfs:communication>
+                        <wfs:phone>089/123321</wfs:phone>
+                        <wfs:phone>089/123322</wfs:phone>
+                        <wfs:mobile>0161/1231231</wfs:mobile>
+                        <wfs:mobile>0161/1231232</wfs:mobile>
+                        <wfs:email>angela.mustermann@nomail.com</wfs:email>
+                        <wfs:email>angela@mustermann.com</wfs:email>
+                        <wfs:fax>089/1238881</wfs:fax>
+                        <wfs:fax>089/1238882</wfs:fax>
+                    </wfs:communication>
+                </wfs:contactPerson>
+                <wfs:qualification>Endkundenservice FTTB</wfs:qualification>
+                <wfs:location>
+                    <wfs:street>Beispielstraße</wfs:street>
+                    <wfs:houseNumber>12</wfs:houseNumber>
+                    <wfs:floor>1</wfs:floor>
+                    <wfs:zipCode>81245</wfs:zipCode>
+                    <wfs:city>München</wfs:city>
+                    <wfs:country>DE</wfs:country>
+                </wfs:location>
+                <wfs:fixedStartTime>citrus:currentDate('yyyy-MM-dd'T'00:00:00', '+1M')</wfs:fixedStartTime>
+                <wfs:plannedDuration>45</wfs:plannedDuration>
+            </wfs:order>
+        </wfs:createOrder>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

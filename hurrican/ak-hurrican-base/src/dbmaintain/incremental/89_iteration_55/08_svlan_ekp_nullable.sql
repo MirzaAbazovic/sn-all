@@ -1,0 +1,1 @@
+ALTER TABLE T_EQ_VLAN MODIFY svlan_ekp NULL;

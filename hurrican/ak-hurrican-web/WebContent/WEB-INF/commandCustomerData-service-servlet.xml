@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- Endpoint Definition, ueber den Standort-Daten von Command importiert werden. -->
+    <bean id="commandCustomerDataRequestEndpoint"
+        class="de.mnet.hurrican.webservice.command.customer.endpoint.CommandCustomerDataRequestEndpoint">
+        <property name="marshaller" ref="xmlBeanMarshaller" />
+        <property name="unmarshaller" ref="xmlBeanMarshaller" />
+    </bean>
+
+    <!-- Definition of the Endpoint-Mapping(s) -->
+    <bean class="org.springframework.ws.server.endpoint.mapping.PayloadRootQNameEndpointMapping">
+        <property name="mappings">
+            <props>
+                <prop key="{http://mnet.de/hurricanweb/command/customer/types}CommandCustomerDataRequest">commandCustomerDataRequestEndpoint</prop>
+            </props>
+        </property>
+        <property name="interceptors">
+            <list>
+                <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+                <bean class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Definition des zu verwendenden Marshallers -->
+    <bean id="xmlBeanMarshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller" />
+
+    <!-- Publishing the WSDL -->
+    <!-- WSDL Generierung ueber http://host:port/hurricanweb/command/customer/commandCustomerData.wsdl -->
+    <bean id="commandCustomerData" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+        <property name="schema" ref="commandCustomerDataSchema"/>
+        <property name="portTypeName" value="CommandCustomerDataWebService"/>
+        <property name="serviceName" value="CommandCustomerData"/>
+        <property name="locationUri" value="http://localhost:8080/hurricanweb/command/customer"/>
+        <property name="targetNamespace" value="http://mnet.de/hurricanweb/command/customer/types/"/>
+        <property name="requestSuffix" value="Request" />
+        <property name="responseSuffix" value="RequestResponse" />
+        <property name="faultSuffix" value="RequestFailure" />
+        <property name="createSoap12Binding" value="false"/>
+        <property name="soapActions">
+            <props>
+                <prop key="SetCommandCustomerData">setCommandCustomerDataRequest</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="commandCustomerDataSchema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+        <property name="xsd" value="classpath:command/commandCustomerDataRequest.xsd"/>
+    </bean>
+
+    <!-- SOAP message factory. Configured to use SOAP 1.1 -->
+    <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+        <property name="soapVersion">
+            <util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_11"/>
+        </property>
+    </bean>
+
+    <bean id="exceptionResolver"
+          class="de.mnet.hurrican.webservice.command.customer.CommandCustomerSoapFaultDefinitionExceptionResolver">
+        <property name="defaultFault" value="SERVER"/>
+        <property name="exceptionMappings">
+            <value>
+            de.mnet.hurrican.webservice.command.base.CommandException=SERVER,FaultMsg
+            </value>
+        </property>
+    </bean>
+
+</beans>
+

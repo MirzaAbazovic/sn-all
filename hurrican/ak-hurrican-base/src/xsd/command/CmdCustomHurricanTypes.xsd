@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema xmlns:ns0="http://hurricanweb.services.api.custom.command.fnt.de" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://hurricanweb.services.api.custom.command.fnt.de" elementFormDefault="qualified">
+    <xs:import namespace="http://common.api.command.fnt.de" schemaLocation="CmdTypes.xsd"/>
+
+    <xs:element name="productionReleaseOfMDU" type="ns0:inParamProductionReleaseOfMDUInType"/>
+    <xs:element name="productionReleaseOfMDUResponse" type="ns0:ProductionReleaseOfMDUOutType"/>
+    <xs:element name="productionReleaseOfMDUError" type="ns0:ProductionReleaseOfMDUErrorType" />
+
+    <xs:complexType name="inParamProductionReleaseOfMDUInType">
+        <xs:sequence>
+            <xs:element name="inParam" type="ns0:ProductionReleaseOfMDUInType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ProductionReleaseOfMDUInType">
+        <xs:sequence>
+            <xs:element name="sessionId" type="xs:string"/>
+            <xs:element name="mdu" type="xs:string"/>
+            <xs:element name="datum" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ProductionReleaseOfMDUOutType">
+        <xs:sequence>
+            <xs:element name="mdu" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ProductionReleaseOfMDUErrorType">
+        <xs:sequence>
+            <xs:element name="mdu" type="xs:string"/>
+            <xs:element name="errorMsg" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

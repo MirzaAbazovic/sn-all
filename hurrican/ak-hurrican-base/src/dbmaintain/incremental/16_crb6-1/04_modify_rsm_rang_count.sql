@@ -1,0 +1,1 @@
+alter table T_RSM_RANG_COUNT add AVERAGE_USAGE NUMBER(18,2);

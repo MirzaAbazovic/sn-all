@@ -1,0 +1,16 @@
+server:
+  port: '8080'
+ambassador:
+  hub-url: http://resource-order-management:8080
+  callback: http://ambassador:${server.port}
+hazelcast:
+  network:
+    join:
+      multicast:
+        enabled: false
+      tcp-ip:
+        enabled: true
+        member-list:
+          - ${APP_1:ambassador}:5701
+          - ${APP_2:interface-transformator}:5701
+

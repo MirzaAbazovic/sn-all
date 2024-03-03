@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:tns="http://www.mnet.de/esb/cdm/Resource/LocationNotificationService/v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:ns0="http://www.mnet.de/esb/cdm/Resource/Location/v1"
+                  xmlns:jms="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:jndi="http://www.tibco.com/namespaces/ws/2004/soap/apis/jndi"
+                  name="LocationNotificationService"
+                  targetNamespace="http://www.mnet.de/esb/cdm/Resource/LocationNotificationService/v1">
+    <wsdl:documentation>Version 1.0</wsdl:documentation>
+    <wsdl:types>
+        <xs:schema xmlns="http://www.mnet.de/esb/cdm/Resource/Location/v1"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   targetNamespace="http://www.mnet.de/esb/cdm/Resource/Location/v1"
+                   version="1.0"
+                   elementFormDefault="qualified"
+                   attributeFormDefault="unqualified">
+            <xs:complexType name="Building">
+                <xs:complexContent>
+                    <xs:extension base="ns0:Location">
+                        <xs:sequence>
+                            <xs:element name="houseNumber" type="xs:string" minOccurs="0"/>
+                            <xs:element name="houseNumberExtension" type="xs:string" minOccurs="0"/>
+                            <xs:element name="numberOfApartments" type="xs:unsignedInt" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>reported number of apartments in the building</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="carrierAddress" minOccurs="0" maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>carrier specific address information for this building. This data is providied in case the spelling differs for a certain network carrier (e.g. DTAG)</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="city" type="xs:string">
+                                            <xs:annotation>
+                                                <xs:documentation>name of the city in carrier specific notation</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="zipCode" type="xs:string">
+                                            <xs:annotation>
+                                                <xs:documentation>Zip Code in in carrier specific notation</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="district" type="xs:string" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>District in in carrier specific notation</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="street" type="xs:string">
+                                            <xs:annotation>
+                                                <xs:documentation>street name in in carrier specific notation</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="houseNumber" type="xs:string" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>house number in carrier specific notation</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="houseNumberExtension" type="xs:string" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>house number extension in in carrier specific notation</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="carrier" use="required" type="xs:string">
+                                        <xs:annotation>
+                                            <xs:documentation>name of the carrier. Currently known values are: DTAG</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="TAL" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Information relvant for the Teilnehmeranschlussleitung (TAL) of this building </xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="onkz" type="xs:string">
+                                            <xs:annotation>
+                                                <xs:documentation>"Ortznetzkennzahl" for this building</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="asb" type="xs:string" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Anschlussbereich for this building</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element name="kvz" type="xs:string" minOccurs="0">
+                                            <xs:annotation>
+                                                <xs:documentation>Kabelverzweiger for this building</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="infas" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Infas data for the building</xs:documentation>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="anzfa" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="bakz" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="coordSource" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="distance" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="dsl" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="gk3X" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="gk3XT" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="gk3Y" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="gk3YT" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="kgs22" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="kgs36" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="kgs44" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="kgs44Id" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="lcgchar" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="lchh" type="xs:string" minOccurs="0"/>
+                                        <xs:element name="po" type="xs:string" minOccurs="0"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="agsn" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Amtlicher Gemeindeschlüssel für den Notruf for this building</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="street" type="ns0:StreetSection"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="City">
+                <xs:complexContent>
+                    <xs:extension base="ns0:Location">
+                        <xs:sequence>
+                            <xs:element name="name" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>city name</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="kgs8" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>Unique Infas idientifier of the city. E.g.: 09162000</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="country" type="ns0:Country"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="Country">
+                <xs:complexContent>
+                    <xs:extension base="ns0:Location">
+                        <xs:sequence>
+                            <xs:element name="countryCode" type="ns0:CountryCode">
+                                <xs:annotation>
+                                    <xs:documentation>Country code as defined by the ISO 3166-1 alpha-2 standard</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="name" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>country name</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:simpleType name="CountryCode">
+                <xs:annotation>
+                    <xs:documentation>Country code as defined by the ISO 3166-1 alpha-2 standard</xs:documentation>
+                </xs:annotation>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[A-Z]{2}"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="District">
+                <xs:complexContent>
+                    <xs:extension base="ns0:Location">
+                        <xs:sequence>
+                            <xs:element name="name" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>the district name</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="locationRelevant" type="xs:boolean">
+                                <xs:annotation>
+                                    <xs:documentation>indicates if the district is relevant to uniquely identify a post address</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="kgs12" type="xs:string" minOccurs="0">
+                                <xs:annotation>
+                                    <xs:documentation>infas kgs12 key</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="Location" abstract="true">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long">
+                        <xs:annotation>
+                            <xs:documentation>unique identifier of the location</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="technicalId" type="xs:string" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Unique M-net OSS identifier of the location.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="modified" type="xs:dateTime">
+                        <xs:annotation>
+                            <xs:documentation>date and time (inluding time zone) the location was updated the last time</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="serviceable" type="xs:boolean">
+                        <xs:annotation>
+                            <xs:documentation>indicates whether M-net service is available at this location</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="StreetSection">
+                <xs:complexContent>
+                    <xs:extension base="ns0:Location">
+                        <xs:sequence>
+                            <xs:element name="name" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>Street Name</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="zipCode" type="ns0:ZipCode"/>
+                            <xs:element name="district" type="ns0:District" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+            <xs:complexType name="ZipCode">
+                <xs:complexContent>
+                    <xs:extension base="ns0:Location">
+                        <xs:sequence>
+                            <xs:element name="zipCode" type="xs:string">
+                                <xs:annotation>
+                                    <xs:documentation>Zip Code. E.g 80337</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="city" type="ns0:City"/>
+                        </xs:sequence>
+                    </xs:extension>
+                </xs:complexContent>
+            </xs:complexType>
+        </xs:schema>
+        <xs:schema xmlns="http://www.mnet.de/esb/cdm/Resource/LocationNotificationService/v1"
+                   xmlns:ns1="http://www.mnet.de/esb/cdm/Resource/Location/v1"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   targetNamespace="http://www.mnet.de/esb/cdm/Resource/LocationNotificationService/v1"
+                   version="1.0"
+                   elementFormDefault="qualified"
+                   attributeFormDefault="unqualified">
+            <xs:import namespace="http://www.mnet.de/esb/cdm/Resource/Location/v1"/>
+            <xs:element name="notifyReplaceLocation">
+                <xs:annotation>
+                    <xs:documentation>notifies about a replacement of a specific location entity by a new one of the same type</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:choice>
+                        <xs:sequence>
+                            <xs:element name="oldBuilding" type="ns1:Building">
+                                <xs:annotation>
+                                    <xs:documentation>the replaced Building</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="newBuilding" type="ns1:Building">
+                                <xs:annotation>
+                                    <xs:documentation>the new Building </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:sequence>
+                            <xs:element name="oldCity" type="ns1:City">
+                                <xs:annotation>
+                                    <xs:documentation>the replaced City</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="newCity" type="ns1:City">
+                                <xs:annotation>
+                                    <xs:documentation>the new City</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:sequence>
+                            <xs:element name="oldCountry" type="ns1:Country">
+                                <xs:annotation>
+                                    <xs:documentation>the replaced Country</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="newCountry" type="ns1:Country">
+                                <xs:annotation>
+                                    <xs:documentation>the new Country </xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:sequence>
+                            <xs:element name="oldDistrict" type="ns1:District">
+                                <xs:annotation>
+                                    <xs:documentation>the replaced District</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="newDistrict" type="ns1:District">
+                                <xs:annotation>
+                                    <xs:documentation>the new District</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:sequence>
+                            <xs:element name="oldStreetSection" type="ns1:StreetSection">
+                                <xs:annotation>
+                                    <xs:documentation>the replaced Street Section</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="newStreetSection" type="ns1:StreetSection">
+                                <xs:annotation>
+                                    <xs:documentation>the new Street Section</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:sequence>
+                            <xs:element name="oldZipCode" type="ns1:ZipCode">
+                                <xs:annotation>
+                                    <xs:documentation>the replaced Zip Code</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                            <xs:element name="newZipCode" type="ns1:ZipCode">
+                                <xs:annotation>
+                                    <xs:documentation>the new Zip Code</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="notifyUpdateLocation">
+                <xs:annotation>
+                    <xs:documentation>notifies about an update of a location entity: Country, city, zip code, district, street section or building</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:choice>
+                        <xs:element name="building" type="ns1:Building">
+                            <xs:annotation>
+                                <xs:documentation>the changed Building</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="city" type="ns1:City">
+                            <xs:annotation>
+                                <xs:documentation>the changed City</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="country" type="ns1:Country">
+                            <xs:annotation>
+                                <xs:documentation>the changed Country</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="district" type="ns1:District">
+                            <xs:annotation>
+                                <xs:documentation>the changed or District</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="streetSection" type="ns1:StreetSection">
+                            <xs:annotation>
+                                <xs:documentation>the changed or Street Section</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="zipCode" type="ns1:ZipCode">
+                            <xs:annotation>
+                                <xs:documentation>the changed Zip Code</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="LocationNotificationService">
+        <wsdl:port name="LocationNotificationServiceJMSQueue"
+                   binding="tns:LocationNotificationServiceJMSBinding">
+            <soap:address location="mnet.Resource.op.cdm.src.v1.LocationNotificationService"/>
+            <jms:connectionFactory>QueueConnectionFactory</jms:connectionFactory>
+            <jms:targetAddress destination="queue">mnet.Resource.op.cdm.src.v1.LocationNotificationService</jms:targetAddress>
+        </wsdl:port>
+        <wsdl:port name="LocationNotificationServiceJMSTopic"
+                   binding="tns:LocationNotificationServiceJMSBinding">
+            <soap:address location="mnet.Resource.op.cdm.ntf.v1.LocationNotificationService"/>
+            <jms:connectionFactory>TopicConnectionFactory</jms:connectionFactory>
+            <jms:targetAddress destination="topic">mnet.Resource.op.cdm.ntf.v1.LocationNotificationService</jms:targetAddress>
+        </wsdl:port>
+        <wsdl:port name="LocationNotificationServiceHTTP"
+                   binding="tns:LocationNotificationServiceHTTPBinding">
+            <soap:address location="http://@domain.loadbalancer.url@/esb/Resource/LocationNotificationService/v1"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="LocationNotificationService">
+        <wsdl:operation name="notifyUpdateLocation">
+            <wsdl:input message="tns:notifyUpdateLocation"/>
+        </wsdl:operation>
+        <wsdl:operation name="notifyReplaceLocation">
+            <wsdl:input message="tns:notifyReplaceLocation"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="LocationNotificationServiceJMSBinding"
+                  type="tns:LocationNotificationService">
+        <soap:binding style="document"
+                      transport="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"/>
+        <jms:binding messageFormat="Text"/>
+        <wsdl:operation name="notifyUpdateLocation">
+            <soap:operation style="document"
+                            soapAction="/LocationNotificationService/notifyUpdateLocation"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="notifyReplaceLocation">
+            <soap:operation style="document"
+                            soapAction="/LocationNotificationService/notifyReplaceLocation"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="LocationNotificationServiceHTTPBinding"
+                  type="tns:LocationNotificationService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="notifyUpdateLocation">
+            <soap:operation style="document"
+                            soapAction="/LocationNotificationService/notifyUpdateLocation"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="notifyReplaceLocation">
+            <soap:operation style="document"
+                            soapAction="/LocationNotificationService/notifyReplaceLocation"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="in"/>
+            </wsdl:input>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="notifyUpdateLocation">
+        <wsdl:part name="in" element="tns:notifyUpdateLocation"/>
+    </wsdl:message>
+    <wsdl:message name="notifyReplaceLocation">
+        <wsdl:part name="in" element="tns:notifyReplaceLocation"/>
+    </wsdl:message>
+</wsdl:definitions>

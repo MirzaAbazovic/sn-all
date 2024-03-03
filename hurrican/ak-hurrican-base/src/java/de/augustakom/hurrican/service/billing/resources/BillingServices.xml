@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Spring-Konfigurationsdatei fuer die Hurrican-Services
+im Billing-Bereich.
+TODO move all spring XML files into src/resources directory (according to mvn standard)
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
+     default-lazy-init="true">
+
+    <context:annotation-config />
+
+    <tx:annotation-driven proxy-target-class="true"/>
+
+    <!-- Definition der Data-Source fuer die Billing-Datenbank -->
+    <bean id="billing.dataSourceTarget" class="de.augustakom.common.tools.dao.jdbc.AKBasicDataSource" destroy-method="close"
+        autowire-candidate="false">
+        <property name="driverClassName"><value>${hurrican.billing.jdbc.driver}</value></property>
+        <property name="url"><value>${hurrican.billing.jdbc.url}</value></property>
+        <property name="username"><value>${hurrican.billing.jdbc.user}</value></property>
+        <property name="password"><value>${hurrican.billing.jdbc.password}</value></property>
+        <property name="maxActive"><value>${hurrican.billing.jdbc.max.active}</value></property>
+        <property name="maxIdle"><value>${hurrican.billing.jdbc.max.idle}</value></property>
+        <property name="maxWait"><value>${db.pool.default.timeout}</value></property>
+        <property name="validationQuery"><value>${db.pool.validation.query}</value></property>
+        <property name="validationQueryTimeout"><value>${db.pool.validation.query.timeout}</value></property>
+    </bean>
+    <!-- Interceptor, um das Default-Schema der Datenbank-Connection zu setzen. -->
+    <bean id="billing.setSchemaInterceptor" class="de.augustakom.common.tools.dao.SetDefaultSchemaInterceptor">
+        <property name="schemaName"><value>${hurrican.billing.schema}</value></property>
+    </bean>
+    <bean id="billing.dataSource" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces"><value>javax.sql.DataSource</value></property>
+        <property name="target" ref="billing.dataSourceTarget"/>
+        <property name="interceptorNames">
+            <list>
+                <value>billing.setSchemaInterceptor</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Definition der Hibernate-SessionFactory fuer die Billing-Datenbank -->
+    <bean id="billing.sessionFactory" class="de.augustakom.common.tools.dao.hibernate.AKLocalSessionFactoryBean">
+        <property name="mappingLocations">
+            <value>classpath*:de/augustakom/hurrican/model/billing/**/*.hbm.xml</value>
+        </property>
+        <property name="packagesToScan" value="de.augustakom.hurrican.model.billing"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hurrican.billing.hibernate.dialect}</prop>
+                <prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+                <prop key="hibernate.jdbc.use_scrollable_resultset">false</prop>
+                <prop key="hibernate.default_schema">${hurrican.billing.schema}</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+                <prop key="hibernate.check_nullability">true</prop>
+                <prop key="jadira.usertype.databaseZone">jvm</prop>
+                <prop key="jadira.usertype.javaZone">jvm</prop>
+            </props>
+        </property>
+        <property name="dataSource">
+            <ref bean="billing.dataSource"/>
+        </property>
+    </bean>
+
+        <!-- Transaction-Manager fuer die Hibernate-Session -->
+    <bean id="billing.hibernateTxManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="billing.sessionFactory"/>
+    </bean>
+
+    <!-- ****** BEGINN Service-Definitionen ******* -->
+
+    <!-- Service-Definition fuer DataSource Status-Service -->
+    <bean id="de.augustakom.hurrican.service.billing.DataSourceStatusService"
+        class="de.mnet.common.service.status.DataSourceStatusService">
+        <property name="dataSourceName" value="billing.dataSource"/>
+        <property name="tableName" value="AREA"/>
+    </bean>
+
+    <!-- Service-Definition fuer Billing-Modelle vom Typ 'Kunde' -->
+    <bean id="de.augustakom.hurrican.service.billing.KundenService"
+          class="de.augustakom.hurrican.service.billing.impl.KundenServiceImpl">
+        <property name="DAO"><ref bean="de.augustakom.hurrican.dao.billing.KundeDAO"/></property>
+        <property name="ansprechpartnerDAO"><ref bean="de.augustakom.hurrican.dao.billing.AnsprechpartnerDAO"/></property>
+        <property name="adresseDAO"><ref bean="de.augustakom.hurrican.dao.billing.AdresseDAO"/></property>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.billing.TnbKennungService"
+          class="de.augustakom.hurrican.service.billing.impl.TnbKennungServiceImpl">
+        <property name="billingWebServiceTemplate" ref="billingWSTemplate"/>
+    </bean>
+
+
+    <!-- Service-Definition fuer Billing-Modelle vom Typ 'Auftrag' -->
+    <bean id="de.augustakom.hurrican.service.billing.BillingAuftragService"
+            class="de.augustakom.hurrican.service.billing.impl.BillingAuftragServiceImpl">
+        <property name="DAO"><ref bean="de.augustakom.hurrican.dao.billing.AuftragDAO"/></property>
+    </bean>
+
+    <!-- Service-Definition fuer Billing-Modelle vom Typ 'Leistung' -->
+    <bean id="de.augustakom.hurrican.service.billing.LeistungService"
+            class="de.augustakom.hurrican.service.billing.impl.LeistungServiceImpl">
+        <property name="DAO"><ref bean="de.augustakom.hurrican.dao.billing.LeistungDAO"/></property>
+        <property name="serviceValueDAO" ref="de.augustakom.hurrican.dao.billing.ServiceValueDAO"/>
+    </bean>
+
+    <!-- Service-Definition fuer Billing-Modelle vom Typ 'Rufnummer' -->
+    <bean id="de.augustakom.hurrican.service.billing.RufnummerService"
+            class="de.augustakom.hurrican.service.billing.impl.RufnummerServiceImpl">
+        <property name="DAO"><ref bean="de.augustakom.hurrican.dao.billing.RufnummerDAO"/></property>
+        <property name="auftragBNFCDAO"><ref bean="de.augustakom.hurrican.dao.billing.BAuftragBNFCDAO"/></property>
+    </bean>
+    <bean name="/billing/RufnummerService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.billing.RufnummerService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.billing.RufnummerService"/>
+    </bean>
+
+    <!-- Service-Definition fuer Billing-Modelle vom Typ 'OE' -->
+    <bean id="de.augustakom.hurrican.service.billing.OEService"
+            class="de.augustakom.hurrican.service.billing.impl.OEServiceImpl">
+        <property name="DAO"><ref bean="de.augustakom.hurrican.dao.billing.OeDAO"/></property>
+        <property name="productTypeDAO"><ref bean="de.augustakom.hurrican.dao.billing.ProductTypeDAO"/></property>
+    </bean>
+
+    <!-- Service-Definition fuer Billing-Modelle vom Typ 'WebgatePW' -->
+    <bean id="de.augustakom.hurrican.service.billing.WebgatePWService"
+            class="de.augustakom.hurrican.service.billing.impl.WebgatePWServiceImpl">
+        <property name="DAO"><ref bean="de.augustakom.hurrican.dao.billing.WebgatePWDAO"/></property>
+    </bean>
+
+    <!-- Service-Definition fuer beliebige Billing-Queries. -->
+    <bean id="de.augustakom.hurrican.service.billing.QueryBillingService"
+            class="de.augustakom.hurrican.service.billing.impl.QueryBillingServiceImpl">
+        <property name="DAO"><ref bean="billing.queryDAO"/></property>
+        <property name="findDAO"><ref bean="billing.simpleFindDAO"/></property>
+    </bean>
+
+    <!-- Service-Definition fuer Rechnungs-Operationen. -->
+    <bean id="de.augustakom.hurrican.service.billing.RechnungsService"
+        class="de.augustakom.hurrican.service.billing.impl.RechnungsServiceImpl">
+        <property name="DAO"><ref bean="de.augustakom.hurrican.dao.billing.RInfoDAO"/></property>
+        <property name="archPrintDAO"><ref bean="de.augustakom.hurrican.dao.billing.ArchPrintDAO"/></property>
+        <property name="finanzDAO"><ref bean="de.augustakom.hurrican.dao.billing.FinanzDAO"/></property>
+        <property name="blzDAO"><ref bean="de.augustakom.hurrican.dao.billing.BLZDAO"/></property>
+        <property name="billDAO"><ref bean="de.augustakom.hurrican.dao.billing.BillDAO"/></property>
+    </bean>
+
+    <!-- Service-Definition fuer den Device-Service -->
+    <bean id="de.augustakom.hurrican.service.billing.DeviceService"
+        class="de.augustakom.hurrican.service.billing.impl.DeviceServiceImpl">
+        <property name="DAO"><ref bean="de.augustakom.hurrican.dao.billing.DeviceDAO"/></property>
+    </bean>
+
+    <!-- BillingWorkflow-Service -->
+    <bean id="de.augustakom.hurrican.service.billing.BillingWorkflowService" class="de.augustakom.hurrican.service.billing.impl.BillingWorkflowServiceImpl">
+        <property name="billingWebServiceTemplate" ref="billingWSTemplate"/>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.billing.DomainService" class="de.augustakom.hurrican.service.billing.impl.DomainServiceImpl" />
+
+    <!-- Service-Definition fuer Billing-Modelle vom Typ 'PurchaseOrder' -->
+    <bean id="de.augustakom.hurrican.service.billing.PurchaseOrderService"
+            class="de.augustakom.hurrican.service.billing.impl.PurchaseOrderServiceImpl">
+        <property name="DAO"><ref bean="de.augustakom.hurrican.dao.billing.PurchaseOrderDAO"/></property>
+    </bean>
+
+    <!-- ****** ENDE Service-Definitionen ******* -->
+
+
+    <!-- ***************************************************************************** -->
+
+
+    <!-- ****** BEGINN WebService Konfiguration ***** -->
+
+    <!-- Definition des zu verwendenden Marshallers -->
+    <bean id="billing.ws.marshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller" />
+
+    <bean id="billing.ws.wsMessageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+        <property name="soapVersion" ref="org.springframework.ws.soap.SoapVersion.SOAP_11"/>
+    </bean>
+
+    <!-- WebService-Template Definition inkl. Un-/Marshaller -->
+    <bean id="billingWSTemplate" class="de.augustakom.common.tools.ws.MnetWebServiceTemplate">
+        <property name="marshaller" ref="billing.ws.marshaller" />
+        <property name="unmarshaller" ref="billing.ws.marshaller" />
+        <property name="messageFactory" ref="billing.ws.wsMessageFactory" />
+        <property name="faultMessageResolver" ref="taifunFaultMessageResolver"/>
+        <property name="messageSender" ref="taifun.httpSender" />
+    </bean>
+
+    <!-- HTTP Sender configured to define timeouts (in ms) -->
+    <bean id="taifun.httpSender" class="org.springframework.ws.transport.http.HttpComponentsMessageSender">
+        <property name="connectionTimeout" value="5000" />
+        <!--
+        TimeOut auf 10 Minuten 15 Sek gestellt, da CPS einen Timeout auf HUR von 10 Minuten hat.
+        In der aktuellen Logik mit ServiceResponseFault als Antwort kann der CPS die Tx nicht erneut
+        in die Queue stellen.
+        Der Timeout in Richtung Taifun WebService sollte aber verhindern, dass der Hurrican-Server
+        den DB-Connection-Pool komplett ausschoepft und somit irgendwann auf Error laeuft.
+        Nach einer Umstellung von ServiceResponseFault auf SoapFault kann/sollte der Timeout
+        niedriger konfiguriert werden!
+        -->
+        <property name="readTimeout" value="615000" />
+        <property name="httpClient" ref="httpClient"/>
+    </bean>
+
+    <!-- MessageResolver, ueber den Fault-Responses vom Taifun WebService ausgewertet werden. -->
+    <bean id="taifunFaultMessageResolver"
+        class="de.augustakom.hurrican.service.billing.utils.TaifunSoapFaultMessageResolver">
+        <property name="unmarshaller" ref="billing.ws.marshaller"/>
+    </bean>
+
+    <!-- Definition der SOAP Version -->
+    <bean id="org.springframework.ws.soap.SoapVersion.SOAP_11"
+        class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+
+    <!-- ****** ENDE WebService Konfiguration ******* -->
+
+
+    <!-- ***************************************************************************** -->
+
+
+    <!-- *********** BEGINN DAO-Definitionen *************** -->
+
+    <!-- Definition einer einfachen DAO-Klasse fuer Find-Operationen -->
+    <bean id="billing.simpleFindDAO" class="de.augustakom.hurrican.dao.base.impl.SimpleFindDAOImpl">
+        <property name="sessionFactory" ref="billing.sessionFactory"/>
+    </bean>
+
+    <!-- Definition der DAO-Klasse fuer ein Billing-Objekt vom Typ 'Kunde' -->
+    <bean id="de.augustakom.hurrican.dao.billing.KundeDAO" class="de.augustakom.hurrican.dao.billing.impl.KundeDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein Billing-Objekt vom Typ 'Ansprechpartner' -->
+    <bean id="de.augustakom.hurrican.dao.billing.AnsprechpartnerDAO" class="de.augustakom.hurrican.dao.billing.impl.AnsprechpartnerDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein Billing-Objekt vom Typ 'Account' -->
+    <bean id="de.augustakom.hurrican.dao.billing.AccountDAO" class="de.augustakom.hurrican.dao.billing.impl.AccountDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein Billing-Objekt vom Typ 'Adresse' -->
+    <bean id="de.augustakom.hurrican.dao.billing.AdresseDAO" class="de.augustakom.hurrican.dao.billing.impl.AdresseDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein Billing-Objekt vom Typ 'Auftrag' -->
+    <bean id="de.augustakom.hurrican.dao.billing.AuftragDAO" class="de.augustakom.hurrican.dao.billing.impl.AuftragDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein Billing-Objekt vom Typ 'AuftragZusatz' -->
+    <bean id="de.augustakom.hurrican.dao.billing.BAuftragZusatzDAO" class="de.augustakom.hurrican.dao.billing.impl.BAuftragZusatzDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein Billing-Objekt vom Typ 'BAuftragBNFC' -->
+    <bean id="de.augustakom.hurrican.dao.billing.BAuftragBNFCDAO" class="de.augustakom.hurrican.dao.billing.impl.BAuftragBNFCDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein Billing-Objekt vom Typ 'Leistung' -->
+    <bean id="de.augustakom.hurrican.dao.billing.LeistungDAO" class="de.augustakom.hurrican.dao.billing.impl.LeistungDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein Billing-Objekt vom Typ 'ServiceValue' -->
+    <bean id="de.augustakom.hurrican.dao.billing.ServiceValueDAO" class="de.augustakom.hurrican.dao.billing.impl.ServiceValueDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein Billing-Objekt vom Typ 'Rufnummer' -->
+    <bean id="de.augustakom.hurrican.dao.billing.RufnummerDAO" class="de.augustakom.hurrican.dao.billing.impl.RufnummerDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein Billing-Objekt vom Typ 'OE' -->
+    <bean id="de.augustakom.hurrican.dao.billing.OeDAO" class="de.augustakom.hurrican.dao.billing.impl.OeDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein Billing-Objekt vom Typ 'Person' -->
+    <bean id="de.augustakom.hurrican.dao.billing.PersonDAO" class="de.augustakom.hurrican.dao.billing.impl.PersonDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein Billing-Objekt vom Typ 'WebgatePW' -->
+    <bean id="de.augustakom.hurrican.dao.billing.WebgatePWDAO" class="de.augustakom.hurrican.dao.billing.impl.WebgatePWDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer Billing-Objekte des Typs 'RInfoExport' -->
+    <bean id="de.augustakom.hurrican.dao.billing.RInfoDAO" class="de.augustakom.hurrican.dao.billing.impl.RInfoDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer Billing-Objekte des Typs 'Finanz' -->
+    <bean id="de.augustakom.hurrican.dao.billing.FinanzDAO" class="de.augustakom.hurrican.dao.billing.impl.FinanzDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer Billing-Objekte des Typs 'BLZ' -->
+    <bean id="de.augustakom.hurrican.dao.billing.BLZDAO" class="de.augustakom.hurrican.dao.billing.impl.BLZDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer Billing-Objekte des Typs 'Product_Type' -->
+    <bean id="de.augustakom.hurrican.dao.billing.ProductTypeDAO" class="de.augustakom.hurrican.dao.billing.impl.ProductTypeDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer Billing-Objekte des Typs 'Product_Type' -->
+    <bean id="de.augustakom.hurrican.dao.billing.ArchPrintDAO" class="de.augustakom.hurrican.dao.billing.impl.ArchPrintDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer Billing-Objekte des Typs 'Modification_Log' -->
+    <bean id="de.augustakom.hurrican.dao.billing.BillDAO" class="de.augustakom.hurrican.dao.billing.impl.BillDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer die Verwaltung von Device-Objekten -->
+    <bean id="de.augustakom.hurrican.dao.billing.DeviceDAO" class="de.augustakom.hurrican.dao.billing.impl.DeviceDAOImpl" />
+
+    <bean id="de.augustakom.hurrican.dao.billing.DomainDao" class="de.augustakom.hurrican.dao.billing.impl.DomainDaoImpl" />
+
+    <bean id="de.augustakom.hurrican.dao.billing.PurchaseOrderDAO" class="de.augustakom.hurrican.dao.billing.impl.PurchaseOrderDAOImpl" />
+
+    <!-- Allgmeine DAO-Klasse fuer beliebige SQL-Queries auf der Billing-Datenbank -->
+    <bean id="billing.queryDAO" class="de.augustakom.hurrican.dao.base.impl.QueryDAOImplJdbc">
+        <property name="sessionFactory" ref="billing.sessionFactory"/>
+    </bean>
+
+    <!-- *********** ENDE DAO-Definitionen *************** -->
+
+</beans>

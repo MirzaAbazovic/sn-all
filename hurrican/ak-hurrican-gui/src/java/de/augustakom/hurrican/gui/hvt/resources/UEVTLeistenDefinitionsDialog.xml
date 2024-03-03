@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Bestimmung der CuDA-Belegungsart
+-->
+<sf>
+
+    <ComboBox name="physik">
+        <tooltip>Auswahl der Physikart für die Reihe</tooltip>
+        <items>
+            <item> </item>
+            <item>2H</item>
+            <item>4H</item>
+            <item>ADSL</item>
+            <item>SDSL</item>
+            <item>ULAF</item>
+        </items>
+    </ComboBox>
+
+    <ComboBox name="uetv">
+        <tooltip>Auswahl des Uebertragungsverfahrens</tooltip>
+        <items>
+            <item> </item>
+            <item>N01</item>
+            <item>H03</item>
+            <item>H04</item>
+            <item>H05</item>
+            <item>H11</item>
+            <item>H13</item>
+            <item>H16</item>
+        </items>
+    </ComboBox>
+
+</sf>

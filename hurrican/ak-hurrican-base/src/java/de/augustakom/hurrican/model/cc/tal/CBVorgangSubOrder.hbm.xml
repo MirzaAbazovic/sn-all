@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.tal.CBVorgangSubOrder
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.tal">
+    <class name="CBVorgangSubOrder" table="T_CB_VORGANG_SUB_ORDER">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_CB_VORGANG_SUB_ORDER_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="auftragId" column="AUFTRAG_ID" type="long" not-null="true"/>
+        <property name="dtagPort" column="DTAG_PORT" type="string" not-null="true"/>
+        <property name="returnLBZ" column="RET_LBZ" type="string"/>
+        <property name="returnVTRNR" column="RET_VTRNR" type="string"/>
+        <property name="returnAQS" column="RET_AQS" type="string"/>
+        <property name="returnLL" column="RET_LL" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

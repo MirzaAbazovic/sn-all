@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring App-Context Definition fuer den WITA Client Bereich. -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+
+    <bean id="de.augustakom.hurrican.service.cc.CarrierElTALService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wita/CarrierElTALService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.augustakom.hurrican.service.cc.CarrierElTALService</value>
+        </property>
+    </bean>
+
+    <!-- Definition der WITA-Remote-Services (per SpringHTTP) -->
+    <bean id="de.mnet.wita.service.WitaTalOrderService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wita/WitaTalOrderService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wita.service.WitaTalOrderService</value>
+        </property>
+    </bean>
+    <alias name="de.mnet.wita.service.WitaTalOrderService" alias="de.augustakom.hurrican.service.cc.TALOrderService"/>
+
+    <bean id="de.mnet.wita.service.WitaUsertaskService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wita/WitaUsertaskService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wita.service.WitaUsertaskService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wita.service.WitaVorabstimmungService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wita/WitaVorabstimmungService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wita.service.WitaVorabstimmungService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wita.service.TalQueryService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wita/TalQueryService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wita.service.TalQueryService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wita.service.WitaConfigService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wita/WitaConfigService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wita.service.WitaConfigService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wita.service.WitaSendMessageService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wita/WitaSendMessageService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wita.service.WitaSendMessageService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wita.service.MwfEntityService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wita/MwfEntityService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wita.service.MwfEntityService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wita.bpm.TalOrderWorkflowService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wita/TalOrderWorkflowService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wita.bpm.TalOrderWorkflowService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wita.bpm.AbgebendPvWorkflowService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wita/AbgebendPvWorkflowService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wita.bpm.AbgebendPvWorkflowService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wita.bpm.KueDtWorkflowService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wita/KueDtWorkflowService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wita.bpm.KueDtWorkflowService</value>
+        </property>
+    </bean>
+
+   <bean id="de.mnet.wita.bpm.CommonWorkflowService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wita/CommonWorkflowService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wita.bpm.CommonWorkflowService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wita.service.WitaAdminService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wita/WitaAdminService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wita.service.WitaAdminService</value>
+        </property>
+    </bean>
+
+    <!-- WITA <-> WBCI Remote Service Facade -->
+    <bean id="de.mnet.wita.service.WitaWbciServiceFacade" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wita/WitaWbciServiceFacade</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wita.service.WitaWbciServiceFacade</value>
+        </property>
+    </bean>
+
+</beans>

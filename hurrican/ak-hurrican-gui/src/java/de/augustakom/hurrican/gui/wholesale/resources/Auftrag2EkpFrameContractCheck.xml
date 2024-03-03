@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+	<Text name="first.title">{0} Änderungen speichern?</Text>
+	<Text name="first.message">Dem {0} sind aktive Aufträge zugeordnet. Durch die Speicherung der Änderungen können deren VLANs ungültig werden.
+	 Wollen Sie wirklich speichern?</Text>
+
+    <Text name="second.title">{0} Änderungen speichern?</Text>
+    <Text name="second.message">Die VLANs der zugeordnete Aufträge werden ungültig bzw. sind nicht mehr eindeutig.
+     Wollen Sie wirklich speichern?</Text>
+
+	<Text name="save">Speichern</Text>
+	<Text name="cancel">Abbrechen</Text>
+</sf>

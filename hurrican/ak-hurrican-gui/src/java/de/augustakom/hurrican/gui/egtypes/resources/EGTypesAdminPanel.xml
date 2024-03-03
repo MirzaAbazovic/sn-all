@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Frame der Geo IDs.
+-->
+<sf>
+    <Text name="border.eg.type.caption">Endgerätemodell</Text>
+
+    <Text name="border.details.caption">Details des Endgerätemodells</Text>
+
+    <Label name="tf.eg.type.hersteller">
+        <text>Hersteller:</text>
+    </Label>
+    <TextField name="tf.eg.type.hersteller">
+        <tooltip>Bezeichnung des Herstellers</tooltip>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="tf.eg.type.modell">
+        <text>Modell:</text>
+    </Label>
+    <TextField name="tf.eg.type.modell">
+        <tooltip>Bezeichnung des Modells</tooltip>
+        <maxchars>50</maxchars>
+    </TextField>
+</sf>

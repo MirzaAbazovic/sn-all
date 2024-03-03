@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer die Definition der 'Standard' CC-Services.
+Die Datei wird von CCServices.xml importiert!
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config />
+
+    <!-- ************************ WS Templates *************************** -->
+    <!-- Definition des zu verwendenden Marshallers -->
+    <bean id="monline.marshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller"/>
+
+    <!-- Definition des zu verwendenden Message Senders
+         Hier koennen Parameter der HttpUrlConnection uebersteuert werden
+         Beispiel: connectionTimeout
+     -->
+    <bean id="hurrican.messageSender" class="de.augustakom.common.tools.ws.MnetHttpUrlConnectionMessageSender"
+          scope="prototype">
+        <property name="connectionTimeout">
+            <!-- Der Wert 10000 fuert zu einem Timeout von 20 Sekunden, weil vermutlich der Verbindungsaufbau
+                 insgesamt 2 mal durchgefuehrt wird.
+            -->
+            <value>10000</value>
+        </property>
+        <property name="httpClient" ref="httpClient"/>
+    </bean>
+
+    <!-- MessageFactory fuer den WebService -->
+    <bean id="monline.wsMessageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+        <property name="soapVersion" ref="org.springframework.ws.soap.SoapVersion.SOAP_11"/>
+    </bean>
+
+    <!-- WebService-Template Definition inkl. Un-/Marshaller -->
+    <bean id="monlineWSTemplate" class="de.augustakom.common.tools.ws.MnetWebServiceTemplate">
+        <property name="marshaller" ref="monline.marshaller" />
+        <property name="unmarshaller" ref="monline.marshaller" />
+        <property name="messageFactory" ref="monline.wsMessageFactory" />
+        <property name="messageSender" ref="hurrican.messageSender" />
+    </bean>
+
+    <!-- ************************ Service-Definitionen *************************** -->
+
+    <bean id="de.mnet.common.service.locator.ServiceLocator"
+          class="de.mnet.common.service.locator.ServiceLocator" />
+
+    <bean
+            id="de.augustakom.hurrican.service.cc.IPAddressAssignmentRemoteService"
+            class="de.augustakom.hurrican.service.cc.impl.IPAddressAssignmentRemoteServiceImpl" autowire-candidate="false">
+    </bean>
+
+    <!-- Service-Definition fuer IPAddress -->
+    <bean id="de.augustakom.hurrican.service.cc.IPAddressService"
+          class="de.augustakom.hurrican.service.cc.impl.IPAddressServiceImpl" />
+
+    <!-- Service-Definition fuer DataSource Status-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.DataSourceStatusService"
+          class="de.mnet.common.service.status.DataSourceStatusService">
+        <property name="dataSourceName" value="cc.dataSource"/>
+        <property name="tableName" value="T_NIEDERLASSUNG"/>
+    </bean>
+
+    <!-- Service-Definition fuer Clean-Services -->
+    <bean id="de.augustakom.hurrican.service.cc.CleanService"
+          class="de.augustakom.hurrican.service.cc.impl.CleanServiceImpl">
+        <property name="DAO" ref="dnLeistungDAO"/>
+        <property name="archivFileDnLeistungenPath" value="${archiv.file.dn.leistungen.path}"/>
+    </bean>
+
+    <!-- NiederlassungService-Definition -->
+    <bean id="de.augustakom.hurrican.service.cc.NiederlassungService"
+          class="de.augustakom.hurrican.service.cc.impl.NiederlassungServiceImpl">
+        <property name="DAO" ref="niederlassungDAO"/>
+        <property name="abteilungDAO" ref="abteilungDAO"/>
+    </bean>
+
+    <!-- GUIService-Definition -->
+    <bean id="de.augustakom.hurrican.service.cc.GUIService"
+          class="de.augustakom.hurrican.service.cc.impl.GUIServiceImpl">
+        <property name="DAO" ref="guiDAO"/>
+    </bean>
+
+    <!-- WohnheimService-Definition -->
+    <bean id="de.augustakom.hurrican.service.cc.WohnheimService"
+          class="de.augustakom.hurrican.service.cc.impl.WohnheimServiceImpl">
+        <property name="DAO" ref="wohnheimDAO"/>
+    </bean>
+
+    <!-- SperrklasseService-Definition -->
+    <bean id="de.augustakom.hurrican.service.cc.SperrklasseService"
+          class="de.augustakom.hurrican.service.cc.impl.SperrklasseServiceImpl">
+        <property name="DAO" ref="sperrklasseDAO" />
+    </bean>
+
+    <!-- HWSwitchService-Definition -->
+    <bean id="de.augustakom.hurrican.service.cc.HWSwitchService"
+          class="de.augustakom.hurrican.service.cc.impl.HWSwitchServiceImpl">
+        <property name="hwSwitchDao" ref="hwSwitchDAO" />
+        <property name="ccAuftragService" ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+    </bean>
+    <!-- Dummy Socket Test -Definition -->
+    <bean id="de.augustakom.hurrican.service.cc.DummySocketService"
+          class="de.augustakom.hurrican.service.cc.impl.DummySocketServiceImpl">
+    </bean>
+
+    <!-- CCKundenService-Definition -->
+    <bean id="de.augustakom.hurrican.service.cc.CCKundenService"
+          class="de.augustakom.hurrican.service.cc.impl.CCKundenServiceImpl">
+        <property name="auftragViewDAO" ref="auftragViewDAO"/>
+        <property name="auftragDatenDAO" ref="auftragDatenDAO"/>
+        <property name="anredeDAO" ref="anredeDAO"/>
+        <property name="produktDAO" ref="produktDAO"/>
+        <property name="techLeistungDAO" ref="techLeistungDAO"/>
+        <property name="ccAddressDAO" ref="ccAddressDAO"/>
+        <property name="ccAddressValidator" ref="ccAddressValidator"/>
+        <property name="ccKundeNbzDAO" ref="ccKundeNbzDAO"/>
+    </bean>
+
+    <!-- HVTService-Definition -->
+    <bean id="de.augustakom.hurrican.service.cc.HVTService"
+          class="de.augustakom.hurrican.service.cc.impl.HVTServiceImpl">
+        <property name="DAO" ref="hvtGruppeDAO"/>
+        <property name="hvtStandortDAO" ref="hvtStandortDAO"/>
+        <property name="hvtTechnikDAO" ref="hvtTechnikDAO"/>
+        <property name="uevtDAO" ref="uevtDAO"/>
+        <property name="uevt2ZielDAO" ref="uevt2ZielDAO"/>
+        <property name="physikTypDAO" ref="physikTypDAO"/>
+        <property name="equipmentDAO" ref="equipmentDAO"/>
+        <property name="hvtStandortTechTypeDAO" ref="hvtStandortTechTypeDAO"/>
+    </bean>
+
+    <!-- Service fuer die Bauauftragskonfiguration -->
+    <bean id="de.augustakom.hurrican.service.cc.BAConfigService"
+          class="de.augustakom.hurrican.service.cc.impl.BAConfigServiceImpl" />
+
+    <!-- Produkt-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.ProduktService"
+          class="de.augustakom.hurrican.service.cc.impl.ProduktServiceImpl">
+        <property name="DAO" ref="produktDAO"/>
+        <property name="produktGruppeDAO" ref="produktGruppeDAO"/>
+        <property name="schnittstelleDAO" ref="schnittstelleDAO"/>
+        <property name="produktViewDAO" ref="produktViewDAO"/>
+        <property name="leitungsartDAO" ref="leitungsartDAO"/>
+        <property name="physikTypDAO" ref="physikTypDAO"/>
+        <property name="defaultDeleteDAO" ref="defaultDeleteDAO"/>
+        <property name="validator" ref="produktValidator"/>
+    </bean>
+
+    <!-- CCAuftrag-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.CCAuftragService"
+          class="de.augustakom.hurrican.service.cc.impl.CCAuftragServiceImpl">
+        <property name="auftragViewDAO" ref="auftragViewDAO"/>
+        <property name="auftragStatusDAO" ref="auftragStatusDAO"/>
+        <property name="auftragDatenDAO" ref="auftragDatenDAO"/>
+        <property name="auftragTechnikDAO" ref="auftragTechnikDAO"/>
+        <property name="auftragDAO" ref="auftragDAO"/>
+        <property name="defaultDeleteDAO" ref="defaultDeleteDAO"/>
+        <property name="auftragAktionDAO" ref="auftragAktionDAO"/>
+        <property name="auftragWholesaleDAO" ref="auftragWholesaleDAO"/>
+    </bean>
+
+    <!-- CCAuftrag-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.AuftragTvService"
+          class="de.augustakom.hurrican.service.cc.impl.AuftragTvServiceImpl">
+        <property name="auftragTvDAO" ref="auftragTvDAO"/>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.CCAuftragStatusService"
+          class="de.augustakom.hurrican.service.cc.impl.CCAuftragStatusServiceImpl" />
+
+    <!-- CCAuftragStatusServiceHelper -->
+    <bean id="de.augustakom.hurrican.service.cc.CCAuftragStatusServiceHelper"
+          class="de.augustakom.hurrican.service.cc.impl.CCAuftragStatusServiceHelperImpl">
+    </bean>
+
+    <!-- AuftragIntern-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.AuftragInternService"
+          class="de.augustakom.hurrican.service.cc.impl.AuftragInternServiceImpl"/>
+
+    <!-- INRufnummer-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.INRufnummerService"
+          class="de.augustakom.hurrican.service.cc.impl.INRufnummerServiceImpl">
+        <property name="ak0800DAO" ref="ak0800DAO"/>
+    </bean>
+
+    <!-- Endgeraet-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.EndgeraeteService"
+          class="de.augustakom.hurrican.service.cc.impl.EndgeraeteServiceImpl" />
+
+    <!-- Profile-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.ProfileService"
+          class="de.augustakom.hurrican.service.cc.impl.ProfileServiceImpl"/>
+
+    <!-- Carrier-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.CarrierService"
+          class="de.augustakom.hurrican.service.cc.impl.CarrierServiceImpl">
+        <property name="carrierbestellungDAO" ref="carrierbestellungDAO"/>
+        <property name="carrierbestellungValidator" ref="carrierbestellungValidator"/>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.utils.carrier.CarrierLbzDTAGCreator"
+          class="de.augustakom.hurrican.service.cc.utils.carrier.CarrierLbzDTAGCreator" />
+
+    <!-- VPNService -->
+    <bean id="de.augustakom.hurrican.service.cc.VPNService"
+          class="de.augustakom.hurrican.service.cc.impl.VPNServiceImpl" />
+
+    <!-- AccountService -->
+    <bean id="de.augustakom.hurrican.service.cc.AccountService"
+          class="de.augustakom.hurrican.service.cc.impl.AccountServiceImpl" />
+
+    <!-- SperreVerteilungService -->
+    <bean id="de.augustakom.hurrican.service.cc.SperreVerteilungService"
+          class="de.augustakom.hurrican.service.cc.impl.SperreVerteilungServiceImpl">
+        <property name="sperreVerteilungDAO" ref="sperreVerteilungDAO"/>
+        <property name="sperreInfoDAO" ref="sperreInfoDAO"/>
+        <property name="validator" ref="sperreInfoValidator"/>
+    </bean>
+
+    <bean id="cc.lockSendMail"
+          class="de.augustakom.hurrican.service.cc.impl.helper.SendMailHelper"/>
+
+    <bean id="cc.lockCreateLock"
+          class="de.augustakom.hurrican.service.cc.impl.helper.CreateLockHelper"/>
+
+    <!-- LockService -->
+    <bean id="de.augustakom.hurrican.service.cc.LockService"
+          class="de.augustakom.hurrican.service.cc.impl.LockServiceImpl" />
+
+    <!-- CounterService -->
+    <bean id="de.augustakom.hurrican.service.cc.CounterService"
+          class="de.augustakom.hurrican.service.cc.impl.CounterServiceImpl">
+        <property name="DAO" ref="counterDAO"/>
+    </bean>
+
+    <!-- Registry-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.RegistryService"
+          class="de.augustakom.hurrican.service.cc.impl.RegistryServiceImpl">
+        <property name="DAO" ref="registryDAO"/>
+    </bean>
+
+    <!-- CC Rufnummern-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.CCRufnummernService"
+          class="de.augustakom.hurrican.service.cc.impl.CCRufnummernServiceImpl">
+        <property name="DAO" ref="dnLeistungDAO"/>
+        <property name="auftragDatenDAO" ref="auftragDatenDAO"/>
+    </bean>
+
+    <!-- Kubena-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.KubenaService"
+          class="de.augustakom.hurrican.service.cc.impl.KubenaServiceImpl">
+        <property name="DAO" ref="kubenaDAO"/>
+        <property name="anredeDAO" ref="anredeDAO"/>
+        <property name="kubenaValidator" ref="kubenaValidator"/>
+    </bean>
+
+
+    <!-- Reference-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.ReferenceService"
+          class="de.augustakom.hurrican.service.cc.impl.ReferenceServiceImpl">
+        <property name="DAO" ref="referenceDAO"/>
+    </bean>
+
+    <!-- CCLeistungsService -->
+    <bean id="de.augustakom.hurrican.service.cc.CCLeistungsService"
+          class="de.augustakom.hurrican.service.cc.impl.CCLeistungsServiceImpl"
+          init-method="init">
+        <property name="techLeistungDAO" ref="techLeistungDAO"/>
+        <property name="auftrag2TechLeistungDAO" ref="auftrag2TechLeistungDAO"/>
+        <property name="verlaufDAO" ref="verlaufDAO"/>
+    </bean>
+
+    <!-- Chain-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.ChainService"
+          class="de.augustakom.hurrican.service.cc.impl.ChainServiceImpl">
+        <property name="serviceCommandDAO" ref="serviceCommandDAO"/>
+    </bean>
+
+    <!-- Innenauftrag-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.InnenauftragService"
+          class="de.augustakom.hurrican.service.cc.impl.InnenauftragServiceImpl"/>
+
+    <!-- Service-Definition fuer beliebige CC-Queries. -->
+    <bean id="de.augustakom.hurrican.service.cc.QueryCCService"
+          class="de.augustakom.hurrican.service.cc.impl.QueryCCServiceImpl">
+        <property name="DAO" ref="queryDAO"/>
+        <property name="findDAO" ref="simpleFindDAO"/>
+    </bean>
+
+    <!-- Service-Definition fuer spezielle HVTGruppeStdView-Queries. -->
+    <bean id="de.augustakom.hurrican.service.cc.QueryHvtGruppeStandorService"
+          class="de.augustakom.hurrican.service.cc.impl.QueryHvtGruppeStandortServiceImpl">
+        <property name="DAO" ref="queryDAO"/>
+    </bean>
+
+    <!-- DSLAMService-Definition -->
+    <bean id="de.augustakom.hurrican.service.cc.DSLAMService"
+          class="de.augustakom.hurrican.service.cc.impl.DSLAMServiceImpl" />
+
+    <!-- VoIP-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.VoIPService"
+          class="de.augustakom.hurrican.service.cc.impl.VoIPServiceImpl" />
+
+    <!-- SIPDomain-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.SIPDomainService"
+          class="de.augustakom.hurrican.service.cc.impl.SIPDomainServiceImpl" />
+
+    <!-- QoS-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.QoSService"
+          class="de.augustakom.hurrican.service.cc.impl.QoSServiceImpl">
+        <property name="DAO" ref="auftragQoSDAO"/>
+    </bean>
+
+    <!-- Monitor-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.MonitorService"
+          class="de.augustakom.hurrican.service.cc.impl.MonitorServiceImpl" />
+
+    <!-- Monitor-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.MonitorCalculationService"
+          class="de.augustakom.hurrican.service.cc.impl.MonitorCalculationServiceImpl" />
+
+    <!-- Hardware-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.HWService"
+          class="de.augustakom.hurrican.service.cc.impl.HWServiceImpl">
+        <property name="hwDAO" ref="de.augustakom.hurrican.dao.cc.HardwareDAO"/>
+        <property name="hwSubrackDAO" ref="de.augustakom.hurrican.dao.cc.HWSubrackDAO"/>
+        <property name="hwRackValidator" ref="de.augustakom.hurrican.validation.cc.HWRackValidator"/>
+        <property name="hwSubrackValidator" ref="de.augustakom.hurrican.validation.cc.HWSubrackValidator"/>
+        <property name="hwBaugruppeValidator" ref="de.augustakom.hurrican.validation.cc.HWBaugruppeValidator"/>
+    </bean>
+
+    <!-- HWBaugruppenChangeService -->
+    <bean id="de.augustakom.hurrican.service.cc.HWBaugruppenChangeService"
+          class="de.augustakom.hurrican.service.cc.impl.HWBaugruppenChangeServiceImpl" />
+
+
+    <!-- Service fuer externe Service-Provider -->
+    <bean id="de.augustakom.hurrican.service.cc.ExtServiceProviderService"
+          class="de.augustakom.hurrican.service.cc.impl.ExtServiceProviderServiceImpl">
+        <property name="extDAO" ref="extServiceProviderDAO"/>
+    </bean>
+
+    <!-- Reporting-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.ReportingService"
+          class="de.augustakom.hurrican.service.cc.impl.ReportingServiceImpl" />
+
+    <!-- RegularExpression-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.RegularExpressionService"
+          class="de.augustakom.hurrican.service.cc.impl.RegularExpressionServiceImpl">
+        <property name="cfgRegularExpressionDAO" ref="de.augustakom.hurrican.dao.cc.CfgRegularExpressionDAO"/>
+    </bean>
+
+    <!-- Ansprechpartner-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.AnsprechpartnerService"
+          class="de.augustakom.hurrican.service.cc.impl.AnsprechpartnerServiceImpl"/>
+
+    <!-- MassenbenachrichtigungService -->
+    <bean id="de.augustakom.hurrican.service.cc.MassenbenachrichtigungService"
+          class="de.augustakom.hurrican.service.cc.impl.MassenbenachrichtigungServiceImpl" />
+
+    <!-- GewofagService -->
+    <bean id="de.augustakom.hurrican.service.cc.GewofagService"
+          class="de.augustakom.hurrican.service.cc.impl.GewofagServiceImpl" />
+
+    <bean id="de.augustakom.hurrican.service.cc.HousingService"
+          class="de.augustakom.hurrican.service.cc.impl.HousingServiceImpl" />
+
+    <bean id="de.augustakom.hurrican.service.cc.MVSService"
+          class="de.augustakom.hurrican.service.cc.impl.MVSServiceImpl" />
+
+    <bean id="de.augustakom.hurrican.service.cc.DSLAMProfileMonitorService"
+          class="de.augustakom.hurrican.service.cc.impl.DSLAMProfileMonitorServiceImpl" />
+
+    <bean id="de.augustakom.hurrican.service.cc.UMTSService"
+          class="de.augustakom.hurrican.service.cc.impl.UMTSServiceImpl" />
+
+    <bean id="de.augustakom.hurrican.service.cc.ConnectService"
+          class="de.augustakom.hurrican.service.cc.impl.ConnectServiceImpl" />
+
+    <bean id="de.augustakom.hurrican.service.cc.MailService"
+          class="de.augustakom.hurrican.service.cc.impl.MailServiceImpl" />
+
+    <!-- Definition des Services fuer die Ermittlung von speziellen SCV-Views. -->
+    <bean id="de.augustakom.hurrican.service.cc.ScvViewService"
+          class="de.augustakom.hurrican.service.cc.impl.ScvViewServiceImpl"
+          destroy-method="destroyService">
+        <property name="DAO" ref="scvViewDAO"/>
+        <property name="auftragViewDAO" ref="auftragViewDAO"/>
+        <property name="dbQueryDefDAO" ref="dbQueryDefDAO"/>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.ConsistenceCheckService"
+          class="de.augustakom.hurrican.service.cc.impl.ConsistenceCheckServiceImpl">
+        <property name="DAO" ref="consistenceCheckDAO"/>
+    </bean>
+
+    <!-- Export-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.FTTXHardwareService"
+          class="de.augustakom.hurrican.service.cc.impl.FTTXHardwareServiceImpl"/>
+
+    <bean id="de.augustakom.hurrican.service.cc.XlsImportService"
+          class="de.augustakom.hurrican.service.cc.impl.XlsImportServiceImpl"/>
+
+    <!-- Export-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.FTTXInfoService"
+          class="de.augustakom.hurrican.service.cc.impl.FTTXInfoServiceImpl" />
+
+    <!-- SIPInterTrunk-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.SIPInterTrunkService"
+          class="de.augustakom.hurrican.service.cc.impl.SIPInterTrunkServiceImpl">
+        <property name="DAO" ref="de.augustakom.hurrican.dao.cc.AuftragSIPInterTrunkDAO"/>
+    </bean>
+
+    <!-- IpRoute-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.IpRouteService"
+          class="de.augustakom.hurrican.service.cc.impl.IpRouteServiceImpl">
+        <property name="DAO" ref="de.augustakom.hurrican.dao.cc.IpRouteDAO"/>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.ipaddress.ReleaseDateCalculator"
+          class="de.augustakom.hurrican.service.cc.impl.ipaddress.ReleaseDateCalculator" />
+
+    <bean id="de.augustakom.hurrican.service.cc.FeatureService"
+          class="de.augustakom.hurrican.service.cc.impl.FeatureServiceImpl">
+        <property name="featureDAO" ref="de.augustakom.hurrican.dao.cc.FeatureDAO"/>
+    </bean>
+
+    <!-- AvailabilityServiceHelper -->
+    <bean id="de.augustakom.hurrican.service.cc.AvailabilityServiceHelper"
+          class="de.augustakom.hurrican.service.cc.impl.AvailabilityServiceHelperImpl">
+        <property name="DAO" ref="de.augustakom.hurrican.dao.cc.impl.AvailabilityDAO"/>
+    </bean>
+
+    <!-- DAO-Klasse fuer die Verwaltung von Verfuegbarkeitsinformationen -->
+    <!-- TODO move this to de/augustakom/hurrican/service/cc/resources/CCDefaultDAOs.xml -->
+    <bean id="de.augustakom.hurrican.dao.cc.impl.AvailabilityDAO"
+          class="de.augustakom.hurrican.dao.cc.impl.AvailabilityDAOImpl" />
+
+    <bean id="de.augustakom.hurrican.service.cc.CPSGetDataService"
+          class="de.augustakom.hurrican.service.cc.impl.CPSGetDataServiceImpl">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.QoSProfilService"
+          class="de.augustakom.hurrican.service.cc.impl.QoSProfilServiceImpl">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.VoipDnPlanValidationService"
+          class="de.augustakom.hurrican.service.cc.impl.VoipDnPlanValidationServiceImpl">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.HwOltChildHelperService"
+          class="de.augustakom.hurrican.service.cc.impl.HwOltChildHelperServiceImpl">
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.HwOntAdminService"
+          class="de.augustakom.hurrican.service.cc.impl.HwOntAdminServiceImpl">
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.HwDpoAdminService"
+          class="de.augustakom.hurrican.service.cc.impl.HwDpoAdminServiceImpl">
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.HwDpuAdminService"
+          class="de.augustakom.hurrican.service.cc.impl.HwDpuAdminServiceImpl">
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.HvtUmzugService"
+          class="de.augustakom.hurrican.service.cc.impl.HvtUmzugServiceImpl" />
+
+    <bean id="de.augustakom.hurrican.service.cc.EvnService"
+          class="de.augustakom.hurrican.service.cc.impl.evn.EvnServiceImpl" />
+
+    <!-- ************************ ENDE Service-Definitionen ********************** -->
+
+
+    <!-- ************************ ServiceCommand-Definitionen ********************* -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.carrier.SaveCBDistance2GeoId2TechLocationsCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.carrier.SaveCBDistance2GeoId2TechLocationsCommand"
+          scope="prototype" />
+
+    <!-- ServiceCommand, um den Geo Id Cache mit Vento zu synchronisieren  -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.EWSDAutoFreigabeCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.EWSDAutoFreigabeCommand"
+          scope="prototype" />
+
+    <!-- ************************ ENDE ServiceCommand DAO-Definitionen ************ -->
+
+    <bean id="de.augustakom.hurrican.service.cc.utils.NiederlassungPerEndstellenResolver"
+          class="de.augustakom.hurrican.service.cc.utils.NiederlassungPerEndstellenResolver"
+          scope="singleton">
+    </bean>
+
+</beans>

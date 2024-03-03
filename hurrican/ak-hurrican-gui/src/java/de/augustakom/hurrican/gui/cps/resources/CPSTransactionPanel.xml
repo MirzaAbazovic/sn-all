@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das CPS-Transaction-Panel.
+-->
+<sf>
+    <Button name="button.refresh">
+        <icon>de/augustakom/hurrican/gui/images/refresh.png</icon>
+        <tooltip>Zeigt den Status der CPS-Transaktion</tooltip>
+    </Button>
+    <Button name="button.state">
+        <text>Status</text>
+        <tooltip>Zeigt den Status der CPS-Transaktion</tooltip>
+    </Button>
+    <Button name="button.cancel">
+        <text>Abbruch</text>
+        <tooltip>Bricht die CPS-Transaktion ab</tooltip>
+    </Button>
+    <Button name="button.resend">
+        <text>Erneut senden</text>
+        <tooltip>Sendet die CPS-Transaktion erneut</tooltip>
+    </Button>
+    <Button name="button.close">
+        <text>Schließen</text>
+        <tooltip>Schließt die CPS-Transaktion</tooltip>
+    </Button>
+
+    <Text name="details">Details</Text>
+    <Text name="functions">Functions</Text>
+
+    <Text name="fieldsDetails">Fields/Details</Text>
+    <Text name="request">Request</Text>
+    <Text name="response">Response</Text>
+    <Text name="log">Log</Text>
+    <Text name="orders">Orders</Text>
+    <Text name="invalidOrder">"Ungueltiger Auftrag. CPS-Historie kann nicht angezeigt werden."</Text>
+    <Text name="closeDialog">Schliesst den Dialog</Text>
+    <Text name="ok">OK</Text>
+    <Text name="found"> gefunden</Text>
+    <Text name="cpsTxNotFound">Zu dem Auftrag ({0}) wurden keine CPS-Transaktionen gefunden!</Text>
+    <Text name="titleCPS">CPS-Historie zu Auftrag </Text>
+
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.id"><text>Id</text></Label>
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.taifunOrderNo"><text>Order-No</text></Label>
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.auftragId"><text>tech Order-No</text></Label>
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.verlaufId"><text>Verlauf Id</text></Label>
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.txState"><text>Status</text></Label>
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.txSource"><text>Source</text></Label>
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.serviceOrderType"><text>SO-Type</text></Label>
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.serviceOrderPrio"><text>SO-Prio</text></Label>
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.soStackId"><text>Stack Id</text></Label>
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.soStackSeq"><text>Stack Seq</text></Label>
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.region"><text>Niederlassung</text></Label>
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.estimatedExecTime"><text>Exec-Date</text></Label>
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.responseAt"><text>Resp At</text></Label>
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.txUser"><text>User</text></Label>
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.userW"><text>UserW</text></Label>
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.timest"><text>Timestamp</text></Label>
+    <Label name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.requestAt"><text>Req At</text></Label>
+
+    <DateComponent name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.estimatedExecTime">
+        <tooltip></tooltip>
+        <format type="date">dd.MM.yyyy HH:mm:ss</format>
+    </DateComponent>
+    <DateComponent name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.responseAt">
+        <tooltip></tooltip>
+        <format type="date">dd.MM.yyyy HH:mm:ss</format>
+    </DateComponent>
+    <DateComponent name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.timest">
+        <tooltip></tooltip>
+        <format type="date">dd.MM.yyyy HH:mm:ss</format>
+    </DateComponent>
+    <DateComponent name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.requestAt">
+        <tooltip></tooltip>
+        <format type="date">dd.MM.yyyy HH:mm:ss</format>
+    </DateComponent>
+
+    <TextField name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.id">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+    <TextField name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.taifunOrderNo">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+    <TextField name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.auftragId">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+    <TextField name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.verlaufId">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+    <TextField name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.txState">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+    <TextField name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.txSource">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+    <TextField name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.serviceOrderType">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+    <TextField name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.serviceOrderPrio">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+    <TextField name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.soStackId">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+    <TextField name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.soStackSeq">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+    <TextField name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.region">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+    <TextField name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.txUser">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+    <TextField name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.userW">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Text name="message">Message</Text>
+    <Text name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.serviceOrderData">SO-Data</Text>
+    <Text name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.requestData">Request-Data</Text>
+    <Text name="de.augustakom.hurrican.model.cc.cps.CPSTransaction.responseData">Response-Data</Text>
+
+    <Text name="progressText">lade CPS-Transaktionen...</Text>
+    <Text name="loadText">...</Text>
+</sf>

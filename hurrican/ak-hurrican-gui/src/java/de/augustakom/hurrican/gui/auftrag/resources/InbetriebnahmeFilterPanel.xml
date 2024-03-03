@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+GUI-Definitionen fuer das Filter-Panel zur Suche ueber
+Inbetriebnahme- bzw. VorgabeAM-Datum.
+-->
+<sf>
+
+    <Label name="produktgruppe">
+        <text>Produktgruppe:</text>
+    </Label>
+    <ComboBox name="produktgruppe">
+        <tooltip>Auswahl der Produktgruppe nach der gesucht werden soll.</tooltip>
+    </ComboBox>
+
+    <Label name="inbetriebnahme.von">
+        <text>Inbetriebnahme von:</text>
+    </Label>
+    <DateComponent name="inbetriebnahme.von">
+        <tooltip>Angabe des Inbetriebnahme-Datums, ab dem gesucht wird.</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>15</columns>
+    </DateComponent>
+
+    <Label name="inbetriebnahme.bis">
+        <text>Inbetriebnahme bis:</text>
+    </Label>
+    <DateComponent name="inbetriebnahme.bis">
+        <tooltip>Angabe des Inbetriebnahme-Datums, bis zu dem gesucht wird.</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>15</columns>
+    </DateComponent>
+
+    <Label name="kunden.no">
+        <text>Kunde__NO:</text>
+    </Label>
+    <FormattedTextField name="kunden.no">
+        <tooltip>Kundennummer des Kunden, auf den die Suche eingeschränkt werden soll.</tooltip>
+    </FormattedTextField>
+
+    <Label name="niederlassung">
+        <text>Niederlassung:</text>
+    </Label>
+    <ComboBox name="niederlassung">
+        <tooltip>Niederlassung, der die zu suchenden Aufträge zugeordnet sind.</tooltip>
+        <columns>15</columns>
+    </ComboBox>
+
+    <Label name="inbetriebnahme">
+        <text>Inbetriebnahme:</text>
+    </Label>
+    <CheckBox name="inbetriebnahme">
+        <tooltip>Filter nach Inbetriebnahme bzw. Vorgabe-Datum</tooltip>
+    </CheckBox>
+
+    <Label name="kuendigung">
+        <text>Kündigung:</text>
+    </Label>
+    <CheckBox name="kuendigung">
+        <tooltip>Filter nach Kündigungs-Datum</tooltip>
+    </CheckBox>
+
+    <Label name="realisierung">
+        <text>Realisierung (BA):</text>
+    </Label>
+    <CheckBox name="realisierung">
+        <tooltip>Filter nach Realisierungs-Datum des Bauauftrags</tooltip>
+    </CheckBox>
+</sf>

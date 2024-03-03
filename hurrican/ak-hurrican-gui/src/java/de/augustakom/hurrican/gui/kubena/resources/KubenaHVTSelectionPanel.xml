@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Definition fuer das Panel zur Auswahl der HVTs und Produkte 
+fuer die Kubena.
+-->
+<sf>
+    
+    <Button name="add.hvt">
+        <icon>de/augustakom/hurrican/gui/images/right.gif</icon>
+        <tooltip>Nimmt die selektierten HVT-Standorte in die Kubena auf</tooltip>
+    </Button>
+    
+    <Button name="remove.hvt">
+        <icon>de/augustakom/hurrican/gui/images/left.gif</icon>
+        <tooltip>Entfernt die selektieren HVT-Standorte aus der Kubena</tooltip>
+    </Button>
+    
+    <Button name="add.produkt">
+        <icon>de/augustakom/hurrican/gui/images/right.gif</icon>
+        <tooltip>Nimmt die selektierten Produkte in die Kubena auf</tooltip>
+    </Button>
+    
+    <Button name="remove.produkt">
+        <icon>de/augustakom/hurrican/gui/images/left.gif</icon>
+        <tooltip>Entfernt die selektierten Produkte aus der Kubena</tooltip>
+    </Button>
+    
+    <Label name="hvt"><text>HVT-Auswahl:</text></Label>
+    <Label name="produkt"><text>Produkt-Auswahl:</text></Label>
+    
+</sf>

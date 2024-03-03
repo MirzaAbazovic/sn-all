@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur HVT-Ueberwachung.
+-->
+<sf>
+    
+    <Button name="uevt">
+        <text>Details zu ÜVT</text>
+    </Button>
+    
+    <Button name="belegung">
+        <text>ÜVT mit Belegung</text>
+        <tooltip>Zeigt Details zum ÜVT an (tabellarisch)</tooltip>
+    </Button>
+    
+    <Button name="belegung.graphic">
+        <text>ÜVT m. Belegung (gr.)</text>
+        <tooltip>Zeigt Details zum ÜVT an (graphisch)</tooltip>
+    </Button>
+    
+</sf>

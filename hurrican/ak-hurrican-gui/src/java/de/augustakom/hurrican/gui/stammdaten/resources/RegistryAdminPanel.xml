@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Panel fuer die Registry-Tabelle.
+-->
+<sf>
+    
+    <Label name="id"><text>ID:</text></Label>
+    <FormattedTextField name="id">
+        <tooltip>ID des Registry-Eintrags</tooltip>
+        <maxchars>9</maxchars>
+        <format type="number">#</format>
+    </FormattedTextField>
+    
+    <Label name="name"><text>Name:</text></Label>
+    <TextField name="name">
+        <tooltip>Name des Registry-Eintrags</tooltip>
+        <maxchars>100</maxchars>
+    </TextField>
+    
+    <Label name="beschreibung"><text>Beschreibung:</text></Label>
+    <TextArea name="beschreibung">
+        <tooltip>Kurze Beschreibung des Registry-Eintrags</tooltip>
+        <maxchars>255</maxchars>
+    </TextArea>
+    
+    <Label name="strval"><text>String-Wert:</text></Label>
+    <TextArea name="strval">
+        <tooltip>String-Value des Registry-Eintrags</tooltip>
+        <maxchars>255</maxchars>
+    </TextArea>
+    
+    <Label name="intval"><text>Integer-Wert:</text></Label>
+    <FormattedTextField name="intval">
+        <tooltip>Integer-Value des Registry-Eintrags</tooltip>
+        <maxchars>9</maxchars>
+        <format type="number">#</format>
+    </FormattedTextField>
+  
+</sf>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typ:CommandStiftDataRequestResponse xmlns:typ="http://mnet.de/hurricanweb/command/stift/types">
+    <typ:leiste>${leiste}</typ:leiste>
+</typ:CommandStiftDataRequestResponse>

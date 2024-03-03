@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Dialog zur Darstellung von Fehler-Protokollen.
+-->
+<sf>
+
+    <Text name="title">Automatisierungs-Fehler</Text>
+
+    <Label name="date.occured"><text>Fehler am:</text></Label>
+    <DateComponent name="date.occured">
+        <tooltip>Datum, zu dem der Fehler aufgetreten ist</tooltip>
+        <format type="date">dd.MM.yyyy HH:mm:ss</format>
+    </DateComponent>
+
+    <Label name="error.message"><text>Fehlertext:</text></Label>
+    <TextArea name="error.message">
+        <tooltip>Kurz-Beschreibung des Fehler</tooltip>
+        <columns>40</columns>
+        <rows>3</rows>
+    </TextArea>
+
+    <Label name="stacktrace"><text>Stacktrace:</text></Label>
+    <TextArea name="stacktrace">
+        <columns>40</columns>
+        <rows>7</rows>
+    </TextArea>
+
+</sf>

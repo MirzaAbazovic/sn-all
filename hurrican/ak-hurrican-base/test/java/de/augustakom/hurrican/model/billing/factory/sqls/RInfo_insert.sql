@@ -1,0 +1,33 @@
+Insert into BILL_SPEC
+   (BILL_SPEC_NO, DESCRIPTION, CUST_NO, IS_ACTIVE, DEBIT_ACCOUNT_NO, INV_ADDR_NO, IS_DEFAULT, INV_INTERVAL, CURRENCY_ID, INV_PAPER, INV_P_FEE, INV_ELECTRONIC,
+   INV_E_FEE, INV_P_NO_COPIES, CD_PAPER, CD_P_FEE, CD_ELECTRONIC, CD_E_FEE, C_P_VOICE_TYPE, C_P_BN_TYPE, C_P_CUT_A_NUMBER, C_P_CUT_B_NUMBER, C_E_VOICE_TYPE,
+   C_E_BN_TYPE, C_E_ADDRESS_INCLUDED, C_E_VAT_INCLUDED, C_E_CUT_A_NUMBER, C_E_CUT_B_NUMBER, C_E_FILE_SUFFIX, C_E_FILE_CODPAGE, C_E_FILE_FIELD_SEP, C_E_EMAIL,
+   C_E_ZIPPED, C_E_ENCRYPTED, CS_PAPER, CS_P_FEE, CS_P_NUMBER_TYPE, UDR_PAPER, UDR_P_FEE, USERW, DATEW, CREATED_AT, EXT_DEBITOR_ID, INV_MAXI, INV_EDIFACT,
+   INV_EGNCD, INV_MANUELL, SAP_MAHNSPERRE, SHOW_IN_OVERVIEW)
+ Values
+   (
+    ${rinfoNo:-NULL},
+    '${description:-Überweisung, Test}',
+    ${kundeNo},
+    '1',
+    500545645,
+    ${adresseNo:-NULL},
+    '1',
+    1,
+    'EUR',
+    '0',
+    '0',
+    '1', '0', 0,
+    '1', '0', '1', '0', 'NA',
+    'NA', '0', '0', 'NA', 'NA',
+    '0', '0', '0', '0', 'csv',
+    'ISO', ';',
+    'hurrican_developer@m-net.de', '1',
+    '0', '0', '0', 'CDR_STATS_DN',
+    '0', '0',
+    'TEST',
+    TO_DATE('01/01/2011 00:00:00', 'MM/DD/YYYY HH24:MI:SS'),
+    TO_DATE('01/01/2011 00:00:00', 'MM/DD/YYYY HH24:MI:SS'),
+    '${extDebitorId:-TEST-DEBIT}',
+    '1', '0', '0',
+    '0', 'R', '0')

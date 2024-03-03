@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse 
+de.augustakom.hurrican.model.exmodules.tal.TALBestellung
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.exmodules.tal">
+	<class name="TALBestellung" table="TTALBESTELLUNG">
+	    
+	    <!-- PrimaryKey -->
+		<id name="id" column="TBS_ID" unsaved-value="null" type="long">
+			<generator class="sequence"><param name="sequence">SEQ_TTALBESTELLUNG</param></generator>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<property name="vorfallId" column="TBS_TBV_ID" type="long" not-null="true"/>
+		<property name="sourceId" column="TBS_SRC_ID" type="long" not-null="true"/>
+		<property name="firstId" column="TBS_TBS_FIRST_ID" type="long" insert="false" update="false"/>
+		<property name="status" column="TBS_STATUS" type="long" not-null="true"/>
+		<property name="sender" column="TBS_SENDER" type="string" not-null="true"/>
+		<property name="recipient" column="TBS_RECIPIENT" type="string" not-null="true"/>
+		
+	</class>
+	
+</hibernate-mapping>

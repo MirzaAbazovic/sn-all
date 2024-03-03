@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Produkt
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Produkt" table="T_PRODUKT">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="PROD_ID" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="produktGruppeId" column="PRODUKTGRUPPE_ID" type="long" not-null="true"/>
+        <property name="produktNr" column="PRODUKT_NR" type="string"/>
+        <property name="anschlussart" column="ANSCHLUSSART" type="string"/>
+        <property name="productNamePattern" column="PROD_NAME_PATTERN" type="string"/>
+        <property name="leitungsart" column="LEITUNGSART" type="long"/>
+        <property name="aktionsId" column="AKTIONS_ID" type="short"/>
+        <property name="minDnCount" column="MIN_DN_COUNT" type="integer" not-null="true"/>
+        <property name="maxDnCount" column="MAX_DN_COUNT" type="integer" not-null="true"/>
+        <property name="dnBlock" column="DN_BLOCK" type="boolean"/>
+        <property name="dnTyp" column="DN_TYP" type="long"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date"/>
+        <property name="auftragserstellung" column="AUFTRAGSERSTELLUNG" type="boolean"/>
+        <property name="vbzUseFromMaster" column="TDN_USE_FROM_MASTER" type="boolean"/>
+        <property name="vbzKindOfUseProduct" column="TDN_KIND_OF_USE_PRODUCT" type="string"/>
+        <property name="vbzKindOfUseType" column="TDN_KIND_OF_USE_TYPE" type="string"/>
+        <property name="vbzKindOfUseTypeVpn" column="TDN_KIND_OF_USE_TYPE_VPN" type="string"/>
+        <property name="leitungsNrAnlegen" column="LTGNR_ANLEGEN" type="boolean"/>
+        <property name="buendelProdukt" column="BRAUCHT_BUENDEL" type="boolean"/>
+        <property name="buendelBillingHauptauftrag" column="BUENDEL_BILLING_HAUPTAUFTRAG" type="boolean"/>
+        <property name="elVerlauf" column="ELVERLAUF" type="boolean"/>
+        <property name="endstellenTyp" column="ENDSTELLEN_TYP" type="integer"/>
+        <property name="beschreibung" column="BESCHREIBUNG" type="string"/>
+        <property name="accountVorsatz" column="ACCOUNT_VORS" type="string"/>
+        <property name="liNr" column="LI_NR" type="integer"/>
+        <property name="vpnPhysik" column="VPN_PHYSIK" type="boolean"/>
+        <property name="isParent" column="IS_PARENT" type="boolean"/>
+        <property name="checkChild" column="CHECK_CHILD" type="boolean"/>
+        <property name="isCombiProdukt" column="IS_COMBI_PRODUKT" type="boolean"/>
+        <property name="autoProductChange" column="AUTO_PRODUCT_CHANGE" type="boolean"/>
+        <property name="projektierung" column="PROJEKTIERUNG" type="boolean"/>
+        <property name="exportKdpM" column="EXPORT_KDP_M" type="boolean"/>
+        <property name="createKdpAccountReport" column="CREATE_KDP_ACCOUNT_REPORT" type="boolean"/>
+        <property name="exportAKProdukt" column="EXPORT_AK_PRODUKTE" type="boolean"/>
+        <property name="verteilungDurch" column="VERTEILUNG_DURCH" type="long"/>
+        <property name="baRuecklaeufer" column="BA_RUECKLAEUFER" type="boolean"/>
+        <property name="projektierungChainId" column="PROJEKTIERUNG_CHAIN_ID" type="long"/>
+        <property name="verlaufChainId" column="VERLAUF_CHAIN_ID" type="long"/>
+        <property name="verlaufCancelChainId" column="VERLAUF_CANCEL_CHAIN_ID" type="long"/>
+        <property name="createAPAddress" column="CREATE_AP_ADDRESS" type="boolean"/>
+        <property name="baTerminVerschieben" column="BA_CHANGE_REALDATE" type="boolean"/>
+        <property name="assignIad" column="ASSIGN_IAD" type="boolean"/>
+        <property name="cpsProvisioning" column="CPS_PROVISIONING" type="boolean"/>
+        <property name="cpsProductName" column="CPS_PROD_NAME" type="string"/>
+        <property name="cpsAccountType" column="CPS_ACCOUNT_TYPE" type="string"/>
+        <property name="cpsAutoCreation" column="CPS_AUTO_CREATION" type="boolean"/>
+        <property name="cpsDSLProduct" column="CPS_DSL_PRODUCT" type="boolean"/>
+        <property name="cpsMultiDraht" column="CPS_MULTI_DRAHT" type="boolean"/>
+        <property name="isVierDraht" column="VIER_DRAHT" type="boolean"/>
+        <property name="cpsIPDefault" column="CPS_IP_DEFAULT" type="boolean"/>
+        <property name="ipPool" column="IP_POOL" type="long"/>
+        <many-to-one name="ipPurposeV4" class="de.augustakom.hurrican.model.cc.Reference"
+            column="IP_PURPOSE_V4" not-null="false" lazy="false" />
+        <property name="ipPurposeV4Editable" column="IP_PURPOSE_V4_EDITABLE" type="boolean" />
+        <property name="ipNetmaskSizeV4" column="IP_NETMASK_SIZE_V4" type="integer"/>
+        <property name="ipNetmaskSizeV6" column="IP_NETMASK_SIZE_V6" type="integer"/>
+        <property name="ipNetmaskSizeEditable" column="IP_NETMASK_SIZE_EDITABLE" type="boolean" />
+        <property name="automationPossible" column="AUTOMATION_POSSIBLE" type="boolean" />
+        <many-to-one name="hwSwitch" class="de.augustakom.hurrican.model.cc.hardware.HWSwitch"
+            column="SWITCH" not-null="false" lazy="false" />
+        <property name="geoIdSource" column="geoid_src">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">de.augustakom.hurrican.model.cc.GeoIdSource</param>
+                <param name="type">12</param> <!-- java.sql.Types -->
+            </type>
+        </property>
+        <property name="sdslNdraht" column="SDSL_N_DRAHT">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">de.augustakom.hurrican.model.cc.SdslNdraht</param>
+                <param name="type">12</param>
+                <!-- java.sql.Types -->
+            </type>
+        </property>
+        <property name="autoHvtZuordnung" column="AUTO_HVT_ZUORDNUNG" type="boolean" not-null="true"/>
+        <property name="smsVersand" column="SMS_VERSAND" type="boolean" not-null="true"/>
+        <property name="erstellStatusId" column="ERSTELL_STATUS_ID" type="long"/>
+        <property name="kuendigungStatusId" column="KUENDIGUNG_STATUS_ID" type="long"/>
+        <property name="sendStatusUpdates" column="SEND_STATUS_UPDATE" type="boolean" not-null="true"/>
+        <property name="aftrAddress" column="AFTR_ADDRESS" type="string"/>
+        <property name="pbitDaten" column="P_BIT_DATEN" type="integer"/>
+        <property name="pbitVoip" column="P_BIT_VOIP" type="integer"/>
+    </class>
+
+</hibernate-mapping>

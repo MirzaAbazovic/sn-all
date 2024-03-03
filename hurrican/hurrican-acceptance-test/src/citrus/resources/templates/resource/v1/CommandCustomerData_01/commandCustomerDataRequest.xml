@@ -1,0 +1,5 @@
+<ns:CommandCustomerDataRequest xmlns:ns="http://mnet.de/hurricanweb/command/customer/types">
+    <ns:networkElementId>${oltChildId}</ns:networkElementId>
+    <ns:port>${hwEqn}</ns:port>
+    <ns:datum>citrus:currentDate('yyyy-MM-dd')</ns:datum>
+</ns:CommandCustomerDataRequest>

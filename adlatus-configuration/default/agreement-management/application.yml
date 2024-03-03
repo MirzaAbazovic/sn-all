@@ -1,0 +1,12 @@
+server:
+  port: '8686'
+spring:
+  jackson:
+    date-format: de.bitconex.agreement.RFC3339DateFormat
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: 'false'
+  data:
+    mongodb:
+      database: agreement_management
+      port: '27017'
+      host: localhost

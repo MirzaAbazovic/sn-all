@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Sub-Panel der CPS Daten fuer die Produkte.
+-->
+<sf>
+
+    <Label name="cps.provisioning"><text>CPS Provisioning:</text></Label>
+    <CheckBox name="cps.provisioning">
+        <tooltip>Definiert, ob das Produkt ueber den CPS provisioniert werden kann.</tooltip>
+    </CheckBox>
+
+    <Label name="cps.product.name"><text>CPS Produkt-Name:</text></Label>
+    <TextField name="cps.product.name">
+        <tooltip>Produkt-Name fuer den CPS (keine Leerzeichen!!!)</tooltip>
+        <columns>15</columns>
+        <maxchars>30</maxchars>
+    </TextField>
+
+    <Label name="cps.auto.creation"><text>CPS auto creation:</text></Label>
+    <CheckBox name="cps.auto.creation">
+        <tooltip>Definiert, ob für das Produkt automatisch (aus BAs) CPS-Tx angelegt werden können.</tooltip>
+    </CheckBox>
+
+    <Label name="cps.dsl.product"><text>CPS DSL Produkt:</text></Label>
+    <CheckBox name="cps.dsl.product">
+        <tooltip>Definiert, ob das Produkt vom CPS als 'DSL'-Produkt erkannt werden soll.</tooltip>
+    </CheckBox>
+
+    <Label name="cps.multi.draht"><text>CPS n-Draht:</text></Label>
+    <CheckBox name="cps.multi.draht">
+        <tooltip>Definiert, ob das Produkt mehr als eine Leitung besitzen kann.</tooltip>
+    </CheckBox>
+
+    <Label name="cps.ip.default"><text>CPS IP-Default:</text></Label>
+    <CheckBox name="cps.ip.default">
+        <tooltip>Erzwingt Provisionierung fester IP Adressen.</tooltip>
+    </CheckBox>
+
+    <Label name="cps.account.type"><text>CPS Account Type:</text></Label>
+    <TextField name="cps.account.type">
+        <tooltip>Angabe des Account-Typs (Radius) für das Produkt</tooltip>
+        <columns>15</columns>
+        <maxchars>20</maxchars>
+    </TextField>
+
+    <Button name="add.cps.config">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Fuegt eine neue CPS-Konfiguration hinzu</tooltip>
+    </Button>
+
+    <Button name="del.cps.config">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Entfernt die selektierte CPS-Konfiguration</tooltip>
+    </Button>
+
+</sf>

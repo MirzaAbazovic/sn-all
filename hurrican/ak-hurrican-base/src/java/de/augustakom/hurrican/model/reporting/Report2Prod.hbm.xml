@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.reporting.model.Report2Prod
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.reporting">
+    <class name="Report2Prod" table="t_report_2_prod">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_REPORT_2_PROD_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="reportId" column="REP_ID" type="long" not-null="true"/>
+        <property name="produktId" column="PROD_ID" type="long" not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

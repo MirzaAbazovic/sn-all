@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adlatus-gui-deployment
+  namespace: adl
+  labels:
+    app: adlatus-gui
+spec:
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adlatus-gui
+  template:
+    metadata:
+      labels:
+        app: adlatus-gui
+    spec:
+      containers:
+        - name: adlatus-gui
+          image: adlatus-gui:latest
+          ports:
+            - containerPort: 8080
+          # envFrom:
+          #  - configMapRef:
+          #      name: adlatus-gui-config
+          #  - secretRef:
+          #      name: adlatus-gui-secret

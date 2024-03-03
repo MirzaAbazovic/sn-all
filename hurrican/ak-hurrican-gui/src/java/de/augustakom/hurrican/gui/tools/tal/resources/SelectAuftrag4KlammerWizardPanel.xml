@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel fuer die TAL-Klammerung.
+-->
+<sf>
+
+    <Label name="sub.title">
+        <text>Auftragdetails für Klammerung und Anhänge:</text>
+    </Label>
+
+    <Text name="no.archive.documents.found">Es wurden keine Dokumente des Typs #{0}# gefunden!</Text>
+
+</sf>

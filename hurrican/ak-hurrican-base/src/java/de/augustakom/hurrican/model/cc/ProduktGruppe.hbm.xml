@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.ProduktGruppe
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="ProduktGruppe" table="T_PRODUKTGRUPPE">
+
+        <cache usage="read-only"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="produktGruppe" column="PRODUKTGRUPPE" type="string" length="30"/>
+        <property name="realm" column="REALM" type="string" length="30"/>
+
+    </class>
+
+</hibernate-mapping>

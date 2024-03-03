@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Anrede
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Anrede" table="T_ANREDE">
+
+        <cache usage="read-only"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="anredeKey" column="ANREDE_KEY" type="string"/>
+        <property name="anrede" column="ANREDE" type="string"/>
+        <property name="anredeArt" column="ANREDE_ART" type="long"/>
+        <property name="persoenlicheAnrede" column="PERS_ANREDE" type="boolean"/>
+
+    </class>
+
+</hibernate-mapping>

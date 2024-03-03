@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+         name="AKomFooter"
+         columnCount="1"
+         printOrder="Vertical"
+         orientation="Portrait"
+         pageWidth="510"
+         pageHeight="57"
+         columnWidth="510"
+         columnSpacing="0"
+         leftMargin="0"
+         rightMargin="0"
+         topMargin="0"
+         bottomMargin="0"
+         whenNoDataType="AllSectionsNoDetail"
+         isTitleNewPage="false"
+         isSummaryNewPage="false">
+    <property name="com.jasperassistant.designer.DataSource" value="emptyDS" />
+    <property name="com.jasperassistant.designer.SnapToGrid" value="false" />
+    <property name="com.jasperassistant.designer.Units" value="Millimeters" />
+    <property name="com.jasperassistant.designer.GridHeight" value="12" />
+    <property name="com.jasperassistant.designer.Grid" value="true" />
+    <property name="com.jasperassistant.designer.GridWidth" value="12" />
+    <property name="ireport.scriptlethandling" value="0" />
+    <property name="ireport.encoding" value="UTF-8" />
+    <import value="java.util.*" />
+    <import value="net.sf.jasperreports.engine.*" />
+    <import value="net.sf.jasperreports.engine.data.*" />
+
+
+        <background>
+            <band height="0"  isSplitAllowed="true" >
+            </band>
+        </background>
+        <title>
+            <band height="0"  isSplitAllowed="true" >
+            </band>
+        </title>
+        <pageHeader>
+            <band height="0"  isSplitAllowed="true" >
+            </band>
+        </pageHeader>
+        <columnHeader>
+            <band height="0"  isSplitAllowed="true" >
+            </band>
+        </columnHeader>
+        <detail>
+            <band height="0"  isSplitAllowed="true" >
+            </band>
+        </detail>
+        <columnFooter>
+            <band height="0"  isSplitAllowed="true" >
+            </band>
+        </columnFooter>
+        <pageFooter>
+            <band height="45"  isSplitAllowed="true" >
+                <line direction="TopDown">
+                    <reportElement
+                        x="0"
+                        y="0"
+                        width="510"
+                        height="1"
+                        key="line"
+                        positionType="Float"/>
+                    <graphicElement stretchType="NoStretch" pen="Thin"/>
+                </line>
+                <staticText>
+                    <reportElement
+                        x="1"
+                        y="0"
+                        width="503"
+                        height="44"
+                        key="staticText"
+                        positionType="Float">
+                            <printWhenExpression><![CDATA[new Boolean(true)]]></printWhenExpression>
+                        </reportElement>
+                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                    <textElement verticalAlignment="Bottom">
+                        <font fontName="Arial" size="6"/>
+                    </textElement>
+                <text><![CDATA[Geschäftsführer: Jens Prautzsch (Vorsitzender) | Simone Büber-Monath | Michael Fränkle | Vorsitzende des Aufsichtsrats: Erna-Maria Trixl
+Bayerische Landesbank München | BLZ 700 500 00 | Konto-Nr. 28 273
+Sparkasse Nürnberg | BLZ 760 501 01 | Konto-Nr. 1 597 880
+Stadtsparkasse Augsburg | BLZ 720 500 00 | Konto-Nr. 66 555
+Firmensitz: Emmy-Noether-Str. 2 | 80992 München | Amtsgericht München HR B 108514
+Finanzamt München für Körperschaften | USt.-ID: DE 188 796 931 | St.-Nr 143/163/40289]]></text>
+                </staticText>
+            </band>
+        </pageFooter>
+        <summary>
+            <band height="0"  isSplitAllowed="true" >
+            </band>
+        </summary>
+</jasperReport>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Table Filter-Dialog
+-->
+<sf>
+    
+    <Text name="title">Filter</Text>
+    <Text name="title.icon">de/augustakom/common/gui/images/filter.gif</Text>
+    
+ 	<ComboBox name="boolean">
+       <tooltip>Bitte Wert auswählen</tooltip>
+       <items>
+        	<item text=" "     value="null" class="java.lang.Object"/>
+        	<item text="True"  value="true" class="java.lang.Boolean"/>
+          	<item text="False" value="false" class="java.lang.Boolean"/>
+       </items>
+    </ComboBox>
+
+    <Label name="cbVerknuepfung"><text>Verknüpfungstyp:</text></Label>
+	<ComboBox name="cbVerknuepfung">
+       <tooltip>Bitte Verknüpfungstyp auswählen</tooltip>
+       <items>
+         	<item text="UND"  value="true" class="java.lang.Boolean"/>
+          	<item text="ODER" value="false" class="java.lang.Boolean"/>
+       </items>
+    </ComboBox>
+    
+    <ComboBox name="operator">
+       <tooltip>Bitte Wert auswählen</tooltip>
+       <items>
+        	<item text="="     value="0" class="java.lang.Integer"/>
+        	<item text="&lt;"  value="1" class="java.lang.Integer"/>
+          	<item text="&gt;"  value="2" class="java.lang.Integer"/>
+          	<item text="&lt;=" value="3" class="java.lang.Integer"/>
+          	<item text="&gt;=" value="4" class="java.lang.Integer"/>
+          	<item text="!="    value="5" class="java.lang.Integer"/>
+       </items>
+    </ComboBox>
+    
+    <ComboBox name="operator-boolean">
+       <tooltip>Bitte Wert auswählen</tooltip>
+       <items>
+        	<item text="="     value="0" class="java.lang.Integer"/>
+          	<item text="!="    value="5" class="java.lang.Integer"/>
+       </items>
+    </ComboBox>
+    
+    <Button name="filter">
+        <text>Filter</text>
+        <tooltip>Filtert Tabelle nach eingegebenen Kriterien</tooltip>
+    </Button>
+    
+    <Button name="close">
+        <text>Schliessen</text>
+        <tooltip>Schliesst den Filter-Dialog, ohne weitere Filterung</tooltip>
+    </Button>
+    
+    <CheckBox name="chbWC">
+    	<text>Wildcards als standard?</text>
+    	<tooltip>Filtert immer mit Wildcards (*Suchtext*)</tooltip>
+    </CheckBox>
+    
+     <CheckBox name="chbCleanFilter">
+    	<text>Bestehenden Filter löschen?</text>
+    	<tooltip>Löscht bestehenden Filter</tooltip>
+    </CheckBox>
+</sf>

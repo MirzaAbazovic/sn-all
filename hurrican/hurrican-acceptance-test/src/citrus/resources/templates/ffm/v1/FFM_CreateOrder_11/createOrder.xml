@@ -1,0 +1,54 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Body>
+        <wfs:createOrder xmlns:wfs="http://www.mnet.de/esb/cdm/Resource/WorkforceService/v1">
+            <wfs:order>
+                <wfs:id>@startsWith('HUR_')@</wfs:id>
+                <wfs:displayId>@startsWith('${order.no}-')@</wfs:displayId>
+                <wfs:customerOrderId>${order.no}</wfs:customerOrderId>
+                <wfs:description>
+                    <wfs:summary>interne Arbeit</wfs:summary>
+                    <wfs:details>@matches('Arbeit: Neuaufbau(?s).*Projektleiter: Unbekannt(?s).*Hauptprojektverantwortlicher: Unbekannt')@</wfs:details>
+                </wfs:description>
+                <wfs:type>Surf+Fon-Flat</wfs:type>
+                <wfs:activityType>RTL_Int</wfs:activityType>
+                <wfs:activitySubtype>Neuschaltung</wfs:activitySubtype>
+                <wfs:contactPerson>
+                    <wfs:role>Endkunde Montageleistung</wfs:role>
+                    <wfs:firstName>Sepp</wfs:firstName>
+                    <wfs:lastName>Huber</wfs:lastName>
+                    <wfs:communication>
+                        <wfs:phone>+49 89 555222</wfs:phone>
+                        <wfs:mobile>+49 176 123456</wfs:mobile>
+                        <wfs:email>ncuhwniodvasdfhjn@mailinator.com</wfs:email>
+                        <wfs:fax>+49 89 321</wfs:fax>
+                    </wfs:communication>
+                </wfs:contactPerson>
+                <wfs:contactPerson>
+                    <wfs:role>Kunde</wfs:role>
+                    <wfs:firstName>Sepp</wfs:firstName>
+                    <wfs:lastName>Huber</wfs:lastName>
+                    <wfs:communication>
+                        <wfs:phone>+49 89 555222</wfs:phone>
+                        <wfs:mobile>+49 176 123456</wfs:mobile>
+                        <wfs:email>ncuhwniodvasdfhjn@mailinator.com</wfs:email>
+                        <wfs:fax>+49 89 321</wfs:fax>
+                    </wfs:communication>
+                </wfs:contactPerson>
+                <wfs:qualification>Endkundenservice HVT</wfs:qualification>
+                <wfs:qualification>Interne Arbeit</wfs:qualification>
+                <wfs:location>
+                    <wfs:street>HVT-Gruppe-Strasse</wfs:street>
+                    <wfs:houseNumber>123</wfs:houseNumber>
+                    <wfs:zipCode>01234</wfs:zipCode>
+                    <wfs:city>HVT-Gruppe-Ort</wfs:city>
+                </wfs:location>
+                <wfs:requestedTimeSlot>
+                    <wfs:earliestStart>@matches('${realisierungstermin}T08:00:00.000+.*')@</wfs:earliestStart>
+                    <wfs:latestStart>@matches('${realisierungstermin}T16:59:00.000+.*')@</wfs:latestStart>
+                    <wfs:latestEnd>@matches('${realisierungstermin}T20:59:00.000+.*')@</wfs:latestEnd>
+                </wfs:requestedTimeSlot>
+                <wfs:plannedDuration>240</wfs:plannedDuration>
+            </wfs:order>
+        </wfs:createOrder>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

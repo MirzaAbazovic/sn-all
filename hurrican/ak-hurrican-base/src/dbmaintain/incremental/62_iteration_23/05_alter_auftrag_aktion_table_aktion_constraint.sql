@@ -1,0 +1,2 @@
+alter table T_AUFTRAG_AKTION drop constraint T_AUFTRAG_AKTION_ACTION;
+alter table T_AUFTRAG_AKTION add constraint T_AUFTRAG_AKTION_ACTION check (AKTION in ('MODIFY_PORT', 'CANCEL_MODIFY_PORT'));

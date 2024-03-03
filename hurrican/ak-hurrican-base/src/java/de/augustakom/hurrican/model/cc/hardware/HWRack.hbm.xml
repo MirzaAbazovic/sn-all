@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.hardware.HWRack
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.hardware">
+    <class name="HWRack" table="T_HW_RACK">
+        <cache usage="read-write"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence">
+                <param name="sequence">S_T_HW_RACK_0</param>
+            </generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="hvtIdStandort" column="HVT_ID_STANDORT" type="long" not-null="true"/>
+        <property name="rackTyp" column="RACK_TYP" type="string" not-null="true"/>
+        <property name="anlagenBez" column="ANLAGENBEZ" type="string"/>
+        <property name="managementBez" column="MANAGEMENTBEZ" type="string"/>
+        <property name="geraeteBez" column="GERAETEBEZ" type="string"/>
+        <property name="hvtRaumId" column="HVT_RAUM_ID" type="long"/>
+        <property name="hwProducer" column="HW_PRODUCER" type="long" not-null="true"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date" not-null="true"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date" not-null="true"/>
+
+        <joined-subclass name="HWDlu" table="T_HW_RACK_DLU" lazy="false">
+            <key column="RACK_ID"/>
+            <property name="dluNumber" column="DLU_NUMBER" type="string"/>
+            <property name="dluType" column="DLU_TYPE" type="string"/>
+            <many-to-one name="hwSwitch" class="de.augustakom.hurrican.model.cc.hardware.HWSwitch"
+                         column="SWITCH" not-null="false" lazy="false" />
+            <property name="mediaGatewayName" column="MG_NAME" type="string"/>
+            <property name="accessController" column="ACCESS_CONTROLLER" type="string"/>
+        </joined-subclass>
+
+        <joined-subclass name="HWDslam" table="T_HW_RACK_DSLAM" lazy="false">
+            <key column="RACK_ID"/>
+            <property name="dhcp82Name" column="DHCP82_NAME" type="string"/>
+            <property name="vpiUbrADSL" column="VPI_UBR_ADSL" type="integer"/>
+            <property name="vpiSDSL" column="VPI_SDSL" type="integer"/>
+            <property name="vpiCpeMgmt" column="VPI_CPE_MGMT" type="integer"/>
+            <property name="outerTagADSL" column="OUTER_TAG_ADSL" type="integer"/>
+            <property name="outerTagSDSL" column="OUTER_TAG_SDSL" type="integer"/>
+            <property name="outerTagVoip" column="OUTER_TAG_VOIP" type="integer"/>
+            <property name="outerTagCpeMgmt" column="OUTER_TAG_CPE_MGMT" type="integer"/>
+            <property name="outerTagIadMgmt" column="OUTER_TAG_IAD_MGMT" type="integer"/>
+            <property name="brasVpiADSL" column="BRAS_VPI_ADSL" type="integer"/>
+            <property name="brasOuterTagADSL" column="BRAS_OUTER_TAG_ADSL" type="integer"/>
+            <property name="brasOuterTagSDSL" column="BRAS_OUTER_TAG_SDSL" type="integer"/>
+            <property name="brasOuterTagVoip" column="BRAS_OUTER_TAG_VOIP" type="integer"/>
+            <property name="ipAdress" column="IP_ADDRESS" type="string"/>
+            <property name="einbauplatz" column="EINBAUPLATZ" type="string"/>
+            <property name="anschluss" column="ANSCHLUSS" type="string"/>
+            <property name="ansSlotPort" column="ANS_SLOT_PORT" type="string"/>
+            <property name="ansArt" column="ANS_ART" type="string"/>
+            <property name="schmidtschesKonzept" column="SCHMIDTSCHES_KONZEPT" type="boolean"/>
+            <property name="softwareVersion" column="SOFTWARE_VERSION" type="string"/>
+            <property name="erxIfaceDaten" column="ERX_IFACE_DATEN" type="string"/>
+            <property name="erxStandort" column="ERX_STANDORT" type="string"/>
+            <property name="physikArt" column="PHYSIK_ART" type="string"/>
+            <property name="physikWert" column="PHYSIK_WERT" type="string"/>
+            <property name="atmPattern" column="ATM_PATTERN" type="string"/>
+            <property name="ccOffset" column="CC_OFFSET" type="integer"/>
+            <property name="svlan" column="S_VLAN" type="integer"/>
+            <property name="altGslamBez" column="ALT_GSLAM_BEZ" type="string"/>
+            <property name="dslamType" column="DSLAM_TYPE" type="string" not-null="false"/>
+        </joined-subclass>
+
+        <joined-subclass name="HWRouter" table="T_HW_RACK_ROUTER" lazy="false">
+            <key column="RACK_ID"/>
+            <property name="routerTyp" column="ROUTER_TYP" type="string"/>
+            <property name="serialNumber" column="SERIAL_NUMBER" type="string"/>
+        </joined-subclass>
+
+        <joined-subclass name="HWOlt" table="T_HW_RACK_OLT" lazy="false">
+            <key column="RACK_ID"/>
+            <property name="serialNo" column="SERIAL_NO" type="string"/>
+            <property name="qinqVon" column="QING_VON" type="string"/>
+            <property name="qinqBis" column="QING_BIS" type="string"/>
+            <property name="ipNetzVon" column="IP_NETZ_VON" type="string"/>
+            <property name="oltNr" column="OLT_NR" type="integer"/>
+            <property name="vlanAktivAb" column="VLAN_AKTIV_AB" type="date"/>
+            <property name="svlanOffset" column="SVLAN_OFFSET" type="integer"/>
+            <property name="oltType" column="OLT_TYPE" type="string"/>
+        </joined-subclass>
+
+        <joined-subclass name="HWMdu" table="T_HW_RACK_MDU" lazy="false">
+            <key column="RACK_ID"/>
+            <!-- MDU, DPO und ONT verwenden eine gemeinsame Basisklasse, die alle nachfolgenden Felder definiert -->
+            <property name="oltRackId" column="OLT_RACK_ID" type="long" not-null="true"/>
+            <property name="serialNo" column="SERIAL_NO" type="string" not-null="true"/>
+            <property name="ipAddress" column="IP_ADDRESS" type="string"/>
+            <property name="oltFrame" column="OLT_FRAME" type="string" not-null="true"/>
+            <property name="oltSubrack" column="OLT_SUBRACK" type="string"/>
+            <!-- HUR-4089 Die DB-Spalte OLT_SHELF entspricht dem OLT-Slot (Shelf = Subrack!) -->
+            <property name="oltSlot" column="OLT_SHELF" type="string" not-null="true"/>
+            <property name="oltGPONPort" column="OLT_GPON_PORT" type="string" not-null="true"/>
+            <property name="oltGPONId" column="OLT_GPON_ID" type="string" not-null="true"/>
+            <property name="freigabe" column="FREIGABE" type="date"/>
+            <!-- MDU spezifische Felder -->
+            <property name="catvOnline" column="CATV_ONLINE" type="boolean"/>
+            <property name="mduType" column="MDU_TYPE" type="string"/>
+        </joined-subclass>
+
+        <joined-subclass name="HWOnt" table="T_HW_RACK_ONT" lazy="false">
+            <key column="RACK_ID"/>
+            <!-- MDU, DPO und ONT verwenden eine gemeinsame Basisklasse, die alle nachfolgenden Felder definiert -->
+            <property name="oltRackId" column="OLT_RACK_ID" type="long" not-null="true"/>
+            <property name="serialNo" column="SERIAL_NO" type="string"/>
+            <property name="oltFrame" column="OLT_FRAME" type="string" not-null="true"/>
+            <property name="oltSubrack" column="OLT_SUBRACK" type="string"/>
+            <!-- HUR-4089 Die DB-Spalte OLT_SHELF entspricht dem OLT-Slot (Shelf = Subrack!) -->
+            <property name="oltSlot" column="OLT_SHELF" type="string" not-null="true"/>
+            <property name="oltGPONPort" column="OLT_GPON_PORT" type="string" not-null="true"/>
+            <property name="oltGPONId" column="OLT_GPON_ID" type="string" not-null="true"/>
+            <property name="freigabe" column="FREIGABE" type="date"/>
+            <!-- ONT spezifische Felder -->
+            <property name="ontType" column="ONT_TYPE" type="string"/>
+        </joined-subclass>
+
+        <joined-subclass name="HWDpo" table="T_HW_RACK_DPO" lazy="false">
+            <key column="RACK_ID"/>
+            <!-- MDU, DPO und ONT verwenden eine gemeinsame Basisklasse, die alle nachfolgenden Felder definiert -->
+            <property name="oltRackId" column="OLT_RACK_ID" type="long" not-null="true"/>
+            <property name="serialNo" column="SERIAL_NO" type="string"/>
+            <property name="oltFrame" column="OLT_FRAME" type="string" not-null="true"/>
+            <property name="oltSubrack" column="OLT_SUBRACK" type="string"/>
+            <!-- HUR-4089 Die DB-Spalte OLT_SHELF entspricht dem OLT-Slot (Shelf = Subrack!) -->
+            <property name="oltSlot" column="OLT_SHELF" type="string" not-null="true"/>
+            <property name="oltGPONPort" column="OLT_GPON_PORT" type="string" not-null="true"/>
+            <property name="oltGPONId" column="OLT_GPON_ID" type="string" not-null="true"/>
+            <property name="freigabe" column="FREIGABE" type="date"/>
+            <!-- DPO spezifische Felder -->
+            <property name="dpoType" column="DPO_TYPE" type="string" not-null="true"/>
+            <property name="chassisIdentifier" column="DPO_CHASSIS_IDENTIFIER" type="string"/>
+            <property name="chassisSlot" column="DPO_CHASSIS_SLOT" type="string"/>
+        </joined-subclass>
+
+        <joined-subclass name="HWLtg" table="T_HW_RACK_LTG" lazy="false">
+            <key column="RACK_ID"/>
+            <property name="ltgNumber" column="LTG_NUMBER" type="string" not-null="true"/>
+            <property name="ltgType" column="LTG_TYPE" type="string"/>
+            <property name="ltgLDARP" column="LTG_LDPARP" type="string"/>
+            <many-to-one name="hwSwitch" class="de.augustakom.hurrican.model.cc.hardware.HWSwitch"
+                         column="SWITCH" not-null="false" lazy="false" />
+            <property name="mediaGatewayName" column="MG_NAME" type="string"/>
+        </joined-subclass>
+
+        <joined-subclass name="HWSdh" table="T_HW_RACK_SDH" lazy="false">
+            <key column="RACK_ID"/>
+        </joined-subclass>
+
+        <joined-subclass name="HWPdh" table="T_HW_RACK_PDH" lazy="false">
+            <key column="RACK_ID"/>
+        </joined-subclass>
+
+        <joined-subclass name="HWDpu" table="T_HW_RACK_DPU" lazy="false">
+            <key column="RACK_ID"/>
+            <!-- MDU, DPO, ONT und DPU verwenden eine gemeinsame Basisklasse, die alle nachfolgenden Felder definiert -->
+            <property name="oltRackId" column="OLT_RACK_ID" type="long" not-null="true"/>
+            <property name="serialNo" column="SERIAL_NO" type="string"/>
+            <property name="oltFrame" column="OLT_FRAME" type="string" not-null="true"/>
+            <property name="oltSlot" column="OLT_SHELF" type="string" not-null="true"/>
+            <property name="oltGPONPort" column="OLT_GPON_PORT" type="string" not-null="true"/>
+            <property name="oltGPONId" column="OLT_GPON_ID" type="string" not-null="true"/>
+            <property name="oltSubrack" column="OLT_SUBRACK" type="string"/>
+            <property name="freigabe" column="FREIGABE" type="date"/>
+            <!-- DPU spezifische Felder -->
+            <property name="dpuType" column="DPU_TYPE" type="string" not-null="true"/>
+            <property name="reversePower" column="REVERSE_POWER" type="boolean"/>
+            <property name="tddProfil" column="TDD_PROFIL" type="string"/>
+            <property name="ipAddress" column="IP_ADRESS" type="string"/>
+        </joined-subclass>
+    </class>
+
+</hibernate-mapping>

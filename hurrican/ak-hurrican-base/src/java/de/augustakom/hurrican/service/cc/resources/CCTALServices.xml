@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer die TAL-Services und -Commands im CustomerCare-Bereich.
+Die Datei wird von CCServices.xml importiert!
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+     default-lazy-init="true">
+
+    <context:annotation-config />
+
+    <!-- Carrier-Service fuer el. bzw. interne TAL-Bestellungen (Target) -->
+    <bean id="de.augustakom.hurrican.service.cc.CarrierElTALService" class="de.augustakom.hurrican.service.cc.impl.CarrierElTALServiceImpl">
+        <property name="DAO" ref="cbVorgangDAO"/>
+        <property name="carrierService" ref="de.augustakom.hurrican.service.cc.CarrierService"/>
+        <property name="referenceService" ref="de.augustakom.hurrican.service.cc.ReferenceService"/>
+        <property name="chainService" ref="de.augustakom.hurrican.service.cc.ChainService"/>
+        <property name="physikService" ref="de.augustakom.hurrican.service.cc.PhysikService"/>
+        <property name="hvtService" ref="de.augustakom.hurrican.service.cc.HVTService"/>
+        <property name="endstellenService" ref="de.augustakom.hurrican.service.cc.EndstellenService"/>
+    </bean>
+
+    <!-- Command um zu pruefen, ob die zugehoerige Carrierbestellung ermittelt werden kann -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.CheckCBExistTALCommand"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.CheckCBExistTALCommand" scope="prototype">
+    </bean>
+
+    <!-- Command um zu pruefen, ob ein aktiver CB-Vorgang zu einer Carrierbestellung existiert -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.CheckActiveCbvTALCommand"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.CheckActiveCbvTALCommand" scope="prototype">
+    </bean>
+
+    <!-- Command um zu pruefen, ob der Carrier fuer eine el. TAL-Bestellung zugelassen ist -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.CheckCarrierTALCommand"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.CheckCarrierTALCommand" scope="prototype">
+    </bean>
+
+    <!-- Command, um die Daten einer Carrierbestellung fuer den Vorgang 'Neubestellung' zu pruefen -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.Check4NeuTALCommand"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.Check4NeuTALCommand" scope="prototype">
+    </bean>
+
+    <!-- Command, um die Daten einer Carrierbestellung fuer den Vorgang 'Kuendigung' zu pruefen -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.Check4KuendigungTALCommand"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.Check4KuendigungTALCommand" scope="prototype">
+    </bean>
+
+    <!-- Command, um die Standortadresse zu pruefen -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.CheckAPAddressTALCommand"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.CheckAPAddressTALCommand" scope="prototype">
+    </bean>
+
+    <!-- Command, um die Länge aller mit dem Auftrag verbundenen Rufnummern zu pruefen -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.CheckRufnummerTALCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.tal.CheckRufnummerTALCommand" scope="prototype">
+    </bean>
+
+    <!-- Speziell fuer die el. TAL-Schnittstelle der Dtag Version 3.00 benötigte Commands -->
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB001Command"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB001Command" scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB002Command"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB002Command" scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB003Command"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB003Command" scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB004Command"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB004Command" scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB006Command"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB006Command" scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB007Command"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB007Command" scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB008Command"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB008Command" scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB009Command"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB009Command" scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB014Command"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB014Command" scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB015Command"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB015Command" scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB016Command"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB016Command" scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB017Command"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB017Command" scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB021Command"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB021Command" scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB022Command"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB022Command" scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB023Command"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataB023Command" scope="prototype">
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataPhysikCommand"
+        class="de.augustakom.hurrican.service.cc.impl.command.tal.GetDataPhysikCommand" scope="prototype">
+    </bean>
+</beans>

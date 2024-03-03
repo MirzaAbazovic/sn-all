@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse de.augustakom.hurrican.reporting.model.ReportRequest
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.reporting">
+    <class name="ReportRequest" table="t_report_request">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_REPORT_REQUEST_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Felder -->
+        <property name="repId" column="REP_ID" type="long" not-null="true"/>
+        <property name="buendelNo" column="BUENDEL_NO" type="integer"/>
+        <property name="kundeNo" column="KUNDE__NO" type="long" />
+        <property name="orderNoOrig" column="ORDER__NO" type="long" />
+        <property name="auftragId" column="AUFTRAG_ID" type="long" />
+        <property name="requestFrom" column="REQUEST_FROM" type="string" not-null="true"/>
+        <property name="requestAt" column="REQUEST_AT" type="timestamp" not-null="true"/>
+        <property name="requestFinishedAt" column="REQUEST_FINISHED_AT" type="timestamp" />
+        <property name="reportDownloadedAt" column="REPORT_DOWNLOADED_AT" type="timestamp" />
+        <property name="rfa" column="RFA" type="boolean" />
+        <property name="reportArchivedAt" column="ARCHIVED" type="timestamp" />
+        <property name="reportMovedToArchive" column="MOVED_TO_ARCHIVE" type="timestamp" />
+        <property name="printReasonId" column="PRINT_REASON" type="long" />
+        <property name="requestType" column="REQUEST_TYPE" type="string" />
+        <property name="file" column="GENERATED_FILE" type="string" />
+        <property name="error" column="ERROR" type="string" />
+    </class>
+
+</hibernate-mapping>

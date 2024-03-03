@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.CarrierContact
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="CarrierContact" table="T_CARRIER_CONTACT">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_CARRIER_CONTACT_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="carrierId" column="CARRIER_ID" type="long"/>
+        <property name="branchOffice" column="BRANCH_OFFICE" type="string"/>
+        <property name="ressort" column="RESSORT" type="string"/>
+        <property name="contactName" column="CONTACT_NAME" type="string"/>
+        <property name="street" column="STREET" type="string"/>
+        <property name="houseNum" column="HOUSENUM" type="string"/>
+        <property name="postalCode" column="POSTAL_CODE" type="string"/>
+        <property name="city" column="CITY" type="string"/>
+        <property name="faultClearingPhone" column="FAULT_CLEARING_PHONE" type="string"/>
+        <property name="faultClearingFax" column="FAULT_CLEARING_FAX" type="string"/>
+        <property name="faultClearingEmail" column="FAULT_CLEARING_EMAIL" type="string"/>
+        <property name="userW" column="USERW" type="string"/>
+        <property name="contactType" column="TYPE_REF_ID" type="long"/>
+
+    </class>
+
+</hibernate-mapping>

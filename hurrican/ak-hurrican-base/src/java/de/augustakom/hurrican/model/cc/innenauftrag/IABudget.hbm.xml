@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.gui.IABudget
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.innenauftrag">
+    <class name="IABudget" table="T_IA_BUDGET">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_IA_BUDGET_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="iaId" column="IA_ID" type="long" not-null="true"/>
+        <property name="projektleiter" column="PROJEKTLEITER" type="string" not-null="true"/>
+        <property name="budget" column="BUDGET" type="float"/>
+        <property name="createdAt" column="CREATED_AT" type="date" not-null="true"/>
+        <property name="closedAt" column="CLOSED_AT" type="date"/>
+        <property name="cancelled" column="STORNIERT" type="boolean"/>
+        <property name="budgetUserId" column="BUDGET_USER_ID" type="long" />
+        <property name="responsibleUserId" column="RESPONSIBLE_USER_ID" type="long" />
+        <property name="plannedFinishDate" column="PLANNED_FINISH_DATE" type="date"/>
+        <property name="iaLevel1" column="IA_LEVEL1" type="string"/>
+        <property name="iaLevel1Id" column="IA_LEVEL1_ID" type="string"/>
+        <property name="iaLevel3" column="IA_LEVEL3" type="string"/>
+        <property name="iaLevel3Id" column="IA_LEVEL3_ID" type="string"/>
+        <property name="iaLevel5" column="IA_LEVEL5" type="string"/>
+        <property name="iaLevel5Id" column="IA_LEVEL5_ID" type="string"/>
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema version='0.78'
+	targetNamespace="http://www.ergon.ch/taifun/ws/faults"
+	xmlns:tns="http://www.ergon.ch/taifun/ws/faults"
+	xmlns="http://www.w3.org/2001/XMLSchema">
+	
+	<complexType name="FaultType" abstract='true' block='restriction'>
+		<annotation>
+			<documentation>
+				This is the common base type for all fault types.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name='faultCode' type='int' >
+				<annotation>
+					<documentation>This code identifies a specific fault. All fault codes are specified in the Webservice Interface Detail Specification.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="SystemFaultType" block='extension' abstract='false'>
+		<annotation>
+			<documentation>This FaultType describes any faults that are not directly related to the concrete service per se. Typical faults are authentication faults or internal errors.
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:FaultType">
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ServiceFaultType">
+		<annotation>
+			<documentation>This FaultType describes any faults that are related to the concrete service per se.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:FaultType">
+			</extension>
+		</complexContent>
+	</complexType> 
+	<complexType name="ValidationFaultType">
+		<annotation>
+			<documentation>This FaultType describes any faults that due to validation errors.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:FaultType">
+				<sequence>
+					<element name='faultMessage' type='string'>
+						<annotation>
+							<documentation>
+								A message describing the fault.
+							</documentation>
+						</annotation>
+					</element>
+                    <element name="productElementNo" type="int" maxOccurs="1" minOccurs="0"></element>
+                    <element name="productElementValue" type="string" maxOccurs="1" minOccurs="0"></element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType> 	
+	<complexType name="ValidationFaultsType">
+		<annotation>
+			<documentation>This are faults due to validation errors.</documentation>
+		</annotation>
+        <sequence>
+		 <element maxOccurs='unbounded' minOccurs='1' name='validationFaults' type="tns:ValidationFaultType"/>
+		</sequence>
+	</complexType> 	
+	
+</schema>

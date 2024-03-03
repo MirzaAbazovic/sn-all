@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.EndgeraetHerkunft
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="EndgeraetIp" table="T_EG_IP">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_EG_IP_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="addressType" column="ADDRESS_TYPE" type="string" not-null="true"/>
+        <!--  ipAddressRef ist OneToOne! -->
+        <many-to-one name="ipAddressRef" class="de.augustakom.hurrican.model.cc.IPAddress"
+            column="IP_ADDRESS_ID" not-null="true" cascade="all" unique="true" lazy="false" />
+    </class>
+
+</hibernate-mapping>

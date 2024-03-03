@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.UEVT
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="UEVT" table="T_UEVT">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="UEVT_ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_UEVT_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="hvtIdStandort" column="HVT_ID_STANDORT" type="long" not-null="true"/>
+        <property name="uevt" column="UEVT" type="string" not-null="true"/>
+        <property name="schwellwert" column="SCHWELLWERT" type="integer"/>
+        <property name="projektierung" column="PROJEKTIERUNG" type="boolean"/>
+        <property name="rackId" column="RACK_ID" type="long"/>
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.kubena.Kubena
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.kubena">
+    <class name="Kubena" table="T_KUBENA">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_KUBENA_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="datum" column="DATUM" type="date"/>
+        <property name="kriterium" column="KRITERIUM" type="short"/>
+        <property name="name" column="NAME" type="string"/>
+        <property name="schaltzeitVon" column="SZR_VON" type="timestamp"/>
+        <property name="schaltzeitBis" column="SZR_BIS" type="timestamp"/>
+
+    </class>
+
+</hibernate-mapping>

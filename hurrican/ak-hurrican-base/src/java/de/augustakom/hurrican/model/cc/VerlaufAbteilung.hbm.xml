@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.VerlaufAbteilung
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="VerlaufAbteilung" table="T_VERLAUF_ABTEILUNG">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_VERLAUF_ABTEILUNG_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="verlaufId" column="VERLAUF_ID" type="long" not-null="true"/>
+        <property name="abteilungId" column="ABTEILUNG_ID" type="long" not-null="true"/>
+        <property name="datumAn" column="DATUM_AN" type="timestamp"/>
+        <property name="datumErledigt" column="DATUM_ERLEDIGT" type="date"/>
+        <property name="ausgetragenAm" column="AUSGETRAGEN_AM" type="timestamp"/>
+        <property name="ausgetragenVon" column="AUSGETRAGEN_VON" type="string"/>
+        <property name="verlaufStatusId" column="VERLAUF_STATUS_ID" type="long"/>
+        <property name="bearbeiter" column="BEARBEITER" type="string"/>
+        <property name="bemerkung" column="BEMERKUNG" type="string" length="4000"/>
+        <property name="extServiceProviderId" column="EXT_SERVICE_PROVIDER_ID" type="long"/>
+        <property name="realisierungsdatum" column="REALISIERUNGSDATUM" type="date"/>
+        <property name="niederlassungId" column="NIEDERLASSUNG_ID" type="long"/>
+        <property name="zusatzAufwand" column="ZUSATZAUFWAND" type="long"/>
+        <property name="notPossible" column="NOT_POSSIBLE" type="boolean"/>
+        <property name="notPossibleReasonRefId" column="NOT_POSSIBLE_REASON_REF_ID" type="long"/>
+        <property name="parentVerlaufAbteilungId" column="PARENT_VERLAUF_ABTEILUNG_ID" type="long"/>
+        <property name="verlaufAbteilungStatusId" column="VERLAUF_ABTEILUNG_STATUS_ID" type="long"/>
+        <property name="wiedervorlage" column="wiedervorlage" type="date"/>
+    </class>
+</hibernate-mapping>

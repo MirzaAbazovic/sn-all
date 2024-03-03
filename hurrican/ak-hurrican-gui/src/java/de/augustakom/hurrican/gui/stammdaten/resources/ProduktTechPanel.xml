@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Sub-Panel der technischen Daten fuer die Produkte.
+-->
+<sf>
+
+    <!-- Beginn von Panel mit 'technische Daten' -->
+    <Label name="id"><text>ID:</text></Label>
+    <FormattedTextField name="id">
+        <tooltip>ID des Produkts</tooltip>
+        <columns>20</columns>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="anschlussart"><text>Anschlussart/Name:</text></Label>
+    <TextField name="anschlussart">
+        <tooltip>Name für das Produkt</tooltip>
+    </TextField>
+
+    <Label name="prod.name.pattern"><text>Name-Pattern:</text></Label>
+    <TextField name="prod.name.pattern">
+        <tooltip>Name-Pattern fuer das Produkt (Platzhalter: z.B. {DOWNSTREAM}</tooltip>
+    </TextField>
+
+    <Label name="produkt.nr"><text>Produkt-Nr:</text></Label>
+    <TextField name="produkt.nr">
+        <tooltip>AugustaKom Produkt-Nr</tooltip>
+    </TextField>
+
+    <Label name="produkt.gruppe"><text>Produkt-Gruppe:</text></Label>
+    <ReferenceField name="produkt.gruppe">
+        <tooltip>Produkt-Gruppe, der das Produkt angehört</tooltip>
+    </ReferenceField>
+
+    <Label name="produkt.is.parent"><text>Ist Parent-Produkt:</text></Label>
+    <CheckBox name="produkt.is.parent">
+        <tooltip>Angabe, ob das Produkt als 'Parent' verwendet werden kann.</tooltip>
+    </CheckBox>
+
+    <Label name="check.child"><text>Child prüfen:</text></Label>
+    <CheckBox name="check.child">
+        <tooltip>Angabe, ob bei der Physik-Vergabe für den Parent die Child-Aufträge berücksichtigt werden müssen</tooltip>
+    </CheckBox>
+
+    <Label name="combi.produkt"><text>Kombi-Produkt:</text></Label>
+    <CheckBox name="combi.produkt">
+        <tooltip>Angabe, ob es sich um ein Kombi-Produkt handelt (z.B. xDSL + Phone)</tooltip>
+    </CheckBox>
+
+    <Label name="auto.product.change"><text>Auto-Produktwechsel:</text></Label>
+    <CheckBox name="auto.product.change">
+        <tooltip>Flag, ob auf dem Produkt ein automatischer Produktwechsel durchgeführt werden kann.</tooltip>
+    </CheckBox>
+
+    <Label name="leitungsart"><text>Leitungsart:</text></Label>
+    <ReferenceField name="leitungsart">
+        <tooltip>Name der Leitungsart, über die das Produkt angeschlossen wird</tooltip>
+    </ReferenceField>
+
+    <Label name="export"><text>Export:</text></Label>
+    <CheckBox name="export">
+        <tooltip>Markierung, ob das Produkt im Schnittstellen-Export berücksichtigt werden muss</tooltip>
+    </CheckBox>
+
+    <Label name="ba.termin"><text>BA-Terminverschiebung:</text></Label>
+    <CheckBox name="ba.termin">
+        <tooltip>Flag gibt an, ob der Realisierungstermin von Dispo/NP verschoben werden darf</tooltip>
+    </CheckBox>
+
+    <Label name="create.ap.address"><text>Erzeuge Anschluss-Adresse:</text></Label>
+    <CheckBox name="create.ap.address">
+        <tooltip>Flag gibt an, ob für das Produkt eine Endstellen-Adresse in Hurrican erzeugt werden muss</tooltip>
+    </CheckBox>
+
+    <Label name="create.kdp.report"><text>Acc.-Report:</text></Label>
+    <CheckBox name="create.kdp.report">
+        <tooltip>Flag gibt an, ob ein Report mit den Kundenportal-Zugangsdaten erzeugt werden muss (true) oder nicht (false)</tooltip>
+    </CheckBox>
+
+    <Label name="gueltig.von"><text>Gültig von:</text></Label>
+    <DateComponent name="gueltig.von">
+        <tooltip>Datum, ab dem das Produkt gültig ist (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>20</columns>
+    </DateComponent>
+
+    <Label name="gueltig.bis"><text>Gültig bis:</text></Label>
+    <DateComponent name="gueltig.bis">
+        <tooltip>Datum, ab dem das Produkt ungültig ist (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="leitungsnr.anlegen"><text>VBZ anlegen:</text></Label>
+    <CheckBox name="leitungsnr.anlegen">
+        <tooltip>Definition, ob Hurrican eine Leitungsnr. für das Produkt vergeben soll</tooltip>
+    </CheckBox>
+
+    <Label name="vbz.kind.of.use"><text>VBZ Prefixe:</text></Label>
+    <TextField name="vbz.kind.of.use.product">
+        <tooltip>Angabe der Produktkennung fuer die Verbindungsbezeichnung</tooltip>
+        <maxchars>1</maxchars>
+    </TextField>
+    <TextField name="vbz.kind.of.use.type">
+        <tooltip>Angabe der Verwendung fuer die Verbindungsbezeichnung</tooltip>
+        <maxchars>1</maxchars>
+    </TextField>
+    <TextField name="vbz.kind.of.use.type.vpn">
+        <tooltip>Angabe der Verwendung fuer die Verbindungsbezeichnung bei VPN</tooltip>
+        <maxchars>1</maxchars>
+    </TextField>
+
+    <Label name="beschreibung"><text>Beschreibung:</text></Label>
+    <TextArea name="beschreibung">
+        <tooltip>kurze Beschreibung des Produkts</tooltip>
+        <maxchars>100</maxchars>
+    </TextArea>
+
+    <Label name="schnittstellen"><text>Schnittstellen:</text></Label>
+
+    <Label name="assign.iad"><text>IAD zuordnen:</text></Label>
+    <CheckBox name="assign.iad">
+        <tooltip>Definition, ob in Hurrican ein IAD zugeordnet werden muss</tooltip>
+    </CheckBox>
+
+    <Label name="erstell.status"><text>Erstellstatus:</text></Label>
+    <ComboBox name="erstell.status">
+        <tooltip>Initialstatus eines Auftrags des jeweiligen Produktes</tooltip>
+    </ComboBox>
+
+    <Label name="kuendigung.status"><text>Kündigungsstatus:</text></Label>
+    <ComboBox name="kuendigung.status">
+        <tooltip>Kündigungtatus eines Auftrags des jeweiligen Produktes</tooltip>
+    </ComboBox>
+</sf>

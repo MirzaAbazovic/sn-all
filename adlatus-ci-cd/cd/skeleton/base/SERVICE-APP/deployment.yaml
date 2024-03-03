@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: SERVICE-APP-deployment
+  namespace: NAMESPACE
+  labels:
+    app: SERVICE-APP
+spec:
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: SERVICE-APP
+  template:
+    metadata:
+      labels:
+        app: SERVICE-APP
+    spec:
+      containers:
+        - name: SERVICE-APP
+          image: SERVICE-APP:latest
+          ports:
+            - containerPort: 8080
+          # envFrom:
+          #  - configMapRef:
+          #      name: SERVICE-APP-config
+          #  - secretRef:
+          #      name: SERVICE-APP-secret

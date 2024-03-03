@@ -1,0 +1,6 @@
+
+wita_V15.destination=http://wholesale.telekom.de/oss/v15/wholesale
+wita_V15.action=http://wholesale.telekom.de/oss/v15/wholesale/annehmenAuftrag
+
+mock_wita_V15.destination=http://wita-v15-mocks:8080/mockWholesaleBinding
+mock_Wita_V15.action=http://wholesale.telekom.de/oss/v15/wholesale/annehmenAuftrag

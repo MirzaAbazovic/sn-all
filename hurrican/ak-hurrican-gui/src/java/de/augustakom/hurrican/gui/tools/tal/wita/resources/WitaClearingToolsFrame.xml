@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    GUI-Definitionen fuer das WITA Clearing-Tools Fenster.
+-->
+<sf>
+    <Text name="title">WITA Clearing-Tools</Text>
+</sf>

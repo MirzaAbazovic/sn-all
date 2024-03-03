@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE table [
+	<!ELEMENT table (column+)>
+	<!ELEMENT column EMPTY>
+	<!ATTLIST column name CDATA #REQUIRED>
+	<!ATTLIST column property CDATA #REQUIRED>
+	<!ATTLIST column type CDATA #REQUIRED>
+	<!ATTLIST column editable CDATA #REQUIRED>
+	<!ATTLIST column width CDATA #IMPLIED>
+]>
+<table>
+
+	<column name="HVT-ID"
+	        property="hvtIdStandort"
+			type="java.lang.Long"
+			editable="false"
+			width="50"/>
+    <column name="Baugruppen-ID"
+            property="hwBaugruppenId"
+            type="java.lang.Long"
+            editable="false"
+            width="50"/>
+    <column name="HW_EQN"
+            property="hwEQN"
+            type="java.lang.String"
+            editable="false"
+            width="100"/>
+    <column name="HW_SCHNITTSTELLE"
+            property="hwSchnittstelle"
+            type="java.lang.String"
+            editable="false"
+            width="70"/>
+    <column name="RANG_SS_TYPE"
+            property="rangSSType"
+            type="java.lang.String"
+            editable="false"
+            width="80"/>
+    <column name="RANG_VERTEILER"
+            property="rangVerteiler"
+            type="java.lang.String"
+            editable="false"
+            width="70"/>
+    <column name="RANG_BUCHT"
+            property="rangBucht"
+            type="java.lang.String"
+            editable="false"
+            width="70"/>
+    <column name="RANG_LEISTE1"
+            property="rangLeiste1"
+            type="java.lang.String"
+            editable="false"
+            width="70"/>
+    <column name="RANG_STIFT1"
+            property="rangStift1"
+            type="java.lang.String"
+            editable="false"
+            width="70"/>
+    <column name="RANG_LEISTE2"
+            property="rangLeiste2"
+            type="java.lang.String"
+            editable="false"
+            width="70"/>
+    <column name="RANG_STIFT2"
+            property="rangStift2"
+            type="java.lang.String"
+            editable="false"
+            width="70"/>
+    <column name="STATUS"
+            property="status"
+            type="java.lang.String"
+            editable="false"
+            width="70"/>
+
+</table>

@@ -1,0 +1,1 @@
+alter table T_FTTX_EKP_FRAME_CONTRACT rename column CONTRACT_ID to FRAME_CONTRACT_ID;

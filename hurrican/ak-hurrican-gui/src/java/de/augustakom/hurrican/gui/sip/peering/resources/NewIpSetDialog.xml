@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    <Text name="title">SBC-Adressen erfassen</Text>
+
+    <Button name="new.ip">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Neue IP-Adresse hinzufügen</tooltip>
+    </Button>
+    <Button name="del.ip">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Ausgewählte IP-Adresse löschen</tooltip>
+    </Button>
+    <Label name="gueltig.ab">
+        <text>gültig ab:</text>
+    </Label>
+
+    <Text name="date.in.past">Das Gültigkeitsdatum darf nicht in der Vergangenheit liegen.</Text>
+</sf>

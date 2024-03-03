@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Administration
+der Rollenrechte fuer eine GUI-Komponente.
+-->
+<sf>
+    
+    <Text name="title">GUI-Verhalten für: </Text>
+    <Text name="icon">de/augustakom/authentication/gui/images/rolerights.gif</Text>
+    
+    <Text name="comp.not.managed.title">Warnung</Text>
+    <Text name="comp.not.managed">GUI-Komponente wird z.Z. nicht auf Ihre
+Rollen-Rechte überprüft!</Text>
+    
+    <Label name="comp.name"><text>Name:</text></Label>
+    <TextField name="comp.name">
+        <tooltip>Name der GUI-Komponente</tooltip>
+        <columns>25</columns>
+    </TextField>
+    
+    <Label name="comp.parent"><text>Parent:</text></Label>
+    <TextField name="comp.parent">
+        <tooltip>Klassenname der übergeordneten Komponente (Panel oder Frame)</tooltip>
+    </TextField>
+    
+    <Label name="comp.type"><text>Typ:</text></Label>
+    <TextField name="comp.type">
+        <tooltip>Kurze Typ-Bezeichnung der Komponente (z.B. Button, TextField etc)</tooltip>
+    </TextField>
+    
+    <Label name="comp.description"><text>Beschreibung:</text></Label>
+    <TextField name="comp.description">
+        <tooltip>Kurze Beschreibung für die Komponente</tooltip>
+    </TextField>
+    
+    
+    
+    <Button name="save">
+        <text>Speichern</text>
+        <tooltip>Speichert die Rollenrechte</tooltip>
+        <mnemonic>VK_S</mnemonic>
+    </Button>
+    
+    <Button name="delete">
+        <text>Löschen</text>
+        <tooltip>Löscht die Komponente aus der Datenbank (inkl. aller Berechtigungen)</tooltip>
+        <mnemonic>VK_L</mnemonic>
+    </Button>
+    
+    <Button name="cancel">
+        <text>Abbrechen</text>
+        <tooltip>Verwirft alle Änderungen und schliesst den Dialog</tooltip>
+        <mnemonic>VK_A</mnemonic>
+    </Button>
+    
+    <Text name="close.wihtout.save.title">Abbrechen?</Text>
+    <Text name="close.wihtout.save.msg">Wollen Sie den Dialog beenden, 
+ohne zu speichern?</Text>
+
+    <Text name="delete.component.title">GUI-Komponente löschen?</Text>
+    <Text name="delete.component.msg">Soll die GUI-Komponente wirklich aus der
+Verwaltungsdatenbank gelöscht werden?</Text>
+
+</sf>

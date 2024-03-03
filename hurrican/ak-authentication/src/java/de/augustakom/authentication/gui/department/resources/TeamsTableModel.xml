@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TableModel Definition fuer das DepartmentDataPanel (Teams Table Model) -->
+<table>
+
+    <column name="ID" property="id" type="java.lang.Long" editable="false" width="70" />
+    <column name="Name" property="name" type="java.lang.String" editable="false" width="160" />
+<!--     <column name="Abteilung-ID" property="departmentId" type="java.lang.Long" editable="false" width="70" /> -->
+
+</table>

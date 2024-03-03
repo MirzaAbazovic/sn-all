@@ -1,0 +1,15 @@
+<mat-form-field class="my-custom-class">
+    <input
+            matInput
+            [matAutocomplete]="auto"
+            [formControl]="formControl"
+            [formlyAttributes]="field"
+            [placeholder]="props.placeholder ?? ''"
+    />
+    <mat-label *ngIf="formControl.value">{{ field.props.label }}</mat-label>
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let value of filter | async" [value]="value">
+            {{ value }}
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>

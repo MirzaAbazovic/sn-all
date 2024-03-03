@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den Zugangsdaten zu Endgeraeten.
+-->
+<sf>
+
+    <Button name="new.zugang">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Erstellt einen neuen Zugangsdatensatz</tooltip>
+    </Button>
+    
+    <Button name="delete.zugang">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht den aktuellen Zugangsdatensatz</tooltip>
+    </Button>
+    
+    <Label name="rufnummer"><text>Einwahlrufnummer:</text></Label>
+    <TextField name="rufnummer">
+        <tooltip>Rufnummer für die Einwahl</tooltip>
+        <columns>15</columns>
+    </TextField>
+    
+    <Label name="zugangsart"><text>Zugangsart:</text></Label>
+    <ComboBox name="zugangsart">
+        <tooltip>Zugangsart</tooltip>
+        <items>
+            <item> </item>
+            <item>Management</item>
+            <item>Dial in/out</item>
+        </items>
+    </ComboBox>
+
+</sf>

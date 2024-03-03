@@ -1,0 +1,1 @@
+UPDATE T_FFM_QUALIFICATION SET QUALIFICATION = 'Endkundenservice Wholesale' WHERE QUALIFICATION = 'Wholesale Endkundenservice';

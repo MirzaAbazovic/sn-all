@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    <Text name="title">VLANs</Text>
+    <Button name="new.vlans">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Neue VLANs berechnen</tooltip>
+    </Button>
+
+</sf>

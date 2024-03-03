@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema  xmlns:ns0="http://mnet.de/hurricanweb/command/mdu/types"
+            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://mnet.de/hurricanweb/command/mdu/types">
+
+    <xs:element name="CommandMDUCreateDataRequest" type="ns0:CommandMDUCreateDataRequest"/>
+    <xs:element name="CommandMDUCreateDataRequestResponse" type="ns0:CommandMDUCreateDataRequestResponse"/>
+    <xs:element name="CommandMDUCreateDataRequestFailure" type="ns0:CommandMDUCreateDataRequestFailure"/>
+
+    <xs:complexType name="CommandMDUCreateDataRequest">
+        <xs:sequence>
+            <xs:element name="bezeichnung" type="xs:string"/>
+            <xs:element name="hersteller" type="xs:string"/>
+            <xs:element name="seriennummer" type="xs:string"/>
+            <xs:element name="modellNummer" type="xs:string"/>
+            <xs:element name="bgTyp" type="xs:string"/>
+            <xs:element name="olt" type="xs:string"/>
+            <xs:element name="oltRack" type="xs:string"/>
+            <xs:element name="oltSubrack" type="xs:string"/>
+            <xs:element name="oltSlot" type="xs:string"/>
+            <xs:element name="oltPort" type="xs:string"/>
+            <xs:element name="gponId" type="xs:string"/>
+            <xs:element name="caTvOnline" type="xs:string"/>
+            <xs:element name="standort" type="xs:string"/>
+            <xs:element name="raumbezeichnung" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CommandMDUCreateDataRequestResponse">
+        <xs:sequence>
+            <xs:element name="bezeichnung" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CommandMDUCreateDataRequestFailure">
+        <xs:sequence>
+            <xs:element name="bezeichnung" type="xs:string"/>
+            <xs:element name="errorMsg" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

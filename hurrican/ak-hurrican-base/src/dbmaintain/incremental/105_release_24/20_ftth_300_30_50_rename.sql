@@ -1,0 +1,1 @@
+update T_TECH_LEISTUNG set name = '300/50_VOIP_IPV6', description = 'KOMBI-LEISTUNG, FUEHRT ZU 300 MBIT, 50 MBIT, VOIP IPV6' where id = 546;

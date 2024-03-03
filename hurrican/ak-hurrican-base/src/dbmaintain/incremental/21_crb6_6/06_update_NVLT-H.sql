@@ -1,0 +1,1 @@
+update T_HW_BAUGRUPPEN_TYP set NAME='NVLTH' where NAME='NVLT-H';

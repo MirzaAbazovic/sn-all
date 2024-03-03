@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog, ueber den eine CPS-Transaction
+angelegt werden kann.
+-->
+<sf>
+
+    <Text name="title">CPS-Transaction erzeugen</Text>
+
+    <Text name="save.tooltip">Erzeugt für den Auftrag eine CPS-Transaction mit den angegebenen Daten</Text>
+
+    <Label name="auftrag"><text>Auftrags-ID:</text></Label>
+    <TextField name="auftrag">
+        <tooltip>ID des Auftrags, fuer den die CPS-Transaction angelegt werden soll</tooltip>
+    </TextField>
+
+    <Label name="execution"><text>Ausfuehrung zu:</text></Label>
+
+    <Label name="execution.now"><text>sofort:</text></Label>
+    <CheckBox name="execution.now">
+        <tooltip>Veranlasst eine sofortige Ausfuehrung der CPS-Transaction</tooltip>
+    </CheckBox>
+
+    <Label name="execution.at"><text>Datum / Zeit:</text></Label>
+    <DateComponent name="execution.at">
+        <tooltip>Datum, zu der die Provisionierung erfolgen soll (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>10</columns>
+    </DateComponent>
+    <DateComponent name="execution.at.time">
+        <tooltip>Uhrzeit, zu der die Provisionierung erfolgen soll (Format: HH:mm)</tooltip>
+        <format type="date">HH:mm</format>
+        <columns>6</columns>
+    </DateComponent>
+
+    <Label name="execution.details"><text>Details:</text></Label>
+
+    <Label name="execution.prio"><text>Priorität:</text></Label>
+    <ReferenceField name="execution.prio">
+        <tooltip>Verfügbare Prioritäten</tooltip>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="execution.type"><text>Provisionierungsart:</text></Label>
+    <ReferenceField name="execution.type">
+        <tooltip>Verfügbare Provisionierungsarten</tooltip>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Text name="force.execution">{0} erzwingen</Text>
+    <CheckBox name="force.execution">
+        <tooltip>Bestimmte Provisionierungarten können erzwungen und somit 'modifySubscriber' vermieden werden</tooltip>
+    </CheckBox>
+</sf>

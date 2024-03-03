@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sws="http://www.springframework.org/schema/web-services"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:oxm="http://www.springframework.org/schema/oxm"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services.xsd
+
+
+           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+
+           http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm.xsd">
+
+    <import resource="classpath:spring/jaxb-ws-base.xml"/>
+
+    <!-- Endpoint Definition fuer den Wholesale Endpunkt. -->
+    <bean id="wholesaleEndpoint" class="de.mnet.hurrican.webservice.wholesale.WholesaleWorkflowEndpoint" />
+    <!-- Endpoint Definition fuer den Wholesale Fault Clearance Endpunkt. -->
+    <bean id="wholesaleFaultClearanceEndpoint" class="de.mnet.hurrican.webservice.wholesale.WholesaleFaultClearanceEndpoint" />
+
+    <bean id="wholesaleExceptionResolver" class="de.mnet.hurrican.webservice.wholesale.WholesaleSoapFaultResolver" />
+
+    <oxm:jaxb2-marshaller id="jaxbMarshaller" context-path="de.mnet.hurrican.wholesale.workflow:de.mnet.hurrican.wholesale.fault.clearance"/>
+
+    <sws:interceptors>
+                <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+                <bean class="de.mnet.hurrican.webservice.common.PayloadValidatingEndpointInterceptor">
+                    <property name="xsdSchemaCollection" ref="wholesaleSchemaCollection"/>
+                    <property name="validateRequest" value="true"/>
+                    <property name="validateResponse" value="true"/>
+                </bean>
+    </sws:interceptors>
+
+    <!-- Publishing the WSDL -->
+    <!-- WSDL Generierung ueber http://host:port/hurricanweb/wholesale/wholesale.wsdl -->
+    <bean id="wholesale" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+        <property name="schema" ref="wholesaleSchema"/>
+        <property name="portTypeName" value="HurricanService"/>
+        <property name="serviceName" value="HurricanService"/>
+        <property name="locationUri" value="http://localhost:8080/hurricanweb/wholesale"/>
+        <property name="requestSuffix" value="Request" />
+        <property name="responseSuffix" value="Response" />
+        <property name="faultSuffix" value="Fault" />
+        <property name="createSoap12Binding" value="false"/>
+        <property name="createSoap11Binding" value="true"/>
+        <property name="soapActions">
+            <props>
+                <prop key="getOrderParameters">getOrderParameters</prop>
+                <prop key="modifyPort">modifyPort</prop>
+                <prop key="modifyPortReservationDate">modifyPortReservationDate</prop>
+                <prop key="releasePort">releasePort</prop>
+                <prop key="reservePort">reservePort</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- Publishing the WSDL -->
+    <!-- WSDL Generierung ueber http://host:port/hurricanweb/wholesale/faultClearance.wsdl -->
+    <bean id="faultClearance" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+        <property name="schema" ref="wholesaleFaultClearanceSchema"/>
+        <property name="portTypeName" value="HurricanFaultClearanceService"/>
+        <property name="serviceName" value="HurricanFaultClearanceService"/>
+        <property name="locationUri" value="http://localhost:8080/hurricanweb/wholesale"/>
+        <property name="requestSuffix" value="Request" />
+        <property name="responseSuffix" value="Response" />
+        <property name="faultSuffix" value="Fault" />
+        <property name="createSoap12Binding" value="false"/>
+        <property name="createSoap11Binding" value="true"/>
+        <property name="soapActions">
+            <props>
+                <prop key="getAvailablePorts">getAvailablePorts</prop>
+                <prop key="changePort">changePort</prop>
+                <prop key="getAssignedVdslProfiles">getAssignedVdslProfiles</prop>
+                <prop key="changeVdslProfile">changeVdslProfile</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="wholesaleSchema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+        <property name="xsd" value="/WEB-INF/xsd/wholesale-hurrican.xsd"/>
+    </bean>
+    <bean id="wholesaleFaultClearanceSchema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+        <property name="xsd" value="/WEB-INF/xsd/wholesale-fault-clearance.xsd"/>
+    </bean>
+    <!-- ID muss gleich mit dem Basisname der XSD sein, siehe MessageDispatcherServlet#xsdSchemas -->
+    <bean id="wholesale-common" class="org.springframework.xml.xsd.SimpleXsdSchema">
+        <property name="xsd" value="/WEB-INF/xsd/wholesale-common.xsd"/>
+    </bean>
+    <bean id="wholesaleSchemaCollection" class="org.springframework.xml.xsd.commons.CommonsXsdSchemaCollection">
+        <property name="xsds">
+            <util:list>
+                <value>/WEB-INF/xsd/wholesale-hurrican.xsd</value>
+                <value>/WEB-INF/xsd/wholesale-fault-clearance.xsd</value>
+            </util:list>
+        </property>
+    </bean>
+
+    <!-- SOAP message factory. Configured to use SOAP 1.1 -->
+    <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+        <property name="soapVersion">
+            <util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_11" />
+        </property>
+    </bean>
+
+</beans>

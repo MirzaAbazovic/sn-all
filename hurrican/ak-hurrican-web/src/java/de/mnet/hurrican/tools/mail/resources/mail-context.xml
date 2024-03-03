@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="locationNotificationErrorMailMsg" class="org.springframework.mail.SimpleMailMessage" scope="prototype">
+        <!-- Angabe von mehreren EMails: durch Komma (,) getrennt. -->
+        <property name="to" value="${mail.error.recipients}"/>
+        <property name="from" value="LocationNotificationConsumer"/>
+    </bean>
+
+    <bean id="de.mnet.hurrican.tools.mail.ErrorHandler" class="de.mnet.hurrican.tools.mail.SendMailErrorHandler">
+        <constructor-arg ref="mailSender"/>
+    </bean>
+
+    <bean id="locationNotificationWarningMailMsg" class="org.springframework.mail.SimpleMailMessage" scope="prototype">
+        <!-- Angabe von mehreren EMails: durch Komma (,) getrennt. -->
+        <property name="to" value="${mail.warnings.recipients}"/>
+        <property name="from" value="LocationNotificationConsumer"/>
+    </bean>
+
+    <bean id="de.mnet.hurrican.tools.mail.WarningHandler" class="de.mnet.hurrican.tools.mail.SendMailWarningHandler">
+        <constructor-arg ref="mailSender"/>
+    </bean>
+
+</beans>

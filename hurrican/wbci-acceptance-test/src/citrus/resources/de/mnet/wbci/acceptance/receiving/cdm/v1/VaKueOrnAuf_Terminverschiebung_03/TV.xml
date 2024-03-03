@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <ns2:rescheduleCarrierChange xmlns:ns2="http://www.mnet.de/esb/cdm/SupplierPartner/CarrierNegotiationService/v1">
+            <ns2:TVS-VA>
+                <ns2:absender>
+                    <ns2:carrierCode>${carrierCodeAbg}</ns2:carrierCode>
+                </ns2:absender>
+                <ns2:empfaenger>
+                    <ns2:carrierCode>${carrierCodeAuf}</ns2:carrierCode>
+                </ns2:empfaenger>
+                <ns2:version>0</ns2:version>
+                <ns2:endkundenvertragspartner>
+                    <ns2:EKPauf>
+                        <ns2:carrierCode>${carrierCodeAuf}</ns2:carrierCode>
+                    </ns2:EKPauf>
+                    <ns2:EKPabg>
+                        <ns2:carrierCode>${carrierCodeAbg}</ns2:carrierCode>
+                    </ns2:EKPabg>
+                </ns2:endkundenvertragspartner>
+                <ns2:aenderungsId>${changeId}</ns2:aenderungsId>
+                <ns2:vorabstimmungsIdRef>${preAgreementId}</ns2:vorabstimmungsIdRef>
+                <ns2:neuerKundenwunschtermin>${rescheduledCustomerDate}</ns2:neuerKundenwunschtermin>
+            </ns2:TVS-VA>
+        </ns2:rescheduleCarrierChange>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

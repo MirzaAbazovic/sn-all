@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="KundeUebersichtDetail" language="java" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="760" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+    <property name="com.jasperassistant.designer.GridWidth" value="12"/>
+    <property name="com.jasperassistant.designer.GridHeight" value="12"/>
+    <property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+    <property name="com.jasperassistant.designer.Grid" value="true"/>
+    <field name="AUFTRAG__NO" class="java.lang.Long">
+    </field>
+    <field name="INBETRIEBNAHME" class="java.util.Date">
+    </field>
+    <field name="KUENDIGUNG" class="java.util.Date">
+    </field>
+    <field name="VBZ" class="java.lang.String">
+    </field>
+    <field name="ANSCHLUSSART" class="java.lang.String">
+    </field>
+    <field name="AUFTRAGSTATUS" class="java.lang.String">
+    </field>
+    <field name="BUENDEL_NR" class="java.lang.Integer">
+    </field>
+    <columnHeader>
+        <band height="29">
+            <rectangle>
+                <reportElement positionType="Float" x="0" y="0" width="757" height="28" backcolor="#d2d2d2"/>
+                <graphicElement/>
+            </rectangle>
+            <staticText>
+                <reportElement positionType="Float" x="4" y="0" width="67" height="28"/>
+                <textElement verticalAlignment="Middle"/>
+                <text><![CDATA[Auftrag__NO]]></text>
+            </staticText>
+            <staticText>
+                <reportElement positionType="Float" x="142" y="0" width="74" height="28"/>
+                <textElement verticalAlignment="Middle"/>
+                <text><![CDATA[Inbetriebnahme]]></text>
+            </staticText>
+            <staticText>
+                <reportElement positionType="Float" x="224" y="0" width="68" height="28"/>
+                <textElement verticalAlignment="Middle"/>
+                <text><![CDATA[Kündigung]]></text>
+            </staticText>
+            <staticText>
+                <reportElement positionType="Float" x="296" y="0" width="91" height="28"/>
+                <textElement verticalAlignment="Middle"/>
+                <text><![CDATA[Leitungs-Nr.]]></text>
+            </staticText>
+            <staticText>
+                <reportElement positionType="Float" x="549" y="0" width="206" height="28"/>
+                <textElement verticalAlignment="Middle"/>
+                <text><![CDATA[Anschlussart]]></text>
+            </staticText>
+            <staticText>
+                <reportElement positionType="Float" x="392" y="0" width="151" height="28"/>
+                <textElement verticalAlignment="Middle"/>
+                <text><![CDATA[Auftragsstatus]]></text>
+            </staticText>
+            <staticText>
+                <reportElement positionType="Float" x="75" y="0" width="57" height="28"/>
+                <textElement verticalAlignment="Middle"/>
+                <text><![CDATA[Bündel-Nr]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="15">
+            <textField>
+                <reportElement positionType="Float" x="4" y="0" width="61" height="14">
+                    <printWhenExpression><![CDATA[new Boolean($F{AUFTRAG__NO} != null)]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right">
+                    <font fontName="Arial" size="8"/>
+                </textElement>
+                <textFieldExpression class="java.lang.Long"><![CDATA[$F{AUFTRAG__NO}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement positionType="Float" x="143" y="0" width="75" height="14">
+                    <printWhenExpression><![CDATA[new Boolean($F{INBETRIEBNAHME} != null)]]></printWhenExpression>
+                </reportElement>
+                <textElement>
+                    <font fontName="Arial" size="8"/>
+                </textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("dd.MM.yyyy").format($F{INBETRIEBNAHME})]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement positionType="Float" x="224" y="0" width="68" height="14">
+                    <printWhenExpression><![CDATA[new Boolean($F{KUENDIGUNG} != null)]]></printWhenExpression>
+                </reportElement>
+                <textElement>
+                    <font fontName="Arial" size="8"/>
+                </textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("dd.MM.yyyy").format($F{KUENDIGUNG})]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement positionType="Float" x="296" y="0" width="91" height="14">
+                    <printWhenExpression><![CDATA[new Boolean($F{VBZ} != null)]]></printWhenExpression>
+                </reportElement>
+                <textElement>
+                    <font fontName="Arial" size="8"/>
+                </textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[$F{VBZ}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement positionType="Float" x="549" y="0" width="207" height="14"/>
+                <textElement>
+                    <font fontName="Arial" size="8"/>
+                </textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[$F{ANSCHLUSSART}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement positionType="Float" x="392" y="0" width="150" height="14">
+                    <printWhenExpression><![CDATA[new Boolean($F{AUFTRAGSTATUS} != null)]]></printWhenExpression>
+                </reportElement>
+                <textElement>
+                    <font fontName="Arial" size="8"/>
+                </textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[$F{AUFTRAGSTATUS}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement positionType="Float" x="75" y="0" width="52" height="14">
+                    <printWhenExpression><![CDATA[new Boolean($F{BUENDEL_NR} != null)]]></printWhenExpression>
+                </reportElement>
+                <textElement textAlignment="Right">
+                    <font fontName="Arial" size="8"/>
+                </textElement>
+                <textFieldExpression class="java.lang.Integer"><![CDATA[$F{BUENDEL_NR}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <summary>
+        <band height="20">
+            <textField>
+                <reportElement positionType="Float" x="3" y="3" width="676" height="15"/>
+                <textElement/>
+                <textFieldExpression class="java.lang.String"><![CDATA["Anzahl Auftr\u00e4ge: "+$V{REPORT_COUNT}]]></textFieldExpression>
+            </textField>
+            <line>
+                <reportElement positionType="Float" x="4" y="2" width="747" height="1"/>
+                <graphicElement/>
+            </line>
+        </band>
+    </summary>
+</jasperReport>

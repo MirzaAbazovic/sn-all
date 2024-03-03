@@ -1,0 +1,14 @@
+<div *ngIf="(resourceOrder$ | async) as resourceOrder">
+    <mat-card class="card">
+        <mat-card-header>
+            <mat-card-title>{{resourceOrder.name ?? 'Resource order name not defined' }}</mat-card-title>
+            <mat-card-subtitle>something</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+<!--          TODO: blocked by backend-->
+            <pre>
+                {{ resourceOrder | json }}
+            </pre>
+        </mat-card-content>
+    </mat-card>
+</div>

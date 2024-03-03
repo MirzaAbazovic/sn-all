@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.VerlaufStatus
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="VerlaufStatus" table="T_VERLAUF_STATUS">
+
+        <cache usage="read-only"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="status" column="VERLAUF_STATUS" type="string" not-null="true"/>
+
+    </class>
+</hibernate-mapping>

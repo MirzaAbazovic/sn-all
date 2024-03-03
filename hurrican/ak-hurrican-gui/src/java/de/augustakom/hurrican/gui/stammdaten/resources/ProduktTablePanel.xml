@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Panel mit der Produkt-Uebersicht.
+-->
+<sf>
+
+    <Action name="create.matrix">
+        <class>de.augustakom.hurrican.gui.stammdaten.actions.CreateMatrix4ProduktAction</class>
+        <text>Rangierungsmatrix erstellen</text>
+        <tooltip>Erstellt Rangierungsmatrix-Einträge für das Produkt und best. UEVTs</tooltip>
+    </Action>
+    
+    <Action name="open.prod2prod.konfig">
+        <class>de.augustakom.hurrican.gui.stammdaten.actions.OpenProd2ProdKonfigAction</class>
+        <text>Produktänderungen konfigurieren</text>
+        <tooltip>Öffnet ein Fenster, über das die Produktänderungen konfiguriert werden können</tooltip>
+    </Action>
+	
+	<Action name="open.prod2eg.konfig">
+        <class>de.augustakom.hurrican.gui.stammdaten.actions.OpenProd2EGKonfigAction</class>
+        <text>Endgeräte konfigurieren</text>
+        <tooltip>Öffnet ein Fenster, über das dem Produkt die zulässigen Endgeräte zugeordnet werden können</tooltip>
+    </Action>
+
+</sf>

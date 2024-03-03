@@ -1,0 +1,10 @@
+@startuml C4_Elements
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+Person(personAlias, "Telco", "Optional Description")
+Container(core, "Resource order managment ", "adf")
+System(systemAlias, "Label", "Optional Description")
+
+Rel(personAlias, core, "Label", "Optional Technology")
+Rel(core,systemAlias)
+@enduml

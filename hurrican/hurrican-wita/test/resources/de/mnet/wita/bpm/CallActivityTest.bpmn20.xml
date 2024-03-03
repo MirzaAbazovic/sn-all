@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions id="Definition" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+    xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    targetNamespace="Examples" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
+
+    <process id="Caller" name="Caller">
+
+        <!-- START -->
+        <startEvent id="start" name="Start" />
+        <sequenceFlow sourceRef="start" targetRef="call" id="start-call" />
+
+        <callActivity id="call" name="Call SubProcess" calledElement="Callee" />
+        <boundaryEvent attachedToRef="call" id="callError">
+            <errorEventDefinition errorRef="workflowError" />
+        </boundaryEvent>
+        <sequenceFlow sourceRef="callError" targetRef="workflowError" id="callError-workflowError" />
+
+        <sequenceFlow sourceRef="call" targetRef="waitForSignal" id="call-waitForSignal" />
+
+        <receiveTask id="waitForSignal" name="Wait for signal" />
+        <sequenceFlow sourceRef="waitForSignal" targetRef="end" id="waitForSignal-end" />
+
+        <!-- END -->
+        <endEvent id="end" name="End">
+            <terminateEventDefinition />
+        </endEvent>
+
+        <!-- TODO ggf. fehlermeldungen (variable workflowErrorMessage) anzeigen/speichern/... -->
+        <userTask id="workflowError" name="Error State" activiti:candidateGroups="clearance" />
+    </process>
+
+    <process id="Callee">
+        <startEvent id="startCallee" name="Start" />
+        <sequenceFlow sourceRef="startCallee" targetRef="wait" id="start-wait" />
+
+        <receiveTask id="wait" name="Wait for Signal" default="wait-error"/>
+        <sequenceFlow sourceRef="wait" targetRef="endCallee" id="wait-endCallee">
+            <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"OK".equals(parameter)}]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <!-- Use error state in case no TEQ is received -->
+        <sequenceFlow sourceRef="wait" targetRef="error" id="wait-error" />
+
+        <endEvent id="endCallee" name="End">
+        </endEvent>
+
+        <endEvent id="error">
+            <errorEventDefinition errorRef="workflowError" />
+        </endEvent>
+    </process>
+</definitions>

@@ -1,0 +1,9 @@
+<div class="add-entry">
+    <h2 *ngIf="description"> {{ title }}</h2>
+    <p *ngIf="description"> {{ description }} </p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+        <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+        <button type="submit" mat-raised-button color="primary">Submit</button>
+    </form>
+</div>

@@ -1,0 +1,78 @@
+<envelope:annehmenMeldungRequest xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                                 xmlns:pres="http://wholesale.telekom.de/oss/v15/pres"
+                                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                                 xmlns:fttb="http://wholesale.telekom.de/oss/v15/ng/fttb"
+                                 xmlns:message="http://wholesale.telekom.de/oss/v15/message"
+                                 xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                 xmlns:envelope="http://wholesale.telekom.de/oss/v15/envelope"
+                                 xmlns:ftth="http://wholesale.telekom.de/oss/v15/ftth"
+                                 xmlns:complex="http://wholesale.telekom.de/oss/v15/complex"
+                                 xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                                 xmlns:sdslb="http://wholesale.telekom.de/oss/v15/sdslb"
+                                 xmlns:xdsl="http://wholesale.telekom.de/oss/v15/xdsl"
+                                 xmlns:tal="http://wholesale.telekom.de/oss/v15/tal"
+                                 xmlns:order="http://wholesale.telekom.de/oss/v15/order">
+    <control>
+        <zeitstempel>2023-11-20T19:48:06.959+01:00</zeitstempel>
+        <majorRelease>15</majorRelease>
+        <minorRelease>10</minorRelease>
+        <signaturId>
+            <issuer>EMAILADDRESS=wholesale-dialog@telekom.de, CN=ws-wholesale-portal.telekom.de, OU=Deutsche Telekom IT
+                GmbH, O=Deutsche Telekom AG, L=Bonn, ST=NRW, C=DE
+            </issuer>
+            <serial>cf3fc7a3d509abfd</serial>
+        </signaturId>
+    </control>
+    <meldung>
+        <auftragstyp>
+            <geschaeftsfall>NEU</geschaeftsfall>
+            <aenderungsKennzeichen>Standard</aenderungsKennzeichen>
+            <geschaeftsfallart>Bereitstellung</geschaeftsfallart>
+        </auftragstyp>
+        <meldungstyp xsi:type="message:MeldungstypABMType">
+            <meldungsattribute xsi:type="xdsl:MeldungsattributeXDSL-ABMType">
+                <externeAuftragsnummer>order_12345</externeAuftragsnummer>
+                <kundennummer>5920312290</kundennummer>
+                <verbindlicherLiefertermin>2023-12-06</verbindlicherLiefertermin>
+                <produktpositionen>
+                    <position>
+                        <aktionscode>Z</aktionscode>
+                        <produkt xsi:type="xdsl:ProduktXDSLMeldungType">
+                            <bezeichner>VDSL SA 100 Mbit/s</bezeichner>
+                        </produkt>
+                    </position>
+                    <position>
+                        <aktionscode>Z</aktionscode>
+                        <produkt xsi:type="xdsl:ProduktXDSLMeldungType">
+                            <bezeichner>Call4All</bezeichner>
+                        </produkt>
+                    </position>
+                    <position>
+                        <aktionscode>Z</aktionscode>
+                        <produkt xsi:type="xdsl:ProduktXDSLMeldungType">
+                            <bezeichner>Express-Entstörung Wholesale</bezeichner>
+                        </produkt>
+                    </position>
+                </produktpositionen>
+                <vertragsnummer>3094624373</vertragsnummer>
+                <LineID>DEU.DTAG.VWJLR</LineID>
+            </meldungsattribute>
+            <meldungspositionen>
+                <position>
+                    <meldungscode>0000</meldungscode>
+                    <meldungstext>Montage beim Endkunden erforderlich.</meldungstext>
+                    <positionsattribute xsi:type="message:MeldungspositionsattributeABMType">
+                        <ansprechpartnerTelekom>
+                            <anrede>1</anrede>
+                            <vorname>Ali</vorname>
+                            <nachname>Geyik</nachname>
+                            <telefonnummer>08003309366923</telefonnummer>
+                            <emailadresse>z-w-113bp10@telekom.de</emailadresse>
+                        </ansprechpartnerTelekom>
+                    </positionsattribute>
+                </position>
+            </meldungspositionen>
+        </meldungstyp>
+    </meldung>
+</envelope:annehmenMeldungRequest>

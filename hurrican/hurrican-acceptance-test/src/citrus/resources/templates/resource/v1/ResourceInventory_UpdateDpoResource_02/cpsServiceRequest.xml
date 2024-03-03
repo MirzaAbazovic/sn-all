@@ -1,0 +1,14 @@
+<typ:ServiceRequest xmlns:typ="http://www.evolving.com/wsdl/sa/v1/types">
+    <typ:ServiceOrderType>createDevice</typ:ServiceOrderType>
+    <typ:TransactionId>@ignore@</typ:TransactionId>
+    <typ:ApplicationKeys>
+        <typ:ApplicationKey>
+            <typ:Name>TAIFUNNUMBER</typ:Name>
+            <typ:Value>${geraeteBezeichnung}</typ:Value>
+        </typ:ApplicationKey>
+    </typ:ApplicationKeys>
+    <typ:Priority>@ignore@</typ:Priority>
+    <typ:SuspendSeq>@ignore@</typ:SuspendSeq>
+    <typ:Recovery>@ignore@</typ:Recovery>
+    <typ:SOData>@ignore@</typ:SOData>
+</typ:ServiceRequest>

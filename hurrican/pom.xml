@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.mnet.hurrican</groupId>
+    <artifactId>hurrican</artifactId>
+    <version>27.0.0-SNAPSHOT</version>
+
+    <name>${project.artifactId}</name>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>de.mnet.hurrican</groupId>
+        <artifactId>hurrican-parent</artifactId>
+        <version>27.0.0-SNAPSHOT</version>
+        <relativePath>parent</relativePath>
+    </parent>
+
+    <modules>
+        <module>parent</module>
+        <module>ak-commons</module>
+        <module>ak-authentication</module>
+        <module>ak-hurrican-base</module>
+        <module>common-migration</module>
+        <module>hurrican-migrations</module>
+        <module>mnet-wbci-format</module>
+        <module>mnet-wita-format</module>
+        <module>mnet-wita-wsdl</module>
+        <module>test-data-generator</module>
+        <module>simulator-common</module>
+        <module>hurrican-wita</module>
+        <module>ak-hurrican-web</module>
+        <module>ak-hurrican-gui</module>
+        <module>atlas-simulator</module>
+        <module>hurrican-e2e-test</module>
+        <module>hurrican-acceptance-test</module>
+        <module>wbci-acceptance-test</module>
+        <module>wita-acceptance-test</module>
+        <module>deployment</module>
+        <module>hurrican-spri</module>
+    </modules>
+
+    <scm>
+        <developerConnection>scm:git:https://scm.intern.m-net.de/scm/git/hurrican</developerConnection>
+      <tag>HEAD</tag>
+  </scm>
+
+
+</project>

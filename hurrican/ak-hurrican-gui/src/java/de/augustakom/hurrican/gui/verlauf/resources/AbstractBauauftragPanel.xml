@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    <RadioButton name="active.bauauftraege">
+        <text>aktive BAs</text>
+        <tooltip>zeigt nur aktiven Bauaufträge für diese Abteilung an</tooltip>
+    </RadioButton>
+
+    <RadioButton name="all.bauauftraege">
+        <text>alle BAs</text>
+        <tooltip>zeigt alle Bauaufträge für diese Abteilung an und stellt zusätzliche Filtermöglichkeiten zur Verfügung</tooltip>
+    </RadioButton>
+
+    <Label name="abteilung"><text>Abteilung:</text></Label>
+    <ComboBox name="abteilung">
+        <tooltip>Lädt die Bauaufträge der ausgewählten Abteilung</tooltip>
+    </ComboBox>
+
+    <Label name="niederlassung"><text>Niederlassung:</text></Label>
+    <ComboBox name="niederlassung">
+        <tooltip>Filtert nach ausgewählter Niederlassung</tooltip>
+    </ComboBox>
+
+    <Label name="realisierung.from"><text>Realisierungstermin von</text></Label>
+    <DateComponent name="realisierung.from">
+        <tooltip>Filtert nach einem Realisierungstermin von X bis Y (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="realisierung.to"><text>bis</text></Label>
+    <DateComponent name="realisierung.to">
+        <tooltip>Filtern nach einem Realisierungstermin von X bis Y (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Button name="filter">
+        <text>filtern</text>
+        <tooltip>Führt die Suche mit den definierten Filterwerten durch</tooltip>
+    </Button>
+
+    <Button name="clear.filter">
+        <text>Filter löschen</text>
+        <tooltip>Setzt die eingetragenen Filterwerte auf die Standardwerte zurück</tooltip>
+    </Button>
+
+    <Button name="refresh">
+        <icon>de/augustakom/hurrican/gui/images/refresh.png</icon>
+        <tooltip>Aktualisiert die Ansicht</tooltip>
+    </Button>
+</sf>

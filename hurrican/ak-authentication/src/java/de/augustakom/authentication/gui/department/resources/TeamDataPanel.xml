@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GUI-Definitionen fuer das Panel zur Darstellung der Properties einer Abteilung. -->    
+<sf>
+    <Label name="team.id"><text>ID:</text></Label>
+    <FormattedTextField name="team.id">
+        <tooltip>ID des Teams</tooltip>
+        <format type="number">######</format>
+    </FormattedTextField>
+    
+    <Label name="team.name"><text>Name:</text></Label>
+    <TextField name="team.name">
+        <tooltip>Name des Teams</tooltip>
+        <columns>30</columns>
+    </TextField>
+
+</sf>

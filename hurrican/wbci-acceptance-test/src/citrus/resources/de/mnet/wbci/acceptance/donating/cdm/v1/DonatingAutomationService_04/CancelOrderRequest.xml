@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns3:cancelOrderRequest xmlns:ns3="http://www.mnet.de/elektra/services/1.0/">
+    <billingOrderNoOrig>${billingOrderNoOrig}</billingOrderNoOrig>
+    <cancelDate>${requestedCustomerDate}</cancelDate>
+    <futureCarrier>@ignore@</futureCarrier>
+    <dialNumbers>
+        <resourceName>@ignore@</resourceName>
+        <mainNumber>false</mainNumber>
+        <countryDialingCode>+49</countryDialingCode>
+        <areaDialingCode>0${portierung.onkz.0}</areaDialingCode>
+        <dialingNumber>${portierung.rufnummer.0}</dialingNumber>
+    </dialNumbers>
+    <entryDate>citrus:currentDate('yyyy-MM-dd', -2d)</entryDate>
+</ns3:cancelOrderRequest>

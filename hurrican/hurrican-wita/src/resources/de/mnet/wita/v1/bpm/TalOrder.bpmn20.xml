@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions id="Definition" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:activiti="http://activiti.org/bpmn"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             targetNamespace="Examples"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
+
+  <!-- ids von Usertasks (und evtl auch anderen Tasks) in dem Enum de.mnet.wita.bpm.WorkflowTaskName festhalten -->
+  <process id="TalOrder" name="TalOrder">
+
+    <!-- START -->
+    <startEvent id="start" name="Start" />
+    <sequenceFlow sourceRef="start" targetRef="aggregate" id="start-aggregate" />
+
+    <!-- Aggregate all necessary data and send it to the facade -->
+    <serviceTask id="aggregate" name="Aggregate" default="aggregate-waitForMessage" activiti:delegateExpression="${witaDataAggregationTask}" />
+    <sequenceFlow sourceRef="aggregate" targetRef="workflowError" id="aggregate-workflowError">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${workflowError.equals(true)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="aggregate" targetRef="waitForMessage" id="aggregate-waitForMessage" />
+
+    <!-- Wait for a message from the facade. Expected/accepted message types: QEB, VZM, ABM, ABBM, ERLM -->
+    <receiveTask id="waitForMessage" name="Wait for message" default="waitForMessage-processMessage"/>
+    <sequenceFlow sourceRef="waitForMessage" targetRef="processMessage" id="waitForMessage-processMessage"/>
+    <sequenceFlow sourceRef="waitForMessage" targetRef="sendMessage" id="waitForMessage-sendMessage">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${processMessageGateway.sendMessage(execution)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <!-- Decide how to react to the incoming message -->
+    <serviceTask id="processMessage" name="Process message" default="processMessage-waitForMessage" activiti:delegateExpression="${processMessageTask}" />
+    <sequenceFlow sourceRef="processMessage" targetRef="workflowError" id="processMessage-workflowError">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${processMessageGateway.workflowError(execution)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <sequenceFlow sourceRef="processMessage" targetRef="processTAM" id="processMessage-processTAM">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${processMessageGateway.processTAM(execution)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <sequenceFlow sourceRef="processMessage" targetRef="sendErlmk" id="processMessage-sendErlmk">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${processMessageGateway.sendErlmk(execution)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <!-- ERLM setzt Workflow auf 'waitForENTMMessage' und wartet dann auf ENTM Meldung -->
+    <sequenceFlow sourceRef="processMessage" targetRef="waitForENTMMessage" id="processMessage-waitForENTMMessage">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${processMessageGateway.waitForENTMMessage(execution)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <!-- finish workflow at ABBM message with Aenderungskennzeichen Standard -->
+    <sequenceFlow sourceRef="processMessage" targetRef="end" id="processMessage-end">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${processMessageGateway.end(execution)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <sequenceFlow sourceRef="processMessage" targetRef="waitForMessage" id="processMessage-waitForMessage">
+      <!-- Check for message types that doesn´t change the workflow state (QEB, VZM, ABM). Is default so no condition is needed. -->
+    </sequenceFlow>
+
+    <!-- Send message to the facade. Expected/accepted message types: TV and Storno -->
+    <serviceTask id="sendMessage" name="Send message" default="sendMessage-waitForMessage" activiti:delegateExpression="${sendMessageTask}" />
+    <sequenceFlow sourceRef="sendMessage" targetRef="waitForMessage" id="sendMessage-waitForMessage"/>
+    <sequenceFlow sourceRef="sendMessage" targetRef="workflowError" id="sendMessage-workflowError">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${processMessageGateway.workflowError(execution)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <!-- Zustand nach dem Erhalt einer TAM, entweder schickt man an die DTAG einen neuen Termin oder man schickt an die DTAG eine ERLMK. Wenn die DTAG eine erwartete
+      Nachricht (zweite TAM oder ABBM) schickt, wird diese direkt prozessiert, d.h. ohne Aufrufen eines Java Tasks (da processTAM als receiveTask definiert ist). -->
+    <receiveTask id="processTAM" name="Process TAM" default="processTAM-workflowError" />
+    <sequenceFlow sourceRef="processTAM" targetRef="sendErlmk" id="processTAM-sendErlmk">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${processTamGateway.sendErlmk(execution)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <!-- Zweite TAM: Die Informationen in der TAM-Liste in der GUI basieren auf den gespeicherten MWF-Entitaeten und werden somit unabhaengig vom Workflow aktualisiert. -->
+    <sequenceFlow sourceRef="processTAM" targetRef="processSecondTAM" id="processTAM-processSecondTAM">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${processTamGateway.processSecondTAM(execution)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <sequenceFlow sourceRef="processTAM" targetRef="processMessage" id="processTAM-processMessage">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${processTamGateway.processMessage(execution)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="processTAM" targetRef="sendMessage" id="processTAM-sendMessage">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${processTamGateway.sendMessage(execution)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="processTAM" targetRef="workflowError" id="processTAM-workflowError" />
+
+    <serviceTask id="sendErlmk" name="Send ERLMK" activiti:delegateExpression="${sendErlmkTask}" />
+    <sequenceFlow sourceRef="sendErlmk" targetRef="waitForENTMMessage" id="sendErlmk-waitForENTMMessage" />
+
+    <!--
+    Zweite TAM (TAM auf TAM) muss ueber einen eigenen serviceTask prozessiert werden, um den Java Task aufrufen zu koennen
+    und somit das Flag "MahnTAM" zu setzen.
+    -->
+    <serviceTask id="processSecondTAM" name="Process second TAM" activiti:delegateExpression="${processMessageTask}" />
+    <sequenceFlow sourceRef="processSecondTAM" targetRef="processTAM" id="processSecondTAM-processTAM">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${workflowError.equals(false)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="processSecondTAM" targetRef="workflowError" id="processSecondTAM-workflowError">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${workflowError.equals(true)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <!-- Wait for a ENTM message from the facade. Expected/accepted message types: ENTM -->
+    <receiveTask id="waitForENTMMessage" name="Wait for ENTM" />
+    <sequenceFlow sourceRef="waitForENTMMessage" targetRef="processENTMMessage" id="waitForENTMMessage-processENTMMessage" />
+    <!-- Decide how to react to the incoming message -->
+    <serviceTask id="processENTMMessage" name="Process ENTM" default="processENTMMessage-end" activiti:delegateExpression="${processENTMMessageTask}" />
+    <sequenceFlow sourceRef="processENTMMessage" targetRef="workflowError" id="processENTMMessage-workflowError">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${workflowError.equals(true)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="processENTMMessage" targetRef="waitForENTMMessage" id="processENTMMessage-waitForENTMMessage">
+      <!-- ERLM + VZM message before ENTM allowed! -->
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"ERLM".equals(witaMessageType) || "VZM".equals(witaMessageType)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <!-- finish workflow at ENTM message -->
+    <sequenceFlow sourceRef="processENTMMessage" targetRef="end" id="processENTMMessage-end">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"ENTM".equals(witaMessageType)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <!-- END -->
+    <endEvent id="end" name="End">
+      <terminateEventDefinition />
+    </endEvent>
+
+    <userTask id="workflowError" name="Error State" default="workflowError-workflowError" activiti:candidateGroups="clearance" />
+    <sequenceFlow sourceRef="workflowError" targetRef="end" id="workflowError-end">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"CLOSED".equals(workflowErrorResetState)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="workflowError" targetRef="waitForMessage" id="workflowError-waitForMessage">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"WAIT_FOR_MESSAGE".equals(workflowErrorResetState)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="workflowError" targetRef="waitForENTMMessage" id="workflowError-waitForENTMMessage">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"WAIT_FOR_ENTM".equals(workflowErrorResetState)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="workflowError" targetRef="workflowError" id="workflowError-workflowError" />
+
+  </process>
+
+</definitions>

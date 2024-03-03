@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+GUI-Definitionen fuer MDIMainFrame fuer die Authentication-GUI.
+-->
+<sf>
+    <!-- Titel fuer das MainFrame -->
+    <Text name="title">AugustaKom AUTHENTICATION</Text>
+    <Icon name="title">de/augustakom/authentication/gui/images/admin.gif</Icon>
+
+    <!-- Definition der MenuBar -->
+    <MenuBar name="menubar.authentication">
+        <items>
+            <item>system</item>
+            <item>data</item>
+            <item>print</item>
+            <item>window</item>
+        </items>
+    </MenuBar>
+
+    <!-- *********** Menus ************* -->
+    <Menu name="system">
+        <text>System</text>
+        <mnemonic>VK_S</mnemonic>
+        <items>
+            <item>remove.expired.sessions</item>
+            <separator/>
+            <item>exit</item>
+        </items>
+    </Menu>
+
+    <Menu name="data">
+        <text>Daten</text>
+        <mnemonic>VK_D</mnemonic>
+        <items>
+            <item>new.user</item>
+            <separator/>
+            <item>new.role</item>
+        </items>
+    </Menu>
+
+    <Menu name="print">
+        <text>Reports</text>
+        <mnemonic>VK_R</mnemonic>
+        <items>
+            <item>print.department.user</item>
+        </items>
+    </Menu>
+
+    <Menu name="window">
+        <text>Fenster</text>
+        <mnemonic>VK_F</mnemonic>
+    </Menu>
+
+    <!-- *********** MenuItems ************* -->
+    <MenuItem name="remove.expired.sessions">
+        <action>remove.expired.sessions.action</action>
+        <text>Sessions entfernen</text>
+        <tooltip>Entfernt abgelaufene Sessions aus der Datenbank</tooltip>
+    </MenuItem>
+
+    <MenuItem name="exit">
+        <action>ExitAction</action>
+        <text>Exit</text>
+        <mnemonic>VK_X</mnemonic>
+        <accelerator>alt X</accelerator>
+    </MenuItem>
+
+    <MenuItem name="new.user">
+        <action>new.user.action</action>
+        <text>Benutzer anlegen</text>
+        <accelerator>alt B</accelerator>
+    </MenuItem>
+
+    <MenuItem name="new.role">
+        <action>new.role.action</action>
+        <text>Rolle anlegen</text>
+        <accelerator>alt R</accelerator>
+    </MenuItem>
+
+    <MenuItem name="print.department.user">
+        <action>print.department.user.action</action>
+        <text>Abteilungsübersicht drucken</text>
+    </MenuItem>
+
+    <!-- *********** Actions ************* -->
+    <Action name="remove.expired.sessions.action">
+        <class>de.augustakom.authentication.gui.system.RemoveExpiredSessionsAction</class>
+    </Action>
+
+    <Action name="ExitAction">
+        <class>de.augustakom.authentication.gui.system.ExitAction</class>
+    </Action>
+
+    <Action name="new.user.action">
+        <class>de.augustakom.authentication.gui.user.NewUserAction</class>
+        <icon>de/augustakom/authentication/gui/images/user.gif</icon>
+        <mnemonic>VK_B</mnemonic>
+    </Action>
+
+    <Action name="new.role.action">
+        <class>de.augustakom.authentication.gui.role.NewRoleAction</class>
+        <icon>de/augustakom/authentication/gui/images/role.gif</icon>
+        <mnemonic>VK_R</mnemonic>
+    </Action>
+
+    <Action name="print.department.user.action">
+        <class>de.augustakom.authentication.gui.user.PrintDepartmentUserAction</class>
+    </Action>
+</sf>

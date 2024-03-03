@@ -1,0 +1,2 @@
+update T_WITA_CONFIG set CONFIG_KEY='default.wbci.cdm.version.DTAG', CONFIG_VALUE='1' where id=51;
+update T_WITA_CONFIG set CONFIG_KEY='default.wbci.cdm.version.VODAFONE', CONFIG_VALUE='1' where id=52;

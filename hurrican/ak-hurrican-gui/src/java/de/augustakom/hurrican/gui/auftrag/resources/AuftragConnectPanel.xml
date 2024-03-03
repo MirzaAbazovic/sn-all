@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Connect-Panel.
+-->
+<sf>
+    <Label name="produktcode"><text>Produktcode:</text></Label>
+    <TextField name="produktcode">
+        <tooltip>Connect-Auftrags Produktcode</tooltip>
+    </TextField>
+
+    <Label name="produktspezifikation"><text>Produktspezifikation:</text></Label>
+    <TextField name="produktspezifikation">
+        <tooltip>Connect-Auftrags Produktspezifikation</tooltip>
+    </TextField>
+
+    <Label name="projektleiter"><text>Projektleiter:</text></Label>
+    <TextField name="projektleiter">
+        <tooltip>Connect-Auftrags Projektleiter</tooltip>
+    </TextField>
+
+    <Label name="projektleiterKuendigung"><text>Projektleiter Kündigung:</text></Label>
+    <TextField name="projektleiterKuendigung">
+        <tooltip>Connect-Auftrags Projektleiter-Kündigung</tooltip>
+    </TextField>
+
+    <Label name="tts"><text>TTS:</text></Label>
+    <TextField name="tts">
+        <tooltip>Connect-Auftrags TTS</tooltip>
+    </TextField>
+
+    <Label name="verfuegbarkeit"><text>Verfügbarkeit:</text></Label>
+    <TextField name="verfuegbarkeit">
+        <tooltip>Connect-Auftrags Verfügbarkeit</tooltip>
+    </TextField>
+</sf>

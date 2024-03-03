@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Konfiguration der TreeServices fuer den Admin-Tree.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+     default-lazy-init="true">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="de.augustakom.authentication" />
+
+    <!-- TreeService fuer den Root-Knoten -->
+    <bean id="TreeService.Root" class="de.augustakom.authentication.gui.tree.RootTreeService">
+        <!-- Definition der darzustellenden TreeGroups -->
+        <property name="treeGroups">
+            <list>
+                <ref bean="DepartmentTreeGroup"/>
+                <ref bean="RoleTreeGroup"/>
+                <ref bean="DbTreeGroup"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Definition einer TreeGroup fuer AKDepartment-Objekte -->
+    <bean id="DepartmentTreeGroup" class="de.augustakom.authentication.gui.tree.DepartmentTreeGroup">
+        <property name="displayName">
+            <value>Abteilungen</value>
+        </property>
+        <property name="tooltip">
+            <value>Stellt alle Abteilungen der AugustaKom dar</value>
+        </property>
+        <property name="iconURL">
+            <value>de/augustakom/authentication/gui/images/department_group.gif</value>
+        </property>
+    </bean>
+
+    <!-- TreeService fuer die TreeGroup 'DepartmentTreeGroup' -->
+    <bean id="de.augustakom.authentication.gui.tree.DepartmentTreeGroup"
+            class="de.augustakom.authentication.gui.tree.DepartmentTreeGroupService"/>
+
+    <!-- TreeService fuer AKDepartment-Objekte -->
+    <bean id="de.augustakom.authentication.model.AKDepartment"
+            class="de.augustakom.authentication.gui.tree.DepartmentTreeService">
+        <property name="frameClass" value="de.augustakom.authentication.gui.department.DepartmentDataFrame" />
+        <property name="modelClass" value="de.augustakom.authentication.model.AKDepartment" />
+        <property name="contextList">
+            <list>
+                <ref bean="NewUserAction"/>
+                <ref bean="EditDepartmentAction"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- TreeService fuer AKUser-Objekte -->
+    <bean id="de.augustakom.authentication.model.AKUser"
+            class="de.augustakom.authentication.gui.tree.UserTreeService">
+        <property name="frameClass" value="de.augustakom.authentication.gui.user.UserDataFrame" />
+        <property name="modelClass" value="de.augustakom.authentication.model.AKUser" />
+        <property name="contextList">
+            <list>
+                <ref bean="DeleteUserAction"/>
+                <ref bean="CopyUserAction"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- ************* Definitionen fuer AKRole-Objekte *************** -->
+    <!-- Definition einer TreeGroup fuer AKRole-Objekte -->
+    <bean id="RoleTreeGroup" class="de.augustakom.authentication.gui.tree.RoleTreeGroup">
+        <property name="displayName">
+            <value>Rollen</value>
+        </property>
+        <property name="tooltip">
+            <value>Stellt alle Rollen dar</value>
+        </property>
+        <property name="iconURL">
+            <value>de/augustakom/authentication/gui/images/role_group.gif</value>
+        </property>
+    </bean>
+
+    <!-- TreeService fuer die TreeGroup 'RoleTreeGroup' -->
+    <bean id="de.augustakom.authentication.gui.tree.RoleTreeGroup"
+            class="de.augustakom.authentication.gui.tree.RoleTreeGroupService">
+        <property name="contextList">
+            <list>
+                <ref bean="NewRoleAction"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- TreeService fuer AKRole-Objekte -->
+    <bean id="de.augustakom.authentication.model.AKRole"
+            class="de.augustakom.authentication.gui.tree.RoleTreeService">
+        <property name="frameClass" value="de.augustakom.authentication.gui.role.RoleDataFrame" />
+        <property name="modelClass" value="de.augustakom.authentication.model.AKRole" />
+        <property name="contextList">
+            <list>
+                <ref bean="DeleteRoleAction"/>
+                <value>javax.swing.JSeparator</value>
+                <ref bean="ShowUsers4Role"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- ************* Definitionen fuer AKAccount-Objekte *************** -->
+    <!-- Definition einer TreeGroup fuer AKDb und AKAccount-Objekte -->
+    <bean id="DbTreeGroup" class="de.augustakom.authentication.gui.tree.DbTreeGroup">
+        <property name="displayName">
+            <value>Datenbanken</value>
+        </property>
+        <property name="tooltip">
+            <value>Stellt alle Datenbanken und ihre Accounts dar</value>
+        </property>
+        <property name="iconURL">
+            <value>de/augustakom/authentication/gui/images/dbaccount_group.gif</value>
+        </property>
+    </bean>
+
+    <!-- TreeService fuer die TreeGroup 'AccountTreeGroup' -->
+    <bean id="de.augustakom.authentication.gui.tree.DbTreeGroup"
+            class="de.augustakom.authentication.gui.tree.DbTreeGroupService">
+        <property name="contextList">
+            <list>
+                <ref bean="NewDbAction"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- TreeService fuer AKDb-Objekte -->
+    <bean id="de.augustakom.authentication.model.AKDb"
+            class="de.augustakom.authentication.gui.tree.DbTreeService">
+        <property name="frameClass" value="de.augustakom.authentication.gui.db.DbDataFrame" />
+        <property name="modelClass" value="de.augustakom.authentication.model.AKDb" />
+        <property name="contextList">
+            <list>
+                <ref bean="NewAccountAction"/>
+                <value>javax.swing.JSeparator</value>
+                <ref bean="DeleteDbAction"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- TreeService fuer AKAccount-Objekte -->
+    <bean id="de.augustakom.authentication.model.AKAccount"
+            class="de.augustakom.authentication.gui.tree.AccountTreeService">
+        <property name="frameClass" value="de.augustakom.authentication.gui.account.AccountDataFrame" />
+        <property name="modelClass" value="de.augustakom.authentication.model.AKAccount" />
+        <property name="contextList">
+            <list>
+                <ref bean="DeleteAccountAction"/>
+                <value>javax.swing.JSeparator</value>
+                <ref bean="ShowUsers4Account"/>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- *************** ACTION-Definitionen ****************** -->
+    <!-- Action, um einen neuen User anzulegen -->
+    <bean id="NewUserAction" class="de.augustakom.authentication.gui.user.NewUserAction">
+        <property name="name"><value>Benutzer anlegen</value></property>
+        <property name="tooltip"><value>Öffnet ein Frame, um einen neuen Benutzer anzulegen</value></property>
+    </bean>
+
+    <bean id="EditDepartmentAction" class="de.augustakom.authentication.gui.department.EditDepartmentAction">
+        <property name="name"><value>Abteilung bearbeiten</value></property>
+        <property name="tooltip"><value>Öffnet ein Frame, um die selektierte Abteilung zu bearbeiten</value></property>
+    </bean>
+
+    <!-- Action, um einen Benutzer zu loeschen -->
+    <bean id="DeleteUserAction" class="de.augustakom.authentication.gui.user.DeleteUserAction">
+        <property name="name"><value>Löschen</value></property>
+        <property name="tooltip"><value>Löscht den ausgewählten Benutzer</value></property>
+    </bean>
+
+    <!-- Action, um einen Benutzer zu kopieren -->
+    <bean id="CopyUserAction" class="de.augustakom.authentication.gui.user.CopyUserAction">
+        <property name="name"><value>Kopieren</value></property>
+        <property name="tooltip"><value>Kopiert die ausgewählte Benutzerrolle in neuen Benutzer</value></property>
+    </bean>
+
+    <!-- Action, um eine neue Rolle anzulegen -->
+    <bean id="NewRoleAction" class="de.augustakom.authentication.gui.role.NewRoleAction">
+        <property name="name"><value>Rolle anlegen</value></property>
+        <property name="tooltip"><value>Öffnet ein Frame, um eine neue Rolle anzulegen</value></property>
+    </bean>
+
+    <!-- Action, um eine Rolle zu loeschen -->
+    <bean id="DeleteRoleAction" class="de.augustakom.authentication.gui.role.DeleteRoleAction">
+        <property name="name"><value>Löschen</value></property>
+        <property name="tooltip"><value>Löscht die ausgewählte Rolle</value></property>
+    </bean>
+
+    <!-- Action, um alle User anzuzeigen, die einer best. Rolle zugeordnet sind -->
+    <bean id="ShowUsers4Role" class="de.augustakom.authentication.gui.user.ShowUsers4RoleAction">
+        <property name="name"><value>Benutzer anzeigen</value></property>
+        <property name="tooltip"><value>Sucht nach allen Benutzern, die dieser Rolle zugeordnet sind</value></property>
+    </bean>
+
+    <!-- Action, um eine neue Datenbank zu definieren -->
+    <bean id="NewDbAction" class="de.augustakom.authentication.gui.db.NewDbAction">
+        <property name="name"><value>DB anlegen</value></property>
+        <property name="tooltip"><value>Öffnet ein Frame, um eine neue Datenbank anzulegen</value></property>
+    </bean>
+
+    <!-- Action, um eine Datenbank-Definition zu loeschen -->
+    <bean id="DeleteDbAction" class="de.augustakom.authentication.gui.db.DeleteDbAction">
+        <property name="name"><value>Löschen</value></property>
+        <property name="tooltip"><value>Löscht die ausgewählte Datenbank</value></property>
+    </bean>
+
+    <!-- Action, um einen neuen DB-Account anzulegen -->
+    <bean id="NewAccountAction" class="de.augustakom.authentication.gui.account.NewAccountAction">
+        <property name="name"><value>DB-Account anlegen</value></property>
+        <property name="tooltip"><value>Öffnet ein Frame, um einen neuen DB-Account anzulegen</value></property>
+    </bean>
+
+    <!-- Action, um einen DB-Account zu loeschen -->
+    <bean id="DeleteAccountAction" class="de.augustakom.authentication.gui.account.DeleteAccountAction">
+        <property name="name"><value>Löschen</value></property>
+        <property name="tooltip"><value>Löscht den ausgewählten DB-Account</value></property>
+    </bean>
+
+    <!-- Action, um alle User anzuzeigen, die einem bestimmten Account zugeordnet sind -->
+    <bean id="ShowUsers4Account" class="de.augustakom.authentication.gui.user.ShowUsers4AccountAction">
+        <property name="name"><value>Benutzer anzeigen</value></property>
+        <property name="tooltip"><value>Sucht nach allen Benutzern, die diesem Account zugeordnet sind</value></property>
+    </bean>
+
+</beans>

@@ -1,0 +1,1 @@
+alter table T_MWF_ABGEBENDERPROVIDER modify ABGABE_DATUM null;

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer die Verlauf-Services und -Commands im CustomerCare-Bereich.
+Die Datei wird von CCServices.xml importiert!
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="de.augustakom.hurrican.service.cc.impl.command.verlauf"/>
+
+    <!-- Bauauftrag-Service -->
+    <!--<bean id="de.augustakom.hurrican.service.cc.BAService"-->
+          <!--class="de.augustakom.hurrican.service.cc.impl.BAServiceImpl"/>-->
+
+    <!-- ServiceCommand, um den BA-Verlauf zu erzeugen. (Command-Klasse als Prototype!) -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.CreateVerlaufCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.CreateVerlaufCommand"
+          scope="prototype">
+        <property name="verlaufDAO" ref="verlaufDAO"/>
+        <property name="physikUebernahmeDAO" ref="physikUebernahmeDAO"/>
+        <property name="mailSender" ref="mailSender"/>
+    </bean>
+
+    <!-- ServiceCommand, um die Projektierung zu erzeugen (Command-Klasse als Prototype!)  -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.CreateProjektierungCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.CreateProjektierungCommand"
+          scope="prototype">
+        <property name="verlaufDAO" ref="verlaufDAO"/>
+        <property name="auftragService" ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+        <property name="ccLeistungsService" ref="de.augustakom.hurrican.service.cc.CCLeistungsService"/>
+        <property name="chainService" ref="de.augustakom.hurrican.service.cc.ChainService"/>
+        <property name="baService" ref="de.augustakom.hurrican.service.cc.BAService"/>
+        <property name="produktService" ref="de.augustakom.hurrican.service.cc.ProduktService"/>
+        <property name="physikService" ref="de.augustakom.hurrican.service.cc.PhysikService"/>
+        <property name="billingAuftragService" ref="de.augustakom.hurrican.service.billing.BillingAuftragService"/>
+    </bean>
+
+    <!-- ServiceCommand, um die Projektierung fuer die Zentrale-Dispo zu erzeugen (Command-Klasse als Prototype!)  -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.CreateProjektierungForZentraleDispoCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.CreateProjektierungForZentraleDispoCommand"
+          scope="prototype">
+        <property name="verlaufDAO" ref="verlaufDAO"/>
+        <property name="auftragService" ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+        <property name="ccLeistungsService" ref="de.augustakom.hurrican.service.cc.CCLeistungsService"/>
+        <property name="chainService" ref="de.augustakom.hurrican.service.cc.ChainService"/>
+        <property name="baService" ref="de.augustakom.hurrican.service.cc.BAService"/>
+        <property name="produktService" ref="de.augustakom.hurrican.service.cc.ProduktService"/>
+        <property name="physikService" ref="de.augustakom.hurrican.service.cc.PhysikService"/>
+        <property name="billingAuftragService" ref="de.augustakom.hurrican.service.billing.BillingAuftragService"/>
+    </bean>
+
+    <!-- ServiceCommand, um einen Abteilungs-Verlauf abzuschliessen -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.FinishVerlauf4AbteilungCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.FinishVerlauf4AbteilungCommand"
+          scope="prototype">
+        <property name="baService" ref="de.augustakom.hurrican.service.cc.BAService"/>
+        <property name="auftragService" ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+        <property name="ccLeistungsService" ref="de.augustakom.hurrican.service.cc.CCLeistungsService"/>
+        <property name="produktService" ref="de.augustakom.hurrican.service.cc.ProduktService"/>
+        <property name="ipAddressService" ref="de.augustakom.hurrican.service.cc.IPAddressService"/>
+    </bean>
+
+    <!-- ServiceCommand, um einen Verlauf zu stornieren(Command-Klasse als Prototype!)  -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.StornoVerlaufCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.StornoVerlaufCommand"
+          scope="prototype">
+        <property name="verlaufDAO" ref="verlaufDAO"/>
+        <property name="verlaufAbteilungDAO" ref="verlaufAbteilungDAO"/>
+        <property name="physikUebernahmeDAO" ref="physikUebernahmeDAO"/>
+        <property name="auftrag2TechLeistungDAO" ref="auftrag2TechLeistungDAO"/>
+        <property name="mailSender" ref="mailSender"/>
+    </bean>
+
+    <!-- ServiceCommand fuer die Ermittlung der aktuellen Verlaeufe (Bauauftraege u. Projektierungen) einer best. Abteilung -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.FindVerlaufViews4AbtCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.FindVerlaufViews4AbtCommand"
+          scope="prototype">
+        <property name="verlaufViewDAO" ref="verlaufViewDAO"/>
+    </bean>
+
+    <!-- ServiceCommand, um einen Verlauf zu splitten (Command-Klasse als Prototype!)  -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.SplitVerlaufCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.SplitVerlaufCommand"
+          scope="prototype">
+    </bean>
+
+</beans>

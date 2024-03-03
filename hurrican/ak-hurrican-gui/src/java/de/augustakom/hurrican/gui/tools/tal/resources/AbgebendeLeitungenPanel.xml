@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Text name="functions">Funktionen</Text>
+
+    <ToggleButton name="eigene.tasks">
+        <icon>de/augustakom/hurrican/gui/images/user_icon.png</icon>
+        <tooltip>Zeigt nur die eigenen Tasks an.</tooltip>
+    </ToggleButton>
+
+    <ToggleButton name="alle.tasks">
+        <icon>de/augustakom/hurrican/gui/images/user_all_icon.png</icon>
+        <tooltip>Zeigt die Tasks aller User/Teams an (auch nicht zugeordnete Tasks)</tooltip>
+    </ToggleButton>
+
+    <Button name="task.bearbeiten">
+        <text>Task(s) bearbeiten</text>
+        <tooltip>Beginne die Bearbeitung eines Tasks.</tooltip>
+    </Button>
+
+    <Button name="task.freigeben">
+        <text>Task(s) freigeben</text>
+        <tooltip>Gibt einen Task wieder frei.</tooltip>
+    </Button>
+
+    <Button name="wiedervorlage">
+        <text>Wiedervorlage</text>
+        <tooltip>Selektierten Task auf Wiedervorlage setzen.</tooltip>
+    </Button>
+
+    <Button name="abschliessen">
+        <text>Abschliessen</text>
+        <tooltip>Sckickt eine Erledigmeldung-Kunde für die Carrierbestellung.</tooltip>
+    </Button>
+
+    <Button name="history">
+        <text>History...</text>
+        <tooltip>Zeigt die History zur ausgewähtlen Kue-Dt bzw. Akm-Pv an</tooltip>
+    </Button>
+
+    <Button name="positive.ruempv">
+        <text>Pos. RUEM-PV</text>
+        <tooltip>Öffnet einen Dialog, über den eine positive RUEM-PV gesendet werden kann</tooltip>
+    </Button>
+
+    <Button name="negative.ruempv">
+        <text>Neg. RUEM-PV</text>
+        <tooltip>Öffnet einen Dialog, über den eine negative RUEM-PV gesendet werden kann</tooltip>
+    </Button>
+
+    <Button name="assign.order">
+        <text>Auftrag zuordnen</text>
+        <tooltip>Öffnet einen Dialog, über den der zugehörige technische Auftrag definiert werden kann</tooltip>
+    </Button>
+
+    <Text name="kontaktdaten">Kontaktdaten</Text>
+
+    <Label name="kunde"><text>Kunde</text></Label>
+
+    <Label name="kunde.name"><text>Name:</text></Label>
+    <TextField name="kunde.name">
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="kunde.vorname"><text>Vorname:</text></Label>
+    <TextField name="kunde.vorname">
+    </TextField>
+
+    <Label name="endstelle"><text>Endstelle</text></Label>
+
+    <Label name="es.name"><text>Endstelle:</text></Label>
+    <TextField name="es.name">
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="es.strasse"><text>Strasse:</text></Label>
+    <TextField name="es.strasse">
+    </TextField>
+
+    <Label name="es.plz.ort"><text>PLZ/Ort:</text></Label>
+    <TextField name="es.plz">
+        <columns>5</columns>
+    </TextField>
+    <TextField name="es.ort">
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="es.hvt"><text>HVT:</text></Label>
+    <TextField name="es.hvt">
+    </TextField>
+
+
+    <Label name="leitung"><text>Leitung</text></Label>
+
+    <Label name="lbz"><text>Leitungsbezeichnung:</text></Label>
+    <TextField name="lbz">
+    </TextField>
+
+    <Label name="vtrnr"><text>Vertragsnummer:</text></Label>
+    <TextField name="vtrnr">
+    </TextField>
+
+    <Label name="bemerkungen"><text>Bemerkungen:</text></Label>
+    <TextArea name="bemerkungen">
+        <tooltip>Bemerkungen:</tooltip>
+        <columns>40</columns>
+        <rows>10</rows>
+    </TextArea>
+    
+    <Label name="anlagen"><text>Anlagen</text></Label>
+    
+    <Button name="save.abgebende.leitungen.user.task">
+        <text>Speichern</text>
+        <tooltip>Speichert den User Task.</tooltip>
+    </Button>
+
+</sf>

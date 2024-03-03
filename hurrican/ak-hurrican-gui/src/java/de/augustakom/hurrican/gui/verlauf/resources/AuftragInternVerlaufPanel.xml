@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den Daten zu internen Arbeitsauftraegen.
+-->
+<sf>
+    
+	<!-- Panel-Titles -->
+	<Text name="intern.work.def">Arbeitsaufgabe:</Text>
+
+    <Label name="hvt.standort"><text>Service-Raum:</text></Label>
+    <ReferenceField name="hvt.standort">
+		<tooltip>Auswahl des Service-Raums</tooltip>
+		<columns>25</columns>
+		<id.property>hvtIdStandort</id.property>
+		<name.property>ortsteil</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.view.HVTGruppeStdView</reference.class>
+		<selection.dialog.class>de.augustakom.hurrican.gui.hvt.HVTSelectionDialog</selection.dialog.class>
+	</ReferenceField>
+	
+	<Label name="work.type"><text>Arbeit:</text></Label>
+	<ReferenceField name="work.type">
+		<tooltip>Art der durchzufuehrenden Arbeit</tooltip>
+		<id.property>id</id.property>
+		<name.property>strValue</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+	</ReferenceField>
+	
+    <Label name="description"><text>Beschreibung:</text></Label>
+    <TextArea name="description">
+    	<tooltip>Beschreibung zu dem internen Arbeitsauftrag</tooltip>
+    	<rows>10</rows>
+    	<columns>30</columns>
+    	<maxchars>2000</maxchars>
+    </TextArea>
+	
+</sf>

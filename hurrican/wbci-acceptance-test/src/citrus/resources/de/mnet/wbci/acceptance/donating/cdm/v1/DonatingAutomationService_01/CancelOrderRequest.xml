@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns3:cancelOrderRequest xmlns:ns3="http://www.mnet.de/elektra/services/1.0/">
+    <billingOrderNoOrig>${billingOrderNoOrig}</billingOrderNoOrig>
+    <cancelDate>@ignore@</cancelDate>
+    <futureCarrier>@ignore@</futureCarrier>
+    <dialNumbers>
+        <resourceName>@ignore@</resourceName>
+        <mainNumber>false</mainNumber>
+        <countryDialingCode>+49</countryDialingCode>
+        <areaDialingCode>0821</areaDialingCode>
+        <dialingNumber>123456789</dialingNumber>
+    </dialNumbers>
+    <entryDate>@ignore@</entryDate>
+</ns3:cancelOrderRequest>

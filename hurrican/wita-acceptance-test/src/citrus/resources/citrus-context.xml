@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="classpath:citrus-remoting-context.xml"/>
+    <import resource="classpath:citrus-atlas-context.xml"/>
+    <import resource="classpath:citrus-atlas-context_cdm_v2.xml"/>
+    <import resource="classpath:citrus-context_common.xml"/>
+    <import resource="classpath:citrus-workflow-context.xml"/>
+
+</beans>

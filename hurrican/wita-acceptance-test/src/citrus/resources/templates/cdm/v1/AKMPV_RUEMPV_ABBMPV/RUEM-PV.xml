@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updateOrder xmlns="http://www.mnet.de/esb/cdm/SupplierPartner/LineOrderService/v1">
+    <order>
+        <geschaeftsfall>NEU</geschaeftsfall>
+        <aenderungsKennzeichen>Standard</aenderungsKennzeichen>
+        <geschaeftsfallart>Bereitstellung</geschaeftsfallart>
+    </order>
+    <message>
+        <RUEM-PV>
+            <meldungsattribute>
+                <vertragsnummer>${contractId}</vertragsnummer>
+                <kundennummer>${customerId}</kundennummer>
+                <abgebenderProvider>
+                    <providername>AugustaKom</providername>
+                    <zustimmungProviderwechsel>N</zustimmungProviderwechsel>
+                    <antwortcode>SON</antwortcode>
+                    <antworttext>Keine Lust</antworttext>
+                </abgebenderProvider>
+                <TAL>
+                    <leitung>
+                        <leitungsbezeichnung>
+                            <leitungsschluesselzahl>52B</leitungsschluesselzahl>
+                            <onkzA>89</onkzA>
+                            <onkzB>4401</onkzB>
+                            <ordnungsnummer>1000000000</ordnungsnummer>
+                        </leitungsbezeichnung>
+                    </leitung>
+                </TAL>
+            </meldungsattribute>
+            <meldungspositionen>
+                <position>
+                    <meldungscode>0021</meldungscode>
+                    <meldungstext>Antwort des abgebenden Providers</meldungstext>
+                </position>
+            </meldungspositionen>
+        </RUEM-PV>
+    </message>
+</updateOrder>

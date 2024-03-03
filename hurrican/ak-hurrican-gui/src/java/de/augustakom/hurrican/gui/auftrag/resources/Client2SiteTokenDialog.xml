@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Client2SiteToken-Dialog.
+-->
+<sf>
+
+    <Text name="title">Client2Site Tokens</Text>
+
+    <Label name="serial.number"><text>Seriennummer:</text></Label>
+    <TextField name="serial.number">
+        <columns>15</columns>
+        <tooltip>Sucht nach der Seriennummer. Wildcards erlaubt</tooltip>
+    </TextField>
+</sf>

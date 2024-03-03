@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Executes the complete Hurrican IP Migration</description>
+  <logRotator>
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>1</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>DEVELOPER</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>migration</string>
+              <string>cir10</string>
+              <string>4201</string>
+              <string>glinkjo</string>
+              <string>trenkerbe</string>
+              <string>reinerjue</string>
+              <string>rosedo</string>
+              <string>production</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>BRANCH</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>trunk</string>
+              <string>branches/RELEASE_1-33_1</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+  </properties>
+  <scm class="hudson.scm.SubversionSCM">
+    <locations>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote>https://svn.intern.m-net.de/it/hurrican/${BRANCH}/hurrican-migrations</remote>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote>https://svn.intern.m-net.de/it/hurrican/${BRANCH}/common-migration</remote>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote>https://svn.intern.m-net.de/it/hurrican/${BRANCH}/common-build</remote>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote>https://svn.intern.m-net.de/it/hurrican/${BRANCH}/deployment</remote>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+    </locations>
+    <excludedRegions></excludedRegions>
+    <includedRegions></includedRegions>
+    <excludedUsers></excludedUsers>
+    <excludedRevprop></excludedRevprop>
+    <excludedCommitMessages></excludedCommitMessages>
+    <workspaceUpdater class="hudson.scm.subversion.CheckoutUpdater"/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>JDK 7u7</jdk>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Ant>
+      <targets>updateDatabase</targets>
+      <antName>ANT 1.8.1</antName>
+      <antOpts>-Duse.config=$DEVELOPER
+-Dskip.dbPasswordQuery=true</antOpts>
+      <buildFile>deployment/hurrican-migrations/build.xml</buildFile>
+    </hudson.tasks.Ant>
+    <hudson.tasks.Ant>
+      <targets>unzip.migrations</targets>
+      <antName>ANT 1.8.1</antName>
+      <buildFile>deployment/hurrican-migrations/build.xml</buildFile>
+      <properties>-Duse.config=$DEVELOPER
+-Dskip.dbPasswordQuery=true</properties>
+    </hudson.tasks.Ant>
+    <hudson.tasks.Ant>
+      <targets>run.all.migration.suites</targets>
+      <antName>ANT 1.8.1</antName>
+      <antOpts>-Duse.config=$DEVELOPER
+-Dskip.dbPasswordQuery=true
+-Ddatabase.dumps.enabled=false</antOpts>
+      <buildFile>deployment/hurrican-migrations/target/hurrican-migrations/migrations.xml</buildFile>
+    </hudson.tasks.Ant>
+  </builders>
+  <publishers>
+    <hudson.tasks.Mailer>
+      <recipients>GlinkJo@m-net.de</recipients>
+      <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
+      <sendToIndividuals>false</sendToIndividuals>
+    </hudson.tasks.Mailer>
+    <hudson.plugins.parameterizedtrigger.BuildTrigger>
+      <configs>
+        <hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+          <configs class="java.util.Collections$EmptyList"/>
+          <projects>HUR_Migration_Create_Developer_Dump</projects>
+          <condition>SUCCESS</condition>
+          <triggerWithNoParameters>false</triggerWithNoParameters>
+        </hudson.plugins.parameterizedtrigger.BuildTriggerConfig>
+      </configs>
+    </hudson.plugins.parameterizedtrigger.BuildTrigger>
+  </publishers>
+  <buildWrappers/>
+</project>

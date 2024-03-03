@@ -1,0 +1,3 @@
+drop table T_EMERGENCYCALL_CONFIG;
+
+delete from T_REFERENCE where TYPE = 'EMERGENCYCALL_GROUP';

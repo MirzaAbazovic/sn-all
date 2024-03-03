@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <v1:updateCarrierChange xmlns:v1="http://www.mnet.de/esb/cdm/SupplierPartner/CarrierNegotiationService/v1">
+            <v1:ABBM>
+                <v1:absender>
+                    <v1:carrierCode>${carrierCodeAuf}</v1:carrierCode>
+                </v1:absender>
+                <v1:empfaenger>
+                    <v1:carrierCode>${carrierCodeAbg}</v1:carrierCode>
+                </v1:empfaenger>
+                <v1:version>0</v1:version>
+                <v1:vorabstimmungsIdRef>${preAgreementId}</v1:vorabstimmungsIdRef>
+                <v1:endkundenvertragspartner>
+                    <v1:EKPauf>
+                        <v1:carrierCode>${carrierCodeAuf}</v1:carrierCode>
+                    </v1:EKPauf>
+                    <v1:EKPabg>
+                        <v1:carrierCode>${carrierCodeAbg}</v1:carrierCode>
+                    </v1:EKPabg>
+                </v1:endkundenvertragspartner>
+                <v1:geschaeftsfall>TVS-VA</v1:geschaeftsfall>
+                <v1:position>
+                    <v1:Meldungscode>8141</v1:Meldungscode>
+                    <v1:Meldungstext>Terminverschiebung abgelehnt</v1:Meldungstext>
+                </v1:position>
+                <v1:wechseltermin>${requestedCustomerDate}</v1:wechseltermin>
+                <v1:aenderungsIdRef>${changeId}</v1:aenderungsIdRef>
+                <v1:begruendung>Terminverschiebung ungueltig, weil sie vom abgebenden Provider verschickt wurde.</v1:begruendung>
+            </v1:ABBM>
+        </v1:updateCarrierChange>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

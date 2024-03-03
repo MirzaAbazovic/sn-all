@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Sub-Panel mit den Physiktyp-Zuordnungen fuer die Produkte.
+-->
+<sf>
+
+     <!-- Beginn von Panel mit 'PhysikTyp-Zuordnung' -->
+    <Label name="physiktyp"><text>Physiktyp:</text></Label>
+    <ComboBox name="physiktyp">
+        <tooltip>Physiktyp, den das Produkt am HVT benötigt</tooltip>
+    </ComboBox>
+
+    <Label name="physiktyp.additional"><text>Physiktyp 2:</text></Label>
+    <ComboBox name="physiktyp.additional">
+        <tooltip>zweiter Physiktyp, den das Produkt am HVT benötigt</tooltip>
+    </ComboBox>
+
+    <Label name="virtuell"><text>Virtuell:</text></Label>
+    <CheckBox name="virtuell">
+        <tooltip>Angabe, ob es sich um eine virtuelle Schaltung handelt</tooltip>
+    </CheckBox>
+
+    <Label name="use.in.rangmatrix">
+        <text>Rangierungsmatrix:</text>
+    </Label>
+    <CheckBox name="use.in.rangmatrix">
+        <tooltip>Fuer den Physik-Typ Rangierungsmatrix anlegen (ja/nein)</tooltip>
+    </CheckBox>
+
+    <Label name="parent.physiktyp"><text>Parent Physik-Typ:</text></Label>
+    <ComboBox name="parent.physiktyp">
+        <tooltip>Physik-Typ eines evtl. vorhandenen Vater-Produkts</tooltip>
+    </ComboBox>
+
+    <Label name="physiktyp.priority"><text>Priorität:</text></Label>
+    <FormattedTextField name="physiktyp.priority">
+        <tooltip>Angabe der Priorität für den Physiktyp (höhere Werte haben Vorrang) (Prio aus Rangierungsmatrix schlägt jedoch diese Priorität!)</tooltip>
+        <columns>10</columns>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Button name="new.p2pt">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Legt eine neue PhysikTyp-Zuordnung für das Produkt an</tooltip>
+    </Button>
+
+    <Button name="delete.p2pt">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht die aktuell angezeigte PhysikTyp-Zuordnung für das Produkt</tooltip>
+    </Button>
+
+    <Button name="add.prod.eq.config">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Fuegt eine neue Equipment-Konfiguration hinzu</tooltip>
+    </Button>
+
+    <Button name="del.prod.eq.config">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Entfernt die selektierte Equipment-Konfiguration</tooltip>
+    </Button>
+
+    <Label name="priority.list"><text>priorisiert</text></Label>
+    <Label name="priority.catalog"><text>nicht priorisiert</text></Label>
+    <Button name="add.priority">
+        <icon>de/augustakom/hurrican/gui/images/left.gif</icon>
+        <tooltip>Fügt den selektierten Standorttyp hinzu</tooltip>
+    </Button>
+
+    <Button name="remove.priority">
+        <icon>de/augustakom/hurrican/gui/images/right.gif</icon>
+        <tooltip>Entfernt den selektierten Standorttyp</tooltip>
+    </Button>
+
+    <Button name="move.priority.up">
+        <icon>de/augustakom/hurrican/gui/images/up.gif</icon>
+        <tooltip>Verschiebt den selektierten Standorttyp nach oben (höhere Priorisierung)</tooltip>
+    </Button>
+
+    <Button name="move.priority.down">
+        <icon>de/augustakom/hurrican/gui/images/down.gif</icon>
+        <tooltip>Verschiebt den selektierten Standorttyp nach unten (niedrigere Priorisierung)</tooltip>
+    </Button>
+
+    <Label name="sdslndraht">
+        <text>Realisierung als:</text>
+    </Label>
+    <ComboBox name="sdslndraht">
+    </ComboBox>
+
+</sf>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sws="http://www.springframework.org/schema/web-services"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config />
+    <sws:annotation-driven />
+
+     <!-- Definition des zu verwendenden Marshallers -->
+    <bean id="xmlBeanMarshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller" />
+
+    <bean id="xmlBeansPayloadProcessor" class="org.springframework.ws.server.endpoint.adapter.method.MarshallingPayloadMethodProcessor">
+        <property name="unmarshaller" ref="xmlBeanMarshaller" />
+        <property name="marshaller" ref="xmlBeanMarshaller" />
+    </bean>
+    <bean class="org.springframework.ws.server.endpoint.adapter.DefaultMethodEndpointAdapter">
+        <property name="methodArgumentResolvers">
+            <list>
+                <ref bean="xmlBeansPayloadProcessor" />
+                <bean class="org.springframework.ws.server.endpoint.adapter.method.MessageContextMethodArgumentResolver" />
+                <bean class="org.springframework.ws.soap.server.endpoint.adapter.method.SoapMethodArgumentResolver" />
+            </list>
+        </property>
+        <property name="methodReturnValueHandlers">
+            <list>
+                <ref bean="xmlBeansPayloadProcessor" />
+                <bean class="org.springframework.ws.server.endpoint.adapter.method.SourcePayloadMethodProcessor" />
+                <bean class="org.springframework.ws.server.endpoint.adapter.method.jaxb.JaxbElementPayloadMethodProcessor" />
+            </list>
+        </property>
+    </bean>
+
+</beans>

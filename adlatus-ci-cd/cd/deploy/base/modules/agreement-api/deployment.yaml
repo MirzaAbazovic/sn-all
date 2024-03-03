@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agreement-api-deployment
+  namespace: adl
+  labels:
+    app: agreement-api
+spec:
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agreement-api
+  template:
+    metadata:
+      labels:
+        app: agreement-api
+    spec:
+      containers:
+        - name: agreement-api
+          image: agreement-api:latest
+          ports:
+            - containerPort: 8080
+          # envFrom:
+          #  - configMapRef:
+          #      name: agreement-api-config
+          #  - secretRef:
+          #      name: agreement-api-secret

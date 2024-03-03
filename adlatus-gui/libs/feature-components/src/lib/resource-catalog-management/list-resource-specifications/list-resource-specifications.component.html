@@ -1,0 +1,6 @@
+<h2>Resource Specifications</h2>
+
+<adlatus-gui-entries-table *ngIf="resourceSpecifications$ | async as resourceSpecifications"
+                           [data]="resourceSpecifications"
+                           [columns]="columns"
+                           (clickHandler)="handleOpenResourceSpecification($event)"/>

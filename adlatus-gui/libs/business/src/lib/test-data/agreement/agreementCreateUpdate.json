@@ -1,0 +1,40 @@
+[
+  {
+    "agreementType": "Sample Agreement Type",
+    "description": "Sample Description",
+    "documentNumber": 12345,
+    "name": "Sample Name",
+    "engagedParty": [
+      {
+        "name": "Engaged Party 1 Name",
+        "role": "Engaged Party 1 Role"
+      },
+      {
+        "name": "Engaged Party 2 Name",
+        "role": "Engaged Party 2 Role"
+      }
+    ],
+    "agreementPeriod": {
+      "startDateTime": "2023-10-26T00:00:00.000Z",
+      "endDateTime": "2023-10-26T00:00:00.000Z"
+    },
+    "characteristic": [
+      {
+        "name": "Characteristic 1",
+        "value": "Value 1"
+      },
+      {
+        "name": "Characteristic 2",
+        "value": "Value 2"
+      }
+    ],
+    "agreementItem": [
+      {
+        "product": [
+          { "name": "Product1" },
+          { "name": "Product2" }
+        ]
+      }
+    ]
+  }
+]

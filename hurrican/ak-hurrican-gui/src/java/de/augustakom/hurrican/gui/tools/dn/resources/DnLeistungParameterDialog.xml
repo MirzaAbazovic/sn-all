@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Erfassung/Änderung der Leistungsparameter.
+-->
+<sf>
+	<Label name="beschreibung"><text>Beschreibung:</text></Label>
+    <TextField name="beschreibung">
+        <tooltip>Beschreibung des Paramters</tooltip>
+        <columns>15</columns>
+    </TextField>
+    
+    <Label name="mehrfach"><text>Mehrfach:</text></Label>
+    <FormattedTextField name="mehrfach">
+        <tooltip>Kann dieser Parameter öfters einer Rufnummer zugeordnet werden?</tooltip>
+        <format type="number">###</format>
+    </FormattedTextField>
+
+    <Label name="mehrfachIms"><text>Mehrfach (IMS):</text></Label>
+    <FormattedTextField name="mehrfachIms">
+        <tooltip>Kann dieser Parameter öfters einer Rufnummer zugeordnet werden?</tooltip>
+        <format type="number">###</format>
+    </FormattedTextField>
+
+</sf>

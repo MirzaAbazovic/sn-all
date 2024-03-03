@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den Verlaufs-Bemerkungen.
+-->
+<sf>
+
+    <TextField name="abteilung">
+        <tooltip>Name der Abteilung</tooltip>
+        <columns>22</columns>
+    </TextField>
+
+    <TextField name="niederlassung">
+        <tooltip>Name der Niederlassung</tooltip>
+        <columns>22</columns>
+    </TextField>
+
+    <TextArea name="bemerkung">
+        <columns>30</columns>
+        <rows>5</rows>
+        <maxchars>2000</maxchars>
+    </TextArea>
+
+    <Label name="status"><text>Status:</text></Label>
+    <TextField name="status">
+        <tooltip>Status des Verlaufs in der Abteilung</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="bearbeiter"><text>Bearbeiter:</text></Label>
+    <TextField name="bearbeiter">
+        <tooltip>Name des Bearbeiters</tooltip>
+    </TextField>
+
+    <Label name="datum.an"><text>Datum an:</text></Label>
+    <DateComponent name="datum.an">
+        <columns>12</columns>
+        <tooltip>Datum, an dem der Verlauf an die Abteilung verschickt wurde</tooltip>
+        <format type="date">dd.MM.yyyy HH:mm</format>
+    </DateComponent>
+
+    <Label name="erledigt.am"><text>Erledigt am:</text></Label>
+    <DateComponent name="erledigt.am">
+        <columns>12</columns>
+        <tooltip>Datum, zu dem der Verlauf von der Abteilung erledigt wurde</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="not.possible"><text>NICHT real.:</text></Label>
+    <ComboBox name="not.possible">
+        <tooltip>Angabe, dass der Auftrag fuer die Abteilung nicht realisierbar ist</tooltip>
+    </ComboBox>
+
+    <Label name="not.possible.reason"><text>Grund:</text></Label>
+    <ReferenceField name="not.possible.reason">
+        <tooltip>Angabe eines Grundes, weshalb der Auftrag nicht realisierbar ist</tooltip>
+        <columns>10</columns>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="wiedervorlage"><text>Wiedervorlage am:</text></Label>
+    <DateComponent name="wiedervorlage">
+        <tooltip>Wiedervorlagedatum (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>10</columns>
+    </DateComponent>
+
+    <Label name="abteilung.status"><text>Abteilungs-Status:</text></Label>
+    <ComboBox name="abteilung.status">
+        <tooltip>Status in der Abteilung</tooltip>
+    </ComboBox>
+
+    <Button name="save">
+        <text>Speichern</text>
+        <tooltip>Speichert die eingegebenen Änderungen</tooltip>
+    </Button>
+</sf>

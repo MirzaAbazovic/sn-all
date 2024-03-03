@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sf>
+
+    <Text name="dialog.title">frühestmöglicher Kündigungs- / Wechseltermin</Text>
+
+    <Label name="cancellation.income"><text>Kündigungseingangsdatum:</text></Label>
+    <DateComponent name="cancellation.income">
+        <tooltip>Datum, zu dem die Kündigung bei M-net eingeganen ist</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="order.no.orig"><text>Taifun Auftrags-Id:</text></Label>
+    <FormattedTextField name="order.no.orig">
+        <tooltip>Taifun Auftrags-Id für die die Kündigung berechnet wird</tooltip>
+        <format type="number">######</format>
+    </FormattedTextField>
+
+    <Label name="product"><text>Produkt:</text></Label>
+    <TextField name="product">
+        <tooltip>Produkt-Name des Auftrags</tooltip>
+        <columns>30</columns>
+    </TextField>
+
+    <Label name="services"><text>Ü-Leistungen:</text></Label>
+
+    <Label name="mvlz"><text>Ende MVLZ / MVLZ (von Taifun):</text></Label>
+    <DateComponent name="mvlz">
+        <tooltip>Ende der Mindestvertragslaufzeit, das auf dem Auftrag angegeben ist</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+    <TextField name="mvlz">
+        <tooltip>Angabe der Mindestvertragslaufzeit in Monaten</tooltip>
+    </TextField>
+
+    <Label name="mvlz.calculated"><text>Ende MVLZ (berechnet):</text></Label>
+    <DateComponent name="mvlz.calculated">
+        <tooltip>berechnetes Ende der Mindestvertragslaufzeit (basierend auf neuester Überlassungsleistung und Vertragslaufzeit in Monaten)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="auto.renewal"><text>autom. Verlängerung:</text></Label>
+    <TextField name="auto.renewal">
+        <tooltip>Angabe, um welche Zeitspanne sich die Vertragslaufzeit automatisch verlängert</tooltip>
+    </TextField>
+
+    <Label name="description"><text>angewandte Frist:</text></Label>
+    <TextField name="description">
+        <tooltip>Beschreibung der zur Berechnung des Kündigungsdatum verwendete Kündigungsfrist</tooltip>
+        <columns>30</columns>
+    </TextField>
+
+    <Label name="cancellation.date1"> <text>errechneter frühestmöglicher</text></Label>
+    <Label name="cancellation.date2"> <text>Kündigungs-/Wechseltermin:</text></Label>
+    <DateComponent name="cancellation.date">
+        <tooltip>Mindestvertragslaufzeit, das auf dem Auftrag angegeben ist</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="check.not.possible">
+        <text>Berechnung nicht durchgeführt:</text>
+    </Label>
+    <Label name="information">
+        <text>Kündigungsdatum von Vertrieb abfragen</text>
+    </Label>
+
+</sf>

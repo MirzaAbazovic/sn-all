@@ -1,0 +1,12 @@
+alter table T_LEISTUNG_PARAMETER add MEHRFACH_IMS decimal(10,0);
+
+update T_LEISTUNG_PARAMETER set MEHRFACH_IMS=32 where id = 8;
+
+-- abgehende Lists im IMS nur 10 rufnummern
+INSERT INTO T_LEISTUNG_PARAMETER (ID, BESCHREIBUNG,MEHRFACH, TYP, MEHRFACH_IMS, VERSION)
+    VALUES (S_T_LEISTUNG_PARAMETER_0.nextval, 'Rufnummer,Rufnummer,....', 32, 2, 10, 0);
+
+update T_LEISTUNG_PARAMETER set MEHRFACH_IMS=MEHRFACH where MEHRFACH_IMS is null;
+
+update T_LEISTUNG_2_PARAMETER set LEISTUNG_PARAMETER_ID = (select id from T_LEISTUNG_PARAMETER where BESCHREIBUNG='Rufnummer,Rufnummer,....' and MEHRFACH=32 and TYP=2 and MEHRFACH_IMS=10)
+where LEISTUNG_ID in (31, 32);

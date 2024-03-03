@@ -1,0 +1,1 @@
+UPDATE DB SET HIBERNATE_DIALECT = REPLACE(HIBERNATE_DIALECT, 'net.sf.hibernate.dialect.Oracle9Dialect', 'org.hibernate.dialect.Oracle10gDialect');

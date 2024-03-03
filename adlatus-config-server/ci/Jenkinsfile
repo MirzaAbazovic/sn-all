@@ -1,0 +1,63 @@
+pipeline {
+    agent {
+        kubernetes {
+            inheritFrom 'maven-docker-pod'
+        }
+    }
+    
+    stages {
+        stage('Checkout Source') {
+            steps {
+                git credentialsId: 'adlatus-config-server_ssh-key',
+                    url: 'git@bitbucket.org:bitconex/adlatus-config-server.git',
+                    branch: 'master'
+            }
+        }
+
+        stage('Maven Package') {
+            steps {
+                container('maven'){
+                    sh 'mvn clean package'
+                }
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                container('docker'){
+                    sh 'docker build -t docker.adl.dev.bitconex.com/bitconex-config-server:latest -f ci/Dockerfile .'
+                }
+            }
+        }
+
+        stage('Pushing Image'){
+            steps {
+                container('docker'){
+                    script {
+                        def registryCredential = 'nexus_id'
+                        docker.withRegistry('https://docker.adl.dev.bitconex.com', registryCredential){
+                            sh 'docker push docker.adl.dev.bitconex.com/bitconex-config-server:latest'
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Deploying Config-Server to Kubernetes'){
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'GIT_TOKEN', passwordVariable: 'TOKEN', usernameVariable: 'USERNAME')]) {
+                    withKubeConfig(){
+                        sh 'curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"'
+                        sh 'chmod u+x ./kubectl'
+                        sh './kubectl delete deployment --ignore-not-found config-server -n adl-env01'
+                        sh './kubectl delete service --ignore-not-found config-server-service -n adl-env01'
+                        sh './kubectl delete configmap config-server-configmap --ignore-not-found -n adl-env01'
+                        sh './kubectl create configmap config-server-configmap -n adl-env01 --from-literal=GIT_TOKEN=${TOKEN}'
+                        sh './kubectl apply -f ci/deployment.yaml'
+                        sh './kubectl apply -f ci/service.yaml'
+                    }
+                }
+            }
+        }
+    }
+}

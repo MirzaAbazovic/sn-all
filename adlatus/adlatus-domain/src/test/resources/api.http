@@ -1,0 +1,16 @@
+### Start process
+GET http://127.0.0.1:8989/process/start
+
+
+### fire event START_PROVISION to process with businessKey
+GET http://localhost:8989/event/aeed5f0d-369f-4e7b-aa20-3f90079f226c/START_PROVISION
+
+###fire event QEB to process with businessKey 12
+POST http://localhost:8989/event
+Content-Type: application/json
+
+{
+  "eventName": "QEB",
+  "businessKey": "9db13a96-caaf-412b-9ed0-75dd532fb607"
+}
+

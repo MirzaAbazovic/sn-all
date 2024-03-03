@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.BAuftragBNFC
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="BAuftragBNFC" table="AUFTRAG__BN_FC">
+	    
+	    <!-- PrimaryKey -->
+		<id name="auftragNo" column="AUFTRAG_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<property name="prefix" column="PREFIX" type="string"/>
+		<property name="businessNr" column="BUSINESS_NR" type="string"/>
+		<property name="destination" column="ZIELNR" type="string"/>
+        	
+	</class>
+	
+</hibernate-mapping>

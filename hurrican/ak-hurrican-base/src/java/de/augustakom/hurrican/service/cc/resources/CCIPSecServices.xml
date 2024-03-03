@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer die IPSec-Services.
+Die Datei wird von CCServices.xml importiert!
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+     default-lazy-init="true">
+
+    <context:annotation-config />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs 'IPSecSiteToSite' -->
+    <bean id="ipSecSite2SiteDAO" class="de.augustakom.hurrican.dao.cc.impl.IPSecSite2SiteDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs 'Client2SiteToken' -->
+    <bean id="ipSecClient2SiteDAO" class="de.augustakom.hurrican.dao.cc.impl.IPSecClient2SiteDAOImpl" />
+
+    <!-- Service-Definition fuer IPSec-Services, Transaction Proxy-->
+    <bean id="de.augustakom.hurrican.service.cc.IPSecService"
+        class="de.augustakom.hurrican.service.cc.impl.IPSecServiceImpl">
+        <property name="DAO" ref="ipSecSite2SiteDAO"/>
+        <property name="ipSecClient2SiteDAO" ref="ipSecClient2SiteDAO"/>
+        <property name="ipSecSite2SiteValidator" ref="ipSecSite2SiteValidator"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:tns="http://www.mnet.de/esb/cdm/Resource/WorkforceNotificationService/v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:jms="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:jndi="http://www.tibco.com/namespaces/ws/2004/soap/apis/jndi"
+                  name="WorkforceNotificationService"
+                  targetNamespace="http://www.mnet.de/esb/cdm/Resource/WorkforceNotificationService/v1">
+   <wsdl:documentation>Version 1.0</wsdl:documentation>
+   <wsdl:types>
+      <xs:schema xmlns="http://www.mnet.de/esb/cdm/Resource/WorkforceNotificationService/v1"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 targetNamespace="http://www.mnet.de/esb/cdm/Resource/WorkforceNotificationService/v1"
+                 version="1.0"
+                 elementFormDefault="qualified"
+                 attributeFormDefault="unqualified">
+         <xs:complexType name="TimeSlot">
+            <xs:sequence>
+               <xs:element name="startTime" type="xs:dateTime" minOccurs="0"/>
+               <xs:element name="endTime" type="xs:dateTime" minOccurs="0"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="notifyOrderFeedback">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="orderId" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>ID of the order.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="workUnit" type="xs:string" minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>Creator of feedback message.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="captured" type="xs:dateTime">
+                     <xs:annotation>
+                        <xs:documentation>Timestamp on which this notification was created.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:choice>
+                     <xs:element name="material">
+                        <xs:annotation>
+                           <xs:documentation>Installed material or additional charged effort / service.</xs:documentation>
+                        </xs:annotation>
+                        <xs:complexType>
+                           <xs:sequence>
+                              <xs:element name="id" type="xs:string">
+                                 <xs:annotation>
+                                    <xs:documentation>ID of the material (or service).</xs:documentation>
+                                 </xs:annotation>
+                              </xs:element>
+                              <xs:element name="serialNumber" type="xs:string" minOccurs="0">
+                                 <xs:annotation>
+                                    <xs:documentation>Serial number of material.</xs:documentation>
+                                 </xs:annotation>
+                              </xs:element>
+                              <xs:element name="summary" minOccurs="0">
+                                 <xs:annotation>
+                                    <xs:documentation>Short description of material</xs:documentation>
+                                 </xs:annotation>
+                                 <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                       <xs:maxLength value="255"/>
+                                    </xs:restriction>
+                                 </xs:simpleType>
+                              </xs:element>
+                              <xs:element name="description" type="xs:string" minOccurs="0"/>
+                              <xs:element name="quantity" type="xs:decimal">
+                                 <xs:annotation>
+                                    <xs:documentation>Quantity of material. the unit is specific to the material-type.</xs:documentation>
+                                 </xs:annotation>
+                              </xs:element>
+                           </xs:sequence>
+                        </xs:complexType>
+                     </xs:element>
+                     <xs:element name="text" type="xs:string">
+                        <xs:annotation>
+                           <xs:documentation xml:lang="en">Text notification</xs:documentation>
+                           <xs:documentation xml:lang="en">Corresponding database column name is TXT_TEXT</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                  </xs:choice>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="notifyUpdateOrder">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="orderId" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>ID of the order.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="modified" type="xs:dateTime">
+                     <xs:annotation>
+                        <xs:documentation>Timestamp of the change.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="requested" minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>Time slot which was requested for this order.</xs:documentation>
+                     </xs:annotation>
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element name="earliestStart" type="xs:dateTime" minOccurs="0"/>
+                           <xs:element name="latestStart" type="xs:dateTime" minOccurs="0"/>
+                           <xs:element name="earliestEnd" type="xs:dateTime" minOccurs="0"/>
+                           <xs:element name="latestEnd" type="xs:dateTime" minOccurs="0"/>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element name="agreed" type="tns:TimeSlot" minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>Time slot which describes the agreed time apllied to the scheduled time slot.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="scheduled" minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>Time slot for which the referenced order ist scheduled.</xs:documentation>
+                     </xs:annotation>
+                     <xs:complexType>
+                        <xs:complexContent>
+                           <xs:extension base="tns:TimeSlot">
+                              <xs:sequence>
+                                 <xs:element name="fixed" type="xs:boolean">
+                                    <xs:annotation>
+                                       <xs:documentation>Order is scheduled to a fix slot.</xs:documentation>
+                                    </xs:annotation>
+                                 </xs:element>
+                              </xs:sequence>
+                           </xs:extension>
+                        </xs:complexContent>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element name="actual" type="tns:TimeSlot" minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>Actual time slot which was used by workforce to complete this order.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="resource" minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>Workforce resource which is planed to execute this order.</xs:documentation>
+                     </xs:annotation>
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element name="id" type="xs:string">
+                              <xs:annotation>
+                                 <xs:documentation>ID of the resource which is currently asssigned to the referenced order.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                           <xs:element name="fixed" type="xs:boolean">
+                              <xs:annotation>
+                                 <xs:documentation>Order is fixed to  the referenced ressource.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element name="stateInfo">
+                     <xs:annotation>
+                        <xs:documentation>Current state of the order</xs:documentation>
+                     </xs:annotation>
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element name="state" type="xs:string">
+                              <xs:annotation>
+                                 <xs:documentation>State of the order. Please see provider system for possible values.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                           <xs:element name="extended" type="xs:string" minOccurs="0">
+                              <xs:annotation>
+                                 <xs:documentation>Extended state description. Please see provider system for possible values.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:schema>
+   </wsdl:types>
+   <wsdl:service name="WorkforceNotificationService">
+      <wsdl:port name="WorkforceNotificationServiceJMSQueue"
+                 binding="tns:WorkforceNotificationServiceJMSBinding">
+         <soap:address location="mnet.Resource.op.cdm.src.v1.WorkforceNotificationService"/>
+         <jms:connectionFactory>QueueConnectionFactory</jms:connectionFactory>
+         <jms:targetAddress destination="queue">mnet.Resource.op.cdm.src.v1.WorkforceNotificationService</jms:targetAddress>
+      </wsdl:port>
+      <wsdl:port name="WorkforceNotificationServiceJMSTopic"
+                 binding="tns:WorkforceNotificationServiceJMSBinding">
+         <soap:address location="mnet.Resource.op.cdm.ntf.v1.WorkforceNotificationService"/>
+         <jms:connectionFactory>TopicConnectionFactory</jms:connectionFactory>
+         <jms:targetAddress destination="topic">mnet.Resource.op.cdm.ntf.v1.WorkforceNotificationService</jms:targetAddress>
+      </wsdl:port>
+      <wsdl:port name="WorkforceNotificationServiceHTTP"
+                 binding="tns:WorkforceNotificationServiceHTTPBinding">
+         <soap:address location="http://@domain.loadbalancer.url@/esb/Resource/WorkforceNotificationService/v1"/>
+      </wsdl:port>
+   </wsdl:service>
+   <wsdl:portType name="WorkforceNotificationService">
+      <wsdl:operation name="notifyUpdateOrder">
+         <wsdl:input message="tns:notifyUpdateOrder"/>
+      </wsdl:operation>
+      <wsdl:operation name="notifyOrderFeedback">
+         <wsdl:input message="tns:notifyOrderFeedback"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="WorkforceNotificationServiceJMSBinding"
+                 type="tns:WorkforceNotificationService">
+      <soap:binding style="document"
+                    transport="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"/>
+      <jms:binding messageFormat="Text"/>
+      <wsdl:operation name="notifyUpdateOrder">
+         <soap:operation style="document"
+                         soapAction="/WorkforceNotificationService/notifyUpdateOrder"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="notifyOrderFeedback">
+         <soap:operation style="document"
+                         soapAction="/WorkforceNotificationService/notifyOrderFeedback"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="WorkforceNotificationServiceHTTPBinding"
+                 type="tns:WorkforceNotificationService">
+      <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="notifyUpdateOrder">
+         <soap:operation style="document"
+                         soapAction="/WorkforceNotificationService/notifyUpdateOrder"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="notifyOrderFeedback">
+         <soap:operation style="document"
+                         soapAction="/WorkforceNotificationService/notifyOrderFeedback"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:message name="notifyUpdateOrder">
+      <wsdl:part name="in" element="tns:notifyUpdateOrder"/>
+   </wsdl:message>
+   <wsdl:message name="notifyOrderFeedback">
+      <wsdl:part name="in" element="tns:notifyOrderFeedback"/>
+   </wsdl:message>
+</wsdl:definitions>

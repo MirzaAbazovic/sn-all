@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Frame der Report-Historie.
+-->
+<sf>
+    
+    <Text name="title">Report-Historie</Text>
+ 	<Text name="uebersicht">Report-Übersicht</Text>
+    
+</sf>

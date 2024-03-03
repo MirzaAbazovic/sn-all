@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../base/modules/resource-catalog-api
+
+namespace: adl-test
+nameSuffix: "-test"
+
+images: 
+- name: resource-catalog-api
+  newName: docker.adl.dev.bitconex.com/bitconex-resource-catalog-api
+  newTag: latest
+
+patches:
+  -  path: ./patches/deployment.yaml

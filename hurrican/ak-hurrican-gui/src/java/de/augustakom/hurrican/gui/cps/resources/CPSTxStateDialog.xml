@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog, die den Status einer CPS-Transaction anzeigt.
+-->
+<sf>
+	<Text name="title">Status</Text>
+	<Text name="txId">TX-Id</Text>
+	<Text name="status">Status</Text>
+	<Text name="result">Result</Text>
+	<Text name="response">Response</Text>
+	
+	<Text name="progress">Abfrage in Bearbeitung ...</Text>
+	<Text name="progressCps">Abfrage CPS-Transaktion</Text>
+	<Text name="progressStop">Statusabfrage beendet</Text>
+	<Text name="success">Erfolgreich</Text>
+	<Text name="error">Fehler</Text>
+	<Text name="txCount">Anzahl</Text>
+	<Text name="cpsTransaction">CPS-Transaktion</Text>
+	<Text name="progressCancel">Abfrage abgebrochen ...</Text>
+	
+	<Label name="txId">
+		<text>TX-Id</text>
+	</Label>
+	<Label name="status">
+		<text>Status</text>
+	</Label>
+	<Label name="result">
+		<text>Result</text>
+	</Label>
+	<Label name="response">
+		<text>Response</text>
+	</Label>
+	
+	<TextField name="txId">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+	<TextField name="status">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+	<TextField name="result">
+        <tooltip></tooltip>
+        <columns>15</columns>
+    </TextField>
+    
+	<Button name="cancel">
+        <text>Abbrechen</text>
+        <tooltip>Beendet die laufende Abfrage</tooltip>
+        <mnemonic>VK_A</mnemonic>
+    </Button>
+
+	<Button name="reload">
+        <text>Aktualisieren</text>
+        <tooltip>Startet die Abfrage erneut</tooltip>
+        <mnemonic>VK_R</mnemonic>
+    </Button>    
+</sf>

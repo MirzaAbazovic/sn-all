@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-header>
+        <h2> Create a new party </h2>
+    </mat-card-header>
+    <mat-card-content>
+
+        <label for="party-type">Select a party type</label>
+        <mat-radio-group [(ngModel)]="selectedOption" id="party-type">
+            <mat-radio-button value="individual">Individual</mat-radio-button>
+            <mat-radio-button value="organization">Organization</mat-radio-button>
+        </mat-radio-group>
+
+        <adlatus-gui-entry-form [fields]="options[selectedOption].formConfig" [model]="options[selectedOption].model"
+                                (formSubmitHandler)="onSubmit($event)"/>
+
+    </mat-card-content>
+</mat-card>
+

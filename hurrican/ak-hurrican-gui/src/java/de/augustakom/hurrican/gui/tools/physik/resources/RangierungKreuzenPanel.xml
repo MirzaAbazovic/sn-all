@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel, ueber das Rangierungen 'haendisch' gekreuzt
+werden koennen.
+-->
+<sf>
+    
+    <Label name="rangierung1"><text>Rangierung 1:</text></Label>
+    <FormattedTextField name="rangierung1">
+        <tooltip>ID der 1. Rangierung</tooltip>
+        <columns>15</columns>
+        <format type="number">0</format>
+    </FormattedTextField>
+    
+    <Label name="rangierung2"><text>Rangierung 2:</text></Label>
+    <FormattedTextField name="rangierung2">
+        <tooltip>ID der 2. Rangierung</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+    
+    <Label name="kreuzung"><text>Kreuzung:</text></Label>
+    
+    <CheckBox name="update.es">
+        <text>update Endst. Rangierung B</text>
+        <tooltip>Schreibt in die Endstelle der Rangierung B die ID der gekreuzten (bzw. neu erzeugten) Rangierung</tooltip>
+    </CheckBox>
+    
+    <CheckBox name="switch.cb">
+        <text>Carrierbestellungen übernehmen</text>
+        <tooltip>Übernimmte die Carrierbestellung der Rangierung A auf Rangierung B (nur wenn Update ES aktiviert!)</tooltip>
+    </CheckBox>
+    
+    <CheckBox name="ignore.physiktyp">
+    	<text>Physiktyp ignorieren</text>
+    	<tooltip>Falls gesetzt wird bei der Kreuzung der Physiktyp ignoriert.</tooltip>
+    </CheckBox>
+    
+    <RadioButton name="eq.out">
+        <text>EQ-Out</text>
+        <tooltip>Veranlasst eine Kreuzung der EQ-Out Stifte (=Carrier-Seite)</tooltip>
+    </RadioButton>
+    
+    <RadioButton name="eq.in">
+        <text>EQ-In</text>
+        <tooltip>Veranlasst eine Kreuzung der EQ-In Stife (=AKom-Seite)</tooltip>
+    </RadioButton>
+    
+    <Button name="kreuzen">
+        <text>Kreuzen</text>
+        <tooltip><![CDATA[Führt die Kreuzung der beiden Rangierungen durch. Datensätze werden historisiert!]]></tooltip>
+    </Button>
+    
+    <Button name="clear">
+        <text>Clear</text>
+        <tooltip><![CDATA[Löscht die Darstellung]]></tooltip>
+    </Button>
+    
+    <Button name="show">
+        <text>Anzeigen</text>
+        <tooltip><![CDATA[Zeigt die eingetragenen Rangierungen an]]></tooltip>
+    </Button>
+    
+    <Text name="physikuebernahme">Opt. f. T_PHYSIKUEBERNAHME:</Text>
+    <RadioButton name="physik.uebernahme">
+        <text>Anschlussübernahme</text>
+        <tooltip></tooltip>
+    </RadioButton>
+    
+    <RadioButton name="physik.wandel.ab.isdn">
+        <text>Wandel a/b auf ISDN</text>
+        <tooltip></tooltip>
+    </RadioButton>
+    
+    <RadioButton name="physik.wandel.isdn.ab">
+        <text>Wandel ISDN auf a/b</text>
+        <tooltip></tooltip>
+    </RadioButton>
+    
+    <RadioButton name="physik.dsl.kreuzung">
+        <text>DSL-Kreuzung</text>
+        <tooltip></tooltip>
+    </RadioButton>
+    
+</sf>

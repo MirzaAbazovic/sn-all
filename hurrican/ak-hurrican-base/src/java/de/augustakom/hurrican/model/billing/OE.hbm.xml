@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.OE
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="OE" table="OE">
+	    
+	    <!-- PrimaryKey -->
+		<id name="oeNo" column="OE_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<property name="oeNoOrig" column="OE__NO" type="long"/>
+		<property name="vaterOeNoOrig" column="VATER_OE_NO" type="long"/>
+		<property name="name" column="NAME" type="string"/>
+		<property name="produktCode" column="PRODUKTCODE" type="string"/>		
+		<property name="auftragZusatz" column="AUFTRAG_ZUSATZ" type="string"/>
+        
+        <property name="gueltigVon" column="VALID_FROM" type="date"/>
+        <property name="gueltigBis" column="VALID_TO" type="date"/>
+        <property name="histStatus" column="HIST_STATUS" type="string"/>
+        <property name="histCnt" column="HIST_CNT" type="integer"/>
+        <property name="histLast" column="HIST_LAST" type="boolean"/>
+		
+		<set name="oeLanguages" lazy="true">
+			<key column="OE_NO"/>
+			<one-to-many class="de.augustakom.hurrican.model.billing.OELang"/>
+		</set>
+		
+	</class>
+	
+</hibernate-mapping>

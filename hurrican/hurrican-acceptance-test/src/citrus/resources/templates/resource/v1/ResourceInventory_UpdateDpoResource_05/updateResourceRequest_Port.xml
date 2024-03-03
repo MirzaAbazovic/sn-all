@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updateResource xmlns="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1 /ResourceInventoryService.xsd">
+
+    <resource>
+        <id>${geraeteBezeichnung}_1-2</id>
+        <inventory>command</inventory>
+        <resourceSpec>
+            <id>dpoport-1</id>
+            <inventory>command</inventory>
+        </resourceSpec>
+        <name>1-1</name>
+        <characteristic>
+            <name>schnittstelle</name>
+            <value>VDSL2</value>
+        </characteristic>
+        <characteristic>
+            <name>leiste</name>
+            <value>3</value>
+        </characteristic>
+        <characteristic>
+            <name>stift</name>
+            <value>01</value>
+        </characteristic>
+        <parentResource>
+            <id>${geraeteBezeichnung}</id>
+            <inventory>command</inventory>
+        </parentResource>
+    </resource>
+</updateResource>

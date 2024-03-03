@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Erfassung/Änderung der Leistungsparameter.
+-->
+<sf>
+
+	<Label name="leistung"><text>Leistung:</text></Label>
+    <TextField name="leistung">
+        <tooltip>Name der Leistung</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+	<Label name="beschreibung"><text>Beschreibung:</text></Label>
+    <TextField name="beschreibung">
+        <tooltip>Beschreibung der Leistung</tooltip>
+    </TextField>
+    
+    <Label name="ext.sonstiges.no"><text>ext. Sonstigs:</text></Label>
+    <FormattedTextField name="ext.sonstiges.no">
+        <tooltip>Wert aus LEISTUNG.EXTERN_SONSTIGES__NO vom Billing-System.</tooltip>
+		<format type="number">0</format>
+    </FormattedTextField>
+    
+    <Label name="ext.leistung.no"><text>Leistung extern:</text></Label>
+    <FormattedTextField name="ext.leistung.no">
+        <tooltip>Wert aus LEISTUNG.EXTERN_LEISTUG__NO vom Billing-System</tooltip>
+		<format type="number">0</format>
+    </FormattedTextField>
+</sf>
+    

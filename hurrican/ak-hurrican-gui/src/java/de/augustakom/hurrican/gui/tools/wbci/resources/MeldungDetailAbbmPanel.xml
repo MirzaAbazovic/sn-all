@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Text name="title">ABBM Details</Text>
+
+    <Label name="begruendung"><text>Begründung:</text></Label>
+    <TextArea name="begruendung">
+        <tooltip>Angabe, wieso die VA mit ABBM abgewiesen wurde</tooltip>
+        <columns>25</columns>
+        <rows>10</rows>
+    </TextArea>
+
+    <Label name="rufnummern"><text>Rufnummern:</text></Label>
+    <TextArea name="rufnummern">
+        <tooltip>beim bisherigen Carrier geschaltene Rufnummern</tooltip>
+        <columns>25</columns>
+        <rows>10</rows>
+    </TextArea>
+
+</sf>

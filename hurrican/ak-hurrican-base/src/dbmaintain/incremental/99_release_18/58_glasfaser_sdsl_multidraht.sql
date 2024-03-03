@@ -1,0 +1,1 @@
+update T_PRODUKT set CPS_MULTI_DRAHT='1' where PROD_ID=541;

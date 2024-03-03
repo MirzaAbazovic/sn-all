@@ -1,0 +1,247 @@
+#!/bin/sh
+#
+# $Id$
+#
+### BEGIN INIT INFO
+# Provides:             ${webapp.service.name}
+# Required-Start:       $local_fs $remote_fs $network
+# Required-Stop:        $local_fs $remote_fs $network
+# Default-Start:        3 5
+# Default-Stop:         0 1 2 6
+# Short-Description:    Tomcat ${webapp.baseurl}
+# Description:          Start Tomcat ${webapp.baseurl} (Port ${webapp.http.port})
+### END INIT INFO
+#
+
+### Instance specific settings
+TOMCAT_DESC="Tomcat ${webapp.baseurl} (Port ${webapp.http.port})"
+TOMCAT_USER=${tomcat.user}
+TOMCAT_SNMP_PORT=${tomcat.snmp.port}
+status_url=${webapp.status.url}
+### END Instance specific settings
+
+
+#########################################################
+### Below here you should not need to change anything ###
+###  - except maybe the JAVA_OPTS.                    ###
+#########################################################
+
+
+
+if [ $UID -ne 0 ]; then
+    echo "You want to be root for that."
+    exit 1
+fi
+
+SERVICE_NAME=`basename $0`
+CATALINA_BASE=/opt/app/$SERVICE_NAME/instance
+TOMCAT_BIN=$CATALINA_BASE/bin
+CATALINA_PID=$CATALINA_BASE/temp/tomcat.pid
+export CATALINA_BASE CATALINA_PID
+
+# if both jre and jdk is available use jdk
+for LOC in /opt/app/$SERVICE_NAME/jre* /opt/app/$SERVICE_NAME/jdk*; do
+    test -d $LOC && export JAVA_HOME=$LOC
+done
+
+if [ -z "$JAVA_HOME" ]; then
+    echo "Java not found"
+    exit 1
+fi
+
+if [ -n "$JAVA_HOME" ]; then
+    export PATH=$JAVA_HOME/bin:$PATH
+    export MANPATH=$MANPATH:$JAVA_HOME/man
+fi
+
+
+export PATH=$PATH:/usr/X11R6/bin
+
+export LANG='de_DE.UTF-8'
+export LC_ALL='de_DE.UTF-8'
+
+### JVM Parameter
+JAVA_OPTS=""
+
+## Oracle tnsnames.ora location
+#JAVA_OPTS="-Doracle.net.tns_admin=/opt/oracle/network/admin "$JAVA_OPTS
+
+## Hudson
+#JAVA_OPTS="-Dhudson.model.DownloadService.never=true -Dhudson.model.UpdateCenter.never=true "$JAVA_OPTS
+
+## JVM Heap Space (actually JAVA_OPTS from the tomcat.java.opts property)
+JAVA_OPTS="${tomcat.java.opts} "$JAVA_OPTS
+
+## HTTP proxy settings
+#JAVA_OPTS="-Dhttp.proxyHost=192.168.150.2 -Dhttp.proxyPort=8080 -Dhttp.nonProxyHosts=*.m-net.de "$JAVA_OPTS
+
+## SNMP agent settings
+CATALINA_OPTS="-Dcom.sun.management.snmp.interface=localhost -Dcom.sun.management.snmp.port=$TOMCAT_SNMP_PORT -Dcom.sun.management.snmp.acl=false"
+
+export JAVA_OPTS CATALINA_OPTS
+unset DISPLAY
+cd /home/$TOMCAT_USER
+
+function procs () {
+    PROCS=`ps ax|grep 'java.*Dcatalina.base='$CATALINA_BASE|grep -v grep|wc -l`
+    return $PROCS
+}
+
+## return codes: 0: Tomcat running and ok; <10: Tomcat running but problems; >=10: Tomcat not running
+function tomcat_status () {
+    if [ -f $CATALINA_PID ]; then
+        PID=`cat $CATALINA_PID`
+        if [ `ps ax|grep $PID|grep -v grep|wc -l` -gt 0 ]; then
+            PORTS=`netstat -napt|grep 'LISTEN  *'$PID'/java'|awk '{print $4}'|sed 's/^.*:\([0-9][0-9]*\)/\1, /'|xargs|sed 's/[, ]*$//g'`
+            if [ -n "$PORTS" ]; then
+                echo "Ok: Tomcat is listening on tcp ports $PORTS"
+                return 0
+            else
+                echo "Bad: Tomcat is not listening on any tcp ports."
+                return 3
+            fi
+        else
+            echo "WARNING: PID file exists, but no process with that PID running. Deleting PID file and continuing anyway."
+            rm $CATALINA_PID || exit 98
+            return 12
+        fi
+    else
+        procs
+        P=$?
+        if [ $P -gt 1 ]; then
+            echo "No PID file, but $P $TOMCAT_DESC processes are running."
+            return 2
+        elif [ $P -eq 1 ]; then
+            echo "No PID file, but $P $TOMCAT_DESC process is running."
+            return 1
+        else
+            echo "Tomcat is not running."
+            return 11
+        fi
+    fi
+}
+
+function silent_tomcat_status () {
+    tomcat_status >/dev/null 2>&1
+}
+
+function app_status () {
+    if \
+        wget -q -O - $status_url | grep -vi 'failure' >/dev/null \
+        && wget -q -O - $status_url | grep -i '${webapp.status.pattern}' >/dev/null
+    then
+        echo "Ok: Application is running."
+        return 0
+    else
+        echo "Application status has failures - please check"
+        wget -q -O - $status_url
+        return 1
+    fi
+}
+
+function silent_app_status () {
+    app_status >/dev/null 2>&1
+}
+
+case $1 in
+    start)
+        if [ -n "$DISPLAY" ]; then
+            echo "WARNING: DISPLAY variable is set. This most likely cause problems! Please unset it, and try again."
+            exit 1
+        fi
+        cd $CATALINA_BASE/logs
+        if [ ! -x $TOMCAT_BIN/startup.sh ]; then
+            echo "Tomcat startup.sh does not exist or is not executable. Aborting."
+            exit 15
+        fi
+        su $TOMCAT_USER -c $TOMCAT_BIN/startup.sh
+
+        i=0
+        while true; do
+            sleep 1
+            tail -1 $CATALINA_BASE/logs/catalina.out|grep 'Server startup in [0-9][0-9]* ms' >/dev/null
+            if [ $? -eq 0 ]; then
+                echo 'Ok: Tomcat logged startup message.'
+                break
+            fi
+
+            if [ $((++i)) -gt ${webapp.startup.timeout} ]; then
+                echo "Bad: Waited ${webapp.startup.timeout}s for Tomcat's startup message, giving up. Startup failed!"
+                exit 1
+            fi
+        done
+
+        if tomcat_status; then
+            echo "Checking Application Status"
+            while true; do
+                sleep 1
+                if silent_app_status; then
+                    echo "Ok: Application is running fine."
+                    exit 0
+                elif [ $((++i)) -gt ${webapp.startup.timeout} ]; then
+                    echo "Bad: Waited ${webapp.startup.timeout}s for good Application Status!"
+                    echo
+                    app_status
+                    exit 1
+                fi
+            done
+        else
+            exit 1
+        fi
+    ;;
+    stop)
+        silent_tomcat_status
+        if [ $? -lt 10 ]; then
+            cd $CATALINA_BASE/logs
+            su $TOMCAT_USER -c "$TOMCAT_BIN/shutdown.sh -force"
+
+            if [ -f $CATALINA_PID ]; then
+                TPID=`cat $CATALINA_PID`
+            else
+                procs
+                if [ $? -gt 1 ]; then
+                    echo "There are more than one tomcat processes running. Will only kill the first one."
+                fi
+                TPID=`ps ax|grep 'java.*Dcatalina.base='$CATALINA_BASE|grep -v grep|awk '{print $1}'|head -1`
+            fi
+            test -n "$TPID" || echo 'Couldnt find out PID.'
+
+            i=0
+            while /bin/true; do
+                if [ $i -ge 10 ]; then
+                    echo "Waited 10s for $TOMCAT_DESC to stop, killing..."
+                    kill -9 $TPID
+                    procs
+                    if [ $? -gt 0 ]; then
+                        echo "kill -9 didnt help. giving up."
+                        exit 1
+                    else
+                        echo "killed."
+                    fi
+                    test -f $CATALINA_PID && rm $CATALINA_PID
+                    exit 0
+                fi
+                procs
+                if [ $? -eq 0 ]; then
+                    test -f $CATALINA_PID && rm $CATALINA_PID
+                    break
+                fi
+                i=$((i+1))
+                sleep 1
+            done
+            echo "stopped."
+        else
+            echo "not running."
+        fi
+    ;;
+    restart)
+        $0 stop && sleep 1 && $0 start
+    ;;
+    status)
+        tomcat_status && app_status
+    ;;
+    *)
+        echo "Usage: /etc/init.d/$SERVICE_NAME start|stop|restart|status"
+    ;;
+esac
+

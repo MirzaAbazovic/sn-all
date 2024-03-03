@@ -1,0 +1,1 @@
+update T_HVT_TECHNIK set HERSTELLER='Alcatel-Lucent', NAME='Alcatel-Lucent' where ID=6;

@@ -1,0 +1,10 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:v1="http://www.mnet.de/esb/cdm/Customer/CustomerOrderService/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <v1:getPublicOrderStatus>
+            <!--1 or more repetitions:-->
+            <v1:customerOrderId>${customerOrderId}</v1:customerOrderId>
+        </v1:getPublicOrderStatus>
+    </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Adress-Eingabe bzw. -Anzeige.
+-->
+<sf>
+
+    <Text name="title">Adresse ({0})</Text>
+
+</sf>

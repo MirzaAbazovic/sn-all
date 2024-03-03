@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Text name="title">Storno (Änderung) Details</Text>
+
+    <Label name="storno.grund"><text>Storno-Grund:</text></Label>
+    <TextArea name="storno.grund">
+        <tooltip>angegebener Grund für die Stornierung</tooltip>
+        <rows>10</rows>
+    </TextArea>
+
+</sf>

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.AuftragImport
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="AuftragImport" table="T_AUFTRAG_IMPORT">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_AUFTRAG_IMPORT_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="kundeNo" column="KUNDE__NO" type="long"/>
+        <property name="xmlFile" column="XML_FILE" type="string" not-null="true"/>
+        <property name="refId" column="REF_ID" type="string"/>
+        <property name="partnerId" column="PARTNER_ID" type="string"/>
+        <property name="agName" column="AG_NAME" type="string"/>
+        <property name="agVorname" column="AG_VORNAME" type="string"/>
+        <property name="agStrasse" column="AG_STRASSE" type="string"/>
+        <property name="agPlz" column="AG_PLZ" type="string"/>
+        <property name="agOrt" column="AG_ORT" type="string"/>
+        <property name="anschlussName" column="A_NAME" type="string"/>
+        <property name="anschlussVorname" column="A_VORNAME" type="string"/>
+        <property name="anschlussStrasse" column="A_STRASSE" type="string"/>
+        <property name="anschlussOrt" column="A_ORT" type="string"/>
+        <property name="altName" column="ALT_NAME" type="string"/>
+        <property name="altVorname" column="ALT_VORNAME" type="string"/>
+        <property name="altStrasse" column="ALT_STRASSE" type="string"/>
+        <property name="altOrt" column="ALT_ORT" type="string"/>
+        <property name="rufnummer" column="RUFNUMMER" type="string"/>
+        <property name="produktName" column="PRODUKT_NAME" type="string"/>
+        <property name="portierung" column="PORTIERUNG" type="boolean"/>
+        <property name="tarifwechsel" column="TARIFWECHSEL" type="boolean"/>
+        <property name="umzug" column="UMZUG" type="boolean"/>
+        <property name="wunschtermin" column="WUNSCHTERMIN" type="date"/>
+        <property name="active" column="ACTIVE" type="boolean"/>
+        <property name="importStatus" column="IMPORT_STATUS" type="long"/>
+        <property name="auftragsEingang" column="AUFTRAGS_EINGANG" type="date"/>
+        <property name="bemerkung" column="BEMERKUNG" type="string"/>
+        <property name="bearbeiter" column="BEARBEITER" type="string"/>
+        <property name="lastModified" column="LAST_MODIFIED" type="timestamp"/>
+        <property name="coupon" column="COUPON" type="string"/>
+        <property name="aktion" column="AKTION" type="string"/>
+        <property name="preis" column="PREIS" type="float"/>
+        <property name="mobile" column="MOBILE" type="boolean"/>
+        <property name="upgrade18000" column="UPGRADE_18000" type="boolean"/>
+        <property name="isdnAnschluss" column="ISDN_ANSCHLUSS" type="boolean"/>
+        <property name="technology" column="TECHNOLOGY" type="string"/>
+        <property name="bandwidthSellingLimit" column="BANDWIDTH_SELLING_LIMIT" type="long"/>
+
+    </class>
+
+</hibernate-mapping>

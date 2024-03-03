@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<typ:CommandCustomerDataRequestResponse xmlns:typ="http://mnet.de/hurricanweb/command/customer/types">
+    <typ:networkElementId>${oltChildId}</typ:networkElementId>
+    <typ:port>${hwEqn}</typ:port>
+    <typ:portstatus>frei</typ:portstatus>
+</typ:CommandCustomerDataRequestResponse>

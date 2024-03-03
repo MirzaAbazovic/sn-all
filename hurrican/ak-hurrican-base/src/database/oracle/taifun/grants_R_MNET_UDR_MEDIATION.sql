@@ -1,0 +1,11 @@
+--
+-- GRANTs fuer die DB-Rolle 'R_MNET_UDR_MEDIATION' fuer die Taifun-DB
+--
+
+-- Role anlegen
+CREATE ROLE "R_MNET_UDR_MEDIATION" NOT IDENTIFIED;
+GRANT SELECT, INSERT ON "UDR_SS_INBOX" TO "R_MNET_UDR_MEDIATION";
+
+commit;
+
+

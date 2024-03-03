@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definition fuer das Frame zur Konfiguration des EQ-Monitors.
+-->
+<sf>
+
+    <Label name="hvt"><text>HVT:</text></Label>
+  	<ReferenceField name="hvt">
+		<tooltip>Auswahl des zu verwendenden HVTs</tooltip>
+		<id.property>hvtIdGruppe</id.property>
+		<name.property>ortsteil</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.HVTGruppe</reference.class>
+		<selection.dialog.class>de.augustakom.hurrican.gui.hvt.HVTSelectionDialog</selection.dialog.class>
+	</ReferenceField>
+        
+</sf>

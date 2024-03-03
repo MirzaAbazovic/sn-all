@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns3:generateAndPrintReportRequest xmlns:ns3="http://www.mnet.de/elektra/services/1.0/">
+    <generateAndPrintReportByTypeRequest>
+        <billingOrderNoOrig>${billingOrderNoOrig}</billingOrderNoOrig>
+        <doScanViewUpdate>false</doScanViewUpdate>
+        <documentName>KB_STORNO</documentName>
+    </generateAndPrintReportByTypeRequest>
+</ns3:generateAndPrintReportRequest>

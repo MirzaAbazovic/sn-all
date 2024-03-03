@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:citrus="http://www.citrusframework.org/schema/config"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.citrusframework.org/schema/config http://www.citrusframework.org/schema/config/citrus-config.xsd">
+
+    <bean id="HistoryService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl">
+            <value>
+                http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/common/HistoryService
+            </value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.common.service.HistoryService</value>
+        </property>
+    </bean>
+
+    <bean id="MwfEntityService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl">
+            <value>
+                http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/wita/MwfEntityService
+            </value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wita.service.MwfEntityService</value>
+        </property>
+    </bean>
+
+    <bean id="CarrierElTALService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl">
+            <value>
+                http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/CarrierElTALService
+            </value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.augustakom.hurrican.service.cc.CarrierElTALService</value>
+        </property>
+    </bean>
+
+    <bean id="WitaUsertaskService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl">
+            <value>
+                http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/wita/WitaUsertaskService
+            </value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wita.service.WitaUsertaskService</value>
+        </property>
+    </bean>
+
+    <bean id="EndstellenService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl">
+            <value>
+                http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/EndstellenService
+            </value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.augustakom.hurrican.service.cc.EndstellenService</value>
+        </property>
+    </bean>
+
+    <bean id="CCAuftragService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl">
+            <value>
+                http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/AuftragService
+            </value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.augustakom.hurrican.service.cc.CCAuftragService</value>
+        </property>
+    </bean>
+
+    <bean id="RufnummerService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl">
+            <value>
+                http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/billing/RufnummerService
+            </value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.augustakom.hurrican.service.billing.RufnummerService</value>
+        </property>
+    </bean>
+
+    <bean id="WitaTalOrderService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl">
+            <value>
+                http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/wita/WitaTalOrderService
+            </value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wita.service.WitaTalOrderService</value>
+        </property>
+    </bean>
+
+    <!-- Hurrican application database -->
+    <bean id="hurricanDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver.class}"/>
+        <property name="url" value="${hurrican.db.url}"/>
+        <property name="username" value="${hurrican.db.user}"/>
+        <property name="password" value="${hurrican.db.password}"/>
+        <property name="initialSize" value="1"/>
+        <property name="maxActive" value="5"/>
+        <property name="maxIdle" value="2"/>
+    </bean>
+
+    <bean id="targetWbciDao" class="de.mnet.wbci.dao.impl.WbciDaoImpl" autowire-candidate="false"/>
+    <bean id="de.mnet.wbci.dao.WbciDao" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="target" ref="targetWbciDao"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -java.lang.Exception</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="cc.sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="packagesToScan">
+            <list>
+                <value>de.mnet.wbci.model</value>
+            </list>
+        </property>
+        <property name="hibernateProperties" ref="sessionFactoryHibernateProperties"/>
+        <property name="dataSource" ref="hurricanDataSource"/>
+    </bean>
+
+    <bean id="cc.hibernateTxManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="cc.sessionFactory"/>
+    </bean>
+
+    <bean id="sessionFactoryHibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="properties">
+            <props>
+                <prop key="hibernate.dialect">${hurrican.hibernate.dialect}</prop>
+                <prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+                <prop key="hibernate.jdbc.use_scrollable_resultset">false</prop>
+                <prop key="hibernate.cache.use_query_cache">false</prop>
+                <prop key="hibernate.connection.release_mode">on_close</prop>
+                <prop key="javax.persistence.validation.mode">none</prop>
+                <prop key="hibernate.show.sql">true</prop>
+                <prop key="hibernate.check_nullability">true</prop>
+                <prop key="jadira.usertype.databaseZone">jvm</prop>
+                <prop key="jadira.usertype.javaZone">jvm</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

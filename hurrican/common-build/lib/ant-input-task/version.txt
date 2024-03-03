@@ -1,0 +1,5 @@
+Version von ya-ant-input-task.jar
+=================================
+
+License: Apache 2.0 von http://byteco.de/2009/05/01/ant-input-and-passwords/
+16.09.2009   	ya-ant-input-task.jar 

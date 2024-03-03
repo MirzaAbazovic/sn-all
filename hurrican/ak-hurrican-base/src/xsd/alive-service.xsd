@@ -1,0 +1,15 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified"
+        targetNamespace="http://mnet.de/hurricanweb/alive/types"
+        xmlns:ns0="http://mnet.de/hurricanweb/alive/types">
+    
+    <xs:element name="WSAliveRequest" type="ns0:WSAliveRequest" />
+    
+    <xs:complexType name="WSAliveRequest">
+        <xs:sequence>
+            <xs:element name="alive" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+        
+</xs:schema>

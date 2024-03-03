@@ -1,0 +1,8 @@
+<div *ngIf="avatarUrl; else letterAvatar" class="avatar" [ngStyle]="{'width.px': size, 'height.px': size, 'font-size.px': size / 2.5}">
+  <img [src]="avatarUrl" alt="Avatar">
+</div>
+<ng-template #letterAvatar>
+  <div class="avatar letter-avatar" [ngStyle]="{'width.px': size, 'height.px': size, 'font-size.px': size / 2.25}">
+    {{ firstLetter }}
+  </div>
+</ng-template>

@@ -1,0 +1,19 @@
+<!--
+    ANT Build-Script Setzt die Properties fuer ein Default Maven Layout.
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-->
+<project basedir="." name="maven-layout">
+
+    <description>
+        Build-Script um die Properties fuer ein Default Maven Layout zu setzen.
+    </description>
+
+    <property name="encoding.default" value="utf-8" />
+
+    <property name="src" location="${basedir}/src/main/java" />
+    <property name="src.tests" location="${basedir}/src/test/java" />
+    <property name="src.resources" location="${basedir}/src/main/resources" />
+    <property name="test.resources" location="${basedir}/src/test/resources" />
+    <property name="src.dyn" location="${basedir}/target/generated-sources" />
+
+</project>

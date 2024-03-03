@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <jaxws:endpoint implementor="de.mnet.hurrican.location.LocationNotificationConsumer"
+                    address="jms://">
+        <jaxws:features>
+            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature">
+                <property name="jmsConfig">
+                    <bean id="jmsLocationNotificationConfig" class="org.apache.cxf.transport.jms.JMSConfiguration">
+                        <property name="connectionFactory" ref="atlasConsumerCachingConnectionFactory"/>
+                        <property name="targetDestination" value="mnet.Hurrican.op.cdm.dst.v1.LocationNotificationService"/>
+                        <property name="jmsProviderTibcoEms" value="true"/>
+                        <property name="sessionTransacted" value="true"/>
+                    </bean>
+                </property>
+            </bean>
+        </jaxws:features>
+        <jaxws:inInterceptors>
+            <bean class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+            <bean class="de.augustakom.hurrican.service.interceptor.SchemaValidationInterceptor">
+                <property name="errorCode" value="HURRICAN-TECH-009"/>
+                <property name="schema">
+                    <bean class="de.mnet.common.xml.WsdlXsdSchema">
+                        <property name="wsdl" value="classpath:/wsdl/LocationNotificationService.wsdl"/>
+                        <property name="soapSchema" value="classpath:/xsd/soap-envelope-1.1.xsd"/>
+                    </bean>
+                </property>
+            </bean>
+        </jaxws:inInterceptors>
+    </jaxws:endpoint>
+
+</beans>

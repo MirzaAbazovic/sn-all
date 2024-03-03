@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns3:generateAndPrintReportResponse xmlns:ns3="http://www.mnet.de/elektra/services/1.0/">
+    <result>Printed document</result>
+</ns3:generateAndPrintReportResponse>

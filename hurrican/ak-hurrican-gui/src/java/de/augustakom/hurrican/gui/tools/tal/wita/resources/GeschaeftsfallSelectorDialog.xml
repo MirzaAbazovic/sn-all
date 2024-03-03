@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    <Label name="vorgabe.mnet"><text>Neuer Termin:</text></Label>
+    <DateComponent name="vorgabe.mnet">
+        <tooltip>Neuer Termin (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+</sf>

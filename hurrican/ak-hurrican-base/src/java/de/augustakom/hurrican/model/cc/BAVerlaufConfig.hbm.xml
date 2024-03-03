@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.BAVerlaufConfig
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="BAVerlaufConfig" table="T_BA_VERL_CONFIG">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_BA_VERL_CONFIG_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="prodId" column="PROD_ID" type="long"/>
+        <property name="baVerlAnlass" column="ANLASS" type="long" not-null="true"/>
+        <property name="abtConfigId" column="ABT_CONFIG_ID" type="long" not-null="true"/>
+        <property name="autoVerteilen" column="AUTO_VERTEILEN" type="boolean"/>
+        <property name="cpsNecessary" column="CPS_NECESSARY" type="boolean"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date" not-null="true"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date" not-null="true"/>
+        <property name="userW" column="USERW" type="string" not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

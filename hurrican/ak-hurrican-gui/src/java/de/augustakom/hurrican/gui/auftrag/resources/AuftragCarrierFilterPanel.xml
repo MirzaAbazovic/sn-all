@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Carrier-Filterpanel.
+-->
+<sf>
+
+    <Label name="wita"><text>TAL / WITA</text></Label>
+    <Label name="wbci"><text>WBCI</text></Label>
+
+    <Label name="lbz"><text>LBZ:</text></Label>
+    <TextField name="lbz">
+        <tooltip>Leitungsbezeichnung des Carriers</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="vtr.nr"><text>Vtr-Nr:</text></Label>
+    <TextField name="vtr.nr">
+        <tooltip>Vertrags-Nr des Carriers</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="carrier.ref.nr"><text>Carrier Ref-Nr:</text></Label>
+    <TextField name="carrier.ref.nr">
+        <tooltip>Referenznummer des Carriers</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="wbci.va.id"><text>Vorabstimmungs-Id:</text></Label>
+    <TextField name="wbci.va.id">
+        <tooltip>Angabe der gesuchten Vorabstimmungs-, TV- oder Storno-Id</tooltip>
+        <columns>15</columns>
+        <maxchars>21</maxchars>
+    </TextField>
+
+</sf>

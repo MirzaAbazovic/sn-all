@@ -1,0 +1,1186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:jms="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:tns="http://www.mnet.de/esb/cdm/Resource/WorkforceService/v1"
+                  xmlns:ns0="http://www.mnet.de/esb/cdm/Shared/Common/v1"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  name="WorkforceService"
+                  targetNamespace="http://www.mnet.de/esb/cdm/Resource/WorkforceService/v1">
+   <wsdl:documentation>Version 1.7</wsdl:documentation>
+   <wsdl:types>
+      <xs:schema xmlns="http://www.mnet.de/esb/cdm/Shared/Common/v1"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 targetNamespace="http://www.mnet.de/esb/cdm/Shared/Common/v1"
+                 version="1.0"
+                 elementFormDefault="qualified"
+                 attributeFormDefault="unqualified">
+         <xs:element name="ESBFault">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="errorCode" type="xs:string"/>
+                  <xs:element name="errorMessage" type="xs:string"/>
+                  <xs:element name="errorDetail" minOccurs="0">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:any minOccurs="0" processContents="skip" namespace="##any"/>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:schema>
+      <xs:schema xmlns="http://www.mnet.de/esb/cdm/Resource/WorkforceService/v1"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 targetNamespace="http://www.mnet.de/esb/cdm/Resource/WorkforceService/v1"
+                 version="1.6"
+                 elementFormDefault="qualified"
+                 attributeFormDefault="unqualified">
+         <xs:complexType name="Address">
+            <xs:sequence>
+               <xs:element name="street" type="xs:string"/>
+               <xs:element name="houseNumber" type="xs:string" minOccurs="0"/>
+               <xs:element name="floor" type="xs:string" minOccurs="0"/>
+               <xs:element name="zipCode" type="xs:string"/>
+               <xs:element name="city" type="xs:string"/>
+               <xs:element name="district" type="xs:string" minOccurs="0"/>
+               <xs:element name="country" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>CountryCode defined by ISO-3166 ALPHA-2 (e.g. DE)</xs:documentation>
+                  </xs:annotation>
+                  <xs:simpleType>
+                     <xs:restriction base="xs:string">
+                        <xs:pattern value="[A-Z]{2}"/>
+                     </xs:restriction>
+                  </xs:simpleType>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="AvailableTimeSlot">
+            <xs:sequence>
+               <xs:element name="start" type="xs:dateTime"/>
+               <xs:element name="end" type="xs:dateTime"/>
+               <xs:element name="numAvailable" type="xs:int"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="ContactPerson">
+            <xs:sequence>
+               <xs:element name="role" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>Role of the contact (e.g. "Hausmeister", "Kunde" ...)</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="gender" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>Gender of the contact person</xs:documentation>
+                  </xs:annotation>
+                  <xs:simpleType>
+                     <xs:restriction base="xs:string">
+                        <xs:enumeration value="MALE"/>
+                        <xs:enumeration value="FEMALE"/>
+                     </xs:restriction>
+                  </xs:simpleType>
+               </xs:element>
+               <xs:element name="firstName" type="xs:string" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>Firstname of the contact person</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="lastName" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>Lastname of the contact person</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="communication" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>Communication channels of the contact person.</xs:documentation>
+                  </xs:annotation>
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="phone"
+                                    type="xs:string"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded">
+                           <xs:annotation>
+                              <xs:documentation>Phone number</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="mobile"
+                                    type="xs:string"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded">
+                           <xs:annotation>
+                              <xs:documentation>Mobile phone number</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="email"
+                                    type="xs:string"
+                                    minOccurs="0"
+                                    maxOccurs="unbounded">
+                           <xs:annotation>
+                              <xs:documentation>E-Mail address</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="fax" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                           <xs:annotation>
+                              <xs:documentation>Fax number</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="OrderTechnicalParams">
+            <xs:sequence>
+               <xs:element name="common" minOccurs="0">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="lineId" type="xs:string" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>ID of connection</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="contractId" type="xs:string" minOccurs="0"/>
+                        <xs:element name="customerNumber" type="xs:string" minOccurs="0"/>
+                        <xs:element name="additionalContractInfo" type="xs:string" minOccurs="0"/>
+                        <xs:element name="productName" type="xs:string" minOccurs="0"/>
+                        <xs:element name="contractPartner" type="xs:string" minOccurs="0"/>
+                        <xs:element name="porting" minOccurs="0">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="portingDate" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="window" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="lastCarrier" type="xs:string" minOccurs="0"/>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                        <xs:element name="serviceNew" type="xs:string" minOccurs="0"/>
+                        <xs:element name="serviceCancelled" type="xs:string" minOccurs="0"/>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="CPE" minOccurs="0" maxOccurs="unbounded">
+                  <xs:annotation>
+                     <xs:documentation>Customer Premises Equipment
+                        DE: Endgerät
+                     </xs:documentation>
+                  </xs:annotation>
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="type" type="xs:string" minOccurs="0"/>
+                        <xs:element name="manufacturer" type="xs:string" minOccurs="0"/>
+                        <xs:element name="model" type="xs:string" minOccurs="0"/>
+                        <xs:element name="serialNumber" type="xs:string" minOccurs="0"/>
+                        <xs:element name="macAddress" type="xs:string" minOccurs="0"/>
+                        <xs:element name="softwareVersion" type="xs:string" minOccurs="0"/>
+                        <xs:element name="MTU" type="xs:string" minOccurs="0"/>
+                        <xs:element name="notice" type="xs:string" minOccurs="0"/>
+                        <xs:element name="DHCP" minOccurs="0">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="poolFrom" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="poolTo" type="xs:string" minOccurs="0"/>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                        <xs:element name="NAT" type="xs:string" minOccurs="0"/>
+                        <xs:element name="DNS" type="xs:string" minOccurs="0"/>
+                        <xs:element name="DNSIpAddress" type="xs:string" minOccurs="0"/>
+                        <xs:element name="SNMPMnet" type="xs:string" minOccurs="0"/>
+                        <xs:element name="SNMPCustomer" type="xs:string" minOccurs="0"/>
+                        <xs:element name="QoS" type="xs:string" minOccurs="0"/>
+                        <xs:element name="accessData" type="xs:string" minOccurs="0"/>
+                        <xs:element name="WANVPVC" type="xs:string" minOccurs="0"/>
+                        <xs:element name="layer2Protocol" type="xs:string" minOccurs="0"/>
+                        <xs:element name="ACL" minOccurs="0" maxOccurs="unbounded">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="name" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="routerType" type="xs:string" minOccurs="0"/>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="PSE" minOccurs="0">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="manufacturer" type="xs:string"/>
+                        <xs:element name="model" type="xs:string"/>
+                        <xs:element name="version" type="xs:string"/>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="SBCAddress" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="address" type="xs:string" minOccurs="0"/>
+                        <xs:element name="addressType" type="xs:string" minOccurs="0"/>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="VPN" minOccurs="0">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="linkAggregation" type="xs:string" minOccurs="0"/>
+                        <xs:element name="physicalLine" type="xs:string" minOccurs="0"/>
+                        <xs:element name="numberOfChannels" type="xs:string" minOccurs="0"/>
+                        <xs:element name="VPLSId" type="xs:string" minOccurs="0"/>
+                        <xs:element name="name" type="xs:string" minOccurs="0"/>
+                        <xs:element name="vpnType" type="xs:string" minOccurs="0"/>
+                        <xs:element name="id" type="xs:string" minOccurs="0"/>
+                        <xs:element name="dialUp" type="xs:string" minOccurs="0"/>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="IPSecS2S" minOccurs="0">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="hostName" type="xs:string" minOccurs="0"/>
+                        <xs:element name="hostNamePassive" type="xs:string" minOccurs="0"/>
+                        <xs:element name="WANIp" type="xs:string" minOccurs="0"/>
+                        <xs:element name="WANSubnet" type="xs:string" minOccurs="0"/>
+                        <xs:element name="WANGateway" type="xs:string" minOccurs="0"/>
+                        <xs:element name="loopbackIp" type="xs:string" minOccurs="0"/>
+                        <xs:element name="loopbackIpPassive" type="xs:string" minOccurs="0"/>
+                        <xs:element name="VLANIp" type="xs:string" minOccurs="0"/>
+                        <xs:element name="encryptedNetwork" type="xs:string" minOccurs="0"/>
+                        <xs:element name="VLANSubnet" type="xs:string" minOccurs="0"/>
+                        <xs:element name="dialInNumber" type="xs:string" minOccurs="0"/>
+                        <xs:element name="splitTunnel" type="xs:string" minOccurs="0"/>
+                        <xs:element name="presharedKey" type="xs:string" minOccurs="0"/>
+                        <xs:element name="certificate" type="xs:string" minOccurs="0"/>
+                        <xs:element name="ipsDescription" type="xs:string" minOccurs="0"/>
+                        <xs:element name="carrier" type="xs:string" minOccurs="0"/>
+                        <xs:element name="bandwidth" type="xs:string" minOccurs="0"/>
+                        <xs:element name="ipsType" type="xs:string" minOccurs="0"/>
+                        <xs:element name="orderId" type="xs:string" minOccurs="0"/>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="IPAddress" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="version" type="xs:string" minOccurs="0"/>
+                        <xs:element name="type" type="xs:string" minOccurs="0"/>
+                        <xs:element name="address" type="xs:string" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>IP-Address</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="netMask" type="xs:string" minOccurs="0"/>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="portForwarding" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="protocol" type="xs:string" minOccurs="0"/>
+                        <xs:element name="source" minOccurs="0">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="IPAddress" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="port" type="xs:string" minOccurs="0"/>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                        <xs:element name="target" minOccurs="0">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="IPAddress" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="port" type="xs:string" minOccurs="0"/>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="staticRoute" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="targetAddress" type="xs:string" minOccurs="0"/>
+                        <xs:element name="nextHop" type="xs:string" minOccurs="0"/>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="ISDNBackup" minOccurs="0">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="triggerPoint" type="xs:string" minOccurs="0"/>
+                        <xs:element name="calledStationId" type="xs:string" minOccurs="0"/>
+                        <xs:element name="callingStationId" type="xs:string" minOccurs="0"/>
+                        <xs:element name="intervall" type="xs:string" minOccurs="0"/>
+                        <xs:element name="reenable" type="xs:string" minOccurs="0"/>
+                        <xs:element name="idleTimer" type="xs:string" minOccurs="0"/>
+                        <xs:element name="attempts" type="xs:string" minOccurs="0"/>
+                        <xs:element name="frequency" type="xs:string" minOccurs="0"/>
+                        <xs:element name="channelBundling" type="xs:string" minOccurs="0"/>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="VLAN" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="type" type="xs:string" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>VLAN type e.g. "UNICAST", "MULTICAST".</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="CVLAN" type="xs:nonNegativeInteger" minOccurs="0"/>
+                        <xs:element name="SVLAN" type="xs:nonNegativeInteger" minOccurs="0"/>
+                        <xs:element name="SVLANBackbone" type="xs:nonNegativeInteger" minOccurs="0"/>
+                        <xs:element name="service" type="xs:string" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>e.g. HSI, POTS ...</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="crossConnection" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="port" type="xs:string" minOccurs="0"/>
+                        <xs:element name="type" type="xs:nonNegativeInteger" minOccurs="0"/>
+                        <xs:element name="LTOuterInner" type="xs:nonNegativeInteger" minOccurs="0"/>
+                        <xs:element name="NTOuterInner" type="xs:nonNegativeInteger" minOccurs="0"/>
+                        <xs:element name="BRASOuterInner" type="xs:string" minOccurs="0"/>
+                        <xs:element name="BRAS" type="xs:string" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation/>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ATMSlot" type="xs:string" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation/>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ATMPort" type="xs:string" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation/>
+                           </xs:annotation>
+                        </xs:element>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="dialUpAccess" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="accountId" type="xs:string" minOccurs="0"/>
+                        <xs:element name="realm" type="xs:string" minOccurs="0"/>
+                        <xs:element name="password" type="xs:string" minOccurs="0"/>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="dialUpAccessVoIP" minOccurs="0">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="account" type="xs:string" minOccurs="0"/>
+                        <xs:element name="password" type="xs:string" minOccurs="0"/>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="dialNumber" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="areaDialingCode" type="xs:string" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>DE: ONKZ</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="number" type="xs:string" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>DE: DN-Base</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="numberRange" minOccurs="0">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="from" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="to" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="central" type="xs:string" minOccurs="0"/>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                        <xs:element name="main" type="xs:boolean" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>Main number</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="portMode" type="xs:string" minOccurs="0"/>
+                        <xs:element name="validFrom" type="xs:date" minOccurs="0"/>
+                        <xs:element name="validTo" type="xs:date" minOccurs="0"/>
+                        <xs:element name="VoIPLogin" minOccurs="0">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="SIPLogin" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="SIPPassword" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="SIPMainNumber" type="xs:string" minOccurs="0"/>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                        <xs:element name="dialNumberPlan" minOccurs="0" maxOccurs="unbounded">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="areaDialingCode" type="xs:string" minOccurs="0">
+                                    <xs:annotation>
+                                       <xs:documentation>DE: ONKZ</xs:documentation>
+                                    </xs:annotation>
+                                 </xs:element>
+                                 <xs:element name="number" type="xs:string" minOccurs="0">
+                                    <xs:annotation>
+                                       <xs:documentation>DE: DN-Base</xs:documentation>
+                                    </xs:annotation>
+                                 </xs:element>
+                                 <xs:element name="numberRange" minOccurs="0">
+                                    <xs:complexType>
+                                       <xs:sequence>
+                                          <xs:element name="from" type="xs:string" minOccurs="0"/>
+                                          <xs:element name="to" type="xs:string" minOccurs="0"/>
+                                          <xs:element name="central" type="xs:string" minOccurs="0"/>
+                                       </xs:sequence>
+                                    </xs:complexType>
+                                 </xs:element>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="technicalService" minOccurs="0" maxOccurs="unbounded">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="tsType" type="xs:string" minOccurs="0"/>
+                        <xs:element name="tsName" type="xs:string" minOccurs="0"/>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="housing" minOccurs="0">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="building" type="xs:string" minOccurs="0"/>
+                        <xs:element name="street" type="xs:string" minOccurs="0"/>
+                        <xs:element name="zipCode" type="xs:string" minOccurs="0"/>
+                        <xs:element name="floor" type="xs:string" minOccurs="0"/>
+                        <xs:element name="room" type="xs:string" minOccurs="0"/>
+                        <xs:element name="plot" type="xs:string" minOccurs="0"/>
+                        <xs:element name="rack" type="xs:string" minOccurs="0"/>
+                        <xs:element name="rackUnits" type="xs:string" minOccurs="0"/>
+                        <xs:element name="circuitCount" type="xs:string" minOccurs="0"/>
+                        <xs:element name="wattage" type="xs:string" minOccurs="0"/>
+                        <xs:element name="fuse" type="xs:string" minOccurs="0"/>
+                        <xs:element name="electricMeter" minOccurs="0" maxOccurs="unbounded">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="emId" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="provisioning" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="termination" type="xs:string" minOccurs="0"/>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                        <xs:element name="transponder" minOccurs="0" maxOccurs="unbounded">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="id" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="group" type="xs:string" minOccurs="0"/>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="site" minOccurs="0" maxOccurs="unbounded">
+                  <xs:annotation>
+                     <xs:documentation>Site of technical device</xs:documentation>
+                  </xs:annotation>
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="type" type="xs:string" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>e.g. EndstelleA, EndstelleB. Please see provider system for possible values. </xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="cluster" type="xs:string" minOccurs="0"/>
+                        <xs:element name="KVZNumber" type="xs:string" minOccurs="0"/>
+                        <xs:element name="lineId" type="xs:string" minOccurs="0"/>
+                        <xs:element name="location" minOccurs="0">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="TAE1" type="xs:string" minOccurs="0">
+                                    <xs:annotation>
+                                       <xs:documentation>Location of the 1. TAE</xs:documentation>
+                                    </xs:annotation>
+                                 </xs:element>
+                                 <xs:element name="street" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="houseNumber" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="city" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="zipCode" type="xs:string" minOccurs="0"/>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                        <xs:element name="device" minOccurs="0">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="manufacturer" type="xs:string" minOccurs="0">
+                                    <xs:annotation>
+                                       <xs:documentation>Manufacturer of the device.</xs:documentation>
+                                    </xs:annotation>
+                                 </xs:element>
+                                 <xs:element name="description" type="xs:string" minOccurs="0">
+                                    <xs:annotation>
+                                       <xs:documentation>Description of the device, e.g.  mduName</xs:documentation>
+                                    </xs:annotation>
+                                 </xs:element>
+                                 <xs:element name="serialNumber" type="xs:string" minOccurs="0">
+                                    <xs:annotation>
+                                       <xs:documentation>Serial number of the device.</xs:documentation>
+                                    </xs:annotation>
+                                 </xs:element>
+                                 <xs:element name="connection" type="xs:string" minOccurs="0">
+                                    <xs:annotation>
+                                       <xs:documentation>How is the device connected.
+                                          E.g. "OLTName gponPort"
+                                       </xs:documentation>
+                                    </xs:annotation>
+                                 </xs:element>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                        <xs:element name="switch" type="xs:string" minOccurs="0"/>
+                        <xs:element name="HVT" type="xs:string" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>DE: Hauptverteiler</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="portType" type="xs:string" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>Type of iport (interface), E.g. VDSL, VDSL2.</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="lineType" type="xs:string" minOccurs="0"/>
+                        <xs:element name="areaDialingCode" type="xs:string" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>Local Area Code,
+                                 DE: ONKZ
+                              </xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="downstream" type="xs:positiveInteger" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>Downstream in kb/s.</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="upstream" type="xs:positiveInteger" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>Upstream in kb/s.</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="ASB" type="xs:string" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>DE: "Anschlussbereich"</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="LBZ" type="xs:string" minOccurs="0"/>
+                        <xs:element name="VtrNr" type="xs:string" minOccurs="0"/>
+                        <xs:element name="LL" type="xs:string" minOccurs="0"/>
+                        <xs:element name="AQS" type="xs:string" minOccurs="0"/>
+                        <xs:element name="lastValidDSLAMProfile" type="xs:string" minOccurs="0"/>
+                        <xs:element name="TALProvisioningDate" type="xs:string" minOccurs="0"/>
+                        <xs:element name="customerOnSite" type="xs:string" minOccurs="0"/>
+                        <xs:element name="wiringData" minOccurs="0" maxOccurs="unbounded">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="type" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="managementDescription" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="deviceName" type="xs:string" minOccurs="0">
+                                    <xs:annotation>
+                                       <xs:documentation>DE: Gerätebezeichnung Rangierung Teil 1
+                                          E.g. MDU-415518-O-0881V-P_RF -&gt; MDU-415518
+                                       </xs:documentation>
+                                    </xs:annotation>
+                                 </xs:element>
+                                 <xs:element name="moduleType" type="xs:string" minOccurs="0">
+                                    <xs:annotation>
+                                       <xs:documentation>DE: Gerätebezeichnung Rangierung Teil 2
+                                          E.g. MDU-415518-O-0881V-P_RF -&gt; O-0881V-P_RF
+                                       </xs:documentation>
+                                    </xs:annotation>
+                                 </xs:element>
+                                 <xs:element name="chassisIdentifier" type="xs:string" minOccurs="0">
+                                    <xs:annotation>
+                                       <xs:documentation>DE: Chassisbezeichnung fuer eine DPO</xs:documentation>
+                                    </xs:annotation>
+                                 </xs:element>
+                                 <xs:element name="chassisSlot" type="xs:string" minOccurs="0">
+                                    <xs:annotation>
+                                       <xs:documentation>DE: Steckplatz in dem Chassis fuer eine DPO</xs:documentation>
+                                    </xs:annotation>
+                                 </xs:element>
+                                 <xs:element name="ONT-ID" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="physicType" type="xs:string" minOccurs="0">
+                                    <xs:annotation>
+                                       <xs:documentation>DE: Physik-Typ Rangierung</xs:documentation>
+                                    </xs:annotation>
+                                 </xs:element>
+                                 <xs:element name="HWEQN" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="layer2Protocol" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="distributor" type="xs:string" minOccurs="0"/>
+                                 <xs:element name="panelPin1" type="xs:string" minOccurs="0">
+                                    <xs:annotation>
+                                       <xs:documentation>DE: Leiste+Stift 1</xs:documentation>
+                                    </xs:annotation>
+                                 </xs:element>
+                                 <xs:element name="panelPin2" type="xs:string" minOccurs="0">
+                                    <xs:annotation>
+                                       <xs:documentation>DE: Leiste+Stift 2</xs:documentation>
+                                    </xs:annotation>
+                                 </xs:element>
+                                 <xs:element name="crossing" minOccurs="0">
+                                    <xs:complexType>
+                                       <xs:sequence>
+                                          <xs:element name="physicType" type="xs:string" minOccurs="0">
+                                             <xs:annotation>
+                                                <xs:documentation>DE: Physik-Typ Rangierung</xs:documentation>
+                                             </xs:annotation>
+                                          </xs:element>
+                                          <xs:element name="HWEQN" type="xs:string" minOccurs="0"/>
+                                          <xs:element name="distributor" type="xs:string" minOccurs="0"/>
+                                          <xs:element name="panelPin1" type="xs:string" minOccurs="0">
+                                             <xs:annotation>
+                                                <xs:documentation>DE: Leiste+Stift 1</xs:documentation>
+                                             </xs:annotation>
+                                          </xs:element>
+                                          <xs:element name="panelPin2" type="xs:string" minOccurs="0">
+                                             <xs:annotation>
+                                                <xs:documentation>DE: Leiste+Stift 2</xs:documentation>
+                                             </xs:annotation>
+                                          </xs:element>
+                                       </xs:sequence>
+                                    </xs:complexType>
+                                 </xs:element>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="RequestedTimeslot">
+            <xs:sequence>
+               <xs:element name="earliestStart" type="xs:dateTime" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>Earliest posssible time to start processing this order by field force.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="latestStart" type="xs:dateTime" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>Latest posssible time to start processing this order by field force.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="earliestEnd" type="xs:dateTime" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>Earliest posssible time to end processing this order by field force.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="latestEnd" type="xs:dateTime" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>Latest posssible time to end processing this order by field force.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="TicketInteraction">
+            <xs:sequence>
+               <xs:element name="detail" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>Information</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="timeStamp" type="xs:dateTime">
+                  <xs:annotation>
+                     <xs:documentation>Time stamp</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="type" type="xs:string" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>Info type (e.g. "Erstellung" ,"Kontakt" , "Kommentar"...)</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="agent" type="xs:string" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>Name of the agent</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="TimeSlot">
+            <xs:sequence>
+               <xs:element name="start" type="xs:dateTime"/>
+               <xs:element name="end" type="xs:dateTime"/>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="WorkforceOrder">
+            <xs:sequence>
+               <xs:element name="id">
+                  <xs:annotation>
+                     <xs:documentation>Unique orderId generated by consumer. ID must follow the pattern:
+                        XXX_generatedId where XXX is the unique identifier of consumer system.
+                        The length of the id is limited to 100 characters.
+                     </xs:documentation>
+                  </xs:annotation>
+                  <xs:simpleType>
+                     <xs:restriction base="xs:string">
+                        <xs:pattern value="[A-Za-z0-9]{3}_.{1,96}"/>
+                     </xs:restriction>
+                  </xs:simpleType>
+               </xs:element>
+               <xs:element name="displayId" type="xs:string" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>ID which should be displayed to the field service engineer. If not set, ID of the workforce order will be used.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="customerOrderId" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>ID of the customer order in context of this workforce order is created. This ID will be used from FFM-System as meta-information added to the service-report archived to the Document Management System and serves as link between the order in OM-System and corresponding service-report in DMS.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="priority" type="xs:string" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>Priority of the order. Please see provider system for possible values.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="description" minOccurs="0">
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="summary">
+                           <xs:annotation>
+                              <xs:documentation>Short description of the order.</xs:documentation>
+                           </xs:annotation>
+                           <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                 <xs:maxLength value="255"/>
+                              </xs:restriction>
+                           </xs:simpleType>
+                        </xs:element>
+                        <xs:element name="details" type="xs:string" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>Detailed description of the order.</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="techParams" type="tns:OrderTechnicalParams" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>Technical params for the workforce order which will be displayed to the workforce engineer.</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="type" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>Type of the order e.g. "Wholesale FTTB". Please see provider system for possible values. </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="activityType" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>Activity type of the order, e.g. "WHO_Entstoerung". Please see provider system for possible values.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="activitySubtype" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>Subtype of the activity which specifies the context of the activity. It will be displayed to the field service engineer.</xs:documentation>
+                  </xs:annotation>
+                  <xs:simpleType>
+                     <xs:restriction base="xs:string">
+                        <xs:maxLength value="255"/>
+                     </xs:restriction>
+                  </xs:simpleType>
+               </xs:element>
+               <xs:element name="contactPerson"
+                           type="tns:ContactPerson"
+                           minOccurs="0"
+                           maxOccurs="unbounded">
+                  <xs:annotation>
+                     <xs:documentation>Order contacts. Each contact has to be specified by role.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="qualification" type="xs:string" maxOccurs="unbounded">
+                  <xs:annotation>
+                     <xs:documentation>Qualification required for execution of this ordere.g. "Endkundenservice FTTB". Please see provider system for possible values.  </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="assertRequestedTimeSlot" type="xs:boolean" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>If true, the requested timeslot will be checked. The result, either confirmed or
+                        rejected, will be send to the consumer by utilizung the notifyUpdateOrder operation.
+                        Confirmation: stateInfo/status = 'Created' Rejection: stateInfo/status='Rejected'
+                        stateInfo/extension='some description'
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="location" type="tns:Address" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>Target location of this order</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:choice minOccurs="0">
+                  <xs:element name="fixedStartTime" type="xs:dateTime">
+                     <xs:annotation>
+                        <xs:documentation>Fixed time on which the processing of this order has to be started.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="requestedTimeSlot" type="tns:RequestedTimeslot">
+                     <xs:annotation>
+                        <xs:documentation>Time slot in which the order processing has to be planed.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:choice>
+               <xs:element name="plannedDuration" type="xs:positiveInteger">
+                  <xs:annotation>
+                     <xs:documentation>Planned duration of this task in minutes.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="ticketInteraction"
+                           type="tns:TicketInteraction"
+                           minOccurs="0"
+                           maxOccurs="unbounded">
+                  <xs:annotation>
+                     <xs:documentation>Interactions regarding this ticket</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="createOrder">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="order" type="tns:WorkforceOrder"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="deleteOrder">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="id" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>ID of the order to be deleted.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getAvailableTimeSlots">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="activityType" type="xs:string"/>
+                  <xs:element name="qualification" type="xs:string" maxOccurs="unbounded"/>
+                  <xs:element name="requestedTimeSlot" type="tns:TimeSlot"/>
+                  <xs:element name="location" type="tns:Address"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="getAvailableTimeSlotsResponse">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="status" type="xs:string"/>
+                  <xs:element name="errorMessage" type="xs:string" minOccurs="0"/>
+                  <xs:element name="timeSlot"
+                              type="tns:AvailableTimeSlot"
+                              minOccurs="0"
+                              maxOccurs="unbounded"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="reopenOrder">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="id" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>ID of the order.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="description" minOccurs="0">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element name="details" type="xs:string" minOccurs="0">
+                              <xs:annotation>
+                                 <xs:documentation>Detailed description of reopen order.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element name="assertRequestedTimeSlot" type="xs:boolean" minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>If true, the requested timeslot will be checked. The result, either confirmed
+                           or rejected, will be send to the consumer by utilizung the notifyUpdateOrder operation.
+                           Confirmation: stateInfo/status = 'Reopened' Rejection: stateInfo/status='Rejected'
+                           stateInfo/extension='some description'
+                        </xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:choice minOccurs="0">
+                     <xs:element name="fixedStartTime" type="xs:dateTime">
+                        <xs:annotation>
+                           <xs:documentation>Fixed time on which the processing of this order has to be started.</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:sequence>
+                        <xs:element name="requestedTimeSlot" type="tns:RequestedTimeslot">
+                           <xs:annotation>
+                              <xs:documentation>Time slot in which the order processing has to be planed.
+                              </xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="agreedTimeSlot" type="tns:RequestedTimeslot" minOccurs="0"/>
+                     </xs:sequence>
+                  </xs:choice>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="rescheduleOrder">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="id" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>ID of the order.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="description" minOccurs="0">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element name="details" type="xs:string" minOccurs="0">
+                              <xs:annotation>
+                                 <xs:documentation>Detailed description of reschedule order.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element name="assertRequestedTimeSlot" type="xs:boolean" minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>If true, the requested timeslot will be checked. The result, either confirmed
+                           or rejected, will be send to the consumer by utilizung the notifyUpdateOrder operation.
+                           Confirmation: stateInfo/status = 'Rescheduled' Rejection: stateInfo/status='Rejected'
+                           stateInfo/extension='some description'
+                        </xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:choice minOccurs="0">
+                     <xs:element name="fixedStartTime" type="xs:dateTime">
+                        <xs:annotation>
+                           <xs:documentation>Fixed time on which the processing of this order has to be started.
+                           </xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:sequence>
+                        <xs:element name="requestedTimeSlot" type="tns:RequestedTimeslot">
+                           <xs:annotation>
+                              <xs:documentation>Time slot in which the order processing has to be planed.
+                              </xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="agreedTimeSlot" type="tns:RequestedTimeslot" minOccurs="0"/>
+                     </xs:sequence>
+                  </xs:choice>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="techParams" type="tns:OrderTechnicalParams"/>
+         <xs:element name="updateOrder">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="id" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>ID of the workforce order to be updated</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="description" minOccurs="0">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element name="details" type="xs:string" minOccurs="0">
+                              <xs:annotation>
+                                 <xs:documentation>Detailed description of the order.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                           <xs:element name="techParams" type="tns:OrderTechnicalParams" minOccurs="0">
+                              <xs:annotation>
+                                 <xs:documentation>Technical params for the workforce order which will be displayed to the workforce engineer. </xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element name="contactPerson"
+                              type="tns:ContactPerson"
+                              minOccurs="0"
+                              maxOccurs="unbounded">
+                     <xs:annotation>
+                        <xs:documentation>Order contacts. Each contact has to be specified by role.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="ticketInteraction"
+                              type="tns:TicketInteraction"
+                              minOccurs="0"
+                              maxOccurs="unbounded">
+                     <xs:annotation>
+                        <xs:documentation>Interactions regarding the ticket</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:schema>
+   </wsdl:types>
+   <wsdl:service name="WorkforceService">
+      <wsdl:port name="WorkforceServiceJMS" binding="tns:WorkforceServiceJMSBinding">
+         <soap:address location="mnet.Resource.op.cdm.src.v1.WorkforceService"/>
+         <jms:connectionFactory>QueueConnectionFactory</jms:connectionFactory>
+         <jms:targetAddress destination="queue">mnet.Resource.op.cdm.src.v1.WorkforceService</jms:targetAddress>
+      </wsdl:port>
+      <wsdl:port name="WorkforceServiceHTTP" binding="tns:WorkforceServiceHTTPBinding">
+         <soap:address location="http://@domain.loadbalancer.url@/esb/Resource/WorkforceService/v1"/>
+      </wsdl:port>
+   </wsdl:service>
+   <wsdl:portType name="WorkforceService">
+      <wsdl:operation name="createOrder">
+         <wsdl:input message="tns:createOrder"/>
+      </wsdl:operation>
+      <wsdl:operation name="rescheduleOrder">
+         <wsdl:input message="tns:rescheduleOrder"/>
+      </wsdl:operation>
+      <wsdl:operation name="getAvailableTimeSlots">
+         <wsdl:input message="tns:getAvailableTimeSlots"/>
+         <wsdl:output message="tns:getAvailableTimeSlotsResponse"/>
+         <wsdl:fault name="fault1" message="tns:ESBFault"/>
+      </wsdl:operation>
+      <wsdl:operation name="updateOrder">
+         <wsdl:input message="tns:updateOrder"/>
+      </wsdl:operation>
+      <wsdl:operation name="reopenOrder">
+         <wsdl:input message="tns:reopenOrder"/>
+      </wsdl:operation>
+      <wsdl:operation name="deleteOrder">
+         <wsdl:input message="tns:deleteOrder"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="WorkforceServiceJMSBinding" type="tns:WorkforceService">
+      <soap:binding style="document"
+                    transport="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"/>
+      <jms:binding messageFormat="Text"/>
+      <wsdl:operation name="createOrder">
+         <soap:operation style="document" soapAction="/WorkforceService/createOrder"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="rescheduleOrder">
+         <soap:operation style="document" soapAction="/WorkforceService/rescheduleOrder"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="getAvailableTimeSlots">
+         <soap:operation style="document" soapAction="/WorkforceService/getAvailableTimeSlots"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="updateOrder">
+         <soap:operation style="document" soapAction="/WorkforceService/updateOrder"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="reopenOrder">
+         <soap:operation style="document" soapAction="/WorkforceService/reopenOrder"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="deleteOrder">
+         <soap:operation style="document" soapAction="/WorkforceService/deleteOrder"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="WorkforceServiceHTTPBinding" type="tns:WorkforceService">
+      <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="createOrder">
+         <soap:operation style="document" soapAction="/WorkforceService/createOrder"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="rescheduleOrder">
+         <soap:operation style="document" soapAction="/WorkforceService/rescheduleOrder"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="getAvailableTimeSlots">
+         <soap:operation style="document" soapAction="/WorkforceService/getAvailableTimeSlots"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal" parts="out"/>
+         </wsdl:output>
+         <wsdl:fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </wsdl:fault>
+      </wsdl:operation>
+      <wsdl:operation name="updateOrder">
+         <soap:operation style="document" soapAction="/WorkforceService/updateOrder"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="reopenOrder">
+         <soap:operation style="document" soapAction="/WorkforceService/reopenOrder"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="deleteOrder">
+         <soap:operation style="document" soapAction="/WorkforceService/deleteOrder"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:message name="createOrder">
+      <wsdl:part name="in" element="tns:createOrder"/>
+   </wsdl:message>
+   <wsdl:message name="rescheduleOrder">
+      <wsdl:part name="in" element="tns:rescheduleOrder"/>
+   </wsdl:message>
+   <wsdl:message name="getAvailableTimeSlots">
+      <wsdl:part name="in" element="tns:getAvailableTimeSlots"/>
+   </wsdl:message>
+   <wsdl:message name="getAvailableTimeSlotsResponse">
+      <wsdl:part name="out" element="tns:getAvailableTimeSlotsResponse"/>
+   </wsdl:message>
+   <wsdl:message name="ESBFault">
+      <wsdl:part name="fault" element="ns0:ESBFault"/>
+   </wsdl:message>
+   <wsdl:message name="updateOrder">
+      <wsdl:part name="in" element="tns:updateOrder"/>
+   </wsdl:message>
+   <wsdl:message name="reopenOrder">
+      <wsdl:part name="in" element="tns:reopenOrder"/>
+   </wsdl:message>
+   <wsdl:message name="deleteOrder">
+      <wsdl:part name="in" element="tns:deleteOrder"/>
+   </wsdl:message>
+</wsdl:definitions>

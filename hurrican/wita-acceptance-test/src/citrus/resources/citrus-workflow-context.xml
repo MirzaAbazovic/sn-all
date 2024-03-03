@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="de.mnet.wita.acceptance.common.AcceptanceTestDataBuilder" class="de.mnet.wita.acceptance.common.AcceptanceTestDataBuilder" scope="prototype" />
+    <bean id="de.mnet.wita.acceptance.common.KftStandortDataBuilder" class="de.mnet.wita.acceptance.common.KftStandortDataBuilder"/>
+    <bean id="de.mnet.wita.acceptance.common.AccStandortDataBuilder" class="de.mnet.wita.acceptance.common.AccStandortDataBuilder" scope="prototype" />
+
+    <!-- Entity builders -->
+    <bean class="de.mnet.wita.message.builder.meldung.ErledigtMeldungBuilder" scope="prototype" />
+    <bean class="de.mnet.wita.model.IoArchiveBuilder" scope="prototype" />
+    <bean class="de.mnet.wita.model.AkmPvUserTaskBuilder" scope="prototype"/>
+    <bean class="de.mnet.wita.model.TamUserTaskBuilder" scope="prototype"/>
+    <bean class="de.mnet.wita.model.VorabstimmungBuilder" scope="prototype" />
+    <bean class="de.mnet.wita.model.VorabstimmungAbgebendBuilder" scope="prototype" />
+    <bean class="de.mnet.wita.model.WitaCBVorgangBuilder" scope="prototype" />
+    <bean class="de.mnet.wita.model.WitaCBVorgangAnlageBuilder" scope="prototype" />
+    <bean class="de.mnet.wita.model.WitaSendCountBuilder" scope="prototype" />
+    <bean class="de.mnet.wita.model.WitaConfigBuilder" scope="prototype" />
+
+    <bean id="de.mnet.wita.acceptance.common.AcceptanceTestWorkflow" class="de.mnet.wita.acceptance.common.AcceptanceTestWorkflow" scope="prototype" />
+    <bean id="de.mnet.wita.acceptance.common.AcceptanceTestWorkflowService" class="de.mnet.wita.acceptance.common.AcceptanceTestWorkflowService"  />
+    <bean id="de.mnet.wita.acceptance.common.WitaMessageAssertionTestService" class="de.mnet.wita.acceptance.common.WitaMessageAssertionTestService"  />
+</beans>

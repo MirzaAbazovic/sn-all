@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die zuordnung von Rufnummernleistung zu Rufnummernleistungs-Parametern.
+-->
+<sf>
+	<Button name="save">
+        <icon>de/augustakom/hurrican/gui/images/save.gif</icon>
+        <tooltip>Speichert die Zuordnung Parameter zu Leistung </tooltip>
+    </Button>
+    <Button name="new">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Legt einen neuen Parameter an </tooltip>
+    </Button>
+</sf>

@@ -1,0 +1,1 @@
+update T_TECH_LEISTUNG set TYP='ONL_IP_OPTION' where ID in (4,5,6);

@@ -1,0 +1,71 @@
+<mat-card>
+  <mat-card-header>
+    <h2>Create a new resource order</h2>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-stepper orientation="vertical" [linear]="true" #stepper>
+      <!-- Step 1: Search for order item -->
+      <mat-step>
+        <ng-template matStepLabel>Search for order item</ng-template>
+        <mat-checkbox
+          *ngFor="let resourceSpecification of (resourceSpecifications$ | async)"
+          [checked]="selectedOption === resourceSpecification"
+          (change)="handleSelectResourceSpecification(resourceSpecification)"
+        >
+          {{ resourceSpecification?.name }}
+        </mat-checkbox>
+      </mat-step>
+
+      <!-- Step 2: Fill out order details -->
+      <mat-step>
+        <ng-template matStepLabel>Fill out order details</ng-template>
+
+        <h4>Available characteristics</h4>
+        <ul *ngIf="selectedOption && selectedOption.resourceSpecCharacteristic">
+          <li *ngFor="let specCharacteristic of selectedOption.resourceSpecCharacteristic!">
+            <span>{{ specCharacteristic?.name }}</span>
+            <ul>
+              <li *ngFor="let characteristicValue of specCharacteristic?.resourceSpecCharacteristicValue">
+                {{ characteristicValue?.value }} {{ characteristicValue?.unitOfMeasure }}
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <adlatus-gui-entry-form [fields]="formConfig" [model]="model" (formSubmitHandler)="onSubmit($event)" />
+      </mat-step>
+
+      <!-- Step 3: Order overview -->
+      <mat-step>
+        <ng-template matStepLabel>Order overview</ng-template>
+        <div class="order-overview">
+          <h4>Order Overview</h4>
+          <div *ngIf="model">
+            <div><strong>Name:</strong> {{ model?.name }}</div>
+            <div><strong>Requested Completion Date:</strong> {{ model?.requestedCompletionDate }}</div>
+            <div>
+              <strong>Order Items:</strong>
+              <div *ngFor="let orderItem of model?.orderItem">
+                <div *ngIf="orderItem?.resourceSpecification !== undefined && orderItem?.resourceSpecification?.name !== undefined">
+                  <strong>Resource Specification Name:</strong> {{ orderItem?.resourceSpecification?.name }}
+                </div>
+                <div *ngIf="orderItem?.resource && orderItem?.resource?.resourceCharacteristic">
+                  <strong>Resource Characteristics:</strong>
+                  <ul>
+                    <li *ngFor="let characteristic of orderItem?.resource?.resourceCharacteristic">
+                      {{ characteristic?.name }}: {{ characteristic?.value }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+          <button mat-button color="primary" (click)="finalSubmit()">Send</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </mat-card-content>
+</mat-card>

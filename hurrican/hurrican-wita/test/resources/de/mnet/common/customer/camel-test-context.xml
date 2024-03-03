@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <context:annotation-config/>
+
+    <!--
+    Mockito Mocks : these *must* to be defined first, ie placed at the top of this spring config.
+    -->
+
+    <bean id="routeConfigHelper" class="de.mnet.wbci.MocksFactory">
+        <constructor-arg name="mockClass" value="de.mnet.common.route.helper.RouteConfigHelper"/>
+    </bean>
+
+    <bean id="marshalCustomerServiceMessageProcessor" class="de.mnet.wbci.MocksFactory">
+        <constructor-arg name="mockClass" value="de.mnet.common.customer.route.processor.MarshalCustomerServiceMessageProcessor"/>
+    </bean>
+
+    <bean id="emsTransactionManager" name="emsTransactionManager" class="de.mnet.wbci.MocksFactory">
+        <constructor-arg name="mockClass" value="org.springframework.transaction.PlatformTransactionManager"/>
+    </bean>
+
+    <bean id="dbTransactionManager" name="dbTransactionManager" class="de.mnet.wbci.MocksFactory">
+        <constructor-arg name="mockClass" value="org.springframework.transaction.PlatformTransactionManager"/>
+    </bean>
+
+    <!--
+        Camel context, routes and policies
+    -->
+
+    <camelContext id="camelContext" xmlns="http://camel.apache.org/schema/spring" />
+
+    <bean id="customerServiceOutRoute" class="de.mnet.common.customer.route.CustomerServiceOutRoute" />
+
+    <bean id="ems.required" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+        <property name="transactionManager" ref="emsTransactionManager"/>
+        <property name="propagationBehaviorName" value="PROPAGATION_REQUIRED"/>
+    </bean>
+
+    <bean id="ems.requires_new" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+        <property name="transactionManager" ref="emsTransactionManager"/>
+        <property name="propagationBehaviorName" value="PROPAGATION_REQUIRES_NEW"/>
+    </bean>
+
+    <bean id="ems.propagation_not_supported" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+        <property name="transactionManager" ref="emsTransactionManager"/>
+        <property name="propagationBehaviorName" value="PROPAGATION_NOT_SUPPORTED"/>
+    </bean>
+
+    <bean id="db.required" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+        <property name="transactionManager" ref="dbTransactionManager"/>
+        <property name="propagationBehaviorName" value="PROPAGATION_REQUIRED"/>
+    </bean>
+
+    <bean id="db.requires_new" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+        <property name="transactionManager" ref="dbTransactionManager"/>
+        <property name="propagationBehaviorName" value="PROPAGATION_REQUIRES_NEW"/>
+    </bean>
+
+</beans>

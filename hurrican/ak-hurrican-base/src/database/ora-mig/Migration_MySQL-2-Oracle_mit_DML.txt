@@ -1,0 +1,118 @@
+Migration MySQL --> Oracle
+  (mit Ergon-Tools)
+  Stand: 18.09.2007
+===================================
+
+Server: 10.0.0.99
+
+Verzeichnis:	/home/taifun/appl/db_schema.hurrican
+
+Sub-Dirs:
+================
+ /desc 	beinhaltet generierte TD-Files
+ /data 	exportierte Daten von MySQL
+ /sql  	created-Files mit Indexen etc.
+
+ ./../site/resource/Databases.rsc 			
+
+ /Makefile	Targets fuer make
+
+ /load.error
+ /loadbig.error
+ /tables.log
+
+Ablauf:
+================
+ No.	System	Script/Befehl					Auswirkung
+  0.    MySQL	mysqldump						Dump von 10.1.1.6 erstellen und auf 10.1.20.2 einspielen
+  1. 	MySQL	hurrican_before_dml_create		Modifiziert einige Datentypen (Boolean)
+  2. 	Sun		make td							erstellt die TD-Definitionen aus der Source-Datenbank
+  3.	Sun		make files						generiert SQL-Files fuer Indexe, ForeignKeys etc.
+  4.	Sun		make dump						erstellt einen Dump aus der MySQL-Source
+  5.	Sun		make drop_all					Loescht alle Tabellen in der Ziel-DB (Oracle)
+  6.	Sun		./move_files.sh					verschiebt Dump-Files, die nicht per DML eingespielt werden koennen
+  7.	Sun		make tables						erstellt die Ziel-Tabellen auf der Oracle-DB
+  8.	ORA		hurrican_after_table_creation	modifiziert String-Felder auf der Oracle-DB
+  9.	Sun		make load						liest die Dump-Files in die Ziel-Tabelle ein
+ 10.	???		--AKTableCopyTool--				ueber move_files.sh verschobene Tabellen per TableCopyTool kopieren
+ 11.    ???     --ValidateDBCopyScript--        prueft, ob die Quell- und Ziel-Tabellen gleich gross sind
+ 12.	ORA		hurrican_after_data_insert		div. Aenderungen auf der Oracle-DB durchfuehren
+ 13.	Sun		make adjust_seq					erstellt die Sequences auf der Oracle-DB
+ 14.	ORA		hurrican_create_lost_sequences 	Sequences erstellen, die 'verloren' gegangen sind
+ 15.	ORA		hurrican_trigger				erstellt notwendige Trigger
+ 
+ Bei direkter Migration auf Ziel-DB:
+ 16. 	ORA		ORA_Indexe2.sql					Indexe auf den Oracle-Tabellen erstellen
+ 17.	ORA		ORA_ForeignKeys2.sql			ForeignKeys auf den Oracle-Tabellen erstellen
+ 18.	ORA		hurrican_grants.sql				Grant-Befehle fuer Hurrican-DB absetzen
+ 19.	ORA		reporting_grants.sql			Grant-Befehle fuer Reporting-User absetzen
+
+
+Tabellenstruktur auf Ziel-DB anlegen (Migration auf HCPROD ueber CCPROD):
+ 16.	ORA		create_hurrican.sql				Benutzer HURRICAN auf Ziel-DB (HCPROD) anlegen
+ 17.	Sun		vi Makefile						Ziel-Datenbank umstellen
+ 18.	Sun		make tables						Tabellenstruktur auf Ziel-DB anlegen
+ 19.	ORA		connect auf Ziel-DB
+ 20.	ORA		hurrican_after_table_creation	modifiziert String-Felder auf der Oracle-DB
+ 21.	ORA		hurrican_after_data_insert		weitere Tabellenaenderungen
+ 22.	ORA		--manuell--  					Dump von CCPROD erstellen
+ 	  exp CCPROD@CCPROD file=/home/taifun/glinkjo/CCPROD.dmp log=/home/taifun/glinkjo/export.log
+ 23.    Sun		--manuell--						Dump-File von 10.0.0.99 auf mnetbill04 kopieren
+ 24.	Sun		--manuell--						Oracle-Umgebung ueber ". .oracle_hcprod" setzen
+ 25.	ORA		--manuell--						Dump auf Ziel-DB einspielen (Import mit User system und Parameter IGNORE=y)
+      imp system file=/home/oracle/dumps/CCPROD.dmp log=/home/oracle/dumps/import.log IGNORE=y FROMUSER=CCPROD TOUSER=HURRICAN
+ 26.	ORA		ORA_Indexe2.sql					Indexe auf den Oracle-Tabellen erstellen
+ 27.	ORA		ORA_ForeignKeys2.sql			ForeignKeys auf den Oracle-Tabellen erstellen
+ 28.	ORA		hurrican_grants.sql				Grant-Befehle fuer Hurrican-DB absetzen
+ 29.	ORA		reporting_grants.sql			Grant-Befehle fuer Reporting-User absetzen
+ 30.	Sun		make adjust_seq					Sequences neu setzen
+ 31.	ORA		hurrican_create_lost_sequences 	Sequences erstellen, die 'verloren' gegangen sind
+ 
+
+zu beachten:
+================
+Folgende Dateien aus Verzeichnis /data loeschen:
+ - T_AUFTRAG_IMPORT_FILES
+ - T_PORT_FORWARD
+ - T_SERVICE_COMMANDS
+ - T_LEISTUNG_DN
+ - T_PROD_2_SL
+ - T_REPORT_REQUEST
+ - T_REPORT_TXT_BAUSTEINE
+ - T_TXT_BAUSTEIN
+ - T_TXT_BAUSTEIN_GRUPPE
+Diese Tabellen enthalten zu viele Datensaetze oder CLOB-Felder und koennen dadurch nicht ueber DML kopiert werden. 
+Die Uebernahme der Daten kann durch AKTableCopyTool erfolgen.
+
+
+zu beachten
+===========
+ - Constraint-Namen auf 30 Zeichen begrenzen
+
+
+DML-Befehle:
+================
+ make td		erstellt TD-Definitionen aus MySQL-Tabellen
+ make dump		Dump aus MySQL erstellen
+ make files 	(optional) zeigt die generierten Files an
+ make drop_all 	(alle Objekte der Ziel-DB löschen)
+ make tables 	(nur Tabellen ohne Indexe/Rules/etc. anlegen)
+ make load		laedt die zuvor gedumpten Daten in die Oracle DB
+ make adjust_seq passt die Sequences auf die aktuellen Werte an
+
+
+Bemerkungen:
+================
+ - bei großen Tabellen (z.B. T_LEISTUNG_DN) dauerte der Import extrem lange. Der Grund war, dass von Oracle die TS_UNDO zugelaufen ist. Dieser Bereich muss evtl. höher gesetzt werden.
+
+
+Moegliche Fehler bei ForeignKeys:
+=================================
+  Fehlermeldung: ORA-02298: cannot validate (SCHEMA.xxxxx) - parent keys not found
+  Ursache: In der Child-Tabelle ist eine ID enthalten, die in der Parent-Tabelle nicht existiert.
+           Um zu ermitteln, um welche ID es sich handelt, kann folgendes SQL-Statement verwendet werden:
+           
+           select REF_ID_COLUMN from CHILD_TABLE a where not exists (select ID_COLUMN_PARENT from
+		   PARENT_TABLE where ID_COLUMN_PARENT = a.REF_ID_COLUMN);
+
+

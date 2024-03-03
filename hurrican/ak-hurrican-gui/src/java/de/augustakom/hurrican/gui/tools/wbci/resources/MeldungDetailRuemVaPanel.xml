@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Text name="title">RUEM-VA Details</Text>
+
+    <Label name="wechseltermin"><text>Wechseltermin:</text></Label>
+    <DateComponent name="wechseltermin">
+        <tooltip>bestätigter Wechseltermin</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="ist.technologie"><text>IST-Technologie:</text></Label>
+    <TextField name="ist.technologie">
+        <tooltip>Angabe der IST-Technologie der Leitung beim abgebenden Carrier</tooltip>
+    </TextField>
+
+    <Label name="wita.vertragsnummern"><text>Vertragsnummern:</text></Label>
+    <TextArea name="wita.vertragsnummern">
+        <tooltip>WITA Vertragsnummer(n) bzw. WBCI Line-IDs</tooltip>
+        <columns>30</columns>
+        <rows>4</rows>
+    </TextArea>
+
+    <Label name="ada.infos"><text>Adress-Abweichungen:</text></Label>
+    <TextArea name="ada.infos">
+        <tooltip>in RUEM-VA angegebene Adress-Abweichungen</tooltip>
+        <columns>30</columns>
+        <rows>4</rows>
+    </TextArea>
+
+</sf>

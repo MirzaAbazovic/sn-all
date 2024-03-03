@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sws="http://www.springframework.org/schema/web-services"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services.xsd">
+
+    <import resource="classpath:spring/xmlbeans-ws-base.xml"/>
+
+    <bean id="aliveEndpoint" class="de.mnet.hurrican.webservice.alive.endpoint.AliveEndpoint" />
+
+    <sws:interceptors>
+                <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+                <bean class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor"/>
+    </sws:interceptors>
+
+    <!-- Publishing the WSDL -->
+    <!-- WSDL Generierung ueber http://host:port/hurricanweb/alive/alive.wsdl -->
+    <bean id="alive" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+        <property name="schema" ref="alive-schema"/>
+        <property name="portTypeName" value="WSAlive"/>
+        <property name="locationUri" value="/AliveService/"/>
+        <property name="targetNamespace" value="http://mnet.de/hurricanweb/alive/types"/>
+    </bean>
+    <bean id="alive-schema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+        <property name="xsd" value="classpath:alive-service.xsd"/>
+    </bean>
+
+</beans>
+

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:tns="http://www.mnet.de/esb/cdm/Customer/MessageDeliveryService/v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:jms="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:jndi="http://www.tibco.com/namespaces/ws/2004/soap/apis/jndi"
+                  name="MessageDeliveryService"
+                  targetNamespace="http://www.mnet.de/esb/cdm/Customer/MessageDeliveryService/v1">
+   <wsdl:documentation>Version 1.0</wsdl:documentation>
+   <wsdl:types>
+      <xs:schema xmlns="http://www.mnet.de/esb/cdm/Customer/MessageDeliveryService/v1"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 targetNamespace="http://www.mnet.de/esb/cdm/Customer/MessageDeliveryService/v1"
+                 version="1.0"
+                 elementFormDefault="qualified"
+                 attributeFormDefault="unqualified">
+         <xs:complexType name="Email">
+            <xs:sequence>
+               <xs:element name="from" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>The email address of the sender.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="to" type="xs:string" maxOccurs="unbounded">
+                  <xs:annotation>
+                     <xs:documentation>The recipients of the email.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="cc" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                  <xs:annotation>
+                     <xs:documentation>The cc (carbon copy) list for the email. </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="bcc" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+                  <xs:annotation>
+                     <xs:documentation>The bcc (blind carbon copy) list for the email. </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="replyTo"
+                           type="xs:string"
+                           minOccurs="0"
+                           maxOccurs="unbounded">
+                  <xs:annotation>
+                     <xs:documentation>The replyTo list for the email. </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="subject" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>The subject of the email.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="body">
+                  <xs:annotation>
+                     <xs:documentation>The content of the mail</xs:documentation>
+                  </xs:annotation>
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="content" type="xs:string">
+                           <xs:annotation>
+                              <xs:documentation>The content of the email</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="contentType" type="xs:string">
+                           <xs:annotation>
+                              <xs:documentation>The content type of the email as defined by the MIME standard. E.g. "text/html". See: http://en.wikipedia.org/wiki/MIME</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="attachment" minOccurs="0" maxOccurs="unbounded">
+                  <xs:annotation>
+                     <xs:documentation>Mail attachment</xs:documentation>
+                  </xs:annotation>
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="content">
+                           <xs:annotation>
+                              <xs:documentation>The content of the attachment</xs:documentation>
+                           </xs:annotation>
+                           <xs:complexType>
+                              <xs:choice>
+                                 <xs:element name="binary" type="xs:base64Binary"/>
+                                 <xs:element name="text" type="xs:string"/>
+                              </xs:choice>
+                           </xs:complexType>
+                        </xs:element>
+                        <xs:element name="contentType" type="xs:string">
+                           <xs:annotation>
+                              <xs:documentation>The content type of the attachment as defined by the MIME standard. E.g. "application/pdf" See: http://en.wikipedia.org/wiki/MIME</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                        <xs:element name="fileName" type="xs:string">
+                           <xs:annotation>
+                              <xs:documentation>The attachment file name</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="ProtocolEntry">
+            <xs:sequence>
+               <xs:element name="customerId" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>Id of the customer the communication event will be added</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="context" minOccurs="0">
+                  <xs:annotation>
+                     <xs:documentation>additional context information about the customer communication</xs:documentation>
+                  </xs:annotation>
+                  <xs:complexType>
+                     <xs:sequence>
+                        <xs:element name="contractId" type="xs:string" minOccurs="0">
+                           <xs:annotation>
+                              <xs:documentation>Contract id of the customer if the communication happend in context of a certain contract.</xs:documentation>
+                           </xs:annotation>
+                        </xs:element>
+                     </xs:sequence>
+                  </xs:complexType>
+               </xs:element>
+               <xs:element name="reason" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>The reason for the customer communication. For a complete list of currently known and allowed values please contact the service owner.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:complexType name="ShortMessage">
+            <xs:sequence>
+               <xs:element name="to" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>Receiver of the message. Must be a valid mobile phone number.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="from" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>Sender (reply number) of the text message. Text can be specified here. However replies only work with real phone numbers.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element name="text">
+                  <xs:annotation>
+                     <xs:documentation>Content of the text message. Attention: If the provided message is larger than 160 characters multiple messsages will be send.</xs:documentation>
+                  </xs:annotation>
+                  <xs:simpleType>
+                     <xs:restriction base="xs:string">
+                        <xs:maxLength value="1530"/>
+                     </xs:restriction>
+                  </xs:simpleType>
+               </xs:element>
+            </xs:sequence>
+         </xs:complexType>
+         <xs:element name="sendEmail">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="email" type="tns:Email"/>
+                  <xs:element name="protocol" type="tns:ProtocolEntry" minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>Specify this if a communication protocol entry has to be created for the customer. </xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="sendShortMessage">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="message" type="tns:ShortMessage">
+                     <xs:annotation>
+                        <xs:documentation>Text message to be send</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="protocol" type="tns:ProtocolEntry" minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>Specify this if a communication protocol entry has to be created for the customer. </xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:schema>
+   </wsdl:types>
+   <wsdl:service name="MessageDeliveryService">
+      <wsdl:port name="MessageDeliveryServiceJMS"
+                 binding="tns:MessageDeliveryServiceJMSBinding">
+         <soap:address location="mnet.Customer.op.cdm.src.v1.MessageDeliveryService"/>
+         <jms:connectionFactory>QueueConnectionFactory</jms:connectionFactory>
+         <jms:targetAddress destination="queue">mnet.Customer.op.cdm.src.v1.MessageDeliveryService</jms:targetAddress>
+      </wsdl:port>
+      <wsdl:port name="MessageDeliveryServiceHTTP"
+                 binding="tns:MessageDeliveryServiceHTTPBinding">
+         <soap:address location="http://mnetatlasprod10.intern.m-net.de:31080/esb/Customer/MessageDeliveryService/v1"/>
+      </wsdl:port>
+   </wsdl:service>
+   <wsdl:portType name="MessageDeliveryService">
+      <wsdl:operation name="sendShortMessage">
+         <wsdl:input message="tns:sendShortMessage"/>
+      </wsdl:operation>
+      <wsdl:operation name="sendEmail">
+         <wsdl:input message="tns:sendEmail"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="MessageDeliveryServiceJMSBinding"
+                 type="tns:MessageDeliveryService">
+      <soap:binding style="document"
+                    transport="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"/>
+      <jms:binding messageFormat="Text"/>
+      <wsdl:operation name="sendShortMessage">
+         <soap:operation style="document" soapAction="/MessageDeliveryService/sendShortMessage"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="sendEmail">
+         <soap:operation style="document" soapAction="/MessageDeliveryService/sendEmail"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="MessageDeliveryServiceHTTPBinding"
+                 type="tns:MessageDeliveryService">
+      <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="sendShortMessage">
+         <soap:operation style="document" soapAction="/MessageDeliveryService/sendShortMessage"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+      <wsdl:operation name="sendEmail">
+         <soap:operation style="document" soapAction="/MessageDeliveryService/sendEmail"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:message name="sendShortMessage">
+      <wsdl:part name="in" element="tns:sendShortMessage"/>
+   </wsdl:message>
+   <wsdl:message name="sendEmail">
+      <wsdl:part name="in" element="tns:sendEmail"/>
+   </wsdl:message>
+</wsdl:definitions>

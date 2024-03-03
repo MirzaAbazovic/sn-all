@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TableModel Definition fuer das Geo ID Search Panel -->
+<table>
+
+    <column name="Geo ID" property="geoId" type="java.lang.Long" editable="false" width="70"/>
+    <column name="Status" property="status.strValue" type="java.lang.String" editable="false" width="70"/>
+    <column name="Typ" property="type.strValue" type="java.lang.String" editable="false" width="70"/>
+    <column name="Info" property="info" type="java.lang.String" editable="false" width="200"/>
+    <column name="Strasse" property="street" type="java.lang.String" editable="false" width="100"/>
+    <column name="HausNr" property="houseNo" type="java.lang.String" editable="false" width="50"/>
+    <column name="HausNrZus." property="houseNoExt" type="java.lang.String" editable="false" width="50"/>
+    <column name="PLZ" property="zipCode" type="java.lang.String" editable="false" width="50"/>
+    <column name="Ort" property="city" type="java.lang.String" editable="false" width="150"/>
+
+</table>

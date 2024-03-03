@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.StreetSection
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="StreetSection" table="STREET_SECTION">
+	    
+		<cache usage="read-only"/>
+		
+	    <!-- PrimaryKey -->
+		<id name="sectionNo" column="STREET_SECTION_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<property name="geoStreetNo" column="GEO_STREET_NO" type="long" not-null="true"/>
+		<property name="houseNumStart" column="HOUSE_NUM_START" type="long"/>
+		<property name="houseNumAddStart" column="HOUSE_NUM_ADD_START" type="string"/>
+		<property name="houseNumEnd" column="HOUSE_NUM_END" type="long"/>
+		<property name="houseNumAddEnd" column="HOUSE_NUM_ADD_END" type="string"/>
+		<property name="numberingKind" column="NUMBERING_KIND" type="string"/>
+		<property name="onkz" column="ONKZ" type="string"/>
+		<property name="asb" column="ASB" type="long"/>
+		<property name="extId" column="EXT_ID" type="string"/>
+		<property name="recSource" column="REC_SOURCE" type="string"/>
+		<property name="serviceRoomNo" column="SERVICE_ROOM_NO" type="long"/>
+		
+	</class>
+	
+</hibernate-mapping>

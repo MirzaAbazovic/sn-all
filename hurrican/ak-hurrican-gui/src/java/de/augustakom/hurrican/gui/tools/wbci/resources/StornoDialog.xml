@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Storno Dialog
+-->
+<sf>
+
+  <Text name="storno.title">Storno für: %s</Text>
+
+  <Label name="storno.art"><text>Stornoart:</text></Label>
+  <RadioButton name="storno.aufhebung">
+    <text>Aufhebung</text>
+    <tooltip>Storno mit endgültiger Aufhebung der aktuellen Vorabstimmungsanfrage.</tooltip>
+  </RadioButton>
+
+  <RadioButton name="storno.aenderung">
+    <text>Änderung</text>
+    <tooltip>Storno mit nachfolgender neuer Vorabstimmungsanfrage.</tooltip>
+  </RadioButton>
+
+    <Label name="automatable">
+        <text>Automatische Prozessierung</text>
+    </Label>
+    <CheckBox name="automatable">
+        <tooltip>Aktiviert die automatische Prozessierung fuer den WBCI Geschaeftsfall (nach STR-ERLM wird Auftragskündigung rückgängig gemacht)</tooltip>
+    </CheckBox>
+
+  <TextArea name="storno.hinweis"/>
+  <Text name="info.icon">de/augustakom/hurrican/gui/images/info_big.png</Text>
+
+  <Text name="storno.aufhebung.text">Aktuelle Vorabstimmung wird endgültig storniert und abgebrochen. Es sind keine weiteren Aktionen möglich!</Text>
+  <Text name="storno.aenderung.text">Aktuelle Vorabstimmung wird storniert und beendet.</Text>
+
+  <Text name="storno.aenderung.ekpauf.zusatz">Es muss eine weitere Vorabstimmung durchgeführt werden!</Text>
+  <Text name="storno.aenderung.ekpabg.zusatz">Eine weitere Vorabstimmung vom aufnehmenden EKP wird erwartet!</Text>
+
+  <Text name="storno.aufhebung.ekpabg.zusatz">Bitte ggf. Nachweis an EKPauf senden!</Text>
+
+  <Text name="send.txt">Storno Anfrage senden</Text>
+  <Text name="send.tooltip">Storno Anfrage wird versendet</Text>
+
+  <Text name="cancel.txt">Abbrechen</Text>
+  <Text name="cancel.tooltip">Schliesst den Dialog ohne die Storno Anfrage zu senden</Text>
+
+  <Label name="storno.grund"><text>Stornogrund:</text></Label>
+  <ComboBox name="storno.grund">
+    <tooltip>Begründung für die Storno Anfrage</tooltip>
+  </ComboBox>
+</sf>

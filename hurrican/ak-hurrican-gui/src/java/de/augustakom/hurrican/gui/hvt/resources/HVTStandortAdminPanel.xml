@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Panel der HVT-Standorte.
+-->
+<sf>
+    <Text name="tab.standort.details">Details</Text>
+    <Text name="tab.uevt">UEVT</Text>
+    <Text name="tab.dslam">DSLAM</Text>
+    <Text name="tab.raum">Raum</Text>
+    <Text name="tab.rack">Rack</Text>
+    <Text name="tab.subrack">Subracks</Text>
+    <Text name="tab.dlu">DLU</Text>
+    <Text name="tab.dslam">DSLAM</Text>
+    <Text name="tab.ltg">LTG</Text>
+    <Text name="tab.router">Router</Text>
+    <Text name="tab.bg">Baugruppen</Text>
+    <Text name="tab.tech.type">Technologietypen</Text>
+    <Text name="tab.kvz.adresse">KVZ-Adresse</Text>
+
+</sf>

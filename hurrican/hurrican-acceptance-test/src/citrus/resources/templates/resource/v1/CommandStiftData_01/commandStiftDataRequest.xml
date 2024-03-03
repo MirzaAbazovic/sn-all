@@ -1,0 +1,14 @@
+<ns:CommandStiftDataRequest xmlns:ns="http://mnet.de/hurricanweb/command/stift/types">
+    <ns:standort>${ortsteil}</ns:standort>
+    <ns:versorger></ns:versorger>
+    <ns:typ>FTTB_MNET</ns:typ>
+    <ns:leiste>3</ns:leiste>
+    <ns:stifte>
+        <ns:stift>
+            <ns:stift>1</ns:stift>
+        </ns:stift>
+        <ns:stift>
+            <ns:stift>2</ns:stift>
+        </ns:stift>
+    </ns:stifte>
+</ns:CommandStiftDataRequest>

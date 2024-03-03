@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Konfiguration fuer das Tree-Panel.
+-->
+<sf>
+    
+    <RadioButton name="filter.role">
+        <text>Rolle</text>
+        <tooltip>Bei dieser Einstellungen werden die Benutzer nach der ausgewählten Rolle gefiltert</tooltip>
+    </RadioButton>
+    
+    <RadioButton name="filter.account">
+        <text>DB-Account</text>
+        <tooltip>Bei dieser Einstellungen werden die Benutzer nach dem ausgewählten DB-Account gefiltert</tooltip>
+    </RadioButton>
+    
+    <RadioButton name="filter.all">
+        <text>kein Filter</text>
+        <tooltip>Bei dieser Einstellungen werden alle Benutzer angezeigt</tooltip>
+    </RadioButton>
+    
+    <Label name="filter"><text>Benutzer filtern nach:</text></Label>
+    
+    <Button name="filter">
+	    <text>Filter setzen</text>
+        <tooltip>Filtert die Benutzer anhand der Einstellungen</tooltip>
+        <icon>de/augustakom/authentication/gui/images/filter.gif</icon>
+        <mnemonic>VK_S</mnemonic>
+    </Button>
+    
+    <ComboBox name="filter">
+	    <tooltip>Auswahl für den Filter</tooltip>
+    </ComboBox>
+    
+    <Text name="without.role">-- ohne Rolle --</Text>
+    <Text name="without.account">-- ohne Account --</Text>
+
+    <Label name="suche.label">
+        <text>Suche nach Benutzern bei Namen:</text>
+    </Label>
+    <TextField name="suche.textfield">
+        <tooltip>Eingabefeld für die Suche</tooltip>
+    </TextField>
+    <Button name="suche.button">
+        <text>Suche</text>
+        <tooltip>Suche Benutzernamen abteilungsübergreiffend</tooltip>
+    </Button>
+    <ComboBox name="suche.combobox">
+        <tooltip>Auswahl nach der Suche</tooltip>
+    </ComboBox>
+    <Text name="tab.suche">SUCHE</Text>
+    <Text name="tab.filter">FILTER</Text>
+
+</sf>

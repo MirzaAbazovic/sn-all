@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="PrintStatistic" language="java" pageWidth="595" pageHeight="842" columnWidth="496" leftMargin="71" rightMargin="28" topMargin="71" bottomMargin="71">
+	<property name="com.jasperassistant.designer.DataSource" value="empty"/>
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+	<property name="com.jasperassistant.designer.Units" value="Millimeters"/>
+	<property name="com.jasperassistant.designer.Grid" value="false"/>
+	<property name="com.jasperassistant.designer.GridHeight" value="12"/>
+	<property name="com.jasperassistant.designer.GridWidth" value="12"/>
+	<reportFont name="Font_Default" isDefault="false" fontName="Trebuchet MS" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<field name="BILL_CYCLE" class="java.lang.String">
+	</field>
+	<field name="GROUPNAME" class="java.lang.String">
+	</field>
+	<field name="SUM_PAGES" class="java.lang.Integer">
+	</field>
+	<field name="SUM_BILLS" class="java.lang.Integer">
+	</field>
+	<variable name="SUMMARY_PAGES" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{SUM_PAGES}]]></variableExpression>
+	</variable>
+	<variable name="SUMMARY_BILLS" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{SUM_BILLS}]]></variableExpression>
+	</variable>
+	<group name="Group_1">
+	</group>
+	<title>
+		<band height="73">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="37" width="295" height="19"/>
+				<textElement>
+					<font fontName="Trebuchet MS" size="14" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Übersicht Druckaufträge für Rechnungslauf:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="302" y="37" width="163" height="19"/>
+				<textElement>
+					<font fontName="Trebuchet MS" size="14" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{BILL_CYCLE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="0" width="482" height="19"/>
+				<textElement textAlignment="Center">
+					<font fontName="Trebuchet MS" size="14" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[M-net Telekommunikations GmbH]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="56">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="24" width="127" height="32"/>
+				<box topBorder="Thin" leftBorder="Thin" bottomBorder="Thin" rightBorder="Thin"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font reportFont="Font_Default" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Typ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="126" y="40" width="91" height="16"/>
+				<box topBorder="None" leftBorder="None" bottomBorder="Thin" rightBorder="Thin"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font reportFont="Font_Default" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seiten]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="216" y="40" width="91" height="16"/>
+				<box topBorder="None" leftBorder="None" bottomBorder="Thin" rightBorder="Thin"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font reportFont="Font_Default" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rechnungen]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="126" y="24" width="181" height="16"/>
+				<box topBorder="Thin" leftBorder="None" bottomBorder="None" rightBorder="Thin"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font reportFont="Font_Default" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Anzahl gelieferte]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="306" y="24" width="181" height="16"/>
+				<box topBorder="Thin" leftBorder="None" bottomBorder="None" rightBorder="Thin"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font reportFont="Font_Default" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Anzahl gedruckte/kuvertierte]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="306" y="40" width="91" height="16"/>
+				<box topBorder="None" leftBorder="None" bottomBorder="Thin" rightBorder="Thin"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font reportFont="Font_Default" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Seiten]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="396" y="40" width="91" height="16"/>
+				<box topBorder="None" leftBorder="None" bottomBorder="Thin" rightBorder="Thin"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font reportFont="Font_Default" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rechnungen]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement positionType="Float" x="0" y="0" width="127" height="20"/>
+				<box padding="3" topBorder="None" leftBorder="Thin" bottomBorder="Thin" rightBorder="Thin"/>
+				<textElement verticalAlignment="Middle">
+					<font reportFont="Font_Default"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{GROUPNAME}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement positionType="Float" x="126" y="0" width="91" height="20"/>
+				<box padding="3" topBorder="None" leftBorder="None" bottomBorder="Thin" rightBorder="Thin"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font reportFont="Font_Default"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{SUM_PAGES}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement positionType="Float" x="216" y="0" width="91" height="20"/>
+				<box padding="3" topBorder="None" leftBorder="None" bottomBorder="Thin" rightBorder="Thin"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font reportFont="Font_Default"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{SUM_BILLS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="306" y="0" width="91" height="20"/>
+				<box topBorder="None" leftBorder="None" bottomBorder="Thin" rightBorder="Thin"/>
+				<textElement/>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="396" y="0" width="91" height="20"/>
+				<box topBorder="None" leftBorder="None" bottomBorder="Thin" rightBorder="Thin"/>
+				<textElement/>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="69">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="4" width="127" height="20"/>
+				<box topBorder="Thin" leftBorder="Thin" bottomBorder="Thin" rightBorder="Thin"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font reportFont="Font_Default" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Gesamt:]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement positionType="Float" x="126" y="4" width="91" height="20"/>
+				<box padding="3" topBorder="Thin" leftBorder="None" bottomBorder="Thin" rightBorder="Thin"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font reportFont="Font_Default"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{SUMMARY_PAGES}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement positionType="Float" x="216" y="4" width="91" height="20"/>
+				<box padding="3" topBorder="Thin" leftBorder="None" bottomBorder="Thin" rightBorder="Thin"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font reportFont="Font_Default"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{SUMMARY_BILLS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="306" y="4" width="91" height="20"/>
+				<box topBorder="Thin" leftBorder="None" bottomBorder="Thin" rightBorder="Thin"/>
+				<textElement/>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="396" y="4" width="91" height="20"/>
+				<box topBorder="Thin" leftBorder="None" bottomBorder="Thin" rightBorder="Thin"/>
+				<textElement/>
+			</staticText>
+		</band>
+	</columnFooter>
+	<lastPageFooter>
+		<band height="86">
+			<staticText>
+				<reportElement positionType="Float" x="1" y="18" width="117" height="16"/>
+				<textElement>
+					<font reportFont="Font_Default"/>
+				</textElement>
+				<text><![CDATA[Daten an LMF geliefert:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="158" y="18" width="40" height="16"/>
+				<textElement>
+					<font reportFont="Font_Default"/>
+				</textElement>
+				<text><![CDATA[Datum:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="325" y="18" width="32" height="16"/>
+				<textElement>
+					<font reportFont="Font_Default"/>
+				</textElement>
+				<text><![CDATA[Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="-1" y="56" width="142" height="26"/>
+				<textElement>
+					<font reportFont="Font_Default"/>
+				</textElement>
+				<text><![CDATA[Bearbeitet und USB-Festplatte zurück geliefert an M-net:]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="202" y="33" width="95" height="1"/>
+				<graphicElement/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="359" y="33" width="95" height="1"/>
+				<graphicElement/>
+			</line>
+			<line>
+				<reportElement positionType="Float" x="359" y="77" width="95" height="1"/>
+				<graphicElement/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="158" y="62" width="40" height="16"/>
+				<textElement>
+					<font reportFont="Font_Default"/>
+				</textElement>
+				<text><![CDATA[Datum:]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" x="202" y="77" width="95" height="1"/>
+				<graphicElement/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="325" y="62" width="32" height="16"/>
+				<textElement>
+					<font reportFont="Font_Default"/>
+				</textElement>
+				<text><![CDATA[Name:]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+</jasperReport>

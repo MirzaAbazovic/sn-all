@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://wholesale.telekom.de/oss/v15/carrier"
+                  xmlns:envelope="http://wholesale.telekom.de/oss/v15/envelope"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  name="general" targetNamespace="http://wholesale.telekom.de/oss/v15/carrier">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                    targetNamespace="http://wholesale.telekom.de/oss/v15/carrier"
+                    xmlns:envelope="http://wholesale.telekom.de/oss/v15/envelope">
+            <xsd:import namespace="http://wholesale.telekom.de/oss/v15/envelope" schemaLocation="oss-envelope.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="annehmenMeldungRequest">
+        <wsdl:part name="request" element="envelope:annehmenMeldungRequest"/>
+    </wsdl:message>
+    <wsdl:message name="annehmenMeldungResponse">
+        <wsdl:part name="response" element="envelope:annehmenMeldungResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="CarrierPort">
+        <wsdl:operation name="annehmenMeldung">
+            <wsdl:input message="tns:annehmenMeldungRequest"/>
+            <wsdl:output message="tns:annehmenMeldungResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CarrierBinding" type="tns:CarrierPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="annehmenMeldung">
+            <soap:operation soapAction="http://wholesale.telekom.de/oss/v15/carrier/annehmenMeldung"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="CarrierService">
+        <wsdl:documentation>Der CarrierSerice definiert den Serviceanteil des Carriers an der Orderschnittstelle.
+        </wsdl:documentation>
+        <wsdl:port name="carrier" binding="tns:CarrierBinding">
+            <soap:address location="http://wholesale.telekom.de/oss/v15/carrier"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

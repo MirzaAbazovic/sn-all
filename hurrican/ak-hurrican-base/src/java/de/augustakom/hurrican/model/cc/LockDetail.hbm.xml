@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Lock
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="LockDetail" table="T_LOCK_DETAIL">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_LOCK_DETAIL_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="lockId" column="LOCK_ID" type="long" not-null="true"/>
+        <property name="abteilungId" column="ABTEILUNG_ID" type="long" not-null="true"/>
+        <property name="executedAt" column="EXECUTED_AT" type="timestamp"/>
+        <property name="executedFrom" column="EXECUTED_FROM" type="string"/>
+        <property name="cpsTxId" column="CPS_TX_ID" type="long"/>
+
+    </class>
+
+</hibernate-mapping>

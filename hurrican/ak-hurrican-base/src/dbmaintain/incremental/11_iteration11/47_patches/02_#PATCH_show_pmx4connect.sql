@@ -1,0 +1,2 @@
+INSERT INTO T_GUI_MAPPING (ID, GUI_ID, REFERENZ_ID, REFERENZ_HERKUNFT, VERSION) VALUES
+    (S_T_GUI_MAPPING_0.NEXTVAL, 218, 1, 'de.augustakom.hurrican.model.cc.ProduktGruppe', 0);

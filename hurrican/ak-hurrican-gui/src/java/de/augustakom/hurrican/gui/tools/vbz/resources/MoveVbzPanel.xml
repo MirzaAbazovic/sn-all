@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel, ueber das eine Verbindungsbezeichnung einem anderen
+Auftrag zugeordnet werden kann.
+-->
+<sf>
+
+    <Label name="auftrag.old"><text>Auftrags-ID (alt):</text></Label>
+    <FormattedTextField name="auftrag.old">
+        <tooltip>Auftrags-ID des ursprünglichen Auftrags</tooltip>
+        <columns>15</columns>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Label name="auftrag.new"><text>Auftrags-ID (neu):</text></Label>
+    <FormattedTextField name="auftrag.new">
+        <tooltip>ID des Auftrags, dem die Verbindungsbezeichnung des alten Auftrags zugeordnet werden soll</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <CheckBox name="move.cb">
+        <text>Carrierbestellung verschieben</text>
+        <tooltip>wenn selektiert, wird die Carrierbestellung vom 'alten' auf den 'neuen' Auftrag verschoben</tooltip>
+    </CheckBox>
+
+    <Button name="move.vbz">
+        <text>Verbindungsbezeichnung verschieben</text>
+        <tooltip>Verschiebt die Verbindungsbezeichnung auf den angegebenen Auftrag</tooltip>
+    </Button>
+
+    <Text name="vbz.moved">Die Verbindungsbezeichnung {0} wurde auf den Auftrag {1} verschoben.</Text>
+
+</sf>

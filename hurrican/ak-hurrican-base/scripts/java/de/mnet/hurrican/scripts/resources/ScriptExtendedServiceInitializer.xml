@@ -1,0 +1,30 @@
+<!--
+Konfiguration von weiteren Service-Initializer fuer die JUnit-TestCases
+-->
+<serviceinitializer>
+
+	<initializer>
+		<class>de.augustakom.hurrican.service.cc.CCServiceLocatorInitializer</class>
+		<name>ServiceInitializer fuer die CC-Services</name>
+		<description>Initialisiert die CustomerCare-Services</description>
+	</initializer>
+
+	<initializer>
+		<class>de.augustakom.hurrican.service.billing.BillingServiceLocatorInitializer</class>
+		<name>ServiceInitializer fuer die Billing-Services</name>
+		<description>Initialisiert die Billing-Services</description>
+	</initializer>
+
+	<initializer>
+		<class>de.augustakom.hurrican.service.internet.InternetServiceLocatorInitializer</class>
+		<name>ServiceInitializer fuer die Internet-Services</name>
+		<description>Initialisiert die Internet-Services</description>
+	</initializer>
+
+	<initializer>
+		<class>de.augustakom.hurrican.service.reporting.ReportServiceLocatorInitializer</class>
+		<name>ServiceInitializer fuer die Report-Services</name>
+		<description>Initialisiert die Report-Services</description>
+	</initializer>
+
+</serviceinitializer>

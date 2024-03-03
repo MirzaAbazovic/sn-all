@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<!--
+   | For more configuration information and examples see the Jakarta Log4j
+   | owebsite: http://jakarta.apache.org/log4j
+ -->
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+    <!-- ============================== -->
+    <!-- Append messages to the console -->
+    <!-- ============================== -->
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <param name="Threshold" value="DEBUG"/>
+
+        <layout class="org.apache.log4j.PatternLayout">
+            <!-- The default pattern: Date Priority [Category] Message\n -->
+            <param name="ConversionPattern" value="%d{HH:mm:ss,SSS} [%t] %-5.5p %-20.40c{4}| %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- ================ -->
+    <!-- Limit categories -->
+    <!-- ================ -->
+
+    <!-- Our own classes-->
+    <logger name="com.consol">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.springframework">
+        <level value="WARN"/>
+    </logger>
+
+    <!-- minimize data-generator output -->
+    <logger name="org.dozer">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="org.apache.commons.beanutils.converters">
+        <level value="WARN"/>
+    </logger>
+
+    <!-- ======================= -->
+    <!-- Setup the Root logger -->
+    <!-- ======================= -->
+    <logger name="de.mnet">
+        <level value="DEBUG"/>
+    </logger>
+    <logger name="de.augustakom">
+        <level value="DEBUG"/>
+    </logger>
+    <logger name="org.apache.activemq">
+        <level value="INFO"/>
+    </logger>
+    <logger name="eclipse.jetty">
+        <level value="INFO"/>
+    </logger>
+    <logger name="org.hibernate">
+        <level value="INFO"/>
+    </logger>
+
+    <logger name="org.hibernate.cache.ehcache">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="net.sf.ehcache.hibernate">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="de.augustakom.common.model.EntityBuilder">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="de.mnet.hurrican.simulator.servlet">
+        <level value="DEBUG"/>
+    </logger>
+
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</log4j:configuration>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2016 - M-net Telekommunikations GmbH
+  ~ All rights reserved.
+  -->
+<notifyUpdateOrder
+>
+    <order>
+        <geschaeftsfall>NEU</geschaeftsfall>
+        <aenderungsKennzeichen>Standard</aenderungsKennzeichen>
+        <geschaeftsfallart>Bereitstellung</geschaeftsfallart>
+    </order>
+    <message>
+        <MTAM>
+            <meldungsattribute>
+                <vertragsnummer>${contractId}</vertragsnummer>
+                <externeAuftragsnummer>${externalOrderId}</externeAuftragsnummer>
+                <kundennummer>${customerId}</kundennummer>
+                <kundennummerBesteller>${3rdPartySalesmanCustomerId}</kundennummerBesteller>
+            </meldungsattribute>
+            <meldungspositionen>
+                <position>
+                    <meldungscode>6002</meldungscode>
+                    <meldungstext>nicht ausführbar aus Endkundengrund</meldungstext>
+                </position>
+            </meldungspositionen>
+        </MTAM>
+    </message>
+</notifyUpdateOrder>

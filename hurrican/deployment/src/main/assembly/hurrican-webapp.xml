@@ -1,0 +1,29 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+    <id>hurrican-webapp</id>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <formats>
+        <format>dir</format>
+    </formats>
+    <dependencySets>
+        <dependencySet>
+            <includes>
+                <include>*:hurrican-web</include>
+            </includes>
+            <!-- umbenennen, um rueckwaertskompatibel zu sein ... -->
+            <outputFileNameMapping>${webapp.baseurl}${dashClassifier?}.${artifact.extension}</outputFileNameMapping>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>${webapp.service.name}/instance/webapps/</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+    <files>
+        <!-- hurricanweb property template -->
+        <file>
+            <source>${project.build.directory}/hurrican-web-tmp/WEB-INF/classes/hurrican-web.properties.template</source>
+            <destName>hurrican-web.properties</destName>
+            <filtered>true</filtered>
+            <outputDirectory>${webapp.service.name}/instance/conf</outputDirectory>
+        </file>
+    </files>
+</assembly>

@@ -1,0 +1,12 @@
+globalProperties:
+  models: ""
+  supportingFiles: false
+  apis: false
+
+additionalProperties:
+  library: webclient
+  basePackage: de.bitconex.tmf.agreement
+  invokerPackage: de.bitconex.tmf.agreement
+  modelPackage: de.bitconex.tmf.agreement.model
+  useLombok: true
+  useSerializable: true

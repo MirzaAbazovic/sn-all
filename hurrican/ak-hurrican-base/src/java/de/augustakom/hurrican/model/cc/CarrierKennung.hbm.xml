@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.CarrierKennung
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="CarrierKennung" table="T_CARRIER_KENNUNG">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_CARRIER_KENNUNG_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="carrierId" column="CARRIER_ID" type="long" not-null="true"/>
+        <property name="bezeichnung" column="BEZEICHNUNG" type="string"/>
+        <property name="portierungsKennung" column="PORTIERUNGSKENNUNG" type="string"/>
+        <property name="kundenNr" column="KUNDE_NR" type="string"/>
+        <property name="witaLeistungsNr" column="WITA_LEISTUNGS_NR" type="string"/>
+        <property name="name" column="NAME" type="string"/>
+        <property name="strasse" column="STRASSE" type="string"/>
+        <property name="plz" column="PLZ" type="string"/>
+        <property name="ort" column="ORT" type="string"/>
+        <property name="elTalAbsenderId" column="EL_TAL_ABSENDER_ID" type="string"/>
+        <property name="userW" column="USERW" type="string"/>
+        <property name="bktoNummer" column="BKTO_NUMMER" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

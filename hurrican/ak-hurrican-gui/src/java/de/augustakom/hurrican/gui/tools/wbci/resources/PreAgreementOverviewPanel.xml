@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die WBCI-VA-Übersicht.
+-->
+<sf>
+
+    <Text name="assign.task">Task bearbeiten</Text>
+    <Text name="release.task">Task freigeben</Text>
+    <Text name="filters">Filter</Text>
+    <Text name="functions">Funktionen</Text>
+    <Text name="customer">Kundendaten</Text>
+    <Text name="date">Termine / Sonstiges</Text>
+    <Text name="response">Antwort</Text>
+
+    <Text name="commons">Allgemein</Text>
+    <Text name="details">Details</Text>
+    <Text name="comment">Bemerkungen</Text>
+    <Text name="automationTasks">Automatisierungsschritte</Text>
+    <Text name="wholesale">Wholesale</Text>
+
+    <Text name="storno.vorgehalten.title">Vorgehaltene Vorabstimmung (%s) löschen?</Text>
+    <Text name="storno.vorgehalten.info">Vorabstimmung (%s) ist noch vorgehalten und wird damit restlos aus dem System
+        gelöscht. Wollen Sie wirklich fortfahren?
+    </Text>
+    <Text name="storno.vorgehalten.success">Vorabstimmung (%s) wurde erfolgreich aus dem System gelöscht.</Text>
+
+    <Label name="klaerfall">
+        <text>Achtung: Klärfall!</text>
+        <foreground>red</foreground>
+        <style>bold</style>
+    </Label>
+    <Label name="open.tv.or.storno">
+        <text>Achtung, offene Terminverschiebung / Storno!</text>
+        <foreground>red</foreground>
+        <style>bold</style>
+    </Label>
+    <Label name="taifun.kuendigungstermin">
+        <text>Achtung: Taifun Auftrag gekündigt zum %s!</text>
+        <foreground>red</foreground>
+        <style>bold</style>
+    </Label>
+    <Label name="taifun.order.cancelled">
+        <text>Achtung: Taifun Auftrag nicht gefunden (evtl. storniert)!</text>
+        <foreground>red</foreground>
+        <style>bold</style>
+    </Label>
+    <Label name="overdue.va">
+        <text>Achtung: Vorabstimmung aufgehoben, da neue VA nicht fristgerecht eingegangen ist!</text>
+        <foreground>red</foreground>
+        <style>bold</style>
+    </Label>
+    <Color name="red">
+        <red>255</red>
+        <green>0</green>
+        <blue>0</blue>
+    </Color>
+
+    <ToggleButton name="eigene.tasks">
+        <icon>de/augustakom/hurrican/gui/images/user_icon.png</icon>
+        <tooltip>Zeigt nur die eigenen Tasks an</tooltip>
+    </ToggleButton>
+
+    <ToggleButton name="team.tasks">
+        <icon>de/augustakom/hurrican/gui/images/user_group_icon.png</icon>
+        <tooltip>Zeigt nur die Team-Tasks an</tooltip>
+    </ToggleButton>
+
+    <ToggleButton name="alle.tasks">
+        <icon>de/augustakom/hurrican/gui/images/user_all_icon.png</icon>
+        <tooltip>Zeigt die Tasks aller User/Teams an (auch nicht zugeordnete Tasks)</tooltip>
+    </ToggleButton>
+
+    <ComboBox name="additional.filters">
+        <tooltip>Zusätzliche Filtermöglichkeiten</tooltip>
+    </ComboBox>
+
+    <Button name="assign.taifun.order.btn">
+        <text>Taifunauftrag zuordnen</text>
+        <tooltip>Öffnet einen Dialog zur Zuordnung eines Taifunauftrags zu der aktuellen Vorabstimmungsanfrage</tooltip>
+    </Button>
+
+    <Button name="akmtr.btn">
+        <text>AKM-TR erfassen</text>
+        <tooltip>Öffnet einen Dialog zur Erfassung der AKM-TR</tooltip>
+    </Button>
+
+    <Button name="abbmtr.btn">
+        <text>ABBM-TR erfassen</text>
+        <tooltip>Öffnet einen Dialog zum Senden einer Abbruchmeldung zu der Übernahme der technischen Ressource</tooltip>
+    </Button>
+
+    <Button name="tv.btn">
+        <text>TV erfassen</text>
+        <tooltip>Öffnet einen Dialog zur Erfassung der Terminverschiebung</tooltip>
+    </Button>
+
+    <Button name="abbm.btn">
+        <text>ABBM</text>
+        <tooltip>Öffnet einen Dialog zum Senden einer Abbruchmeldung</tooltip>
+    </Button>
+
+    <Button name="storno.btn">
+        <text>Storno erfassen</text>
+        <tooltip>Öffnet Dialog zur Erfassung der Storno Anfrage</tooltip>
+    </Button>
+
+    <Button name="preagreement.force.close.btn">
+        <text>Abschließen Admin</text>
+        <tooltip>Schließt den Vorgang endgültig ab - Adminrechte sind erforderlich</tooltip>
+    </Button>
+
+    <Button name="processing.close.btn">
+        <text>Bearbeitung abschließen</text>
+        <tooltip>Schließt die Bearbeitung vorübergehend ab</tooltip>
+    </Button>
+
+    <Button name="issue.close.btn">
+        <text>Klärfall auflösen</text>
+    </Button>
+    <tooltip>Löst den Klärfall mit einer Bemerkung auf</tooltip>
+
+    <Button name="answer.va.btn">
+        <text>Vorabstimmung beantworten</text>
+        <tooltip>Öffnet Dialog zur Erfassung der Anwort zur Vorabstimmung</tooltip>
+    </Button>
+
+    <Button name="send.erlm.btn">
+        <text>ERLM</text>
+        <tooltip>Erledigtmeldung senden</tooltip>
+    </Button>
+
+    <Button name="assign.release.task.btn">
+        <text>Task bearbeiten</text>
+        <tooltip>Diesen Task zur Bearbeitung sperren bzw. freigeben</tooltip>
+    </Button>
+
+    <Button name="history.btn">
+        <text>History ...</text>
+        <tooltip>Zeigt die History zur ausgewählten Vorabstimmung an</tooltip>
+    </Button>
+
+    <!-- space to prevent gui fields skipping -->
+    <Label name="kunde.typ"><text>Typ:        </text></Label>
+    <TextField name="kunde.typ">
+        <columns>30</columns>
+    </TextField>
+
+    <Label name="kunde.name"><text>Name:</text></Label>
+    <TextField name="kunde.name"></TextField>
+
+    <Label name="kunde.vorname"><text>Vorname:</text></Label>
+    <TextField name="kunde.vorname"></TextField>
+
+    <Label name="kunde.firma"><text>Firma:</text></Label>
+    <TextField name="kunde.name"></TextField>
+
+    <Label name="kunde.firmazusatz"><text>Zusatz:</text></Label>
+    <TextField name="kunde.firmazusatz"> </TextField>
+
+    <Label name="standort.strasse"><text>Strasse:</text></Label>
+    <TextField name="standort.strasse"></TextField>
+
+    <Label name="standort.plz.ort"><text>PLZ/Ort:</text></Label>
+    <TextField name="standort.plz">
+        <columns>5</columns>
+    </TextField>
+    <TextField name="standort.ort">
+        <columns>15</columns>
+    </TextField>
+    <Label name="taifun.order.ids">
+        <text>Taifun-A.-Nr.:</text>
+    </Label>
+    <TextArea name="taifun.order.ids">
+        <tooltip>Alle zu dieser Vorabstimmung zugehörigen Taifun-Auftragsnummern. Die zusätzlichen Aufräge zum
+            Hauptauftrag, enthalten nicht Billing relevante Rufnummern, die in der Regel für TK-Anlagen verwendet
+            werden.
+        </tooltip>
+        <rows>6</rows>
+    </TextArea>
+
+    <Label name="automatable"><text>Automatisierung:</text></Label>
+    <CheckBox name="automatable">
+        <tooltip>Signalisieret, dass die Vorabstimmung automatisiert verarbeitet wird.</tooltip>
+    </CheckBox>
+
+    <Text name="rufnummern">Rufnummern</Text>
+    <Label name="alle.rufnummern"><text>Alle Nummern der Anschlüsse portieren:</text></Label>
+    <CheckBox name="alle.rufnummern">
+        <tooltip>Signalisieret den abgegebenden EKP, das alle Rufnummern des Anschlusses portiert werden müssen. Das Feld wird nur bei Anschlüssen mit mehreren Rufnummern ausgewertet.</tooltip>
+    </CheckBox>
+
+    <Label name="zeitfenster"><text>Zeitfenster:</text></Label>
+    <TextField name="zeitfenster">
+    </TextField>
+
+    <Label name="pkiauf">
+        <text>PKIauf:</text>
+    </Label>
+    <TextField name="pkiauf">
+        <tooltip>PKIauf aus der AKM-TR (bei KUE-MRN/ORN) bzw. aus der RRNP-Anfrage</tooltip>
+    </TextField>
+
+    <Label name="sonstiges"><text>Sonstiges</text></Label>
+
+    <Label name="mnet.technologie"><text>M-net Techn.:</text></Label>
+    <TextField name="mnet.technologie">
+    </TextField>
+
+    <Label name="wechseltermin"><text>best. Wechseltermin:</text></Label>
+    <DateComponent name="wechseltermin">
+        <tooltip>bestätigter Wechseltermin</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="anfrage.kwt"><text>Vorgabedatum/KWT:</text></Label>
+    <DateComponent name="anfrage.kwt.date">
+        <tooltip>Vorgabedatum / Kundenwunschtermin</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="anfrage.stornotv.id"><text>Storno- / TV-IDs:</text></Label>
+    <TextArea name="anfrage.stornotv.ta">
+        <tooltip>IDs der zu dieser Vorabstimmung zugehörigen Storno- und Terminverschiebungsanfragen</tooltip>
+        <columns>27</columns>
+        <rows>2</rows>
+    </TextArea>
+
+    <Label name="bearbeitungsstatus">
+        <text>Bearbeitungsstatus:</text>
+    </Label>
+    <TextArea name="bearbeitungsstatus">
+        <tooltip>Interner Bearbeitungsstatus der Vorabstimmung</tooltip>
+        <columns>27</columns>
+        <rows>2</rows>
+    </TextArea>
+
+    <Text name="comments">Bemerkungen zur Bearbeitung</Text>
+    <TextArea name="textarea.bemerkungen">
+        <tooltip>Bemerkungen zur Bearbeitung</tooltip>
+        <columns>35</columns>
+        <rows>10</rows>
+    </TextArea>
+
+    <Button name="save.bemerkung.btn">
+        <text>Bemerkung speichern</text>
+        <tooltip>Speichert die eingetragenen Bemerkungen</tooltip>
+    </Button>
+
+    <Text name="automationTasks.title">Automatisierungsschritte zum WBCI Vorgang</Text>
+
+    <Label name="str.aen.gf.voranstimmungsid"><text>urspr. Vorabstimmung:</text></Label>
+    <TextField name="str.aen.gf.vorabstimmungsid">
+    </TextField>
+
+    <Label name="str.aen.gf.wechseltermin"><text>urspr. Wechseltermin:</text></Label>
+    <DateComponent name="str.aen.gf.wechseltermin">
+        <tooltip>bestätigter Wechseltermin aus der ursprünglichen Vorabstimmung</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+</sf>

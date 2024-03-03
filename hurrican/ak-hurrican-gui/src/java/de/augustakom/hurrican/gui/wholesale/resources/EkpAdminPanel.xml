@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GUI-Definitionen fuer das Admin-Frame der Wholesale EKPs. -->
+<sf>
+	<Button name="btn.new">
+		<text>Neu</text>
+		<tooltip>Erstellt einen neuen Eintrag</tooltip>
+	</Button>
+	<Button name="btn.edit">
+		<text>Bearbeiten</text>
+		<tooltip>Bearbeitet die selektierte Zeile</tooltip>
+	</Button>
+	<Button name="btn.delete">
+		<text>Löschen</text>
+		<tooltip>Löscht die selektierte Zeile</tooltip>
+	</Button>
+
+	<Text name="EkpFrameContract.title">EKP</Text>
+	<Label name="EkpFrameContract.ekpId">
+		<text>EKP-ID</text>
+	</Label>
+	<Label name="EkpFrameContract.frameContractId">
+		<text>RV-ID</text>
+	</Label>
+    <Label name="EkpFrameContract.svlanFaktor">
+        <text>Faktor für SVLAN-Berechnung</text>
+    </Label>
+
+	<Text name="CVlan.title">CVLAN</Text>
+    <Label name="CVlan.typ">
+        <text>Typ</text>
+    </Label>
+    <Label name="CVlan.typ.type">
+        <text>CVLAN-Typ</text>
+    </Label>
+    <Label name="CVlan.protocoll">
+        <text>Protokoll</text>
+    </Label>
+    <Label name="CVlan.value">
+        <text>VLAN</text>
+    </Label>
+    <FormattedTextField name="CVlan.value">
+        <format type="number">0</format>
+    </FormattedTextField>
+    <Label name="CVlan.pbitLimit">
+        <text>PBIT Limit</text>
+    </Label>
+    <FormattedTextField name="CVlan.pbitLimit">
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Text name="A10NspPort.title">A10-NSP Port</Text>
+    <Label name="A10NspPort.a10Nsp">
+        <text>A10-NSP</text>
+    </Label>
+    <Label name="A10NspPort.a10NspPort">
+        <text>A10-NSP Port</text>
+    </Label>
+    <Label name="A10NspPort.defaultPort">
+        <text>Default</text>
+    </Label>
+</sf>

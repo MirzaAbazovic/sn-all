@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Wizard-Panel zur Definition
+von internen Arbeitsauftraegen.
+-->
+<sf>
+    
+	<Label name="title"><text>interne Arbeit:</text></Label>
+
+	<Label name="hvt.standort"><text>Service-Raum:</text></Label>
+    <ReferenceField name="hvt.standort">
+		<tooltip>Auswahl des Service-Raums</tooltip>
+		<columns>25</columns>
+		<id.property>hvtIdStandort</id.property>
+		<name.property>ortsteil</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.view.HVTGruppeStdView</reference.class>
+		<selection.dialog.class>de.augustakom.hurrican.gui.hvt.HVTSelectionDialog</selection.dialog.class>
+	</ReferenceField>
+	
+	<Label name="work.type"><text>Arbeit:</text></Label>
+	<ReferenceField name="work.type">
+		<tooltip>Art der durchzufuehrenden Arbeit</tooltip>
+		<id.property>id</id.property>
+		<name.property>strValue</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+	</ReferenceField>
+
+</sf>

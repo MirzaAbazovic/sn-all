@@ -1,0 +1,92 @@
+@startuml LAYOUT_TOP_DOWN Adlatus
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+!include DEVICONS/angular.puml
+!include DEVICONS/java.puml
+!include DEVICONS/msql_server.puml
+!include DEVICONS/nginx.puml
+!include DEVICONS/mongodb.puml
+!include FONTAWESOME/users.puml
+
+Person(employee, "Customer Employee",$sprite="users")
+
+System_Boundary(adlatus, 'Adlatus') {
+' Web
+    Container(web_server, "Web server", "All GUI apps and APIs", $sprite="nginx")
+    Container(api_gateway, "Api Gateway","Spring Cloud Gateway","Routing, Versioning, SSL termination, AuthN&AuthZ", $sprite="java")
+    Container(web_gui, "Web Applications", "SPA Angular", "All SPA applications: parties, agreement, resource catalog,resource order management, resource inventory ", $sprite="angular")
+   
+' GUI apps
+   System_Boundary(gui,"SPA apps"){
+     Container(agreement_gui, "Agreement Web Application", "SPA Angular", $sprite="angular")
+     Container(party_gui, "Party Web Application", "SPA Angular", $sprite="angular")
+     Container(rom_gui, "ROM Web Application", "SPA Angular", $sprite="angular")
+     Container(rim_gui, "RIM Web Application", "SPA Angular", $sprite="angular")
+     Container(rcm_gui, "RCM Web Application", "SPA Angular", $sprite="angular")
+   }
+   
+' Party
+    Container(party_api, "Party API", "Spring Java","Business logic and TMF Party REST API", "Business logic", $sprite="java")
+    ContainerDb(party_db, "Party DB", "MongoDb","Data about individuals and organisations in TMF parties format", $sprite="mongodb")
+' Agreement
+    Container(agreement_api, "Agreement API", "Spring Java", "Agreement REST API", $sprite="java")
+    ContainerDb(agreement_db, "Agreement DB", "MongoDb","Data about agreements/contracts and contract details like products etc", $sprite="mongodb")
+' Core
+   System_Boundary(core,"Core ROM system"){
+    Container(rom_api, "Resource order management", "Spring Java", "Creates and handles resource order. Validation and order state management",$sprite="java")
+    Container(rim_api, "Resource inventory management", "Spring Java", "TMF REST api and business logic for resource inventory", $sprite="java")
+    Container(rcm_api, "Resource catalog management", "Spring Java", "TMF REST api and business logic for resource catalog", $sprite="java")
+    
+    ContainerDb(rom_db, "Resource order management DB", "MongoDB", "Creates and handles resource order. Validation and order state management",$sprite="mongodb")
+    ContainerDb(rim_db, "Resource inventory management DB", "MongoDB", "TMF REST api and business logic for resource inventory", $sprite="mongodb")
+    ContainerDb(rcm_db, "Resource catalog management DB", "MongoDB", "TMF REST api and business logic for resource catalog", $sprite="mongodb")
+    Container(order_validation, "Order validation", $sprite="java")
+   }
+
+    System_Boundary(soap, "SOAP"){
+    SystemQueue(soap_gateway, "SOAP Gateway", "Routing", $sprite="java")
+    Container(ambassador, "Ambassador","Handles mapping between WITA and TMF")    
+    Container(prod_resolver, "Product resolver", "Spring Java", "Resolves contract and prodiuct based on resource items", $sprite="java")
+    Container(wita_adapter, "WITA adapter","Sends and receives WITA messages", "Maps TMF events to sending WITA messages and WITA messages to TMF ROM rest API ", $sprite="java")
+  }
+}
+
+System_Ext(dtag, "DTAG")
+System_Ext(customer_tmf_rom, "Customer TMF ROM")
+
+Rel(employee, web_server, "Uses", "Web browser")
+Rel(web_server, web_gui, "Uses", "HTTPS")
+Rel(web_gui, api_gateway, "Uses", "HTTP")
+
+Rel(api_gateway, party_api, "Uses", "HTTP")
+BiRel(party_api, party_db, "Reads from and writes to", "MongoDB wire protocol, port 27017")
+
+Rel(api_gateway, agreement_api, "Uses", "HTTP")
+BiRel(agreement_api, agreement_db, "Reads from and writes to", "MongoDB wire protocol, port 27017")
+
+Rel(api_gateway, core, "Uses", "HTTP")
+
+BiRel(rom_api, rom_db, "Reads from and writes to", "MongoDB wire protocol, port 27017")
+
+BiRel(rim_api, rim_db, "Reads from and writes to", "MongoDB wire protocol, port 27017")
+
+BiRel(rcm_api, rcm_db, "Reads from and writes to", "MongoDB wire protocol, port 27017")
+
+
+BiRel(dtag, soap_gateway, "Send and receive WITA messages", "SOAP")
+Rel(web_gui, gui, "Packages all apps", "Angular")
+BiRel(wita_adapter, ambassador, "", "")
+BiRel(soap_gateway, wita_adapter, "", "")
+Rel(wita_adapter, prod_resolver, "", "")
+Rel(prod_resolver, agreement_api, "", "")
+
+BiRel(ambassador, rom_api, "Bidirectional HTTP. TMF Rest API to send data also subsribes to events in ROM and receives HTTP calls", "HTTP")
+
+Rel(order_validation, rcm_api, "Uses", "HTTP")
+Rel(rom_api, order_validation, "", "")
+
+BiRel_D(customer_tmf_rom, api_gateway, "Uses", "HTTPS")
+
+@enduml

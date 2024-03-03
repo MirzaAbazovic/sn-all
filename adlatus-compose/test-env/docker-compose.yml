@@ -1,0 +1,168 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo:7
+    volumes:
+      - adlatus_data:/data/db
+      - mongo_config:/data/configdb
+    networks:
+      - adlatus_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "27017:27017"
+    command: ["--replSet", "rs0", "--bind_ip_all", "--port", "27017"]
+    healthcheck:
+      test: echo "try { rs.status() } catch (err) { rs.initiate({_id:'rs0',members:[{_id:0,host:'host.docker.internal:27017'}]}) }" | mongosh --port 27017 --quiet
+      interval: 5s
+      timeout: 30s
+      start_period: 0s
+      retries: 30
+
+  config-server:
+    image: docker.adl.dev.bitconex.com/bitconex-config-server:latest
+    networks:
+      - adlatus_network
+    environment:
+      - PORT=8080
+      - GIT_TOKEN=ATCTT3xFfGN00xtKqlqFChbG1mmhktz7900yQ57M41eM6NlrtHPu_O_1ZBSwWDaFHe46PVzDWI7JDU1XW0U2lncZ4xUabpuOLmB_yeci7xmgEgsHzK9HAfJZR_vQq5-EnH5OGrXNQW5EyFIq1NGd94Uf40AipfeQgATWLlGcuXZPbIPQrpzF_Gk=1E43E8E7
+    healthcheck:
+      test: "curl --fail --silent localhost:8080/actuator/health | grep UP || exit 1"
+      interval: 3s
+      timeout: 10s
+      retries: 10
+      start_period: 2s
+
+  api-gate:
+    image: docker.adl.dev.bitconex.com/bitconex-api-gate:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=dockcomp
+      - CONFIG_SERVER=http://config-server:8080
+      - KEY_STORE_PASS=matematika
+    healthcheck:
+      test: "curl --fail --silent localhost/actuator/health | grep UP || exit 1"
+      interval: 3s
+      timeout: 10s
+      retries: 10
+      start_period: 2s
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - adlatus_network
+    depends_on:
+      config-server:
+        condition: service_healthy
+
+  party-management:
+    image: docker.adl.dev.bitconex.com/bitconex-pm-api:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=dockcomp
+      - CONFIG_SERVER=http://config-server:8080
+      - initial_load=true
+    networks:
+      - adlatus_network
+    depends_on:
+      config-server:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+
+  agreement-management:
+    image: docker.adl.dev.bitconex.com/bitconex-agreement-api:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=dockcomp
+      - CONFIG_SERVER=http://config-server:8080
+      - initial_load=true
+    networks:
+      - adlatus_network
+    depends_on:
+      config-server:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+
+  appointment-management:
+    image: docker.adl.dev.bitconex.com/bitconex-appointment-api:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=dockcomp
+      - CONFIG_SERVER=http://config-server:8080
+    networks:
+      - adlatus_network
+    depends_on:
+      config-server:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+
+  geographic-address-management:
+    image: docker.adl.dev.bitconex.com/bitconex-geographic-address-api:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=dockcomp
+      - CONFIG_SERVER=http://config-server:8080
+    networks:
+      - adlatus_network
+    depends_on:
+      config-server:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+
+  resource-catalog:
+    image: docker.adl.dev.bitconex.com/bitconex-resource-catalog-api:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=dockcomp
+      - CONFIG_SERVER=http://config-server:8080
+      - initial_load=true
+    networks:
+      - adlatus_network
+    depends_on:
+      config-server:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+
+  adlatus-reporting:
+    image: docker.adl.dev.bitconex.com/bitconex-adlatus-reporting:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=dockcomp
+      - CONFIG_SERVER=http://config-server:8080
+      - PORT=8080
+      # - ADLATUS_URL=http://host.docker.internal:8080/reporting # UNCOMMENT THIS LINE IF YOU WANT TO RUN REPORTING LOCALY
+    networks:
+      - adlatus_network
+    depends_on:
+      config-server:
+        condition: service_healthy
+
+  adlatus:
+    image: docker.adl.dev.bitconex.com/bitconex-adlatus-domain:latest
+    environment:
+      - SPRING_PROFILES_ACTIVE=dockcomp
+      - CONFIG_SERVER=http://config-server:8080
+      - PORT=8080
+    networks:
+      - adlatus_network
+    depends_on:
+      config-server:
+        condition: service_healthy
+
+  adlatus-gui:
+    image: docker.adl.dev.bitconex.com/bitconex-adlatus-gui-snapshot:latest
+    ports:
+      - 8081:80
+    networks:
+      - adlatus_network
+    depends_on:
+      api-gate:
+        condition: service_healthy
+
+networks:
+  adlatus_network:
+    driver: bridge
+
+volumes:
+  adlatus_data:
+    name: adlatus_data
+  mongo_config:
+    name: mongo_config

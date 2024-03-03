@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.tal.CbConfigData
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.tal">
+    <class name="CbConfigData" table="T_CB_CONFIG_DATA">
+
+        <cache usage="read-only"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="cbConfigId" column="CB_CONFIG_ID" type="long"/>
+        <property name="bezeichnung" column="BEZEICHNUNG" type="string"/>
+        <property name="wertString" column="WERT_STRING" type="string"/>
+        <property name="beschreibung" column="BESCHREIBUNG" type="string"/>
+        <property name="matchcode" column="MATCHCODE" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

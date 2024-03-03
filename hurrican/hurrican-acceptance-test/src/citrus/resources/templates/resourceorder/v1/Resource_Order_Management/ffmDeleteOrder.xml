@@ -1,0 +1,7 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <deleteOrder xmlns="http://www.mnet.de/esb/cdm/Resource/WorkforceService/v1">
+            <id>@ignore@</id>
+        </deleteOrder>
+    </soap:Body>
+</soap:Envelope>

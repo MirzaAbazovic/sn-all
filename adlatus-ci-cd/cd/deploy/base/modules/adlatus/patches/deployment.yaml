@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adlatus-deployment
+  namespace: adl
+spec:
+  template:
+    spec:
+      containers:
+        - name: adlatus-postgres
+          env:
+          - name: POSTGRES_USER
+            value: adlatus
+          - name: POSTGRES_PASSWORD
+            value: adlatusPass
+          image: postgres:16
+          ports: 
+            - containerPort: 5432
+              hostPort: 5432
+      imagePullSecrets:
+        - name: docker-regcred

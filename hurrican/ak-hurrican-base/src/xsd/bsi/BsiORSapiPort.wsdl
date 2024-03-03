@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+				targetNamespace="http://orsapi.custom.services.server.mnet.bsiag.com" 
+					xmlns:apachesoap="http://xml.apache.org/xml-soap" 
+					xmlns:impl="http://orsapi.custom.services.server.mnet.bsiag.com" 
+					xmlns:intf="http://orsapi.custom.services.server.mnet.bsiag.com" 
+					xmlns:tns1="http://exception.commons.bsiag.com" 
+					xmlns:tns2="http://orsapi.custom.services.shared.mnet.bsiag.com" 
+					xmlns:tns3="http://schemas.xmlsoap.org/soap/encoding/" 
+					xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" 
+					xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://exception.commons.bsiag.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://orsapi.custom.services.server.mnet.bsiag.com"/>
+   <import namespace="http://orsapi.custom.services.shared.mnet.bsiag.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ProcessingException">
+    <sequence>
+     <element name="consumed" type="xsd:boolean"/>
+     <element name="interruption" type="xsd:boolean"/>
+     <element name="status" nillable="true" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema targetNamespace="http://orsapi.custom.services.shared.mnet.bsiag.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://orsapi.custom.services.server.mnet.bsiag.com"/>
+   <import namespace="http://exception.commons.bsiag.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="UserCodeName">
+    <sequence>
+     <element name="codeName" nillable="true" type="xsd:string"/>
+     <element name="codeTypeUid" nillable="true" type="xsd:long"/>
+     <element name="group1Uid" nillable="true" type="xsd:long"/>
+     <element name="ucUid" nillable="true" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="CheckListEntry">
+    <sequence>
+     <element name="checklist" nillable="true" type="xsd:string"/>
+     <element name="sortcode" nillable="true" type="xsd:long"/>
+     <element name="question" nillable="true" type="xsd:string"/>
+     <element name="answer" nillable="true" type="xsd:string"/>
+     <element name="comment" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Status">
+    <sequence>
+     <element name="attribute" nillable="true" type="xsd:string"/>
+     <element name="entity" nillable="true" type="xsd:string"/>
+     <element name="errorMsg" nillable="true" type="xsd:string"/>
+     <element name="extKey" nillable="true" type="xsd:string"/>
+     <element name="primaryKey" nillable="true" type="xsd:long"/>
+     <element name="status" nillable="true" type="xsd:long"/>
+     <element name="typeUid" nillable="true" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="KeyMapping">
+    <sequence>
+     <element name="extNo" nillable="true" type="xsd:string"/>
+     <element name="objectTypeUid" nillable="true" type="xsd:long"/>
+     <element name="orsNr" nillable="true" type="xsd:long"/>
+     <element name="systemUid" nillable="true" type="xsd:long"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema targetNamespace="http://orsapi.custom.services.server.mnet.bsiag.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exception.commons.bsiag.com"/>
+   <import namespace="http://orsapi.custom.services.shared.mnet.bsiag.com"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_tns2_UserCodeName">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns2:UserCodeName"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_tns2_ChecklistEntries">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns2:CheckListEntry"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_xsd_long">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:long"/>
+    </sequence>
+   </complexType>
+  </schema>
+
+<!-- Achtung: manuelle Schema-Erweiterung um Envelope fuer  -->
+	<schema targetNamespace="http://orsapi.custom.services.server.mnet.bsiag.com" 
+			xmlns="http://www.w3.org/2001/XMLSchema" 
+			xmlns:tns="http://orsapi.custom.services.server.mnet.bsiag.com" >
+		<import namespace="http://exception.commons.bsiag.com"/>
+		<import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+	
+	    <element name="createVisitProtocol" type="tns:createVisitProtocol"/>
+	    <element name="createVisitProtocolResponse" type="tns:createVisitProtocolResponse"/>
+	    <complexType name="createVisitProtocol">
+	        <sequence>
+	            <element minOccurs="1" name="authorisation_key" type="xsd:string"/>
+           		<element minOccurs="1" name="system_uid" type="xsd:long"/>
+	            <element minOccurs="1" name="evt_start" type="xsd:dateTime"/>
+	            <element minOccurs="1" name="user_no" type="xsd:long"/>
+	            <element minOccurs="1" name="type_uid" type="xsd:long"/>
+	            <element minOccurs="1" name="reason_uid" type="xsd:long"/>
+	            <element minOccurs="1" name="cust_no" type="xsd:long"/>
+	            <element minOccurs="1" name="contract_nr" type="xsd:long"/>
+	            <element minOccurs="1" name="notes" type="xsd:string"/>
+	        </sequence>
+	    </complexType>
+	    <complexType name="createVisitProtocolResponse">
+	        <sequence>
+	            <element minOccurs="0" name="createVisitProtocolReturn" type="xsd:long"/>
+	        </sequence>
+	    </complexType>
+	</schema>
+
+ </wsdl:types>
+
+   <wsdl:message name="getChecklistsRequest">
+
+      <wsdl:part name="authorisationKey" type="xsd:string"/>
+
+      <wsdl:part name="problemNr" type="xsd:long"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserCodeNamesRequest">
+
+      <wsdl:part name="authorisationKey" type="xsd:string"/>
+
+      <wsdl:part name="codeTypeUid" type="xsd:long"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addDocumentToTicketResponse">
+
+      <wsdl:part name="addDocumentToTicketReturn" type="tns2:Status"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="mergeCustomerResponse">
+
+      <wsdl:part name="mergeCustomerReturn" type="tns2:Status"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setTicketClosedResponse">
+
+      <wsdl:part name="setTicketClosedReturn" type="xsd:long"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ProcessingException">
+
+      <wsdl:part name="fault" type="tns1:ProcessingException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserCodeNamesResponse">
+
+      <wsdl:part name="getUserCodeNamesReturn" type="impl:ArrayOf_tns2_UserCodeName"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addDocumentToTicketRequest">
+
+      <wsdl:part name="authorisationKey" type="xsd:string"/>
+
+      <wsdl:part name="problemNr" type="xsd:long"/>
+
+      <wsdl:part name="uuid" type="xsd:string"/>
+
+      <wsdl:part name="filename" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+      <wsdl:part name="evt_registered" type="xsd:dateTime"/>
+
+      <wsdl:part name="username" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setTicketClosedRequest">
+
+      <wsdl:part name="authorisationKey" type="xsd:string"/>
+
+      <wsdl:part name="problemNr" type="xsd:long"/>
+
+      <wsdl:part name="ticketText" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setCompanyNoResponse">
+
+      <wsdl:part name="setCompanyNoReturn" type="xsd:long"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getJournalTextResponse">
+
+      <wsdl:part name="getJournalTextReturn" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setPersonNoRequest">
+
+      <wsdl:part name="authorisationKey" type="xsd:string"/>
+
+      <wsdl:part name="keyMapping" type="tns2:KeyMapping"/>
+
+      <wsdl:part name="personNo" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserTeamsResponse">
+
+      <wsdl:part name="getUserTeamsReturn" type="impl:ArrayOf_xsd_long"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setCompanyNoRequest">
+
+      <wsdl:part name="authorisationKey" type="xsd:string"/>
+
+      <wsdl:part name="keyMapping" type="tns2:KeyMapping"/>
+
+      <wsdl:part name="companyNo" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="setPersonNoResponse">
+
+      <wsdl:part name="setPersonNoReturn" type="xsd:long"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyTicketResponse">
+
+      <wsdl:part name="modifyTicketReturn" type="tns2:Status"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addJournalEntryRequest">
+
+      <wsdl:part name="authorisationKey" type="xsd:string"/>
+
+      <wsdl:part name="problemNr" type="xsd:long"/>
+
+      <wsdl:part name="taifunUserNr" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="modifyTicketRequest">
+
+      <wsdl:part name="authorisationKey" type="xsd:string"/>
+
+      <wsdl:part name="problemNr" type="xsd:long"/>
+
+      <wsdl:part name="taifunUserNr" type="xsd:string"/>
+
+      <wsdl:part name="reasonUid" type="xsd:long"/>
+
+      <wsdl:part name="phaseUid" type="xsd:long"/>
+
+      <wsdl:part name="resubmissionDate" type="xsd:dateTime"/>
+
+      <wsdl:part name="priorityUid" type="xsd:long"/>
+
+      <wsdl:part name="teamUid" type="xsd:long"/>
+
+      <wsdl:part name="userNr" type="xsd:string"/>
+
+      <wsdl:part name="visibilityUids" type="impl:ArrayOf_xsd_long"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="createTicketRequest">
+
+      <wsdl:part name="authorisation_key" type="xsd:string"/>
+
+      <wsdl:part name="type_uid" type="xsd:long"/>
+
+      <wsdl:part name="reason_uid" type="xsd:long"/>
+
+      <wsdl:part name="code_name" type="xsd:string"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+      <wsdl:part name="priority_uid" type="xsd:long"/>
+
+      <wsdl:part name="phase_uid" type="xsd:long"/>
+
+      <wsdl:part name="team_uid" type="tns3:long"/>
+
+      <wsdl:part name="user_no" type="xsd:string"/>
+
+      <wsdl:part name="reporter_no" type="xsd:string"/>
+
+      <wsdl:part name="person_no" type="xsd:string"/>
+
+      <wsdl:part name="company_no" type="xsd:string"/>
+
+      <wsdl:part name="contract_nr" type="tns3:long"/>
+
+      <wsdl:part name="tech_contract_nr" type="tns3:long"/>
+
+      <wsdl:part name="evt_begin" type="xsd:dateTime"/>
+
+      <wsdl:part name="evt_resubmission" type="xsd:dateTime"/>
+
+      <wsdl:part name="visibility_uids" type="impl:ArrayOf_xsd_long"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getJournalTextRequest">
+
+      <wsdl:part name="authorisationKey" type="xsd:string"/>
+
+      <wsdl:part name="problemNr" type="xsd:long"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="createTicketResponse">
+
+      <wsdl:part name="createTicketReturn" type="tns2:Status"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getChecklistsResponse">
+
+      <wsdl:part name="getChecklistsReturn" type="impl:ArrayOf_tns2_ChecklistEntries"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="createVisitProtocolRequest">
+
+      <wsdl:part name="authorisation_key" type="xsd:string"/>
+
+      <wsdl:part name="system_uid" type="xsd:long"/>
+
+      <wsdl:part name="evt_start" type="xsd:dateTime"/>
+
+      <wsdl:part name="user_no" type="xsd:long"/>
+
+      <wsdl:part name="type_uid" type="xsd:long"/>
+
+      <wsdl:part name="reason_uid" type="xsd:long"/>
+
+      <wsdl:part name="cust_no" type="xsd:long"/>
+
+      <wsdl:part name="contract_nr" type="xsd:long"/>
+
+      <wsdl:part name="notes" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="createVisitProtocolResponse">
+
+      <wsdl:part name="createVisitProtocolReturn" type="xsd:long"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addJournalEntryResponse">
+
+      <wsdl:part name="addJournalEntryReturn" type="tns2:Status"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getUserTeamsRequest">
+
+      <wsdl:part name="authorisationKey" type="xsd:string"/>
+
+      <wsdl:part name="userNo" type="xsd:string"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="mergeCustomerRequest">
+
+      <wsdl:part name="authorisationKey" type="xsd:string"/>
+
+      <wsdl:part name="mode" type="xsd:long"/>
+
+      <wsdl:part name="oldCustomer" type="xsd:long"/>
+
+      <wsdl:part name="newCustomer" type="xsd:long"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ORSapiPortType">
+
+      <wsdl:operation name="getJournalText" parameterOrder="authorisationKey problemNr">
+
+         <wsdl:input message="impl:getJournalTextRequest" name="getJournalTextRequest"/>
+
+         <wsdl:output message="impl:getJournalTextResponse" name="getJournalTextResponse"/>
+
+         <wsdl:fault message="impl:ProcessingException" name="ProcessingException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setTicketClosed" parameterOrder="authorisationKey problemNr ticketText">
+
+         <wsdl:input message="impl:setTicketClosedRequest" name="setTicketClosedRequest"/>
+
+         <wsdl:output message="impl:setTicketClosedResponse" name="setTicketClosedResponse"/>
+
+         <wsdl:fault message="impl:ProcessingException" name="ProcessingException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserCodeNames" parameterOrder="authorisationKey codeTypeUid">
+
+         <wsdl:input message="impl:getUserCodeNamesRequest" name="getUserCodeNamesRequest"/>
+
+         <wsdl:output message="impl:getUserCodeNamesResponse" name="getUserCodeNamesResponse"/>
+
+         <wsdl:fault message="impl:ProcessingException" name="ProcessingException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getChecklists" parameterOrder="authorisationKey problemNr">
+
+         <wsdl:input message="impl:getChecklistsRequest" name="getChecklistsRequest"/>
+
+         <wsdl:output message="impl:getChecklistsResponse" name="getChecklistsResponse"/>
+
+         <wsdl:fault message="impl:ProcessingException" name="ProcessingException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addJournalEntry" parameterOrder="authorisationKey problemNr taifunUserNr notes">
+
+         <wsdl:input message="impl:addJournalEntryRequest" name="addJournalEntryRequest"/>
+
+         <wsdl:output message="impl:addJournalEntryResponse" name="addJournalEntryResponse"/>
+
+         <wsdl:fault message="impl:ProcessingException" name="ProcessingException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="mergeCustomer" parameterOrder="authorisationKey mode oldCustomer newCustomer">
+
+         <wsdl:input message="impl:mergeCustomerRequest" name="mergeCustomerRequest"/>
+
+         <wsdl:output message="impl:mergeCustomerResponse" name="mergeCustomerResponse"/>
+
+         <wsdl:fault message="impl:ProcessingException" name="ProcessingException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyTicket" parameterOrder="authorisationKey problemNr taifunUserNr reasonUid phaseUid resubmissionDate priorityUid teamUid userNr visibilityUids">
+
+         <wsdl:input message="impl:modifyTicketRequest" name="modifyTicketRequest"/>
+
+         <wsdl:output message="impl:modifyTicketResponse" name="modifyTicketResponse"/>
+
+         <wsdl:fault message="impl:ProcessingException" name="ProcessingException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setCompanyNo" parameterOrder="authorisationKey keyMapping companyNo">
+
+         <wsdl:input message="impl:setCompanyNoRequest" name="setCompanyNoRequest"/>
+
+         <wsdl:output message="impl:setCompanyNoResponse" name="setCompanyNoResponse"/>
+
+         <wsdl:fault message="impl:ProcessingException" name="ProcessingException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPersonNo" parameterOrder="authorisationKey keyMapping personNo">
+
+         <wsdl:input message="impl:setPersonNoRequest" name="setPersonNoRequest"/>
+
+         <wsdl:output message="impl:setPersonNoResponse" name="setPersonNoResponse"/>
+
+         <wsdl:fault message="impl:ProcessingException" name="ProcessingException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserTeams" parameterOrder="authorisationKey userNo">
+
+         <wsdl:input message="impl:getUserTeamsRequest" name="getUserTeamsRequest"/>
+
+         <wsdl:output message="impl:getUserTeamsResponse" name="getUserTeamsResponse"/>
+
+         <wsdl:fault message="impl:ProcessingException" name="ProcessingException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createTicket" parameterOrder="authorisation_key type_uid reason_uid code_name notes priority_uid phase_uid team_uid user_no reporter_no person_no company_no contract_nr tech_contract_nr evt_begin evt_resubmission visibility_uids">
+
+         <wsdl:input message="impl:createTicketRequest" name="createTicketRequest"/>
+
+         <wsdl:output message="impl:createTicketResponse" name="createTicketResponse"/>
+
+         <wsdl:fault message="impl:ProcessingException" name="ProcessingException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createVisitProtocol" parameterOrder="authorisation_key system_uid evt_start user_no type_uid reason_uid cust_no contract_nr notes">
+
+         <wsdl:input message="impl:createVisitProtocolRequest" name="createVisitProtocolRequest"/>
+
+         <wsdl:output message="impl:createVisitProtocolResponse" name="createVisitProtocolResponse"/>
+
+         <wsdl:fault message="impl:ProcessingException" name="ProcessingException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addDocumentToTicket" parameterOrder="authorisationKey problemNr uuid filename notes evt_registered username">
+
+         <wsdl:input message="impl:addDocumentToTicketRequest" name="addDocumentToTicketRequest"/>
+
+         <wsdl:output message="impl:addDocumentToTicketResponse" name="addDocumentToTicketResponse"/>
+
+         <wsdl:fault message="impl:ProcessingException" name="ProcessingException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ORSapiPortSoapBinding" type="impl:ORSapiPortType">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getJournalText">
+
+         <wsdlsoap:operation soapAction="getJournalText"/>
+
+         <wsdl:input name="getJournalTextRequest">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getJournalTextResponse">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProcessingException">
+
+            <wsdlsoap:fault name="ProcessingException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setTicketClosed">
+
+         <wsdlsoap:operation soapAction="setTicketClosed"/>
+
+         <wsdl:input name="setTicketClosedRequest">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setTicketClosedResponse">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProcessingException">
+
+            <wsdlsoap:fault name="ProcessingException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserCodeNames">
+
+         <wsdlsoap:operation soapAction="getUserCodeNames"/>
+
+         <wsdl:input name="getUserCodeNamesRequest">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserCodeNamesResponse">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProcessingException">
+
+            <wsdlsoap:fault name="ProcessingException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getChecklists">
+
+         <wsdlsoap:operation soapAction="getChecklists"/>
+
+         <wsdl:input name="getChecklistsRequest">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getChecklistsResponse">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProcessingException">
+
+            <wsdlsoap:fault name="ProcessingException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addJournalEntry">
+
+         <wsdlsoap:operation soapAction="addJournalEntry"/>
+
+         <wsdl:input name="addJournalEntryRequest">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addJournalEntryResponse">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProcessingException">
+
+            <wsdlsoap:fault name="ProcessingException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="mergeCustomer">
+
+         <wsdlsoap:operation soapAction="mergeCustomer"/>
+
+         <wsdl:input name="mergeCustomerRequest">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="mergeCustomerResponse">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProcessingException">
+
+            <wsdlsoap:fault name="ProcessingException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="modifyTicket">
+
+         <wsdlsoap:operation soapAction="modifyTicket"/>
+
+         <wsdl:input name="modifyTicketRequest">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="modifyTicketResponse">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProcessingException">
+
+            <wsdlsoap:fault name="ProcessingException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setCompanyNo">
+
+         <wsdlsoap:operation soapAction="setCompanyNo"/>
+
+         <wsdl:input name="setCompanyNoRequest">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setCompanyNoResponse">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProcessingException">
+
+            <wsdlsoap:fault name="ProcessingException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="setPersonNo">
+
+         <wsdlsoap:operation soapAction="setPersonNo"/>
+
+         <wsdl:input name="setPersonNoRequest">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="setPersonNoResponse">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProcessingException">
+
+            <wsdlsoap:fault name="ProcessingException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getUserTeams">
+
+         <wsdlsoap:operation soapAction="getUserTeams"/>
+
+         <wsdl:input name="getUserTeamsRequest">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getUserTeamsResponse">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProcessingException">
+
+            <wsdlsoap:fault name="ProcessingException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createTicket">
+
+         <wsdlsoap:operation soapAction="createTicket"/>
+
+         <wsdl:input name="createTicketRequest">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createTicketResponse">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProcessingException">
+
+            <wsdlsoap:fault name="ProcessingException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createVisitProtocol">
+
+         <wsdlsoap:operation soapAction="createVisitProtocol"/>
+
+         <wsdl:input name="createVisitProtocolRequest">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createVisitProtocolResponse">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProcessingException">
+
+            <wsdlsoap:fault name="ProcessingException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addDocumentToTicket">
+
+         <wsdlsoap:operation soapAction="addDocumentToTicket"/>
+
+         <wsdl:input name="addDocumentToTicketRequest">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addDocumentToTicketResponse">
+
+            <wsdlsoap:body namespace="http://orsapi.custom.services.server.mnet.bsiag.com" use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="ProcessingException">
+
+            <wsdlsoap:fault name="ProcessingException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ORSapiSOAPService">
+
+      <wsdl:port binding="impl:ORSapiPortSoapBinding" name="ORSapiPort">
+
+         <wsdlsoap:address location="http://192.168.226.51:8080/mnet/services/ORSapiPort"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

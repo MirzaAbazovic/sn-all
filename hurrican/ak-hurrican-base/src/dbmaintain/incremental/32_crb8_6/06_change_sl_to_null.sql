@@ -1,0 +1,1 @@
+alter table t_gewo_whg modify (SL_ID null);

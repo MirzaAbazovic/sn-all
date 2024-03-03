@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Text name="border.title.filter.panel">Filter</Text>
+    <Text name="border.title.cbVorgang.panel">CB-Vorgang</Text>
+    <Text name="border.title.TAMUsertask.panel">TAM-Usertask</Text>
+    <Text name="no.ext.auftragsnummer">Bitte eine externe Auftragsnummer eingeben.</Text>
+    <Text name="no.cbVorgang.for.ext.auftragsnummer">Zu der eingegebenen externen Auftragsnummer wurde kein CB-Vorgang gefunden. Bitte geben Sie eine valide externe Auftragsnummer ein.</Text>
+    <Text name="multiple.cbVorgang.for.ext.auftragsnummer">Zu der eingegebenen externen Auftragsnummer wurden mehrere CB-Vorgänge gefunden. Bitte wenden Sie sich an Ihren Administrator.</Text>
+
+    <Label name="search.externe.auftragsnummer">
+        <text>Externe Auftragsnummer:</text>
+    </Label>
+    <TextField name="search.externe.auftragsnummer">
+        <columns>25</columns>
+        <tooltip>Sucht anhand der externen Auftragsnummer nach dem CB-Vorgang und/oder TAM-Usertask</tooltip>
+    </TextField>
+
+    <Button name="search.button">
+        <icon>de/augustakom/hurrican/gui/images/search.gif</icon>
+        <text>Suchen</text>
+        <tooltip>Sucht nach dem CB-Vorgang und/oder TAM-Usertask</tooltip>
+        <mnemonic>VK_N</mnemonic>
+    </Button>
+
+    <Button name="save.button">
+        <text>Speichern</text>
+        <tooltip>Speichert den CB-Vorgang und/oder den TAM-Usertask</tooltip>
+    </Button>
+
+    <Label name="id.cbVorgang">
+        <text>ID CB-Vorgang:</text>
+     </Label>
+    <TextField name="id.cbVorgang">
+        <columns>25</columns>
+        <tooltip>ID des CB-Vorgangs</tooltip>
+    </TextField>
+
+    <Label name="auftrag.id.cbVorgang">
+        <text>Auftrag-ID:</text>
+    </Label>
+    <TextField name="auftrag.id.cbVorgang">
+        <columns>25</columns>
+        <tooltip>ID des Auftrags</tooltip>
+    </TextField>
+
+    <Label name="carrier.ref.nummer.cbVorgang">
+        <text>Carrier Ref-Nr.:</text>
+    </Label>
+    <TextField name="carrier.ref.nummer.cbVorgang">
+        <columns>25</columns>
+        <tooltip>Carrier Referenz-Nummer</tooltip>
+    </TextField>
+
+    <Label name="typ.cbVorgang">
+        <text>Typ:</text>
+    </Label>
+    <TextField name="typ.cbVorgang">
+        <columns>25</columns>
+        <tooltip>Typ des CB-Vorgangs</tooltip>
+    </TextField>
+
+    <Label name="wita.geschaeftsfall.typ.cbVorgang">
+        <text>WITA Geschäftsfall-Typ:</text>
+    </Label>
+    <TextField name="wita.geschaeftsfall.typ.cbVorgang">
+        <columns>25</columns>
+        <tooltip>Typ des WITA-Geschäftfalles</tooltip>
+    </TextField>
+
+    <Label name="wita.aenderungskennzeichen.cbVorgang">
+        <text>WITA Änderungskennzeichen:</text>
+    </Label>
+    <TextField name="wita.aenderungskennzeichen.cbVorgang">
+        <columns>25</columns>
+        <tooltip>WITA Änderungskennzeichen</tooltip>
+    </TextField>
+
+    <Label name="status.cbVorgang">
+        <text>Status:</text>
+    </Label>
+    <ComboBox name="status.cbVorgang">
+        <tooltip>Status des CB-Vorganges</tooltip>
+    </ComboBox>
+
+    <Label name="abm.status.cbVorgang">
+        <text>ABM Status:</text>
+    </Label>
+    <ComboBox name="abm.status.cbVorgang">
+        <tooltip>Status der Auftragsbestätigungsmeldung</tooltip>
+    </ComboBox>
+
+    <Label name="bearbeiter.cbVorgang">
+        <text>Bearbeiter:</text>
+    </Label>
+    <FormattedTextField name="bearbeiter.cbVorgang">
+        <columns>18</columns>
+        <tooltip>Bearbeiter des CB-Vorganges</tooltip>
+    </FormattedTextField>
+    <Button name="edit.bearbeiter.cbVorgang">
+        <text>...</text>
+        <tooltip>Bearbeiter suchen...</tooltip>
+    </Button>
+
+    <Label name="antwort.datum.cbVorgang">
+        <text>Beantwortet am:</text>
+    </Label>
+    <DateComponent name="antwort.datum.cbVorgang">
+        <tooltip>Datum einer Antwort zu dem CB-Vorgang (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="rueckmeldung.ok.cbVorgang">
+        <text>Rückmeldung OK:</text>
+    </Label>
+    <CheckBox name="rueckmeldung.ok.cbVorgang">
+        <tooltip>Angabe ob die Antwort OK war oder nicht</tooltip>
+    </CheckBox>
+
+    <Label name="rueckmeldung.lbz.cbVorgang">
+        <text>Rückmeldung LBZ:</text>
+    </Label>
+    <TextField name="rueckmeldung.lbz.cbVorgang">
+        <tooltip>DTAG LBZ des Carriers</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="rueckmeldung.vetragsnummer.cbVorgang">
+        <text>Rückmeldung Vertragsnummer:</text>
+    </Label>
+    <TextField name="rueckmeldung.vetragsnummer.cbVorgang">
+        <tooltip>DTAG Vertragsnummer</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="rueckmeldung.aqs.cbVorgang">
+        <text>Rückmeldung AQS:</text>
+    </Label>
+    <TextField name="rueckmeldung.aqs.cbVorgang">
+        <tooltip>DTAG ASQ</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="rueckmeldung.leistungslaenge.cbVorgang">
+        <text>Rückmeldung Leistungslänge:</text>
+    </Label>
+    <TextField name="rueckmeldung.leistungslaenge.cbVorgang">
+        <tooltip>DTAG Leistungslänge</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="rueckmeldung.kunde.vor.ort.cbVorgang">
+        <text>Kunde vor Ort:</text>
+    </Label>
+    <CheckBox name="rueckmeldung.kunde.vor.ort.cbVorgang">
+        <tooltip>Angabe ob DTAG beim Kunden vor Ort war</tooltip>
+    </CheckBox>
+
+    <Label name="rueckmeldung.real.datum.cbVorgang">
+        <text>Realisierungsdatum:</text>
+    </Label>
+    <DateComponent name="rueckmeldung.real.datum.cbVorgang">
+        <tooltip>Datum der Realisierung (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="rueckmeldung.bemerkung.cbVorgang">
+        <text>Rückmeldung Bemerkung:</text>
+    </Label>
+    <TextArea name="rueckmeldung.bemerkung.cbVorgang">
+        <tooltip>Bemerkung zu der Rückmeldung</tooltip>
+        <rows>3</rows>
+        <columns>25</columns>
+        <prevented-keys>
+            <key-stroke>pressed ENTER</key-stroke>
+            <key-stroke>pressed TAB</key-stroke>
+            <key-stroke>typed ;</key-stroke>
+        </prevented-keys>
+    </TextArea>
+
+    <Label name="max.brutto.bitrate.cbVorgang">
+        <text>Rückmeldung max brutto Bitrate:</text>
+    </Label>
+    <TextField name="max.brutto.bitrate.cbVorgang">
+        <tooltip>DTAG max brutto Bitrate</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="carrier.bearbeiter.cbVorgang">
+        <text>Carrier Bearbeiter:</text>
+    </Label>
+    <TextField name="carrier.bearbeiter.cbVorgang">
+        <tooltip>Der Bearbeiter seitens des Carriers</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="carrier.kennung.abs.cbVorgang">
+        <text>Carrier Kennung ABS:</text>
+    </Label>
+    <TextField name="carrier.kennung.abs.cbVorgang">
+        <tooltip>Carrier Kennung ABS</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="frueheres.uetv.cbVorgang">
+        <text>Früheres Übertragungsverfahren:</text>
+    </Label>
+    <TextField name="frueheres.uetv.cbVorgang">
+        <tooltip>Früheres Übertragungsverfahren</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="bemerkung.status.cbVorgang">
+        <text>Status Bemerkung:</text>
+    </Label>
+    <TextArea name="bemerkung.status.cbVorgang">
+        <tooltip>Bemerkung zu dem Rückmeldungsstatus</tooltip>
+        <rows>3</rows>
+        <columns>25</columns>
+        <prevented-keys>
+            <key-stroke>pressed ENTER</key-stroke>
+            <key-stroke>pressed TAB</key-stroke>
+            <key-stroke>typed ;</key-stroke>
+        </prevented-keys>
+    </TextArea>
+
+    <Label name="wiedervorlage.am.cbVorgang">
+        <text>Wiedervorlage AM:</text>
+    </Label>
+    <TextField name="wiedervorlage.am.cbVorgang">
+        <tooltip>Datum der Wiedervorlage für den CB-Vorgang</tooltip>
+         <columns>25</columns>
+    </TextField>
+
+    <Label name="id.tam.usertask">
+        <text>ID TAM-Usertask:</text>
+    </Label>
+    <TextField name="id.tam.usertask">
+        <columns>25</columns>
+        <tooltip>ID des TAM-Usertasks</tooltip>
+    </TextField>
+
+    <Label name="bearbeiter.tam.usertask">
+        <text>Bearbeiter:</text>
+    </Label>
+    <TextField name="bearbeiter.tam.usertask">
+        <columns>25</columns>
+        <tooltip>Bearbeiter des TAM-Usertasks</tooltip>
+    </TextField>
+
+    <Label name="letzte.aenderung.datum.tam.usertask">
+        <text>Letzte Änderung:</text>
+    </Label>
+    <TextField name="letzte.aenderung.datum.tam.usertask">
+        <columns>25</columns>
+        <tooltip>Letzte Änderung</tooltip>
+    </TextField>
+
+    <Label name="tv.60.sent.tam.usertask">
+        <text>TV 60 sent:</text>
+    </Label>
+    <CheckBox name="tv.60.sent.tam.usertask">
+        <tooltip>Terminverschiebung 60 Tage wurde geschickt</tooltip>
+    </CheckBox>
+
+    <Label name="status.tam.usertask">
+        <text>Status:</text>
+    </Label>
+    <ComboBox name="status.tam.usertask">
+        <tooltip>Status des TAM-Usertasks</tooltip>
+    </ComboBox>
+
+    <Label name="bearbeitung.status.tam.usertask">
+        <text>Bearbeitung Status:</text>
+    </Label>
+    <ComboBox name="bearbeitung.status.tam.usertask">
+        <tooltip>Status der Bearbeitung des TAM-Usertasks</tooltip>
+    </ComboBox>
+
+    <Label name="bemerkung.tam.usertask">
+        <text>Bemerkung:</text>
+    </Label>
+    <TextArea name="bemerkung.tam.usertask">
+        <tooltip>Bemerkung zu dem TAM-Usertask</tooltip>
+        <rows>3</rows>
+        <columns>25</columns>
+        <prevented-keys>
+            <key-stroke>pressed ENTER</key-stroke>
+            <key-stroke>pressed TAB</key-stroke>
+            <key-stroke>typed ;</key-stroke>
+        </prevented-keys>
+    </TextArea>
+
+    <Label name="mahn.tam">
+        <text>Mahn-TAM:</text>
+    </Label>
+    <ComboBox name="mahn.tam">
+        <tooltip>Angabe ob eine Mahn TAM zu dem TAM-Usertask erhalten wurde</tooltip>
+    </ComboBox>
+
+    <Label name="wiedervorlage.am.tam.usertask">
+        <text>Wiedervorlage AM:</text>
+    </Label>
+    <TextField name="wiedervorlage.am.tam.usertask">
+        <tooltip>Datum der Wiedervorlage für den TAM-Usertask</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Button name="edit.wiedervorlage.am.cbVorgang">
+        <text>...</text>
+        <tooltip>Öffnet einen Dialog, über den die Wiedervorlage komfortabel eingegeben werden kann.</tooltip>
+    </Button>
+
+    <Button name="edit.wiedervorlage.am.tam.usertask">
+        <text>...</text>
+        <tooltip>Öffnet einen Adress-Dialog, über den die Wiedervorlage komfortabel eingegeben werden kann.</tooltip>
+    </Button>
+
+</sf>

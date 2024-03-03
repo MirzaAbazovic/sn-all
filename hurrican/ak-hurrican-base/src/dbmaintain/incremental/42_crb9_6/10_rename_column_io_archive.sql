@@ -1,0 +1,4 @@
+-- In der Spalte REQUEST_TYP werden auch Typen vom Auftrag gespeichert.
+
+ALTER TABLE T_IO_ARCHIVE
+RENAME COLUMN REQUEST_MELDUNGSTYP TO REQUEST_TYP;

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Adress-Eingabe bzw. -Anzeige.
+-->
+<sf>
+
+    <Text name="title">Adress-Suche</Text>
+
+    <Label name="name"><text>Name:</text></Label>
+    <TextField name="name">
+        <tooltip>Teil des Namens</tooltip>
+    </TextField>
+
+    <Label name="vorname"><text>Vorname:</text></Label>
+    <TextField name="namevor">
+        <tooltip>Teil des Vornamens</tooltip>
+    </TextField>
+
+    <Label name="addressid"><text>ID:</text></Label>
+    <TextField name="addressid">
+        <tooltip>ID einer bekannten Adresse</tooltip>
+    </TextField>
+
+    <Label name="strasse"><text>Straße:</text></Label>
+    <TextField name="strasse">
+        <tooltip>Teil der Straße</tooltip>
+    </TextField>
+
+    <Label name="ort"><text>Ort:</text></Label>
+    <TextField name="ort">
+        <tooltip>Teil des Ortes</tooltip>
+    </TextField>
+
+    <Label name="type"><text>Adresstyp:</text></Label>
+    <ReferenceField name="type">
+        <tooltip>Angabe des Adress-Typs</tooltip>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Button name="search">
+        <tooltip>Filtert nach Adressen, die den Daten der Text-Felder entsprechen</tooltip>
+        <text>Filtern</text>
+        <mnemonic>VK_F</mnemonic>
+        <icon>de/augustakom/hurrican/gui/images/filter.png</icon>
+    </Button>
+
+</sf>

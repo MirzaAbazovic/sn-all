@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="AvailabilityProviderService" targetNamespace="http://vento.mnet.de/availabilityproviderservice/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://vento.mnet.de/availabilityproviderservice/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://vento.mnet.de/availabilityproviderservice/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://vento.mnet.de/availabilityproviderservice/">
+  <xs:element name="getAvailabilityInformation" type="tns:getAvailabilityInformation"/>
+  <xs:element name="getAvailabilityInformationResponse" type="tns:getAvailabilityInformationResponse"/>
+  <xs:element name="getVersion" type="tns:getVersion"/>
+  <xs:element name="getVersionResponse" type="tns:getVersionResponse"/>
+  <xs:complexType name="getAvailabilityInformation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getAvailabilityInformationResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="availabilityInformation" type="tns:availabilityInformationTypeList"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="availabilityInformationTypeList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="availabilityInformationTypes" nillable="true" type="tns:availabilityInformationType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="availabilityInformationType">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="cableParts" nillable="true" type="tns:cablePart"/>
+      <xs:element minOccurs="0" name="connection" type="tns:connectionType"/>
+      <xs:element minOccurs="0" name="distanceInMeters" type="xs:int"/>
+      <xs:element minOccurs="0" name="downstreamBandwidthInKB" type="xs:int"/>
+      <xs:element minOccurs="0" name="fiberChannelContract" type="tns:availabilityContract"/>
+      <xs:element minOccurs="0" name="technology" type="tns:technologyType"/>
+      <xs:element minOccurs="0" name="technologyContract" type="tns:availabilityContract"/>
+      <xs:element minOccurs="0" name="upstreamBandwidthInKB" type="xs:int"/>
+      <xs:element minOccurs="0" name="utilizationContract" type="tns:availabilityContract"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cablePart">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="diameterInMillimeter" type="xs:double"/>
+      <xs:element minOccurs="0" name="lengthInMeter" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="availabilityContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="agreementRemark" type="xs:string"/>
+      <xs:element minOccurs="0" name="agreementState" type="tns:contractAgreementState"/>
+      <xs:element minOccurs="0" name="plannedStart" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="start" type="xs:dateTime"/>
+      <xs:element minOccurs="0" name="termination" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getVersion">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:complexType name="getVersionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="version" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="connectionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TAL_HVT"/>
+      <xs:enumeration value="FTTB"/>
+      <xs:enumeration value="FTTC"/>
+      <xs:enumeration value="FTTH"/>
+      <xs:enumeration value="GEWOFAG"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="contractAgreementState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UNDEFINED"/>
+      <xs:enumeration value="IN_PROGRESS"/>
+      <xs:enumeration value="ACTIVE"/>
+      <xs:enumeration value="TERMINATING"/>
+      <xs:enumeration value="TERMINATED"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="technologyType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ADSL"/>
+      <xs:enumeration value="ADSL_POTS"/>
+      <xs:enumeration value="ADSL_ISDN"/>
+      <xs:enumeration value="ADSL2PLUS"/>
+      <xs:enumeration value="ADSL2PLUS_POTS"/>
+      <xs:enumeration value="ADSL2PLUS_ISDN"/>
+      <xs:enumeration value="FTTX_POTS"/>
+      <xs:enumeration value="GPON"/>
+      <xs:enumeration value="ISDN"/>
+      <xs:enumeration value="POTS"/>
+      <xs:enumeration value="RF"/>
+      <xs:enumeration value="SDSL"/>
+      <xs:enumeration value="SHDSL"/>
+      <xs:enumeration value="VDSL2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="cause">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SOAP_FAULT"/>
+      <xs:enumeration value="ESB_FAULT"/>
+      <xs:enumeration value="PROVIDER_FAULT"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="source">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PROVIDER_COMMAND"/>
+      <xs:enumeration value="PROVIDER_HURRICAN"/>
+      <xs:enumeration value="PROVIDER_INTERN"/>
+      <xs:enumeration value="ESB"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="VentoTechnicalException" type="tns:VentoTechnicalException"/>
+  <xs:complexType name="VentoTechnicalException">
+    <xs:sequence>
+      <xs:element name="technicalCause" nillable="true" type="tns:cause"/>
+      <xs:element name="technicalSource" nillable="true" type="tns:source"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="InvalidArgumentException" type="tns:InvalidArgumentException"/>
+  <xs:complexType name="InvalidArgumentException">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getVersionResponse">
+    <wsdl:part name="parameters" element="tns:getVersionResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InvalidArgumentException">
+    <wsdl:part name="InvalidArgumentException" element="tns:InvalidArgumentException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="VentoTechnicalException">
+    <wsdl:part name="VentoTechnicalException" element="tns:VentoTechnicalException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getVersion">
+    <wsdl:part name="parameters" element="tns:getVersion">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAvailabilityInformationResponse">
+    <wsdl:part name="parameters" element="tns:getAvailabilityInformationResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAvailabilityInformation">
+    <wsdl:part name="parameters" element="tns:getAvailabilityInformation">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AvailabilityProviderService">
+    <wsdl:operation name="getAvailabilityInformation">
+      <wsdl:input name="getAvailabilityInformation" message="tns:getAvailabilityInformation">
+    </wsdl:input>
+      <wsdl:output name="getAvailabilityInformationResponse" message="tns:getAvailabilityInformationResponse">
+    </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException" message="tns:InvalidArgumentException">
+    </wsdl:fault>
+      <wsdl:fault name="VentoTechnicalException" message="tns:VentoTechnicalException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getVersion">
+      <wsdl:input name="getVersion" message="tns:getVersion">
+    </wsdl:input>
+      <wsdl:output name="getVersionResponse" message="tns:getVersionResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AvailabilityProviderServiceSoapBinding" type="tns:AvailabilityProviderService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getAvailabilityInformation">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getAvailabilityInformation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAvailabilityInformationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InvalidArgumentException">
+        <soap:fault name="InvalidArgumentException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="VentoTechnicalException">
+        <soap:fault name="VentoTechnicalException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getVersion">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getVersion">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getVersionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AvailabilityProviderService">
+    <wsdl:port name="AvailabilityProviderServicePort" binding="tns:AvailabilityProviderServiceSoapBinding">
+      <soap:address location="http://localhost:8080/hurricanweb/availability/hurricanGetAvailabilityInformation"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

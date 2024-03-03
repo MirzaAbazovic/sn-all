@@ -1,0 +1,10 @@
+globalProperties:
+  apis: ""
+  supportingFiles: ""
+  models: false
+
+additionalProperties:
+  modelsLibrary: de.bitconex.tmf.rim.model
+  basePackage: de.bitconex.tmf.rim.client
+  invokerPackage: de.bitconex.tmf.rim.client
+  apiPackage: de.bitconex.tmf.rim.client.api

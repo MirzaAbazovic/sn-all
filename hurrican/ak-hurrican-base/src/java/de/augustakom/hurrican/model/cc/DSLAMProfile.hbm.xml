@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.DSLAMProfile
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="DSLAMProfile" table="T_DSLAM_PROFILE">
+
+        <cache usage="read-write"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_DSLAM_PROFILE_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="name" column="NAME" type="string" not-null="true"/>
+        <property name="bemerkung" column="BEMERKUNG" type="string"/>
+        <component name="bandwidth" class="de.augustakom.hurrican.model.cc.Bandwidth">
+            <property name="downstream" type="int" not-null="true">
+            <column name="downstream"/>
+            </property>
+            <property name="upstream" type="int">
+            <column name="upstream"/>
+            </property>
+        </component>
+        <component name="bandwidthNetto" class="de.augustakom.hurrican.model.cc.Bandwidth">
+            <property name="downstream" type="int">
+            <column name="downstream_Netto"/>
+            </property>
+            <property name="upstream" type="int">
+            <column name="upstream_Netto"/>
+            </property>
+        </component>
+        <property name="fastpath" column="FASTPATH" type="boolean" not-null="true"/>
+        <property name="uetv" column="UETV" type="string"/>
+        <property name="downstreamTechLs" column="DOWNSTREAM_TECH_LS" type="long"/>
+        <property name="upstreamTechLs" column="UPSTREAM_TECH_LS" type="long"/>
+        <property name="fastpathTechLs" column="FASTPATH_TECH_LS" type="long"/>
+        <property name="gueltig" column="GUELTIG" type="boolean"/>
+        <property name="tmDown" column="TM_DOWN" type="integer"/>
+        <property name="tmUp" column="TM_UP" type="integer"/>
+        <property name="l2PowersafeEnabled" column="L2POWER" type="boolean"/>
+        <property name="forceADSL1" column="ADSL1FORCE" type="boolean"/>
+        <property name="baugruppenTypId" column="BAUGRUPPEN_TYP" type="long"/>
+        <property name="enabledForAutochange" column="ENABLED_FOR_AUTOCHANGE" type="boolean" not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

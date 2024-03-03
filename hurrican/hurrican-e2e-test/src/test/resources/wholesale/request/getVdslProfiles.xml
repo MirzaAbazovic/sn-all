@@ -1,0 +1,3 @@
+<ns:getVdslProfilesRequest xmlns:ns="http://www.mnet.de/hurrican/wholesale/fault/clearance/1.0/">
+    <lineId>${lineId}</lineId>
+</ns:getVdslProfilesRequest>

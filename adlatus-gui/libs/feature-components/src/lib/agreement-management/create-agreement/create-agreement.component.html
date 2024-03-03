@@ -1,0 +1,9 @@
+<mat-card>
+    <mat-card-header>
+        <h2> Create a new agreement </h2>
+    </mat-card-header>
+    <mat-card-content>
+        <adlatus-gui-entry-form [fields]="formConfig" [model]="model" (formSubmitHandler)="onSubmit($event)"/>
+    </mat-card-content>
+</mat-card>
+

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.DNBlock
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="DNBlock" table="DN_BLOCK">
+	    
+	    <!-- PrimaryKey -->
+		<id name="blockNo" column="BLOCK_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<property name="blockNoOrig" column="BLOCK__NO" type="long"/>
+        <property name="onkz" column="ONKZ" type="string"/>
+        <property name="blockId" column="BLOCK_ID" type="string"/>
+        <property name="carrier" column="CARRIER" type="string"/>
+        
+        <property name="gueltigVon" column="VALID_FROM" type="date"/>
+        <property name="gueltigBis" column="VALID_TO" type="date"/>
+        <property name="histStatus" column="HIST_STATE" type="string"/>
+        <property name="histCnt" column="HIST_CNT" type="integer"/>
+        <property name="histLast" column="HIST_LAST" type="boolean"/>
+	</class>
+	
+</hibernate-mapping>

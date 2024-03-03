@@ -1,0 +1,36 @@
+<!--
+    ANT Build-Script
+    Enthaelt Targets, um Hurrican Test DBs zu generieren.
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    File created by: glink
+-->
+<project basedir="." name="ak-hurrican-base.build-test-database" default="create.user.db">
+
+    <description>Build-Script to create Hurrican Test DBs</description>
+
+    <property name="db.property.name" value="hurrican"/>
+
+    <!-- create_test_database.xml importieren -->
+    <import file="${basedir}/../common-build/common_create_database.xml"/>
+
+    <!-- Needed for modify.db4devel -->
+    <target name="init.modify.db4devel.properties">
+        <propcopy property="db.kup.jdbc.url" from="db.kup.${build.kup.mode}.jdbc.url"/>
+        <propcopy property="db.monline.jdbc.url" from="db.monline.${build.monline.mode}.jdbc.url"/>
+        <propcopy property="db.taifun.jdbc.url" from="db.taifun.${build.taifun.mode}.jdbc.url"/>
+    </target>
+
+    <target name="init.optional.dump.parameter">
+        <echo>exclude object grants on import ...</echo>
+        <property name="db.dump.optional.parameter.init" value="EXCLUDE=OBJECT_GRANT"/>
+    </target>
+
+    <target name="import.dump.postprocess">
+        <echo>import object grants ...</echo>
+        <antcall target="import.dump">
+            <param name="db.dump.optional.parameter" value="INCLUDE=GRANT TABLE_EXISTS_ACTION=APPEND"/>
+            <param name="db.dump.parfile.option" value=" "/>
+        </antcall>
+    </target>
+
+</project>

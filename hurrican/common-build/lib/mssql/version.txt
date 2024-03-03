@@ -1,0 +1,4 @@
+Version von Mockito
+-----------------------------------------
+23.04.2010	sqljdbc.jar       Microsoft SQL Server JDBC Driver 3.0
+23.04.2010  sqljdbc4.jar      Microsoft SQL Server JDBC Driver 3.0

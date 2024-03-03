@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer die Tests der Authentication-Services.
+Importiert die Spring-Konfigurationsdatei fuer die Authentication-Services.
+-->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+    <!-- Import der Authentication-Service-Konfiguration -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCServices.xml"/>
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCServerServices.xml"/>
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCBuilders.xml"/>
+
+    <bean id="entityBuilder" init-method="init">
+        <property name="sessionFactory" ref="cc.sessionFactory"/>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.DatabaseTestTools"
+        class="de.augustakom.hurrican.service.cc.impl.DatabaseTestToolsImpl">
+    </bean>
+
+    <bean id="mailSender"
+      class="de.augustakom.hurrican.service.cc.mock.CCMockFactory"
+      factory-method="getMailSender"/>
+
+    <bean id="de.augustakom.hurrican.service.cc.ffm.FFMService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.ffm.FFMService" />
+    </bean>
+
+    <bean id="dbCheckApplicationListenerCC" class="de.augustakom.common.DBUrlCheckApplicationListener" lazy-init="false" />
+
+    <bean id="taifunDbConnectionCheck" class="de.augustakom.common.TaifunDatabaseConnectionsCheck" lazy-init="true"/>
+
+    <bean class="de.augustakom.hurrican.model.billing.factory.TaifunDataFactory" scope="prototype">
+        <constructor-arg index="0" ref="taifunDataSource"/>
+        <constructor-arg index="1" ref="cc.dataSource"/>
+    </bean>
+
+
+</beans>

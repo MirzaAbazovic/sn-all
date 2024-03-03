@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updateOrder xmlns="http://www.mnet.de/esb/cdm/SupplierPartner/LineOrderService/v1">
+    <order>
+        <geschaeftsfall>NEU</geschaeftsfall>
+        <aenderungsKennzeichen>Standard</aenderungsKennzeichen>
+        <geschaeftsfallart>Bereitstellung</geschaeftsfallart>
+    </order>
+    <message>
+        <ERLM-K>
+            <meldungsattribute>
+                <vertragsnummer>${contractId}</vertragsnummer>
+                <externeAuftragsnummer>${externalOrderId}</externeAuftragsnummer>
+                <kundennummer>${customerId}</kundennummer>
+                <kundennummerBesteller>${3rdPartySalesmanCustomerId}</kundennummerBesteller>
+            </meldungsattribute>
+            <meldungspositionen>
+                <position>
+                    <meldungscode>0015</meldungscode>
+                    <meldungstext>Endkunde hat die Bereitstellung der Leistung bestätigt. Anschluss störungsfrei in Betrieb
+          </meldungstext>
+                </position>
+            </meldungspositionen>
+        </ERLM-K>
+    </message>
+</updateOrder>

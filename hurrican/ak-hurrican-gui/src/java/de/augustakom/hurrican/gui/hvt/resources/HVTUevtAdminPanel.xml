@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Panel der UEVTs.
+-->
+<sf>
+
+    <Label name="uevt.hvt.standort"><text>HVT-Standort:</text></Label>
+    <TextField name="uevt.hvt.standort">
+        <tooltip>ID des HVT-Standorts</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="uevt"><text>UEVT:</text></Label>
+    <TextField name="uevt">
+        <tooltip>Bezeichnung des UEVTs (bei KVZ = KVZ Schaltnummer)</tooltip>
+    </TextField>
+
+    <Label name="uevt.schwellwert"><text>Schwellwert:</text></Label>
+    <TextField name="uevt.schwellwert">
+        <tooltip>Schwellwert (in %) für den UEVT</tooltip>
+    </TextField>
+
+    <Label name="uevt.projektierung"><text>Projektierung:</text></Label>
+    <TextField name="uevt.projektierung">
+        <tooltip>Angabe, ob an dem UEVT eine Projektierung vorgesehen ist</tooltip>
+    </TextField>
+
+    <Button name="create.matrix">
+        <text>Matrix anlegen</text>
+        <tooltip>Legt Rangierungsmatrizen für den UEVT und noch zu wählende Produkte an</tooltip>
+    </Button>
+
+
+    <Text name="uevt2ziel">Produkte über alt. HVT realisieren</Text>
+
+    <Label name="produkte"><text>Produkt:</text></Label>
+    <ComboBox name="produkte">
+        <tooltip>Auswahl eines Produkts, das über einen alt. HVT realisiert werden soll</tooltip>
+    </ComboBox>
+
+    <Label name="rack"><text>Rack:</text></Label>
+    <ReferenceField name="rack">
+        <tooltip>Name des Racks</tooltip>
+        <id.property>id</id.property>
+        <name.property>anlagenBez</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.hardware.HWRack</reference.class>
+    </ReferenceField>
+
+    <Label name="hvtziel"><text>Ziel-HVT:</text></Label>
+    <ComboBox name="hvtziel">
+        <tooltip>HVT über den das Produkt realisiert werden soll</tooltip>
+    </ComboBox>
+
+    <Button name="add.ziel">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Neuen Ziel-HVT für ein Produkt einrichten</tooltip>
+    </Button>
+
+    <Button name="remove.ziel">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Entfernt den selektierten Ziel-HVT zu dem Produkt</tooltip>
+    </Button>
+
+</sf>

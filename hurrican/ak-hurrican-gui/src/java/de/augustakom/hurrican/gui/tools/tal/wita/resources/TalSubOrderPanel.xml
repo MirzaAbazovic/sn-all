@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    <Label name="suborders"><text>Aufträge:</text></Label>
+
+    <Button name="select.all">
+        <text>alle selektieren</text>
+        <tooltip>Alle Aufträge selektieren</tooltip>
+    </Button>
+    <Button name="deselect.all">
+        <text>alle deselektieren</text>
+        <tooltip>Alle Aufträge deselektieren</tooltip>
+    </Button>
+</sf>

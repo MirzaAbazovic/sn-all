@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Report-Command-Zuordnung.
+-->
+<sf>
+      
+    <Button name="save.config">
+        <icon>de/augustakom/hurrican/gui/images/save.gif</icon>
+        <tooltip>Speichert die aktuelle Report-TextBaustein-Zuordnung</tooltip>
+    </Button>
+    
+    <Button name="delete.config">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht die aktuelle Report-TextBaustein-Zuordnung</tooltip>
+    </Button>
+    
+    <Button name="add.command">
+        <icon>de/augustakom/hurrican/gui/images/left.gif</icon>
+        <tooltip>Fügt die selektierten TextBausteine hinzu</tooltip>
+    </Button>
+    
+    <Button name="remove.command">
+        <icon>de/augustakom/hurrican/gui/images/right.gif</icon>
+        <tooltip>Entfernt die selektierten TextBausteine</tooltip>
+    </Button> 
+    
+    <Button name="refresh.command">
+        <icon>de/augustakom/hurrican/gui/images/refresh.png</icon>
+        <tooltip>Aktualisiert die Ansicht</tooltip>
+    </Button>
+    
+    <Button name="move.up">
+        <icon>de/augustakom/hurrican/gui/images/up.gif</icon>
+        <tooltip>Verschiebt die selektierten Text-Baustein-Gruppen nach oben</tooltip>
+    </Button>
+    
+    <Button name="move.down">
+        <icon>de/augustakom/hurrican/gui/images/down.gif</icon>
+        <tooltip>Verschiebt die selektierten Text-Baustein-Gruppen nach unten</tooltip>
+    </Button>
+    
+    <Text name="assigned.commands">Zugeordnete Text-Baustein-Gruppen</Text>
+    <Text name="available.commands">Verfügbare Text-Baustein-Gruppen</Text>
+    
+    <Text name="ask.save.title">Änderungen speichern?</Text>
+    <Text name="ask.save.msg">Sollen die vorgenommenen Änderungen wirklich
+gespeichert werden?</Text>
+
+    <Text name="ask.delete.title">Konfiguration löschen?</Text>
+    <Text name="ask.delete.msg">Soll die aktuell angezeigte Konfiguration
+wirklich gelöscht werden?</Text>
+    
+</sf>

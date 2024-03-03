@@ -1,0 +1,2 @@
+
+delete from T_PRODUKT_MAPPING where MAPPING_GROUP=422;

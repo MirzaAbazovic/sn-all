@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:tns="http://mnet.de/hurrican/resource/workforceDataService/v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  name="workforceDataService"
+                  targetNamespace="http://mnet.de/hurrican/resource/workforceDataService/v1">
+    <wsdl:documentation>Version 1.0</wsdl:documentation>
+    <wsdl:import namespace="http://www.mnet.de/esb/cdm/Resource/WorkforceService/v1" location="WorkforceService.wsdl"/>
+    <wsdl:types>
+        <xs:schema xmlns="http://mnet.de/hurrican/resource/workforceDataService/v1"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                   xmlns:cdmwf="http://www.mnet.de/esb/cdm/Resource/WorkforceService/v1"
+                   targetNamespace="http://mnet.de/hurrican/resource/workforceDataService/v1"
+                   version="1.0"
+                   elementFormDefault="qualified"
+                   attributeFormDefault="unqualified">
+            <xs:element name="workforceDataRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="technicalOrderId" type="xs:long">
+                            <xs:annotation>
+                                <xs:documentation>Techn. Auftragsnummer in Hurrican</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="incidentReason" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>Störungsgrund</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="workforceDataResponse">
+                <xs:annotation>
+                    <xs:documentation>
+                        FFM Daten, entsprechend "CDM WorkforceService" (Beschreibung siehe dort).
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="activityType" type="xs:string"/>
+                        <xs:element name="qualification" type="xs:string" maxOccurs="unbounded"/>
+                        <xs:element name="plannedDuration" type="xs:positiveInteger"/>
+                        <xs:element name="techParams" type="cdmwf:OrderTechnicalParams"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="fault">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="errorCode" type="xs:string"/>
+                        <xs:element name="errorMessage" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="workforceDataRequest">
+        <wsdl:part name="in" element="tns:workforceDataRequest"/>
+    </wsdl:message>
+    <wsdl:message name="workforceDataResponse">
+        <wsdl:part name="out" element="tns:workforceDataResponse"/>
+    </wsdl:message>
+    <wsdl:message name="workforceDataFault">
+        <wsdl:part name="fault" element="tns:fault"/>
+    </wsdl:message>
+
+    <wsdl:portType name="workforceDataService">
+        <wsdl:operation name="getWorkforceData">
+            <wsdl:input message="tns:workforceDataRequest"/>
+            <wsdl:output message="tns:workforceDataResponse"/>
+            <wsdl:fault name="fault1" message="tns:workforceDataFault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="workforceDataServiceHTTPBinding" type="tns:workforceDataService">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <wsdl:operation name="getWorkforceData">
+            <soap:operation soapAction="/workforceDataService/getWorkforceData"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault name="fault1" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="workforceDataService">
+        <wsdl:port binding="tns:workforceDataServiceHTTPBinding" name="workforceDataService">
+            <soap:address location="http://@domain.loadbalancer.url@/hurricanweb/resource/workforcedata/v1"/>
+        </wsdl:port>
+    </wsdl:service>
+
+
+</wsdl:definitions>

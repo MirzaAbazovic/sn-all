@@ -1,0 +1,44 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:env="http://wholesale.telekom.de/oss/v15/envelope" xmlns:message="http://wholesale.telekom.de/oss/v15/message">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <env:annehmenMeldungRequest>
+            <control>
+                <zeitstempel>2023-05-12T09:33:51.816+02:00</zeitstempel>
+                <majorRelease>15</majorRelease>
+                <minorRelease>10</minorRelease>
+                <signaturId>
+                    <issuer>EMAILADDRESS=wholesale-dialog@telekom.de, CN=ws-wholesale-portal.telekom.de, OU=Deutsche Telekom IT GmbH, O=Deutsche Telekom AG, L=Bonn, ST=NRW, C=DE</issuer>
+                    <serial>cf3fc7a3d509abfd</serial>
+                </signaturId>
+            </control>
+            <meldung>
+                <auftragstyp>
+                    <geschaeftsfall>NEU</geschaeftsfall>
+                    <aenderungsKennzeichen>Standard</aenderungsKennzeichen>
+                    <geschaeftsfallart>Bereitstellung</geschaeftsfallart>
+                </auftragstyp>
+                <meldungstyp xsi:type="message:MeldungstypQEBType">
+                    <meldungsattribute>
+                        <externeAuftragsnummer>H_00859616</externeAuftragsnummer>
+                        <kundennummer>5920312290</kundennummer>
+                    </meldungsattribute>
+                    <meldungspositionen>
+                        <position>
+                            <meldungscode>0000</meldungscode>
+                            <meldungstext>Keine Änderung zum Auftrag.</meldungstext>
+                            <positionsattribute xsi:type="message:MeldungspositionsattributeQEBType">
+                                <ansprechpartnerTelekom>
+                                    <anrede>1</anrede>
+                                    <vorname>Ali</vorname>
+                                    <nachname>Geyik</nachname>
+                                    <telefonnummer>08003309366923</telefonnummer>
+                                    <emailadresse>z-w-113bp10@telekom.de</emailadresse>
+                                </ansprechpartnerTelekom>
+                            </positionsattribute>
+                        </position>
+                    </meldungspositionen>
+                </meldungstyp>
+            </meldung>
+        </env:annehmenMeldungRequest>
+    </soapenv:Body>
+</soapenv:Envelope>

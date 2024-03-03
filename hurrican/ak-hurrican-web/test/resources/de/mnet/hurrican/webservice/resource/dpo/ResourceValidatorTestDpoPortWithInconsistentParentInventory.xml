@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updateResource xmlns="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1 /ResourceInventoryService.xsd">
+    <resource>
+        <id>ETH-0</id>
+        <inventory>command</inventory>
+        <resourceSpec>
+            <id>dpoport-1</id>
+            <inventory>command</inventory>
+        </resourceSpec>
+        <name>dpo123</name>
+        <characteristic>
+            <name>schnittstelle</name>
+            <value>POTS</value>
+        </characteristic>
+        <characteristic>
+            <name>leiste</name>
+            <value>L1</value>
+        </characteristic>
+        <characteristic>
+            <name>stift</name>
+            <value>S1</value>
+        </characteristic>
+        <parentResource>
+            <id>dpo-1</id>
+            <inventory>asdf</inventory>
+        </parentResource>
+    </resource>
+</updateResource>

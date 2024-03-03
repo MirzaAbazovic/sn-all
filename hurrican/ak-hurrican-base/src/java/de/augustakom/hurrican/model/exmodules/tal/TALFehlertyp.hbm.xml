@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse 
+de.augustakom.hurrican.model.exmodules.tal.TALFehlertyp
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.exmodules.tal">
+	<class name="TALFehlertyp" table="TTALBESTELLUNG_FEHLERTYPEN">
+	    
+		<cache usage="read-only"/>
+		
+	    <!-- PrimaryKey -->
+		<id name="id" column="TFE_ID" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<property name="kurzText" column="TFE_KURZ" type="string"/>
+		<property name="klasse" column="TFE_KLASSE" type="string"/>
+		<property name="description" column="TFE_BESCHREIBUNG" type="string"/>
+		
+	</class>
+	
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <searchDocuments
+                xmlns="http://www.mnet.de/esb/cdm/Customer/DocumentArchiveService/v1">
+            <endUserId>AIL_HURRICAN</endUserId>
+            <docClass>TOP</docClass>
+            <searchCriteria>
+                <key>
+                    <name>Vertrag</name>
+                    <value>${vertragsnummer}</value>
+                </key>
+                <key>
+                    <name>Art des Dokuments</name>
+                    <value>*${archiveDocumentType}*</value>
+                </key>
+                <maxHits>50</maxHits>
+                <operator>AND</operator>
+            </searchCriteria>
+        </searchDocuments>
+    </soap:Body>
+</soap:Envelope>

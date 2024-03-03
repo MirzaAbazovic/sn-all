@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.BAuftragConnect
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+    <class name="BAuftragConnect" table="AUFTRAG__CONNECT">
+
+        <!-- PrimaryKey -->
+        <id name="auftragNo" column="AUFTRAG_NO" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+
+        <!-- Sonstige Fields -->
+        <property name="lbzMnet" column="LL_INTERNAL_NAME" type="string"/>
+        <property name="lbzKunde" column="LL_NAME" type="string"/>
+        <property name="accessPointA" column="A_ADDRESS_TEXT" type="string"/>
+        <property name="accessPointB" column="B_ADDRESS_TEXT" type="string"/>
+        <property name="accessPointAAddress" column="A_AP_ADDRESS_NO" type="long"/>
+        <property name="accessPointBAddress" column="B_AP_ADDRESS_NO" type="long"/>
+
+    </class>
+
+</hibernate-mapping>

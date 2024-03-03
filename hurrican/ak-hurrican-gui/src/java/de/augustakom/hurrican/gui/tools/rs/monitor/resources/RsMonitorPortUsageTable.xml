@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE table [
+    <!ELEMENT table (column+)>
+    <!ELEMENT column EMPTY>
+    <!ATTLIST column name CDATA #REQUIRED>
+    <!ATTLIST column property CDATA #REQUIRED>
+    <!ATTLIST column type CDATA #REQUIRED>
+    <!ATTLIST column editable CDATA #REQUIRED>
+    <!ATTLIST column width CDATA #IMPLIED>
+]>
+<table>
+    <column name="Jahr"
+            property="year"
+            type="java.lang.Integer"
+            editable="false"
+            width="80"
+            />
+    <column name="Monat"
+            property="month"
+            type="java.lang.Integer"
+            editable="false"
+            width="50"
+            />
+   <column name="Zugang"
+            property="portsUsed"
+            type="java.lang.Integer"
+            editable="false"
+            width="50"
+            />
+   <column name="Abgang"
+            property="portsCancelled"
+            type="java.lang.Integer"
+            editable="false"
+            width="50"
+            />
+    <column name="Netto Verbrauch"
+            property="diffCount"
+            type="java.lang.Integer"
+            editable="false"
+            width="100"
+            />
+</table>

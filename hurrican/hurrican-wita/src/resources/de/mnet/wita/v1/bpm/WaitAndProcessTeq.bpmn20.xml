@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions id="Definition" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:activiti="http://activiti.org/bpmn"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             targetNamespace="Examples"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
+
+    <process id="waitProcessTeq">
+        <startEvent id="start" name="Start" />
+        <sequenceFlow sourceRef="start" targetRef="waitForTeq" id="start-waitForTeq" />
+
+        <receiveTask id="waitForTeq" name="Wait for TEQ" default="waitForTeq-processTeq" />
+        <sequenceFlow sourceRef="waitForTeq" targetRef="processTeq" id="waitForTeq-processTeq" />
+        <sequenceFlow sourceRef="waitForTeq" targetRef="error" id="waitForTeq-error">
+            <conditionExpression xsi:type="tFormalExpression">
+                    <![CDATA[${processTeqGateway.workflowError(execution)}]]>
+            </conditionExpression>
+        </sequenceFlow>
+
+        <!-- Decide how to react to the incoming message -->
+        <serviceTask id="processTeq" name="Process TEQ" default="processTeq-error" activiti:delegateExpression="${processTeqTask}" />
+        <sequenceFlow sourceRef="processTeq" targetRef="endTeq" id="processTeq-endTeq">
+            <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"TEQ".equals(witaMessageType) && isPositiveTeq.equals(true)}]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <!-- Use error state in case no TEQ is received -->
+        <sequenceFlow sourceRef="processTeq" targetRef="error" id="processTeq-error" />
+
+        <endEvent id="endTeq" name="End">
+        </endEvent>
+
+        <endEvent id="error">
+            <errorEventDefinition errorRef="workflowErrorId" />
+        </endEvent>
+
+    </process>
+</definitions>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<table>
+    <column name="ID" property="id" type="java.lang.Long"/>
+    <column name="Name" property="name" type="java.lang.String"/>
+    <column name="String-Value" property="stringValue" type="java.lang.String"/>
+    <column name="Integer-Value" property="intValue" type="java.lang.Integer"/>
+    <column name="Beschreibung" property="description" type="java.lang.String"/>
+</table>

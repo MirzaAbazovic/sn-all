@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den ReportHistory-Dialog.
+-->
+<sf>
+ 
+
+    <Label name="page"><text>Seite:</text></Label>
+	<TextField name="page">
+        <tooltip>Seitennummer</tooltip>
+        <columns>4</columns>
+    </TextField>
+    
+   
+   	<Button name="print.silent">
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <text>Drucken</text>
+        <tooltip>Report drucken</tooltip>
+    </Button>
+    
+  	<Button name="print">
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <text>Drucken (Optionen)</text>
+        <tooltip>Report drucken</tooltip>
+    </Button>
+    
+    <Button name="zoom.in">
+        <icon>org/jpedal/examples/simpleviewer/res/plus.gif</icon>
+        <tooltip>Zoom in</tooltip>
+    </Button>
+    
+    <Button name="zoom.out">
+        <icon>org/jpedal/examples/simpleviewer/res/minus.gif</icon>
+        <tooltip>Zoom out</tooltip>
+    </Button>
+    
+    <Button name="end">
+        <icon>org/jpedal/examples/simpleviewer/res/end.gif</icon>
+        <tooltip>Letzte Seite</tooltip>
+    </Button>
+    
+    <Button name="start">
+        <icon>org/jpedal/examples/simpleviewer/res/start.gif</icon>
+        <tooltip>Erste Seite</tooltip>
+    </Button>
+    
+    <Button name="back">
+        <icon>org/jpedal/examples/simpleviewer/res/back.gif</icon>
+        <tooltip>Zurück</tooltip>
+    </Button>
+    
+    <Button name="forward">
+        <icon>org/jpedal/examples/simpleviewer/res/forward.gif</icon>
+        <tooltip>Vor</tooltip>
+    </Button>
+</sf>

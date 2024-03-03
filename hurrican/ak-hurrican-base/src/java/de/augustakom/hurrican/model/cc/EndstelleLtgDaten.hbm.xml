@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.EndstelleLtgDaten
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="EndstelleLtgDaten" table="T_ES_LTG_DATEN">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_ES_LTG_DATEN_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="endstelleId" column="ES_ID" type="long" not-null="true"/>
+        <property name="leitungsartId" column="LEITUNGSART" type="long"/>
+        <property name="schnittstelleId" column="SCHNITTSTELLE_ID" type="long" not-null="true"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date"/>
+
+    </class>
+
+</hibernate-mapping>

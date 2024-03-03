@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse de.augustakom.authentication.model.AKUserRole
+-->
+
+<hibernate-mapping package="de.augustakom.authentication.model">
+    <class name="AKUserRole" table="USERROLE">
+
+        <cache usage="read-write"/>
+
+        <!-- PrimaryKey von AKUserRole/USERROLE -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_USERROLE_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields von AKUserRole/USERROLE -->
+        <property name="userId" column="USER_ID" type="long" not-null="true"/>
+        <property name="roleId" column="ROLE_ID" type="long" not-null="true"/>
+    </class>
+
+</hibernate-mapping>
+

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.AuftragDaten
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="AuftragDaten" table="T_AUFTRAG_DATEN">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_AUFTRAG_DATEN_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="auftragId" column="AUFTRAG_ID" type="long" not-null="true"/>
+        <property name="auftragNoOrig" column="PRODAK_ORDER__NO" type="long"/>
+        <property name="prodId" column="PROD_ID" type="long" not-null="true"/>
+        <property name="statusId" column="STATUS_ID" type="long"/>
+        <property name="mmzId" column="MMZ_ID" type="long"/>
+        <property name="bemerkungen" column="BEMERKUNGEN" type="string"/>
+        <property name="angebotDatum" column="ANGEBOT_DATUM" type="date"/>
+        <property name="auftragDatum" column="AUFTRAG_DATUM" type="date"/>
+        <property name="inbetriebnahme" column="INBETRIEBNAHME" type="date"/>
+        <property name="kuendigung" column="KUENDIGUNG" type="date"/>
+        <property name="vorgabeSCV" column="VORGABE_SCV" type="date"/>
+        <property name="vorgabeKunde" column="VORGABE_KUNDE" type="date"/>
+        <property name="bestellNr" column="BESTELLNR" type="string"/>
+        <property name="lbzKunde" column="LBZ_KUNDE" type="string"/>
+        <property name="buendelNr" column="BUENDEL_NR" type="integer"/>
+        <property name="buendelNrHerkunft" column="BUENDEL_NR_HERKUNFT" type="string"/>
+        <property name="bearbeiter" column="BEARBEITER" type="string" not-null="true"/>
+        <property name="telefonbuch" column="TELBUCH" type="short"/>
+        <property name="inverssuche" column="INVERSSUCHE" type="short"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date" not-null="true"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date" not-null="true"/>
+        <property name="statusmeldungen" column="STATUSMELDUNGEN" type="boolean"/>
+        <property name="autoSmsAndMailVersand" column="AUTO_SMS_AND_MAIL_VERSAND" type="boolean"/>
+        <property name="wholesaleAuftragsId" column="WHOLESALE_AUFTRAGS_ID" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

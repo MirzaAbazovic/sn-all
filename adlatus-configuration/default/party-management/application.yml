@@ -1,0 +1,11 @@
+server:
+  port: '8383'
+  contextPath: /tmf-api/party/v4
+spring:
+  data:
+    mongodb:
+      database: party_management
+      port: '27017'
+      host: localhost
+api:
+  host: ${API_HOST:http://localhost}

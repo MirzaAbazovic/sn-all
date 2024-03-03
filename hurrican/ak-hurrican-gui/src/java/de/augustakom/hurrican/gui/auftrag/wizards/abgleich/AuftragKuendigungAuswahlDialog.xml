@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den AuftragsMonitor-Dialog.
+-->
+<sf>
+    <Label name="datum.kuendigung"><text>Kündigung zum: </text></Label>
+    <DateComponent name="datum.kuendigung">
+        <tooltip>Kündigungsdatum für die Aufträge (Format: dd.MM.yyyy)</tooltip>
+        <columns>10</columns>
+    </DateComponent>
+    
+    <Button name="kuendigen">
+        <text>Kündigen</text>
+        <tooltip>Kündigt die ausgewählten Aufträge.</tooltip>
+    </Button>
+
+    <Text name="selektion.nicht.moeglich">Sie dürfen max. {0} Aufträge für die Kündigung selektieren.</Text>
+    <Text name="datum.ungueltig">Bitte geben Sie einen Kündigungstermin an. 
+Das Datum kann das heutige Datum ({0}) oder später sein.</Text>
+    
+    <Text name="anzahl.ungueltig">Sie haben zu viele Aufträge für die Kündigung markiert. 
+Sie dürfen lediglich maximal {0} Aufträge selektieren.</Text>
+    
+    <Text name="keine.selektion">Sie haben keinen Auftrag zur Kündigung ausgewählt. 
+Wählen Sie bitte bis zu {0} Aufträge aus oder brechen Sie den Dialog ab.</Text>
+</sf>

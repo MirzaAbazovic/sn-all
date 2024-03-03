@@ -1,0 +1,49 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified"
+        targetNamespace="http://mnet.de/hurricanweb/order/reporting/types"
+        xmlns:ns0="http://mnet.de/hurricanweb/order/reporting/types">
+
+    <xs:element name="GetReportingValuesType" type="ns0:GetReportingValuesType" />
+    <xs:element name="GetReportingValuesTypeAcknowledgement" type="ns0:GetReportingValuesTypeAcknowledgement" />
+
+    <xs:complexType name="GetReportingValuesType">
+        <xs:sequence>
+            <xs:element name="orderNo" type="xs:long"/>
+            <xs:element name="reportingKey">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="reportingKey" minOccurs="1" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="reportingKeyName" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GetReportingValuesTypeAcknowledgement">
+        <xs:sequence>
+            <xs:element name="orderNo" type="xs:long"/>
+            <xs:element name="reportingValues">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="reportingKey" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="reportingKeyName" type="xs:string"/>
+                                    <xs:element name="reportingKeyValues" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

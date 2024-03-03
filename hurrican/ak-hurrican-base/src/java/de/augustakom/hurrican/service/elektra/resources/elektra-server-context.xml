@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring App-Context Definition fuer den WITA Server Bereich. -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+    default-lazy-init="true">
+
+    <context:annotation-config />
+
+    <bean id="elektra.jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPaths">
+            <util:list>
+                <value>de.mnet.elektra.common</value>
+                <value>de.mnet.elektra.services</value>
+            </util:list>
+        </property>
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.encoding">
+                    <value>UTF-8</value>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!-- SOAP message factory. Configured to use SOAP 1.1 -->
+    <bean id="elektra.messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+        <property name="soapVersion">
+            <util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_11" />
+        </property>
+    </bean>
+
+    <bean id="elektraWebServiceTemplate" class="de.augustakom.common.tools.ws.MnetWebServiceTemplate">
+        <property name="marshaller" ref="elektra.jaxb2Marshaller" />
+        <property name="unmarshaller" ref="elektra.jaxb2Marshaller" />
+        <property name="messageSender" ref="elektra.messageSender" />
+        <property name="messageFactory" ref="elektra.messageFactory"/>
+    </bean>
+
+    <bean id="elektra.messageSender" class="de.augustakom.common.tools.ws.MnetHttpUrlConnectionMessageSender"
+        scope="prototype">
+        <property name="connectionTimeout">
+            <!-- Der Wert 5000 fuert zu einem Timeout von 10 Sekunden, weil vermutlich der Verbindungsaufbau insgesamt 2 mal durchgefuehrt wird. -->
+            <value>5000</value>
+        </property>
+        <property name="httpClient" ref="httpClient"/>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.elektra.ElektraFacadeService"
+        class="de.augustakom.hurrican.service.elektra.impl.ElektraFacadeServiceImpl" />
+    <bean name="/elektra/ElektraFacadeService"
+        class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.augustakom.hurrican.service.elektra.ElektraFacadeService" />
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.elektra.ElektraFacadeService" />
+    </bean>
+
+</beans>

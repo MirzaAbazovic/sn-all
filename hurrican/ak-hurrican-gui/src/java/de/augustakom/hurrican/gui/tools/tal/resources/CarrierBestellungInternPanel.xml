@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die interne TAL-Bestellung.
+-->
+<sf>
+
+    <Text name="functions">Funktionen</Text>
+    <Text name="details">Details</Text>
+
+    <Button name="assign.port">
+        <text>Port zuweisen</text>
+        <tooltip>dem Auftrag einen Port zuweisen</tooltip>
+    </Button>
+
+    <Button name="free.port">
+        <text>Port freigeben</text>
+        <tooltip>Gibt dem EQ-Out Port vom Auftrag wieder frei</tooltip>
+    </Button>
+
+    <Button name="work.on">
+        <text>Bearbeiten</text>
+        <tooltip>Markiert den Vorgang als 'in Bearbeitung'</tooltip>
+    </Button>
+
+    <Button name="save">
+        <text>Speichern</text>
+        <tooltip>Speichert die angegebenen Daten ab</tooltip>
+    </Button>
+
+    <Label name="confirm"><text>Bestätigung:</text></Label>
+    <ComboBox name="confirm">
+        <tooltip>Auswahl, ob die TAL-Bestellung positiv od. negativ bestätigt wird</tooltip>
+        <items>
+            <item text=" " value="null"/>
+            <item text="positiv" value="true" class="java.lang.Boolean"/>
+            <item text="negativ" value="false" class="java.lang.Boolean"/>
+        </items>
+    </ComboBox>
+
+    <Label name="real.date"><text>Bereitstellung am:</text></Label>
+    <DateComponent name="real.date">
+        <tooltip>Datum, zu dem die TAL bereitgestellt wird</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="vorgabe.mnet"><text>Vorgabe M-net:</text></Label>
+    <DateComponent name="vorgabe.mnet">
+        <tooltip>Vorgabe-Datum von M-net, zu wann die TAL bereitgestellt werden soll</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="lbz"><text>Leitungsbezeichnung:</text></Label>
+    <TextField name="lbz">
+        <tooltip>Leitungsbezeichnung, die als Referenz dient</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="vtrnr"><text>Vertragsnummer:</text></Label>
+    <TextField name="vtrnr">
+        <tooltip>Vertragsnummer für die Bestellung</tooltip>
+    </TextField>
+
+    <Label name="aqs"><text>AQS:</text></Label>
+    <TextField name="aqs">
+        <tooltip>Aderquerschnitt der zugeordneten TAL</tooltip>
+    </TextField>
+
+    <Label name="laenge"><text>Leitungslänge:</text></Label>
+    <TextField name="laenge">
+        <tooltip>ungefähre Länge der zugeordneten TAL</tooltip>
+    </TextField>
+
+    <Label name="kunde.vor.ort"><text>Kunde vor Ort:</text></Label>
+    <ComboBox name="kunde.vor.ort">
+        <tooltip>Definition, ob der Kunde am Schaltungstag vor Ort sein muss</tooltip>
+        <items>
+            <item text=" " value="null"/>
+            <item text="ja" value="true" class="java.lang.Boolean"/>
+            <item text="nein" value="false" class="java.lang.Boolean"/>
+        </items>
+    </ComboBox>
+
+    <Label name="description"><text>Bemerkung:</text></Label>
+    <TextArea name="description">
+        <tooltip>Bemerkung zur TAL-Bestellung</tooltip>
+        <columns>20</columns>
+        <rows>4</rows>
+    </TextArea>
+
+    <Label name="montagehinweis"><text>Montagehinweis:</text></Label>
+    <TextArea name="montagehinweis">
+        <tooltip>Montagehinweis des Bestellers zur TAL-Bestellung</tooltip>
+        <columns>20</columns>
+        <rows>4</rows>
+    </TextArea>
+
+    <Label name="endstelle"><text>Endstelle</text></Label>
+
+    <Label name="es.name"><text>Endstelle:</text></Label>
+    <TextField name="es.name">
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="es.strasse"><text>Strasse:</text></Label>
+    <TextField name="es.strasse">
+    </TextField>
+
+    <Label name="es.plz.ort"><text>PLZ/Ort:</text></Label>
+    <TextField name="es.plz">
+        <columns>5</columns>
+    </TextField>
+    <TextField name="es.ort">
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="es.hvt"><text>HVT:</text></Label>
+    <TextField name="es.hvt">
+    </TextField>
+
+    <Text name="physik">Physik</Text>
+    <Label name="eq.in"><text>EQ-In</text></Label>
+    <Label name="eq.out"><text>EQ-Out</text></Label>
+
+    <Label name="eq.in.verteiler"><text>Verteiler/Bucht:</text></Label>
+    <TextField name="eq.in.verteiler">
+        <tooltip>Bezeichnung des Verteilers</tooltip>
+        <columns>8</columns>
+    </TextField>
+    <TextField name="eq.in.bucht">
+        <tooltip>Bezeichnung der Bucht</tooltip>
+        <columns>8</columns>
+    </TextField>
+
+    <Label name="eq.in.leiste"><text>Leiste/Stift:</text></Label>
+    <TextField name="eq.in.leiste">
+        <tooltip>Bezeichnung der Leiste</tooltip>
+        <columns>8</columns>
+    </TextField>
+    <TextField name="eq.in.stift">
+        <tooltip>Bezeichnung vom Stift</tooltip>
+        <columns>8</columns>
+    </TextField>
+
+    <Label name="eq.in.eqn"><text>HW-EQN:</text></Label>
+    <TextField name="eq.in.eqn">
+    </TextField>
+
+    <Label name="eq.out.verteiler"><text>Verteiler/Bucht:</text></Label>
+    <TextField name="eq.out.verteiler">
+        <tooltip>Bezeichnung des Verteilers</tooltip>
+        <columns>8</columns>
+    </TextField>
+    <TextField name="eq.out.bucht">
+        <tooltip>Bezeichnung der Bucht</tooltip>
+        <columns>8</columns>
+    </TextField>
+
+    <Label name="eq.out.leiste"><text>Leiste/Stift:</text></Label>
+    <TextField name="eq.out.leiste">
+        <tooltip>Bezeichnung der Leiste</tooltip>
+        <columns>8</columns>
+    </TextField>
+    <TextField name="eq.out.stift">
+        <tooltip>Bezeichnung vom Stift</tooltip>
+        <columns>8</columns>
+    </TextField>
+
+    <Label name="eq.out.eqn"><text>HW-EQN:</text></Label>
+    <TextField name="eq.out.eqn">
+    </TextField>
+
+    <Text name="free.port.title">Port freigeben?</Text>
+    <Text name="free.port.msg">Soll der EQ-Out Port wirklich freigeben werden?</Text>
+
+</sf>

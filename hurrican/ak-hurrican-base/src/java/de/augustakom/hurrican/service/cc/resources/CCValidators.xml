@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer die Validator-Klassen im CustomerCare-Bereich
+der Hurrican-Applikation.
+Die Datei wird von CCServices.xml importiert!
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+     default-lazy-init="true">
+
+    <context:annotation-config />
+
+    <!-- Validator fuer Objekte des Typs 'Rechnungsanschrift' -->
+    <bean id="ccAddressValidator"
+        class="de.augustakom.hurrican.validation.cc.CCAddressValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'Produkt' -->
+    <bean id="produktValidator"
+        class="de.augustakom.hurrican.validation.cc.ProduktValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'SperreInfo' -->
+    <bean id="sperreInfoValidator"
+        class="de.augustakom.hurrican.validation.cc.SperreInfoValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'Rangierungsmatrix' -->
+    <bean id="rangierungsmatrixValidator"
+        class="de.augustakom.hurrican.validation.cc.RangierungsmatrixValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'HVTBestellung' -->
+    <bean id="hvtBestellungValidator"
+        class="de.augustakom.hurrican.validation.cc.HVTBestellungValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'Kubena' -->
+    <bean id="kubenaValidator"
+        class="de.augustakom.hurrican.validation.cc.KubenaValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'Carrierbestellung' -->
+    <bean id="carrierbestellungValidator"
+        class="de.augustakom.hurrican.validation.cc.CarrierbestellungValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'EndstelleLtgDaten' -->
+    <bean id="endstelleLtgDatenValidator"
+        class="de.augustakom.hurrican.validation.cc.EndstelleLtgDatenValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'AuftragImport' -->
+    <bean id="auftragImportValidator"
+        class="de.augustakom.hurrican.validation.cc.AuftragImportValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'IPEndgeraetConfig' -->
+    <bean id="egConfigValidator"
+        class="de.augustakom.hurrican.validation.cc.EGConfigValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'EndgeraetIp' -->
+    <bean id="endgeraetIpValidator"
+        class="de.augustakom.hurrican.validation.cc.EndgeraetIpValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'PortForwarding' -->
+    <bean id="portForwardingValidator"
+        class="de.augustakom.hurrican.validation.cc.PortForwardingValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'Routing' -->
+    <bean id="routingValidator"
+        class="de.augustakom.hurrican.validation.cc.RoutingValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'IPSecSite2Site' -->
+    <bean id="ipSecSite2SiteValidator"
+        class="de.augustakom.hurrican.validation.cc.IPSecSite2SiteValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'IpRoute' -->
+    <bean id="ipRouteValidator"
+        class="de.augustakom.hurrican.validation.cc.IpRouteValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'HWRack' -->
+    <bean id="de.augustakom.hurrican.validation.cc.HWRackValidator"
+        class="de.augustakom.hurrican.validation.cc.HWRackValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'HWSubrack' -->
+    <bean id="de.augustakom.hurrican.validation.cc.HWSubrackValidator"
+        class="de.augustakom.hurrican.validation.cc.HWSubrackValidator">
+        <property name="queryCcService" ref="de.augustakom.hurrican.service.cc.QueryCCService"/>
+        <property name="regularExpressionService" ref="de.augustakom.hurrican.service.cc.RegularExpressionService"/>
+    </bean>
+
+    <!-- Validator fuer Objekte des Typs 'HWBaugruppe' -->
+    <bean id="de.augustakom.hurrican.validation.cc.HWBaugruppeValidator"
+        class="de.augustakom.hurrican.validation.cc.HWBaugruppeValidator">
+        <property name="queryCcService" ref="de.augustakom.hurrican.service.cc.QueryCCService"/>
+    </bean>
+
+    <!-- Validator fuer Objekte des Typs 'HWBaugruppenChange' -->
+    <bean id="de.augustakom.hurrican.validation.cc.HWBaugruppenChangeValidator"
+        class="de.augustakom.hurrican.validation.cc.HWBaugruppenChangeValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'RSMonitorConfig' -->
+    <bean id="de.augustakom.hurrican.validation.cc.MonitorConfigValidator"
+        class="de.augustakom.hurrican.validation.cc.MonitorConfigValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'EQCrossConnection' -->
+    <bean id="de.augustakom.hurrican.validation.cc.EQCrossConnectionValidator"
+        class="de.augustakom.hurrican.validation.cc.EQCrossConnectionValidator"/>
+
+    <!-- Validator fuer Objekte des Typs 'Ansprechpartner' -->
+    <bean id="de.augustakom.hurrican.validation.cc.AnsprechpartnerValidator"
+        class="de.augustakom.hurrican.validation.cc.AnsprechpartnerValidator">
+        <property name="addressValidator" ref="ccAddressValidator"/>
+    </bean>
+
+</beans>

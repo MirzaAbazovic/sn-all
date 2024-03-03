@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Definition des Realisierungstermins
+fuer einen Bauauftrag.
+-->
+<sf>
+
+    <Text name="title">Aufträge zusammenfassen</Text>
+
+    <Label name="order.id"><text>Hauptauftrag:</text></Label>
+    <FormattedTextField name="order.id">
+        <tooltip>BA fuer Hauptauftrag erstellen</tooltip>
+        <format type="number">#########</format>
+        <columns>20</columns>
+    </FormattedTextField>
+
+    <Label name="billing.order.id"><text>Billing Auftrag:</text></Label>
+    <FormattedTextField name="billing.order.id">
+        <tooltip>Billing Auftrag ID</tooltip>
+        <format type="number">#########</format>
+        <columns>20</columns>
+    </FormattedTextField>
+
+</sf>

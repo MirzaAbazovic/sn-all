@@ -1,0 +1,191 @@
+<project basedir="." name="tibco">
+
+  <import file="common_ant.xml" />
+
+  <!-- ======================================================================
+     EMS Macros
+   ======================================================================= -->
+
+  <!--
+    Executes an EMS script
+    To control how the build behaves in the event of a failure, use the failOnProcessError and failOnScriptError.
+    - failOnProcessError: when set to false, the build will continue even if the tibemsadmin process exits with an error
+      code.
+    - failOnScriptError: when set to false, tibemsadmin will continue executing the ems script, even if a error occurs
+      during script execution.
+    Eg: Error on line 5 of 10 line script
+    - failOnProcessError:true,  failOnScriptError:false: build will NOT fail and all lines of script are executed
+    - failOnProcessError:true,  failOnScriptError:true:  build WILL fail and ONLY lines 1 to 4 of script are executed
+    - failOnProcessError:false, failOnScriptError:false: build will NOT fail and all lines of script are executed
+    - failOnProcessError:false, failOnScriptError:true:  build will NOT fail, but ONLY lines 1 to 4 of script are executed
+  -->
+  <macrodef name="ems.execute">
+    <attribute name="script"/>
+    <attribute name="desc"/>
+    <attribute name="serverUrl" default="${tibco.ems.url}"/>
+    <attribute name="username" default="${tibco.ems.admin.username}"/>
+    <attribute name="password" default="${tibco.ems.admin.password}"/>
+    <attribute name="tibEmsAdmin" default="${tibco.ems.home}/bin/tibemsadmin"/>
+    <attribute name="failOnProcessError" default="true" description="When false, any errors launching the EMS admin process are ignored"/>
+    <attribute name="failOnScriptError" default="true" description="When false, any errors executing EMS scripts, e.g. queue already exists, are ignored"/>
+    <sequential>
+      <echo>@{tibEmsAdmin} -script @{script} -server @{serverUrl} -user @{username} -password @{password} (failOnScriptError:@{failOnScriptError}, failOnProcessError:@{failOnProcessError})</echo>
+
+      <if>
+        <istrue value="@{failOnScriptError}"/>
+        <then>
+          <property name="ems.error.ignore" value=""/>
+        </then>
+        <else>
+          <property name="ems.error.ignore" value=" -ignore"/>
+        </else>
+      </if>
+
+      <if>
+        <equals arg1="@{password}" arg2=""/>
+        <then>
+          <for list="@{serverUrl}" param="serverUrlParam" delimiter=", ">
+            <sequential>
+              <exec executable="@{tibEmsAdmin}"
+                    dir="."
+                    spawn="false"
+                    description="@{desc}"
+                    failonerror="@{failOnProcessError}">
+                <arg line="-script @{script} -server @{serverUrlParam} -user @{username} ${ems.error.ignore}" />
+              </exec>
+            </sequential>
+          </for>
+        </then>
+        <else>
+          <for list="@{serverUrl}" param="serverUrlParam" delimiter=", ">
+            <sequential>
+              <exec executable="@{tibEmsAdmin}"
+                    dir="."
+                    spawn="false"
+                    description="@{desc}"
+                    failonerror="@{failOnProcessError}">
+                <arg line="-script @{script} -server @{serverUrlParam} -user @{username} -password @{password} ${ems.error.ignore}"/>
+              </exec>
+            </sequential>
+          </for>
+        </else>
+      </if>
+
+    </sequential>
+  </macrodef>
+
+  <!--
+    searches recursively for all *.ems scripts under the supplied directory and executes all scripts found. The
+    order of execution may differ from one platform to another.
+  -->
+  <macrodef name="ems.execute.directory">
+    <attribute name="searchDirectory" description="the directory to search under" />
+    <attribute name="desc"/>
+    <attribute name="serverUrl" default="${tibco.ems.url}"/>
+    <attribute name="username" default="${tibco.ems.admin.username}"/>
+    <attribute name="password" default="${tibco.ems.admin.password}"/>
+    <attribute name="tibEmsAdmin" default="${tibco.ems.home}/bin/tibemsadmin"/>
+    <attribute name="failOnScriptError" default="true"/>
+    <attribute name="failOnProcessError" default="true"/>
+    <sequential>
+      <echo>Searching for and executing all EMS scripts located under: '@{searchDirectory}'</echo>
+
+      <for param="file" parallel="false">
+        <path>
+          <fileset dir="@{searchDirectory}" includes="**/*.ems"/>
+        </path>
+        <sequential>
+          <ems.execute
+                  desc="@{desc}"
+                  script="@{file}"
+                  serverUrl="@{serverUrl}"
+                  username="@{username}"
+                  password="@{password}"
+                  tibEmsAdmin="@{tibEmsAdmin}"
+                  failOnProcessError="@{failOnProcessError}"
+                  failOnScriptError="@{failOnScriptError}"/>
+        </sequential>
+      </for>
+    </sequential>
+  </macrodef>
+
+  <macrodef name="ems.start">
+    <attribute name="emsConfDir" default="${tibco.ems.conf.dir}"/>
+    <attribute name="emsHome" default="${tibco.ems.home}"/>
+    <attribute name="spawn" default="false"/>
+    <attribute name="emsConfig" default="tibemsd.conf" description="The EMS config file to use when starting. Typically tibemsd.conf"/>
+    <attribute name="buildId" default="${env.BUILD_ID}" description="Overwriting this prevents Jenkins from killing EMS when build job completes"/>
+    <sequential>
+      <echo>Starting EMS - [emsConfDir:@{emsConfDir}, spawn:@{spawn}, buildId:@{buildId}]: @{emsHome}/bin/tibemsd -config @{emsConfig}</echo>
+
+      <exec executable="@{emsHome}/bin/tibemsd"
+            dir="@{emsConfDir}"
+            spawn="@{spawn}"
+            description="Starting EMS Server">
+        <env key="BUILD_ID" value="@{buildId}" />
+        <arg line="-config @{emsConfig}"/>
+      </exec>
+
+      <if>
+        <equals arg1="@{spawn}" arg2="true"/>
+        <then>
+          <echo message="starting ems in background..."/>
+          <echo message="verify log output in @{emsConfDir}/ems.log"/>
+          <sleep seconds="5"/>
+          <concat>
+            <filelist dir="${tibco.ems.conf.dir}" files="ems.log"/>
+          </concat>
+        </then>
+      </if>
+    </sequential>
+  </macrodef>
+
+  <macrodef name="ems.stop">
+    <attribute name="serverUrl" default="${tibco.ems.url}"/>
+    <attribute name="username" default="${tibco.ems.admin.username}"/>
+    <attribute name="password" default="${tibco.ems.admin.password}"/>
+    <attribute name="tibEmsAdmin" default="${tibco.ems.home}/bin/tibemsadmin"/>
+    <attribute name="failOnProcessError" default="false"/>
+    <sequential>
+      <echo>Stoping EMS</echo>
+
+      <tempfile prefix="shutdown" suffix=".ems" property="ems.shutdown.file" destdir="${java.io.tmpdir}" deleteonexit="true" createfile="true"/>
+      <echo message="shutdown" file="${ems.shutdown.file}"/>
+      <ems.execute
+              serverurl="@{serverurl}"
+              username="@{username}"
+              password="@{password}"
+              tibEmsAdmin="@{tibEmsAdmin}"
+              failOnScriptError="true"
+              failOnProcessError="@{failOnProcessError}"
+              script="${ems.shutdown.file}"
+              desc="EMS Stop script"/>
+    </sequential>
+  </macrodef>
+
+  <target name="ems.init" description="Creates the project default config for EMS">
+    <ems.stop/>
+
+    <delete dir="${tibco.ems.conf.dir}"/>
+    <mkdir dir="${tibco.ems.conf.dir}"/>
+    <mkdir dir="${tibco.ems.conf.dir}/datastore"/>
+
+    <copy todir="${tibco.ems.conf.dir}" overwrite="true">
+      <fileset dir="${common.basedir}/templates/ems" includes="**/*.conf"/>
+
+      <filterset>
+        <filter token="ems.port" value="${tibco.ems.port}"/>
+        <filter token="ems.url" value="${tibco.ems.url}"/>
+        <filter token="ems.config" value="${tibco.ems.conf.dir}"/>
+        <filter token="ems.name" value="${tibco.ems.name}"/>
+      </filterset>
+    </copy>
+  </target>
+
+  <target name="ems.configure" description="Searches and executes all EMS scripts">
+        <ems.execute.directory
+                searchDirectory="${tibco.ems.conf.dir}"
+                desc="EMS scripts in ${tibco.ems.conf.dir}"/>
+  </target>
+
+</project>

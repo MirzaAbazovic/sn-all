@@ -1,0 +1,10 @@
+<soap:Fault xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <faultcode>soap:Server</faultcode>
+    <faultstring>Der Equipment-Datensatz fuer Stift 3-01 ist nicht vorhanden!</faultstring>
+    <detail>
+        <ServiceFault xmlns="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1">
+            <errorCode>HUR-100</errorCode>
+            <errorMessage>@contains('de.augustakom.hurrican.service.base.exceptions.StoreException: Der Equipment-Datensatz fuer Stift 3-01 ist nicht vorhanden!')@</errorMessage>
+        </ServiceFault>
+    </detail>
+</soap:Fault>

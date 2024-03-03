@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Administration der Technologietypen.
+-->
+<sf>
+    <Text name="title">Technologietypen-Details</Text>
+
+
+    <Label name="technology.type.reference"><text>Technologietyp:</text></Label>
+    <ReferenceField name="technology.type.reference">
+        <tooltip>Bezeichnung des Technologietyps</tooltip>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="available.from"><text>Verfügbar ab:</text></Label>
+    <DateComponent name="available.from">
+        <tooltip>Datum ab dem der Technologietyp verfügbar ist</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="available.to"><text>Verfügbar bis:</text></Label>
+    <DateComponent name="available.to">
+        <tooltip>Datum ab dem der Technologietyp nicht mehr verfügbar ist</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+</sf>

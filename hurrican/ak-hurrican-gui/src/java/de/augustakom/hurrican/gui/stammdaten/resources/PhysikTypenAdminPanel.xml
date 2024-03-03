@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Panel fuer die Physik-Typen.
+-->
+<sf>
+    
+    <Label name="typ"><text>Physik-Typ:</text></Label>
+    <FormattedTextField name="typ">
+        <tooltip>ID des Physik-Typs</tooltip>
+    </FormattedTextField>
+    
+    <Label name="name"><text>Name:</text></Label>
+    <TextField name="name">
+        <tooltip>Name des Physik-Typs</tooltip>
+    </TextField>
+    
+    <Label name="beschreibung"><text>Beschreibung:</text></Label>
+    <TextField name="beschreibung">
+        <tooltip>Kurze Beschreibung des Physik-Typs</tooltip>
+    </TextField>
+    
+    <Label name="hvttechnik"><text>HVT-Technik:</text></Label>
+    <ComboBox name="hvttechnik">
+        <tooltip>HVT-Technik zu der der Physik-Typ gehört</tooltip>
+    </ComboBox>
+  
+</sf>

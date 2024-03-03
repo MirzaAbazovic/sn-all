@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sws="http://www.springframework.org/schema/web-services"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:oxm="http://www.springframework.org/schema/oxm"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services.xsd
+
+
+           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+
+           http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm.xsd">
+
+    <import resource="classpath:spring/jaxb-ws-base.xml"/>
+
+    <!-- Endpoint Definition fuer den CPS Endpunkt. -->
+    <bean id="availabilityEndpoint" class="de.mnet.hurrican.webservice.vento.availability.AvailabilityEndpoint" />
+
+    <bean id="availabilityInformationSoapFaultResolver" class="de.mnet.hurrican.webservice.vento.availability.AvailabilityInformationSoapFaultResolver" />
+
+    <oxm:jaxb2-marshaller id="jaxbMarshaller" context-path="de.mnet.hurrican.vento.availability"/>
+
+    <sws:interceptors>
+                <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+                <bean class="de.mnet.hurrican.webservice.common.PayloadValidatingEndpointInterceptor">
+                    <property name="xsdSchemaCollection" ref="availabilitySchemaCollection"/>
+                    <property name="validateRequest" value="true"/>
+                    <property name="validateResponse" value="true"/>
+                </bean>
+    </sws:interceptors>
+
+    <!-- Publishing the WSDL -->
+    <!-- WSDL Generierung ueber http://host:port/hurricanweb/availability/availability.wsdl -->
+    <bean id="availability" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+        <property name="schema" ref="availabilitySchema"/>
+        <property name="portTypeName" value="HurricanAvailabilityProviderService"/>
+        <property name="serviceName" value="HurricanAvailabilityProviderService"/>
+        <property name="locationUri" value="http://localhost:8080/hurricanweb/availability"/>
+        <property name="requestSuffix" value="Request" />
+        <property name="responseSuffix" value="Response" />
+        <property name="createSoap12Binding" value="false"/>
+        <property name="createSoap11Binding" value="true"/>
+        <property name="soapActions">
+            <props>
+                <prop key="getAvailabilityInformation">getAvailabilityInformation</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="availabilitySchema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+        <property name="xsd" value="/WEB-INF/xsd/availability-information.xsd"/>
+    </bean>
+    <bean id="availabilitySchemaCollection" class="org.springframework.xml.xsd.commons.CommonsXsdSchemaCollection">
+        <property name="xsds">
+            <util:list>
+                <value>/WEB-INF/xsd/availability-information.xsd</value>
+            </util:list>
+        </property>
+    </bean>
+
+    <!-- SOAP message factory. Configured to use SOAP 1.1 -->
+    <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+        <property name="soapVersion">
+            <util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_11" />
+        </property>
+    </bean>
+
+</beans>

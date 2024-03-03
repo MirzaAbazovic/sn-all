@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.mnet.de/hurrican/cps/1.0/"
+            attributeFormDefault="unqualified" elementFormDefault="unqualified"
+            targetNamespace="http://www.mnet.de/hurrican/cps/1.0/">
+
+    <xsd:element name="getSoDataRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="when" type="xsd:date"/>
+                <xsd:element name="query" type="OrderQuery"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getSoDataResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="sodata" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="provisionRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="subscribe" type="SubscriberType"/>
+                <xsd:element name="query" type="OrderQuery" maxOccurs="10"/>
+                <xsd:element name="asynch" type="xsd:boolean" minOccurs="0"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="provisionResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="result" type="ProvisionResult" maxOccurs="10"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:simpleType name="SubscriberType">
+        <xsd:restriction base="xsd:string">
+            <!-- CREATE subscriber mit init-Flag gesetzt -->
+            <xsd:enumeration value="INIT"/>
+            <!-- CREATE subscriber ohne gesetztem init-Flag -->
+            <xsd:enumeration value="CREATE"/>
+            <xsd:enumeration value="MODIFY"/>
+            <xsd:enumeration value="DELETE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="ProvisionResult">
+        <xsd:sequence>
+            <xsd:element name="query" type="OrderQuery"/>
+            <xsd:element name="cpsTxId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="error" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="OrderQuery">
+        <xsd:choice>
+            <xsd:element name="billingOrderNo" type="BillingOrderNo"/>
+            <xsd:element name="lacAndDn" type="LacAndDn"/>
+            <xsd:element name="switchAndEqn" type="SwitchAndEqn"/>
+            <xsd:element name="rackAndEqn" type="RackAndEqn"/>
+            <xsd:element name="cwmpId" type="Text"/>
+            <xsd:element name="radiusAccount" type="Text"/>
+        </xsd:choice>
+    </xsd:complexType>
+
+    <xsd:simpleType name="BillingOrderNo">
+        <xsd:restriction base="xsd:long">
+            <xsd:minInclusive value="0"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="LacAndDn">
+        <xsd:sequence>
+            <xsd:element name="lac" type="Number"/>
+            <xsd:element name="dn" type="Number"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <!-- nur EWSD, da nur fuer diese switch+eqn eindeutig -->
+    <xsd:complexType name="SwitchAndEqn">
+        <xsd:sequence>
+            <xsd:element name="switch">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="AUG01|AUG02|MUC01|MUC02|NEF01"></xsd:pattern>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="eqn" type="Text"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="RackAndEqn">
+        <xsd:sequence>
+            <xsd:element name="rack" type="Text"/>
+            <xsd:element name="eqn" type="Text"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="Text">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[^%*?]+"></xsd:pattern>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="Number">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[0-9]+"></xsd:pattern>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

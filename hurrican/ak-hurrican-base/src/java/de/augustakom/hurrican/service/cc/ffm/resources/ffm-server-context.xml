@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring App-Context Definition fuer den FFM Server Bereich. -->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+
+    <!-- Service Beans & Aggregator Commands-->
+    <context:component-scan base-package="de.augustakom.hurrican.service.cc.ffm"/>
+    <bean name="/cc/ffm/FFMService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.augustakom.hurrican.service.cc.ffm.FFMService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.ffm.FFMService"/>
+    </bean>
+
+    <!-- ENDPOINTS -->
+    <jaxws:endpoint implementor="de.augustakom.hurrican.service.cc.ffm.impl.FFMNotificationConsumerImpl"
+                    address="/ffm/notification">
+        <jaxws:features>
+            <bean class="org.apache.cxf.feature.LoggingFeature"/>
+            <!-- Loglevel = INFO, landet daher in hurrican.norotate.log -->
+        </jaxws:features>
+    </jaxws:endpoint>
+
+    <jaxws:endpoint implementor="de.augustakom.hurrican.service.cc.ffm.impl.FFMNotificationConsumerImpl"
+                    address="jms://">
+        <jaxws:properties>
+            <entry key="schema-validation-enabled" value="false"/>
+        </jaxws:properties>
+        <jaxws:features>
+            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature">
+                <property name="jmsConfig">
+                    <bean id="jmsWorkforceServiceNotificationConfig"
+                          class="org.apache.cxf.transport.jms.JMSConfiguration">
+                        <property name="connectionFactory" ref="atlasConsumerCachingConnectionFactory"/>
+                        <property name="targetDestination"
+                                  value="mnet.Hurrican.op.cdm.dst.v1.WorkforceNotificationService"/>
+                        <property name="jmsProviderTibcoEms" value="true"/>
+                        <property name="sessionTransacted" value="true"/>
+                    </bean>
+                </property>
+            </bean>
+        </jaxws:features>
+        <jaxws:inInterceptors>
+            <bean class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+            <bean class="de.augustakom.hurrican.service.interceptor.SchemaValidationInterceptor">
+                <property name="errorCode" value="FFM-TECH-009"/>
+                <property name="schema">
+                    <bean class="de.mnet.common.xml.WsdlXsdSchema">
+                        <property name="wsdl" value="classpath:/xsd/ffm/WorkforceNotificationService.wsdl"/>
+                        <property name="soapSchema" value="classpath:/xsd/soap-envelope-1.1.xsd"/>
+                    </bean>
+                </property>
+            </bean>
+        </jaxws:inInterceptors>
+    </jaxws:endpoint>
+
+    <jaxws:client xmlns:lns="http://www.mnet.de/esb/cdm/Resource/WorkforceService/v1"
+                  id="workforceService"
+                  serviceClass="de.mnet.esb.cdm.resource.workforceservice.v1.WorkforceService"
+                  address="jms://"
+                  serviceName="lns:WorkforceService"
+                  endpointName="lns:WorkforceServiceJMS"
+                  transportId="http://cxf.apache.org/transports/jms">
+        <jaxws:properties>
+            <entry key="schema-validation-enabled" value="true"/>
+        </jaxws:properties>
+        <jaxws:features>
+            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature">
+                <property name="jmsConfig">
+                    <bean id="jmsWorkforceServiceConfig" class="org.apache.cxf.transport.jms.JMSConfiguration">
+                        <property name="connectionFactory" ref="atlasTransactionAwareConnectionFactory"/>
+                        <property name="targetDestination" value="mnet.Resource.op.cdm.src.v1.WorkforceService"/>
+                        <property name="jmsProviderTibcoEms" value="true"/>
+                        <property name="sessionTransacted" value="true"/>
+                    </bean>
+                </property>
+            </bean>
+        </jaxws:features>
+        <jaxws:outInterceptors>
+            <ref bean="esbTrackingOutInterceptor"/>
+            <bean class="de.mnet.common.webservice.tools.TibcoSoapActionWithoutQuotesInterceptor"/>
+            <bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+        </jaxws:outInterceptors>
+        <jaxws:outFaultInterceptors>
+            <ref bean="esbTrackingOutInterceptor"/>
+        </jaxws:outFaultInterceptors>
+    </jaxws:client>
+
+    <jaxws:endpoint implementor="#de.augustakom.hurrican.service.cc.ffm.impl.WorkforceDataService"
+                    address="/resource/workforcedata/v1">
+        <jaxws:inInterceptors>
+            <bean class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+        </jaxws:inInterceptors>
+        <jaxws:outInterceptors>
+            <bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+        </jaxws:outInterceptors>
+    </jaxws:endpoint>
+
+</beans>

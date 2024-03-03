@@ -1,0 +1,17 @@
+update users set projektleiter='1' where lower(loginname)='weissmi';
+update users set projektleiter='1' where lower(loginname)='garbe';
+update users set projektleiter='1' where lower(loginname)='wendtsi';
+update users set projektleiter='1' where lower(loginname)='dhamigu';
+update users set projektleiter='1' where lower(loginname)='weiss';
+update users set projektleiter='1' where lower(loginname)='steilan';
+update users set projektleiter='1' where lower(loginname)='hanke';
+update users set projektleiter='1' where lower(loginname)='koehler';
+update users set projektleiter='1' where lower(loginname)='effenbergerkl';
+update users set projektleiter='1' where lower(loginname)='mujic';
+update users set projektleiter='1' where lower(loginname)='landgrafhe';
+update users set projektleiter='1' where lower(loginname)='hammerschmidt';
+update users set projektleiter='1' where lower(loginname)='walinski';
+update users set projektleiter='1' where lower(loginname)='pacher';
+update users set projektleiter='1' where lower(loginname)='schuetzal';
+update users set projektleiter='1' where lower(loginname)='shu';
+update users set projektleiter='1' where lower(loginname)='ecksteinma';

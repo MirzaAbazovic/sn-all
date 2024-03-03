@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur UEVT-Stiftvergabe.
+-->
+<sf>
+    
+    <Button name="fill.leiste">
+        <icon>de/augustakom/hurrican/gui/images/fill.gif</icon>
+        <text>sel. Leiste füllen</text>
+        <tooltip>Füllt die SELEKTIERTE Leiste mit Stiften aus der aktuellen Bestellung auf</tooltip>
+    </Button>
+    
+    <Button name="new.leiste">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <text>Neue Leiste füllen</text>
+        <tooltip>Erstellt eine neue Leiste fuer den UEVT und spielt in diese Stifte aus der akt. Bestellung ein</tooltip>
+    </Button>
+    
+</sf>

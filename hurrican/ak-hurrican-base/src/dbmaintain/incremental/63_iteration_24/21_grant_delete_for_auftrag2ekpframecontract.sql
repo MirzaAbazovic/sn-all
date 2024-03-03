@@ -1,0 +1,1 @@
+grant delete on T_AUFTRAG_2_EKP_FRAME_CONTRACT to R_HURRICAN_USER;

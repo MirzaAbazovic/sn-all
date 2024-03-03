@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:pres="http://wholesale.telekom.de/oss/v15/pres" xmlns:order="http://wholesale.telekom.de/oss/v15/order" xmlns:message="http://wholesale.telekom.de/oss/v15/message" xmlns:complex="http://wholesale.telekom.de/oss/v15/complex" xmlns:simple="http://wholesale.telekom.de/oss/v15/simple" xmlns:enum="http://wholesale.telekom.de/oss/v15/enm" targetNamespace="http://wholesale.telekom.de/oss/v15/pres" version="15.00.00/2020-05-09">
+    <xsd:import namespace="http://wholesale.telekom.de/oss/v15/order" schemaLocation="oss-order.xsd"/>
+    <xsd:import namespace="http://wholesale.telekom.de/oss/v15/message" schemaLocation="oss-message.xsd"/>
+    <xsd:import namespace="http://wholesale.telekom.de/oss/v15/complex" schemaLocation="oss-type-complex.xsd"/>
+    <xsd:import namespace="http://wholesale.telekom.de/oss/v15/simple" schemaLocation="oss-type-simple.xsd"/>
+    <xsd:import namespace="http://wholesale.telekom.de/oss/v15/enm" schemaLocation="oss-type-enum.xsd"/>   
+    <!--
+        !
+        !    Produkt im Auftrag
+        !
+    -->
+    <xsd:element name="produktAuftrag" type="pres:ProduktPRESType"/>
+    <xsd:complexType name="ProduktPRESType">
+        <xsd:complexContent>
+            <xsd:extension base="complex:ProduktType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <!--
+        !
+        !    Bereitstellung
+        !
+    -->
+    <xsd:element name="NEU" type="pres:PRESBereitstellungType"/>
+    <xsd:complexType name="PRESBereitstellungType">
+        <xsd:complexContent>
+            <xsd:extension base="order:BereitstellungProduktType">
+                <xsd:sequence>
+                    <xsd:element name="standortA" type="complex:StandortType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Es ist die Wohnadresse anzugeben, nicht der Standort des Leitungsabschlusses</xsd:documentation>
+						</xsd:annotation>	
+					</xsd:element>                                        
+                    <xsd:element name="bestandssuche" type="complex:ErweiterteBestandssucheType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <!--
+        !
+        !    Produktattribute für Meldungen
+        !
+    -->
+    <xsd:element name="produktMeldung" type="pres:ProduktPRESMeldungType"/>
+    <xsd:complexType name="ProduktPRESMeldungType">
+        <xsd:complexContent>
+            <xsd:extension base="message:MeldungProduktType"/>
+        </xsd:complexContent>
+    </xsd:complexType>
+    
+    <xsd:element name="ABM" type="pres:MeldungsattributePRES-ABMType"/>
+	<xsd:complexType name="MeldungsattributePRES-ABMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeABMType">
+				<xsd:sequence>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+    
+</xsd:schema>

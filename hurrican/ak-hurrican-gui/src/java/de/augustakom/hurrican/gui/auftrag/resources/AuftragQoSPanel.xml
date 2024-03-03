@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das VoIP-Panel.
+-->
+<sf>
+	
+	<Text name="qos">Quality-of-Service</Text>
+	<Text name="details">Details</Text>
+	
+	<Button name="add.qos">
+		<icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+		<tooltip>Erstellt einen neuen QoS-Eintrag für den Auftrag</tooltip>
+	</Button>
+	
+	<Button name="save.qos">
+		<icon>de/augustakom/hurrican/gui/images/save.gif</icon>
+		<tooltip>Speichert die aktuell dargestellte QoS-Konfiguration</tooltip>
+	</Button>
+
+	<Label name="percentage"><text>%-Wert:</text></Label>
+	<FormattedTextField name="percentage">
+		<tooltip>Prozentwert bezogen auf die maximal verfuegbare Bandbreite des Anschlusses</tooltip>
+		<columns>20</columns>
+		<format type="number">#########</format>
+	</FormattedTextField>
+	
+	<Label name="qos.class"><text>QoS-Klasse:</text></Label>
+	<ReferenceField name="qos.class">
+		<tooltip>Quality-of-Service Klasse zur Konfiguration</tooltip>
+		<id.property>id</id.property>
+		<name.property>strValue</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+	</ReferenceField>
+	
+	<Label name="valid.from"><text>Gültig von:</text></Label>
+    <DateComponent name="valid.from">
+    	<tooltip>Datum, ab dem die Konfiguration gültig sein soll (Format: dd.MM.yyyy)</tooltip>
+    	<format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+	
+	<Label name="valid.to"><text>Gültig bis:</text></Label>
+    <DateComponent name="valid.to">
+    	<tooltip>Datum, bis zu dem die Konfiguration gültig sein soll (Format: dd.MM.yyyy)</tooltip>
+    	<format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="profil.name"><text>Profil:</text></Label>
+    <TextField name="profil.name">
+        <tooltip>Name des QoS-Profils</tooltip>
+        <columns>30</columns>
+        <maxchars>128</maxchars>
+    </TextField>
+    <Label name="profil.prio"><text>Priorität (%):</text></Label>
+    <TextField name="profil.prio">
+        <tooltip>Priorisierung VoIP-Traffic in %</tooltip>
+        <columns>30</columns>
+        <maxchars>128</maxchars>
+    </TextField>
+    <Label name="profil.bandbreite"><text>Bandbreite (kbit/s):</text></Label>
+    <TextField name="profil.bandbreite">
+        <tooltip>Priorisierte Bandbreite für VoIP</tooltip>
+        <columns>30</columns>
+        <maxchars>128</maxchars>
+    </TextField>
+    <Label name="profil.klasse"><text>Service-Klasse:</text></Label>
+    <TextField name="profil.klasse">
+        <tooltip>Service - Klasse</tooltip>
+        <columns>30</columns>
+        <maxchars>128</maxchars>
+    </TextField>
+    <Label name="profil.gueltig.ab">
+        <text>Gültig ab:</text>
+    </Label>
+    <DateComponent name="profil.gueltig.ab">
+        <tooltip>Datum, ab dem das QoS-Profil dem Auftrag zugeordnet ist</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+</sf>

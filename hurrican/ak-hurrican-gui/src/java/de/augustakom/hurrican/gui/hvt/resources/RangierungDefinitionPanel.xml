@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Aufbau von Rangierungen.
+-->
+<sf>
+
+    <Label name="eq.ewsd">
+        <text>EWSD:</text>
+        <style>bold</style>
+    </Label>
+
+    <Label name="eq.ewsd.count">
+        <text>0</text>
+        <style>bold</style>
+    </Label>
+
+    <Label name="eq.dslam">
+        <text>DSLAM:</text>
+        <style>bold</style>
+    </Label>
+
+    <Label name="eq.dslam.count">
+        <text>0</text>
+        <style>bold</style>
+    </Label>
+
+    <Label name="eq.sdh">
+        <text>SDH:</text>
+        <style>bold</style>
+    </Label>
+
+    <Label name="eq.sdh.count">
+        <text>0</text>
+        <style>bold</style>
+    </Label>
+
+    <Label name="eq.pdh.in">
+        <text>PDH-IN:</text>
+        <style>bold</style>
+    </Label>
+
+    <Label name="eq.pdh.in.count">
+        <text>0</text>
+        <style>bold</style>
+    </Label>
+
+    <Label name="eq.pdh.out">
+        <text>PDH-OUT:</text>
+        <style>bold</style>
+    </Label>
+
+    <Label name="eq.pdh.out.count">
+        <text>0</text>
+        <style>bold</style>
+    </Label>
+
+    <Label name="eq.carrier">
+        <text>Carrier:</text>
+        <style>bold</style>
+    </Label>
+
+    <Label name="eq.carrier.count">
+        <text>0</text>
+        <style>bold</style>
+    </Label>
+
+    <Label name="eq.uetv"><text>UETV:</text></Label>
+    <ComboBox name="eq.uetv">
+        <tooltip>Übertragungsverfahren für den DTAG-Stift</tooltip>
+    </ComboBox>
+
+    <Label name="eq.rang.ss.type"><text>Rang-SS-Type:</text></Label>
+    <ComboBox name="eq.rang.ss.type">
+        <tooltip>Rang-SS-Type für den DTAG-Stift</tooltip>
+    </ComboBox>
+
+    <Label name="eq.rang.type"><text>Rangierungsart:</text></Label>
+    <ComboBox name="eq.rang.type">
+        <tooltip>DLS/Telefonie oder SDH/PDH</tooltip>
+    </ComboBox>
+
+    <Button name="add.rangierung">
+        <text>Rangierung hinzufügen</text>
+        <tooltip>Verbindet die ausgewählten Equipments zu einer Rangierung</tooltip>
+    </Button>
+
+    <Button name="create.rangierungen">
+        <text>Rangierungen erzeugen</text>
+        <tooltip>Erstellt alle hinzugefügten Rangierungsdatensätze</tooltip>
+    </Button>
+
+    <Button name="reset.rangierungen">
+        <text>Verwerfen</text>
+        <tooltip>Verwirft alle hinzugefügten Rangierungen</tooltip>
+    </Button>
+
+    <Button name="define.bg">
+        <text>BG definieren</text>
+        <tooltip>Öffnet einen Dialog, über den die Baugruppen definiert werden können</tooltip>
+    </Button>
+
+    <Button name="refresh">
+        <text>Refresh</text>
+        <icon>de/augustakom/hurrican/gui/images/refresh.png</icon>
+        <tooltip>Lädt die Daten neu</tooltip>
+    </Button>
+
+</sf>

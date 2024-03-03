@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="commandMDUCreate" resourceRoot="" soapui-version="3.6.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CommandMDUCreateDataWebServiceSoap11" type="wsdl" bindingName="{http://mnet.de/hurricanweb/command/mdu/types/}CommandMDUCreateDataWebServiceSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/hurricanweb/command/mdu/commandMDUCreateData.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/hurricanweb/command/mdu/commandMDUCreateData.wsdl"><con:part><con:url>http://localhost:8080/hurricanweb/command/mdu/commandMDUCreateData.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://mnet.de/hurricanweb/command/mdu/types/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://mnet.de/hurricanweb/command/mdu/types" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://mnet.de/hurricanweb/command/mdu/types/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://mnet.de/hurricanweb/command/mdu/types" xmlns:ns0="http://mnet.de/hurricanweb/command/mdu/types" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="CommandMDUCreateDataRequest" type="ns0:CommandMDUCreateDataRequest"/>
+      <xs:element name="CommandMDUCreateDataRequestResponse" type="ns0:CommandMDUCreateDataRequestResponse"/>
+      <xs:element name="CommandMDUCreateDataRequestFailure" type="ns0:CommandMDUCreateDataRequestFailure"/>
+      <xs:complexType name="CommandMDUCreateDataRequest">
+        <xs:sequence>
+          <xs:element name="bezeichnung" type="xs:string"/>
+          <xs:element name="hersteller" type="xs:string"/>
+          <xs:element name="seriennummer" type="xs:string"/>
+          <xs:element name="modellNummer" type="xs:string"/>
+          <xs:element name="bgTyp" type="xs:string"/>
+          <xs:element name="olt" type="xs:string"/>
+          <xs:element name="oltRack" type="xs:string"/>
+          <xs:element name="oltSubrack" type="xs:string"/>
+          <xs:element name="oltSlot" type="xs:string"/>
+          <xs:element name="oltPort" type="xs:string"/>
+          <xs:element name="gponId" type="xs:string"/>
+          <xs:element name="caTvOnline" type="xs:string"/>
+          <xs:element name="standort" type="xs:string"/>
+          <xs:element name="raumbezeichnung" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommandMDUCreateDataRequestResponse">
+        <xs:sequence>
+          <xs:element name="bezeichnung" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommandMDUCreateDataRequestFailure">
+        <xs:sequence>
+          <xs:element name="bezeichnung" type="xs:string"/>
+          <xs:element name="errorMsg" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="CommandMDUCreateDataRequest">
+    <wsdl:part element="sch:CommandMDUCreateDataRequest" name="CommandMDUCreateDataRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommandMDUCreateDataRequestResponse">
+    <wsdl:part element="sch:CommandMDUCreateDataRequestResponse" name="CommandMDUCreateDataRequestResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommandMDUCreateDataRequestFailure">
+    <wsdl:part element="sch:CommandMDUCreateDataRequestFailure" name="CommandMDUCreateDataRequestFailure"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CommandMDUCreateDataWebService">
+    <wsdl:operation name="CommandMDUCreateData">
+      <wsdl:input message="tns:CommandMDUCreateDataRequest" name="CommandMDUCreateDataRequest"></wsdl:input>
+      <wsdl:output message="tns:CommandMDUCreateDataRequestResponse" name="CommandMDUCreateDataRequestResponse"></wsdl:output>
+      <wsdl:fault message="tns:CommandMDUCreateDataRequestFailure" name="CommandMDUCreateDataRequestFailure"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CommandMDUCreateDataWebServiceSoap11" type="tns:CommandMDUCreateDataWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CommandMDUCreateData">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CommandMDUCreateDataRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CommandMDUCreateDataRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CommandMDUCreateDataRequestFailure">
+        <soap:fault name="CommandMDUCreateDataRequestFailure" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommandMDUCreateData">
+    <wsdl:port binding="tns:CommandMDUCreateDataWebServiceSoap11" name="CommandMDUCreateDataWebServiceSoap11">
+      <soap:address location="http://localhost:8080/hurricanweb/command/mdu"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/hurricanweb/command/mdu</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="CommandMDUCreateData" bindingOperationName="CommandMDUCreateData" type="Request-Response" outputName="CommandMDUCreateDataRequestResponse" inputName="CommandMDUCreateDataRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Huawei"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/hurricanweb/command/mdu</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/command/mdu/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:CommandMDUCreateDataRequest>
+         <typ:bezeichnung>MDU-401078</typ:bezeichnung>
+         <typ:hersteller>Huawei</typ:hersteller>
+         <typ:seriennummer>485754438BD0XY03</typ:seriennummer>
+         <typ:modellNummer>MA5652G</typ:modellNummer>
+         <typ:bgTyp></typ:bgTyp>
+         <typ:olt>OLT-400003</typ:olt>
+         <typ:oltRack>0</typ:oltRack>
+         <typ:oltSubrack></typ:oltSubrack>
+         <typ:oltSlot>1</typ:oltSlot>
+         <typ:oltPort>0</typ:oltPort>
+         <typ:gponId>030</typ:gponId>
+         <typ:caTvOnline>false</typ:caTvOnline>
+         <typ:standort>MUC-LANAL-052</typ:standort>
+         <typ:raumbezeichnung>EG,BR2</typ:raumbezeichnung>
+      </typ:CommandMDUCreateDataRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mnet.de/hurricanweb/command/mdu/types/CommandMDUCreateDataWebService/CommandMDUCreateDataRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Alcatel"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/hurricanweb/command/mdu</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/command/mdu/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:CommandMDUCreateDataRequest>
+         <typ:bezeichnung>MDU-401062</typ:bezeichnung>
+         <typ:hersteller>Alcatel</typ:hersteller>
+         <typ:seriennummer>485754438BD0XY04</typ:seriennummer>
+         <typ:modellNummer>O-881V-P</typ:modellNummer>
+         <typ:bgTyp></typ:bgTyp>
+         <typ:olt>OLT-400007</typ:olt>
+         <typ:oltRack>0</typ:oltRack>
+         <typ:oltSubrack></typ:oltSubrack>
+         <typ:oltSlot>1</typ:oltSlot>
+         <typ:oltPort>0</typ:oltPort>
+         <typ:gponId>002</typ:gponId>
+         <typ:caTvOnline>false</typ:caTvOnline>
+         <typ:standort>MUC-EMYNO-002-Testlabor</typ:standort>
+         <typ:raumbezeichnung>UG,E9_94</typ:raumbezeichnung>
+      </typ:CommandMDUCreateDataRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mnet.de/hurricanweb/command/mdu/types/CommandMDUCreateDataWebService/CommandMDUCreateDataRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Produkt2PhysikTyp
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Produkt2PhysikTyp" table="T_PRODUKT_2_PHYSIKTYP">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_PRODUKT_2_PHYSIKTYP_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="produktId" column="PROD_ID" type="long"/>
+        <property name="physikTypId" column="PHYSIKTYP" type="long"/>
+        <property name="physikTypAdditionalId" column="PHYSIKTYP_ADDITIONAL" type="long"/>
+        <property name="virtuell" column="VIRTUELL" type="boolean"/>
+        <property name="parentPhysikTypId" column="PARENTPHYSIKTYP_ID" type="long"/>
+        <property name="priority" column="PRIORITY" type="long"/>
+        <property name="useInRangMatrix" column="USE_IN_RANG_MATRIX" type="boolean"/>
+
+    </class>
+
+</hibernate-mapping>

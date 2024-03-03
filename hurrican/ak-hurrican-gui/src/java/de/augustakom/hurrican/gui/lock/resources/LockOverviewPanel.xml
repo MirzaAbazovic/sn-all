@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Sperrverwaltung.
+-->
+<sf>
+
+    <Text name="functions">Funktionen</Text>
+    <Text name="details">Details</Text>
+
+    <Button name="create.new.lock">
+        <text>neue Sperre</text>
+        <tooltip>erstellt eine neue Sperre</tooltip>
+    </Button>
+
+    <Button name="change.to.full">
+        <text>Wandlung auf voll</text>
+        <tooltip>Wandelt eine abgehende Sperre in eine Voll-Sperre</tooltip>
+    </Button>
+
+    <Button name="remove.lock">
+        <text>Entsperren</text>
+        <tooltip>Entsperrt den gewählten Auftrag</tooltip>
+    </Button>
+
+    <Button name="create.demontage">
+        <text>Demontage</text>
+        <tooltip>Erstellt einen Demontage-Eintrag für den Auftrag</tooltip>
+    </Button>
+
+    <Button name="save.lock">
+        <text>Speichern</text>
+        <tooltip>Speichert einen modifizierten Sperr-Eintrag</tooltip>
+    </Button>
+
+    <Label name="lock.details"><text>Abteilungen:</text></Label>
+
+    <Label name="lock.reason.text"><text>Grund der Sperre:</text></Label>
+    <TextArea name="lock.reason.text">
+        <tooltip>Gibt einen Grund für die Sperre an</tooltip>
+        <columns>30</columns>
+        <rows>4</rows>
+    </TextArea>
+
+    <Text name="no.selection">Es ist keine Sperre ausgewählt.</Text>
+
+    <Text name="change.title">Änderung durchführen?</Text>
+    <Text name="change.message">Soll die Änderung der Sperre für Debitor {0}
+wirklich durchgeführt werden?</Text>
+
+</sf>

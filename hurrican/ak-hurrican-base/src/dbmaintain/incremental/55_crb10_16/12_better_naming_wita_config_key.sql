@@ -1,0 +1,1 @@
+UPDATE T_WITA_CONFIG wc set CONFIG_KEY = 'wita.count.of.minutes.request.onhold' WHERE wc.CONFIG_KEY = 'wita.messages.onhold';

@@ -1,0 +1,151 @@
+create table RTB_BILL_200611(
+	BILL_NO INT(10) not null, 
+	BILL_ID VARCHAR (20), 
+	INVOICE_DATE DATE default null, 
+	CUSTOMER__NO INT(10) not null, 
+	ACCOUNT_NO INT(10) not null, 
+	CHARGED_FROM DATE default null, 
+	CHARGED_TO DATE default null, 
+	AMOUNT DECIMAL (18, 2) not null, 
+	CURRENCY_ID CHAR (3) not null, 
+	PAYMENT_METHOD VARCHAR (5) not null, 
+	STATE VARCHAR (20) default 'CREATED' not null, 
+	REMAINING_AMOUNT DECIMAL(18,2) not null,
+    PAID_ON DATE default null,
+    RELEASED_AT DATE default null,
+    RELEASED_BY INT(10),
+    COMMISSIONED_AT DATE default null,
+    COMMISSIONED_BY INT(10),
+    COMMISSION_ID VARCHAR (20),
+    DUNNING_LEVEL INT(3) default 0 not null,
+    DUNNING_LEVEL_SINCE DATE default null,
+    DUNNED_L1_AT DATE default null,
+    DUNNED_L1_BY INT(10),
+    DUNNED_L2_AT DATE default null,
+    DUNNED_L2_BY INT(10),
+    CANCEL_ID VARCHAR (20),
+    CANCEL_CAUSE_NO INT(10),
+    CANCELLED_AT DATE default null,
+    CANCELLED_BY INT(10),
+    WRITE_OFF_ID VARCHAR (20),
+    WRITE_OFF_CAUSE_NO INT(10),
+    WRITTEN_OFF_AT DATE default null,
+    WRITTEN_OFF_BY INT(10),
+    constraint PK_RTB_BILL_200611 primary key (BILL_NO)
+);
+
+create table A_PRICE_SUM_200611(
+    KUNDE__NO INT(10) not null,
+    AUFTRAG_NO INT(10) not null,
+    NODE_CONN_NO INT(10) not null,
+    PRICE_TYPE_NO INT(10) not null,
+    BILL_SPEC_SELECTION INT(10) not null,
+    COST_SUM DECIMAL(18, 2) not null,
+    CALL_LENGTH_SUM DECIMAL(19, 3) not null,
+    TAX_TIME_SUM DECIMAL(19, 3) not null,
+    NO_CALLS DECIMAL(16) not null,
+    GROUP_QUALIFIER VARCHAR (20)
+);
+
+create table RTB_BILL_ITEM_200611(
+    ITEM_NO INT(10) not null,
+    BILL_NO INT(10) not null,
+    ORIG_PERIOD INT(10) not null,
+    ITEM_TYPE_NO INT(10) not null,
+    CUSTOMER__NO INT(10) not null,
+    ORDER__NO INT(10) not null,
+    PRODUCT__NO INT(10) not null,
+    ORDER_ITEM__NO INT(10),
+    SERVICE_NO INT(10),
+    DISCOUNT_NO INT(10),
+    CHARGED_FROM DATE default null,
+    CHARGED_TO DATE default null,
+    QUANTITY DECIMAL(18, 4),
+    PRICE DECIMAL(18, 2),
+    AMOUNT DECIMAL(18, 2) not null,
+    CURRENCY_ID CHAR (3) not null,
+    constraint PK_RTB_BILL_ITEM_200611 primary key (ITEM_NO)
+);
+
+
+create table RTB_BILL_200611_mig(
+	BILL_NO INT(10) not null, 
+	BILL_ID VARCHAR (20), 
+	INVOICE_DATE DATE default null, 
+	CUSTOMER__NO INT(10) not null, 
+	ACCOUNT_NO INT(10) not null, 
+	CHARGED_FROM DATE default null, 
+	CHARGED_TO DATE default null, 
+	AMOUNT DECIMAL (18, 2) not null, 
+	CURRENCY_ID CHAR (3) not null, 
+	PAYMENT_METHOD VARCHAR (5) not null, 
+	STATE VARCHAR (20) default 'CREATED' not null, 
+	REMAINING_AMOUNT DECIMAL(18,2) not null,
+    PAID_ON DATE default null,
+    RELEASED_AT DATE default null,
+    RELEASED_BY INT(10),
+    COMMISSIONED_AT DATE default null,
+    COMMISSIONED_BY INT(10),
+    COMMISSION_ID VARCHAR (20),
+    DUNNING_LEVEL INT(3) default 0 not null,
+    DUNNING_LEVEL_SINCE DATE default null,
+    DUNNED_L1_AT DATE default null,
+    DUNNED_L1_BY INT(10),
+    DUNNED_L2_AT DATE default null,
+    DUNNED_L2_BY INT(10),
+    CANCEL_ID VARCHAR (20),
+    CANCEL_CAUSE_NO INT(10),
+    CANCELLED_AT DATE default null,
+    CANCELLED_BY INT(10),
+    WRITE_OFF_ID VARCHAR (20),
+    WRITE_OFF_CAUSE_NO INT(10),
+    WRITTEN_OFF_AT DATE default null,
+    WRITTEN_OFF_BY INT(10),
+    constraint PK_RTB_BILL_200611 primary key (BILL_NO)
+);
+
+create table A_PRICE_SUM_200611_mig(
+    KUNDE__NO INT(10) not null,
+    AUFTRAG_NO INT(10) not null,
+    NODE_CONN_NO INT(10) not null,
+    PRICE_TYPE_NO INT(10) not null,
+    BILL_SPEC_SELECTION INT(10) not null,
+    COST_SUM DECIMAL(18, 2) not null,
+    CALL_LENGTH_SUM DECIMAL(19, 3) not null,
+    TAX_TIME_SUM DECIMAL(19, 3) not null,
+    NO_CALLS DECIMAL(16) not null,
+    GROUP_QUALIFIER VARCHAR (20)
+);
+
+create table RTB_BILL_ITEM_200611_mig(
+    ITEM_NO INT(10) not null,
+    BILL_NO INT(10) not null,
+    ORIG_PERIOD INT(10) not null,
+    ITEM_TYPE_NO INT(10) not null,
+    CUSTOMER__NO INT(10) not null,
+    ORDER__NO INT(10) not null,
+    PRODUCT__NO INT(10) not null,
+    ORDER_ITEM__NO INT(10),
+    SERVICE_NO INT(10),
+    DISCOUNT_NO INT(10),
+    CHARGED_FROM DATE default null,
+    CHARGED_TO DATE default null,
+    QUANTITY DECIMAL(18, 4),
+    PRICE DECIMAL(18, 2),
+    AMOUNT DECIMAL(18, 2) not null,
+    CURRENCY_ID CHAR (3) not null,
+    constraint PK_RTB_BILL_ITEM_200611 primary key (ITEM_NO)
+);
+
+
+CREATE INDEX IX_PRICESUM_AUFTRAG ON A_PRICE_SUM_200611 (AUFTRAG_NO ASC);
+CREATE INDEX IX_PRICESUM_KUNDE ON A_PRICE_SUM_200611 (KUNDE__NO ASC);
+CREATE INDEX IX_RTBBILL_KUNDE ON RTB_BILL_200611 (CUSTOMER__NO ASC);
+CREATE INDEX IX_RTBBILLITEM_KUNDE ON RTB_BILL_ITEM_200611 (CUSTOMER__NO ASC);
+CREATE INDEX IX_RTBBILLITEM_BILLNO ON RTB_BILL_ITEM_200611 (BILL_NO ASC);
+
+CREATE INDEX IX_PRICESUM_AUFTRAG ON A_PRICE_SUM_200611_mig (AUFTRAG_NO ASC);
+CREATE INDEX IX_PRICESUM_KUNDE ON A_PRICE_SUM_200611_mig (KUNDE__NO ASC);
+CREATE INDEX IX_RTBBILL_KUNDE ON RTB_BILL_200611_mig (CUSTOMER__NO ASC);
+CREATE INDEX IX_RTBBILLITEM_KUNDE ON RTB_BILL_ITEM_200611_mig (CUSTOMER__NO ASC);
+CREATE INDEX IX_RTBBILLITEM_BILLNO ON RTB_BILL_ITEM_200611_mig (BILL_NO ASC);

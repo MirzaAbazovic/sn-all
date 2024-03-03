@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:enum="http://wholesale.telekom.de/oss/v15/enm" targetNamespace="http://wholesale.telekom.de/oss/v15/enm" version="15.00.00/2020-05-09">
+	<!-- 
+		!
+		!   Geschäftsfall
+		!
+	-->
+	<xsd:simpleType name="GeschaeftsfallArtType">
+		<xsd:annotation>
+			<xsd:documentation>der Schlüssel für die Art des Geschäftsfalles nach der Orderschnittstelle als Kategorisierung für die Art des Kundenwunsches</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="50"/>
+			<xsd:enumeration value="Bereitstellung">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Kuendigung">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Aenderung">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Produktgruppenwechsel">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Anbieterwechsel">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="BereitstellungService">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Auskunft">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="GeschaeftsfallType">
+		<xsd:annotation>
+			<xsd:documentation>der Schlüssel zur Auswahl des Geschäftsfalles an der Orderschnittstelle als Unterkategorie der Geschäftsfall-Art; beschreibt, wie der Kundenauftrag prozessiert wird</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10"/>
+			<xsd:enumeration value="NEU">
+				<xsd:annotation>
+					<xsd:documentation>Bereitstellung (Bestellung neues Produkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="KUE-KD">
+				<xsd:annotation>
+					<xsd:documentation>Kündigung durch den Kunden</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+            <xsd:enumeration value="KUE-DT">
+                <xsd:annotation>
+                    <xsd:documentation>Kündigung durch die Telekom</xsd:documentation>
+                </xsd:annotation>
+            </xsd:enumeration>
+			<xsd:enumeration value="AEN-LMAE">
+				<xsd:annotation>
+					<xsd:documentation>Änderung von Leistungsmerkmalen</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LAE">
+				<xsd:annotation>
+					<xsd:documentation>Änderung von Leistungen</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="PGW">
+				<xsd:annotation>
+					<xsd:documentation>Produktgruppenwechsel</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="PV">
+				<xsd:annotation>
+					<xsd:documentation>Providerwechsel</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="VBL">
+				<xsd:annotation>
+					<xsd:documentation>Verbundleistung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="REX-MK">
+				<xsd:annotation>
+					<xsd:documentation>Rufnummernexport mit Anschlusskündigung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="SER-POW">
+				<xsd:annotation>
+					<xsd:documentation>Portwechsel</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="AUS-BUE">
+				<xsd:annotation>
+					<xsd:documentation>Bestandsübersicht</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="KUZU">
+				<xsd:annotation>
+					<xsd:documentation>Kundenzusammenführung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>			
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="GeschaeftsfallPreOrderType">
+		<xsd:annotation>
+			<xsd:documentation>der Schlüssel zur Auswahl des Geschäftsfalles an der Orderschnittstelle nach PreOrder; beschreibt, wie der Kundenauftrag prozessiert wird</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10"/>
+			<xsd:enumeration value="NEU">
+				<xsd:annotation>
+					<xsd:documentation>Bereitstellung - PreOrderTyp Bereitstellung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LAE">
+				<xsd:annotation>
+					<xsd:documentation>Änderung von Leistungen; PreOrderTyp Aenderung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="PGW">
+				<xsd:annotation>
+					<xsd:documentation>Produktgruppenwechsel; PreOrderTyp Aenderung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="PV">
+				<xsd:annotation>
+					<xsd:documentation>Providerwechsel; PreOrderTyp Anbieterwechsel</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="VBL">
+				<xsd:annotation>
+					<xsd:documentation>Verbundleistung; PreOrderTyp Anbieterwechsel</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- 
+		!
+		!   Ansprechpartner: Rollen
+		!
+	-->
+	<xsd:simpleType name="AnsprechpartnerRolleType">
+		<xsd:annotation>
+			<xsd:documentation>Auftragsmanagement, Technik, ...</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="20"/>
+			<xsd:enumeration value="Auftragsmanagement">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Technik">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- 
+		!
+		!   Anlagen / Dokumente
+		!
+	-->
+	<xsd:simpleType name="AnlagentypType">
+		<xsd:annotation>
+			<xsd:documentation>Lageplan, Kündigungsschreiben, Kundenauftrag, ..., Sonstige</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="30"/>
+			<xsd:enumeration value="Kuendigungsschreiben">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Lageplan">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Kundenauftrag">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Portierungsanzeige">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Kuendigung abgebender Provider">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="letzte Telekom-Rechnung">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Sonstige">
+				<xsd:annotation>
+					<xsd:documentation/>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DokumenttypType">
+		<xsd:annotation>
+			<xsd:documentation>zulässige Dateiformate</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="image/tiff">
+				<xsd:annotation>
+					<xsd:documentation>Der MIME-Typ für *.tif - Dateien</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="image/jpeg">
+				<xsd:annotation>
+					<xsd:documentation>Der MIME-Typ für *.jpg - Dateien</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="application/msword">
+				<xsd:annotation>
+					<xsd:documentation>Der MIME-Typ für *.doc - Dateien</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="application/excel">
+				<xsd:annotation>
+					<xsd:documentation>Der MIME-Typ für *.xls - Dateien</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="application/pdf">
+				<xsd:annotation>
+					<xsd:documentation>Der MIME-Typ für *.pdf - Dateien</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+	<!-- 
+		!
+		!   Aktionscode
+		!
+	-->
+	<xsd:simpleType name="AktionscodeType">
+		<xsd:annotation>
+			<xsd:documentation>(Zugang, Wegfall)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:length value="1"/>
+			<xsd:enumeration value="A">
+				<xsd:annotation>
+					<xsd:documentation>Änderung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="W">
+				<xsd:annotation>
+					<xsd:documentation>Wegfall</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Z">
+				<xsd:annotation>
+					<xsd:documentation>Zugang</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- 
+		!
+		! Meldungstyp
+		!
+	-->
+	<xsd:simpleType name="MeldungstypType">
+		<xsd:annotation>
+			<xsd:documentation>kategorisiert die Art der Meldung</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10"/>
+			<xsd:enumeration value="TEQ">
+				<xsd:annotation>
+					<xsd:documentation>Technische Quittung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="QEB">
+				<xsd:annotation>
+					<xsd:documentation>Qualifizierte Eingangsbestätigung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ABM">
+				<xsd:annotation>
+					<xsd:documentation>Auftragsbestätigung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERLM">
+				<xsd:annotation>
+					<xsd:documentation>Erledigungsmeldung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERLM-K">
+				<xsd:annotation>
+					<xsd:documentation>Erledigungsmeldung Kunde</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERGM">
+				<xsd:annotation>
+					<xsd:documentation>Ergebnismeldung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ENTM">
+				<xsd:annotation>
+					<xsd:documentation>Entgeltmeldung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="AKM-PV">
+				<xsd:annotation>
+					<xsd:documentation>Ankündigung an abgebenden Provider</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="RUEM-PV">
+				<xsd:annotation>
+					<xsd:documentation>Rückmeldung des abgebenden Provider</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ABM-PV">
+				<xsd:annotation>
+					<xsd:documentation>Auftragsbestätigung an abgebenden Provider</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ERLM-PV">
+				<xsd:annotation>
+					<xsd:documentation>Erledigungssmeldung an abgebenden Provider</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ENTM-PV">
+				<xsd:annotation>
+					<xsd:documentation>Entgeltmeldung an abgebenden Provider</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ABBM-PV">
+				<xsd:annotation>
+					<xsd:documentation>Abbruchmeldung an abgebenden Provider</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ABBM">
+				<xsd:annotation>
+					<xsd:documentation>Abbruchmeldung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="VZM">
+				<xsd:annotation>
+					<xsd:documentation>Verzögerungsmeldung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="TAM">
+				<xsd:annotation>
+					<xsd:documentation>Terminanforderungsmeldung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MTAM">
+				<xsd:annotation>
+					<xsd:documentation>Mahn-Terminanforderungsmeldung</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- 
+		!
+		!   Anrede
+		!
+	-->
+	<xsd:simpleType name="AnredePersonType">
+		<xsd:annotation>
+			<xsd:documentation>die Anrede zur Person (deutsch: Frau/Herr)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="1"/>
+			<xsd:enumeration value="1">
+				<xsd:annotation>
+					<xsd:documentation>Herr</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="2">
+				<xsd:annotation>
+					<xsd:documentation>Frau</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="9">
+				<xsd:annotation>
+					<xsd:documentation>keine Anrede</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AnredeFirmaType">
+		<xsd:annotation>
+			<xsd:documentation>die Anrede zur Firma (deutsch: Firma)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="1"/>
+			<xsd:enumeration value="4">
+				<xsd:annotation>
+					<xsd:documentation>Firma</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="9">
+				<xsd:annotation>
+					<xsd:documentation>keine Anrede</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<!-- 
+		!
+		! Übertragungsverfahren
+		!
+	-->
+	<xsd:simpleType name="UebertragungsverfahrenType">
+		<xsd:annotation>
+			<xsd:documentation>Angaben zur produktspezifischen Qualität des Anschlusses</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="H01" />
+			<xsd:enumeration value="H02" />
+			<xsd:enumeration value="H03" />
+			<xsd:enumeration value="H04" />
+			<xsd:enumeration value="H05" />
+			<xsd:enumeration value="H06" />
+			<xsd:enumeration value="H07" />
+			<xsd:enumeration value="H08" />
+			<xsd:enumeration value="H10" />
+			<xsd:enumeration value="H11" />
+			<xsd:enumeration value="H13" />
+			<xsd:enumeration value="H14" />
+			<xsd:enumeration value="H15" />
+			<xsd:enumeration value="H16" />
+			<xsd:enumeration value="H17" />
+			<xsd:enumeration value="H18" />
+			<xsd:enumeration value="H19" />
+			<xsd:enumeration value="H20" />
+			<xsd:enumeration value="H21" />
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- 
+		!
+		! etc...
+		!
+	-->
+	<xsd:simpleType name="AenderungskennzeichenType">
+		<xsd:annotation>
+			<xsd:documentation>spezifiziert einen Auftrag als Standard, Storno oder Terminverschiebung</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="30"/>
+			<xsd:enumeration value="Standard">
+				<xsd:annotation>
+					<xsd:documentation>Kennzeichnung eines Standardauftrages</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Storno">
+				<xsd:annotation>
+					<xsd:documentation>Kennzeichnung der Stornierung des Auftrages mit den korrespondierenden Auftragsdaten</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Terminverschiebung">
+				<xsd:annotation>
+					<xsd:documentation>Kennzeichnung eines Auftrages zur Terminverschiebung des Auftrages mit den korrespondierenden Auftragsdaten</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>	
+	<xsd:simpleType name="BoolDecisionType">
+		<xsd:annotation>
+			<xsd:documentation/>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:length value="1"/>
+			<xsd:enumeration value="J"/>
+			<xsd:enumeration value="N"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="AnschlussartType">
+		<xsd:annotation>
+			<xsd:documentation>Übertragungseinrichtung am ISIS/OPAL-Netz</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10"/>
+			<xsd:enumeration value="Analog"/>
+			<xsd:enumeration value="ISDN-Basis"/>
+			<xsd:enumeration value="PMX"/>
+		</xsd:restriction>
+	</xsd:simpleType>		
+</xsd:schema>

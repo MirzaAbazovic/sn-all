@@ -1,0 +1,2 @@
+-- Insert a new WBCI TVS-VA feature flag for auto processing
+INSERT INTO T_FEATURE (ID, NAME, FLAG) VALUES (S_T_FEATURE_0.NEXTVAL,'WBCI_TVS_VA_AUTO_PROCESSING', '0');

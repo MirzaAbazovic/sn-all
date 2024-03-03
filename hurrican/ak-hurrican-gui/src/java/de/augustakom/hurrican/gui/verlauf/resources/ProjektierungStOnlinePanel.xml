@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    GUI-Definitionen fuer das Projektierungs-Panel ST Online.
+-->
+<sf>
+
+    <Button name="erledigen">
+        <text>Abschliessen</text>
+        <tooltip>Schliesst die Projektierung ab</tooltip>
+    </Button>
+
+    <Button name="uebernehmen">
+        <text>Übernehmen</text>
+        <tooltip>Übernahme der aktuellen Projektierung</tooltip>
+    </Button>
+
+    <Button name="print">
+        <text>Drucken</text>
+        <tooltip>Druckt die Projektierung aus</tooltip>
+    </Button>
+
+    <Button name="bemerkungen">
+        <text>Bemerkungen</text>
+        <tooltip>Zeigt alle Bemerkungen zu der Projektierung an</tooltip>
+    </Button>
+
+    <Button name="show.ports">
+        <text>Ports</text>
+        <tooltip>Zeigt alle Ports des Verlaufes an</tooltip>
+    </Button>
+
+</sf>

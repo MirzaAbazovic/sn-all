@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Definition der IA-Nummer.
+-->
+<sf>
+
+    <Text name="title">Budget anlegen</Text>
+
+    <Label name="budget"><text>Budget:</text></Label>
+    <FormattedTextField name="budget">
+        <tooltip>Betrag für das gewünschte Budget</tooltip>
+        <columns>20</columns>
+        <format type="number">#.##</format>
+    </FormattedTextField>
+
+    <Label name="responsible"><text>Budgetverantwortlicher:</text></Label>
+    <ReferenceField name="responsible">
+        <tooltip>Auswahl des zuständigen Budgetverantwortlicher</tooltip>
+        <id.property>id</id.property>
+        <name.property>nameAndFirstName</name.property>
+        <reference.class>de.augustakom.authentication.model.AKUser</reference.class>
+        <columns>20</columns>
+    </ReferenceField>
+
+    <Label name="ia.level1"><text>Ebene 1</text></Label>
+    <ComboBox name="ia.level1">
+        <tooltip>Abbild SAP-Investitionsstrukur in Hurrican Ebene 1</tooltip>
+    </ComboBox>
+
+    <Label name="ia.level3"><text>Ebene 3</text></Label>
+    <ComboBox name="ia.level3">
+        <tooltip>Abbild SAP-Investitionsstrukur in Hurrican Ebene 3</tooltip>
+    </ComboBox>
+
+    <Label name="ia.level5"><text>Ebene 5</text></Label>
+    <ComboBox name="ia.level5">
+        <tooltip>Abbild SAP-Investitionsstrukur in Hurrican Ebene 5</tooltip>
+    </ComboBox>
+</sf>

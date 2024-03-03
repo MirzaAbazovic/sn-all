@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.ArchPrintSet
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="ArchPrintSet" table="ARCH_PRINT_SET">
+	    
+	    <!-- PrimaryKey -->
+		<id name="printSetNo" column="ARCH_PRINT_SET_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<property name="name" column="ARCH_PRINT_SET_ID" type="string"/>
+
+	</class>
+	
+</hibernate-mapping>

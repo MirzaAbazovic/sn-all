@@ -1,0 +1,13 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: adlatus-cd
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  ref:
+    branch: master
+  url: ssh://git@bitbucket.org/bitconex/adlatus-ci-cd.git
+  secretRef:
+    name: flux-system

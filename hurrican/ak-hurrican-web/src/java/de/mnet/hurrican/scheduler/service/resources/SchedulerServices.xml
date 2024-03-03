@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer die Scheduler-Services.
+-->
+<beans  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.springframework.org/schema/beans"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="classpath:de/mnet/hurrican/scheduler/service/resources/SchedulerDAOs.xml"/>
+
+    <!-- Service-Definition fuer DataSource Status-Service -->
+    <bean id="de.mnet.hurrican.scheduler.service.DataSourceStatusService"
+        class="de.mnet.common.service.status.DataSourceStatusService">
+        <property name="dataSourceName" value="scheduler.dataSource"/>
+        <property name="tableName" value="QRTZ_LOCKS"/>
+    </bean>
+
+    <!-- Service-Definition fuer Scheduler Status-Service -->
+    <bean id="de.mnet.hurrican.scheduler.service.SchedulerStatusService"
+        class="de.mnet.hurrican.scheduler.service.SchedulerStatusService" />
+
+    <!-- SchedulerJobService (Target) -->
+    <bean id="schedulerJobServiceTarget" class="de.mnet.hurrican.scheduler.service.impl.SchedulerJobServiceImpl">
+        <property name="jobExecutionDAO" ref="de.mnet.hurrican.scheduler.dao.JobExecutionDAO"/>
+        <property name="jobErrorDAO" ref="de.mnet.hurrican.scheduler.dao.JobErrorDAO"/>
+    </bean>
+    <!-- SchedulerJobService (Transaction-Proxy) -->
+    <bean id="de.mnet.hurrican.scheduler.service.SchedulerJobService"
+        class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="scheduler.hibernateTxManager"/>
+        <property name="target" ref="schedulerJobServiceTarget"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -de.mnet.hurrican.scheduler.exceptions.AKSchedulerException</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- CustomerNotificationService (Target) -->
+    <bean id="customerNotificationServiceTarget" class="de.mnet.hurrican.scheduler.service.impl.CustomerNotificationServiceImpl">
+        <property name="messageDeliveryService" ref="messageDeliveryService"/>
+        <property name="carrierElTALService" ref="de.augustakom.hurrican.service.cc.CarrierElTALService"/>
+        <property name="queryCCService" ref="de.augustakom.hurrican.service.cc.QueryCCService"/>
+        <property name="mwfEntityService" ref="de.mnet.wita.service.MwfEntityService"/>
+        <property name="ccAuftragService" ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+        <property name="ansprechpartnerService" ref="de.augustakom.hurrican.service.cc.AnsprechpartnerService"/>
+        <property name="registryService" ref="de.augustakom.hurrican.service.cc.RegistryService"/>
+        <property name="oeService" ref="de.augustakom.hurrican.service.billing.OEService"/>
+    </bean>
+    <!-- CustomerNotificationService (Transaction-Proxy) -->
+    <bean id="de.mnet.hurrican.scheduler.service.CustomerNotificationService"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="scheduler.hibernateTxManager"/>
+        <property name="target" ref="customerNotificationServiceTarget"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -java.lang.Exception</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Service-Definition fuer die Signatur-Funktionalitaet. -->
+    <bean id="signatureServiceTarget"
+          class="de.mnet.hurrican.scheduler.service.impl.SignatureServiceImpl">
+        <property name="DAO" ref="de.mnet.hurrican.scheduler.dao.SignaturedFileDAO"/>
+    </bean>
+    <bean id="de.mnet.hurrican.scheduler.service.SignatureService"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="scheduler.hibernateTxManager"/>
+        <property name="target" ref="signatureServiceTarget"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -java.lang.Exception</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Service-Definition fuer verschiedene Logging-Funktionen -->
+    <bean id="schedulerLogServiceTarget"
+        class="de.mnet.hurrican.scheduler.service.impl.SchedulerLogServiceImpl">
+        <property name="DAO" ref="de.mnet.hurrican.scheduler.dao.ExportedBillingFileDAO"/>
+    </bean>
+    <bean id="de.mnet.hurrican.scheduler.service.SchedulerLogService"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="scheduler.hibernateTxManager"/>
+        <property name="target" ref="schedulerLogServiceTarget"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -java.lang.Exception</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

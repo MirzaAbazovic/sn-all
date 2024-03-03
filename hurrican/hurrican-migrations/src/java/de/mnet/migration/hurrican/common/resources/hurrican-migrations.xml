@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Basis Spring Context fuer alle Migrationen -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config />
+
+    <context:component-scan base-package="de.mnet.migration"/>
+
+    <!-- overridden -->
+    <bean id="databaseLogger" class="de.mnet.migration.common.main.DatabaseLoggerImpl">
+        <property name="loggingDataSource" ref="logDataSource"/>
+        <property name="simulate" value="${migration.simulate}"/>
+        <property name="logTableName" value="HURRICAN_MIG_LOG" />
+        <property name="logSequenceName" value="SEQ_HURRICAN_MIG_LOG" />
+        <property name="logIdTableName" value="HURRICAN_MIG_IDS" />
+    </bean>
+
+    <!-- overridden -->
+    <bean id="migrationResultDao"
+        class="de.mnet.migration.common.main.MigrationResultDaoImpl">
+        <property name="dataSource" ref="logDataSource" />
+        <property name="simulate" value="${migration.simulate}"/>
+        <property name="migLogTableName" value="HURRICAN_MIG_LOG"/>
+        <property name="migResultTableName" value="HURRICAN_MIG_RESULT"/>
+        <property name="migResultSequenceName" value="SEQ_HURRICAN_MIG_RESULT"/>
+    </bean>
+
+</beans>

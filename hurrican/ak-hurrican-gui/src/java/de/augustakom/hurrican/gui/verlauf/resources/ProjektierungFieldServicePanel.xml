@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    GUI-Definitionen fuer das Projektierungs-Panel der Abteilungen FieldService.
+-->
+<sf>
+
+    <Label name="bearbeiter"><text>Bearbeiter:        </text></Label>
+    <TextField name="bearbeiter">
+        <tooltip>Name des Bearbeiters</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="datum.an"><text>Datum an:</text></Label>
+    <DateComponent name="datum.an">
+        <tooltip>Datum/Uhrzeit, wann die Projektierung an den FieldService verschickt wurde</tooltip>
+        <format type="date">dd.MM.yyyy HH:mm</format>
+    </DateComponent>
+
+    <Label name="erledigt.am"><text>Datum erledigt:</text></Label>
+    <DateComponent name="erledigt.am">
+        <tooltip>Datum/Uhrzeit, wann die Projektierung erledigt wurde</tooltip>
+        <format type="date">dd.MM.yyyy HH:mm</format>
+    </DateComponent>
+
+    <Button name="erledigen">
+        <text>Abschliessen</text>
+        <tooltip>Schliesst die Projektierung ab</tooltip>
+    </Button>
+
+    <Button name="uebernehmen">
+        <text>Übernehmen</text>
+        <tooltip>Übernahme der aktuellen Projektierung</tooltip>
+    </Button>
+
+    <Button name="print">
+        <text>Drucken</text>
+        <tooltip>Druckt die Projektierung aus</tooltip>
+    </Button>
+
+    <Button name="bemerkungen">
+        <text>Bemerkungen</text>
+        <tooltip>Zeigt alle Bemerkungen zu der Projektierung an</tooltip>
+    </Button>
+
+    <Button name="show.ports">
+        <text>Ports</text>
+        <tooltip>Zeigt alle Ports des Verlaufes an</tooltip>
+    </Button>
+
+</sf>

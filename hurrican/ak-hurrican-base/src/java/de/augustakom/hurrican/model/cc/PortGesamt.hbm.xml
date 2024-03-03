@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.PortGesamt
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="PortGesamt" table="T_Port_Gesamt">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_PORT_GESAMT_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="pg_switch" column="SWITCH" type="string"/>
+        <property name="port" column="PORT" type="string"/>
+        <property name="feld3" column="FELD3" type="string"/>
+        <property name="status" column="STATUS" type="string"/>
+        <property name="vorwahl" column="VORWAHL" type="string"/>
+        <property name="drn" column="DRN" type="string"/>
+        <property name="datum" column="DATUM" type="date"/>
+
+
+    </class>
+
+</hibernate-mapping>

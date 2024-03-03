@@ -1,0 +1,39 @@
+-- Abfrage der Kunden pro OLT Port für MDU
+-- (wird aus dem Service-Portal aufgerufen)
+
+CREATE OR REPLACE VIEW V_KUNDE_PRO_OLTPORT_MDU as
+  SELECT DISTINCT
+    ast.STATUS_TEXT as TECH_STATUS,
+    ad.PRODAK_ORDER__NO as TAIFUN_ORDER__NO,
+    ad.VORGABE_SCV as PLANNED_START,
+    ad.INBETRIEBNAHME as REAL_DATE,
+    ad.KUENDIGUNG as CANCEL_DATE,
+    p.ANSCHLUSSART,
+    ad.PROD_ID,
+	MDU.OLT_FRAME,
+	MDU.OLT_SHELF,
+	MDU.OLT_GPON_PORT,
+	RACK.GERAETEBEZ,
+	t.TDN as VERBINDUNGSBEZEICHNUNG,
+	ad.AUFTRAG_ID,
+  EQUIPMENT.eq_id as PORT_ID
+  FROM T_HW_RACK RACK
+    inner join T_HW_RACK_MDU MDU         on (RACK.ID = MDU.OLT_RACK_ID)
+    inner join T_HW_BAUGRUPPE BAUGRUPPE  on (MDU.RACK_ID = BAUGRUPPE.RACK_ID)
+    inner join T_EQUIPMENT EQUIPMENT     on (Baugruppe.id = EQUIPMENT.HW_BAUGRUPPEN_ID)
+    inner join T_RANGIERUNG RANGIERUNG   on (RANGIERUNG.EQ_IN_ID = EQUIPMENT.EQ_ID)
+    inner join T_ENDSTELLE ENDSTELLE     on (ENDSTELLE.RANGIER_ID=RANGIERUNG.RANGIER_ID or ENDSTELLE.RANGIER_ID_ADDITIONAL=RANGIERUNG.RANGIER_ID)
+    inner join T_AUFTRAG_TECHNIK atech   on (atech.AT_2_ES_ID=ENDSTELLE.ES_GRUPPE)
+    inner join T_AUFTRAG_DATEN ad        on (ad.AUFTRAG_ID=atech.AUFTRAG_ID)
+    inner join T_AUFTRAG_STATUS ast      on (ad.STATUS_ID=ast.ID)
+    inner join T_PRODUKT p               on (ad.PROD_ID=p.PROD_ID)
+    left join T_TDN t                    on (atech.TDN_ID=t.ID)
+  where
+        ad.GUELTIG_BIS > SYSDATE
+    and ad.STATUS_ID < 10000
+    and atech.GUELTIG_BIS > SYSDATE
+    and (ad.KUENDIGUNG is null or ad.KUENDIGUNG > SYSDATE)
+    and ad.INBETRIEBNAHME < SYSDATE
+    and RACK_TYP = 'OLT';
+
+GRANT SELECT ON V_KUNDE_PRO_OLTPORT_MDU TO HURRICAN_TECH_MUC;

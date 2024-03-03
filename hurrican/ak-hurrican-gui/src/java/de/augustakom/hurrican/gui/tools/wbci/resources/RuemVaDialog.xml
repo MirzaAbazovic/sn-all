@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Beantwortung einer Abbruchmeldung
+-->
+<sf>
+
+    <Text name="dialog.title">RUEM-VA zur Vorabstimmung: %s</Text>
+
+    <Label name="details"><text>Details zur RUEM-VA</text></Label>
+    <Label name="melde.codes"><text>Melde-Codes zur RUEM-VA</text></Label>
+
+    <Label name="ruemva.termin"><text>Termin:</text></Label>
+    <DateComponent name="ruemva.termin">
+        <tooltip>Angabe des Termins, zu dem der Wechsel zugestimmt wird</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="mnet.technology"><text>M-net Technologie:</text></Label>
+    <TextField name="mnet.technology">
+        <columns>30</columns>
+        <tooltip>Zeigt an, auf welcher Technologie der M-net Auftrag realisiert ist</tooltip>
+    </TextField>
+
+    <Label name="vtr.nrs"><text>Vertragsnummern:</text></Label>
+    <List name="vtr.nrs">
+        <tooltip>WITA Vertragsnummer(n) bzw. WBCI Line-IDs</tooltip>
+    </List>
+
+    <Label name="all.numbers">
+        <text>Alle Nummern der Anschlüsse portieren:</text>
+    </Label>
+    <CheckBox name="all.numbers">
+        <tooltip>Signalisieret den abgegebenden EKP, das alle Rufnummern des Anschlusses portiert werden müssen. Das Feld wird nur bei Anschlüssen mit mehreren Rufnummern ausgewertet.</tooltip>
+    </CheckBox>
+
+    <Label name="automatable">
+        <text>Automatische Prozessierung</text>
+    </Label>
+    <CheckBox name="automatable">
+        <tooltip>Aktiviert die automatische Prozessierung fuer den WBCI Geschaeftsfall (z.B. autom. Kuendigung der Auftraege und Verarbeitung der AKM-TR)</tooltip>
+    </CheckBox>
+
+    <Label name="phone.numbers">
+        <text>Rufnummern:</text>
+    </Label>
+
+    <Text name="send.txt">RUEM-VA senden</Text>
+    <Text name="send.tooltip">Rückmeldung (RUEM-VA) zur Vorabstimmung wird versendet.</Text>
+
+</sf>

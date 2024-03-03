@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Konfiguration der Bauauftragsverteilung
+-->
+<sf>
+
+    <Text name="search">Suche</Text>
+    <Text name="config">Konfiguration</Text>
+
+    <Label name="search.produkt"><text>Produkt:</text></Label>
+    <ComboBox name="search.produkt">
+        <tooltip>Auswahl des Produkts fuer die Suche</tooltip>
+    </ComboBox>
+
+    <Label name="search.anlass"><text>BA-Anlass:</text></Label>
+    <ComboBox name="search.anlass">
+        <tooltip>Auswahl des Bauauftragsanlass fuer die Suche</tooltip>
+    </ComboBox>
+
+    <Button name="search">
+        <icon>de/augustakom/hurrican/gui/images/search.gif</icon>
+        <text>Suchen</text>
+        <tooltip>Sucht nach den Bauauftragskonfigurationen mit den angegebenen Parametern</tooltip>
+        <mnemonic>VK_N</mnemonic>
+    </Button>
+
+    <Button name="new.config">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Legt eine neue Bauauftragskonfiguration an</tooltip>
+        <mnemonic>VK_D</mnemonic>
+    </Button>
+
+    <Button name="save.config">
+        <icon>de/augustakom/hurrican/gui/images/save.gif</icon>
+        <tooltip>Speichert die aktuelle Bauauftragskonfiguration</tooltip>
+        <mnemonic>VK_D</mnemonic>
+    </Button>
+
+    <Button name="delete.config">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht die aktuelle Bauauftragskonfiguration</tooltip>
+        <mnemonic>VK_D</mnemonic>
+    </Button>
+
+    <Label name="produkt"><text>Produkt:</text></Label>
+    <ComboBox name="produkt">
+        <tooltip>Auswahl des Produkts fuer die Bauauftragskonfiguration</tooltip>
+    </ComboBox>
+
+    <Label name="ba.anlass"><text>BA-Anlass:</text></Label>
+    <ComboBox name="ba.anlass">
+        <tooltip>Auswahl des Bauauftrags-Anlass fuer die Bauauftragskonfiguration</tooltip>
+    </ComboBox>
+
+    <Label name="verteilung.durch"><text>Verteilung durch:</text></Label>
+    <ComboBox name="verteilung.durch">
+        <tooltip>Angabe der Abteilung, die fuer die Verteilung zustaendig ist</tooltip>
+    </ComboBox>
+
+    <Label name="abt.config"><text>Abteilungen:</text></Label>
+    <ComboBox name="abt.config">
+        <tooltip>Auswahl der Abteilungen, die den Bauauftrag erhalten sollen</tooltip>
+    </ComboBox>
+
+    <Label name="automatic"><text>automatisch Verteilen:</text></Label>
+    <CheckBox name="automatic">
+        <tooltip>Angabe ob der Bauauftrag automatisch an die zuständige Abteilung verteilt werden soll</tooltip>
+    </CheckBox>
+
+    <Label name="cps.necessary"><text>CPS notwendig:</text></Label>
+    <CheckBox name="cps.necessary">
+        <tooltip>Flag definiert, ob fuer eine automatische Verteilung der Auftrag CPS-faehig sein muss</tooltip>
+    </CheckBox>
+
+</sf>

@@ -1,0 +1,4 @@
+-- Feld ist zu kurz fuer Typ
+
+ALTER TABLE T_IO_ARCHIVE
+MODIFY(RESPONSE_TYPE VARCHAR2(50 BYTE));

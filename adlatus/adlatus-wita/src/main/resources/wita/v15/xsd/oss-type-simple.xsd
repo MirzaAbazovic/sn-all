@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:simple="http://wholesale.telekom.de/oss/v15/simple" xmlns:enum="http://wholesale.telekom.de/oss/v15/enm" targetNamespace="http://wholesale.telekom.de/oss/v15/simple" version="15.00.00/2020-05-09">
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/enm" schemaLocation="oss-type-enum.xsd"/>
+	<!-- 
+		!
+		! Auftragskopf (Datentypen)
+		!
+	-->
+	<xsd:simpleType name="KundennummerType">
+		<xsd:annotation>
+			<xsd:documentation>Eindeutige ID des Kunden, wird bei Neuanlage des Kunden vergeben</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:length value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LeistungsnummerType">
+		<xsd:annotation>
+			<xsd:documentation>Eindeutiger Identifier der Leistung aus einem Rahmenvertrag des Kunden der für den Auftrag heranzuziehen ist</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="VertragsnummerType">
+		<xsd:annotation>
+			<xsd:documentation>Bezeichnet den Einzelvertrag, auf den sich der Auftrag bezieht.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ExterneAuftragsnummerType">
+		<xsd:annotation>
+			<xsd:documentation>Eindeutiger Identifier des Auftrages, durch den Kunden zu vergeben</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="20"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="BuchungskontonummerType">
+		<xsd:annotation>
+			<xsd:documentation>die Buchungskontonummer identifiziert den Debitor wird von der Telekom zur Fakturierung verwendet.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ProjektkennerType">
+		<xsd:annotation>
+			<xsd:documentation>eindeutige Identifikation eines Projektes</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="KopplungskennerType">
+		<xsd:annotation>
+			<xsd:documentation>eindeutige Identifikation zur Kopplung mehrerer Aufträge innerhalb eines Projektes</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AuftragsklammerType">
+		<xsd:annotation>
+			<xsd:documentation>kennzeichnet zusammengehörige Aufträge</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="10"/>
+			<xsd:pattern value="\d{1,10}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- 
+		!
+		!   Auftragsdaten
+		!
+	-->
+	<xsd:simpleType name="TerminType">
+		<xsd:annotation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">
+    Format: YYYY-MM-DD 
+	Beispiel: 2009-02-18
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:date">
+			<xsd:pattern value="\d{4}-.*"/>
+			<!-- Jahr nur vierstellig -->
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="OrtsnetzkennzahlType">
+		<xsd:annotation>
+			<xsd:documentation>Ortsnetzkennzahl des Anschlusses</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">keine führende '0'</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="2"/>
+			<xsd:maxLength value="5"/>
+			<xsd:pattern value="\d{2,5}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="RufnummerType">
+		<xsd:annotation>
+			<xsd:documentation>Rufnummer des Anschlusses</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">Die Rufnummer besteht aus min. 2 und max. 14 Ziffern. Die führende '0' ist nicht erlaubt.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="2"/>
+			<xsd:maxLength value="14"/>
+			<xsd:pattern value="[1-9][0-9]{1,13}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AnschlussbereichType">
+		<xsd:annotation>
+			<xsd:documentation>Der Anschlussbereich wird mit maximal 4 Ziffern spezifiziert.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="4"/>
+			<xsd:pattern value="\d{1,4}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ReservierungsnummerType">
+		<xsd:annotation>
+			<xsd:documentation>Eindeutige Reservierungsnummer für den gebuchten Montagetermin</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="20"/>
+			<xsd:pattern value="\d{1,20}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ZeitfensterType">
+		<xsd:annotation>
+			<xsd:documentation>Das Zeitfenster konkretisiert den Termin (das Datum) um einen Bereich angegeben als Uhrzeit (von - bis).</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">Ein Zeichen aus folgendem Bereich: 0-9, a-z. Beispiel: b </xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:length value="1"/>
+			<xsd:pattern value="[0-9a-z]"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- 
+		!
+		!  Auftragsposition
+		!
+	-->
+	<xsd:simpleType name="ProduktbezeichnerType">
+		<xsd:annotation>
+			<xsd:documentation>Produktbezeichner</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="100"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- 
+		!
+		! Meldungsposition
+		!
+	-->
+	<xsd:simpleType name="MeldungscodeType">
+		<xsd:annotation>
+			<xsd:documentation>Kurzbezeichnung zum Meldungstext</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MeldungstextType">
+		<xsd:annotation>
+			<xsd:documentation>ausführliche Beschreibung für den Meldungscode</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichMehrzeiligType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="255"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- 
+		!
+		! Ansprechpartner
+		!
+	-->
+	<xsd:simpleType name="TelefonnummerType">
+		<xsd:annotation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">
+	Es werden Formate mit und ohne Ländercode unterstützt. Beispiele: +49 351 111222 oder 0351 111222
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="30"/>
+			<xsd:whiteSpace value="collapse"/>
+			<xsd:pattern value="((\+\d{2} |0)\d{2,5} )?\d{1,14}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="EmailadresseType">
+		<xsd:annotation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">
+	Format: 'local-part'@'domain'. Nur zulässige E-Mail-Adressformate möglich.
+	Beispiel: Heribert.Mustermann@telekom.de
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:maxLength value="320"/>
+			<xsd:whiteSpace value="collapse"/>
+			<xsd:pattern value=".+@(.+\.)+\w+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- 
+		!
+		! Anschrift / Adresse
+		!
+	-->
+	<xsd:simpleType name="VornameType">
+		<xsd:annotation>
+			<xsd:documentation/>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="NachnameType">
+		<xsd:annotation>
+			<xsd:documentation/>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="30"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="StrassennameType">
+		<xsd:annotation>
+			<xsd:documentation>maximal 40 Zeichen für die Angabe der Strasse zur Adresse</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="40"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="HausnummerType">
+		<xsd:annotation>
+			<xsd:documentation>Die Hausnummer wird als Zahl (0-9999) angegeben.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d{1,4}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="HausnummernZusatzType">
+		<xsd:annotation>
+			<xsd:documentation>eine mögliche Ergänzung zur Hausnummer</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="6"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="OrtsnameType">
+		<xsd:annotation>
+			<xsd:documentation/>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="40"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="OrtsteilType">
+		<xsd:annotation>
+			<xsd:documentation/>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="40"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="GebaeudeteilNameType">
+		<xsd:annotation>
+			<xsd:documentation>Gebäudeteil</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="25"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="GebaeudeteilZusatzType">
+		<xsd:annotation>
+			<xsd:documentation>Gebäudeteilzusatz</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="25"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="GebaeudeteilIdType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d{1,13}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+		
+	<xsd:simpleType name="LandType">
+		<xsd:annotation>
+			<xsd:documentation>der zweistellige Ländercode (ISO)</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">der zweistellige ISO-Ländercode, Beispiel: de</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:length value="2"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PostleitzahlType">
+		<xsd:annotation>
+			<xsd:documentation/>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="10"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- 
+		!
+		! Leitungsattribute
+		!
+	-->
+	<xsd:simpleType name="LeitungsschluesselzahlType">
+		<xsd:annotation>
+			<xsd:documentation/>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="4"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="OrdnungsnummerType">
+		<xsd:annotation>
+			<xsd:documentation>fortlaufende Nummer zur Leitungskennzeichnung</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="10"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- 
+        !
+        ! Schaltungsattribute
+        !
+    -->
+	<xsd:simpleType name="UebergabeverteilerType">
+		<xsd:annotation>
+			<xsd:documentation>Nummer des Übergabeverteilers</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="4"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="EndverschlussType">
+		<xsd:annotation>
+			<xsd:documentation>Nummer des Endverschlusses</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Einstellige Angaben werden immer mit führender 0 ergänzt</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="2"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DoppeladerType">
+		<xsd:annotation>
+			<xsd:documentation>Nummer der Doppelader</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Einstellige Angaben werden immer mit führender 0 ergänzt</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="2"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="KupplungType">
+		<xsd:annotation>
+			<xsd:documentation>Nummer der Kupplung</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Einstellige Angaben werden immer mit führender 0 ergänzt</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="2"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="KVZNrType">
+		<xsd:annotation>
+			<xsd:documentation>Eindeutiger Identifier des Kabelverteilers</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="8"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="KVZSchaltnummerType">
+		<xsd:annotation>
+			<xsd:documentation>Angaben des Carriers zu seinen Schaltdaten</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">Beispiel: 3 K1 0060</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="8"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- 
+		!
+		! Meldung
+		!
+	-->
+	<xsd:simpleType name="V51IdType">
+		<xsd:annotation>
+			<xsd:documentation>ID der V5.1-Schnittstelle</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="8"/>
+			<xsd:pattern value="\d{1,8}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ZeitschlitzType">
+		<xsd:annotation>
+			<xsd:documentation>Kanal mit 64 KBit/s auf der 2MBit/s-Leitung</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2"/>
+			<xsd:pattern value="\d{1,2}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LeitungslaengeType">
+		<xsd:annotation>
+			<xsd:documentation>Länge (Einheit: Meter) des Leitungsabschnitts</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="5"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LeitungsdurchmesserType">
+		<xsd:annotation>
+			<xsd:documentation>Durchmesser des Leitungsabschnitts</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="5"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LeitungswiderstandType">
+		<xsd:annotation>
+			<xsd:documentation>Gesamtwiderstand in Ohm</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">Beispiele: '&lt; 1200', '&gt; 1200'</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="10"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="BitrateType">
+		<xsd:annotation>
+			<xsd:documentation>Max. Bruttobitrate in Kbit/s</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">Beispiel: 16000</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="6"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MinorVersionType">
+		<xsd:annotation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">
+    Format: zweitstellige nummerische Angabe als Nummer der Minorversion 
+	Beispiel: '00', '02'
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:length value="2"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ZeitstempelType">
+		<xsd:annotation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">
+    Format: YYYY-MM-DDTHH:mm:ss.SSSZ, wo T - Trennungszeichen, SSS - Millisekunden, Z - Zeitzone 
+	Beispiel: 2009-02-18T18:37:24.483+02:00
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:dateTime">
+			<xsd:pattern value="\d{4}-.*"/>
+			<!-- Jahr nur vierstellig -->
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LinkAN512Type">
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="512"/>
+			<xsd:whiteSpace value="collapse"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ProvidernameType">
+		<xsd:annotation>
+			<xsd:documentation>Name eines Providers</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="60"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="DurchwahlnummerType">
+		<xsd:annotation>
+			<xsd:documentation>Durchwahlnummer des Anlageanschlüsses, maximal 8 Ziffern</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">Beispiel: 1234</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="8"/>
+			<xsd:pattern value="\d{1,8}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="AbfragestelleType">
+		<xsd:annotation>
+			<xsd:documentation>Nummer der Abfragestelle, maximal 6 Ziffern</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">Beispiel: 0</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="6"/>
+			<xsd:pattern value="\d{1,6}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!--  Zeichenbereiche -->
+	<xsd:simpleType name="ErlaubterZeichenBereichType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Einschränkung von zugelassenen UTF-8 Zeichen für die alphanumerischen Datenwerte. Folgende Zeichen sind erlaubt: Tabulator, Leerzeichen, 0-9, a-z, A-Z, !"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_{}§°±²³ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ			 				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[&#x0009;&#x0020;-&#x005F;&#x0061;-&#x007B;&#x007D;&#x007F;&#x00A7;&#x00B0;-&#x00B3;&#x00C0;-&#x00D6;&#x00D8;-&#x00F6;&#x00F8;-&#x00FF;]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="ErlaubterZeichenBereichMehrzeiligType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Einschränkung von zugelassenen UTF-8 Zeichen für die mehrzeiligen alphanumerischen Datenwerte. Folgende Zeichen sind erlaubt: Tabulator, LineFeed, CarriageReturn, Leerzeichen, 0-9, a-z, A-Z, !"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\]^_{}§°±²³ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ			 				
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[&#x0009;&#x000A;&#x000D;&#x0020;-&#x005F;&#x0061;-&#x007B;&#x007D;&#x007F;&#x00A7;&#x00B0;-&#x00B3;&#x00C0;-&#x00D6;&#x00D8;-&#x00F6;&#x00F8;-&#x00FF;]*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="VorabstimmungsIdType">
+		<xsd:annotation>
+			<xsd:documentation>ID der Vorabstimmungsanfrage aus dem Vorabstimmungsprozess</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">Beispiel: DEU.EKP1.V000000013</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="16"/>
+			<xsd:maxLength value="21"/>
+			<xsd:pattern value="[0-9A-Z]{3}\.[0-9A-Z]{1,6}\.V[0-9A-Z]{9}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="MontagehinweisType">
+		<xsd:annotation>
+			<xsd:documentation>Nähere Angaben zur Durchführung der Montageleistung</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Für die Felder Lage TAE und Montagehinweis stehen in Summe 160 Zeichen zur Verfügung. Gelesen wird zunächst der Montagehinweis. Bei Angabe von mehr als 160 Zeichen können diese nicht mehr an den Service übermittelt werden</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichMehrzeiligType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="160"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="LineIDType">
+		<xsd:annotation>
+			<xsd:documentation>LineID für eindeutige Anschlussidentifizierung</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">Format: "[ITU M.1400 Country Code].[ITU M.1400 CarrierCode].[Unique Number of Line]". Beispiel:
+				DEU.DTAG.1754639821 </xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="7"/>
+			<xsd:maxLength value="21"/>
+			<xsd:pattern value="[0-9A-Z]{3}\.[0-9A-Z]{1,6}\.[0-9A-Z]{1,10}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PreOrderIDType">
+		<xsd:annotation>
+			<xsd:documentation>Eindeutige ID des PreOrder-Vorgangs</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">Die Angabe im Universally Unique Identifier (UUID)-Format. Beispiel: 550e8400-e29b-11d4-a716-446655440000. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="36"/>
+			<xsd:pattern value="([a-fA-F0-9]{8}-([a-fA-F0-9]{4}-){3}[a-fA-F0-9]{12})"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="HomeIDType">
+		<xsd:annotation>
+			<xsd:documentation>Datentyp für die HomeID. Die Home-ID ist der Identifikator für den FTTH-Anschluss in der Lokation des Endkunden.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:length value="7"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="KLSIDType">
+		<xsd:annotation>
+			<xsd:documentation>Dieser Typ beschreibt die ID einer geprüften Adresse.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="12"/>
+			<xsd:pattern value="\d{1,12}"/>
+		</xsd:restriction>
+	</xsd:simpleType>						
+	<xsd:simpleType name="LageTaeOntType">
+		<xsd:annotation>
+			<xsd:documentation>Kommentar zur Beschreibung der TAE-Dose oder ONT (für FTTx) am Standort A</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichMehrzeiligType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="160"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,1 @@
+update T_PRODUKT set ACCOUNT_VORS = 'XV', LI_NR=1, CPS_ACCOUNT_TYPE = 'VOIP' where PROD_ID = 511;

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="de.mnet.hurrican.scheduler.model">
+	<class name="ExportedBillingFile" table="EXPORTED_BILLING_FILES">
+
+	    <!-- PrimaryKey -->
+		<id name="id" column="ID" unsaved-value="null" type="long">
+			<generator class="sequence"><param name="sequence">S_EXP_BILLING_FILES_0</param></generator>
+		</id>
+
+		<!-- Sonstige Fields -->
+		<property name="billingYear" column="BILLING_YEAR" type="string" not-null="true"/>
+		<property name="billingMonth" column="BILLING_MONTH" type="string" not-null="true"/>
+		<property name="filename" column="FILENAME" type="string" not-null="true"/>
+		<property name="billingStream" column="BILLING_STREAM" type="string" not-null="true"/>
+		<property name="exportedAt" column="EXPORTED_AT" type="timestamp" not-null="true"/>
+		<property name="exportedToHost" column="EXPORTED_TO_HOST" type="string" not-null="false"/>
+		<property name="exportedToDir" column="EXPORTED_TO_DIR" type="string" not-null="true"/>
+
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<div *ngIf="(individual$ | async) as individual">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>{{individual.fullName}}</mat-card-title>
+      <mat-card-subtitle>something</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>test</p>
+      <button mat-button color="warn" (click)="deleteIndividual(individual.id)">
+        <mat-icon>delete</mat-icon>
+        <span>Delete individual</span>
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+

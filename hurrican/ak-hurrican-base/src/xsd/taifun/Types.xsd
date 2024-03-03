@@ -1,0 +1,1992 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema version='0.78' targetNamespace='http://www.ergon.ch/taifun/ws/types'
+	xmlns:xmime='http://www.w3.org/2005/05/xmlmime' xmlns:tns='http://www.ergon.ch/taifun/ws/types'
+	xmlns='http://www.w3.org/2001/XMLSchema'>
+
+	<import namespace="http://www.w3.org/2005/05/xmlmime"
+		schemaLocation="xmlmime.xsd" />
+
+	<!-- COMPLEX UNBOUNDED TYPES -->
+
+	<complexType name="PropertiesType">
+		<sequence>
+			<element name="bandwidth" type="tns:BandwidthType" maxOccurs="1"
+				minOccurs="0">
+				<annotation>
+					<documentation>
+						The bandwidth the products must support.
+						Unit in
+						kbit/s
+					</documentation>
+				</annotation>
+			</element>
+			<element name="connectionType" type="tns:ConnectionType"
+				maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>
+						The connectionType the product must
+						support.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="technologyType" type="tns:TechnologyType"
+				maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>The technology type this product must support
+					</documentation>
+				</annotation>
+			</element>
+			<element maxOccurs='unbounded' minOccurs='0' name='additionalTags'
+				type="tns:TagType" />
+		</sequence>
+	</complexType>
+
+	<!-- COMPLEX TYPES -->
+
+	<complexType name="PdfFileType">
+		<simpleContent>
+			<extension base="base64Binary">
+				<attribute ref="xmime:contentType" use="required" />
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="ServiceOrderDetailType">
+		<sequence>
+			<element name="serviceOrderNo" type="int">
+				<annotation>
+					<documentation>The Taifun id for this order.</documentation>
+				</annotation>
+			</element>
+			<element name="firstName" type="string" minOccurs="0" />
+			<element name="name" type="string" />
+			<element name='city' type='string' minOccurs="0" />
+			<element name='zipCode' type='string' minOccurs="0" />
+			<element name='street' type='string' minOccurs="0" />
+			<element name='houseNum' type='int' minOccurs="0" />
+			<element name="phoneCentral" type="string" minOccurs="0" />
+			<element name="mobile" type="string" minOccurs="0" />
+			<element name="email" type="string" minOccurs="0" />
+			<element name="productName" type="string" />
+			<element name="entryDate" type="dateTime" minOccurs="0"
+				maxOccurs="1">
+				<annotation>
+					<documentation>The date this order was issued.</documentation>
+				</annotation>
+			</element>
+			<element name="isInProgress" type="boolean">
+				<annotation>
+					<documentation>The date this order started to be processed.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="realisationDate" type="dateTime" minOccurs="0">
+				<annotation>
+					<documentation>The date this order finished to be processed with a
+						positive outcome.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="rejectionDate" type="dateTime" minOccurs="0">
+				<annotation>
+					<documentation>The date this order was rejected.</documentation>
+				</annotation>
+			</element>
+			<element name="stornoDate" type="dateTime" minOccurs="0">
+				<annotation>
+					<documentation>The date this order was canceled.</documentation>
+				</annotation>
+			</element>
+			<element name="cancellationDate" type="dateTime" minOccurs="0">
+				<annotation>
+					<documentation>The date this order was canceled because of an
+						error.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="minContractDuration" type="int" minOccurs="0">
+				<annotation>
+					<documentation>The minimum number of month the contract for this
+						order is going to last.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="contractStart" type="dateTime" minOccurs="0"
+				maxOccurs="1" />
+			<element name="contractEnd" type="dateTime" minOccurs="0"
+				maxOccurs="1" />
+			<element name="cancellationCause" type="string" minOccurs="0">
+				<annotation>
+					<documentation>The cause for the cancelation.</documentation>
+				</annotation>
+			</element>
+			<element name="remarks" type="string" maxOccurs="1"
+				minOccurs="0"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ServiceOrderListElemType">
+		<sequence>
+			<element name="serviceOrderNo" type="int">
+				<annotation>
+					<documentation>
+						The Taifun id for this order.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="orderId" type="string" minOccurs="1"
+				maxOccurs="1">
+				<annotation>
+					<documentation>
+						The taifun id identifying all the taifun orders
+						issued together within the same webservice call.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="partnerId" type="string">
+				<annotation>
+					<documentation>This is the partner identifier of the partner that
+						sent this order.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="firstName" type="string" minOccurs="0" />
+			<element name="name" type="string" />
+			<element name='locationAddress' type='tns:AddressDataType'
+				minOccurs="0" />
+			<element name="phoneCentral" type="string" minOccurs="0" />
+			<element name="mobile" type="string" minOccurs="0" />
+			<element name="email" type="string" minOccurs="0" />
+			<element name="astatus" type="tns:AStatusType">
+				<annotation>
+					<documentation>
+						The Taifun order status information.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="astatusDate" type="dateTime" minOccurs="0">
+				<annotation>
+					<documentation>
+						The date since when this order is in the status
+						indicated by astatus.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="BillingInformationType">
+		<sequence>
+			<element name="invoiceAddress" type="tns:AddressType" />
+			<element name="invoiceInterval" type="int" maxOccurs="1"
+				minOccurs="0">
+				<annotation>
+					<documentation>
+						Invoice interval in months.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="paperInvoice" type="boolean" maxOccurs="1"
+				minOccurs="0">
+				<annotation>
+					<documentation>Whether the customer wishes a paper invoice (true)
+						or not (false).
+					</documentation>
+				</annotation>
+			</element>
+			<element name="debitAccount" type="tns:CustomerAccountType" />
+			<element minOccurs="0" name="creditAccount" type="tns:CustomerAccountType" />
+		</sequence>
+	</complexType>
+	<complexType name="PartnerType">
+		<sequence>
+			<element name="partner" type="tns:CustomerType" />
+			<element minOccurs="0" maxOccurs="unbounded" name="partnerCollaborators"
+				type="string">
+				<annotation>
+					<documentation>The ids of the partner staff and associates.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="SortType">
+		<sequence>
+			<element name="order" type="tns:SortOrderType">
+				<annotation>
+					<documentation>The sort order.</documentation>
+				</annotation>
+			</element>
+			<element name="field" type="string" />
+		</sequence>
+	</complexType>
+	<complexType name="serviceOrderPairType">
+		<sequence>
+			<element name="serviceNoo" type="int" />
+			<element name="debitorNo" type="string" />
+		</sequence>
+	</complexType>
+	<simpleType name="SortOrderType">
+		<restriction base="string">
+			<enumeration value="ASC" />
+			<enumeration value="DESC" />
+		</restriction>
+	</simpleType>
+	<simpleType name="TechnologyType">
+		<restriction base="string">
+			<enumeration value="POTS" />
+			<enumeration value="ISDN" />
+			<enumeration value="ADSL" />
+			<enumeration value="ADSL-POTS" />
+			<enumeration value="ADSL-ISDN" />
+			<enumeration value="ADSL2+" />
+			<enumeration value="ADSL2+-POTS" />
+			<enumeration value="ADSL2+-ISDN" />
+			<enumeration value="VDSL" />
+			<enumeration value="FTTH" />
+			<enumeration value="FTTB-POTS" />
+			<enumeration value="FTTB" />
+		</restriction>
+	</simpleType>
+	<simpleType name="ConnectionType">
+		<restriction base="string">
+			<enumeration value="TAL-HVT" />
+			<enumeration value="TAL-KVZ" />
+			<enumeration value="GPON" />
+		</restriction>
+	</simpleType>
+	<simpleType name="BandwidthType">
+		<restriction base="int">
+			<enumeration value="3000" />
+			<enumeration value="6000" />
+			<enumeration value="18000" />
+			<enumeration value="25000" />
+			<enumeration value="50000" />
+			<enumeration value="100000" />
+		</restriction>
+	</simpleType>
+	<complexType name="WarningType">
+		<sequence>
+			<element name="code" type="int">
+				<annotation>
+					<documentation>The code number of this warning. See the
+						documentation for all codes.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="message" type="string" />
+		</sequence>
+	</complexType>
+	<simpleType name="GenderType">
+		<restriction base="string">
+			<enumeration value="M" />
+			<enumeration value="F" />
+		</restriction>
+	</simpleType>
+	<simpleType name="AvailableProductsLevelOfDetailType">
+		<restriction base="string">
+			<enumeration value="AVAILABLE_PRODUCTS" />
+			<enumeration value="AVAILABLE_PRODUCT_ELEMENTS" />
+			<enumeration value="ALL_PRODUCT_ELEMENTS" />
+		</restriction>
+	</simpleType>
+	<simpleType name="ProductAvailabilityLevelOfDetailType">
+		<restriction base="string">
+			<enumeration value="ALL_PRODUCTS" />
+			<enumeration value="ALL_PRODUCT_ELEMENTS" />
+		</restriction>
+	</simpleType>
+	<simpleType name="AddBlockadeReasonType">
+		<restriction base="string">
+			<enumeration value="Kundenauftrag" />
+			<enumeration value="Verlust der SIM-Karten" />
+			<enumeration value="Zahlungsverzug" />
+			<enumeration value="Kreditwuerdigkeit" />
+			<enumeration value="High-Spend-Verdacht" />
+			<enumeration value="andere" />
+		</restriction>
+	</simpleType>
+	<complexType name="OrganisationType">
+		<sequence>
+			<element name="name" type="string">
+				<annotation>
+					<documentation>The name of the organisation.</documentation>
+				</annotation>
+			</element>
+			<element minOccurs='0' name="address" type="tns:AddressDataType" />
+		</sequence>
+	</complexType>
+	<complexType name="PersonType">
+		<sequence>
+			<element name="gender" type="tns:GenderType" />
+			<element minOccurs="0" name="title" type="string" />
+			<element name="name" type="string" />
+			<element minOccurs="0" name="firstname" type="string" />
+			<element name="language" type="string">
+				<annotation>
+					<documentation>
+						The ISO language code.
+					</documentation>
+				</annotation>
+			</element>
+			<element minOccurs="0" name="phonePrivate" type="string" />
+			<element minOccurs="0" name="phoneBusiness" type="string" />
+			<element minOccurs="0" name="fax" type="string" />
+			<element minOccurs="0" name="mobile" type="string" />
+			<element minOccurs="0" name="email" type="string" />
+			<element minOccurs="0" name="voip" type="string" />
+			<element minOccurs="0" name="www" type="string" />
+			<element minOccurs="0" name="organisation" type="tns:OrganisationType">
+				<annotation>
+					<documentation>
+						Organisation this person belongs to.
+					</documentation>
+				</annotation>
+			</element>
+			<element minOccurs="0" name="relationtype" type="string" />
+		</sequence>
+	</complexType>
+	<complexType name="CustomerType">
+		<sequence>
+			<element minOccurs='0' name='customerNo' type='int'>
+				<annotation>
+					<documentation>
+						The identifier of the customer that wants to buy
+						this product
+					</documentation>
+				</annotation>
+			</element>
+			<element name='referringCustomer' type='int' minOccurs='0' maxOccurs='1'>
+				<annotation>
+					<documentation>
+						The identifier of the customer that referred the buying customer
+					</documentation>
+				</annotation>
+			</element>
+			<element name="resellerNo" type="int" minOccurs='0'>
+				<annotation>
+					<documentation>
+						The Taifun identifier of an Mnet reseller.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="partnerId" type="string" minOccurs='0'>
+				<annotation>
+					<documentation>
+						Unique identifier of the partner. Technical
+						info:
+						MNET specific.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="name" type='string' />
+			<element minOccurs='0' name="firstName" type='string' />
+			<element minOccurs='0' name="password" type='string' />
+			<element name='businessCustomer' type='boolean' />
+			<element minOccurs='0' name='legalForm' type='string' />
+			<element name='nationalityId' type='tns:String2Type'>
+				<annotation>
+					<documentation>The ISO country code.</documentation>
+				</annotation>
+			</element>
+			<element minOccurs='0' name='birthday' type="date" />
+			<element minOccurs='0' name='birthplace' type='string' />
+			<element minOccurs='0' name='phoneCentral' type='string' />
+			<element minOccurs='0' name='phoneBusiness' type='string' />
+			<element minOccurs='0' name='phonePrivate' type='string' />
+			<element minOccurs='0' name='fax' type='string' />
+			<element minOccurs='0' name='mobile' type='string' />
+			<element minOccurs='0' name='voip' type='string' />
+			<element minOccurs='0' name='email' type='string' />
+			<element minOccurs='0' name='www' type='string' />
+			<element name='postalAddr' type="tns:AddressDataType" />
+			<element minOccurs='0' name='externalCustomerNo' type='int'>
+				<annotation>
+					<documentation>
+						An id given and managed by the partner, that
+						will be
+						stored in Taifun for convenience.
+					</documentation>
+				</annotation>
+			</element>
+			<element name='language' type='tns:String2Type'>
+				<annotation>
+					<documentation>
+						The ISO language code.
+					</documentation>
+				</annotation>
+			</element>
+			<element minOccurs='0' name="commercialRegisterNumber" type="string">
+				<annotation>
+					<documentation>
+						Technical info: MNET specific.
+					</documentation>
+				</annotation>
+			</element>
+			<element name='accounts' minOccurs="1" maxOccurs="unbounded"
+				type='tns:CustomerAccountType'>
+				<annotation>
+					<documentation>
+						The accounts of the customer: can be a bic
+						account, a
+						credit card account, an iban account
+						etc.
+					</documentation>
+				</annotation>
+			</element>
+			<element minOccurs='0' name="active" type="boolean">
+				<annotation>
+					<documentation>
+						Whether this customer should be activated (true)
+						or
+						not (false).
+					</documentation>
+				</annotation>
+			</element>
+			<element minOccurs='0' maxOccurs="unbounded" name="customerAdvisors"
+				type="tns:PersonType">
+				<annotation>
+					<documentation>
+						The Mnet person that takes care of this
+						customer.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="contactPersons" type="tns:PersonType"
+				maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>
+						In case this is a partner, these are the
+						employees
+						that are contact persons for Mnet.
+					</documentation>
+				</annotation>
+			</element>
+
+			<element name="allowTelemarketingCalls" type="boolean"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="allowEmailNewsletter" type="boolean"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="allowPostalAdds" type="boolean" maxOccurs="1"
+				minOccurs="0"></element>
+			<element name="customerServiceRepresentativePersonNo" type="int" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Kundenberater (Person-Nr. der entsprechenden Person)</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="BillDataDescriptionType">
+		<sequence>
+			<element name="billDataDescription" type="string" minOccurs='1'
+				maxOccurs='1'>
+				<annotation>
+					<documentation>
+						Bill data description as shown in customer bill
+						tree:
+						month (MM) - bill id (YYYYMMNNNNNN) - currency id (EUR)
+						amount (19.90)
+						e.g. 08 - 200808004012 - EUR 26.48
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<!-- customer account types -->
+
+	<complexType name="CustomerAccountType">
+		<annotation>
+			<documentation>Represents a customer account. This is the common
+				abstract type, see the type hierarchy, to see what accounts are
+				possible.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element minOccurs="0" name='holder' type='string'>
+				<annotation>
+					<documentation>The account holder.</documentation>
+				</annotation>
+			</element>
+			<element minOccurs="0" name='bicCode' type='string'>
+				<annotation>
+					<documentation>
+						This is the bank routing number.
+					</documentation>
+				</annotation>
+			</element>
+			<element minOccurs="0" name='bankName' type='string' />
+			<element minOccurs="0" name='accountNumber' type='string' />
+			<element minOccurs="0" name='iban' type='string' />
+			<element minOccurs="0" name='creditCardNumber' type='string' />
+			<element minOccurs="0" name='creditCardOrganisation' type='string' />
+			<element minOccurs="0" name='creditCardValidThrough' type='date' />
+			<element name="accountHolderAddr" type="tns:AddressDataType"
+				minOccurs="0" maxOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="SepaBankAccountType">
+		<annotation>
+			<documentation>Represents a SEPA bank account. Available if
+				payment
+				method is SDD.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name='billSpecNo' type='int' />
+			<element minOccurs="0" name='holder' type='string'>
+				<annotation>
+					<documentation>The account holder.</documentation>
+				</annotation>
+			</element>
+			<element name='swiftCode' type='string'>
+				<annotation>
+					<documentation>This is the SWIFT Number (Bic Code).</documentation>
+				</annotation>
+			</element>
+			<element name='iban' type='string' />
+			<element minOccurs="0" name='validFrom' type='date' />
+			<element minOccurs="0" name='accountHolderAddress' type='tns:AddressDataType' />
+		</sequence>
+	</complexType>
+
+
+	<!-- /customer account types -->
+
+	<complexType name="AuthenticationType">
+		<sequence>
+			<element name='username' type='string'>
+				<annotation>
+					<documentation>This can be any kind of user identification.
+					</documentation>
+				</annotation>
+			</element>
+			<element name='password' type='string'>
+				<annotation>
+					<documentation>This can be any kind of secret key.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<!-- service order types -->
+
+	<complexType name="ServiceOrderType" abstract='true' block='restriction'>
+		<annotation>
+			<documentation>This is the common abstract type for service orders.
+				See the type hierarchy to see the different possible service orders.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="serviceOrderNo" type="int" maxOccurs="1"
+				minOccurs="0">
+				<annotation>
+					<documentation>
+						The Taifun id for this order.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="externalServiceOrderId" type="string">
+				<annotation>
+					<documentation>
+						An id given and managed by the partner, that
+						will be
+						stored in Taifun for convenience.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="productNo" type="int">
+				<annotation>
+					<documentation>
+						The Taifun product identifier this order refers
+						to.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="action" type="tns:ActionType">
+				<annotation>
+					<documentation>
+						The action this order is intended to do with its
+						data: This actions can be: New, Delete, Change.
+						Delete and Change
+						require the serviceOrderNo to
+						be set.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="connectionType" minOccurs="0" maxOccurs="1" type="string">
+				<annotation>
+					<documentation>
+						Connection type of order, maps to AUFTRAG.ANSCHLUSSART
+					</documentation>
+				</annotation>
+			</element>
+			<element minOccurs="0" name="technicalKey" type="string">
+				<annotation>
+					<documentation>
+						This key can be choosen by the issuer of this
+						order
+						to better retrieve this order: e.g. the
+						technicalkey could be a
+						phone number, is this
+						order is about assigning a new phone number
+						to
+						someone. One must be aware that no uniqueness
+						constraint exists
+						for this field.
+					</documentation>
+				</annotation>
+			</element>
+			<element minOccurs="0" name="remarks" type="string" />
+			<element name="entryDate" type="dateTime">
+				<annotation>
+					<documentation>
+						The date this order was issued.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="customerWishDate" type="dateTime" maxOccurs="1"
+				minOccurs="0">
+				<annotation>
+					<documentation>
+						The execution of this order must end not later
+						than
+						this date.
+					</documentation>
+				</annotation>
+			</element>
+			<element minOccurs="0" name="express" type="boolean" />
+			<element minOccurs="0" name="contractAddress" type="tns:AddressType" />
+			<element minOccurs="0" name="locationAddress" type="tns:AddressType" />
+			<element name="deliveryAddress" type="tns:AddressType"
+				maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>If a device has to be delivered and this address is
+						empty, then the postaladdress is taken.
+					</documentation>
+				</annotation>
+			</element>
+			<element name='identificationDocument' type="tns:IdentificationDocumentType"
+				maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>
+						A document that identifies the customer.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="minContractDuration" type="int">
+				<annotation>
+					<documentation>The minimal contract duration in number of months.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="billingInformation" type="tns:BillingInformationType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element minOccurs="0" maxOccurs="unbounded" name="serviceOrderNamedValues"
+				type="tns:NamedValueType">
+				<annotation>
+					<documentation>
+						This can be used as a generic way to expand the
+						order with further fields that of course have to
+						match to some
+						fields on Taifun.
+					</documentation>
+				</annotation>
+			</element>
+			<element minOccurs="0" maxOccurs="unbounded" name="orderPositions"
+				type="tns:ServiceOrderPositionType">
+				<annotation>
+					<documentation>The order positions.</documentation>
+				</annotation>
+			</element>
+			<element name="password" type="string" minOccurs="0"
+				maxOccurs="1" />
+			<element name="paymentByInstallments" type="boolean"
+				minOccurs="0" maxOccurs="1" />
+			<element name="distributionChannel" type="string" minOccurs="0"
+				maxOccurs="1" />
+			<element name='billingInfoServiceNo' type='int' minOccurs="0" maxOccurs="1">
+					<annotation>
+						<documentation>An existing service of the same customer, the billing information of which should be used.</documentation>
+					</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="ServiceOrderBaseType">
+		<complexContent>
+			<extension base='tns:ServiceOrderType' />
+		</complexContent>
+	</complexType>
+	
+	<complexType name="ServiceOrderVoiceType">
+		<complexContent>
+			<extension base="tns:ServiceOrderType">
+				<sequence>
+					<element name="phoneConnection"
+						type="tns:PhoneConnectionType" maxOccurs="1" minOccurs="0">
+						<annotation>
+							<documentation>
+								The desired phoneconnection type.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="currentPhoneConnection"
+						type="tns:PhoneConnectionType" maxOccurs="1" minOccurs="0" />
+					<element name="phoneBookEntry" type="string">
+						<annotation>
+							<documentation>
+								The string for the phonebook entry.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="phoneNumbersAndDirectoryEntry" type="tns:PhoneNumbersWithDirectoryEntryType" maxOccurs="1" minOccurs="0">
+						<annotation>
+							<documentation>This allows in-port of a customer's existing phone number(s),
+as well as automatically assigning a new phone number from M-net's range.
+Optionally a phone directory entry can be added.</documentation>
+						</annotation>
+					</element>
+					<element name="callDataRecord"
+						type="tns:CallDataRecordType">
+						<annotation>
+							<documentation>
+								The type of call data record the
+								customer wants.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="truncateTargetNumber" type="boolean"
+						minOccurs="0" maxOccurs="1" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="ServiceOrderMobileType">
+		<annotation>
+			<documentation>This type represents an order for mobile products.
+				MNET specific.
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base='tns:ServiceOrderVoiceType'>
+				<sequence>
+					<element name="fellowOrderNo" type="int" maxOccurs="1"
+						minOccurs="0">
+						<annotation>
+							<documentation>
+								This a reference to the already existing order of
+								a life partner of
+								the
+								ordering customer.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="bundleOrderNo" type="int" maxOccurs="1"
+						minOccurs="0">
+						<annotation>
+							<documentation>
+								This a reference to an already existing fixnet
+								order of this
+								customer.
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="ServiceOrderIpTvType">
+		<annotation>
+			<documentation>This type represents an order for IP-TV products.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base='tns:ServiceOrderBaseType'>
+				<sequence>
+					<element name="bundleOrderNo" type="int" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>Reference to the main service. This is mandatory only when ordered as mainServiceOrder. When ordered as part of additionalServiceOrders it will automatically be bundled with the the given mainServiceOrder.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="ServiceOrderDomainType">
+		<annotation>
+			<documentation>This type represents an order for domain products.
+				MNET specific.
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base='tns:ServiceOrderBaseType'>
+				<sequence>
+					<element name="bundleOrderNo" type="int" maxOccurs="1"
+						minOccurs="0">
+						<annotation>
+							<documentation>
+								This a reference to an already existing fixnet
+								order of this
+								customer.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="domainName" minOccurs="1" maxOccurs="1"
+						type="string">
+						<annotation>
+							<documentation>The name of the domain to be created, for example
+								'test.de'.
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="ServiceOrderCloudStorageType">
+		<annotation>
+			<documentation>Erweiterung für Cloudspeicher Aufträge</documentation>
+		</annotation>
+		<complexContent>
+			<extension base='tns:ServiceOrderBaseType'>
+				<sequence>
+					<element name="adminUserSalutation" minOccurs="1" maxOccurs="1">
+						<annotation>
+							<documentation>Anrede des initialen Benutzers fürs SSP Cloudspeicher Konto</documentation>
+						</annotation>
+						<simpleType>
+							<restriction base="string">
+								<enumeration value="Herr"></enumeration>
+								<enumeration value="Frau"></enumeration>
+							</restriction>
+						</simpleType>
+					</element>
+					<element name="adminUserFirstName" type="string" minOccurs="1" maxOccurs="1">
+						<annotation>
+							<documentation>Vorname des initialen Benutzers fürs SSP Cloudspeicher Konto</documentation>
+						</annotation>
+					</element>
+					<element name="adminUserLastName" type="string" minOccurs="1" maxOccurs="1">
+						<annotation>
+							<documentation>Nachname des initialen Benutzers fürs SSP Cloudspeicher Konto</documentation>
+						</annotation>
+					</element>
+					<element name="adminUserEmail" type="string" minOccurs="1" maxOccurs="1">
+						<annotation>
+							<documentation>E-Mail-Adresse des initialen Benutzers fürs SSP Cloudspeicher Konto</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<!-- /service order types -->
+
+	<complexType name="IdentificationDocumentType">
+		<annotation>
+			<documentation>The customer identification document: e.g. the
+				passport.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name='number' type='string'>
+				<annotation>
+					<documentation>The document number.</documentation>
+				</annotation>
+			</element>
+			<element name='country' type='tns:String2Type'>
+				<annotation>
+					<documentation>The ISO country code.</documentation>
+				</annotation>
+			</element>
+			<element name='validUntil' type='date' />
+		</sequence>
+	</complexType>
+	<simpleType name="CallDataRecordType">
+		<restriction base="string">
+			<enumeration value="EXTENDEDDESTINATIONNUMBER" />
+			<enumeration value="SHORTDESTINATIONNUMBER" />
+			<enumeration value="NOCALLDATARECORD" />
+		</restriction>
+	</simpleType>
+	<simpleType name="CancelledByType">
+		<restriction base="string">
+			<enumeration value="CUSTOMER" />
+			<enumeration value="COMPANY" />
+		</restriction>
+	</simpleType>
+	<complexType name="DNPortingInformationType">
+		<sequence>
+			<element name="futureCarrierWbciCode" type="string" maxOccurs="1" minOccurs="1">
+			    <annotation>
+					<documentation>WBCI code of the future carrier</documentation>
+				</annotation>
+			</element>
+			<element name="dnList" type="tns:DNPortList" maxOccurs="1" minOccurs="1">
+			    <annotation>
+					<documentation>Dial number list to be ported</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="DNPortList">
+		<sequence>
+			<element name="dnNoo" type="int" maxOccurs="unbounded" minOccurs="1">
+			    <annotation>
+					<documentation>Dial number to be ported (The history key DN__NO on the Taifun DN table.)</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<simpleType name="PhoneConnectionType">
+		<restriction base="string">
+			<enumeration value="ANALOG" />
+			<enumeration value="ISDN" />
+		</restriction>
+	</simpleType>
+	<simpleType name="ActionType">
+		<restriction base="string">
+			<enumeration value="NEW" />
+			<enumeration value="CHANGE" />
+			<enumeration value="DELETE" />
+		</restriction>
+	</simpleType>
+
+	<complexType name="NamedValueType">
+		<annotation>
+			<documentation>A generic way to add fields to an order.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="name" type="string" />
+			<element name="value" type="string" />
+		</sequence>
+	</complexType>
+	<complexType name="AddressType">
+		<annotation>
+			<documentation>This type allows to assign an already existing and
+				known address to this order by setting either the addressNo or the
+				externalAddressNo. If one wants to record a new address than the
+				address object has to be provided.
+			</documentation>
+		</annotation>
+		<choice>
+			<element name='addressNo' type='int'>
+				<annotation>
+					<documentation>
+						The Taifun identifier for this address.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="externalAddressNo" type="int">
+				<annotation>
+					<documentation>
+						An id given and managed by the partner, that
+						will be stored in Taifun for convenience.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="address" type="tns:AddressDataType">
+				<annotation>
+					<documentation>
+						The address of the customer.
+					</documentation>
+				</annotation>
+			</element>
+		</choice>
+	</complexType>
+	<simpleType name="SalutationFormatType">
+		<annotation>
+			<documentation>
+				Mister -&gt; Dear Sir
+				MisterMrs -&gt; Dear Sir, Dear
+				Madam
+				MrsMister -&gt; Dear Madam, Dear Sir
+				Company -&gt; Dear Sir or
+				Madam
+				Mrs -&gt; Dear Madam
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="NONE" />
+			<enumeration value="MISTER" />
+			<enumeration value="MRS" />
+			<enumeration value="COMPANY" />
+			<enumeration value="MISTERMRS" />
+			<enumeration value="MRSMISTER" />
+		</restriction>
+	</simpleType>
+	<complexType name="AddressDataType">
+		<sequence>
+			<element minOccurs="0" name='addressNo' type='int'>
+				<annotation>
+					<documentation>
+						The Taifun identifier for this address.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="salutationFormat" type="tns:SalutationFormatType" />
+			<element minOccurs="0" name="title" type="string" />
+			<element minOccurs="0" name="firstName" type="string" />
+			<element minOccurs="0" name="name" type="string" />
+			<element minOccurs="0" name="apartment" type="string" />
+			<element minOccurs="0" name="department" type="string" />
+			<element name="country" type="tns:String2Type">
+				<annotation>
+					<documentation>
+						This ISO country code.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="zipCode" type="string" />
+			<element name="city" type="string" />
+			<element minOccurs="0" name="cityAppendix" type="string" />
+			<element minOccurs="0" name="street" type="string" />
+			<element minOccurs="0" name="poBox" type="string" />
+			<element minOccurs="0" name="houseNum" type="int" />
+			<element minOccurs="0" name="houseNumAppendix" type="string" />
+			<element minOccurs="0" name="floor" type="string" />
+			<element minOccurs="0" name="externalAddressNo" type="int">
+				<annotation>
+					<documentation>This id can be used by an external system to store
+						its address id.
+					</documentation>
+				</annotation>
+			</element>
+			<element minOccurs='0' name="contactPerson" type="string">
+				<annotation>
+					<documentation>
+						Contact person for this address.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="district" type="string" minOccurs="0"
+				maxOccurs="1">
+				<annotation>
+					<documentation>Ortsteil</documentation>
+				</annotation>
+			</element>
+			<element name="geoId" type="int" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Geo ID</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ServiceOrderPositionType">
+		<annotation>
+			<documentation>A service order position. Represents a product
+				element.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="serviceOrderPositionNo" type="int" maxOccurs="1"
+				minOccurs="0">
+				<annotation>
+					<documentation>
+						The Taifun id assigned to this
+						serviceOrderPosition
+						to identify it.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="externalServiceOrderPositionNo" type="int"
+				maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>
+						An id given and managed by the partner, that
+						will be
+						stored in Taifun for convenience.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="productElementNo" type="int">
+				<annotation>
+					<documentation>
+						The Taifun identifier of the product element
+						this
+						serviceOrderPosition refers to.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="action" type="tns:ActionType">
+				<annotation>
+					<documentation>
+						The action this order position is intended to do
+						with its data: This actions can be: New, Delete,
+						Change. Delete and
+						Change require the
+						serviceOrderPositionNo to be set.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="quantity" type="double" />
+			<element name="parameter" type="string" maxOccurs="1"
+				minOccurs="0">
+				<annotation>
+					<documentation>
+						Additional parameter for this service position.
+					</documentation>
+				</annotation>
+			</element>
+			<element minOccurs="0" maxOccurs="unbounded"
+				name="serviceOrderPositionNamedValues" type="tns:NamedValueType">
+				<annotation>
+					<documentation>
+						This can be used as a generic way to expand the
+						order with further fields that of course have to
+						match to some
+						fields on Taifun.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="promoCode" minOccurs="0">
+				<simpleType>
+					<restriction base="string">
+						<maxLength value="50"></maxLength>
+					</restriction>
+				</simpleType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="LocationType">
+		<sequence>
+			<element name='country' type='tns:String2Type'>
+				<annotation>
+					<documentation>The ISO country code.</documentation>
+				</annotation>
+			</element>
+			<element name='city' type='string' />
+			<element name='zipCode' type='string' />
+			<element name='street' type='string' />
+			<element name='houseNum' type='int' />
+			<element minOccurs='0' name='houseNumAppendix' type='string' />
+		</sequence>
+	</complexType>
+
+	<!-- product types -->
+
+	<complexType name="ProductCheckType" block='restriction'>
+		<choice>
+			<element name="productNo" type="int">
+				<annotation>
+					<documentation>The Taifun product number.</documentation>
+				</annotation>
+			</element>
+			<element name='productName' type='string'>
+				<annotation>
+					<documentation>The Taifun product name.</documentation>
+				</annotation>
+			</element>
+		</choice>
+	</complexType>
+	<complexType name="ProductType" abstract='true' block='restriction'>
+		<sequence>
+			<element name="productNo" type="int">
+				<annotation>
+					<documentation>The Taifun product number.</documentation>
+				</annotation>
+			</element>
+			<element name='productName' type='string'>
+				<annotation>
+					<documentation>The Taifun product name.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="CatalogProductType">
+		<complexContent>
+			<extension base="tns:ProductType">
+				<sequence>
+					<element name='productConfigs' minOccurs="1" maxOccurs="unbounded"
+						type="tns:ProductConfigType">
+						<annotation>
+							<documentation>The groups of related product elements.
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProductAvailabilityType">
+		<annotation>
+			<documentation>All properties on an available product type
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:ProductType">
+				<sequence>
+					<element name="fromDate" type="date"></element>
+					<element name="toDate" type="date"></element>
+					<element name="connectionType" type="string"></element>
+					<element name="technologyType" type="string"></element>
+					<element name="priority" type="int">
+						<annotation>
+							<documentation>The connection type priority.</documentation>
+						</annotation>
+					</element>
+					<element name="bandwidthRange" type="tns:BandwidthRangeType">
+					</element>
+					<element name="availability" type="tns:AvailabilityType">
+					</element>
+					<element name="productElements" type="tns:ProductElementAvailabilityType"
+						maxOccurs="unbounded" minOccurs="0"></element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProductElementAvailabilityType">
+		<sequence>
+			<element name="productElementNo" type="int" />
+			<element name="productElementName" type="string" />
+			<element name="fromDate" type="date" />
+			<element name="toDate" type="date" />
+			<element name="price" type="decimal" />
+			<element name="tags" type="tns:TagType" maxOccurs="unbounded"
+				minOccurs="0">
+				<annotation>
+					<documentation>Specific tags this product is tagged with.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="availability" type="tns:AvailabilityType"></element>
+			<element name="serviceValuePrices" type="tns:ServiceValuePriceAvailabilityType"
+				maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>The availability of the different values and prices
+						of this product element (e.g. different bandwidths).
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="AvailabilityType">
+		<sequence>
+			<element name='available' type='boolean'>
+				<annotation>
+					<documentation>Is 'true' if the product is available, else 'false'.
+					</documentation>
+				</annotation>
+			</element>
+			<element minOccurs='0' maxOccurs="1" name='unavailabilityReason'
+				type="tns:UnavailabilityReasonType">
+				<annotation>
+					<documentation>The reasons to explain why some product is not
+						available.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="BandwidthRangeType">
+		<sequence>
+			<element name="minBandwidth" type="int"></element>
+			<element name="maxBandwidth" type="int"></element>
+			<element name="calculatedBandwidth" type="int"></element>
+			<element name="nominalBandwidth" type="int"></element>
+			<element name="measuredBandwidth" type="int" minOccurs="0"></element>
+			<element name="distance" type="int" minOccurs="0" maxOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<!-- /product types -->
+
+	<complexType name="ProductConfigType">
+		<annotation>
+			<documentation>A product element group contains product elements
+				or/and product element groups. Empty groups are not allowed.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name="productConfigId" type="string">
+				<annotation>
+					<documentation>Unique identifier of this ProductConfigType
+						instance.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="productConfigName" type="string">
+				<annotation>
+					<documentation>Arbitrary name given to this ProductConfigType
+						instance.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="defaultNum" type="int">
+				<annotation>
+					<documentation>This number indicates if this instance is selected
+						by default.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="minNum" type="int">
+				<annotation>
+					<documentation>This two fields must be used together to have a
+						meaning: 0/0 would mean,
+						that the information in this instance is
+						not meant to be shown or
+						selected in
+						a GUI. 0/1 would mean that it
+						can be optionally shown or selected.
+						Usually
+						this is the case for
+						dropdown boxes that can be grayed out in the
+						beginning
+						and then
+						expanded if needed. 1/1 would mean that this instance is
+						mandatory
+						and shown/selected by default.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="maxNum" type="int">
+				<annotation>
+					<documentation>This two fields must be used together to have a
+						meaning: 0/0 would mean,
+						that the information in this instance is
+						not meant to be shown or
+						selected in
+						a GUI. 0/1 would mean that it
+						can be optionally shown or selected.
+						Usually
+						this is the case for
+						dropdown boxes that can be grayed out in the
+						beginning
+						and then
+						expanded if needed. 1/1 would mean that this instance is
+						mandatory
+						and shown/selected by default.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="minNumChildren" type="int">
+				<annotation>
+					<documentation>This number indicates how many of the children of
+						this instance must be
+						selected, but not which one, this is then
+						indicated on the children itself.
+						If
+						minNumChildren and
+						maxNumChildren are not the same, than up to
+						maxNumChildren can be
+						selected. If both have the same number than this is
+						the mandatory
+						number of children that must be selected.
+					</documentation>
+				</annotation>
+			</element>
+			<element name='maxNumChildren' type='int'>
+				<annotation>
+					<documentation>
+						This number indicates how many of the children of
+						this instance must
+						be
+						selected, but not which one, this is then
+						indicated on the children itself.
+						If
+						minNumChildren and
+						maxNumChildren are not the same, than up to
+						maxNumChildren can be
+						selected. If both have the same number than this is
+						the mandatory
+						number of children that must be selected.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="sortNo" type="int">
+				<annotation>
+					<documentation>This is the sort number, which defines in what order
+						the graphical elements
+						the ProductConfigType instance represents
+						will show up on a GUI.
+					</documentation>
+				</annotation>
+			</element>
+			<element name='productElement' minOccurs="0" maxOccurs="1"
+				type="tns:ProductElementType">
+				<annotation>
+					<documentation>This is the reference to the product element
+						represented by this
+						ProductConfigType instance
+					</documentation>
+				</annotation>
+			</element>
+			<element name="productConfigs" type="tns:ProductConfigType"
+				maxOccurs="unbounded" minOccurs="0">
+				<annotation>
+					<documentation>These are the references to the other
+						ProductConfigType instances
+					</documentation>
+				</annotation>
+			</element>
+			<element name="excludeProductConfigId" type="string"
+				maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>This is the id of the ProductConfigType instance not
+						compatible with this
+						instance. This means that if this instance is
+						selected, that the excluded
+						instance should not be available for
+						selection anymore.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="guiProperties" type="string" maxOccurs="1"
+				minOccurs="0">
+				<annotation>
+					<documentation>This is an Url-Encoded string holding information
+						for the graphical user
+						interface. The content of this field is
+						provided by Pixelpark.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="individualConfig" type="boolean">
+				<annotation>
+					<documentation>This field indicates that there should be multiple
+						instances of this instance.
+						This can be used if one wants to have a
+						ProductConfigType instance for
+						each
+						possible product element
+						parameter.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<simpleType name="ProductElementCategoryType">
+		<annotation>
+			<documentation>RECURRING: That type of service is priced on a
+				recurring base.
+				VOL_QTY: That type of service is charged based on
+				quantity volume data.
+				VOL_PRI: That type of service is charged on
+				price/cost volume data.
+				VOL_QTY_PRI That type of service is charged
+				on quantity AND
+				price/cost volume data.
+				INVOICE: Marks a service of a
+				pseudo invoice
+				product.
+				OBJECT: Marks a service as a service object
+				like EMAIL,
+				ALIAS, DNS ...
+			</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="VOL-QTY" />
+			<enumeration value="VOL-PRI" />
+			<enumeration value="VVOL-QTY-PRI" />
+			<enumeration value="NONRECURRING" />
+			<enumeration value="RECURRING" />
+			<enumeration value="OBJECTS" />
+			<enumeration value="INVOICE" />
+		</restriction>
+	</simpleType>
+	<complexType name="ProductElementType">
+		<sequence>
+			<element name='productElementNo' type='int'>
+				<annotation>
+					<documentation>
+						Taifun product element number.
+					</documentation>
+				</annotation>
+			</element>
+			<element name='category' type='tns:ProductElementCategoryType'>
+				<annotation>
+					<documentation>Product category.</documentation>
+				</annotation>
+			</element>
+			<element name='description' type='string' maxOccurs="1"
+				minOccurs="0">
+				<annotation>
+					<documentation>
+						Describes this product element.
+					</documentation>
+				</annotation>
+			</element>
+			<element name='contractPeriod' type='int' maxOccurs="1"
+				minOccurs="0" />
+			<element name="feePeriod" type="int">
+				<annotation>
+					<documentation>Unit is month.</documentation>
+				</annotation>
+			</element>
+			<element name='name' type='string'>
+				<annotation>
+					<documentation>
+						The Taifun name of this product.
+					</documentation>
+				</annotation>
+			</element>
+			<element name='unit' type='string'>
+				<annotation>
+					<documentation>
+						The unit of measurement, e.g. 'hour'.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="value" type="string" maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="price" type="decimal"></element>
+			<element name="quantity" type="decimal"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ProductElementDependencyType">
+		<sequence>
+			<element name='dependentProductElementNo' type='int'>
+				<annotation>
+					<documentation>
+						The unique identifier of the dependent product
+						element.
+					</documentation>
+				</annotation>
+			</element>
+			<element name='dependentProductElementFeatureValue' type='string'
+				minOccurs="0">
+				<annotation>
+					<documentation>
+						The specific feature value that is affected by
+						this
+						dependency.
+					</documentation>
+				</annotation>
+			</element>
+			<element name='featureValue' type='string' minOccurs="0">
+				<annotation>
+					<documentation>
+						The specific feature value this dependency
+						refers to.
+					</documentation>
+				</annotation>
+			</element>
+			<element name='maxNumDependentProductElement' type='int'>
+				<annotation>
+					<documentation>
+						This max numeric value and the corresponding min
+						value must be taken both in consideration when
+						evaluating this
+						dependency. The combination of
+						both can have the following meaning:
+						This
+						product element needs at least one dependent
+						product element:
+						minNum=0, maxNum=unbounded This
+						product element needs at most one
+						dependent
+						product element: minNum=0, maxNum=1 This product
+						element
+						needs exactly one dependent product
+						element: minNum=1, maxNum=1
+						This product element
+						excludes the dependent product element:
+						minNum=0, maxNum=0
+					</documentation>
+				</annotation>
+			</element>
+			<element name='minNumDependentProductElement' type='int'>
+				<annotation>
+					<documentation>This and the other</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="TagType">
+		<annotation>
+			<documentation>A property can be one of: bandwidth, connectionType,
+				voiceService etc. with related value.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name='category' type='string' />
+			<element name='value' type='string' />
+		</sequence>
+	</complexType>
+	<complexType name="SalespersonType">
+		<annotation>
+			<documentation>This is the Mnet employee working in a call center or
+				a shop issuing the order.
+			</documentation>
+		</annotation>
+		<choice>
+			<element name='username' type='string'>
+				<annotation>
+					<documentation>The username of this person.</documentation>
+				</annotation>
+			</element>
+			<element name="personNo" type="int">
+				<annotation>
+					<documentation>The Taifun identifier of this person.
+					</documentation>
+				</annotation>
+			</element>
+		</choice>
+	</complexType>
+	<complexType name="ServiceValuePriceAvailabilityType">
+		<sequence>
+			<element name='value' type='string' />
+			<element name='price' type='decimal' />
+			<element name='quantity' type='decimal' />
+			<element name='default' type='boolean'>
+				<annotation>
+					<documentation>
+						Tells if this is the default feature of this
+						product
+						element.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="availability" type="tns:AvailabilityType"></element>
+		</sequence>
+	</complexType>
+	<complexType name="ServiceValuePriceType">
+		<annotation>
+			<documentation>This feature represents one of the different features
+				this product element has: e.g. in case the product element is about
+				bandwidth, this feature could have value 3000 or 6000 etc.
+			</documentation>
+		</annotation>
+		<sequence>
+			<element name='description' type='string' minOccurs="0">
+				<annotation>
+					<documentation>
+						The description of this feature.
+					</documentation>
+				</annotation>
+			</element>
+			<element name='value' type='string' />
+			<element name='price' type='decimal' />
+			<element name='quantity' type='decimal' />
+			<element name='default' type='boolean'>
+				<annotation>
+					<documentation>
+						Tells if this is the default feature of this
+						product
+						element.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="UnavailabilityReasonType">
+		<sequence>
+			<element name='propertyName' type='string' maxOccurs="1"
+				minOccurs="0">
+				<annotation>
+					<documentation>The the property that is not available.
+					</documentation>
+				</annotation>
+			</element>
+			<element name='reason' type='string'>
+				<annotation>
+					<documentation>The reason why a specific property is not available,
+						or a general reason why the product is not available.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="DetailsReportType">
+		<sequence>
+			<element name="key" type="tns:StringMin1Type" />
+			<element name="product" type="string" />
+			<element name="subscriptionType" type="string" />
+			<element name="licenseSize" type="int" />
+			<element name="validityPeriod" type="int" minOccurs="0" />
+			<element name="state" type="string" />
+			<element name="useState" type="string" />
+			<element name="firstUse" type="dateTime" minOccurs="0" />
+			<element name="lastConnectionDate" type="dateTime" minOccurs="0" />
+			<element name="expirationDate" type="dateTime" />
+			<element name="numberOfActiveInstallations" type="int" />
+			<element name="numberOfInstallationsInHistory" type="int"
+				minOccurs="0" />
+			<element name="tag" type="string" minOccurs="0" />
+		</sequence>
+	</complexType>
+
+	<!-- restriction types -->
+
+	<simpleType name="StringBounded4Type">
+		<restriction base="string">
+			<minLength value="1" />
+			<maxLength value="4" />
+		</restriction>
+	</simpleType>
+
+	<simpleType name="String2Type">
+		<restriction base="string">
+			<minLength value="2" />
+			<maxLength value="2" />
+		</restriction>
+	</simpleType>
+
+	<simpleType name="StringMin1Type">
+		<restriction base="string">
+			<minLength value="1" />
+		</restriction>
+	</simpleType>
+
+	<simpleType name="ChannelType">
+		<restriction base="string">
+			<enumeration value="WEB" />
+			<enumeration value="CRM" />
+		</restriction>
+	</simpleType>
+
+	<simpleType name="AStatusType">
+		<restriction base="string">
+			<enumeration value="EINGEGANGEN" />
+			<enumeration value="ERFASST" />
+			<enumeration value="FREIGEGEBEN" />
+			<enumeration value="ABGELEHNT" />
+			<enumeration value="STORNIERT" />
+			<enumeration value="GEKÜNDIGT" />
+		</restriction>
+	</simpleType>
+
+	<complexType name="BillYearType">
+		<annotation>
+			<documentation>The year of a given bill</documentation>
+		</annotation>
+		<sequence>
+			<element name="year" type="tns:FourDigitYearType" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="billDataDescriptions" type="tns:BillDataDescriptionType"
+				maxOccurs="unbounded" minOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<simpleType name="FourDigitYearType">
+		<restriction base="int">
+			<totalDigits value="4" />
+		</restriction>
+	</simpleType>
+
+	<complexType name="BillTreeDataType">
+		<sequence>
+			<element name="billTreeData" type="tns:BillYearType"
+				maxOccurs="unbounded" minOccurs="0"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="PhoneDirectoryEntryType">
+		<sequence>
+			<element name="address" type="tns:AddressType" minOccurs="1" maxOccurs="1">
+			</element>
+			<element name="occupationNo" type="int" maxOccurs="1"
+				minOccurs="0">
+				<annotation>
+					<documentation>
+						Primary key on DETEME_OCCUPATION
+					</documentation>
+				</annotation>
+			</element>
+			<element name="use" type="tns:phoneNumberUseType" minOccurs="1" maxOccurs="1"></element>
+			<element name="print" type="tns:PhoneDirectoryPrintType"
+				maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="electronic" type="boolean" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="information" type="tns:PhoneDirectoryInformationType" maxOccurs="1" minOccurs="1"></element>
+			<element name="allowInverseSearch" type="boolean" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>Inverssuche erlauben?</documentation>
+				</annotation>
+			</element>
+			<element name="publishAddress" type="tns:PhoneDirectoryPublishAddressType" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>Veröffentlichte Daten</documentation>
+				</annotation>
+			</element>
+			<element name="suppressNumber" type="boolean" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>Rufnummern-Anzeige unterdrücken?</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<simpleType name="PhoneDirectoryPrintType">
+        <annotation>
+        	<documentation>No</documentation>
+        </annotation>
+        <restriction base="string">
+			<enumeration value="N"></enumeration>
+			<enumeration value="J">
+				<annotation>
+					<documentation>Yes</documentation>
+				</annotation></enumeration>
+			<enumeration value="K">
+				<annotation>
+					<documentation>Yes with mark</documentation>
+				</annotation></enumeration>
+		</restriction>
+	</simpleType>
+
+	<simpleType name="PhoneDirectoryInformationType">
+		<restriction base="string">
+			<enumeration value="S">
+				<annotation>
+					<documentation>Yes with relay</documentation>
+				</annotation></enumeration>
+			<enumeration value="J">
+				<annotation>
+					<documentation>Yes</documentation>
+				</annotation></enumeration>
+			<enumeration value="N">
+				<annotation>
+					<documentation>No</documentation>
+				</annotation></enumeration>
+		</restriction>
+	</simpleType>
+
+
+	<complexType name="PortInPhoneNumberType">
+		<sequence>
+			<element name="Prefix" type="string" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="Base" type="string" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="RangeFrom" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="RangeTo" type="string" maxOccurs="1"
+				minOccurs="0">
+			</element>
+			<element name="DirectDial" type="string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>Durchwahl/Zentrale</documentation>
+				</annotation>
+			</element>
+			<element name="CurrentCarrierWBCI" type="string"
+				maxOccurs="1" minOccurs="0">
+				<annotation>
+                	<documentation>If not provided, D001 will be used as default</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="PhoneNumbersWithDirectoryEntryType">
+		<sequence>
+			<element name="portInPhoneNumbers" type="tns:PortInPhoneNumbersType" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>Port in phone number(s), or have one automatically assigned.</documentation>
+				</annotation>
+			</element>
+			<element name="phoneDirectoryEntry" type="tns:PhoneDirectoryEntryType" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>An optional phone directory entry (DeTeMe) for the main phone number.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<simpleType name="phoneNumberUseType">
+		<restriction base="string">
+			<enumeration value="Telephony"></enumeration>
+			<enumeration value="Fax"></enumeration>
+			<enumeration value="Telephony/Fax"></enumeration>
+		</restriction>
+	</simpleType>
+	
+	<simpleType name="PhoneDirectoryPublishAddressType">
+        <annotation>
+        	<documentation>Vollständig, Keine oder Ort</documentation>
+        </annotation>
+        <restriction base="string">
+			<enumeration value="PUBLISH_ALL"></enumeration>
+			<enumeration value="PUBLISH_NONE"></enumeration>
+			<enumeration value="PUBLISH_CITY"></enumeration>
+		</restriction>
+	</simpleType>
+
+    <complexType name="PortInPhoneNumbersType">
+		<sequence>
+			<element name="mainPortInPhoneNumber"
+				type="tns:PortInPhoneNumberType" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>
+						The mandatory main phone number to be ported in.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="additionalPortInPhoneNumbers"
+				type="tns:PortInPhoneNumberType" minOccurs="0"
+				maxOccurs="unbounded">
+				<annotation>
+					<documentation>
+						Optional additional phone numbers to be ported
+						in.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="preventAllocationOfAdditionalPhoneNumbers" type="boolean" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>By default, Taifun automatically allocates additional phone numbers, so that the total count of ported-in phone numbers plus automatically allocated numbers matches the configured maximum count of phone numbers.
+By setting this flag to true, this automatic allocation of additional phone numbers is prevented.</documentation>
+				</annotation></element>
+		</sequence>
+    </complexType>
+
+	<complexType name="IpTvServiceAccountQueryType">
+		<choice>
+			<element name="loginInfo" minOccurs="1" maxOccurs="1" type="tns:AuthenticationType">
+				<annotation>
+					<documentation>Login info is a pair of username and password.</documentation>
+				</annotation>
+			</element>
+			<element name="serialNumber" minOccurs="1" maxOccurs="1" type="string">
+				<annotation>
+					<documentation>The serial number of the TV set top box.</documentation>
+				</annotation>
+			</element>
+			<element name="token" minOccurs="1" maxOccurs="1" type="string">
+				<annotation>
+					<documentation>The Zattoo account token.</documentation>
+				</annotation>
+			</element>
+		</choice>
+	</complexType>
+
+	<complexType name="IpTvServiceAccountType">
+		<sequence>
+			<element name="userId" type="int" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>The (numerical) user ID. Null if no user was found for the given input.</documentation>
+				</annotation>
+			</element>
+			<element name="displayName" type="string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>The user name, as set by the customer.</documentation>
+				</annotation>
+			</element>
+			<element name="permission" type="string" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>List of account permissions (TV packages).</documentation>
+				</annotation>
+			</element>
+			<element name="token" type="string" minOccurs="0" maxOccurs="1">
+				<annotation>
+					<documentation>The account token. Empty if user has no currently active service.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+</schema>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Anzeige der Billing-Leistungen
+zu einem Auftrag.
+-->
+<sf>
+    
+    <Label name="filter"><text>Filteroptionen:</text></Label>
+    
+    <CheckBox name="actual">
+        <text>aktuelle Leistungen</text>
+        <tooltip>Zeigt die aktuellen Leistungen an</tooltip>
+    </CheckBox>
+    
+    <CheckBox name="new">
+        <text>zukünftige Leistungen</text>
+        <tooltip>Zeigt die Leistungen an, die zukünftig dem Auftrag zugeordnet sind</tooltip>
+    </CheckBox>2
+    
+    <CheckBox name="old">
+        <text>abgelaufene Leistungen</text>
+        <tooltip>Zeigt die Leistungen an, die dem Auftrag ursprünglich einmal zugeordnet waren</tooltip>
+    </CheckBox>
+    
+</sf>

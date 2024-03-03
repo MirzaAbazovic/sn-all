@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.BAuftragKombi
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="BAuftragKombi" table="AUFTRAG__KOMBI">
+	    
+	    <!-- PrimaryKey -->
+		<id name="auftragNo" column="AUFTRAG_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<property name="switchId" column="SWITCH_ID" type="string"/>
+		<property name="zielnummerKuerzung" column="TARGET_NUMBER_TRUNCATION" type="string"/>
+		<property name="kwk" column="KUNDEWKUNDE" type="long"/>
+		<property name="timeSlotNo" column="TIME_SLOT_NO" type="long"/>
+
+	</class>
+	
+</hibernate-mapping>

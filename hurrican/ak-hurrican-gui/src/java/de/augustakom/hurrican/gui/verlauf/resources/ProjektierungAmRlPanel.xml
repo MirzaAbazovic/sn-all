@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Projektierungs-Ruecklaeufer-Panel AM.
+-->
+<sf>
+
+    <Button name="erledigen">
+        <text>Abschliessen</text>
+        <tooltip>Schliesst die Projektierung ab</tooltip>
+    </Button>
+
+    <Button name="bemerkungen">
+        <text>Bemerkungen</text>
+        <tooltip>Zeigt alle Bemerkungen zu der Projektierung an</tooltip>
+    </Button>
+
+    <Button name="show.ports">
+        <text>Ports</text>
+        <tooltip>Zeigt alle Ports des Verlaufes an</tooltip>
+    </Button>
+
+</sf>

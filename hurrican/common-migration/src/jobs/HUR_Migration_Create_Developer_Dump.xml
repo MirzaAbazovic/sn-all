@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description>Dumps the database HURRICAN_$developerName to a dump file.</description>
+  <logRotator>
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>5</numToKeep>
+    <artifactDaysToKeep>-1</artifactDaysToKeep>
+    <artifactNumToKeep>-1</artifactNumToKeep>
+  </logRotator>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>DEVELOPER</name>
+          <description>The developer which database should be dumped</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>migration</string>
+              <string>reinerjue</string>
+              <string>glinkjo</string>
+              <string>trenkerbe</string>
+              <string>rosedo</string>
+              <string>4201</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+        <hudson.model.StringParameterDefinition>
+          <name>DUMP_FILE</name>
+          <description>The dump file to create</description>
+          <defaultValue>hurrican_migration_dev.dmp</defaultValue>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>DATAPUMP_DIR</name>
+          <description>Das DB-Directory, wo der Dump gespeichert wird:
+DEV fuer Development-Dumps, Prod fuer Produktiv-Dumps und Archiv fuer die archivierten Dumps (/u98/backup_archiv/...)</description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              <string>DATA_DEV_DUMP_DIR</string>
+              <string>DATA_PROD_DUMP_DIR</string>
+              <string>DATA_ARCHIV_DUMP_DIR</string>
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+    <hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+      <maxConcurrentPerNode>0</maxConcurrentPerNode>
+      <maxConcurrentTotal>0</maxConcurrentTotal>
+      <throttleEnabled>false</throttleEnabled>
+      <throttleOption>project</throttleOption>
+    </hudson.plugins.throttleconcurrents.ThrottleJobProperty>
+  </properties>
+  <scm class="hudson.scm.SubversionSCM">
+    <locations>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote>https://svn.intern.m-net.de/it/hurrican/trunk/common-build</remote>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote>https://svn.intern.m-net.de/it/hurrican/trunk/ak-hurrican-base</remote>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+    </locations>
+    <excludedRegions></excludedRegions>
+    <includedRegions></includedRegions>
+    <excludedUsers></excludedUsers>
+    <excludedRevprop></excludedRevprop>
+    <excludedCommitMessages></excludedCommitMessages>
+    <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater"/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <jdk>JDK 7u7</jdk>
+  <triggers class="vector"/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Ant>
+      <targets>create.database.dump</targets>
+      <antName>ANT 1.8.1</antName>
+      <antOpts>-Duse.config=$DEVELOPER -Ddb.hurrican.dump.filename=$DUMP_FILE -Ddb.hurrican.dump.target.directory=$DATAPUMP_DIR -Dskip.dbPasswordQuery=true</antOpts>
+      <buildFile>ak-hurrican-base/build_test_database.xml</buildFile>
+    </hudson.tasks.Ant>
+    <hudson.tasks.Shell>
+      <command># generate long random number via bash, each $RANDOM is 31 bit
+echo &quot;$BUILD_TAG $RANDOM $RANDOM $RANDOM $RANDOM&quot; &gt; build_id_random.txt</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

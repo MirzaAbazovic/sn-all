@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:annotation-config/>
+
+    <!-- Citrus component mocks -->
+    <bean class="com.consol.citrus.config.CitrusBaseConfig"/>
+
+    <bean id="simInboundEndpoint" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="com.consol.citrus.endpoint.Endpoint"/>
+    </bean>
+
+    <bean id="notificationInboundEndpoint" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="com.consol.citrus.endpoint.Endpoint"/>
+    </bean>
+
+    <bean id="notificationOutboundEndpoint" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="com.consol.citrus.endpoint.Endpoint"/>
+    </bean>
+
+    <bean id="ffmNotificationOutboundEndpoint" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="com.consol.citrus.endpoint.Endpoint"/>
+    </bean>
+
+    <bean id="witaNotificationOutboundEndpoint" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="com.consol.citrus.endpoint.Endpoint"/>
+    </bean>
+
+    <bean id="simulatorOrderManager" class="de.mnet.hurrican.simulator.handler.SimulatorOrderManager"/>
+    <bean id="xpathHelper" class="de.mnet.hurrican.simulator.helper.XPathHelper"/>
+    <bean id="soapMessageHelper" class="de.mnet.hurrican.simulator.helper.SoapMessageHelper"/>
+    <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory"/>
+
+    <bean id="namespaceContextBuilder" class="com.consol.citrus.xml.namespace.NamespaceContextBuilder">
+        <property name="namespaceMappings">
+            <props>
+                <prop key="soap">http://schemas.xmlsoap.org/soap/envelope/</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Test objects -->
+    <bean class="de.mnet.hurrican.atlas.simulator.wita.WitaLineOrderSimulatorEndpointAdapter">
+        <property name="mappingKeyExtractor">
+            <bean class="com.consol.citrus.endpoint.adapter.mapping.XPathPayloadMappingKeyExtractor">
+                <property name="xpathExpression" value="//*[local-name() = 'annehmenAuftragRequest']/test"/>
+            </bean>
+        </property>
+        <property name="taskExecutor">
+            <bean class="org.springframework.core.task.SyncTaskExecutor"/>
+            <!-- must use sync task executor otherwise unit tests do fail from time to time -->
+        </property>
+    </bean>
+
+    <bean class="de.mnet.hurrican.atlas.simulator.config.AtlasSimulatorConfiguration">
+        <property name="templatePath" value="templates"/>
+    </bean>
+
+    <bean id="wbciDao" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wbci.dao.WbciDao"/>
+    </bean>
+
+    <bean id="historyService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.common.service.HistoryService"/>
+    </bean>
+
+    <bean id="mwfEntityService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.service.MwfEntityService"/>
+    </bean>
+
+    <bean id="carrierElTALService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.CarrierElTALService"/>
+    </bean>
+
+    <bean id="witaUsertaskService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.service.WitaUsertaskService"/>
+    </bean>
+
+    <bean id="endstellenService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.EndstellenService"/>
+    </bean>
+
+    <bean id="auftragService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+    </bean>
+
+    <bean id="rufnummerService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.billing.RufnummerService"/>
+    </bean>
+
+    <bean id="witaTalOrderService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.mnet.wita.service.WitaTalOrderService"/>
+    </bean>
+
+    <bean id="TEST_BUILDER_A" class="de.mnet.hurrican.atlas.simulator.wita.builder.MockTestBuilder" scope="singleton"/>
+    <bean id="TEST_BUILDER_B" class="de.mnet.hurrican.atlas.simulator.wita.builder.MockTestBuilder" scope="singleton"/>
+
+    <bean id="DEFAULT_BUILDER" class="de.mnet.hurrican.atlas.simulator.wita.builder.MockTestBuilder" scope="singleton"/>
+
+</beans>

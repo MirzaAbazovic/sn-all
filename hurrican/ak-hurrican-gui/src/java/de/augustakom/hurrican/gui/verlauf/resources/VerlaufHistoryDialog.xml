@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Verlaufs-History.
+-->
+<sf>
+    
+    <Label name="verlaufstyp"><text>Verlaufstyp:</text></Label>
+    <TextField name="verlaufstyp">
+        <tooltip>Typ des aktuellen Verlaufs (Projektierung od. Bauauftrag)</tooltip>
+        <columns>20</columns>
+    </TextField>
+    
+    <Label name="anlass"><text>Anlass:</text></Label>
+    <TextField name="anlass">
+        <tooltip>Grund für den Verlauf</tooltip>
+    </TextField>
+    
+    <Label name="status"><text>Status:</text></Label>
+    <TextField name="status">
+        <tooltip>Status des Verlaufs</tooltip>
+        <columns>20</columns>
+    </TextField>
+    
+    <Label name="aktiv"><text>Aktiv:</text></Label>
+    <CheckBox name="aktiv">
+        <tooltip>Zeigt an, ob der Verlauf noch aktiv ist</tooltip>
+    </CheckBox>
+    
+    <Label name="realisierungstermin"><text>Realisierung:</text></Label>
+    <DateComponent name="realisierungstermin">
+        <tooltip></tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+    
+    <Label name="not.possible"><text>NICHT real.:</text></Label>
+    <ComboBox name="not.possible">
+        <tooltip>Angabe, dass der Verlauf nicht realisierbar ist</tooltip>
+    </ComboBox>
+    
+    <Label name="install.type"><text>Installation durch:</text></Label>
+	<ReferenceField name="install.type">
+		<tooltip>Angabe, durch wen eine evtl. Installation erfolgen nsoll</tooltip>
+		<id.property>id</id.property>
+		<name.property>strValue</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+	</ReferenceField>
+    
+    <Label name="manuell"><text>Manuell:</text></Label>
+    <TextField name="manuell">
+        <tooltip>Zeigt an, ob der Verlauf manuell oder automatisch verteilt wurde.</tooltip>
+    </TextField>
+    
+    <Label name="physik.info"><text>Physik-Info:</text></Label>
+    <TextField name="physik.info">
+        <tooltip>Information zur verwendeten Physik</tooltip>
+    </TextField>
+    
+    <Label name="bemerkung"><text>Bemerkung:</text></Label>
+    <TextArea name="bemerkung">
+        <tooltip>Bemerkung zu dem Verlauf</tooltip>
+    </TextArea>
+    
+    <Button name="bemerkungen">
+        <text>Bemerkungen</text>
+    </Button>
+    
+    <Button name="print">
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <text>Drucken</text>
+        <tooltip>Druckt den aktuell angezeigten Verlauf aus</tooltip>
+    </Button>
+    
+    <Button name="print.details">
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <text>mit Details</text>
+        <tooltip>Druckt den aktuell angezeigten Verlauf mit Details aus</tooltip>
+    </Button>
+
+    <Button name="update.ffm">
+        <text>Update FFM</text>
+        <tooltip>Aktualisiert die Bauauftragsdaten im FFM-System</tooltip>
+    </Button>
+    
+</sf>

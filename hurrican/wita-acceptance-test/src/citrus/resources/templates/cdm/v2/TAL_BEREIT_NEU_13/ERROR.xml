@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns2:handleError xmlns:ns2="http://www.mnet.de/esb/cdm/Shared/ErrorHandlingService/v1">
+    <ns2:trackingId/>
+    <ns2:component>
+        <ns2:name>Hurrican</ns2:name>
+        <ns2:processName>de.mnet.wita.bpm.impl.TalOrderWorkflowServiceImpl</ns2:processName>
+        <ns2:host>@ignore@</ns2:host>
+        <ns2:service>LineOrderNotificationService</ns2:service>
+        <ns2:operation>notifyUpdateOrder</ns2:operation>
+        <ns2:processId>@ignore@</ns2:processId>
+    </ns2:component>
+    <ns2:error>
+        <ns2:code>WITA_TECH_1000</ns2:code>
+        <ns2:message>Internal WITA processing error</ns2:message>
+        <ns2:time>@ignore@</ns2:time>
+        <ns2:errorDetails>@ignore@</ns2:errorDetails>
+    </ns2:error>
+    <ns2:message>@ignore@</ns2:message>
+</ns2:handleError>

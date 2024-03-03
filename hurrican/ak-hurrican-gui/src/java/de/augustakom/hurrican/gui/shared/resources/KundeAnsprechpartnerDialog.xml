@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Anzeige von Ansprechpartnern eines Kunden.
+-->
+<sf>
+	
+	<Text name="title">Ansprechpartner</Text>
+	
+	<Label name="typ"><text>Typ:</text></Label>
+	<TextField name="typ">
+	</TextField>
+	
+	<Label name="name"><text>Name:</text></Label>
+	<TextField name="name">
+	</TextField>
+	
+	<Label name="vorname"><text>Vorname</text></Label>
+	<TextField name="vorname">
+	</TextField>
+	
+	<Label name="strasse"><text>Strasse:</text></Label>
+	<TextField name="strasse">
+	</TextField>
+	
+	<Label name="postfach"><text>Postfach:</text></Label>
+	<TextField name="postfach">
+	</TextField>
+	
+	<Label name="plz.ort"><text>PLZ/Ort</text></Label>
+	<TextField name="plz">
+		<columns>7</columns>
+	</TextField>
+	<TextField name="ort">
+		<columns>12</columns>
+	</TextField>
+	
+	<Label name="rufnummer"><text>Rufnummer:</text></Label>
+	<TextField name="rufnummer">
+	</TextField>
+	
+	<Label name="mobil"><text>Mobil:</text></Label>
+	<TextField name="mobil">
+	</TextField>
+	
+	<Label name="fax"><text>Fax:</text></Label>
+	<TextField name="fax">
+	</TextField>
+	
+	<Label name="email"><text>eMail:</text></Label>
+	<TextField name="email">
+	</TextField>
+
+</sf>

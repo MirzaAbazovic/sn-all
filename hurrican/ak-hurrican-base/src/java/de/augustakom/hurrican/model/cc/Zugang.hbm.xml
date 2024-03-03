@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Zugang
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Zugang" table="T_ZUGANG">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_ZUGANG_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="auftragId" column="AUFTRAG_ID" type="long" not-null="true"/>
+        <property name="einwahlrufnummer" column="EINWAHLRUFNUMMER" type="string" not-null="true"/>
+        <property name="art" column="ART" type="string" not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

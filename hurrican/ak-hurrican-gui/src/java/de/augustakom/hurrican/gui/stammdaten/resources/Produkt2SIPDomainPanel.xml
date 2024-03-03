@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Sub-Panel der CPS Daten fuer die Produkte.
+-->
+<sf>
+
+    <Text name="border.caption">SIP Domain Konfiguration</Text>
+
+    <Button name="add.sip.domain">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Fuegt eine neue SIP Domain hinzu</tooltip>
+    </Button>
+
+    <Button name="del.sip.domain">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Entfernt die selektierte SIP Domain</tooltip>
+    </Button>
+
+</sf>

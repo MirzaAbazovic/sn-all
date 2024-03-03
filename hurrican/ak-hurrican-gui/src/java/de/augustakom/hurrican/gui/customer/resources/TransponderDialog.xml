@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das HousingKey-Panel.
+-->
+<sf>
+
+    <Text name="title">Schlüssel- / Transponder bearbeiten</Text>
+    
+    <Label name="transponderid"><text>Transponder Nr.:</text></Label>
+    <TextField name="transponderid">
+        <tooltip>Transponder Nr. von zugriffsberechtigter Person</tooltip>
+        <format type="number">##########</format>
+        <maxchars>10</maxchars>
+    </TextField>
+
+    <Label name="customerfirstname"><text>Vorname:</text></Label>
+    <TextField name="customerfirstname">
+        <tooltip>Vorname der zugriffsberechtigten Person</tooltip>
+        <columns>25</columns>
+        <maxchars>30</maxchars>
+    </TextField>
+
+    <Label name="customerlastname"><text>Nachname:</text></Label>
+    <TextField name="customerlastname">
+        <tooltip>Nachname der zugriffsberechtigten Person</tooltip>
+        <maxchars>30</maxchars>
+    </TextField>
+
+</sf>

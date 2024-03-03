@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns3:portCancelledDialNumberRequest xmlns:ns3="http://www.mnet.de/elektra/services/1.0/">
+    <portKennungTnbAuf>D001</portKennungTnbAuf>
+    <realTimeFrom>${requestedCustomerDate}T06:00:00.000</realTimeFrom>
+    <realTimeTo>${requestedCustomerDate}T12:00:00.000</realTimeTo>
+    <dialNumbers>
+        <resourceName>ignored</resourceName>
+        <mainNumber>false</mainNumber>
+        <countryDialingCode>+49</countryDialingCode>
+        <areaDialingCode>089</areaDialingCode>
+        <dialingNumber>123456</dialingNumber>
+        <rangeFrom>0</rangeFrom>
+        <rangeTo>99</rangeTo>
+        <central>0</central>
+    </dialNumbers>
+    <rrnpRequestReceivedAt>citrus:currentDate('yyyy-MM-dd')</rrnpRequestReceivedAt>
+</ns3:portCancelledDialNumberRequest>

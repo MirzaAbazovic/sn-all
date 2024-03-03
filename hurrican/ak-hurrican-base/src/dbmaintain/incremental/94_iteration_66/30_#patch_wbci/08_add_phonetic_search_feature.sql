@@ -1,0 +1,2 @@
+-- Feature WBCI_PHONETIC_SEARCH gibt an, ob die Suche nach Geo-Lokationen in WBCI phonetisch durchgefuehrt werden soll
+INSERT INTO T_FEATURE (ID, NAME, FLAG) VALUES (S_T_FEATURE_0.NEXTVAL,'WBCI_PHONETIC_SEARCH', '0');

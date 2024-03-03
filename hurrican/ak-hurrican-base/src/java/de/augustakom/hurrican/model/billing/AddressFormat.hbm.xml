@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse 
+de.augustakom.hurrican.model.billing.AdressFormat
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="AddressFormat" table="ADDRESS_FORMAT">
+	    
+	    <!-- PrimaryKey -->
+		<id name="formatName" column="FORMAT_NAME" unsaved-value="null" type="string">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<property name="defaultFormat" column="DEFAULT_FORMAT" type="string"/>
+		<property name="shortFormat" column="SHORT_FORMAT" type="string"/>
+		<property name="nameFormat" column="NAME_FORMAT" type="string"/>
+		<property name="salutationFormat" column="SALUTATION_FORMAT" type="string"/>
+	</class>
+	
+</hibernate-mapping>

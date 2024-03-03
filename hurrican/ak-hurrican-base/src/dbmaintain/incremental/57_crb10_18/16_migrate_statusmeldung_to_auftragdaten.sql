@@ -1,0 +1,1 @@
+update T_AUFTRAG_DATEN ad set ad.STATUSMELDUNGEN = '1' where ad.PROD_ID IN (511, 512, 513, 540);

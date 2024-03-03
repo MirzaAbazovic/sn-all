@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GUI-Definitionen fuer das Switch Migration Panel -->
+<sf>
+
+    <Text name="search.criteria">Suchkriterien</Text>
+
+    <Label name="switch.from"><text>Alter Switch:</text></Label>
+    <TextArea name="switch.from">
+        <tooltip>Liste der vorhandenen IMS/NSP Switche</tooltip>
+    </TextArea>
+
+    <Label name="switch.to"><text>Neuer Switch:</text></Label>
+    <TextArea name="switch.to">
+        <tooltip>Liste der vorhandenen IMS/NSP Switche</tooltip>
+    </TextArea>
+
+    <Label name="billing.auftrag.id"><text>Billing Auftragsnummer(n):</text></Label>
+    <TextField name="billing.auftrag.id">
+        <tooltip>Billing Auftragsnummern (Einzelwert oder ';'-separierte Liste)</tooltip>
+        <columns>30</columns>
+    </TextField>
+
+    <Label name="ba.datum"><text>BA-Realisierungsdatum (von - bis):</text></Label>
+    <DateComponent name="ba.datum.von">
+        <tooltip>Realisierungsdatum des Bauauftrags (wird nur bei Neuschaltungen berücksichtigt)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>10</columns>
+    </DateComponent>
+
+    <DateComponent name="ba.datum.bis">
+        <tooltip>Realisierungsdatum des Bauauftrags (wird nur bei Neuschaltungen berücksichtigt)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>10</columns>
+    </DateComponent>
+
+    <Label name="products"><text>Produkt:</text></Label>
+    <ComboBox name="products">
+        <tooltip>Liste aller VOIP-Produkte</tooltip>
+    </ComboBox>
+
+    <Label name="inbetriebnahme"><text>Inbetriebnahmedatum (von - bis):</text></Label>
+    <DateComponent name="inbetriebnahme.von">
+        <tooltip>Datum, an dem der Auftrag in Betrieb genommen wurde.</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>10</columns>
+    </DateComponent>
+
+    <DateComponent name="inbetriebnahme.bis">
+        <tooltip>Datum, an dem der Auftrag in Betrieb genommen wurde.</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>10</columns>
+    </DateComponent>
+
+    <Label name="search.limit"><text>Maximale Suchergebnisse:</text></Label>
+    <FormattedTextField name="search.limit">
+        <format type="number">####</format>
+    </FormattedTextField>
+
+    <Button name="btn.search">
+        <text>Suchen</text>
+        <tooltip>Ermittelt auf Basis der angegebenen Parameter die zu migrierenden Aufträge</tooltip>
+    </Button>
+
+    <Label name="tb.orders"><text>Aufträge:</text></Label>
+
+    <Label name="tb.dialnumbercount"><text>Anzahl ausgewählter Rufnummern:</text></Label>
+
+    <Label name="select.all.orders">
+        <text>alle Aufräge selektieren</text>
+    </Label>
+    <CheckBox name="select.all.orders">
+        <tooltip>Selektiert / Deselektiert alle in der Tabelle angegeben Aufträge</tooltip>
+    </CheckBox>
+
+    <Label name="dc.cps.execute.date"><text>CPS Realisierung:</text></Label>
+    <DateComponent name="dc.cps.execute.date">
+        <tooltip>Datum der CPS Provisionierungen (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>10</columns>
+    </DateComponent>
+    <DateComponent name="dc.cps.execute.time">
+        <tooltip>Uhrzeit der CPS Provisionierung (Format: HH:mm)</tooltip>
+        <format type="date">HH:mm</format>
+        <columns>6</columns>
+    </DateComponent>
+
+    <Button name="btn.execute.migration">
+        <text>Ausführen</text>
+        <tooltip>Switch Migrationen ausführen</tooltip>
+    </Button>
+
+    <CheckBox name="cb.cps.execute.now">
+        <tooltip>Führt die CPS Provisionierung unverzüglich aus</tooltip>
+    </CheckBox>
+    <Label name="cb.cps.execute.now">
+        <text>sofort</text>
+    </Label>
+
+</sf>

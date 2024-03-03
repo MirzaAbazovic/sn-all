@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+GUI-Definitionen fuer AKJErrorDialog. 
+-->
+
+<sf>
+    <Text name="title">Fehler</Text>
+    <Text name="icon">de/augustakom/common/gui/images/error.gif</Text>
+    
+    <Text name="error.text">Fehlertext</Text>
+    <Text name="error.details">Details</Text>
+    
+    <Text name="validation.message">Sie haben ungültige Daten eingegeben oder nicht alle benötigten Felder ausgefüllt.</Text>
+    
+    <Text name="sub.messages">Sub-Messages:</Text>
+    
+    <Button name="close">
+        <text>Schliessen</text>
+        <tooltip>Schliesst den Fehler-Dialog</tooltip>
+        <mnemonic>VK_S</mnemonic>
+    </Button>
+    
+    <TextArea name="message">
+		<text></text>
+		<tooltip>Fehlernachricht</tooltip>
+		<columns>180</columns>
+		<rows>10</rows>
+		<active>bg.active</active>
+		<inactive>bg.inactive</inactive>
+	</TextArea>
+	
+	<TextArea name="details">
+		<text></text>
+		<tooltip>Fehler-Details</tooltip>
+		<columns>180</columns>
+		<rows>10</rows>
+		<active>bg.active</active>
+		<inactive>bg.inactive</inactive>
+	</TextArea>
+	
+	<Color name="bg.active">
+	    <red>204</red>
+	    <green>204</green>
+	    <blue>204</blue>
+	</Color>
+	
+	<Color name="bg.inactive">
+	    <red>204</red>
+	    <green>204</green>
+	    <blue>204</blue>
+	</Color>
+</sf>

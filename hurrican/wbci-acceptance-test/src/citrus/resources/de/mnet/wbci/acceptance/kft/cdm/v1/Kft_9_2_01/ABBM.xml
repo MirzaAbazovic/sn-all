@@ -1,0 +1,33 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <ns0:updateCarrierChange xmlns:ns0="http://www.mnet.de/esb/cdm/SupplierPartner/CarrierNegotiationService/v1">
+      <ns0:ABBM>
+        <ns0:absender>
+          <ns0:carrierCode>${carrierCodeAbg}</ns0:carrierCode>
+        </ns0:absender>
+        <ns0:empfaenger>
+          <ns0:carrierCode>${carrierCodeAuf}</ns0:carrierCode>
+        </ns0:empfaenger>
+        <ns0:version>0</ns0:version>
+        <ns0:vorabstimmungsIdRef>${preAgreementId}</ns0:vorabstimmungsIdRef>
+        <ns0:endkundenvertragspartner>
+          <ns0:EKPauf>
+            <ns0:carrierCode>${carrierCodeAuf}</ns0:carrierCode>
+          </ns0:EKPauf>
+          <ns0:EKPabg>
+            <ns0:carrierCode>${carrierCodeAbg}</ns0:carrierCode>
+          </ns0:EKPabg>
+        </ns0:endkundenvertragspartner>
+        <ns0:geschaeftsfall>VA-KUE-MRN</ns0:geschaeftsfall>
+        <ns0:position>
+          <ns0:Meldungscode>8103</ns0:Meldungscode>
+          <ns0:Meldungstext>Rufnummer nicht geschaltet (RNG)</ns0:Meldungstext>
+          <ns0:Rufnummer>08912345678</ns0:Rufnummer>
+          <ns0:Rufnummer>08912345679</ns0:Rufnummer>
+        </ns0:position>
+        <ns0:wechseltermin>${requestedCustomerDate}</ns0:wechseltermin>
+      </ns0:ABBM>
+    </ns0:updateCarrierChange>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

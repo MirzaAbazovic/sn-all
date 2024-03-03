@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse 
+de.augustakom.hurrican.model.billing.Finanz
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="Finanz" table="CUST_ACCOUNT">
+	    
+	    <!-- PrimaryKey -->
+		<id name="finanzNo" column="CUST_ACCT_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<property name="kundeNo" column="CUST_NO" type="long"/>
+        <property name="zahlungArt" column="PAYMENT_METHOD" type="string"/>
+        <property name="blz" column="BIC_NO" type="long"/>
+        <property name="kontoNo" column="ACCOUNT_NUMBER" type="string"/>
+		<property name="kontoInhaber" column="ACCOUNT_HOLDER" type="string"/>
+		<property name="zahlungsFrist" column="PAYMENT_PERIOD" type="long"/>
+	
+	</class>
+	
+</hibernate-mapping>

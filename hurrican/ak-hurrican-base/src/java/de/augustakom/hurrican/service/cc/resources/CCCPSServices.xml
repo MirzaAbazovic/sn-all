@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer die CPS-Services im CustomerCare-Bereich.
+Die Datei wird von CCServices.xml importiert!
+
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+
+    <!-- Definition des zu verwendenden Marshallers -->
+    <bean id="cps.marshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller"/>
+
+    <!-- Definition des zu verwendenden Un-Marshallers -->
+    <bean id="cps.unmarshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller">
+        <property name="xmlOptions" ref="cps.unmarshall.options"/>
+    </bean>
+    <bean id="cps.unmarshall.options" class="org.springframework.oxm.xmlbeans.XmlOptionsFactoryBean">
+        <property name="options">
+            <map>
+                <entry>
+                    <!-- Namespace-Mapping fuer setLoadSubstitudeNamespaces definieren -->
+                    <key>
+                        <value>LOAD_SUBSTITUTE_NAMESPACES</value>
+                    </key>
+                    <ref bean="cps.namespace.map"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+    <bean id="cps.namespace.map" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="" value="http://www.evolving.com/wsdl/sa/v1/types"/>
+                <entry key="http://InputMessageNamespace" value="http://www.evolving.com/wsdl/sa/v1/types"/>
+                <entry key="http://OutputMessageNamespace" value="http://www.evolving.com/wsdl/sa/v1/types"/>
+                <entry key="http://FaultMessageNamespace" value="http://www.evolving.com/wsdl/sa/v1/types"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <!-- Definition der SOAP Version -->
+    <bean id="org.springframework.ws.soap.SoapVersion.SOAP_12"
+          class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean"/>
+
+    <!-- MessageFactory fuer den WebService -->
+    <bean id="cps.wsMessageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+        <property name="soapVersion" ref="org.springframework.ws.soap.SoapVersion.SOAP_12"/>
+    </bean>
+
+    <!-- WebService-Template Definition inkl. Un-/Marshaller -->
+    <bean id="cpsWSTemplate" class="de.augustakom.common.tools.ws.MnetWebServiceTemplate">
+        <property name="marshaller" ref="cps.marshaller"/>
+        <property name="unmarshaller" ref="cps.unmarshaller"/>
+        <property name="messageFactory" ref="cps.wsMessageFactory"/>
+        <property name="messageSender" ref="httpSender"/>
+    </bean>
+
+    <!-- HTTP Sender configured to define timeouts (in ms) -->
+    <bean id="httpSender" class="org.springframework.ws.transport.http.HttpComponentsMessageSender">
+        <property name="httpClient" ref="httpClient"/>
+    </bean>
+
+    <!-- Service-Definition fuer notwendige Konfigurationsdaten im CPS-Bereich -->
+    <bean id="de.augustakom.hurrican.service.cc.CPSConfigService"
+          class="de.augustakom.hurrican.service.cc.impl.CPSConfigServiceImpl">
+        <property name="DAO" ref="cpsTransactionDAO"/>
+    </bean>
+
+    <!-- Service-Definition fuer die Verwaltung von CPS-Transactions -->
+    <bean id="de.augustakom.hurrican.service.cc.CPSService"
+          class="de.augustakom.hurrican.service.cc.impl.CPSServiceImpl">
+        <property name="DAO" ref="cpsTransactionDAO"/>
+    </bean>
+
+    <!-- Definition der abstrakten CPSCommand Klasse -->
+    <bean id="abstract.cps.command" class="de.augustakom.hurrican.service.cc.impl.command.cps.AbstractCPSCommand"
+          abstract="true">
+        <property name="cpsService" ref="de.augustakom.hurrican.service.cc.CPSService"/>
+        <property name="queryCCService" ref="de.augustakom.hurrican.service.cc.QueryCCService"/>
+        <property name="produktService" ref="de.augustakom.hurrican.service.cc.ProduktService"/>
+        <property name="referenceService" ref="de.augustakom.hurrican.service.cc.ReferenceService"/>
+        <property name="ccLeistungsService" ref="de.augustakom.hurrican.service.cc.CCLeistungsService"/>
+        <property name="hwService" ref="de.augustakom.hurrican.service.cc.HWService"/>
+        <property name="physikService" ref="de.augustakom.hurrican.service.cc.PhysikService"/>
+    </bean>
+
+    <!--
+    Command-Klasse, um eine CPS-Transaction, die den Status einer CPS-Transaction ermittelt, anzulegen.
+    -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CreateCPSTxQueryCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CreateCPSTxQueryCommand"
+          scope="prototype"
+          parent="abstract.cps.command">
+        <property name="xmlMarshaller" ref="xstreamMarshaller"/>
+        <property name="cpsWebServiceTemplate" ref="cpsWSTemplate"/>
+    </bean>
+
+    <!--
+    Command-Klasse, die via CPS fuer einen techn. Auftrag die Attainable Bitrate auf dem DSLAM ermittelt
+    -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSQueryAttainableBitrateCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSQueryAttainableBitrateCommand"
+          scope="prototype"
+          parent="abstract.cps.command">
+        <property name="xmlMarshaller" ref="xstreamMarshaller"/>
+        <property name="cpsWebServiceTemplate" ref="cpsWSTemplate"/>
+    </bean>
+
+    <!--
+    Command-Definition, ueber die eine CPS-Transaction angelegt wird.
+    Ausserdem ruft das Command eine ServiceChain auf, ueber die die ServiceOrder-Datas
+    fuer die Provisionierung ermittelt werden.
+    -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CreateCPSTxCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CreateCPSTxCommand"
+          scope="prototype"
+          parent="abstract.cps.command" >
+        <property name="xmlMarshaller" ref="xstreamMarshaller"/>
+        <property name="cpsConfigService" ref="de.augustakom.hurrican.service.cc.CPSConfigService"/>
+        <property name="chainService" ref="de.augustakom.hurrican.service.cc.ChainService"/>
+        <property name="ccAuftragService" ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+        <property name="baService" ref="de.augustakom.hurrican.service.cc.BAService"/>
+        <property name="niederlassungService" ref="de.augustakom.hurrican.service.cc.NiederlassungService"/>
+        <property name="physikService" ref="de.augustakom.hurrican.service.cc.PhysikService"/>
+        <property name="ccLeistungsService" ref="de.augustakom.hurrican.service.cc.CCLeistungsService"/>
+        <property name="endstellenService" ref="de.augustakom.hurrican.service.cc.EndstellenService"/>
+    </bean>
+
+    <!--
+    Command-Definition, um ein Lazy-Init durchzufuehren.
+    -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CreateCPSTx4LazyInitCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CreateCPSTx4LazyInitCommand"
+          scope="prototype"
+          parent="abstract.cps.command">
+        <property name="xmlMarshaller" ref="xstreamMarshaller"/>
+        <property name="cpsWebServiceTemplate" ref="cpsWSTemplate"/>
+    </bean>
+
+    <!--
+    Command-Definition, um CPS-Tx fuer Provisionierungsauftraege zu generieren.
+    Die TransactionProxyFactoryBean kann nicht verwendet werden, da die Command-Klasse
+    als Prototype (kein Singleton) verwendet werden soll.
+    -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CreateCPSTx4BACommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CreateCPSTx4BACommand"
+          init-method="init"
+          scope="prototype"
+          parent="abstract.cps.command">
+        <property name="cpsTransactionDAO" ref="cpsTransactionDAO"/>
+        <property name="baService" ref="de.augustakom.hurrican.service.cc.BAService"/>
+        <property name="baConfigService" ref="de.augustakom.hurrican.service.cc.BAConfigService"/>
+        <property name="ccAuftragService" ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+        <property name="physikService" ref="de.augustakom.hurrican.service.cc.PhysikService"/>
+    </bean>
+
+    <!-- Command-Definition, um CPS-Tx bei Aenderungen von Rufnummern-Leistungen zu generieren. -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CreateCPSTx4DNServicesCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CreateCPSTx4DNServicesCommand"
+          init-method="init"
+          scope="prototype"
+          parent="abstract.cps.command">
+        <property name="cpsTransactionDAO" ref="cpsTransactionDAO"/>
+        <property name="ccRufnummernService" ref="de.augustakom.hurrican.service.cc.CCRufnummernService"/>
+        <property name="ccAuftragService" ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+        <property name="baService" ref="de.augustakom.hurrican.service.cc.BAService"/>
+    </bean>
+
+    <!-- Command-Definition, um CPS-Tx fuer (Ent-)Sperren zu generieren. -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CreateCPSTx4LockCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CreateCPSTx4LockCommand"
+          init-method="init"
+          scope="prototype"
+          parent="abstract.cps.command">
+        <property name="cpsTransactionDAO" ref="cpsTransactionDAO"/>
+        <property name="lockService" ref="de.augustakom.hurrican.service.cc.LockService"/>
+    </bean>
+
+    <!-- Command-Definition, um CPS-Tx zur MDU-Initialisierung zu generieren. -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CreateCPSTx4MDUInitCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CreateCPSTx4MDUInitCommand"
+          init-method="init"
+          scope="prototype"
+          parent="abstract.cps.command">
+        <property name="xmlMarshaller" ref="xstreamMarshaller"/>
+        <property name="hwService" ref="de.augustakom.hurrican.service.cc.HWService"/>
+        <property name="hvtService" ref="de.augustakom.hurrican.service.cc.HVTService"/>
+        <property name="cpsWebServiceTemplate" ref="cpsWSTemplate"/>
+    </bean>
+
+    <!-- Command-Definition, um CPS-Tx fuer createDevice, modifyDevice und deleteDevice (ONT, MDU) zu generieren. -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CreateCpsTx4OltChildCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CreateCpsTx4OltChildCommand"
+          init-method="init"
+          scope="prototype"
+          parent="abstract.cps.command">
+        <property name="xmlMarshaller" ref="xstreamMarshaller"/>
+        <property name="cpsWebServiceTemplate" ref="cpsWSTemplate"/>
+        <property name="cpsGetDataService" ref="de.augustakom.hurrican.service.cc.CPSGetDataService"/>
+    </bean>
+
+    <!-- Cancel Command fuer CPS-Transaction -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CancelCPSTxCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CancelCPSTxCommand"
+          scope="prototype"
+          parent="abstract.cps.command">
+        <property name="cpsWebServiceTemplate" ref="cpsWSTemplate"/>
+        <property name="baService" ref="de.augustakom.hurrican.service.cc.BAService"/>
+        <property name="xmlMarshaller" ref="xstreamMarshaller"/>
+    </bean>
+
+    <!-- Finish Command fuer CPS-Transaction -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.FinishCPSTxCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.FinishCPSTxCommand"
+          scope="prototype"
+          parent="abstract.cps.command">
+        <property name="fttxHardwareService" ref="de.augustakom.hurrican.service.cc.FTTXHardwareService"/>
+        <property name="xmlMarshaller" ref="xstreamMarshaller"/>
+    </bean>
+
+    <!-- Disjoin Command fuer CPS-Transaction -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.DisjoinCPSTxCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.DisjoinCPSTxCommand"
+          scope="prototype"
+          parent="abstract.cps.command">
+        <property name="ccRufnummernService" ref="de.augustakom.hurrican.service.cc.CCRufnummernService"/>
+        <property name="lockService" ref="de.augustakom.hurrican.service.cc.LockService"/>
+    </bean>
+
+    <!-- Definition der abstrakten CPSDataCommand Klasse -->
+    <bean id="abstract.data.command" class="de.augustakom.hurrican.service.cc.impl.command.cps.AbstractCPSDataCommand"
+          abstract="true" parent="abstract.cps.command">
+        <property name="dslamService" ref="de.augustakom.hurrican.service.cc.DSLAMService"/>
+        <property name="ccAuftragService" ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+    </bean>
+
+    <!-- Command-Definition, um Telephonie-Daten (EWSD) zu ermitteln -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetEWSDDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetEWSDDataCommand"
+          init-method="init"
+          scope="prototype"
+          parent="abstract.data.command">
+        <property name="ccRufnummernService" ref="de.augustakom.hurrican.service.cc.CCRufnummernService"/>
+        <property name="endstellenService" ref="de.augustakom.hurrican.service.cc.EndstellenService"/>
+        <property name="hvtService" ref="de.augustakom.hurrican.service.cc.HVTService"/>
+        <property name="hwService" ref="de.augustakom.hurrican.service.cc.HWService"/>
+        <property name="rangierungsService" ref="de.augustakom.hurrican.service.cc.RangierungsService"/>
+    </bean>
+
+    <!-- Command-Definition, um Telephonie-Daten (VoIP) zu ermitteln -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetVoIPDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetVoIPDataCommand"
+          init-method="init"
+          scope="prototype"
+          parent="abstract.data.command">
+        <property name="ccRufnummernService" ref="de.augustakom.hurrican.service.cc.CCRufnummernService"/>
+        <property name="voipService" ref="de.augustakom.hurrican.service.cc.VoIPService"/>
+        <property name="auftragService" ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+    </bean>
+
+    <!-- Command-Definition, um DSL-Daten zu ermitteln -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetDSLDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetDSLDataCommand"
+          scope="prototype"
+          parent="abstract.data.command"
+          init-method="init">
+        <property name="regularExpressionService" ref="de.augustakom.hurrican.service.cc.RegularExpressionService"/>
+        <property name="endstellenService" ref="de.augustakom.hurrican.service.cc.EndstellenService"/>
+        <property name="rangierungsService" ref="de.augustakom.hurrican.service.cc.RangierungsService"/>
+        <property name="hwService" ref="de.augustakom.hurrican.service.cc.HWService"/>
+        <property name="hvtService" ref="de.augustakom.hurrican.service.cc.HVTService"/>
+        <property name="physikService" ref="de.augustakom.hurrican.service.cc.PhysikService"/>
+        <property name="crossConnectionService" ref="de.augustakom.hurrican.service.cc.EQCrossConnectionService"/>
+        <property name="referenceService" ref="de.augustakom.hurrican.service.cc.ReferenceService"/>
+        <property name="pbitHelper" ref="pbitHelper"/>
+    </bean>
+
+    <!-- Command-Definition, um (optional) DSL-Daten zu ermitteln -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetDSLOptionalDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetDSLOptionalDataCommand"
+          scope="prototype" 
+          parent="abstract.data.command" 
+          init-method="init">
+        <property name="ccAuftragService" ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+        <property name="regularExpressionService" ref="de.augustakom.hurrican.service.cc.RegularExpressionService"/>
+        <property name="endstellenService" ref="de.augustakom.hurrican.service.cc.EndstellenService"/>
+        <property name="rangierungsService" ref="de.augustakom.hurrican.service.cc.RangierungsService"/>
+        <property name="hwService" ref="de.augustakom.hurrican.service.cc.HWService"/>
+        <property name="hvtService" ref="de.augustakom.hurrican.service.cc.HVTService"/>
+        <property name="physikService" ref="de.augustakom.hurrican.service.cc.PhysikService"/>
+        <property name="crossConnectionService" ref="de.augustakom.hurrican.service.cc.EQCrossConnectionService"/>
+        <property name="referenceService" ref="de.augustakom.hurrican.service.cc.ReferenceService"/>
+        <property name="pbitHelper" ref="pbitHelper"/>
+    </bean>
+
+    <!-- Command-Definition, um DSL-Daten zu ermitteln -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetSdslDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetSdslDataCommand"
+          scope="prototype" 
+          parent="abstract.data.command" 
+          init-method="init">
+        <property name="regularExpressionService" ref="de.augustakom.hurrican.service.cc.RegularExpressionService"/>
+        <property name="endstellenService" ref="de.augustakom.hurrican.service.cc.EndstellenService"/>
+        <property name="rangierungsService" ref="de.augustakom.hurrican.service.cc.RangierungsService"/>
+        <property name="hwService" ref="de.augustakom.hurrican.service.cc.HWService"/>
+        <property name="hvtService" ref="de.augustakom.hurrican.service.cc.HVTService"/>
+    </bean>
+
+    <bean id="pbitHelper" class="de.augustakom.hurrican.service.cc.impl.command.cps.PbitHelper"/>
+    <bean id="cpsFacade" class="de.augustakom.hurrican.service.cc.impl.command.cps.CpsFacade"/>
+
+    <!-- Command-Definition, um Radius-Daten zu ermitteln -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetRadiusDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetRadiusDataCommand"
+          init-method="init" 
+          scope="prototype" 
+          parent="abstract.data.command">
+    </bean>
+
+    <!-- Command-Definition, um (optional) Radius-Daten zu ermitteln -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetRadiusOptionalDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetRadiusOptionalDataCommand"
+          init-method="init" 
+          scope="prototype" 
+          parent="abstract.data.command">
+        <property name="accountService" ref="de.augustakom.hurrican.service.cc.AccountService"/>
+        <property name="ccLeistungsService" ref="de.augustakom.hurrican.service.cc.CCLeistungsService"/>
+        <property name="vpnService" ref="de.augustakom.hurrican.service.cc.VPNService"/>
+        <property name="endstellenService" ref="de.augustakom.hurrican.service.cc.EndstellenService"/>
+        <property name="rangierungsService" ref="de.augustakom.hurrican.service.cc.RangierungsService"/>
+        <property name="crossConnectionService" ref="de.augustakom.hurrican.service.cc.EQCrossConnectionService"/>
+    </bean>
+
+    <!-- Command-Definition, um Radius-Daten zu ermitteln -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetRadiusSDSLDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetRadiusSDSLDataCommand"
+          init-method="init" 
+          scope="prototype" 
+          parent="abstract.data.command">
+        <property name="accountService" ref="de.augustakom.hurrican.service.cc.AccountService"/>
+        <property name="ccLeistungsService" ref="de.augustakom.hurrican.service.cc.CCLeistungsService"/>
+        <property name="vpnService" ref="de.augustakom.hurrican.service.cc.VPNService"/>
+        <property name="baService" ref="de.augustakom.hurrican.service.cc.BAService"/>
+        <property name="endstellenService" ref="de.augustakom.hurrican.service.cc.EndstellenService"/>
+        <property name="rangierungsService" ref="de.augustakom.hurrican.service.cc.RangierungsService"/>
+        <property name="crossConnectionService" ref="de.augustakom.hurrican.service.cc.EQCrossConnectionService"/>
+    </bean>
+
+    <!-- Command-Definition, um Radius-Daten fuer IPSec C2S Auftraege zu ermitteln -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetRadiusIPSecC2SDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetRadiusIPSecC2SDataCommand"
+          init-method="init" 
+          scope="prototype" 
+          parent="abstract.data.command">
+        <property name="accountService" ref="de.augustakom.hurrican.service.cc.AccountService"/>
+        <property name="ccLeistungsService" ref="de.augustakom.hurrican.service.cc.CCLeistungsService"/>
+        <property name="vpnService" ref="de.augustakom.hurrican.service.cc.VPNService"/>
+    </bean>
+
+    <!-- Command-Definition, um Endgeraete-Daten zu ermitteln -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetDeviceDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetDeviceDataCommand"
+          init-method="init" 
+          scope="prototype" 
+          parent="abstract.data.command">
+    </bean>
+
+    <!-- Command-Definition, um Daten fuer abgehende Portierungen zu ermitteln -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetDNPortationGoingDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetDNPortationGoingDataCommand"
+          init-method="init" 
+          scope="prototype" 
+          parent="abstract.data.command">
+        <property name="regularExpressionService" ref="de.augustakom.hurrican.service.cc.RegularExpressionService"/>
+        <property name="ccRufnummernService" ref="de.augustakom.hurrican.service.cc.CCRufnummernService"/>
+    </bean>
+
+    <!-- Command-Definition, um FTTX-Daten zu ermitteln -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetFTTXDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetFTTXDataCommand"
+          init-method="init" 
+          scope="prototype" 
+          parent="abstract.data.command">
+        <property name="hwService" ref="de.augustakom.hurrican.service.cc.HWService"/>
+    </bean>
+
+    <!-- Command-Definition, um Daten fuer SIP InterTrunk zu ermitteln -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetSIPInterTrunkDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetSIPInterTrunkDataCommand"
+          init-method="init"
+          scope="prototype"
+          parent="abstract.data.command">
+        <property name="sipInterTrunkService" ref="de.augustakom.hurrican.service.cc.SIPInterTrunkService"/>
+        <property name="ccRufnummernService" ref="de.augustakom.hurrican.service.cc.CCRufnummernService"/>
+    </bean>
+
+    <!-- Command-Definition, um Daten fuer BusinessCPEs zu ermitteln -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetBusinessCpeDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSGetBusinessCpeDataCommand"
+          init-method="init"
+          scope="prototype"
+          parent="abstract.data.command">
+    </bean>
+
+    <!-- Command-Definition, um Daten fuer MVS Enterprise zu ermitteln -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.mvs.CPSGetMVSEnterpriseDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.mvs.CPSGetMVSEnterpriseDataCommand"
+          init-method="init"
+          scope="prototype"
+          parent="abstract.data.command">
+    </bean>
+
+    <!-- Command-Definition, um Daten fuer MVS Site zu ermitteln -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.mvs.CPSGetMVSSiteDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.mvs.CPSGetMVSSiteDataCommand"
+          init-method="init"
+          scope="prototype"
+          parent="abstract.data.command">
+        <property name="ccRufnummernService" ref="de.augustakom.hurrican.service.cc.CCRufnummernService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CpsGetPeeringPartnerDataCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CpsGetPeeringPartnerDataCommand"
+          init-method="init"
+          scope="prototype"
+          parent="abstract.data.command">
+    </bean>
+
+    <!-- Command-Definition, um eine ServiceRequest-Message zu senden -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSSendAsyncTxCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSSendAsyncTxCommand" 
+          scope="prototype"
+          parent="abstract.cps.command">
+        <property name="cpsService" ref="de.augustakom.hurrican.service.cc.CPSService"/>
+        <property name="cpsWebServiceTemplate" ref="cpsWSTemplate"/>
+        <property name="xmlMarshaller" ref="xstreamMarshaller"/>
+    </bean>
+
+    <!-- Command-Definition, um eine ServiceRequest-Message zu senden -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.cps.CPSSendSyncTxCommand"
+          class="de.augustakom.hurrican.service.cc.impl.command.cps.CPSSendSyncTxCommand" 
+          scope="prototype"
+          parent="abstract.cps.command">
+        <property name="cpsService" ref="de.augustakom.hurrican.service.cc.CPSService"/>
+        <property name="cpsWebServiceTemplate" ref="cpsWSTemplate"/>
+        <property name="xmlMarshaller" ref="xstreamMarshaller"/>
+    </bean>
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs 'CPSTransaction' -->
+    <bean id="cpsTransactionDAO" class="de.augustakom.hurrican.dao.cc.impl.CPSTransactionDAOImpl" />
+
+    <!-- (XStream) Marshaller, um aus POJOs einen XML-String zu erzeugen -->
+    <bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+        <property name="annotatedClasses">
+            <list>
+                <value>de.augustakom.hurrican.model.cc.cps.serviceorder.CPSServiceOrderData</value>
+                <value>de.augustakom.hurrican.model.cc.cps.serviceorder.CPSMduInitializeData</value>
+                <value>de.augustakom.hurrican.model.cc.cps.serviceorder.CPSServiceResponseSOData</value>
+                <value>de.augustakom.hurrican.model.cc.cps.serviceorder.CPSGetServiceOrderStatusRequestData</value>
+                <value>de.augustakom.hurrican.model.cc.cps.serviceorder.CPSGetServiceOrderStatusResponseData</value>
+                <value>de.augustakom.hurrican.model.cc.cps.serviceorder.CPSCancelTransactionRequestData</value>
+                <value>de.augustakom.hurrican.model.cc.cps.serviceorder.CPSCancelTransactionResponseData</value>
+                <value>de.augustakom.hurrican.model.cc.cps.serviceorder.query.CPSQueryData</value>
+                <value>de.augustakom.hurrican.model.cc.cps.serviceorder.accessdevice.CpsResourceOrder</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Auftrags-Stammdaten Panel.
+-->
+<sf>
+
+    <Text name="title">Verbindungsbezeichnung definieren</Text>
+
+    <Label name="vbz">
+        <text>Verbindungsbezeichnung (VBZ):</text>
+    </Label>
+    <TextField name="customer.ident">
+        <tootlip>Nutzerbezeichnung</tootlip>
+        <maxchars>6</maxchars>
+        <columns>8</columns>
+    </TextField>
+
+    <Label name="seperator"><text>-</text></Label>
+
+    <CheckBox name="kind.of.use.product">
+        <tooltip>Nutzungsart Produktgruppe</tooltip>
+    </CheckBox>
+
+    <ComboBox name="kind.of.use.type">
+        <tooltip>Nutzungsart Typ</tooltip>
+    </ComboBox>
+
+    <FormattedTextField name="unique.code">
+        <tooltip>Eindeutige Codierung</tooltip>
+        <columns>10</columns>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="overwrite"><text>Überschreiben:</text></Label>
+    <CheckBox name="overwrite">
+        <tooltip>Nutzungsart überschreiben</tooltip>
+    </CheckBox>
+</sf>

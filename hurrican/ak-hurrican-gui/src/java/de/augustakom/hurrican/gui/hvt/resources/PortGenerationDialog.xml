@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Administration der HW-Racks.
+-->
+<sf>
+
+    <Text name="title">Port-Generierung</Text>
+    <Text name="detail.title">Baugruppen-Details</Text>
+    <Text name="import.title">Import</Text>
+
+    <Label name="hw.baugruppe"><text>Baugruppe:</text></Label>
+    <TextField name="hw.baugruppe">
+        <tooltip>ausgewählte Baugruppe</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="bg.typ"><text>BG-Typ:</text></Label>
+    <TextField name="bg.typ">
+        <tooltip>Typ der ausgewählten Baugruppe</tooltip>
+    </TextField>
+
+    <Label name="port.count"><text>Anzahl Ports:</text></Label>
+    <TextField name="port.count">
+        <tooltip>Anzahl Ports der Baugruppe</tooltip>
+        <columns>8</columns>
+    </TextField>
+
+    <Label name="create.combi.physic"><text>Kombi-Physik:</text></Label>
+    <CheckBox name="create.combi.physic">
+        <tooltip>Angabe, ob die Ports für eine kombinierte Physik (DSL+Phone) verwendet werden soll</tooltip>
+    </CheckBox>
+
+    <Label name="import.file"><text>Import-File:</text></Label>
+    <TextField name="import.file">
+        <tooltip>Angabe des Excel-Files mit den zu importierenden Ports</tooltip>
+    </TextField>
+
+    <Button name="file.chooser">
+        <text>...</text>
+        <tooltip>Datei-Auswahldialog</tooltip>
+    </Button>
+
+</sf>

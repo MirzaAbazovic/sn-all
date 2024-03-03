@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den LAN-IP-Dialog.
+-->
+<sf>
+
+    <Text name="title">LAN-IP</Text>
+
+    <Label name="ip"><text>IP-Adresse:</text></Label>
+    <IPAddressComponent name="ip">
+        <tooltip>Definition der IP-Adresse der LAN-IP</tooltip>
+        <IPTypesAllowed>
+            <IPType>2</IPType>
+            <IPType>4</IPType>
+            <IPType>5</IPType>
+            <IPType>6</IPType>
+            <IPType>7</IPType>
+        </IPTypesAllowed>
+    </IPAddressComponent>
+</sf>

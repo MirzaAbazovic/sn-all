@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse 
+de.augustakom.hurrican.model.cc.Produkt2DSLAMProfile
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+	<class name="Produkt2DSLAMProfile" table="T_PROD_2_DSLAMPROFILE">
+	    
+	    <!-- PrimaryKey -->
+		<composite-id>
+			<key-property name="prodId" column="PROD_ID" type="long"/>
+			<key-property name="dslamProfileId" column="DSLAM_PROFILE_ID" type="long"/>
+		</composite-id>
+
+	</class>
+	
+</hibernate-mapping>

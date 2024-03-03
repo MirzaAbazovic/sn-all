@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Projektierungs-Panel.
+-->
+<sf>
+
+    <Label name="abteilung"><text>Abteilung:</text></Label>
+    <ComboBox name="abteilung">
+        <tooltip>Lädt die Projektierungen der ausgewählten Abteilung</tooltip>
+    </ComboBox>
+
+    <Label name="niederlassung"><text>Niederlassung:</text></Label>
+    <ComboBox name="niederlassung">
+        <tooltip>Filtert nach ausgewählter Niederlassung</tooltip>
+    </ComboBox>
+
+    <Label name="vbz">
+        <text>Verbindungsbezeichnung (VBZ):</text>
+    </Label>
+    <TextField name="vbz">
+        <tooltip></tooltip>
+        <columns>16</columns>
+    </TextField>
+
+    <Label name="oe.name"><text>Produkt (M.):</text></Label>
+    <TextField name="oe.name">
+        <tooltip>Produkt-Name aus Mistral</tooltip>
+    </TextField>
+
+    <Label name="produkt"><text>Produkt (H.):</text></Label>
+    <TextField name="produkt">
+        <tooltip>Produkt-Name aus Hurrican</tooltip>
+    </TextField>
+
+    <Label name="auftrag.id"><text>Tech. Auftragsnr.:</text></Label>
+    <FormattedTextField name="auftrag.id">
+        <tooltip>Auftragsnr. aus Hurrican</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="order.no"><text>Order__No (M.):</text></Label>
+    <FormattedTextField name="order.no">
+        <tooltip>Auftrags-ID aus Mistral</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="vpn.nr"><text>VPN-Nr:</text></Label>
+    <FormattedTextField name="vpn.nr">
+        <columns>16</columns>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="vorgabe.am"><text>Vorgabe AM:</text></Label>
+    <DateComponent name="vorgabe.am">
+        <tooltip></tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="projektierung.an.dispo"><text>Proj. an Dispo:</text></Label>
+    <DateComponent name="projektierung.an.dispo">
+        <tooltip></tooltip>
+        <format type="date">dd.MM.yyyy HH:mm:ss</format>
+    </DateComponent>
+
+    <Label name="bearbeiter.am"><text>Bearbeiter AM:</text></Label>
+    <TextField name="bearbeiter.am">
+        <tooltip>Name des AM-Bearbeiters zu dem Auftrag</tooltip>
+    </TextField>
+
+    <Label name="kunde.name"><text>Name:</text></Label>
+    <TextField name="kunde.name">
+    </TextField>
+
+    <Label name="kunde.vorname"><text>Name 2:</text></Label>
+    <TextField name="kunde.vorname">
+    </TextField>
+
+    <Label name="prevent.cps.provisioning.order"><text>kein CPS (Auftrag):</text></Label>
+    <CheckBox name="prevent.cps.provisioning.order">
+        <tooltip>keine CPS-Provisionierung fuer diesen Auftrag (wenn Flag gesetzt)</tooltip>
+    </CheckBox>
+
+    <Label name="bemerkung"><text>Bemerkungen:</text></Label>
+    <TextArea name="bemerkung">
+        <tooltip></tooltip>
+        <rows>5</rows>
+        <maxchars>2000</maxchars>
+    </TextArea>
+
+    <Button name="refresh">
+        <icon>de/augustakom/hurrican/gui/images/refresh.png</icon>
+        <tooltip></tooltip>
+    </Button>
+
+</sf>

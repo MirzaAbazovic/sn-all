@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Administration der HW-Subracks.
+-->
+<sf>
+    <Text name="title">Subrack-Details</Text>
+
+    <Label name="rack"><text>Rack:</text></Label>
+    <ReferenceField name="rack">
+        <tooltip>Name des Racks</tooltip>
+        <id.property>id</id.property>
+        <name.property>display</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.hardware.HWRack</reference.class>
+    </ReferenceField>
+
+    <Label name="type"><text>Typ:</text></Label>
+    <ReferenceField name="type">
+        <tooltip>Typ des Subracks</tooltip>
+        <id.property>id</id.property>
+        <name.property>name</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.hardware.HWSubrackTyp</reference.class>
+    </ReferenceField>
+
+    <Label name="mod.number"><text>Modul Nr:</text></Label>
+    <TextField name="mod.number">
+        <tooltip>Modul Nr.</tooltip>
+    </TextField>
+</sf>

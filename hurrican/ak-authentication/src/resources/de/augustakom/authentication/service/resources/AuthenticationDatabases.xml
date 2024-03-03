@@ -1,0 +1,1333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Konfiguration der moeglichen Authentication-Datenbanken.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Definition der Produktiv-Umgebung 01 -->
+    <bean id="produktiv" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>Produktiv</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@hcprod01-vip.m-net.de:1524:HCPROD01</value>
+        </property>
+        <property name="user">
+            <value>AUTHUSER</value>
+        </property>
+        <property name="password">
+            <value>1RESUHTUA</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_4201 -->
+    <bean id="test4201" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>SIT42</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr18.intern.m-net.de:1521:HCTEST42</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_4201</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_4201</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <bean id="SIT01" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>SIT01</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr41.intern.m-net.de:1521:HCSIT01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_SIT01</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_SIT01</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <bean id="pip01" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>PIP01</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr02.intern.m-net.de:1521:HCPIP01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_PIP01</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_PIP01</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_CI -->
+    <bean id="devel_ci" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>CI</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_CI</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_CI</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_CI2 -->
+    <bean id="devel_ci2" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>CI2</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_CI2</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_CI2</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_CI3 -->
+    <bean id="devel_ci3" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>CI3</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_CI3</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_CI3</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_CIR -->
+    <bean id="devel_cir" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>CI-R</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_CIR</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_CIR</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_CIR10 -->
+    <bean id="devel_cir10" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>CI-R10</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_CIR10</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_CIR10</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_GLINKJO -->
+    <bean id="devel_glinkjo" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>GLINKJO</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_GLINKJO</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_GLINKJO</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+    <!-- Hinzugefügt für ALLAMSA -->
+    <bean id="devel_allamsa" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>ALLAMSA</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_ALLAMSA</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_ALLAMSA</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+
+    <!-- Definition der Test-Umgebung HURRICAN_REINERJUE -->
+    <bean id="devel_reinerjue" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>REINERJUE</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_REINERJUE</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_REINERJUE</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_0801 -->
+    <bean id="whs-integ" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>Wholesale-Integration</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr18.intern.m-net.de:1521:HCTEST08</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_WHS_INTEG</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_WHS_INTEG</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_0801 -->
+    <bean id="whs-dev" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>Wholesale-Dev</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr18.intern.m-net.de:1521:HCTEST09</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_WHS_DEV</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_WHS_DEV</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung fuer Wholesale Performance Tests -->
+    <bean id="whs-perf" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>Wholesale-Perf</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr18.intern.m-net.de:1521:HCTEST09</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_WHS_PERF</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_WHS_PERF</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_ACCEPTANCE_1 -->
+    <bean id="devel_acceptance1" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>ACCEPTANCE1</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr16.m-net.de:1521:HCTEST20</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_ACCEPTANCE1</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_ACCEPTANCE1</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_ACCEPTANCE_2 -->
+    <bean id="devel_acceptance2" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>ACCEPTANCE2</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr16.m-net.de:1521:HCTEST20</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_ACCEPTANCE2</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_ACCEPTANCE2</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_ACCEPTANCE_3 -->
+    <bean id="devel_acceptance3" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>ACCEPTANCE3</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr16.m-net.de:1521:HCTEST20</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_ACCEPTANCE3</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_ACCEPTANCE3</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_ACCEPTANCE_4 -->
+    <bean id="devel_acceptance4" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>ACCEPTANCE4</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr16.m-net.de:1521:HCTEST20</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_ACCEPTANCE4</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_ACCEPTANCE4</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_ACCEPTANCE_R10 -->
+    <bean id="devel_acceptance_r10" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>ACCEPTANCE_R10</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr16.m-net.de:1521:HCTEST20</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_ACC_R10</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_ACC_R10</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <bean id="devel_migration" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>Migration</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_MIGRATION</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_MIGRATION</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_TRENKERBE -->
+    <bean id="devel_trenkerbe" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>TRENKERBE</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_TRENKERBE</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_TRENKERBE</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_RUEGERMI -->
+    <bean id="devel_ruegermi" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>RUEGERMI</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_RUEGERMI</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_RUEGERMI</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_GUIBER -->
+    <bean id="devel_guiber" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>GUIBER</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_GUIBER</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_GUIBER</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+    <!-- Definition der Test-Umgebung HURRICAN_GUIBER -->
+    <bean id="devel_vergaragi" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>VERGARAGI</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_VERGARAGI</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_VERGARAGI</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <bean id="devel_petersde" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>PETERSDE</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_PETERSDE</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_PETERSDE</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition des Users Freitagin -->
+    <bean id="devel_freitagin" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>FREITAGIN</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_FREITAGIN</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_FREITAGIN</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung added for HURRICAN_KAUZKO -->
+    <bean id="devel_kauzko" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>kauzko</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_KAUZKO</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_KAUZKO</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_ZIEGLERCH -->
+    <bean id="devel_zieglerch" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>ZIEGLERCH</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_ZIEGLERCH</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_ZIEGLERCH</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_MAHERMA -->
+    <bean id="devel_maherma" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>MAHERMA</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_MAHERMA</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_MAHERMA</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_DEPPISCHCH -->
+    <bean id="devel_deppischch" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>DEPPISCHCH</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_DEPPISCHCH</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_DEPPISCHCH</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_SCHNECKTO -->
+    <bean id="devel_schneckto" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>SCHNECKTO</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_SCHNECKTO</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_SCHNECKTO</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_JOHNETH -->
+    <bean id="devel_johneth" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>JOHNETH</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_JOHNETH</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_JOHNETH</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_RUBEZHANSKYYMY -->
+    <bean id="devel_rubezhanskyymy" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>RUBEZHANSKYYMY</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_RUBEZHANSKYYMY</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_RUBEZHANSKYYMY</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_THOMASFR -->
+    <bean id="devel_thomasfr" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>THOMASFR</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_THOMASFR</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_THOMASFR</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+
+    <!-- Definition der Test-Umgebung HURRICAN_KOEGELMA -->
+    <bean id="devel_koegelma" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>KOEGELMA</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_KOEGELMA</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_KOEGELMA</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+
+    <!-- Definition der Test-Umgebung HURRICAN_ZOLLEISWO -->
+    <bean id="devel_zolleiswo" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>ZOLLEISWO</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_ZOLLEISWO</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_ZOLLEISWO</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_USERTEST1 -->
+    <bean id="devel_usertest1" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>USERTEST1</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr16.m-net.de:1521:HCTEST20</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_USERTEST1</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_USERTEST1</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_RETAILPOC -->
+    <bean id="devel_retailpoc" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>RETAILPOC</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_RETAILPOC</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_RETAILPOC</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition des Users Morozovse -->
+    <bean id="devel_morozovse" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>MOROZOVSE</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_MOROZOVSE</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_MOROZOVSE</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition des Users VINOKUROVMA -->
+    <bean id="devel_vinokurovma" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>VINOKUROVMA</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_VINOKUROVMA</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_VINOKUROVMA</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+	
+	<!-- Definition der Test-Umgebung added for BARTHOLDKA -->
+    <bean id="devel_bartholdka" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>BARTHOLDKA</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_BARTHOLDKA</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_BARTHOLDKA</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung added for KALEJAMI -->
+    <bean id="devel_kalejami" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>KALEJAMI</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_KALEJAMI</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_KALEJAMI</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung added for MARTELEU -->
+    <bean id="devel_marteleu" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>MARTELEU</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_MARTELEU</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_MARTELEU</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung added for CUARTASJO -->
+    <bean id="devel_cuartasjo" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>CUARTASJO</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_CUARTASJO</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_CUARTASJO</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung added for SCHEIEREL -->
+    <bean id="devel_scheierel" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>SCHEIEREL</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_SCHEIEREL</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_SCHEIEREL</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+
+    <!-- Definition der Test-Umgebung HURRICAN_WINTERUL -->
+    <bean id="devel_winterul" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>WINTERUL</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_WINTERUL</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_WINTERUL</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung added for MOLTERFE -->
+    <bean id="devel_molterfe" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>MOLTERFE</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_MOLTERFE</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_MOLTERFE</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+	
+	<!-- Definition der Test-Umgebung added for KARAUEN -->
+    <bean id="devel_karauen" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>KARAUEN</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_KARAUEN</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_KARAUEN</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung added for HURRICAN_SOLOMONDA -->
+    <bean id="devel_solomonda" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>SOLOMONDA</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_SOLOMONDA</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_SOLOMONDA</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+	
+	    <!-- Definition der Test-Umgebung HURRICAN_STEINERCH -->
+    <bean id="devel_steinerch" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>STEINERCH</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_STEINERCH</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_STEINERCH</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+	
+	<!-- Definition der Test-Umgebung HURRICAN_STEINERCH -->
+    <bean id="devel_tafieni" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>TAFIENI</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_TAFIENI</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_TAFIENI</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Test-Umgebung HURRICAN_WIERAN -->
+    <bean id="devel_wieran" class="de.augustakom.authentication.model.AuthenticationSystem">
+        <property name="name">
+            <value>WIERAN</value>
+        </property>
+        <property name="driver">
+            <value>oracle.jdbc.driver.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@mnetdbsvr42.intern.m-net.de:1521:HCDEV01</value>
+        </property>
+        <property name="user">
+            <value>AUTHENTICATION_WIERAN</value>
+        </property>
+        <property name="password">
+            <value>its</value>
+        </property>
+        <property name="schema">
+            <value>AUTHENTICATION_WIERAN</value>
+        </property>
+        <property name="hibernateDialect">
+            <value>org.hibernate.dialect.Oracle10gDialect</value>
+        </property>
+    </bean>
+
+</beans>
+

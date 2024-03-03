@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resource-catalog-api-deployment
+  namespace: adl
+  labels:
+    app: resource-catalog-api
+spec:
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resource-catalog-api
+  template:
+    metadata:
+      labels:
+        app: resource-catalog-api
+    spec:
+      containers:
+        - name: resource-catalog-api
+          image: resource-catalog-api:latest
+          ports:
+            - containerPort: 8080
+          # envFrom:
+          #  - configMapRef:
+          #      name: resource-catalog-api-config
+          #  - secretRef:
+          #      name: resource-catalog-api-secret

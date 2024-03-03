@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+GUI-Definitionen fuer AKJSelectionDialog. 
+-->
+
+<sf>
+    
+    <Button name="ok">
+        <text>Ok</text>
+        <tooltip>Bestätigt die Auswahl und schliesst den Dialog</tooltip>
+        <mnemonic>VK_O</mnemonic>
+    </Button>
+	
+	<Button name="cancel">
+        <text>Abbrechen</text>
+        <tooltip>Schliesst den Dialog ohne Übernahme der Auswahl</tooltip>
+        <mnemonic>VK_A</mnemonic>
+    </Button>
+    
+</sf>

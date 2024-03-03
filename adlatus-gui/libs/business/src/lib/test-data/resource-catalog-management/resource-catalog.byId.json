@@ -1,0 +1,24 @@
+[
+  {
+    "id": "1",
+    "name": "Sample Specification",
+    "resourceSpecCharacteristic": [
+      {
+        "name": "Sample Characteristic",
+        "resourceSpecCharacteristicValue": [
+          {
+            "unitOfMeasure": "Sample Unit of Measure 1",
+            "valueType": "Sample Value Type 1",
+            "value": "Sample Value 1"
+          },
+          {
+            "unitOfMeasure": "Sample Unit of Measure 2",
+            "valueType": "Sample Value Type 2",
+            "value": "Sample Value 2"
+          }
+        ]
+      }
+    ]
+  }
+
+]

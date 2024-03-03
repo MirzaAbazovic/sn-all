@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:citrus="http://www.citrusframework.org/schema/config"
+       xmlns:citrus-jms="http://www.citrusframework.org/schema/jms/testcase"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.citrusframework.org/schema/config http://www.citrusframework.org/schema/config/citrus-config.xsd
+      http://www.citrusframework.org/schema/jms/testcase http://www.citrusframework.org/schema/jms/testcase/citrus-jms-testcase.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <citrus:actor id="hurricanTestActor" name="HURRICAN"/>
+    <citrus:actor id="atlasEsbTestActor" name="ATLAS_ESB"/>
+
+    <bean class="de.mnet.wita.acceptance.common.actor.TestActorManager">
+        <property name="actors">
+            <map>
+                <entry key-ref="hurricanTestActor" value="${test.actor.hurrican.gui.disabled}"/>
+                <entry key-ref="atlasEsbTestActor" value="${test.actor.atlas.esb.disabled}"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- Common settings -->
+    <bean id="appProps" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="locations">
+            <!-- Note: last property file loaded overwrites properties set earlier in previously loaded property files -->
+            <list>
+                <value>classpath:properties/citrus.properties</value>
+                <value>classpath:properties/citrus.${user.name}.properties</value>
+                <value>classpath:properties/citrus.user.${user.name}.properties</value>
+                <value>classpath:properties/citrus.${use.config}.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="ignoreResourceNotFound" value="true"/>
+    </bean>
+
+    <citrus:schema-repository id="schemaRepository">
+        <citrus:schemas>
+            <citrus:schema id="soap11Xsd" location="classpath:schemas/soap/soap11-envelope.xsd"/>
+            <citrus:schema id="lineOrderServiceWsdl" location="classpath:schemas/cdm/v1/LineOrderService.wsdl"/>
+            <citrus:schema id="lineOrderNotificationServiceWsdl"
+                           location="classpath:schemas/cdm/v1/LineOrderNotificationService.wsdl"/>
+            <citrus:schema id="errorHandlingServiceV1Wsdl"
+                           location="classpath:schemas/cdm/v1/ErrorHandlingService.wsdl"/>
+            <citrus:schema id="lineOrderServiceWsdlV2" location="classpath:wsdl/v2/LineOrderService.wsdl"/>
+            <citrus:schema id="lineOrderNotificationServiceWsdlV2"
+                           location="classpath:wsdl/v2/LineOrderNotificationService.wsdl"/>
+        </citrus:schemas>
+    </citrus:schema-repository>
+
+    <citrus:global-variables>
+        <citrus:variable name="project.name" value="WITA Acceptance Tests"/>
+    </citrus:global-variables>
+
+    <!-- Custom validation matcher -->
+    <citrus:validation-matcher-library id="witaValidationMatcherLibrary" prefix="sim:">
+        <citrus:matcher name="isWeekDay" class="de.mnet.hurrican.simulator.matcher.WeekdayValidationMatcher"/>
+        <citrus:matcher name="containedInList"
+                        class="de.mnet.hurrican.simulator.matcher.ContainedInListValidationMatcher"/>
+    </citrus:validation-matcher-library>
+
+    <!-- Custom functions -->
+    <citrus:function-library id="witaFunctionLibrary" prefix="atlas:">
+        <citrus:function name="changeDate" class="de.mnet.hurrican.simulator.function.ChangeDateFunction"/>
+        <citrus:function name="currentDatePlusWorkingDays"
+                         class="de.mnet.hurrican.simulator.function.AddWorkingDaysToCurrentDate"/>
+        <citrus:function name="currentDatePlusWorkingDaysAndNextDayIsWorkingDay"
+                         class="de.mnet.hurrican.simulator.function.AddWorkingDaysAndNextDayIsWorkingDayToCurrentDate"/>
+        <citrus:function name="asWorkingDay" class="de.mnet.hurrican.simulator.function.AsWorkingDayFunction"/>
+        <citrus:function name="asWorkingDayAndNextDayNotHoliday"
+                         class="de.mnet.hurrican.simulator.function.AsWorkingDayAndNextDayNotHolidayFunction"/>
+        <citrus:function name="datePlusWorkingDaysAndNextDayIsWorkingDay"
+                         class="de.mnet.hurrican.simulator.function.AddWorkingDaysAndNextDayIsWorkingDayToDate"/>
+        <citrus:function name="getFileAsByte64" class="de.mnet.hurrican.simulator.function.GetFileAsByte64"/>
+        <citrus:function name="getFileSize" class="de.mnet.hurrican.simulator.function.GetFileSize"/>
+    </citrus:function-library>
+
+    <!-- Message Validators -->
+    <bean id="xmlMessageValidator" class="com.consol.citrus.validation.xml.DomXmlMessageValidator"/>
+
+    <!-- SOAP Message Factory -->
+    <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory"/>
+
+    <!-- Test roles encapsulate operations valid for a test actor - important to use scope prototype here! -->
+    <bean id="hurricanTestRole" class="de.mnet.wita.acceptance.common.role.HurricanTestRole" scope="prototype"/>
+    <bean id="atlasEsbTestRole" class="de.mnet.wita.acceptance.common.role.AtlasEsbTestRole" scope="prototype"/>
+    <bean id="workflowTestRole" class="de.mnet.wita.acceptance.common.role.WorkflowTestRole" scope="prototype"/>
+    <bean id="kftTestRole" class="de.mnet.wita.acceptance.common.role.KftTestResourceTestRole" scope="prototype"/>
+
+    <!-- Hurrican application database -->
+    <bean id="hurricanDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver.class}"/>
+        <property name="url" value="${hurrican.db.url}"/>
+        <property name="username" value="${hurrican.db.user}"/>
+        <property name="password" value="${hurrican.db.password}"/>
+        <property name="initialSize" value="1"/>
+        <property name="maxActive" value="15"/>
+        <property name="maxIdle" value="2"/>
+        <property name="maxWait" value="15000"/>
+        <property name="validationQuery" value="select 1 from dual"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="25"/>
+    </bean>
+
+    <!-- Taifun application database -->
+    <bean id="taifunDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driver.class}"/>
+        <property name="url" value="${taifun.db.url}"/>
+        <property name="username" value="${taifun.db.user}"/>
+        <property name="password" value="${taifun.db.password}"/>
+        <property name="initialSize" value="1"/>
+        <property name="maxActive" value="15"/>
+        <property name="maxIdle" value="2"/>
+        <property name="maxWait" value="15000"/>
+        <property name="validationQuery" value="select 1 from dual"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="25"/>
+    </bean>
+
+    <!-- DAOs -->
+    <bean id="targetCCAuftragDAO" class="de.augustakom.hurrican.dao.cc.impl.CCAuftragDAOImpl"
+          autowire-candidate="false"/>
+    <bean id="de.augustakom.hurrican.dao.cc.CCAuftragDAO"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="target" ref="targetCCAuftragDAO"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -java.lang.Exception</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="targetAuftragDatenDAO" class="de.augustakom.hurrican.dao.cc.impl.AuftragDatenDAOImpl"
+          autowire-candidate="false"/>
+    <bean id="de.augustakom.hurrican.dao.cc.AuftragDatenDAO"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="target" ref="targetAuftragDatenDAO"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -java.lang.Exception</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="targetIoArchiveDao" class="de.mnet.wita.dao.impl.IoArchiveDaoImpl" autowire-candidate="false"/>
+    <bean id="de.mnet.wita.dao.impl.IoArchiveDao"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="target" ref="targetIoArchiveDao"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -java.lang.Exception</prop>
+            </props>
+        </property>
+    </bean>
+    <alias name="de.mnet.wita.dao.impl.IoArchiveDao" alias="txIoArchiveDao"/>
+
+    <bean id="targetCBVorgangDAO" class="de.augustakom.hurrican.dao.cc.impl.CBVorgangDAOImpl"
+          autowire-candidate="false"/>
+    <bean id="de.augustakom.hurrican.dao.cc.CBVorgangDAO"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="target" ref="targetCBVorgangDAO"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -java.lang.Exception</prop>
+            </props>
+        </property>
+    </bean>
+    <alias name="de.augustakom.hurrican.dao.cc.CBVorgangDAO" alias="txCBVorgangDAO"/>
+
+    <!-- DAO-Klasse fuer die Verwaltung von WITA-TAL-Bestellungen. -->
+    <bean id="targetWitaCBVorgangDao" class="de.mnet.wita.dao.impl.WitaCBVorgangDaoImpl" autowire-candidate="false"/>
+    <bean id="de.mnet.wita.dao.impl.WitaCBVorgangDao"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="target" ref="targetWitaCBVorgangDao"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -java.lang.Exception</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="targetCarrierbestellungDAO" class="de.augustakom.hurrican.dao.cc.impl.CarrierbestellungDAOImpl"
+          autowire-candidate="false"/>
+    <bean id="de.augustakom.hurrican.dao.cc.CarrierbestellungDAO"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="target" ref="targetCarrierbestellungDAO"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -java.lang.Exception</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="targetWbciDao" class="de.mnet.wbci.dao.impl.WbciDaoImpl" autowire-candidate="false"/>
+    <bean id="de.mnet.wbci.dao.WbciDao" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="target" ref="targetWbciDao"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -java.lang.Exception</prop>
+            </props>
+        </property>
+    </bean>
+    <alias name="de.mnet.wbci.dao.WbciDao" alias="txWbciDao"/>
+
+    <bean id="targetGeoIdDAOImpl" class="de.augustakom.hurrican.dao.cc.impl.GeoIdDAOImpl" autowire-candidate="false"/>
+    <bean id="de.augustakom.hurrican.dao.cc.GeoIdDAO"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="target" ref="targetGeoIdDAOImpl"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -java.lang.Exception</prop>
+            </props>
+        </property>
+    </bean>
+    <alias name="de.augustakom.hurrican.dao.cc.GeoIdDAO" alias="txGeoIdDAO"/>
+
+    <bean id="sessionFactoryHibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="properties">
+            <props>
+                <prop key="hibernate.dialect">${hurrican.hibernate.dialect}</prop>
+                <prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+                <prop key="hibernate.jdbc.use_scrollable_resultset">false</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+                <prop key="hibernate.connection.release_mode">on_close</prop>
+                <prop key="javax.persistence.validation.mode">none</prop>
+                <prop key="hibernate.show.sql">true</prop>
+                <prop key="hibernate.check_nullability">true</prop>
+                <prop key="jadira.usertype.databaseZone">jvm</prop>
+                <prop key="jadira.usertype.javaZone">jvm</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="cc.sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="mappingLocations">
+            <list>
+                <!-- es werden alle hbm.xml Files ab dem Package .../cc ermittelt -->
+                <value>classpath*:de/augustakom/hurrican/model/cc/**/*.hbm.xml</value>
+            </list>
+        </property>
+        <property name="packagesToScan">
+            <list>
+                <value>de.augustakom.hurrican.model.cc</value>
+                <value>de.augustakom.hurrican.model.exceptions</value>
+                <value>de.mnet.wita.model</value>
+                <value>de.mnet.wita.message</value>
+                <value>de.mnet.wita.message.auftrag</value>
+                <value>de.mnet.wita.message.meldung</value>
+                <value>de.mnet.wbci.model</value>
+            </list>
+        </property>
+        <property name="hibernateProperties" ref="sessionFactoryHibernateProperties"/>
+        <property name="dataSource" ref="hurricanDataSource"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="cc.hibernateTxManager" proxy-target-class="true"/>
+    <bean id="cc.hibernateTxManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="cc.sessionFactory"/>
+    </bean>
+
+    <bean class="de.augustakom.hurrican.model.billing.factory.TaifunDataFactory" scope="prototype">
+        <constructor-arg index="0" ref="taifunDataSource"/>
+        <constructor-arg index="1" ref="hurricanDataSource"/>
+    </bean>
+
+    <citrus:before-test id="purgeJmsQueuesBeforeTest">
+        <citrus:actions>
+            <citrus-jms:purge-jms-queues connection-factory="atlasConnectionFactory">
+                <citrus-jms:queue name="mnet.SupplierPartner.op.cdm.src.v1.LineOrderService"/>
+                <citrus-jms:queue name="mnet.SupplierPartner.op.cdm.src.v2.LineOrderService"/>
+                <citrus-jms:queue name="mnet.Hurrican.op.cdm.dst.v1.LineOrderNotificationService"/>
+                <citrus-jms:queue name="mnet.Hurrican.op.cdm.dst.v2.LineOrderNotificationService"/>
+                <citrus-jms:queue name="mnet.Customer.op.cdm.src.v1.DocumentArchiveService"/>
+            </citrus-jms:purge-jms-queues>
+        </citrus:actions>
+    </citrus:before-test>
+
+    <bean id="lineOrderKftService" class="de.mnet.wita.integration.LineOrderKftServiceImpl"/>
+</beans>

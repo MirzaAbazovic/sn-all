@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Definition des Realisierungstermins
+fuer einen Bauauftrag.
+-->
+<sf>
+
+    <Text name="title">BA Projektierung erstellen</Text>
+
+    <Label name="checkbox.referToOrder"><text>Bezieht sich der Auftrag auf einen bereits bestehenden Auftrag?</text></Label>
+    <CheckBox name="checkbox.referToOrder">
+        <tooltip>Bezieht sich der Auftrag auf einen bereits bestehenden Auftrag? (Wichtig für Techniker z.B. bei Bandbreitenänderung.)</tooltip>
+    </CheckBox>
+
+</sf>

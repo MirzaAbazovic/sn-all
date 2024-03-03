@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.dn.Leistung2DN
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.dn">
+    <class name="Leistung2DN" table="T_LEISTUNG_DN">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="lfdNr" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_LEISTUNG_DN_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="dnNo" column="dn_no" type="long"/>
+        <property name="lbId" column="LEISTUNGSBUENDEL_ID" type="long"/>
+        <property name="leistung4DnId" column="LEISTUNG4DN_ID" type="long"/>
+        <property name="leistungParameter" column="leistung_parameter" type="string"/>
+        <property name="scvUserRealisierung" column="scv_user_realisierung" type="string"/>
+        <property name="scvRealisierung" column="scv_realisierung" type="date"/>
+        <property name="scvUserKuendigung" column="scv_user_kuendigung" type="string"/>
+        <property name="scvKuendigung" column="scv_kuendigung" type="date"/>
+        <property name="ewsdUserRealisierung" column="ewsd_user_realisierung" type="string"/>
+        <property name="ewsdRealisierung" column="ewsd_realisierung" type="date"/>
+        <property name="ewsdUserKuendigung" column="ewsd_user_kuendigung" type="string"/>
+        <property name="ewsdKuendigung" column="ewsd_kuendigung" type="date"/>
+        <property name="billingCheck" column="billing_check" type="boolean"/>
+        <property name="parameterId" column="parameter_id" type="long"/>
+        <property name="cpsTxIdCreation" column="CPS_TX_ID_CREATION" type="long"/>
+        <property name="cpsTxIdCancel" column="CPS_TX_ID_CANCEL" type="long"/>
+
+    </class>
+
+</hibernate-mapping>

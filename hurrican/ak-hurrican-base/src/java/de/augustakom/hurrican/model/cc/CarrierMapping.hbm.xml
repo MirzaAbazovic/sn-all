@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.CarrierMapping
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="CarrierMapping" table="T_CARRIER_MAPPING">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_CARRIER_MAPPING_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="carrierId" column="CARRIER_ID" type="long" not-null="true"/>
+        <property name="carrierContactId" column="CARRIER_CONTACT_ID" type="long"/>
+        <property name="carrierKennungId" column="CARRIER_KENNUNG_ID" type="long"/>
+        <property name="userW" column="USERW" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

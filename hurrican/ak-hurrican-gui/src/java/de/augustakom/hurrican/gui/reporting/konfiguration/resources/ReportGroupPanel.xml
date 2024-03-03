@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel der Reportgruppen
+-->
+<sf>
+      
+    <Button name="save">
+        <text>Speichern</text>
+        <tooltip>Speichert die Reportgruppe</tooltip>
+    </Button>
+    
+    <Button name="new">
+        <text>Neu</text>
+        <tooltip>Erstellt eine neue Reportgruppe</tooltip>
+    </Button>  
+        
+    <Button name="delete">
+        <text>Löschen</text>
+        <tooltip>Löscht die aktuelle Reportgruppe</tooltip>
+    </Button>
+   
+    <Label name="id"><text>ID:</text></Label>
+    <FormattedTextField name="id">
+        <tooltip>ID de Reportgruppe</tooltip>
+        <maxchars>11</maxchars>
+        <format type="number">#</format>
+    </FormattedTextField>
+    
+    <Label name="name"><text>Name:</text></Label>
+    <TextField name="name">
+        <tooltip>Name der aktuellen Reportgruppe</tooltip>
+        <maxchars>50</maxchars>
+    </TextField>
+    
+    <Label name="desc"><text>Beschreibung:</text></Label>
+    <TextArea name="desc">
+        <tooltip>Beschreibung der aktuellen Reportgruppe</tooltip>
+  	</TextArea>
+ 
+ 	<Label name="archive"><text>Dokumententyp:</text></Label>
+    <ComboBox name="archive">
+        <tooltip>Dokumententyp der Archivierung</tooltip>
+    </ComboBox> 
+      
+</sf>

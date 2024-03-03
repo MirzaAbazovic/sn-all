@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+
+    <!--  So werden Beans, deren Namen mit "/" beginnt automatisch remote zur Verfuegung gestellt -->
+    <bean name="beanNameUrlHandlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+
+    <!--  Import der abhängigen Beans, die Client als auch Server benötigen  -->
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCAvailabilityService.xml"/>
+    <import resource="classpath:de/augustakom/hurrican/service/cc/resources/CCPhysikServerServices.xml"/>
+
+    <bean id="de.augustakom.hurrican.service.cc.SipPeeringPartnerService"
+          class="de.augustakom.hurrican.service.cc.impl.SipPeeringPartnerServiceImpl"/>
+
+    <bean id="de.augustakom.hurrican.service.cc.BAService"
+          class="de.augustakom.hurrican.service.cc.impl.BAServiceImpl"/>
+
+    <!-- Export von Services - Bereitstellung als Remote-Service ueber Spring-HTTP -->
+
+    <bean name="/cc/SipPeeringPartnerService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.SipPeeringPartnerService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.SipPeeringPartnerService"/>
+    </bean>
+
+    <bean name="/cc/HvtUmzugService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.HvtUmzugService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.HvtUmzugService"/>
+    </bean>
+
+    <bean name="/cc/BAService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.BAService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.BAService"/>
+    </bean>
+
+    <bean name="/cc/MailService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.MailService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.MailService"/>
+    </bean>
+
+    <bean name="/cc/ProduktService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.ProduktService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.ProduktService"/>
+    </bean>
+
+    <bean name="/cc/HWSwitchService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.HWSwitchService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.HWSwitchService"/>
+    </bean>
+
+    <bean name="/cc/DummySocketService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.DummySocketService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.DummySocketService"/>
+    </bean>
+
+    <bean name="/cc/AuftragService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+    </bean>
+
+    <bean name="/cc/KundenService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.CCKundenService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.CCKundenService"/>
+    </bean>
+
+    <bean name="/cc/AnsprechpartnerService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.AnsprechpartnerService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.AnsprechpartnerService"/>
+    </bean>
+
+    <bean name="/cc/CarrierService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.CarrierService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.CarrierService"/>
+    </bean>
+
+    <bean name="/cc/HWService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.HWService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.HWService"/>
+    </bean>
+    <bean name="/cc/HVTService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.HVTService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.HVTService"/>
+    </bean>
+    <bean name="/cc/LeistungsService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.CCLeistungsService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.CCLeistungsService"/>
+    </bean>
+    <bean name="/cc/DslamService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.DSLAMService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.DSLAMService"/>
+    </bean>
+
+    <bean name="/cc/CPSService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.CPSService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.CPSService"/>
+    </bean>
+
+    <bean name="/cc/fttx/EkpFrameContractService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.fttx.EkpFrameContractService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.fttx.EkpFrameContractService"/>
+    </bean>
+    <bean name="/cc/fttx/VlanService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.fttx.VlanService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.fttx.VlanService"/>
+    </bean>
+
+    <bean name="/cc/CarrierElTALService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.CarrierElTALService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.CarrierElTALService"/>
+    </bean>
+
+    <bean name="/cc/EndgeraeteService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.EndgeraeteService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.EndgeraeteService"/>
+    </bean>
+
+    <bean name="/cc/CCRufnummernService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.augustakom.hurrican.service.cc.CCRufnummernService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.CCRufnummernService"/>
+    </bean>
+
+    <bean name="/cc/ConnectService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.augustakom.hurrican.service.cc.ConnectService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.ConnectService"/>
+    </bean>
+
+    <bean name="/cc/AccountService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.augustakom.hurrican.service.cc.AccountService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.AccountService"/>
+    </bean>
+
+    <bean name="/cc/ProfileService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.augustakom.hurrican.service.cc.ProfileService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.ProfileService"/>
+    </bean>
+
+    <!-- Definition des zu verwendenden Marshallers -->
+    <bean id="vento.marshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller"/>
+
+    <!-- Definition des zu verwendenden Message Senders
+         Hier koennen Parameter der HttpUrlConnection uebersteuert werden
+         Beispiel: connectionTimeout
+     -->
+    <bean id="hurrican.messageSender" class="de.augustakom.common.tools.ws.MnetHttpUrlConnectionMessageSender"
+          scope="prototype">
+        <property name="connectionTimeout">
+            <!-- Der Wert 10000 fuert zu einem Timeout von 20 Sekunden, weil vermutlich der Verbindungsaufbau
+                 insgesamt 2 mal durchgefuehrt wird.
+            -->
+            <value>10000</value>
+        </property>
+    </bean>
+
+    <!-- von E2E Tests verwendet -->
+    <bean name="/cc/AvailabilityService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.cc.AvailabilityService"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.cc.AvailabilityService"/>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.AvailabilityService"
+          class="de.augustakom.hurrican.service.cc.impl.AvailabilityServiceImpl">
+        <property name="DAO" ref="de.augustakom.hurrican.dao.cc.impl.AvailabilityDAO"/>
+    </bean>
+
+    <!-- Die Implementierung des LocationServiceDispatchers befindet sich ausschliesslich im Server -->
+    <bean name="/cc/LocationServiceDispatcher"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service"
+                  ref="de.augustakom.hurrican.service.location.LocationServiceDispatcher"/>
+        <property name="serviceInterface"
+                  value="de.augustakom.hurrican.service.location.LocationServiceDispatcher"/>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.location.LocationServiceDispatcher"
+          class="de.augustakom.hurrican.service.location.impl.LocationServiceDispatcherImpl" />
+
+</beans>

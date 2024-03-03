@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Beantwortung einer Abbruchmeldung
+-->
+<sf>
+
+    <Text name="dialog.title">Abbruchmeldung zur Übernahme der technischen Ressource (ABBM-TR): %s</Text>
+
+    <Label name="dialog.info.label">
+        <text>Achtung:</text>
+    </Label>
+
+    <Label name="dialog.info.text">
+        <text>Bitte beachten Sie, dass die ABBM-TR den Vorgang nicht komplett abbricht!\nSie dient lediglich als Hinweis, dass die angeforderte Übernahme der Ressource nicht möglich ist.\nBitte achten Sie darauf, dass eine korrigierte AKM-TR vom aufnehmenden EKP gesendet wird.</text>
+    </Label>
+
+    <Label name="details.label">
+        <text>Details zur ABBM-TR:</text>
+    </Label>
+
+    <Text name="send.txt">ABBM-TR senden</Text>
+    <Text name="send.tooltip">Abbruchmeldung zur Übernahme der technischen Ressource wird versendet.</Text>
+
+    <Text name="cancel.txt">Abbrechen</Text>
+    <Text name="cancel.tooltip">Schließt den Dialog ohne eine ABBM-TR zu versenden.</Text>
+
+</sf>

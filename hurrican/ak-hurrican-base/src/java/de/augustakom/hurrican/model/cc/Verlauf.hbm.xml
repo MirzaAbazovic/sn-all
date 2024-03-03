@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Verlauf
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Verlauf" table="T_VERLAUF">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_VERLAUF_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="auftragId" column="AUFTRAG_ID" type="long" not-null="true"/>
+        <property name="anlass" column="ANLASS" type="long" not-null="true"/>
+        <property name="verlaufStatusId" column="VERLAUF_STATUS_ID" type="long"/>
+        <property name="statusIdAlt" column="STATUS_ID_ALT" type="long"/>
+        <property name="projektierung" column="PROJEKTIERUNG" type="boolean"/>
+        <property name="realisierungstermin" column="REALISIERUNGSTERMIN" type="date"/>
+        <property name="akt" column="AKT" type="boolean"/>
+        <property name="manuellVerteilt" column="MANUELL_VERTEILT" type="boolean"/>
+        <property name="portierungsartId" column="PORTIERUNGSART" type="long"/>
+        <property name="verschoben" column="VERSCHOBEN" type="boolean"/>
+        <property name="observeProcess" column="OBSERVE_PROCESS" type="boolean"/>
+        <property name="bemerkung" column="BEMERKUNG" type="string"/>
+        <property name="installationRefId" column="INSTALLATION_REF_ID" type="long"/>
+        <property name="preventCPSProvisioning" column="PREVENT_CPS_PROV" type="boolean"/>
+        <property name="notPossible" column="NOT_POSSIBLE" type="boolean"/>
+        <property name="workforceOrderId" column="WORKFORCE_ORDER_ID" type="string"/>
+        <set name="subAuftragsIds" table="T_VERLAUF_SUB_ORDERS" lazy="false">
+            <key column="VERLAUF_ID"/>
+            <element type="long" column="AUFTRAG_ID"/>
+        </set>
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,5 @@
+--
+-- Erweiterung fuer Tabelle T_RS_MONITOR_CONFIG
+--
+
+ALTER TABLE T_RS_MONITOR_CONFIG ADD (DAY_COUNT NUMBER(9));

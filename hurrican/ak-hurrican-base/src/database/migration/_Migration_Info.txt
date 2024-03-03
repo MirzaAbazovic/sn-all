@@ -1,0 +1,30 @@
+#
+# Reihenfolge, in der die Migration-Scripts ausgefuehrt werden muessen:
+#
+
+updateStructure.sql
+updateDataTypes.sql
+updateData.sql
+updateDataEG.sql
+
+updateStructureDrop.sql
+updateGUI.sql
+
+updateStructureFinish.sql
+
+updatePrivileges.sql
+
+# Migration der Auftraege ueber Access-Tool von MH (Voraussetzung: Auftragsmigration Taifun erfolgreich)
+
+# nach kompletter Auftrags-Migration
+
+updateDataDN.sql
+
+##########################################
+# DN-Leistungsmigration ueber Access durchfuehren (dn_migration.mdb - Abfrage 
+# "_MIG_UPDATE_LEISTUNGDN_SET_LEISTUNGSBUENDEL")
+# ACHTUNG: ODBC-Verbindung von Access-Tools muessen auf folgende Datenbanken verweisen und die Tabellen 
+#          neu verbunden werden:
+#            Billing:  MNETPROD
+##########################################
+

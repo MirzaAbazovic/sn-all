@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  liquibase:
+    enabled: false
+    change-log: db/changelog/h2/changelog-h2.yaml
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+  h2: 
+    console:
+      enabled: true
+hub:
+  eventRegistrationService: EventRegistrationServiceJpa
+rcm:
+  api:
+    basepath: https://api-gate.adl-test.dev.bitconex.com/tmf-api/resourceCatalog/v4
+agreement:
+  api:
+    basepath: https://api-gate.adl-test.dev.bitconex.com/agreementManagement/v4
+pm:
+  api:
+    basepath: https://api-gate.adl-test.dev.bitconex.com/tmf-api/party/v4
+appointment:
+  api:
+    basepath: https://api-gate.adl-test.dev.bitconex.com/tmf-api/appointment/v4
+cxf:
+  path: /
+application:
+  title: Adlatus
+  version: 0.0.1-SNAPSHOT

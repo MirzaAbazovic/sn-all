@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    wraps the DAOs, used within the wita-acceptance tests with a spring transaction proxy, to ensure that the DAO calls
+    execute within the scope of a transaction.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+
+    <bean id="txGeoIdDAO" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" primary="false">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="target" ref="de.augustakom.hurrican.dao.cc.GeoIdDAO"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -java.lang.Exception</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="txCBVorgangDAO" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" primary="false">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="target" ref="cbVorgangDAO"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -java.lang.Exception</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="txIoArchiveDao" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" primary="false">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="target" ref="de.mnet.wita.dao.IoArchiveDao"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -java.lang.Exception</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="txWbciDao" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" primary="false">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="target" ref="de.mnet.wbci.dao.WbciDao"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="*">PROPAGATION_REQUIRED, -java.lang.Exception</prop>
+            </props>
+        </property>
+    </bean>
+
+
+</beans>

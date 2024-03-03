@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+GUI-Definitionen fuer den eMail Dialog
+-->
+
+<sf>
+    <Text name="title">eMail schreiben</Text>
+    <Text name="icon">de/augustakom/common/gui/images/mail.gif</Text>
+    
+    <Button name="send.mail">
+        <text>Senden</text>
+        <tooltip>Verschickt die eMail</tooltip>
+        <mnemonic>VK_S</mnemonic>
+    </Button>
+	
+	<Label name="mail.to"><text>An:</text></Label>
+	<TextField name="mail.to">
+		<columns>50</columns>
+		<tooltip>Empfänger-Adressen (evtl. durch , getrennt)</tooltip>
+	</TextField>
+	
+	<Label name="mail.cc"><text>Cc:</text></Label>
+	<TextField name="mail.cc">
+		<tooltip>CC-Adressen (evtl. durch , getrennt)</tooltip>
+	</TextField>
+	
+	<Label name="mail.subject"><text>Betreff:</text></Label>
+	<TextField name="mail.subject">
+	</TextField>
+
+	<Label name="mail.attachments"><text>Anhänge:</text></Label>
+    <TextArea name="mail.attachments">
+		<text></text>
+		<tooltip>die Anhänge zu dieser Mail</tooltip>
+		<columns>100</columns>
+		<rows>5</rows>
+	</TextArea>
+
+    <TextArea name="mail.body">
+		<text></text>
+		<tooltip>EMail-Text</tooltip>
+		<columns>50</columns>
+		<rows>15</rows>
+	</TextArea>
+
+</sf>

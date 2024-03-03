@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- TableModel Definition fuer die Bearbeitung der Rangierungen -->
+<table>
+    <column name="Rangier-Id" property="rangierId" type="java.lang.Long" width="50" editable="false"/>
+    <column name="Physik-Typ" property="physikTyp" type="de.augustakom.hurrican.model.cc.PhysikTyp" width="100" editable="true"/>
+    <column name="Freigegeben-Status" property="freigegeben"
+            type="de.augustakom.hurrican.model.cc.Rangierung$Freigegeben" width="50" editable="true"/>
+    <column name="Freigabe Ab" property="freigabeAb" type="java.util.Date" width="75" editable="true"/>
+    <column name="ONT-ID" property="ontId" type="java.lang.String" width="50" editable="true" maxchars="20"/>
+    <column name="Bemerkung" property="bemerkung" type="java.lang.String" width="75" editable="true" maxchars="255"/>
+    <column name="Hw-EQN" property="hwEqn" type="java.lang.String" width="75" editable="false"/>
+    <column name="Baugruppe-Typ" property="bgTyp" type="java.lang.String" width="50" editable="false"/>
+    <column name="Verteiler EQ-In" property="rangVerteilerEqIn" type="java.lang.String" width="50" editable="false"/>
+    <column name="Bucht EQ-In" property="rangBuchtEqIn" type="java.lang.String" width="50" editable="false"/>
+    <column name="Switch EQ-In" property="switchEqIn" type="java.lang.String" width="50" editable="false"/>
+    <column name="Leiste - Stift EQ-In" property="leisteStiftEqIn" type="java.lang.String" width="50" editable="false"/>
+    <column name="Verteiler EQ-Out" property="rangVerteilerEqOut" type="java.lang.String" width="50" editable="false"/>
+    <column name="Leiste - Stift EQ-Out" property="leisteStiftEqOut" type="java.lang.String" width="50" editable="false"/>
+    <column name="Übertragungsv. EQ-Out" property="uetvEqOutExtended" type="java.lang.String" width="50" editable="false"/>
+
+    <column name="Rangier-Id (2)" property="rangierId2" type="java.lang.Long" width="50" editable="false"/>
+    <column name="Physik-Typ (2)" property="physikTyp2" type="de.augustakom.hurrican.model.cc.PhysikTyp" width="100" editable="true"/>
+    <column name="Freigegeben-Status (2)" property="freigegeben2"
+            type="de.augustakom.hurrican.model.cc.Rangierung$Freigegeben" width="50" editable="true"/>
+    <column name="Freigabe Ab (2)" property="freigabeAb2" type="java.util.Date" width="75" editable="true"/>
+    <column name="Hw-EQN (2)" property="hwEqn2" type="java.lang.String" width="75" editable="false"/>
+    <column name="Baugruppe-Typ (2)" property="bgTyp2" type="java.lang.String" width="50" editable="false"/>
+    <column name="Verteiler EQ-In (2)" property="rangVerteilerEqIn2" type="java.lang.String" width="50" editable="false"/>
+    <column name="Bucht EQ-In (2)" property="rangBuchtEqIn2" type="java.lang.String" width="50" editable="false"/>
+    <column name="Switch EQ-In (2)" property="switchEqIn2" type="java.lang.String" width="50" editable="false"/>
+    <column name="Leiste - Stift EQ-In (2)" property="leisteStiftEqIn2" type="java.lang.String" width="50" editable="false"/>
+    <column name="Verteiler EQ-Out (2)" property="rangVerteilerEqOut2" type="java.lang.String" width="50" editable="false"/>
+    <column name="Leiste - Stift EQ-Out (2)" property="leisteStiftEqOut2" type="java.lang.String" width="50" editable="false"/>
+    <column name="Übertragungsv. EQ-Out (2)" property="uetvEqOutExtended2" type="java.lang.String" width="50" editable="false"/>
+
+    <column name="Leitung Gesamt-Id" property="leitungGesamtId" type="java.lang.Integer" width="100" editable="false"/>
+    <column name="Endstelle-Id" property="endstelleId" type="java.lang.Long" width="100" editable="false"/>
+    <column name="Auftrag-Id" property="auftragId" type="java.lang.Long" width="100" editable="false"/>
+</table>

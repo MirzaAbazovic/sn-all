@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.ExtServiceProvider
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="ExtServiceProvider" table="T_EXT_SERVICE_PROVIDER">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_EXT_SERVICE_PROVIDER_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="name" column="NAME" type="string" not-null="true"/>
+        <property name="firstname" column="FIRSTNAME" type="string"/>
+        <property name="street" column="STREET" type="string"/>
+        <property name="houseNum" column="HOUSE_NUM" type="string"/>
+        <property name="postalCode" column="POSTAL_CODE" type="string"/>
+        <property name="city" column="CITY" type="string"/>
+        <property name="phone" column="PHONE" type="string"/>
+        <property name="email" column="MAIL" type="string"/>
+        <property name="fax" column="FAX" type="string"/>
+        <property name="contactType" column="CONTACT_TYPE" type="integer"/>
+
+    </class>
+
+</hibernate-mapping>

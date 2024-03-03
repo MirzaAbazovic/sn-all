@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den SelectReference-Dialog.
+-->
+<sf>
+
+	<Button name="select">
+		<text>Auswählen</text>
+		<tooltip>Übernimmt das aktuell selektierte Objekt</tooltip>
+	</Button>
+	
+	<Button name="cancel">
+		<text>Abbrechen</text>
+		<tooltip>Schließt den Dialog ohne Übernahme der Selektion</tooltip>
+	</Button>
+	
+</sf>

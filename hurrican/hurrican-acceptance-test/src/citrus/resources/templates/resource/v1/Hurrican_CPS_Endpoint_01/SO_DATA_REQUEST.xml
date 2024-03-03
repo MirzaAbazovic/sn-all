@@ -1,0 +1,6 @@
+<ns:getSoDataRequest xmlns:ns="http://www.mnet.de/hurrican/cps/1.0/">
+    <when>citrus:currentDate('yyyy-MM-dd', '+1d')</when>
+    <query>
+        <cwmpId>${device.fritzbox.cwmpId}</cwmpId>
+    </query>
+</ns:getSoDataRequest>

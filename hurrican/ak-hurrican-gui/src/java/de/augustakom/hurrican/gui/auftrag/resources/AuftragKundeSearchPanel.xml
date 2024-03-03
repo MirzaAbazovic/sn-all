@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Such-Panel (fuer Kunden).
+-->
+<sf>
+
+    <!-- RadioButtons -->
+    <RadioButton name="kundendaten">
+        <text>Kundendaten</text>
+        <tooltip>Kundensuche über Kundendaten (z.B. No., Name etc)</tooltip>
+        <mnemonic>VK_S</mnemonic>
+    </RadioButton>
+
+    <RadioButton name="auftrag">
+        <text>Auftragsdaten</text>
+        <tooltip>Kundensuche über Auftragsdaten</tooltip>
+        <mnemonic>VK_A</mnemonic>
+    </RadioButton>
+
+    <RadioButton name="rufnummer">
+        <text>Rufnummer</text>
+        <tooltip>Kundensuche über die Rufnummer</tooltip>
+        <mnemonic>VK_R</mnemonic>
+    </RadioButton>
+
+    <RadioButton name="in.nummer">
+        <text>IN-Rufnummer</text>
+        <tooltip>Kundensuche über eine IN-Rufnummer</tooltip>
+        <mnemonic>VK_I</mnemonic>
+    </RadioButton>
+
+    <RadioButton name="endstelle">
+        <text>Endstelle</text>
+        <tooltip>Kundensuche über Endstelle</tooltip>
+        <mnemonic>VK_L</mnemonic>
+    </RadioButton>
+
+    <RadioButton name="carrier">
+        <text>Carrier</text>
+        <tooltip>Kundensuche über Carrier-Daten</tooltip>
+        <mnemonic>VK_C</mnemonic>
+    </RadioButton>
+
+    <RadioButton name="equipment">
+        <text>Equipment</text>
+        <tooltip>Suche über Equipment-Daten (Stifte)</tooltip>
+        <mnemonic>VK_E</mnemonic>
+    </RadioButton>
+
+    <RadioButton name="inbetriebnahme">
+        <text>Realisierungen</text>
+        <tooltip>Suche nach Aufträgen, die in einer best. Zeit in Betrieb gegangen sind.</tooltip>
+    </RadioButton>
+
+    <RadioButton name="rechnung">
+        <text>Rechnungsdaten</text>
+        <tooltip>Suche nach Aufträgen ueber die Rechnungsdaten.</tooltip>
+    </RadioButton>
+
+    <RadioButton name="innenauftrag">
+        <text>Innenauftrag</text>
+        <tooltip>Suche nach Aufträgen über die Innenauftragsdaten.</tooltip>
+    </RadioButton>
+
+    <RadioButton name="housingauftrag">
+        <text>Housingauftrag</text>
+        <tooltip>Suche nach Aufträgen über die Housingauftragsdaten.</tooltip>
+    </RadioButton>
+
+    <RadioButton name="ip.address">
+        <text>IP-Adresse</text>
+        <tooltip>Suche nach Aufträgen über die IP-Adresse(n).</tooltip>
+    </RadioButton>
+
+    <!-- ENDE RadioButtons -->
+
+    <Button name="search">
+        <text>Filter anwenden</text>
+        <tooltip>Führt die Suche mit den definierten Parametern durch</tooltip>
+        <mnemonic>VK_F</mnemonic>
+    </Button>
+
+    <Button name="clear">
+        <text>Filter löschen</text>
+        <tooltip>Löscht die eingetragenen Filter-Werte</tooltip>
+        <mnemonic>VK_C</mnemonic>
+    </Button>
+
+    <Text name="result.count">Gefundene Datensätze: </Text>
+
+    <Text name="border.search.type">Suche über: </Text>
+    <Text name="border.filter">Filter: </Text>
+
+    <!-- ****************** Filter-Panel fuer Suche ueber Kundendaten *********************** -->
+    <Label name="kundendaten.kunden.no"><text>Kunde__NO:</text></Label>
+    <FormattedTextField name="kundendaten.kunden.no">
+        <tooltip>Kundennummer des gesuchten Kunden (keine Wildcards!)</tooltip>
+        <columns>20</columns>
+    </FormattedTextField>
+
+    <Label name="kundendaten.haupt.no"><text>Hauptkundennummer:</text></Label>
+    <FormattedTextField name="kundendaten.haupt.no">
+        <tooltip>Hauptkundennummer des gesuchten Kunden (keine Wildcards!)</tooltip>
+    </FormattedTextField>
+
+    <Label name="kundendaten.name"><text>Name:</text></Label>
+    <TextField name="kundendaten.name">
+        <tooltip>Name des gesuchten Kunden</tooltip>
+    </TextField>
+
+    <Label name="kundendaten.vorname"><text>Vorname:</text></Label>
+    <TextField name="kundendaten.vorname">
+        <tooltip>Vorname des gesuchten Kunden</tooltip>
+    </TextField>
+
+    <Label name="kundendaten.strasse"><text>Strasse:</text></Label>
+    <TextField name="kundendaten.strasse">
+        <tooltip>Strasse des gesuchten Kunden</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="kundendaten.plz"><text>PLZ:</text></Label>
+    <TextField name="kundendaten.plz">
+        <tooltip>PLZ des gesuchten Kunden</tooltip>
+    </TextField>
+
+    <Label name="kundendaten.ort"><text>Ort:</text></Label>
+    <TextField name="kundendaten.ort">
+        <tooltip>Ort des gesuchten Kunden</tooltip>
+    </TextField>
+
+    <Label name="kundendaten.ortsteil"><text>Ortsteil:</text></Label>
+    <TextField name="kundendaten.ortsteil">
+        <tooltip>Ortsteil des gesuchten Kunden</tooltip>
+    </TextField>
+
+    <Action name="open.customer.overview">
+        <class>de.augustakom.hurrican.gui.auftrag.actions.OpenKundenuebersichtAction</class>
+        <text>Kundenübersicht</text>
+        <tooltip>Öffnet die Kundenübersicht zu dem aktuell selektierten Auftrag/Kunden</tooltip>
+    </Action>
+
+    <Action name="open.sap.daten">
+        <class>de.augustakom.hurrican.gui.tools.sap.actions.OpenSAPDaten4KundeAction</class>
+        <text>Zeige Debitoren-Posten...</text>
+        <tooltip>Öffnet eine Frame mit den verfügbaren Debitoren-Posten</tooltip>
+    </Action>
+
+    <Action name="attach.nbz">
+        <class>de.augustakom.hurrican.gui.tools.nbz.actions.AttachNBZAction</class>
+        <text>NBZ hinterlegen...</text>
+        <tooltip>Hinterlegt NBZ für aktuellen Kunden</tooltip>
+    </Action>
+
+    <Action name="open.io.archive.dialog">
+        <class>de.augustakom.hurrican.gui.auftrag.actions.OpenIoArchiveDialogAction</class>
+        <text>History...</text>
+        <tooltip>Öffnet die IO-Archive History mit den WITA/WBCI Vorgängen zu dem ausgewählten Vorgang</tooltip>
+    </Action>
+
+</sf>

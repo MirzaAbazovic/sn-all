@@ -1,0 +1,1 @@
+alter table T_ADDRESS modify (EMAIL VARCHAR2(255));

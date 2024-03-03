@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den Aufträgen die zu einem Verlauf gehören.
+-->
+<sf>
+
+    <Label name="suborders"><text>Aufträge die mit diesem Verlauf abgedeckt werden:</text></Label>
+
+</sf>

@@ -1,0 +1,1 @@
+alter table T_GEO_ID_CACHE add agsn varchar2(20);

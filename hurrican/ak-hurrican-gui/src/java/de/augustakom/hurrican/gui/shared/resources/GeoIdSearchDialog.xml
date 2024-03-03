@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog, um GeoIDs zu suchen
+-->
+<sf>
+
+    <Text name="title">GeoID suchen</Text>
+
+    <Label name="street"><text>Strasse:</text></Label>
+    <TextField name="street">
+        <tooltip>Strassenname nach dem gesucht wird - Wildcards (*,?) sind erlaubt</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="housenum"><text>Haus-Nr:</text></Label>
+    <TextField name="housenum">
+        <tooltip>Hausnummer nach der gesucht wird - Wildcards (*,?) sind erlaubt</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="city"><text>Ort:</text></Label>
+    <TextField name="city">
+        <tooltip>Ort nach dem gesucht wird - Wildcards (*,?) sind erlaubt</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="district"><text>Ortsteil:</text></Label>
+    <TextField name="district">
+        <tooltip>Ortsteil nach dem gesucht wird - Wildcards (*,?) sind erlaubt</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Button name="search">
+        <text>Filtern</text>
+        <tooltip>Sucht nach GeoIDs, die den Suchparametern entsprechen</tooltip>
+        <mnemonic>VK_F</mnemonic>
+    </Button>
+
+</sf>

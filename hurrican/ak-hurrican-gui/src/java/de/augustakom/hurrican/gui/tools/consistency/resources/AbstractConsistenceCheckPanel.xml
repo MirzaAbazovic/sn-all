@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    GUI-Definitionen fuer das AbstractConsistenceCheck-Panel.
+-->
+<sf>
+    <Button name="start.check">
+        <text>Start</text>
+        <tooltip>Startet den Konsistenz-Check</tooltip>
+    </Button>
+
+    <Button name="cancel.check">
+        <text>Abbrechen</text>
+        <tooltip>Bricht den Konsistenz-Check ab</tooltip>
+    </Button>
+</sf>

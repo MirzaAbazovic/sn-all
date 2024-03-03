@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.EG
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="EG2Auftrag" table="T_EG_2_AUFTRAG">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_EG_2_AUFTRAG_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="auftragId" column="AUFTRAG_ID" type="long"/>
+        <property name="egId" column="EG_ID" type="long"/>
+        <property name="montageart" column="MONTAGEART" type="long"/>
+        <property name="bemerkung" column="BEMERKUNG" type="string"/>
+        <property name="bearbeiter" column="BEARBEITER" type="string"/>
+        <property name="raum" column="RAUM" type="string"/>
+        <property name="etage" column="ETAGE" type="string"/>
+        <property name="endstelleId" column="ENDSTELLE_ID" type="long"/>
+        <property name="gebaeude" column="GEBAEUDE" type="string"/>
+        <property name="deactivated" column="DEACTIVATED" type="boolean"/>
+        <set name="endgeraetIps" order-by="ADDRESS_TYPE" cascade="all-delete-orphan" lazy="false">
+            <key column="EG2A_ID"/>
+            <one-to-many class="de.augustakom.hurrican.model.cc.EndgeraetIp"/>
+        </set>
+        <set name="routings" cascade="all-delete-orphan" lazy="false">
+            <key column="EG2A_ID"/>
+            <one-to-many class="de.augustakom.hurrican.model.cc.Routing"/>
+        </set>
+
+        <set name="egConfigs" cascade="all-delete-orphan" lazy="false">
+            <key column="EG2A_ID"/>
+            <one-to-many class="de.augustakom.hurrican.model.cc.EGConfig"/>
+        </set>
+        <!--  ipAdresseRef ist OneToOne! -->
+        <many-to-one name="ipAdresseRef" class="de.augustakom.hurrican.model.cc.IPAddress"
+            column="IP_ADDRESS_ID" not-null="false" cascade="all" unique="true" lazy="false" />
+
+    </class>
+
+</hibernate-mapping>

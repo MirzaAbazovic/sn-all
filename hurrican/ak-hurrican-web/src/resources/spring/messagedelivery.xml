@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
+            http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <jaxws:client id="messageDeliveryService"
+                  serviceClass="de.mnet.esb.cdm.customer.messagedeliveryservice.v1.MessageDeliveryService"
+                  address="jms://"
+                  serviceName="lns:MessageDeliveryService"
+                  endpointName="lns:MessageDeliveryServiceJMS"
+                  transportId="http://cxf.apache.org/transports/jms"
+                  xmlns:lns="http://www.mnet.de/esb/cdm/Customer/MessageDeliveryService/v1">
+        <jaxws:properties>
+            <entry key="schema-validation-enabled" value="true"/>
+        </jaxws:properties>
+        <jaxws:features>
+            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature">
+                <property name="jmsConfig">
+                    <bean id="jmsLocationNotificationConfig" class="org.apache.cxf.transport.jms.JMSConfiguration">
+                        <property name="connectionFactory" ref="atlasConsumerCachingConnectionFactory"/>
+                        <property name="targetDestination" value="mnet.Customer.op.cdm.src.v1.MessageDeliveryService"/>
+                        <property name="jmsProviderTibcoEms" value="true"/>
+                    </bean>
+                </property>
+            </bean>
+        </jaxws:features>
+        <jaxws:outInterceptors>
+            <ref bean="esbTrackingOutInterceptor"/>
+            <bean class="org.apache.cxf.binding.soap.interceptor.TibcoSoapActionInterceptor"/>
+        </jaxws:outInterceptors>
+        <jaxws:outFaultInterceptors>
+            <ref bean="esbTrackingOutInterceptor"/>
+        </jaxws:outFaultInterceptors>
+    </jaxws:client>
+
+</beans>

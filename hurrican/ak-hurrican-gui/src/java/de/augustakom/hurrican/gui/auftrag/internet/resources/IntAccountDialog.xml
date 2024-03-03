@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den IntAccount-Dialog.
+-->
+<sf>
+
+    <Text name="title">Account</Text>
+
+    <Label name="account"><text>Account:</text></Label>
+    <TextField name="account">
+        <columns>20</columns>
+        <tooltip>Definition des Account-Namens</tooltip>
+    </TextField>
+
+    <Label name="password"><text>Passwort:</text></Label>
+    <TextField name="password">
+        <columns>20</columns>
+        <tooltip>Definition des Account-Passworts</tooltip>
+    </TextField>
+</sf>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.TechLeistung
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="TechLeistung" table="T_TECH_LEISTUNG">
+
+        <!--
+        <cache usage="read-only"/>
+        -->
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="externLeistungNo" column="EXTERN_LEISTUNG__NO" type="long"/>
+        <property name="externMiscNo" column="EXTERN_MISC__NO" type="long"/>
+        <property name="name" column="NAME" type="string" not-null="true"/>
+        <property name="typ" column="TYP" type="string" not-null="true"/>
+        <property name="longValue" column="LONG_VALUE" type="long"/>
+        <property name="strValue" column="STR_VALUE" type="string"/>
+        <property name="ewsd" column="EWSD" type="boolean"/>
+        <property name="sdh" column="SDH" type="boolean"/>
+        <property name="sct" column="SCT" type="boolean"/>
+        <property name="ips" column="IPS" type="boolean"/>
+        <property name="parameter" column="PARAMETER" type="string"/>
+        <property name="baHinweis" column="BA_HINWEIS" type="string"/>
+        <property name="prodNameStr" column="PROD_NAME_STR" type="string"/>
+        <property name="description" column="DESCRIPTION" type="string"/>
+        <property name="checkQuantity" column="CHECK_QUANTITY" type="boolean"/>
+        <property name="snapshotRel" column="SNAPSHOT_REL" type="boolean"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date" not-null="true"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date" not-null="true"/>
+        <property name="aktivBisNullOnSync" column="AKTIV_BIS_NULL_ON_SYNC" type="boolean"/>
+        <property name="preventAutoDispatch" column="PREVENT_AUTO_DISPATCH" type="boolean" not-null="true"/>
+        <property name="autoExpire" column="AUTO_EXPIRE" type="boolean" not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

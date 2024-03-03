@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den Zugangsdaten zu Endgeraeten.
+-->
+<sf>
+
+    <Label name="serial.number"><text>Seriennummer:</text></Label>
+	<TextField name="serial.number">
+		<tooltip>Angabe der Seriennummer des Endgerätes</tooltip>
+		<columns>15</columns>
+	</TextField>
+	
+	<Label name="ausgabe.datum"><text>Ausgabedatum:</text></Label>
+	<DateComponent name="ausgabe.datum">
+		<tooltip>Datum, an dem das Endgerät ausgegeben bzw. versendet wurde</tooltip>
+		<format type="date">dd.MM.yyyy</format>
+	</DateComponent>
+   
+	<Label name="selbstabholung"><text>Selbstabholung:</text></Label>
+	<TextField name="selbstabholung">
+		<tooltip>Endgerät wurde von Kunde selbst abgeholt</tooltip>
+	</TextField>
+	
+</sf>

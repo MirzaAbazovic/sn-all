@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit der VPN-Uebersicht
+-->
+<sf>
+
+    <Button name="uebernahme">
+        <text>VPN übernehmen</text>
+        <tooltip>Übernimmt einen VPN-Auftrag aus Taifun nach Hurrican</tooltip>
+        <mnemonic>VK_N</mnemonic>
+    </Button>
+
+    <Button name="edit">
+        <text>VPN bearbeiten</text>
+        <tooltip>Öffnet einen Dialog, um den selektierten VPN-Auftrag zu bearbeiten</tooltip>
+        <mnemonic>VK_B</mnemonic>
+    </Button>
+
+    <Button name="details">
+        <text>VPN Details</text>
+        <tooltip>Zeigt Details zu dem selektierten VPN-Auftrag an</tooltip>
+        <mnemonic>VK_D</mnemonic>
+    </Button>
+
+    <Button name="save">
+        <text>Speichern</text>
+        <tooltip>Speichert geänderte VPN-Aufträge</tooltip>
+        <mnemonic>VK_S</mnemonic>
+    </Button>
+
+</sf>

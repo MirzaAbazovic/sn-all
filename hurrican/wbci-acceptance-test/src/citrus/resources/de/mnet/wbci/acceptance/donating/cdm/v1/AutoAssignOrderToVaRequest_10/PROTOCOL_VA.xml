@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <ns2:addCommunication xmlns:ns2="http://www.mnet.de/esb/cdm/Customer/CustomerService/v1">
+      <ns2:customerId>${customerId}</ns2:customerId>
+      <ns2:context>
+        <ns2:contractId>${billingOrderNoOrig}</ns2:contractId>
+      </ns2:context>
+      <ns2:time>@ignore@</ns2:time>
+      <ns2:type>WBCI</ns2:type>
+      <ns2:reason>WBCI-Meldung</ns2:reason>
+      <ns2:notes>@ignore@</ns2:notes>
+    </ns2:addCommunication>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur ServiceChain-Konfiguration.
+-->
+<sf>
+    
+	<Label name="chain.type"><text>Chain-Typ:</text></Label>
+	<ComboBox name="chain.type">
+		<tooltip>Auswahl, welche Art von ServiceChain bearbeitet werden soll</tooltip>
+	</ComboBox>
+	
+    <Button name="delete.config">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht die aktuell angezeigte Service-Chain</tooltip>
+    </Button>
+    
+    <Button name="new.config">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Erstellt eine neue ServiceChain-Definition</tooltip>
+    </Button>
+    
+    <Button name="save.config">
+        <icon>de/augustakom/hurrican/gui/images/save.gif</icon>
+        <tooltip>Speichert die aktuelle ServiceChain-Definition</tooltip>
+    </Button>
+    
+    <Button name="add.command">
+        <icon>de/augustakom/hurrican/gui/images/left.gif</icon>
+        <tooltip>Fügt die selektierten Commands hinzu</tooltip>
+    </Button>
+    
+    <Button name="remove.command">
+        <icon>de/augustakom/hurrican/gui/images/right.gif</icon>
+        <tooltip>Entfernt die selektierten Commands</tooltip>
+    </Button>
+    
+    <Button name="move.up">
+        <icon>de/augustakom/hurrican/gui/images/up.gif</icon>
+        <tooltip>Verschiebt die selektierten Commands nach oben</tooltip>
+    </Button>
+    
+    <Button name="move.down">
+        <icon>de/augustakom/hurrican/gui/images/down.gif</icon>
+        <tooltip>Verschiebt die selektierten Commands nach unten</tooltip>
+    </Button>
+    
+    <Label name="chain.id"><text>ID:</text></Label>
+    <FormattedTextField name="chain.id">
+        <tooltip>ID der Service-Chain</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Label name="chain.name"><text>Name:</text></Label>
+    <TextField name="chain.name">
+        <tooltip>Name der Service-Chain</tooltip>
+        <columns>25</columns>
+        <maxchars>50</maxchars>
+    </TextField>
+    
+    <Label name="chain.desc"><text>Beschreibung</text></Label>
+    <TextArea name="chain.desc">
+        <tooltip>kurze Beschreibung der Service-Chain</tooltip>
+        <columns>50</columns>
+        <rows>3</rows>
+        <maxchars>255</maxchars>
+    </TextArea>
+    
+    <Text name="assigned.commands">Zugeordnete Service-Commands</Text>
+    <Text name="available.commands">Verfügbare Service-Commands</Text>
+    
+    <Text name="ask.save.title">Änderungen speichern?</Text>
+    <Text name="ask.save.msg">Sollen die vorgenommenen Änderungen wirklich
+gespeichert werden?</Text>
+
+    <Text name="ask.delete.title">Konfiguration löschen?</Text>
+    <Text name="ask.delete.msg">Soll die aktuell angezeigte Konfiguration
+wirklich gelöscht werden?</Text>
+    
+</sf>

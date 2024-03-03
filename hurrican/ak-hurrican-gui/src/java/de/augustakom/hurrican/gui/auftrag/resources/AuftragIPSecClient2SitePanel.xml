@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den IPSec Site-to-Site Daten.
+-->
+<sf>
+    <Button name="assign.token">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Ordnet einen neuen Token zu</tooltip>
+    </Button>
+
+    <Button name="remove.token">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht den selektierten Token</tooltip>
+    </Button>
+
+</sf>

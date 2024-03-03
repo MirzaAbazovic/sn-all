@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse 
+de.augustakom.hurrican.model.cc.Carrierbestellung2Endstelle
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+	<class name="Carrierbestellung2Endstelle" table="T_CB_2_ES">
+	    
+	    <!-- PrimaryKey -->
+		<id name="id" column="ID" unsaved-value="null" type="long">
+			<generator class="sequence"><param name="sequence">S_T_CB_2_ES_0</param></generator>
+		</id>
+
+	</class>
+	
+</hibernate-mapping>

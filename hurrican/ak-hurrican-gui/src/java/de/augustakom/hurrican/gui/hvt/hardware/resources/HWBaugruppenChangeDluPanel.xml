@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit Baugruppen-Schwenks vom Typ 'Baugruppentyp aendern'.
+-->
+<sf>
+
+    <Label name="dlu.to.change"><text>*DLU:</text></Label>
+    <ReferenceField name="dlu.to.change">
+        <columns>15</columns>
+        <tooltip>Angabe der DLU, die geaendert werden soll</tooltip>
+        <id.property>id</id.property>
+        <name.property>geraeteBez</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.hardware.HWDlu</reference.class>
+    </ReferenceField>
+
+    <Label name="dlu.number"><text>*neue DLU Nummer:</text></Label>
+    <TextField name="dlu.number">
+        <tooltip>Angabe der neuen DLU Nummer</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="dlu.switch"><text>*neuer Switch:</text></Label>
+    <TextField name="dlu.switch">
+        <tooltip>Angabe der neuen Switch-Zuordnung</tooltip>
+    </TextField>
+
+    <Label name="dlu.mediagateway"><text>neues Mediagateway:</text></Label>
+    <TextField name="dlu.mediagateway">
+        <tooltip>Angabe des neuen MediaGateways (optional)</tooltip>
+    </TextField>
+
+    <Label name="dlu.accesscontroller"><text>neuer Access-Controller:</text></Label>
+    <TextField name="dlu.accesscontroller">
+        <tooltip>Angabe des neuen Access-Controllers (optional)</tooltip>
+    </TextField>
+
+    <Button name="save.hw.bg.change.dlu">
+        <icon>de/augustakom/hurrican/gui/images/save.gif</icon>
+        <text>Speichern</text>
+        <tooltip>Speichert die angegebenen Werte</tooltip>
+    </Button>
+
+    <Button name="v5.import">
+        <icon>de/augustakom/hurrican/gui/images/import.gif</icon>
+        <text>V5 Import</text>
+        <tooltip>Import eines Excel-Files mit Mapping von (alter) HW_EQN zu V5-Port</tooltip>
+    </Button>
+
+    <Button name="cps.reinit">
+        <icon>de/augustakom/hurrican/gui/images/flag_complete.gif</icon>
+        <text>CPS Re-Init</text>
+        <tooltip>CPS Re-Init der betroffenen Aufträge (nur Initial-Load, keine CPS-Ausfuehrung!)</tooltip>
+    </Button>
+
+</sf>

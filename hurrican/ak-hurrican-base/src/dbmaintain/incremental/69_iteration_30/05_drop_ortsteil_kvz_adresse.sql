@@ -1,0 +1,1 @@
+alter table T_KVZ_ADRESSE drop column ORTSTEIL;

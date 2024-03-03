@@ -1,0 +1,2 @@
+update T_PRODUKT set SEND_STATUS_UPDATE='0', ELVERLAUF='1' where PROD_ID='600';
+

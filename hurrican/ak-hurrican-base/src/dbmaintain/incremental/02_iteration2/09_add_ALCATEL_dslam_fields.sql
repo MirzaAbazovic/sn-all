@@ -1,0 +1,11 @@
+--
+-- SQL-Script, um eine Spalte fuer die "alte" Bezeichnung der DSLAMs anzulegen.
+--
+ALTER TABLE T_HW_RACK_DSLAM
+ ADD (VPI_CPE_MGMT NUMBER(9));
+
+ALTER TABLE T_HW_RACK_DSLAM
+ ADD (OUTER_TAG_IAD_MGMT NUMBER(9));
+
+ALTER TABLE T_HW_RACK_DSLAM
+ ADD (OUTER_TAG_CPE_MGMT NUMBER(9));

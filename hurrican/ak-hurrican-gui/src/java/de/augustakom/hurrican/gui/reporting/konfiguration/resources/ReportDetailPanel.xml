@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Panel der Reports
+-->
+<sf>
+    
+    <Label name="id"><text>ID:</text></Label>
+    <FormattedTextField name="id">
+        <tooltip>ID des Reports</tooltip>
+        <maxchars>11</maxchars>
+        <format type="number">#</format>
+    </FormattedTextField>
+    
+    <Label name="name"><text>Name:</text></Label>
+    <TextField name="name">
+        <tooltip>Name des Reports</tooltip>
+        <maxchars>100</maxchars>
+    </TextField>
+    
+    <Label name="beschreibung"><text>Beschreibung:</text></Label>
+    <TextArea name="beschreibung">
+        <tooltip>Kurze Beschreibung des Reports</tooltip>
+        <maxchars>255</maxchars>
+    </TextArea>
+ 
+    <Button name="save">
+        <text>Speichern</text>
+        <tooltip>Speichert die die Report-Details</tooltip>
+    </Button>
+    
+    <Button name="new">
+        <text>Neu</text>
+        <tooltip>Erstellt einen neuen Report-Datensatz</tooltip>
+    </Button>  
+    
+    <Button name="test">
+        <text>Teste Report</text>
+        <tooltip>Test-Funktion für Report</tooltip>
+    </Button>  
+    
+    <Label name="type"><text>Reporttyp:</text></Label>
+    <ComboBox name="type">
+        <tooltip>Typ des Reports</tooltip>
+        <items>
+        	<item text="Auftragsreport" value="1" class="java.lang.Integer"/>
+        	<item text="Kundenreport" value="2" class="java.lang.Integer"/>
+       		<item text="Interner Report" value="3" class="java.lang.Integer"/>
+        </items>
+    </ComboBox>
+    
+    <Label name="group"><text>Dokumentengruppe:</text></Label>
+    <ComboBox name="group">
+        <tooltip>Dokumentengruppe</tooltip>
+    </ComboBox> 
+  
+    <Label name="printer"><text>Druckersteuerung:</text></Label>
+    
+  	<Label name="page.one"><text>Seite 1:</text></Label>
+    <ComboBox name="page.one">
+        <tooltip>Papierformat Seite 1</tooltip>
+    </ComboBox> 
+    
+    <Label name="page.two"><text>Seite 2:</text></Label>
+    <ComboBox name="page.two">
+        <tooltip>Papierformat Seite 2</tooltip>
+    </ComboBox>  
+    
+    <Label name="duplex"><text>Duplex-Druck:</text></Label>
+    <CheckBox name="duplex">
+        <tooltip>Doppelseitiger Druck</tooltip>
+    </CheckBox> 
+</sf>

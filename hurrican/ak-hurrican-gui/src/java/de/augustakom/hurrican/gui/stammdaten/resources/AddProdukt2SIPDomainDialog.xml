@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Konfiguration der
+moeglichen Endgeraete eines Produkts.
+-->
+<sf>
+
+    <Text name="title">Neu SIP-Domäne anlegen</Text>
+
+    <Label name="switch"><text>Switch</text></Label>
+    <ComboBox name="switch">
+        <tooltip>Auswahl Switch Kennung</tooltip>
+    </ComboBox>
+
+    <Label name="sipDomain"><text>SIP-Domäne</text></Label>
+    <ComboBox name="sipDomain">
+        <tooltip>Auswahl SIP-Domäne</tooltip>
+    </ComboBox>
+
+    <Label name="default"><text>Default SIP-Domäne</text></Label>
+    <CheckBox name="default">
+        <tooltip>Default SIP-Domäne</tooltip>
+    </CheckBox>
+
+</sf>

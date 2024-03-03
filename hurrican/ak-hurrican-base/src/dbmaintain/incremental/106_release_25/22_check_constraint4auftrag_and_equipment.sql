@@ -1,0 +1,1 @@
+ALTER TABLE T_PROFILE_AUFTRAG_VALUE ADD CONSTRAINT ck_auftrag_or_equipmentnotnull CHECK (auftrag_id IS NOT NULL OR equipment_id IS NOT NULL);

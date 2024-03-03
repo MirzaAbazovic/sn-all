@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Counter
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Counter" table="T_COUNTER">
+
+        <!-- PrimaryKey -->
+        <id name="counter" column="COUNTER" unsaved-value="null" type="string">
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="intValue" column="INTVALUE" type="integer" not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

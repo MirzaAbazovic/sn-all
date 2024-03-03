@@ -1,0 +1,52 @@
+pipeline {
+    agent {
+        kubernetes {
+            inheritFrom 'maven-docker-pod'
+        }
+    }
+
+    environment{
+            DOCKER_AUTH_CONFIG = credentials('DOCKER_AUTH_CONFIG')
+        }
+    
+    stages {
+        stage('Checkout Source') {
+            steps {
+                git credentialsId: 'adlatus_ssh-key',
+                    url: 'git@bitbucket.org:bitconex/adlatus.git',
+                    branch: 'master'
+            }
+        }
+
+        stage('Maven Package') {
+            steps {
+                container('maven'){
+                    configFileProvider([configFile(fileId: '6378b853-e085-4888-8d65-d36cdf692d46', variable: 'MAVEN_GLOBAL_SETTINGS')]) {
+                        sh 'mvn clean -gs $MAVEN_GLOBAL_SETTINGS install'
+                    }
+                }
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                container('docker'){
+                    sh 'docker build -t docker.adl.dev.bitconex.com/bitconex-adlatus:latest -f ci/Dockerfile .'
+                }
+            }
+        }
+
+        stage('Pushing Image'){
+            steps {
+                container('docker'){
+                    script {
+                        def registryCredential = 'nexus_id'
+                        docker.withRegistry('https://docker.adl.dev.bitconex.com', registryCredential){
+                            sh 'docker push docker.adl.dev.bitconex.com/bitconex-adlatus:latest'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

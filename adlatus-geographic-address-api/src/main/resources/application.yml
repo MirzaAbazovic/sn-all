@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: geographic-address-management
+  config:
+    import: optional:configserver:${CONFIG_SERVER:https://configserver.env01.adl.dev.bitconex.com}
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER:https://configserver.env01.adl.dev.bitconex.com}
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:default}

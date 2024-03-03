@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den LAN-VRRP-IP-Dialog.
+-->
+<sf>
+
+    <Text name="title">LAN-VRRP-IP</Text>
+
+    <Label name="ip"><text>IP-Adresse:</text></Label>
+    <IPAddressComponent name="ip">
+        <tooltip>Definition der IP-Adresse der LAN-VRRP-IP</tooltip>
+        <IPTypesAllowed>
+            <IPType>1</IPType>
+            <IPType>2</IPType>
+            <IPType>3</IPType>
+            <IPType>4</IPType>
+        </IPTypesAllowed>
+    </IPAddressComponent>
+</sf>

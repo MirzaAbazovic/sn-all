@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://wholesale.telekom.de/oss/v15/connectivity" xmlns:complex="http://wholesale.telekom.de/oss/v15/complex" xmlns:simple="http://wholesale.telekom.de/oss/v15/simple" xmlns:enum="http://wholesale.telekom.de/oss/v15/enm" xmlns:message="http://wholesale.telekom.de/oss/v15/message" targetNamespace="http://wholesale.telekom.de/oss/v15/connectivity" version="15.00.03/2022-04-13">
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/complex" schemaLocation="oss-type-complex.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/simple" schemaLocation="oss-type-simple.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/enm" schemaLocation="oss-type-enum.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/message" schemaLocation="oss-message.xsd"/>
+	<!-- XML types and elements for processing 'Not Connected' orders and messages -->
+	<!-- 
+		!
+		! Not Connected-Auftrag
+		!
+	-->
+	<xsd:complexType name="AbstractNotConnectedAuftragType" abstract="true">
+		<xsd:sequence>
+			<xsd:element name="externeAuftragsnummer" type="simple:ExterneAuftragsnummerType">
+			</xsd:element>
+			<xsd:element name="kunde" type="complex:KundeType">
+				<xsd:annotation>
+					<xsd:documentation>Kundendaten (bei Beauftragung im Namen des Kunden ist der Kunde gemeint, für den bestellt wird)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="besteller" type="complex:KundeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Angaben zum Besteller, für den Fall dass der Besteller im Namen eines anderen Kunden handelt (nur bei Beauftragung im Namen Dritter)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="notConnectedAuftrag" type="tns:NotConnectedAuftragType"/>
+	<xsd:complexType name="NotConnectedAuftragType">
+		<xsd:complexContent>
+			<xsd:extension base="tns:AbstractNotConnectedAuftragType">
+				<xsd:sequence>
+					<xsd:element name="BKTO" type="simple:BuchungskontonummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>BKTO-Nummer, die zur Fakturierung heranzuziehen ist</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Wünscht Kunde, dass ein Auftrag auf eine andere als die Standard BKTO abgerechnet wird, kann Kunde hier eine ihm zugeteilte aktive BKTO angeben</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="anbieterwechsel" type="enum:BoolDecisionType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Kennzeichen, dass der Not Connected Auftrag im Kontext eines Anbieterwechsels eingestellt wird. Der folgende Connected Auftrag muss dann als Anbieterwechsel-Auftrag mit Vorabstimmungs-ID gemäß den geltenden Regeln eingestellt werden.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="produkt" type="tns:ProduktType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Produktinformationen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="standortA" type="tns:StandortType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zum Standort A (Endkunde)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ansprechpartner" type="tns:AnsprechpartnerMitRolleType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Ansprechpartnern</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angaben zu  Ansprechpartner 'Auftragsmanagement Kunde' sind immer erforderlich. 'Ansprechpartner Eigentuemer' kann nur zusammen mit Eigentümer-Angaben angegeben werden.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="endkunde" type="tns:EndkundeType">
+						<xsd:annotation>
+							<xsd:documentation>Informationen zum Endkunden</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="notConnectedStorno" type="tns:NotConnectedStornoType"/>
+	<xsd:complexType name="NotConnectedStornoType">
+		<xsd:complexContent>
+			<xsd:extension base="tns:AbstractNotConnectedAuftragType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="notConnectedAenderungED" type="tns:NotConnectedAenderungEDType">
+		<xsd:annotation>
+			<xsd:documentation>Änderung Endkunden-Daten</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="NotConnectedAenderungEDType">
+		<xsd:complexContent>
+			<xsd:extension base="tns:AbstractNotConnectedAuftragType">
+				<xsd:sequence>
+					<xsd:element name="endkunde" type="tns:AnsprechpartnerType">
+						<xsd:annotation>
+							<xsd:documentation>Die Endkunden-Daten müssen immer vollständig angegeben werden, inkl. nicht geänderter Anteile; bspw. ist die E-Mail-Adresse immer Pflichtfeld, auch wenn nur die Mobilnummer geändert werden soll.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ansprechpartnerEndkunde" type="tns:AnsprechpartnerPersonType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="KontaktDatenType">
+		<xsd:sequence>
+			<xsd:element name="rufnummerFestnetz" type="simple:TelefonnummerType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Telefonnummer des Ansprechpartners</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="rufnummerMobil" type="simple:TelefonnummerType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Telefonnummer des Ansprechpartners</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="emailAdresse" type="simple:EmailadresseType">
+				<xsd:annotation>
+					<xsd:documentation>E-Mail-Adresse des Ansprechpartners</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="AnsprechpartnerRolleType">
+		<xsd:annotation>
+			<xsd:documentation>Ansprechpartner-Rollen</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Ansprechpartner Endkunde"/>
+			<xsd:enumeration value="Auftragsmanagement Kunde"/>
+			<xsd:enumeration value="Ansprechpartner Eigentuemer"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="EigentumsverhaeltnisType">
+		<xsd:annotation>
+			<xsd:documentation/>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Eigentuemer"/>
+			<xsd:enumeration value="Teileigentuemer"/>
+			<xsd:enumeration value="Mieter"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="EigentuemerArtType">
+		<xsd:annotation>
+			<xsd:documentation/>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Eigentuemer"/>
+			<xsd:enumeration value="Verwalter"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="AnsprechpartnerType">
+		<xsd:sequence>
+			<xsd:element name="kontaktDaten" type="tns:KontaktDatenType">
+				<xsd:annotation>
+					<xsd:documentation>Kontaktdaten des Ansprechpartners</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="person" type="complex:PersonType">
+					<xsd:annotation>
+						<xsd:documentation>Angaben zur Person</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="firma" type="complex:FirmaType">
+					<xsd:annotation>
+						<xsd:documentation>Angaben zur Firma</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AnsprechpartnerPersonType">
+		<xsd:sequence>
+			<xsd:element name="kontaktDaten" type="tns:KontaktDatenType">
+				<xsd:annotation>
+					<xsd:documentation>Kontaktdaten des Ansprechpartners</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="person" type="complex:PersonType">
+				<xsd:annotation>
+					<xsd:documentation>Angaben zur Person</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>	
+	<xsd:complexType name="AnsprechpartnerMitRolleType">
+		<xsd:sequence>
+			<xsd:element name="kontaktDaten" type="tns:KontaktDatenType">
+				<xsd:annotation>
+					<xsd:documentation>Kontaktdaten des Ansprechpartners</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="person" type="complex:PersonType">
+				<xsd:annotation>
+					<xsd:documentation>Angaben zur Person</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="rolle" type="tns:AnsprechpartnerRolleType">
+				<xsd:annotation>
+					<xsd:documentation>Rolle des Ansprechpartners</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="EndkundeType">
+		<xsd:complexContent>
+			<xsd:extension base="tns:AnsprechpartnerType">
+				<xsd:sequence>
+					<xsd:element name="eigentumsVerhaeltnis" type="tns:EigentumsverhaeltnisType">
+						<xsd:annotation>
+							<xsd:documentation>Eigentumsverhältnis</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="eigentuemer" type="tns:EigentuemerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Informationen zum Eigentümer</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="EigentuemerType">
+		<xsd:complexContent>
+			<xsd:extension base="tns:AnsprechpartnerType">
+				<xsd:sequence>
+					<xsd:element name="art" type="tns:EigentuemerArtType">
+						<xsd:annotation>
+							<xsd:documentation>Eigentümer-Art</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="adresse" type="tns:AdresseType">
+						<xsd:annotation>
+							<xsd:documentation>Adresse des Eigentümers</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="AdresseType">
+		<xsd:sequence>
+			<xsd:element name="land" type="simple:LandType" default="de" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Land</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Deutschland ('de'), wenn keine Angaben</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="postleitzahl" type="simple:PostleitzahlType">
+				<xsd:annotation>
+					<xsd:documentation>Postleitzahl</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ort" type="complex:OrtType">
+				<xsd:annotation>
+					<xsd:documentation>Ortsangaben</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:choice>
+				<xsd:element name="strasse" type="complex:StrasseType">
+					<xsd:annotation>
+						<xsd:documentation>Strassenangaben</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				<xsd:element name="postfach" type="tns:PostfachType">
+					<xsd:annotation>
+						<xsd:documentation>Postfach</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProduktType">
+		<xsd:sequence>
+			<xsd:element name="bezeichner" type="simple:ProduktbezeichnerType">
+				<xsd:annotation>
+					<xsd:documentation>Produktname des Produktes, das in der Auftragsposition zugebucht, in Wegfall gebracht oder geändert werden soll</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nur zulässige Produktnamen aus Produktbezeichner-Anlage möglich</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">s. Anlage Produktbezeichner 
+Beispiele: "FTTH 200000", "FTTH 100000" </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="AusbauvarianteType">
+		<xsd:annotation>
+			<xsd:documentation>Ausbauvariante</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="FTTH"/>
+			<xsd:enumeration value="FTTB"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="PostfachType">
+		<xsd:annotation>
+			<xsd:documentation>Angaben zum Postfach</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="StandortType">
+		<xsd:sequence>
+			<xsd:element name="postleitzahl" type="simple:PostleitzahlType">
+				<xsd:annotation>
+					<xsd:documentation>Postleitzahl</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ort" type="complex:OrtType">
+				<xsd:annotation>
+					<xsd:documentation>Ortsangaben</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="strasse" type="complex:StrasseType">
+				<xsd:annotation>
+					<xsd:documentation>Strassenangaben</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="gebaeudeteilId" type="tns:GebaeudeteilIdType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Eindeutige Id des Gebäudeteils</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="GebaeudeteilIdType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="\d{1,13}"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<!-- 
+		!
+		! Meldungsattribute
+		!
+	-->
+	<xsd:element name="ZWM" type="tns:MeldungsattributeNotConnected-ZWMType"/>
+	<xsd:complexType name="MeldungsattributeNotConnected-ZWMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeZWMType">
+				<xsd:sequence>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Vertragsnummer</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ausbauVariante" type="tns:AusbauvarianteType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Variante des Ausbaus</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes/important">FTTB wird zu einem späteren Zeitpunkt unterstützt</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="terminauswahlLink" type="simple:LinkAN512Type" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Link auf das Telekom Gigabit Terminportal, mit dem der Endkunde den Termin für die Installation der Gf-TA buchen kann.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="auftragnehmerGfTAInstallation" type="tns:AuftragnehmerGfTAInstallationType" minOccurs="0"/>
+					<xsd:element name="homeID" type="simple:HomeIDType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="AuftragnehmerGfTAInstallationType">
+		<xsd:sequence>
+			<xsd:element name="name">
+				<xsd:annotation>
+					<xsd:documentation>Firmenname des Auftragnehmers</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="60"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="telefonnummer" type="simple:TelefonnummerType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Telefonnummer des Auftragnehmers</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="mobilnummer" type="simple:TelefonnummerType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Mobilnummer des Auftragnehmers</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="emailadresse" type="simple:EmailadresseType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>E-Mail-Adresse des Auftragnehmers</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="ABM" type="tns:MeldungsattributeNotConnected-ABMType"/>
+	<xsd:complexType name="MeldungsattributeNotConnected-ABMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeABMType">
+				<xsd:sequence>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="ABMpos" type="tns:MeldungsattributeNotConnected-ABMType"/>
+	<xsd:complexType name="MeldungspositionsattributeNotConnected-ABMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungspositionsattributeABMType">
+				<xsd:sequence>
+					<xsd:element name="datum" type="xsd:date" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Datum zu dem im Meldungscode / Meldungstext beschriebenen Termin</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="uhrzeit" type="tns:UhrzeitType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="ABBM" type="tns:MeldungsattributeNotConnected-ABBMType"/>
+	<xsd:complexType name="MeldungsattributeNotConnected-ABBMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeABBMType">
+				<xsd:sequence>
+					<xsd:element name="gebaeudeteilId" type="tns:GebaeudeteilIdType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Eindeutige Id des Gebäudeteils</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="ABBMpos" type="tns:MeldungsattributeNotConnected-ABBMType"/>
+	<xsd:complexType name="MeldungspositionsattributeNotConnected-ABBMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungspositionsattributeABBMType">
+				<xsd:sequence>
+					<xsd:element name="datum" type="xsd:date" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Datum zu dem im Meldungscode / Meldungstext beschriebenen Termin</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="uhrzeit" type="tns:UhrzeitType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="ZWMpos" type="tns:MeldungsattributeNotConnected-ZWMType"/>
+	<xsd:complexType name="MeldungspositionsattributeNotConnected-ZWMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungspositionsattributeZWMType">
+				<xsd:sequence>
+					<xsd:element name="datum" type="xsd:date" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Datum zu dem im Meldungscode / Meldungstext beschriebenen Termin</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="uhrzeit" type="tns:UhrzeitType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="UhrzeitType">
+		<xsd:annotation>
+			<xsd:documentation>Uhrzeit zu dem im Meldungscode / Meldungstext beschriebenen Termin</xsd:documentation>
+			<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">Die Informationen zur Zeitzone gemäß Spezifikation des Datentyps xsd:time müssen enthalten sein. Eine Zeitangabe ohne Zeitzone ist nicht zulässig</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:time">
+			<xsd:pattern value=".{9,14}"/>
+			<!--mit Zeitzone-->
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

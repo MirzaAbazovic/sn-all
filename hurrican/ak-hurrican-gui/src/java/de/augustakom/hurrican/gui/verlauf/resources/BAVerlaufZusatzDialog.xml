@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den BAVerlaufNeuZusatz-Dialog
+-->
+<sf>
+
+    <Text name="title">Bauauftrag-Zusatz</Text>
+
+    <Label name="hvt.gruppen"><text>HVT-Gruppe:</text></Label>
+    <ComboBox name="hvt.gruppen">
+        <tooltip>HVT-Gruppe, bei der ein zusätzlicher Bauauftrag erstellt werden soll</tooltip>
+    </ComboBox>
+    
+    <Label name="abteilungen"><text>Abteilung:</text></Label>
+    <ComboBox name="abteilungen">
+        <tooltip>Abteilung, die zusätzlich einen Bauauftrag erhalten soll</tooltip>
+    </ComboBox>
+    
+    <Label name="selbstmontage"><text>auch bei SM:</text></Label>
+    <CheckBox name="selbstmontage">
+        <tooltip>Abteilung erhält Bauauftrag auch bei einer Endgeräte-Selbstmontage</tooltip>
+    </CheckBox>
+
+</sf>

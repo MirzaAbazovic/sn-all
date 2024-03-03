@@ -1,0 +1,1 @@
+alter table T_ENDSTELLE_CONNECT add DEFAULT_GATEWAY varchar2(30);

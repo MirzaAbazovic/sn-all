@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<ApplicationUpdater>
+    <Version>${build.date}</Version>
+    <HurricanVersion>${project.version}</HurricanVersion>
+    <Mandatory>1</Mandatory>
+    <VersionFile>\\lisa\datenbanken\hurrican\ak-hurrican-gui\hurrican-update.xml</VersionFile>
+    <UpdateWindows>\\lisa\datenbanken\hurrican\update.bat</UpdateWindows>
+    <UpdateLinux>nA</UpdateLinux>
+    <LinuxShell>/bin/sh</LinuxShell>
+    <WindowsCommand>cmd /c start</WindowsCommand>
+</ApplicationUpdater>
+

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="houseKeepingJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.wbci.WbciHouseKeepingJob"/>
+        <property name="group" value="wbci"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="houseKeepingJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="houseKeepingJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.wbci.houseKeepingJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <bean id="escalationReportJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.wbci.WbciEscalationReportJob"/>
+        <property name="group" value="wbci"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="escalationReportJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="escalationReportJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.wbci.escalationReportJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+
+    <bean id="sendWbciRequestsJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.wbci.SendWbciRequestsJob"/>
+        <property name="group" value="wbci"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="sendWbciRequestsJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="sendWbciRequestsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.wbci.sendWbciRequestsJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+    <!-- Trigger-Listener, um nur einen 'sendWbciRequestsJob' ausfuehren zu lassen.-->
+    <bean id="vetoSendWbciRequestsJobListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoSendWbciRequestsJobListener"/>
+        <property name="jobName" value="sendWbciRequestsJob"/>
+        <property name="jobGroup" value="wbci"/>
+    </bean>
+
+    <bean id="processWbciAutomatableRuemVAsJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.wbci.ProcessWbciAutomatableRuemVAsJob"/>
+        <property name="group" value="wbci"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="processWbciAutomatableRuemVAsJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="processWbciAutomatableRuemVAsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.wbci.processWbciAutomatableRuemVAsJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+    <!-- Trigger-Listener, um nur einen 'processWbciAutomatableRuemVAsJob' ausfuehren zu lassen.-->
+    <bean id="vetoProcessWbciAutomatableRuemVAsJobListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoProcessWbciAutomatableRuemVAsJobListener"/>
+        <property name="jobName" value="processWbciAutomatableRuemVAsJob"/>
+        <property name="jobGroup" value="wbci"/>
+    </bean>
+
+
+    <bean id="processWbciAutomatableOutgoingRuemVAsJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.wbci.ProcessWbciAutomatableOutgoingRuemVAsJob"/>
+        <property name="group" value="wbci"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list><value>log.job.execution.listener</value></list>
+        </property>
+    </bean>
+    <bean id="processWbciAutomatableOutgoingRuemVAsJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="processWbciAutomatableOutgoingRuemVAsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.wbci.processWbciAutomatableOutgoingRuemVAsJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+    <bean id="vetoProcessWbciAutomatableOutgoingRuemVAsJobListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoProcessWbciAutomatableOutgoingRuemVAsJobListener"/>
+        <property name="jobName" value="processWbciAutomatableOutgoingRuemVAsJob"/>
+        <property name="jobGroup" value="wbci"/>
+    </bean>
+
+
+    <bean id="processWbciAutomatableAkmTRsJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.wbci.ProcessWbciAutomatableAkmTRsJob"/>
+        <property name="group" value="wbci"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="processWbciAutomatableAkmTRsJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="processWbciAutomatableAkmTRsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.wbci.processWbciAutomatableAkmTRsJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+    <bean id="vetoProcessWbciAutomatableAkmTRsJobListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoProcessWbciAutomatableAkmTRsJobListener"/>
+        <property name="jobName" value="processWbciAutomatableAkmTRsJob"/>
+        <property name="jobGroup" value="wbci"/>
+    </bean>
+
+
+    <bean id="processWbciAutomatableIncomingAkmTRsJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.wbci.ProcessWbciAutomatableIncomingAkmTRsJob"/>
+        <property name="group" value="wbci"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="processWbciAutomatableIncomingAkmTRsJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="processWbciAutomatableIncomingAkmTRsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.wbci.processWbciAutomatableIncomingAkmTRsJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+    <bean id="vetoProcessWbciAutomatableIncomingAkmTRsJobListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoProcessWbciAutomatableIncomingAkmTRsJobListener"/>
+        <property name="jobName" value="processWbciAutomatableIncomingAkmTRsJob"/>
+        <property name="jobGroup" value="wbci"/>
+    </bean>
+
+
+    <bean id="processWbciAutomatableErlmTvsJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.wbci.ProcessWbciAutomatableErlmTvsJob"/>
+        <property name="group" value="wbci"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="processWbciAutomatableErlmTvsJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="processWbciAutomatableErlmTvsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.wbci.processWbciAutomatableErlmTvsJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+    <bean id="vetoProcessWbciAutomatableErlmTvsJobListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoProcessWbciAutomatableErlmTvsJobListener"/>
+        <property name="jobName" value="processWbciAutomatableErlmTvsJob"/>
+        <property name="jobGroup" value="wbci"/>
+    </bean>
+
+
+    <bean id="processWbciAutomatableStrAufErlmsJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.wbci.ProcessWbciAutomatableStrAufErlmsJob"/>
+        <property name="group" value="wbci"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="processWbciAutomatableStrAufErlmsJobTrigger"
+          class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="processWbciAutomatableStrAufErlmsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.wbci.processWbciAutomatableStrAufErlmsJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+    <bean id="vetoProcessWbciAutomatableStrAufErlmsJobListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoProcessWbciAutomatableStrAufErlmsJobListener"/>
+        <property name="jobName" value="processWbciAutomatableStrAufErlmsJob"/>
+        <property name="jobGroup" value="wbci"/>
+    </bean>
+
+
+    <bean id="processWbciAutomatableStrAufErlmsDonatingJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.wbci.ProcessWbciAutomatableStrAufErlmsDonatingJob"/>
+        <property name="group" value="wbci"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="processWbciAutomatableStrAufErlmsDonatingJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="processWbciAutomatableStrAufErlmsDonatingJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.wbci.processWbciAutomatableStrAufErlmsDonatingJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+    <bean id="vetoProcessWbciAutomatableStrAufErlmsDonatingJobListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoProcessWbciAutomatableStrAufErlmsDonatingJobListener"/>
+        <property name="jobName" value="processWbciAutomatableStrAufErlmsDonatingJob"/>
+        <property name="jobGroup" value="wbci"/>
+    </bean>
+
+</beans>

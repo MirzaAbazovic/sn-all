@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.dn.Sperrklasse
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.dn">
+    <class name="Sperrklasse" table="T_SPERRKLASSEN">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_SPERRKLASSEN_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="sperrklasse" column="SPERRKLASSE" type="integer"/>
+        <property name="sperrklasseIms" column="SPERRKLASSE_IMS" type="integer"/>
+        <property name="abgehend" column="ABGEHEND" type="boolean"/>
+        <property name="national" column="NATIONAL" type="boolean"/>
+        <property name="innovativeDienste" column="INNOVATIVE_DIENSTE" type="boolean"/>
+        <property name="mabez" column="MABEZ" type="boolean"/>
+        <property name="mobil" column="MOBIL" type="boolean"/>
+        <property name="vpn" column="VPN" type="boolean"/>
+        <property name="prd" column="PRD" type="boolean"/>
+        <property name="auskunftsdienste" column="AUSKUNFTSDIENSTE" type="boolean"/>
+        <property name="international" column="INTERNATIONAL" type="boolean"/>
+        <property name="offline" column="OFF_LINE" type="boolean"/>
+        <property name="premiumServicesInt" column="PREMIUM_SERVICES_INT" type="boolean"/>
+        <property name="name" column="NAME" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

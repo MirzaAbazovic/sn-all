@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse de.augustakom.authentication.model.AKUser
+-->
+
+<hibernate-mapping package="de.augustakom.authentication.model">
+    <class name="AKUser" table="USERS">
+
+        <cache usage="read-write"/>
+
+        <!-- PrimaryKey von AKUser/USER -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence">
+                <param name="sequence">S_USERS_0</param>
+            </generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields von AKUser/USER -->
+        <property name="loginName" column="LOGINNAME" type="string" not-null="true"/>
+        <property name="name" column="NAME" type="string" not-null="true"/>
+        <property name="firstName" column="FIRSTNAME" type="string" not-null="true"/>
+        <property name="email" column="EMAIL" type="string"/>
+        <property name="phone" column="PHONE" type="string"/>
+        <property name="phoneNeutral" column="PHONE_NEUTRAL" type="string"/>
+        <property name="fax" column="FAX" type="string"/>
+        <property name="departmentId" column="DEP_ID" type="long" not-null="true"/>
+        <property name="active" column="ACTIVE" type="boolean" not-null="true"/>
+        <property name="niederlassungId" column="NIEDERLASSUNG_ID" type="long"/>
+        <property name="extServiceProviderId" column="EXT_SERVICE_PROVIDER_ID" type="long"/>
+        <property name="projektleiter" column="PROJEKTLEITER" type="boolean" not-null="true"/>
+        <property name="manager" column="MANAGER" type="boolean"/>
+        <many-to-one name="team" column="TEAM_ID" class="de.augustakom.authentication.model.AKTeam" lazy="false"/>
+        <many-to-one name="bereich" column="bereich" class="de.augustakom.authentication.model.AKBereich" lazy="false"/>
+    </class>
+
+</hibernate-mapping>
+

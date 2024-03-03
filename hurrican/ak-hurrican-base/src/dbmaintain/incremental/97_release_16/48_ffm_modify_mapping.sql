@@ -1,0 +1,2 @@
+alter table T_FFM_PRODUCT_MAPPING modify (STANDORT_TYP NULL);
+

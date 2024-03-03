@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns3:getTVFeedData4GeoIdsResponse xmlns:ns3="http://www.mnet.de/hurrican/tvfeed/1.0/">
+    <geoIdResponses>
+        <queriedGeoId>0</queriedGeoId>
+    </geoIdResponses>
+</ns3:getTVFeedData4GeoIdsResponse>

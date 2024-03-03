@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring App-Context Definition fuer den Wholesale Order Service. -->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+
+    <!-- Service Beans & Aggregator Commands-->
+
+
+    <context:component-scan base-package="de.mnet.hurrican.wholesale.ws.outbound"/>
+    <bean name="/cc/ws/WholesaleOrderOutboundService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.hurrican.wholesale.ws.outbound.WholesaleOrderOutboundService"/>
+        <property name="serviceInterface" value="de.mnet.hurrican.wholesale.ws.outbound.WholesaleOrderOutboundService"/>
+    </bean>
+
+
+
+
+    <jaxws:client xmlns:lns="http://www.mnet.de/esb/cdm/SupplierPartner/WholesaleOrderService/v2"
+                  id="wholesaleOrderService"
+                  serviceClass="de.mnet.esb.cdm.supplierpartner.wholesaleorderservice.v2.WholesaleOrderService"
+                  address="jms://"
+                  serviceName="lns:WholesaleOrderService"
+                  endpointName="lns:WholesaleOrderServiceJMS"
+                  transportId="http://cxf.apache.org/transports/jms">
+        <jaxws:properties>
+            <entry key="schema-validation-enabled" value="true"/>
+        </jaxws:properties>
+        <jaxws:features>
+            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature">
+                <property name="jmsConfig">
+                    <bean id="jmsWholesaleOrderServiceOutboundConfig"
+                          class="org.apache.cxf.transport.jms.JMSConfiguration">
+                        <property name="connectionFactory" ref="atlasTransactionAwareConnectionFactory"/>
+                        <property name="targetDestination"
+                                  value="mnet.SupplierPartner.op.cdm.src.v2.WholesaleOrderService"/>
+                        <property name="jmsProviderTibcoEms" value="true"/>
+                        <property name="sessionTransacted" value="true"/>
+                    </bean>
+                </property>
+            </bean>
+        </jaxws:features>
+        <jaxws:outInterceptors>
+
+            <ref bean="esbTrackingOutInterceptor"/>
+            <bean class="de.mnet.common.webservice.tools.TibcoSoapActionWithoutQuotesInterceptor"/>
+            <bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+            <bean class="de.mnet.hurrican.wholesale.interceptor.WholesaleRequestInterceptor"/>
+        </jaxws:outInterceptors>
+        <jaxws:outFaultInterceptors>
+            <ref bean="esbTrackingOutInterceptor"/>
+        </jaxws:outFaultInterceptors>
+        <jaxws:inInterceptors>
+            <!-- bean class="org.apache.cxf.interceptor.LoggingInInterceptor"/-->
+        </jaxws:inInterceptors>
+    </jaxws:client>
+
+    <context:component-scan base-package="de.mnet.hurrican.wholesale.ws.inbound"/>
+    <jaxws:endpoint implementor="de.mnet.hurrican.wholesale.ws.inbound.WholesaleOrderServiceImpl"
+                    address="jms://">
+        <jaxws:features>
+            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature">
+                <property name="jmsConfig">
+                    <bean id="jmsWholesaleOrderServiceInboundConfig"
+                          class="org.apache.cxf.transport.jms.JMSConfiguration">
+                        <property name="connectionFactory" ref="atlasConsumerCachingConnectionFactory"/>
+                        <property name="targetDestination"
+                                  value="mnet.Hurrican.op.cdm.dst.v2.WholesaleOrderService"/>
+                        <property name="jmsProviderTibcoEms" value="true"/>
+                        <property name="sessionTransacted" value="true"/>
+                    </bean>
+                </property>
+            </bean>
+        </jaxws:features>
+        <jaxws:inInterceptors>
+            <bean class="de.mnet.hurrican.wholesale.interceptor.WholesaleResponseInterceptor"/>
+            <!--bean class="de.augustakom.hurrican.service.interceptor.SchemaValidationInterceptor">
+                <property name="errorCode" value="HURRICAN-TECH-009"/>
+                <property name="schema">
+                    <bean class="de.mnet.common.xml.WsdlXsdSchema">
+                        <property name="wsdl" value="classpath:/xsd/ffm/WorkforceNotificationService.wsdl"/> richtig machen
+                        <property name="soapSchema" value="classpath:/xsd/soap-envelope-1.1.xsd"/>
+                    </bean>
+                </property>
+            </bean-->
+        </jaxws:inInterceptors>
+    </jaxws:endpoint>
+
+    <jaxws:endpoint implementor="de.mnet.hurrican.wholesale.ws.inbound.WholesaleOrderServiceImpl"
+                    address="/wholesaleorder">
+        <jaxws:inInterceptors>
+            <bean class="de.mnet.hurrican.wholesale.interceptor.WholesaleResponseInterceptor"/>
+        </jaxws:inInterceptors>
+    </jaxws:endpoint>
+
+</beans>

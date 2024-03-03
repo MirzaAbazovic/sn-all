@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Auftrags-Frame
+-->
+<sf>
+    
+    <Button name="cancel">
+        <text>Abbrechen</text>
+        <tooltip>Schliesst das Fenster ohne evtl. Änderungen zu speichern</tooltip>
+    </Button>
+    
+    <Button name="refresh">
+        <text>Aktualisieren</text>
+        <tooltip>Laedt die Daten des Auftrags neu</tooltip>
+    </Button>
+    
+</sf>

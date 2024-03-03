@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Text name="no.carrier">Bitte einen Carrier für die Vorabstimmung abgebend auswählen.</Text>
+    <Text name="no.result">Bitte die Art der Rückmeldung für die Vorabstimmung abgebend auswählen.</Text>
+    <Text name="no.anbieterwechsel.date">Bitte eine Anbieterwechseldatum für die Vorabstimmung abgebend auswählen.</Text>
+
+    <Label name="vorabstimmung.carrier.aufnehmend">
+        <text>Aufnehmender Carrier:</text>
+    </Label>
+    <ComboBox name="vorabstimmung.carrier.aufnehmend">
+        <tooltip>Der aufnehmende Carrier für die Vorabstimmung</tooltip>
+    </ComboBox>
+
+    <Label name="anbieterwechsel.datum"><text>Anbieterwechseldatum:</text></Label>
+    <DateComponent name="anbieterwechsel.datum">
+        <tooltip>Datum zu dem der Anbieterwechsel abgestimmt wurde (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="vorabstimmung.ergebniss">
+        <text>Vorabstimmungsergebniss:</text>
+    </Label>
+    <ComboBox name="vorabstimmung.ergebniss">
+        <tooltip>Der aufnehmende Carrier für die Vorabstimmung</tooltip>
+    </ComboBox>
+
+    <Label name="bemerkung.vorabstimmung">
+        <text>Bemerkung:</text>
+    </Label>
+    <TextArea name="bemerkung.vorabstimmung">
+        <tooltip>Begründung für z.B. negative Vorabstimmung</tooltip>
+        <rows>3</rows>
+        <columns>25</columns>
+        <prevented-keys>
+            <key-stroke>pressed ENTER</key-stroke>
+            <key-stroke>pressed TAB</key-stroke>
+            <key-stroke>typed ;</key-stroke>
+        </prevented-keys>
+    </TextArea>
+
+</sf>

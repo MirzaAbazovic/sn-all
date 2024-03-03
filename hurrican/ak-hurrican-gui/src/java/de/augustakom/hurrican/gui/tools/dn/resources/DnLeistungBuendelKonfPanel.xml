@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Erstellen der LEsitungsbuendel.
+-->
+
+<sf>
+	<Label name="lbl.sel"><text>zugeordnete Leistungen</text></Label>
+	<Label name="lbl.verf"><text>mögliche Leistungen</text></Label>
+	
+	 <Label name="dn.typ"><text>Rufnumerntyp:</text></Label>
+    <ComboBox name="dn.typ">
+        <tooltip>Der Rufnummerntyp, zu dem die Leistung in dem gewähltem Bündel gebucht werden kann</tooltip>
+    </ComboBox>
+	
+	<Label name="v.von"><text>Verwenden von:</text></Label>
+    <DateComponent name="v.von">
+        <tooltip>Datum, ab dem die Leistung in dem Leistungsbündel gültig ist (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>10</columns>
+    </DateComponent>
+	
+	<Label name="v.bis"><text>Verwenden bis:</text></Label>
+    <DateComponent name="v.bis">
+        <tooltip>Datum, bis zu dem die Leistung in dem Leistungsbündel gültig ist (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>10</columns>
+    </DateComponent>
+	
+	<Button name="add">
+        <icon>de/augustakom/hurrican/gui/images/left.gif</icon>
+        <tooltip>Übernimmt die selektierten Leistungen in das Leistungsbündel</tooltip>
+    </Button>
+    
+    <Button name="remove">
+        <icon>de/augustakom/hurrican/gui/images/right.gif</icon>
+        <tooltip>Entfernt die selektieren Leistungen aus dem Leistungbündel</tooltip>
+    </Button>
+	
+	<Label name="standard"><text>Standardleistung:</text></Label>
+    <CheckBox name="standard">
+        <tooltip>Legt die Leistung als Standardleistung fest</tooltip>
+    </CheckBox>
+	
+	<Label name="standard.parameter.wert"><text>Standardparameterwert</text></Label>
+	<TextField name="standard.parameter.wert">
+        <tooltip>Standardparameterwert(wenn vorhanden). Wird nur bei Standardleistungen verwendet!!</tooltip>
+        <columns>15</columns>
+    </TextField>
+		
+	
+</sf>

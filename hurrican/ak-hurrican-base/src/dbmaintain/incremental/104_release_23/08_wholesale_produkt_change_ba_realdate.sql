@@ -1,0 +1,1 @@
+update t_produkt set ba_change_realdate = '1' where prod_id = 600;

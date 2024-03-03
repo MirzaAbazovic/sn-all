@@ -1,0 +1,168 @@
+{
+  "groups": [],
+  "properties": [
+    {
+      "name": "agreement.api.basepath",
+      "type": "java.lang.String",
+      "description": "TMF API base paths for our agreement management system.",
+      "values": [
+        {
+          "value": "http://localhost/agreementManagement/v4",
+          "description": "Agreement management host and base path for localhost."
+        }
+      ]
+    },
+    {
+      "name": "application.title",
+      "type": "java.lang.String",
+      "description": "String label representing name of Adlatus application."
+    },
+    {
+      "name": "application.version",
+      "type": "java.lang.String",
+      "description": "String value representing a version of Adlatus application."
+    },
+    {
+      "name": "cxf.path",
+      "type": "java.lang.String",
+      "description": "At runtime do not use /services, rather redirect all requests with path '/ws' to Apache CXF engine to root level."
+    },
+    {
+      "name": "hub.event-registration-service",
+      "type": "java.lang.String",
+      "description": "Hub event registration service. Utilizes in-memory config in case if property is not set.",
+      "values": [
+        {
+          "value": "EventRegistrationServiceJpa",
+          "description": "Hub Event registration service uses JPA repositories."
+        },
+        {
+          "value": "EventRegistrationServiceMem",
+          "description": "Hub event registration service utilizes in-memory configuration."
+        },
+        {
+          "value": "EventRegistrationServiceMongo",
+          "description": "Hub event registration service utilizes mongodb repositories."
+        }
+      ],
+      "defaultValue": "EventRegistrationServiceMem"
+    },
+    {
+      "name": "pm.api.basepath",
+      "type": "java.lang.String",
+      "description": "TMF API base paths for our product management system.",
+      "values": [
+        {
+          "value": "http://localhost/tmf-api/party/v4",
+          "description": "Product catalog management host and base path for localhost."
+        }
+      ]
+    },
+    {
+      "name": "rcm.api.basepath",
+      "type": "java.lang.String",
+      "description": "TMF API base paths for our resource catalog management system.",
+      "values": [
+        {
+          "value": "http://localhost/tmf-api/resourceCatalog/v4",
+          "description": "Resource catalog host and base path for localhost."
+        }
+      ]
+    },
+    {
+      "name": "ga.api.basepath",
+      "type": "java.lang.String",
+      "description": "TMF API base paths for our product management system.",
+      "values": [
+        {
+          "value": "http://localhost/tmf-api/geographicAddressManagement/v4",
+          "description": "Product catalog management host and base path for localhost."
+        }
+      ]
+    }
+  ],
+  "hints": [
+    {
+      "name": "agreement.api.basepath",
+      "type": "java.lang.String",
+      "description": "TMF API base paths for our agreement management system.",
+      "values": [
+        {
+          "value": "http://localhost/agreementManagement/v4",
+          "description": "Agreement management host and base path for localhost."
+        }
+      ]
+    },
+    {
+      "name": "application.title",
+      "values": [
+        {
+          "value": "Adlatus",
+          "description": "Set application name to Adlatus."
+        },
+        {
+          "value": "Adlatus-Domain",
+          "description": "Set application name to Adlatus-Domain."
+        }
+      ]
+    },
+    {
+      "name": "application.version",
+      "values": [
+        {
+          "value": "0.0.1-SNAPSHOT",
+          "description": "Set application version string to 0.0.1-SNAPSHOT."
+        }
+      ]
+    },
+    {
+      "name": "cxf.path",
+      "values": [
+        {
+          "value": "/",
+          "description": "At runtime do not use /services, rather redirect all requests with path '/ws' to Apache CXF engine to root level."
+        }
+      ]
+    },
+    {
+      "name": "hub.event-registration-service",
+      "description": "Hub event registration service. Utilizes in-memory config in case if property is not set.",
+      "values": [
+        {
+          "value": "EventRegistrationServiceJpa",
+          "description": "Hub Event registration service uses JPA repositories."
+        },
+        {
+          "value": "EventRegistrationServiceMem",
+          "description": "Hub event registration service utilizes in-memory configuration."
+        },
+        {
+          "value": "EventRegistrationServiceMongo",
+          "description": "Hub event registration service utilizes mongodb repositories."
+        }
+      ]
+    },
+    {
+      "name": "pm.api.basepath",
+      "type": "java.lang.String",
+      "description": "TMF API base paths for our product management system.",
+      "values": [
+        {
+          "value": "http://localhost/tmf-api/party/v4",
+          "description": "Product catalog management host and base path for localhost."
+        }
+      ]
+    },
+    {
+      "name": "rcm.api.basepath",
+      "type": "java.lang.String",
+      "description": "TMF API base paths for our resource catalog management system.",
+      "values": [
+        {
+          "value": "http://localhost/tmf-api/resourceCatalog/v4",
+          "description": "Resource catalog link for localhost."
+        }
+      ]
+    }
+  ]
+}

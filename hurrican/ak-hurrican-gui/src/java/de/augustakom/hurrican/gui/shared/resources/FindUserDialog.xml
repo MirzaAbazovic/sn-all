@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    <Text name="title">Benutzer-Suche</Text>
+
+    <Label name="name"><text>Name:</text></Label>
+    <TextField name="name">
+        <columns>15</columns>
+        <tooltip>Namen als Suchkriterium (* Wildcards erlaubt)</tooltip>
+    </TextField>
+
+    <Label name="firstName"><text>Vorname:</text></Label>
+    <TextField name="firstName">
+        <columns>15</columns>
+        <tooltip>Vorname als Suchkriterium (* Wildcards erlaubt)</tooltip>
+    </TextField>
+
+    <Label name="loginName"><text>Login-Name:</text></Label>
+    <TextField name="loginName">
+        <columns>15</columns>
+        <tooltip>Login-Namen als Suchkriterium (* Wildcards erlaubt)</tooltip>
+    </TextField>
+
+    <Button name="search">
+        <tooltip>Sucht nach Benutzern, die den Suchkriterien entsprechen</tooltip>
+        <text>Suchen</text>
+        <icon>de/augustakom/hurrican/gui/images/filter.png</icon>
+    </Button>
+
+</sf>

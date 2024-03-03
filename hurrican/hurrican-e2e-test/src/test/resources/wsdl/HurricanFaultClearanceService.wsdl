@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.mnet.de/hurrican/wholesale/fault/clearance/1.0/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.mnet.de/hurrican/wholesale/fault/clearance/1.0/" targetNamespace="http://www.mnet.de/hurrican/wholesale/fault/clearance/1.0/">
+  <wsdl:types xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wholesale="http://www.mnet.de/hurrican/wholesale/common/1.0/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.mnet.de/hurrican/wholesale/fault/clearance/1.0/" xmlns:tns="http://www.mnet.de/hurrican/wholesale/fault/clearance/1.0/">
+    <xsd:import namespace="http://www.mnet.de/hurrican/wholesale/common/1.0/" schemaLocation="wholesale-common.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+    <xsd:element name="getAvailablePortsRequest" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="lineId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getAvailablePortsResponse" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="unbounded" minOccurs="0" name="ports" type="tns:port" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="unbounded" minOccurs="1" name="possibleChangeReasons" type="tns:changeReason" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getAvailablePortsFault" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:complexContent xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:extension base="wholesale:fault" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="changePortRequest" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="lineId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="newPortId" type="xsd:long" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="changeReasonId" type="xsd:long" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="changePortResponse" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="changePortFault" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:complexContent xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:extension base="wholesale:fault" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getVdslProfilesRequest" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="lineId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getVdslProfilesResponse" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="unbounded" minOccurs="0" name="assignedProfiles" type="tns:assignedVdslProfile" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="unbounded" minOccurs="0" name="possibleProfiles" type="tns:vdslProfile" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="unbounded" minOccurs="1" name="possibleChangeReasons" type="tns:changeReason" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getVdslProfilesFault" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:complexContent xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:extension base="wholesale:fault" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="changeVdslProfileRequest" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="lineId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="newProfileId" type="xsd:long" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="validFrom" type="xsd:date" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="changeReasonId" type="xsd:long" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="0" name="comment" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="username" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="changeVdslProfileResponse" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="changeVdslProfileFault" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:complexContent xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:extension base="wholesale:fault" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="assignedVdslProfile" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:element name="profileName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element name="validFrom" type="xsd:date" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element name="validTo" type="xsd:date" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element name="assignedBy" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element minOccurs="0" name="comment" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element minOccurs="0" name="changeReason" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="vdslProfile" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:element name="id" type="xsd:long" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element name="name" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="port" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:element name="portId" type="xsd:long" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                    <xsd:documentation xmlns:xsd="http://www.w3.org/2001/XMLSchema">Die ID der Rangierung</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="free" type="xsd:boolean" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element name="techType" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                    <xsd:documentation xmlns:xsd="http://www.w3.org/2001/XMLSchema">Physik-Typ aus Hurrican</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="hwEqnIn" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element name="portTypeIn" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                    <xsd:documentation xmlns:xsd="http://www.w3.org/2001/XMLSchema">Baugruppen-Typ des EQ-IN Ports der Rangierung</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="hwRackNameIn" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                    <xsd:documentation xmlns:xsd="http://www.w3.org/2001/XMLSchema">Geraete-Bezeichnung des HWRacks (z.B. der MDU bei FTTB)</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="maxBandwidth" type="xsd:long" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element minOccurs="0" name="availableFrom" type="xsd:date" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                    <xsd:documentation xmlns:xsd="http://www.w3.org/2001/XMLSchema">Datum, ab wann die Rangierung lt. Hurrican frei ist</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="comment" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="changeReason" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:element name="id" type="xsd:long" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element name="description" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="changeVdslProfileFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:changeVdslProfileFault" name="changeVdslProfileFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changePortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:changePortFault" name="changePortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAvailablePortsFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:getAvailablePortsFault" name="getAvailablePortsFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getVdslProfilesFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:getVdslProfilesFault" name="getVdslProfilesFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changePortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:changePortResponse" name="changePortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changePortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:changePortRequest" name="changePortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getVdslProfilesRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:getVdslProfilesRequest" name="getVdslProfilesRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAvailablePortsRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:getAvailablePortsRequest" name="getAvailablePortsRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeVdslProfileResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:changeVdslProfileResponse" name="changeVdslProfileResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeVdslProfileRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:changeVdslProfileRequest" name="changeVdslProfileRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getVdslProfilesResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:getVdslProfilesResponse" name="getVdslProfilesResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAvailablePortsResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:getAvailablePortsResponse" name="getAvailablePortsResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HurricanFaultClearanceService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:operation name="changeVdslProfile" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:changeVdslProfileRequest" name="changeVdslProfileRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:changeVdslProfileResponse" name="changeVdslProfileResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+      <wsdl:fault message="tns:changeVdslProfileFault" name="changeVdslProfileFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="changePort" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:changePortRequest" name="changePortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:changePortResponse" name="changePortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+      <wsdl:fault message="tns:changePortFault" name="changePortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAvailablePorts" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:getAvailablePortsRequest" name="getAvailablePortsRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:getAvailablePortsResponse" name="getAvailablePortsResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+      <wsdl:fault message="tns:getAvailablePortsFault" name="getAvailablePortsFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getVdslProfiles" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:getVdslProfilesRequest" name="getVdslProfilesRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:getVdslProfilesResponse" name="getVdslProfilesResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+      <wsdl:fault message="tns:getVdslProfilesFault" name="getVdslProfilesFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HurricanFaultClearanceServiceSoap11" type="tns:HurricanFaultClearanceService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    <wsdl:operation name="changeVdslProfile" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="changeVdslProfile" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="changeVdslProfileRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="changeVdslProfileResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+      <wsdl:fault name="changeVdslProfileFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:fault name="changeVdslProfileFault" use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="changePort" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="changePort" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="changePortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="changePortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+      <wsdl:fault name="changePortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:fault name="changePortFault" use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAvailablePorts" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="getAvailablePorts" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="getAvailablePortsRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="getAvailablePortsResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+      <wsdl:fault name="getAvailablePortsFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:fault name="getAvailablePortsFault" use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getVdslProfiles" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="getVdslProfilesRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="getVdslProfilesResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+      <wsdl:fault name="getVdslProfilesFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:fault name="getVdslProfilesFault" use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HurricanFaultClearanceService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:port binding="tns:HurricanFaultClearanceServiceSoap11" name="HurricanFaultClearanceServiceSoap11" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:address location="http://localhost:8080/hurricanweb/wholesale" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

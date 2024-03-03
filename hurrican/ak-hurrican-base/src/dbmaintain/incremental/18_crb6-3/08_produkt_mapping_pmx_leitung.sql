@@ -1,0 +1,5 @@
+
+Insert into T_PRODUKT_MAPPING
+   (MAPPING_GROUP, EXT_PROD__NO, PROD_ID, MAPPING_PART_TYPE, VERSION)
+ Values
+   (443, 443, 443, 'phone', 0);

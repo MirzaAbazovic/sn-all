@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Panel der Rangierungsmatrix.
+-->
+<sf>
+    <Text name="data.changed">UEVT und/oder Produkt der Rangierungsmatrix wurden verändert!</Text>
+    <Text name="data.changed2">Soll die Matrix trotzdem gespeichert werden?</Text>
+    <Text name="data.changed.title">UEVT/Produkt geändert</Text>
+    
+    <Text name="delete.matrix">Soll die aktuelle Rangierungsmatrix wirklich gelöscht werden?</Text>
+    <Text name="delete.matrix.title">Rangierungsmatrix löschen?</Text>
+    
+    <Label name="hvt.filter"><text>HVT:</text></Label>
+    <ComboBox name="hvt.filter">
+        <tooltip>Auswahl des HVTs</tooltip>
+    </ComboBox>
+    
+    <Label name="uevt.filter"><text>UEVT:</text></Label>
+    <ComboBox name="uevt.filter">
+        <tooltip>Auswahl des UEVTs, dessen Rangierungsmatrix angezeigt/editiert werden soll</tooltip>
+    </ComboBox>
+    
+    <Label name="produkte"><text>Produkt:</text></Label>
+    <List name="produkte">
+        <tooltip>Auswahl des Produkts, dessen Rangierungsmatrix am selektierten UEVT angezeigt werden soll</tooltip>
+    </List>
+    
+    <Button name="filter">
+        <icon>de/augustakom/hurrican/gui/images/filter.png</icon>
+        <text>Filter anwenden</text>
+        <mnemonic>VK_F</mnemonic>
+        <tooltip>Sucht nach den Rangierungsmatrix-Einträgen für die gewählten Filter</tooltip>
+    </Button>
+    
+    <Button name="new">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Legt eine neue Rangierungsmatrix für den gewählten UEVT und das gewählte Produkt an</tooltip>
+    </Button>
+    
+    <Button name="save">
+        <icon>de/augustakom/hurrican/gui/images/save.gif</icon>
+        <tooltip>Speichert die aktuelle Rangierungsmatrix</tooltip>
+    </Button>
+    
+    <Button name="delete">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht/Disabled die aktuelle Rangierungsmatrix</tooltip>
+    </Button>
+    
+    <Label name="uevt"><text>UEVT:</text></Label>
+    <ComboBox name="uevt">
+        <tooltip>UEVT für die Rangierungsmatrix</tooltip>
+    </ComboBox>
+    
+    <Label name="produkt"><text>Produkt:</text></Label>
+    <ComboBox name="produkt">
+        <tooltip>Produkt für die Rangierungsmatrix</tooltip>
+    </ComboBox>
+    
+    <Label name="produkt2PhysikTyp"><text>Produkt/Physiktyp:</text></Label>
+    <ComboBox name="produkt2PhysikTyp">
+        <tooltip>Ordnet der Matrix das Produkt/Physiktyp-Mapping zu</tooltip>
+    </ComboBox>
+    
+    <Label name="hvt.ziel"><text>Ziel-HVT:</text></Label>
+    <ComboBox name="hvt.ziel">
+        <tooltip>Auswahl des Ziel-HVTs, über den das Produkt geschaltet werden soll</tooltip>
+    </ComboBox>
+    
+    <Label name="priority"><text>Priorität:</text></Label>
+    <FormattedTextField name="priority">
+        <tooltip>Priorität des Matrix-Eintrags (0 = niedrig)</tooltip>
+        <format type="number">###</format>
+        <columns>20</columns>
+    </FormattedTextField>
+    
+    <Label name="projektierung"><text>Projektierung:</text></Label>
+    <CheckBox name="projektierung">
+        <tooltip>Definition, ob eine Projektierung veranlasst werden soll</tooltip>
+    </CheckBox>
+    
+    <Label name="bearbeiter"><text>letzter Bearbeiter:</text></Label>
+    <TextField name="bearbeiter">
+        <tooltip>Name des letzten Bearbeiters der Matrix</tooltip>
+        <columns>20</columns>
+    </TextField>
+    
+    <Label name="gueltig.von"><text>Gültig von:</text></Label>
+    <DateComponent name="gueltig.von">
+        <tooltip>Datum, seit dem diese Matrix verwendet werden kann</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+    
+    <Label name="gueltig.bis"><text>Gültig bis:</text></Label>
+    <DateComponent name="gueltig.bis">
+        <tooltip>Datum, bis zu dem diese Matrix verwendet werden kann</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+    
+    <Button name="create.complete.matrix">
+        <text>kompl. Matrix erstellen</text>
+        <tooltip>Erstellt eine Matrix für alle Produkte und UEVTs!</tooltip>
+    </Button>
+    
+    <Text name="create.complete.matrix.msg">Wollen Sie wirklich für alle Produkte/UEVTs eine Matrix erstellen?</Text>
+    <Text name="create.complete.matrix.title">Komplette Matrix erstellen?</Text>
+    
+    <Text name="anzahl.matrizen">Es wurden {0} neue Matrizen erstellt.</Text>
+    
+</sf>
+
+

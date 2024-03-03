@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Text name="basic.informations">allgemeine Informationen</Text>
+
+    <Label name="timestamp"><text>Zeitstempel:</text></Label>
+    <DateComponent name="timestamp">
+        <tooltip>Zeitpunkt, zu dem die Nachricht verschickt bzw. erhalten wurde</tooltip>
+        <format type="date">dd.MM.yyyy HH:mm</format>
+    </DateComponent>
+
+    <Label name="meldungscodes"><text>Meldungscodes:</text></Label>
+    <TextArea name="meldungscodes">
+        <tooltip>Meldungscodes aus der WBCI Meldung</tooltip>
+        <columns>30</columns>
+        <rows>4</rows>
+    </TextArea>
+
+</sf>

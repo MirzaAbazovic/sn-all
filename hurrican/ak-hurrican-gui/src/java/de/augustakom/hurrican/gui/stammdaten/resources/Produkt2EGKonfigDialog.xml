@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Konfiguration der
+moeglichen Endgeraete eines Produkts.
+-->
+<sf>
+
+	<Text name="title">Endgeräte-Zuordnung</Text>
+	
+	<Label name="eg"><text>verfügbare Endgeräte</text></Label>
+	
+	<Label name="assigned.egs"><text>zugeordnete Endgeräte</text></Label>
+	
+	<Button name="add.eg">
+		<icon>de/augustakom/hurrican/gui/images/right.gif</icon>
+		<tooltip>Fuegt das ausgewaehlte Endgeraet dem Produkt hinzu</tooltip>
+	</Button>
+	
+	<Button name="rem.eg">
+		<icon>de/augustakom/hurrican/gui/images/left.gif</icon>
+		<tooltip>Entfernt das ausgewaehlte Produkt vom Endgeraet</tooltip>
+	</Button>
+	
+</sf>

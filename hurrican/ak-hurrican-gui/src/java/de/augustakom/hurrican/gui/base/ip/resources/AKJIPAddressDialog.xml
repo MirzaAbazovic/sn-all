@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog AKInetAddressChooser.
+-->
+<sf>
+
+    <Text name="ip.title">Auswahl IP-Adressen</Text>
+
+    <!-- Ueberschriften der Auswahlfelder -->
+    <Text name="ip.protocol.version">Adresstyp: </Text>
+    <Text name="ip.address">Adresse: </Text>
+
+    <Label name="tf.ip.address"><text>IP-Adresse:</text></Label>
+    <TextField name="tf.ip.address">
+        <tooltip>IP-Adresse</tooltip>
+    </TextField>
+
+    <Label name="cb.ip.prefix"><text>Präfix:</text></Label>
+    <ComboBox name="cb.ip.prefix">
+        <tooltip>Auswahl der verfügbaren Präfixe</tooltip>
+    </ComboBox>
+
+    <RadioButton name="IPV4">
+        <text>IPv4 Einzeladresse (ohne Präfixangabe)</text>
+        <tooltip>IPv4 Einzeladresse (ohne Präfixangabe), z.B. 192.168.0.50</tooltip>
+    </RadioButton>
+
+    <RadioButton name="IPV4_with_prefixlength">
+        <text>IPv4 Einzeladresse (mit Präfixangabe)</text>
+        <tooltip>IPv4 Einzeladresse (mit Präfixangabe), z.B. 10.97.192.0/24</tooltip>
+    </RadioButton>
+
+    <RadioButton name="IPV4_prefix">
+        <text>IPv4 Netz</text>
+        <tooltip>IPv4-Netz, z.B. 192.168.1.0/24</tooltip>
+    </RadioButton>
+
+    <RadioButton name="IPV6_full">
+        <text>IPv6 Einzeladresse (ohne Präfixangabe)</text>
+        <tooltip>IPv6 Einzeladresse (ohne Präfixangabe), z.B. 2001:0db8:a001::</tooltip>
+    </RadioButton>
+
+    <RadioButton name="IPV6_with_prefixlength">
+        <text>IPv6 Einzeladresse (mit Präfixangabe)</text>
+        <tooltip>IPv6 Einzeladresse (mit Präfixangabe), z.B. 2001:0db8:a001::/48</tooltip>
+    </RadioButton>
+
+    <RadioButton name="IPV6_relative">
+        <text>IPv6 Relative Adresse</text>
+        <tooltip>IPv6 Relative Adresse, z.B. 0:0:a001::/48</tooltip>
+    </RadioButton>
+
+    <RadioButton name="IPV6_relative_eui64">
+        <text>IPv6 Relative EUI64 Adresse</text>
+        <tooltip>IPv6 Relative EUI64 Adresse, z.B. 0:0:a001:1::/64</tooltip>
+    </RadioButton>
+
+    <RadioButton name="IPV6_full_eui64">
+        <text>IPv6 EUI64 Einzeladresse</text>
+        <tooltip>IPv6 EUI64 Einzeladresse, z.B. 2001:0db8:a001:1::/64</tooltip>
+    </RadioButton>
+
+    <RadioButton name="IPV6_prefix">
+        <text>IPv6 Netz</text>
+        <tooltip>IPv6 - Netz, z.B. 2001:0db8:a001::/48</tooltip>
+    </RadioButton>
+
+    <Button name="btn.ip.save">
+        <text>Ok</text>
+        <tooltip>Übernimmt Änderungen und schließt den Dialog.</tooltip>
+    </Button>
+
+    <Button name="btn.ip.cancel">
+        <text>Abbrechen</text>
+        <tooltip>Schließt den Dialog ohne Änderungen zu übernehmen.</tooltip>
+    </Button>
+
+    <Button name="btn.ip.delete">
+        <text>Löschen</text>
+        <tooltip>Schließt den Dialog und löscht die IP-Adresse aus dem Eingabefeld.</tooltip>
+    </Button>
+
+</sf>
+

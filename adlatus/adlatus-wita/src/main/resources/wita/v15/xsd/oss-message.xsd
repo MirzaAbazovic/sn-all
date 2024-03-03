@@ -1,0 +1,1271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:message="http://wholesale.telekom.de/oss/v15/message" xmlns:conn="http://wholesale.telekom.de/oss/v15/connectivity" xmlns:complex="http://wholesale.telekom.de/oss/v15/complex" xmlns:simple="http://wholesale.telekom.de/oss/v15/simple" xmlns:enum="http://wholesale.telekom.de/oss/v15/enm" targetNamespace="http://wholesale.telekom.de/oss/v15/message" version="15.00.00/2020-05-09">
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/complex" schemaLocation="oss-type-complex.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/simple" schemaLocation="oss-type-simple.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/enm" schemaLocation="oss-type-enum.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/connectivity" schemaLocation="oss-connectivity.xsd"/>
+	<!-- 
+		!
+		! Meldung
+		!
+	-->
+	<xsd:element name="meldung" type="message:MeldungType"/>
+	<xsd:complexType name="MeldungType">
+		<xsd:sequence>
+			<xsd:element name="auftragstyp" type="message:AuftragstypType">
+				<xsd:annotation>
+					<xsd:documentation>die Klassifizierung des zugehörigen Auftrags</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="meldungstyp" type="message:MeldungstypAbstractType">
+				<xsd:annotation>
+					<xsd:documentation>Erweiterungspunkt für die konkreten Meldungstypen</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AuftragstypType">
+		<xsd:sequence>
+			<xsd:element name="geschaeftsfall" type="enum:GeschaeftsfallType"/>
+			<xsd:element name="aenderungsKennzeichen" type="enum:AenderungskennzeichenType"/>
+			<xsd:element name="geschaeftsfallart" type="enum:GeschaeftsfallArtType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungstypAbstractType" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation>die abstrakte Basisklasse der verschiedenen Meldunsgtypen</xsd:documentation>
+		</xsd:annotation>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeType" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation>die abstrakte Basisklasse der Meldungsattribute zu den verschiedenen Meldunsgtypen</xsd:documentation>
+		</xsd:annotation>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungspositionsattributeType" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation>die abstrakte Basisklasse der Meldungspositiponsattribute zu den verschiedenen Meldunsgtypen</xsd:documentation>
+		</xsd:annotation>
+	</xsd:complexType>
+	<xsd:element name="meldungsposition" type="message:MeldungspositionType"/>
+	<xsd:complexType name="MeldungspositionType">
+		<xsd:annotation>
+			<xsd:documentation>Menge der Meldungspositionen, die zu einer Meldung aufgeführt sein können</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="complex:MeldungspositionOhneAttributeType">
+				<xsd:sequence>
+					<xsd:element name="positionsattribute" type="message:MeldungspositionsattributeType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Attribute von der Meldungsposition (Erweiterungspunkt)</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Positionsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProduktpositionType">
+		<xsd:sequence>
+			<xsd:element name="aktionscode" type="enum:AktionscodeType">
+				<xsd:annotation>
+					<xsd:documentation>Kenner für Zugang Wegfall oder Änderung des Produktes</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="produkt" type="message:MeldungProduktType">
+				<xsd:annotation>
+					<xsd:documentation>Produkt, das im Auftrag zugebucht, geändert bzw. in Wegfall gebracht wurde</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungProduktType">
+		<xsd:annotation>
+			<xsd:documentation>die Basis für alle meldungsspezifischen Produkt-Daten (Erweiterungspunkt)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="complex:ProduktType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! ABM
+		!
+	-->
+	<xsd:element name="ABM" type="message:MeldungstypABMType"/>
+	<xsd:complexType name="MeldungstypABMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeABMType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeABMType">
+		<xsd:annotation>
+			<xsd:documentation>Meldungsattribute zum Meldungstyp - ABM</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:element name="externeAuftragsnummer" type="simple:ExterneAuftragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angaben aus dem Kundenauftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType"/>
+					<xsd:element name="kundennummerBesteller" type="simple:KundennummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Eindeutiger Identifier des Bestellers für den Fall, dass der Besteller einen Auftrag im Namen eines anderen Kunden erteilt (Beauftragung im Namen Dritter)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="verbindlicherLiefertermin" type="xsd:date">
+						<xsd:annotation>
+							<xsd:documentation>Datum, zum dem Auftrag verbindlich ausgeführt ist.</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes/important">Bei Not Connected Aufträgen: geplanter Baubeginn</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="abgebenderProvider" type="complex:AbgebenderProviderMitAbgabedatumType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zum Provider, der den Anschluss abgibt</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="produktpositionen">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Produkten</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:ProduktpositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="ABMpos" type="message:MeldungspositionsattributeABMType"/>
+	<xsd:complexType name="MeldungspositionsattributeABMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungspositionsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="ansprechpartnerTelekom" type="complex:AnsprechpartnerType">
+						<xsd:annotation>
+							<xsd:documentation>Hinweis zum Ansprechpartner bei Telekom für evtl. Rückfragen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! ABM-PV
+		!
+	-->
+	<xsd:element name="ABM-PV" type="message:MeldungstypABM-PVType"/>
+	<xsd:complexType name="MeldungstypABM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeABM-PVType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeABM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">wird die Vertragsnummer des abgebenden Providers angegeben</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">die Kundennummer des abgebenden Providers wird angegeben</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="aufnehmenderProvider" type="complex:AufnehmenderProviderABMType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! AKM-PV
+		!
+	-->
+	<xsd:element name="AKM-PV" type="message:MeldungstypAKM-PVType"/>
+	<xsd:complexType name="MeldungstypAKM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeAKM-PVType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeAKM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">wird die Vertragsnummer des abgebenden Providers angegeben</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">die Kundennummer des abgebenden Providers wird angegeben</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="aufnehmenderProvider" type="complex:AufnehmenderProviderAKMType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zum Provider, an den der Anschluss abgegeben werden soll</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="endkunde" type="complex:StandortPersonType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Name des Endkunden, der das Vertragsverhältnis beim abgebenden Provider gekündigt hat</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Wird aus Standort A des Auftrags des TNBauf übernommen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="anlagen" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>eventuelle Anlagen (z.B. Kündigungsschreiben)</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="anlage" type="complex:AnlageMitTypType" maxOccurs="99">
+									<xsd:annotation>
+										<xsd:documentation>Anlagen mit Klassifizierung (Anlagentyp)</xsd:documentation>
+										<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Mögliche Anlagentypen: Kündigungsschreiben, Kundenauftrag, Portierungsanzeige, Kündigung abgebender Provider</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! ABBM
+		!
+	-->
+	<xsd:element name="ABBM" type="message:MeldungstypABBMType"/>
+	<xsd:complexType name="MeldungstypABBMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeABBMType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeABBMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angabe der Vertragsnummer nicht immer möglich. Die Telekom liefert die Vertragsnummer immer sofern diese auf Grund des Prozessablaufs geliefert werden kann.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="externeAuftragsnummer" type="simple:ExterneAuftragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angaben aus dem Kundenauftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType"/>
+					<xsd:element name="kundennummerBesteller" type="simple:KundennummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Eindeutiger Identifier des Bestellers für den Fall, dass der Besteller einen Auftrag im Namen eines anderen Kunden erteilt (Beauftragung im Namen Dritter)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="wiedervorlagetermin" type="xsd:date" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Datum des Wiedervorlagetermins</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Möglicher Termin, zu dem der Auftrag neu eingestellt werden kann, falls der Auftrag aus technischen Gründen nicht bearbeitbar ist.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="abgebenderProvider" type="complex:AbgebenderProviderMitAbgabedatumType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zum Provider, der den Anschluss abgibt</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="ABBMpos" type="message:MeldungspositionsattributeABBMType"/>
+	<xsd:complexType name="MeldungspositionsattributeABBMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungspositionsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="erledigungsterminOffenerAuftrag" type="xsd:date" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Datum, an dem ein laufender offener Auftrag erledigt sein wird</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="alternativprodukt" type="simple:ProduktbezeichnerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Produktname des möglichen Alternativproduktes, falls das gewünschte Produkt nicht bereitgestellt werden kann</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">
+				s. Anlage Produktbezeichner je Produktgruppe
+				Beispiele: "ADSL SA 16000", "TAL; CuDA 2 Draht hbr (HVt)", "FTTH 100000"
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="standortAKorrektur" type="complex:StandortKorrekturType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Hinweis, dass der Standort A des Kunden wahrscheinlich falsch ist und ein aus Sicht der Telekom anderer Standort wahrscheinlicher ist</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="fehlauftragsnummer" type="simple:ExterneAuftragsnummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Externe Auftragsnummer eines anderen Auftrages mit der gleichen Auftragsklammer, der abgewiesen worden ist</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Relevant nur für die Aufträge mit einer Auftragsklammer</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! ABBM-PV
+		!
+	-->
+	<xsd:element name="ABBM-PV" type="message:MeldungstypABBM-PVType"/>
+	<xsd:complexType name="MeldungstypABBM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeABBM-PVType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeABBM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">wird die Vertragsnummer des abgebenden Providers angegeben</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">die Kundennummer des abgebenden Providers wird angegeben</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! ERLM
+		!
+	-->
+	<xsd:element name="ERLM" type="message:MeldungstypERLMType"/>
+	<xsd:complexType name="MeldungstypERLMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeERLMType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeERLMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angabe der Vertragsnummer nicht immer möglich. Die Telekom liefert die Vertragsnummer immer sofern diese auf Grund des Prozessablaufs geliefert werden kann.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="externeAuftragsnummer" type="simple:ExterneAuftragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angaben aus dem Kundenauftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType"/>
+					<xsd:element name="kundennummerBesteller" type="simple:KundennummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Eindeutiger Identifier des Bestellers für den Fall, dass der Besteller einen Auftrag im Namen eines anderen Kunden erteilt (Beauftragung im Namen Dritter)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="erledigungstermin" type="xsd:date">
+						<xsd:annotation>
+							<xsd:documentation>Datum, wann  der Auftrag erledigt wurde</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ergebnisQAP" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Ergebnis der Qualifizierten Abschlussprüfung</xsd:documentation>
+						</xsd:annotation>
+						<xsd:simpleType>
+							<xsd:restriction base="simple:ErlaubterZeichenBereichType">
+								<xsd:length value="2"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:element>
+					<xsd:element name="produktpositionen" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Produkten</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Optionale Angabe bei Änderungskennzeichen: Storno</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:ProduktpositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! ERLM-PV
+		!
+	-->
+	<xsd:element name="ERLM-PV" type="message:MeldungstypERLM-PVType"/>
+	<xsd:complexType name="MeldungstypERLM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeERLM-PVType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeERLM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">wird die Vertragsnummer des abgebenden Providers angegeben</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">die Kundennummer des abgebenden Providers wird angegeben</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="erledigungstermin" type="xsd:date">
+						<xsd:annotation>
+							<xsd:documentation>Datum, wann  der Auftrag erledigt wurde</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! ENTM
+		!
+	-->
+	<xsd:element name="ENTM" type="message:MeldungstypENTMType"/>
+	<xsd:complexType name="MeldungstypENTMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeENTMType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeENTMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType"/>
+					<xsd:element name="externeAuftragsnummer" type="simple:ExterneAuftragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angaben aus dem Kundenauftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType"/>
+					<xsd:element name="kundennummerBesteller" type="simple:KundennummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Eindeutiger Identifier des Bestellers für den Fall, dass der Besteller einen Auftrag im Namen eines anderen Kunden erteilt (Beauftragung im Namen Dritter)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="entgelttermin" type="xsd:date">
+						<xsd:annotation>
+							<xsd:documentation>Datum, ab dem die Entgeltpflicht für das Produkt beginnt</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="produktpositionen">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Produkten</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:ProduktpositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="anlagen" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>eventuelle Anlagen (z.B. Kündigungsschreiben)</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="anlage" type="complex:AnlageMitTypType" maxOccurs="99">
+									<xsd:annotation>
+										<xsd:documentation>Anlagen mit Klassifizierung (Anlagentyp)</xsd:documentation>
+										<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Mögliche Anlagentypen: Sonstige</xsd:documentation>
+									</xsd:annotation>
+								</xsd:element>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! ENTM-PV
+		!
+	-->
+	<xsd:element name="ENTM-PV" type="message:MeldungstypENTM-PVType"/>
+	<xsd:complexType name="MeldungstypENTM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeENTM-PVType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeENTM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">wird die Vertragsnummer des abgebenden Providers angegeben</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">die Kundennummer des abgebenden Providers wird angegeben</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="entgelttermin" type="xsd:date">
+						<xsd:annotation>
+							<xsd:documentation>Datum, ab dem die Entgeltpflicht für das Produkt beginnt</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! ERGM
+		!
+	-->
+	<xsd:element name="ERGM" type="message:MeldungstypERGMType"/>
+	<xsd:complexType name="MeldungstypERGMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeERGMType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeERGMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType"/>
+					<xsd:element name="externeAuftragsnummer" type="simple:ExterneAuftragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angaben aus dem Kundenauftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType"/>
+					<xsd:element name="kundennummerBesteller" type="simple:KundennummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Eindeutiger Identifier des Bestellers für den Fall, dass der Besteller einen Auftrag im Namen eines anderen Kunden erteilt (Beauftragung im Namen Dritter)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ergebnislink" type="simple:LinkAN512Type">
+						<xsd:annotation>
+							<xsd:documentation>Link,  unter dem die beauftragten Auswertungen (Files) abgerufen werden können</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! QEB
+		!
+	-->
+	<xsd:element name="QEB" type="message:MeldungstypQEBType"/>
+	<xsd:complexType name="MeldungstypQEBType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeQEBType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeQEBType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="externeAuftragsnummer" type="simple:ExterneAuftragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angaben aus dem Kundenauftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType"/>
+					<xsd:element name="kundennummerBesteller" type="simple:KundennummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Eindeutiger Identifier des Bestellers für den Fall, dass der Besteller einen Auftrag im Namen eines anderen Kunden erteilt (Beauftragung im Namen Dritter)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="QEBpos" type="message:MeldungspositionsattributeQEBType"/>
+	<xsd:complexType name="MeldungspositionsattributeQEBType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungspositionsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="ansprechpartnerTelekom" type="complex:AnsprechpartnerType">
+						<xsd:annotation>
+							<xsd:documentation>Hinweis zum Ansprechpartner bei Telekom für evtl. Rückfragen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! TAM
+		!
+	-->
+	<xsd:element name="TAM" type="message:MeldungstypTAMType"/>
+	<xsd:complexType name="MeldungstypTAMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeTAMType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeTAMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType"/>
+					<xsd:element name="externeAuftragsnummer" type="simple:ExterneAuftragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angaben aus dem Kundenauftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType"/>
+					<xsd:element name="kundennummerBesteller" type="simple:KundennummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Eindeutiger Identifier des Bestellers für den Fall, dass der Besteller einen Auftrag im Namen eines anderen Kunden erteilt (Beauftragung im Namen Dritter)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="wiedervorlagetermin" type="xsd:date" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Datum des Wiedervorlagetermins</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Frühestmöglicher Wiedervorlagetermin. Wenn eine Terminverschiebung für einen früheren Termin einstellt wird, wird der Wholesale-Auftrag mit einer ABBM abgewiesen.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! VZM
+		!
+	-->
+	<xsd:element name="VZM" type="message:MeldungstypVZMType"/>
+	<xsd:complexType name="MeldungstypVZMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeVZMType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeVZMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angabe der Vertragsnummer nicht immer möglich. Die Telekom liefert die Vertragsnummer immer sofern diese auf Grund des Prozessablaufs geliefert werden kann.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="externeAuftragsnummer" type="simple:ExterneAuftragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angaben aus dem Kundenauftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType"/>
+					<xsd:element name="kundennummerBesteller" type="simple:KundennummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Eindeutiger Identifier des Bestellers für den Fall, dass der Besteller einen Auftrag im Namen eines anderen Kunden erteilt (Beauftragung im Namen Dritter)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="verzoegerungstermin" type="xsd:date" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Voraussichtliches Datum, bis zu dem sich die Auftragsdurchführung verzögert</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! RUEM-PV
+		!
+	-->
+	<xsd:element name="RUEM-PV" type="message:MeldungstypRUEM-PVType"/>
+	<xsd:complexType name="MeldungstypRUEM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeRUEM-PVType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeRUEM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">wird die Vertragsnummer des abgebenden Providers angegeben</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">die Kundennummer des abgebenden Providers wird angegeben</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummerBesteller" type="simple:KundennummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Eindeutiger Identifier des Bestellers für den Fall, dass der Besteller einen Auftrag im Namen eines anderen Kunden erteilt (Beauftragung im Namen Dritter)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="abgebenderProvider" type="complex:AbgebenderProviderType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zum Provider, der den Anschluss abgibt</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! ERLM-K
+		!
+	-->
+	<xsd:element name="ERLM-K" type="message:MeldungstypERLM-KType"/>
+	<xsd:complexType name="MeldungstypERLM-KType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeERLM-KType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeERLM-KType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType"/>
+					<xsd:element name="externeAuftragsnummer" type="simple:ExterneAuftragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angaben aus dem Kundenauftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType"/>
+					<xsd:element name="kundennummerBesteller" type="simple:KundennummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Eindeutiger Identifier des Bestellers für den Fall, dass der Besteller einen Auftrag im Namen eines anderen Kunden erteilt (Beauftragung im Namen Dritter)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! MTAM
+		!
+	-->
+	<xsd:element name="MTAM" type="message:MeldungstypMTAMType"/>
+	<xsd:complexType name="MeldungstypMTAMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeMTAMType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeMTAMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType"/>
+					<xsd:element name="externeAuftragsnummer" type="simple:ExterneAuftragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angaben aus dem Kundenauftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType"/>
+					<xsd:element name="kundennummerBesteller" type="simple:KundennummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Eindeutiger Identifier des Bestellers für den Fall, dass der Besteller einen Auftrag im Namen eines anderen Kunden erteilt (Beauftragung im Namen Dritter)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="wiedervorlagetermin" type="xsd:date" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Datum des Wiedervorlagetermins</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Frühestmöglicher Wiedervorlagetermin. Wenn eine Terminverschiebung für einen früheren Termin einstellt wird, wird der Wholesale-Auftrag mit einer ABBM abgewiesen.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! VZM-PV
+		!
+	-->
+	<xsd:element name="VZM-PV" type="message:MeldungstypVZM-PVType"/>
+	<xsd:complexType name="MeldungstypVZM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeVZM-PVType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeVZM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">wird die Vertragsnummer des abgebenden Providers angegeben</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType"/>
+					<xsd:element name="verzoegerungstermin" type="xsd:date" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Voraussichtliches Datum, bis zu dem sich die Auftragsdurchführung verzögert</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! ZWM
+		!
+	-->
+	<xsd:element name="ZWM" type="message:MeldungstypZWMType"/>
+	<xsd:complexType name="MeldungstypZWMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungstypAbstractType">
+				<xsd:sequence>
+					<xsd:element name="meldungsattribute" type="message:MeldungsattributeZWMType">
+						<xsd:annotation>
+							<xsd:documentation>Meldungsattribute</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nicht alle aufgeführten optionalen Meldungsattribute sind für alle Produktgruppen und Prozesse relevant</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="meldungspositionen">
+						<xsd:annotation>
+							<xsd:documentation>Meldungspositionen</xsd:documentation>
+						</xsd:annotation>
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="position" type="message:MeldungspositionType" maxOccurs="99"/>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MeldungsattributeZWMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="externeAuftragsnummer" type="simple:ExterneAuftragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angaben aus dem Kundenauftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="kundennummer" type="simple:KundennummerType"/>
+					<xsd:element name="kundennummerBesteller" type="simple:KundennummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Eindeutiger Identifier des Bestellers für den Fall, dass der Besteller einen Auftrag im Namen eines anderen Kunden erteilt (Beauftragung im Namen Dritter)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="ZWMpos" type="message:MeldungspositionsattributeZWMType"/>
+	<xsd:complexType name="MeldungspositionsattributeZWMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungspositionsattributeType">
+				<xsd:sequence>
+					<xsd:annotation>
+						<xsd:documentation>Daten zum speziellen Meldungstyp</xsd:documentation>
+					</xsd:annotation>
+					<xsd:element name="ansprechpartnerTelekom" type="complex:AnsprechpartnerType">
+						<xsd:annotation>
+							<xsd:documentation>Hinweis zum Ansprechpartner bei Telekom für evtl. Rückfragen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

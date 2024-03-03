@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.HVTGruppe
+-->
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="HVTGruppe" table="T_HVT_GRUPPE">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="HVT_GRUPPE_ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_HVT_GRUPPE_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="onkz" column="ONKZ" type="string"/>
+        <property name="ortsteil" column="ORTSTEIL" type="string"/>
+        <property name="strasse" column="STRASSE" type="string"/>
+        <property name="hausNr" column="HAUS_NR" type="string"/>
+        <property name="plz" column="PLZ" type="string"/>
+        <property name="ort" column="ORT" type="string"/>
+        <property name="ortZusatz" column="ORT_ZUSATZ" type="string"/>
+        <property name="niederlassungId" column="NIEDERLASSUNG_ID" type="long"/>
+        <property name="montag" column="MONTAG" type="boolean"/>
+        <property name="dienstag" column="DIENSTAG" type="boolean"/>
+        <property name="mittwoch" column="MITTWOCH" type="boolean"/>
+        <property name="donnerstag" column="DONNERSTAG" type="boolean"/>
+        <property name="freitag" column="FREITAG" type="boolean"/>
+        <property name="kostenstelle" column="KOSTENSTELLE" type="string"/>
+        <property name="innenauftrag" column="INNENAUFTRAG" type="string"/>
+        <property name="export4Portal" column="EXPORT_4_PORTAL" type="boolean"/>
+        <property name="telefon" column="TELEFON" type="string"/>
+        <many-to-one name="hwSwitch" class="de.augustakom.hurrican.model.cc.hardware.HWSwitch"
+                     column="SWITCH" not-null="false" lazy="false" />
+    </class>
+
+</hibernate-mapping>

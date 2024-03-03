@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <wfns:notifyUpdateLocation xmlns:wfns="http://www.mnet.de/esb/cdm/Resource/LocationNotificationService/v1">
+            <wfns:zipCode>
+                <wfns:id>1992250</wfns:id>
+                <wfns:modified>2015-01-28T07:32:34.210+01:00</wfns:modified>
+                <wfns:serviceable>false</wfns:serviceable>
+                <wfns:zipCode>99837</wfns:zipCode>
+                <wfns:city>
+                    <wfns:id>1760300</wfns:id>
+                    <wfns:modified>2015-01-28T07:32:25.390+01:00</wfns:modified>
+                    <wfns:serviceable>false</wfns:serviceable>
+                    <wfns:name>Berka/Werra</wfns:name>
+                    <wfns:kgs8>12345678</wfns:kgs8>
+                    <wfns:country>
+                        <wfns:id>1004050</wfns:id>
+                        <wfns:technicalId>DE</wfns:technicalId>
+                        <wfns:modified>2012-04-20T14:21:00+02:00</wfns:modified>
+                        <wfns:serviceable>true</wfns:serviceable>
+                        <wfns:countryCode>DE</wfns:countryCode>
+                        <wfns:name>Deutschland</wfns:name>
+                    </wfns:country>
+                </wfns:city>
+            </wfns:zipCode>
+        </wfns:notifyUpdateLocation>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

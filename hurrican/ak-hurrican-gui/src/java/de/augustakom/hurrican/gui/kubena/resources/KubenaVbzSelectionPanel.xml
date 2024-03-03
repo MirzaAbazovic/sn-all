@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Definition fuer das Panel zur Eingabe bzw. Auswahl der Verbindungsbezeichnungen fuer die Kubena.
+-->
+<sf>
+
+    <Label name="vbz"><text>Verbindungsbezeichnung:</text></Label>
+
+    <Button name="add">
+        <text>VBZ aufnehmen</text>
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Nimmt eine zusätzliche Verbindungsbezeichnung in die Kubena mit auf</tooltip>
+        <mnemonic>VK_A</mnemonic>
+    </Button>
+
+    <Button name="import">
+        <text>Import</text>
+        <icon>de/augustakom/hurrican/gui/images/xls.gif</icon>
+        <tooltip>Import die Verbindungsbezeichnungen aus einem Excel-File</tooltip>
+        <mnemonic>VK_I</mnemonic>
+    </Button>
+
+</sf>

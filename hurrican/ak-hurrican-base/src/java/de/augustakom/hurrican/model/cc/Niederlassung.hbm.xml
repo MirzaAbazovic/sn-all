@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Niederlassung
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Niederlassung" table="T_NIEDERLASSUNG">
+
+        <cache usage="read-only"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="name" column="TEXT" type="string"/>
+        <property name="parentId" column="PARENT" type="long"/>
+        <property name="dispoTeampostfach" column="DISPO_TEAMPOSTFACH" type="string"/>
+        <property name="dispoPhone" column="DISPO_PHONE" type="string"/>
+        <property name="areaNo" column="AREA_NO" type="long"/>
+        <property name="cpsProvisioningName" column="CPS_PROVISIONING_NAME" type="string"/>
+        <!--  ipLocation ist OneToOne! -->
+        <many-to-one name="ipLocation" class="de.augustakom.hurrican.model.cc.Reference"
+            column="IP_LOCATION" cascade="all" unique="true" lazy="false" />
+    </class>
+
+</hibernate-mapping>

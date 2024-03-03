@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die interne TAL-Bestellung.
+-->
+<sf>
+
+    <Text name="title">IO-Archiv</Text>
+    <Text name="ok">Ok</Text>
+    <Text name="anlagen">Anlagen</Text>
+
+    <Action name="action.showXMLRequest">
+        <class>de.augustakom.hurrican.gui.tools.tal.ioarchive.actions.ShowRequestXmlAction</class>
+        <text>Request XML anzeigen</text>
+        <tooltip>"Öffnet einen Dialog, um die komplette gesendete XML-Nachricht anzuzeigen.".</tooltip>
+    </Action>
+
+    <Action name="action.showCompleteXMLRequest">
+        <class>de.augustakom.hurrican.gui.tools.tal.ioarchive.actions.ShowCompleteRequestXmlAction</class>
+        <text>Komplettes Request XML anzeigen</text>
+        <tooltip>"Öffnet einen Dialog, um die gesendete XML-Nachricht anzuzeigen."</tooltip>
+    </Action>
+
+</sf>

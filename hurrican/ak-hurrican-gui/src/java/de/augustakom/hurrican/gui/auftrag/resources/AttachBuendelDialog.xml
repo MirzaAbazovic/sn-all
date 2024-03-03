@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Auftrags-Stammdaten Panel.
+-->
+<sf>
+
+    <Text name="title">Bündel zuordnen</Text>
+
+    <Label name="existingNumbers"><text>Vorhandene Bündelnummern:</text></Label>
+    <TextField name="customer.ident">
+        <tootlip>Zu diesem Kunden vorhandene Bündelnummern</tootlip>
+        <maxchars>6</maxchars>
+        <columns>8</columns>
+    </TextField>
+
+    <ComboBox name="number.list">
+        <tooltip>Für diesen Kunden definierte Bündelnummern</tooltip>
+    </ComboBox>
+
+    <Label name="manualNumber"><text>Externe Bündelnummer:</text></Label>
+    <FormattedTextField name="number.text">
+        <tooltip>Bündelnummer eines anderen aktiven Auftrags eines anderen Kunden</tooltip>
+        <columns>10</columns>
+        <format type="number">##########</format>
+    </FormattedTextField>
+
+</sf>

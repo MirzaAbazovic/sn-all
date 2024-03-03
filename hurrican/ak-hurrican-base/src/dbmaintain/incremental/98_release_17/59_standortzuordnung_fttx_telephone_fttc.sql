@@ -1,0 +1,6 @@
+Insert into T_PRODUKT_2_TECH_LOCATION_TYPE
+   (ID, PROD_ID, TECH_LOCATION_TYPE_REF_ID, PRIORITY, USERW,
+    DATEW, VERSION)
+ (Select
+   S_T_PRODUKT_2_TECH_LOC_TYPE_0.nextval, 511, 11013, 4, 'Gilg Andreas',
+    TO_DATE('01/21/2015 14:48:28', 'MM/DD/YYYY HH24:MI:SS'), 0 from dual where not exists (select * from T_PRODUKT_2_TECH_LOCATION_TYPE where prod_id = 511 and TECH_LOCATION_TYPE_REF_ID=11013));

@@ -1,0 +1,7 @@
+<ns:provisionRequest xmlns:ns="http://www.mnet.de/hurrican/cps/1.0/">
+    <subscribe>INIT</subscribe>
+    <query>
+        <billingOrderNo>${order.no.2}</billingOrderNo>
+    </query>
+    <asynch>true</asynch>
+</ns:provisionRequest>

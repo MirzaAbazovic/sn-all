@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Label name="sub.title">
+        <text>Auswahl des Alt-Auftrags:</text>
+    </Label>
+
+    <Text name="no.selection.title">Keine Auswahl getroffen</Text>
+    <Text name="no.selection.msg">Bitte wählen Sie einen Auftrag für die Port-Änderung aus
+        oder wählen Sie einen anderen Geschäftsfall.
+    </Text>
+    <Text name="hvt_to_kvz.no.selection.msg">Bitte wählen Sie einen Auftrag für den Wechsel nach KVz aus
+        oder wählen Sie einen anderen Geschäftsfall.
+    </Text>
+    <Text name="not.found.msg">Es wurde kein Alt-Auftrag gefunden.</Text>
+
+    <Text name="order.is.cancelled.message">Der ausgewählte Auftrag ist bereits gekündigt!
+        Wollen Sie diesen Auftrag dennoch für die Port-Änderung verwenden?
+    </Text>
+    <Text name="order.is.cancelled.title">Auftrag ist gekündigt</Text>
+
+    <Text name="transfer.account.title">Account übernehmen?</Text>
+    <Text name="transfer.account.message">Soll der alte Account übernommen werden?</Text>
+
+
+</sf>

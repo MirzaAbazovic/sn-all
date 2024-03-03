@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="AKHotline"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="482"
+		 pageHeight="142"
+		 columnWidth="482"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="AllSectionsNoDetail"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false" />
+	<property name="com.jasperassistant.designer.Units" value="Millimeters" />
+	<property name="com.jasperassistant.designer.GridHeight" value="12" />
+	<property name="com.jasperassistant.designer.Grid" value="true" />
+	<property name="com.jasperassistant.designer.GridWidth" value="12" />
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="141"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="29"
+						y="2"
+						width="407"
+						height="59"
+						key="staticText"
+						positionType="Float"
+						isPrintInFirstWholeBand="true"/>
+					<box topBorder="Thin" topBorderColor="#000000" topPadding="3" leftBorder="Thin" leftBorderColor="#000000" leftPadding="3" rightBorder="Thin" rightBorderColor="#000000" rightPadding="3" bottomBorder="Thin" bottomBorderColor="#000000" bottomPadding="3"/>
+					<textElement isStyledText="true">
+						<font fontName="Arial" size="9"/>
+					</textElement>
+				<text><![CDATA[Gerne unterstützt Sie bei Fragen bezüglich der Einrichtung und Administration der oben
+aufgeführten Daten unsere Hotline unter:  <style isBold="true" size="11">01805 - 99 56 02</style> <style size="8">(12 ct/Min aus dem deutschen Festnetz)</style>]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="2"
+						y="80"
+						width="459"
+						height="58"
+						key="staticText"
+						positionType="Float"
+						isPrintInFirstWholeBand="true"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement isStyledText="true">
+						<font fontName="Arial" size="7"/>
+					</textElement>
+				<text><![CDATA[<style size="10">Mit freundlichen Grüßen</style>
+
+<style size="10">Ihr M-net Team</style>
+
+
+                                            <style isItalic="true" size="8">- Dieses Schreiben wurde elektronisch erstellt und ist ohne Unterschrift gültig -</style>]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="62"
+						y="36"
+						width="63"
+						height="10"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Hotlinezeiten:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="163"
+						y="36"
+						width="77"
+						height="10"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Montag bis Freitag:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="247"
+						y="36"
+						width="77"
+						height="10"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[08:00 bis 20:00 Uhr]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="163"
+						y="45"
+						width="77"
+						height="10"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[Samstag:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="247"
+						y="45"
+						width="77"
+						height="10"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[09:00 bis 15:00 Uhr]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="62"
+						y="45"
+						width="91"
+						height="10"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font fontName="Arial" size="8" isBold="false"/>
+					</textElement>
+				<text><![CDATA[(außer an Feiertagen):]]></text>
+				</staticText>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

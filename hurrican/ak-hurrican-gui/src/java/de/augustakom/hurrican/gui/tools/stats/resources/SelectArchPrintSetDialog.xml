@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Auswahldialog eines Bill-Cycles
+-->
+<sf>
+
+	<Text name="title">Auswahl Print-Set</Text>
+	
+	<Label name="print.set"><text>Print-Set:</text></Label>
+	<ComboBox name="print.set">
+		<tooltip>Auswahl des PrintSets</tooltip>
+	</ComboBox>
+	
+</sf>

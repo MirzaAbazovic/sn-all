@@ -1,0 +1,27 @@
+<definitions id="Definition" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+    xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    targetNamespace="Examples" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
+
+    <process id="usertasks" name="testtask">
+
+        <!-- START -->
+        <startEvent id="start" name="Start" />
+        <sequenceFlow sourceRef="start" targetRef="usertask" id="start-usertask" />
+
+        <userTask id="usertask" name="User Task" default="usertask-receive" activiti:candidateGroups="TAM"/>
+        <sequenceFlow sourceRef="usertask" targetRef="receive" id="usertask-receive"/>
+
+        <receiveTask id="receive" name="Receive Task" default="receive-servicetask"/>
+        <sequenceFlow sourceRef="receive" targetRef="servicetask" id="receive-servicetask"/>
+
+        <serviceTask id="servicetask" name="User Task" default="servicetask-end" activiti:expression="#{activitiTestBean.doSomething()}" />
+        <sequenceFlow sourceRef="servicetask" targetRef="end" id="servicetask-end"/>
+
+        <!-- END -->
+        <endEvent id="end" name="End">
+            <terminateEventDefinition />
+        </endEvent>
+
+        <userTask id="workflowError" name="Error State" activiti:candidateGroups="clearance" />
+    </process>
+</definitions>

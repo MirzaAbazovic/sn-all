@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>de.bitconex.adlatus</groupId>
+        <artifactId>adlatus</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>adlatus-wita</artifactId>
+    <name>adlatus-wita</name>
+    <description>Package that contains generated code from WITA wsdl-s</description>
+    <packaging>jar</packaging>
+
+    <properties>
+        <java.version>11</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version><!--Feb 27, 2023-->
+        <cxf-codegen-plugin.version>4.0.3</cxf-codegen-plugin.version><!--Sep 17, 2023-->
+
+        <jakarta.xml.ws-api.version>4.0.0</jakarta.xml.ws-api.version><!--Oct 20, 2023-->
+        <jaxws-rt.version>4.0.1</jaxws-rt.version><!--Oct 20, 2023-->
+        <logback-classic.version>1.4.11</logback-classic.version><!--Aug 09, 2023-->
+        <commons-lang3.version>3.13.0</commons-lang3.version><!--Jul 28, 2023-->
+        <cxf-xjc-runtime.version>4.0.0</cxf-xjc-runtime.version><!--Jun 01, 2022-->
+        <cxf-xjc-ts.version>4.0.0</cxf-xjc-ts.version><!--Jun 01, 2022-->
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.xml.ws</groupId>
+            <artifactId>jakarta.xml.ws-api</artifactId>
+            <version>${jakarta.xml.ws-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>${jaxws-rt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf.xjc-utils</groupId>
+            <artifactId>cxf-xjc-runtime</artifactId>
+            <version>${cxf-xjc-runtime.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-codegen-plugin</artifactId>
+                <version>${cxf-codegen-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>WITA_V15</id>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <sourceRoot>${project.build.directory}/generated-sources/wita15</sourceRoot>
+                            <wsdlOptions>
+                                <wsdlOption>
+                                    <wsdl>${basedir}/src/main/resources/wita/v15/wsdl/wholesale.wsdl</wsdl>
+                                    <wsdlLocation>classpath:wita/v15/wsdl/wholesale.wsdl</wsdlLocation>
+                                    <extraargs>
+                                        <extraarg>-xjc-Xts</extraarg>
+                                    </extraargs>
+                                </wsdlOption>
+                            </wsdlOptions>
+                        </configuration>
+                        <goals>
+                            <goal>wsdl2java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.cxf.xjcplugins</groupId>
+                        <artifactId>cxf-xjc-ts</artifactId>
+                        <version>${cxf-xjc-ts.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <release>${java.version}</release>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Dialer
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Dialer" table="T_DIALER">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_DIALER_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="kennzahl" column="KENNZAHL" type="string" not-null="true"/>
+        <property name="beschreibung" column="BESCHREIBUNG" type="string"/>
+        <property name="typ" column="TYP" type="string" not-null="true"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date" not-null="true"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date"/>
+        <property name="userGueltigVon" column="USER_GUELTIG_VON" type="string" not-null="true"/>
+        <property name="userGueltigBis" column="USER_GUELTIG_BIS" type="string"/>
+        <property name="gesperrtAb" column="GESPERRT_AB" type="date"/>
+        <property name="gesperrtBis" column="GESPERRT_BIS" type="date"/>
+        <property name="userGesperrtAb" column="USER_GESPERRT_AB" type="string"/>
+        <property name="userGesperrtBis" column="USER_GESPERRT_BIS" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,2 @@
+-- Add VorabstimmungsId to T_MWF_MELDUNG tables
+ALTER TABLE T_MWF_MELDUNG ADD (VORABSTIMMUNGSID varchar2(21));

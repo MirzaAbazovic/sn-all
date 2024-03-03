@@ -1,0 +1,1 @@
+alter table T_WBCI_AUTOMATION_TASK add (EXECUTION_LOG CLOB);

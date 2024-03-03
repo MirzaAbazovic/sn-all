@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="socketConfig" class="org.apache.http.config.SocketConfig">
+        <constructor-arg name="soKeepAlive" value="true"/>
+        <constructor-arg name="soLinger" value="-1"/>
+        <constructor-arg name="soReuseAddress" value="false"/>
+        <constructor-arg name="soTimeout" value="30000"/>
+        <constructor-arg name="tcpNoDelay" value="false"/>
+    </bean>
+
+    <bean id="requestConfigBuilder" class="org.apache.http.client.config.RequestConfig"
+          factory-method="custom">
+        <!-- Defines the socket timeout (SO_TIMEOUT) in milliseconds, which is the timeout for waiting for data or,
+        put differently, a maximum period inactivity between two consecutive data packets)-->
+        <property name="socketTimeout" value="30000" />
+        <!-- Determines the timeout in milliseconds until a connection is established. -->
+        <property name="connectTimeout" value="10000" />
+        <!-- Returns the timeout in milliseconds used when requesting a connection from the connection manager. -->
+        <property name="connectionRequestTimeout" value="10000" />
+    </bean>
+
+    <bean id="requestConfig" factory-bean="requestConfigBuilder" factory-method="build" />
+
+    <bean id="connectionManager" class="org.apache.http.impl.conn.PoolingHttpClientConnectionManager">
+        <property name="defaultMaxPerRoute" value="10"/>
+        <property name="maxTotal" value="50"/>
+        <property name="defaultSocketConfig" ref="socketConfig"/>
+    </bean>
+
+    <bean id="httpClientBuilder" class="org.apache.http.impl.client.HttpClientBuilder"
+          factory-method="create">
+        <property name="connectionManager" ref="connectionManager"/>
+        <property name="defaultRequestConfig" ref="requestConfig"/>
+    </bean>
+
+    <bean id="httpClientSoapInterceptor"
+          class="org.springframework.ws.transport.http.HttpComponentsMessageSender.RemoveSoapHeadersInterceptor"/>
+
+    <bean id="interceptedHttpClientBuilder" factory-bean="httpClientBuilder" factory-method="addInterceptorFirst">
+        <constructor-arg ref="httpClientSoapInterceptor"/>
+    </bean>
+
+    <bean id="httpClient" factory-bean="interceptedHttpClientBuilder" factory-method="build" scope="prototype"/>
+
+</beans>

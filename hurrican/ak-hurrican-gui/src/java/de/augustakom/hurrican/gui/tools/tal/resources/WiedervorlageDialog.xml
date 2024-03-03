@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    <Text name="title">Wiedervorlagedatum angeben</Text>
+
+    <Label name="wiedervorlage.typ"><text>Wiedervorlagetyp:</text></Label>
+    <ComboBox name="wiedervorlage.typ">
+        <tooltip>Auswahl des Wiedervorlagetyps, zur Auswahl stehen Zeitpunkt und Zeitspanne.</tooltip>
+    </ComboBox>
+
+    <Label name="wiedervorlage.datum"><text>Zeitpunkt:</text></Label>
+    <ComboBox name="wiedervorlage.datum">
+        <tooltip>Auswahl des Wiedervorlagedatums, an dem der ausgewählte Task wieder sichtbar wird.</tooltip>
+    </ComboBox>
+
+    <Label name="wiedervorlage.uhrzeit"><text>Uhrzeit:</text></Label>
+    <TextBox name="wiedervorlage.uhrzeit">
+        <tooltip>Angabe des Wiedervorlagezeitpunktes in folgendem Format: HH:MM</tooltip>
+    </TextBox>
+
+    <Label name="wiedervorlage.zeitspanne"><text>Zeitspanne:</text></Label>
+    <TextBox name="wiedervorlage.zeitspanne">
+        <tooltip>Angabe der Wiedervorlagezeitspanne bis der ausgewählte Task wieder sichtbar wird.</tooltip>
+    </TextBox>
+
+    <Label name="wiedervorlage.zeiteinheit"><text>Zeiteinheit:</text></Label>
+    <ComboBox name="wiedervorlage.zeiteinheit">
+        <tooltip>Auswahl der Zeiteinheit korrespondierend zu der Angabe der Zeitspanne.</tooltip>
+    </ComboBox>
+
+    <Label name="wiedervorlage.statusbemerkung"><text>Bearbeitungsstatus:</text></Label>
+    <TextArea name="wiedervorlage.statusbemerkung">
+        <tooltip>Bemerkung zum aktuellen Status des Tasks</tooltip>
+        <columns>10</columns>
+        <rows>5</rows>
+    </TextArea>
+
+</sf>

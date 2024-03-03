@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das BAVerlaufNeuZusatz-Panel
+-->
+<sf>
+
+    <Label name="zusatz"><text>zusätzlich verteilen an:</text></Label>
+    
+    <Button name="add">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Öffnet einen Dialog, um einen neuen Bauauftrags-Zusatz zu definieren</tooltip>
+        <mnemonic>VK_N</mnemonic>
+    </Button>
+    
+    <Button name="delete">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht den selektierten Bauauftrags-Zusatz</tooltip>
+        <mnemonic>VK_D</mnemonic>
+    </Button>
+
+</sf>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.gui.IAMaterial
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.innenauftrag">
+    <class name="IAMaterial" table="T_IA_MATERIAL">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_IA_MATERIAL_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="artikel" column="ARTIKEL" type="string" not-null="true"/>
+        <property name="text" column="TEXT" type="string" />
+        <property name="materialNr" column="MATERIAL_NR" type="string" not-null="true"/>
+        <property name="einzelpreis" column="EINZELPREIS" type="float"/>
+
+    </class>
+
+</hibernate-mapping>

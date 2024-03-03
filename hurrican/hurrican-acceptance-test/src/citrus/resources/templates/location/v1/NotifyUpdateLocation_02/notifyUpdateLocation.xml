@@ -1,0 +1,37 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <ns2:notifyUpdateLocation xmlns:ns2="http://www.mnet.de/esb/cdm/Resource/LocationNotificationService/v1" xmlns="http://www.mnet.de/esb/cdm/Resource/Location/v1">
+            <ns2:building>
+                <id>${geoId}</id>
+                <modified>citrus:currentDate('yyyy-MM-dd'T'HH:mm:00', '+1M')</modified>
+                <serviceable>false</serviceable>
+                <houseNumber>${geoId.houseNr}</houseNumber>
+                <street>
+                    <id>${street.id}</id>
+                    <modified>citrus:currentDate('yyyy-MM-dd'T'HH:mm:00', '-1M')</modified>
+                    <serviceable>true</serviceable>
+                    <name>${street.name.new}</name>
+                    <zipCode>
+                        <id>${zipCode.id}</id>
+                        <modified>citrus:currentDate('yyyy-MM-dd'T'HH:mm:00', '+1M')</modified>
+                        <serviceable>true</serviceable>
+                        <zipCode>${zipCode.code}</zipCode>
+                        <city>
+                            <id>${city.id}</id>
+                            <modified>citrus:currentDate('yyyy-MM-dd'T'HH:mm:00', '+1M')</modified>
+                            <serviceable>true</serviceable>
+                            <name>${city.name}</name>
+                            <country>
+                                <id>${country.id}</id>
+                                <modified>citrus:currentDate('yyyy-MM-dd'T'HH:mm:00', '+1M')</modified>
+                                <serviceable>true</serviceable>
+                                <countryCode>DE</countryCode>
+                                <name>${country.name}</name>
+                            </country>
+                        </city>
+                    </zipCode>
+                </street>
+            </ns2:building>
+        </ns2:notifyUpdateLocation>
+    </soap:Body>
+</soap:Envelope>

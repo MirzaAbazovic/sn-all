@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.ServiceRoom
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="ServiceRoom" table="SERVICE_ROOM">
+
+		<cache usage="read-only"/>
+
+	    <!-- PrimaryKey -->
+		<id name="serviceRoomNo" column="SERVICE_ROOM_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+
+		<!-- Sonstige Fields -->
+		<property name="onkz" column="ONKZ" type="string"/>
+		<property name="asb" column="ASB" type="long"/>
+
+	</class>
+
+</hibernate-mapping>

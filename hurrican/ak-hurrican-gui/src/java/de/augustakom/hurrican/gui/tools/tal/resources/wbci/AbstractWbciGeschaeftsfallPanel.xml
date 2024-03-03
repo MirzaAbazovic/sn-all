@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GUI-Definitionen fuer die Auswahl des auszufuehrenden WBCI-Vorgangs (VA-KUE-MRN, VA-KUE-ORN, VA-KUE-RRNP). -->
+<sf>
+
+    <Label name="vorabstimmung.carrier">
+        <text>Abgebender Carrier:</text>
+    </Label>
+    <ComboBox name="vorabstimmung.carrier">
+        <tooltip>Es werden nur abgebende Carrier aufgelistet, die mit M-net direkt via WBCI oder über das WBCI-Portal verbunden sind.</tooltip>
+    </ComboBox>
+    <Label name="hinweis.vorabstimmung.carrier">
+        <text></text>
+    </Label>
+    <Icon name="hinweis.icon">de/augustakom/hurrican/gui/images/info.gif</Icon>
+
+    <Label name="str.aen.title">
+        <text>Bitte wählen Sie aus auf welche stornierte Vorabstimmung sich die neue VA beziehen soll</text>
+    </Label>
+    <Label name="str.aen.vorabstimmungen">
+        <text>Stornierte Vorabstimmungen:</text>
+    </Label>
+    <ComboBox name="str.aen.vorabstimmungen">
+        <tooltip>Stornierte Vorabstimmungen, die neu erzeugt werden müssen</tooltip>
+    </ComboBox>
+
+    <Label name="pkiAuf">
+        <text>Portierungskennung des PKIauf:</text>
+    </Label>
+    <TextField name="pkiAuf">
+        <tooltip>Portierungskennung des PKIauf</tooltip>
+    </TextField>
+
+    <!-- RadioButtons -->
+    <Label name="person.or.company">
+        <text>Person oder Firma</text>
+    </Label>
+    <RadioButton name="person">
+        <text>Person</text>
+        <tooltip>Privatperson</tooltip>
+    </RadioButton>
+
+    <RadioButton name="company">
+        <text>Firma</text>
+        <tooltip>Firma</tooltip>
+    </RadioButton>
+
+    <Label name="title.surname.forename">
+        <text>Anrede/Name/Vorname:</text>
+    </Label>
+    <ComboBox name="title">
+        <tooltip>Anrede</tooltip>
+    </ComboBox>
+    <TextField name="surname">
+        <columns>15</columns>
+        <maxchars>30</maxchars>
+        <tooltip>Nachname des Endkunden</tooltip>
+    </TextField>
+    <TextField name="forename">
+        <columns>15</columns>
+        <maxchars>30</maxchars>
+        <tooltip>Vorname des Endkunden</tooltip>
+    </TextField>
+
+    <Label name="companyname">
+        <text>Firmenname/Namezusatz:</text>
+    </Label>
+    <TextField name="companyname">
+        <columns>30</columns>
+        <maxchars>30</maxchars>
+        <tooltip>Firmenname</tooltip>
+    </TextField>
+    <TextField name="companyname.additional">
+        <columns>30</columns>
+        <maxchars>30</maxchars>
+        <tooltip>Firmennamezusatz</tooltip>
+    </TextField>
+
+    <Label name="weiterer.anschlussinhaber">
+        <text>Weiterer Anschlussinhaber:</text>
+    </Label>
+    <CheckBox name="weiterer.anschlussinhaber">
+        <tooltip>Einen weiteren Anschlussinhaber erfassen.</tooltip>
+    </CheckBox>
+
+    <Label name="person.or.company.wai">
+        <text>Person oder Firma (WAI)</text>
+    </Label>
+    <Label name="title.surname.forename.wai">
+        <text>Anrede/Name/Vorname (WAI):</text>
+    </Label>
+    <Label name="companyname.wai">
+        <text>Firmenname/Namezusatz (WAI):</text>
+    </Label>
+
+    <Label name="label.street">
+        <text>Strasse/Nr/Nr-Zusatz:</text>
+    </Label>
+    <TextField name="street">
+        <columns>20</columns>
+        <maxchars>40</maxchars>
+    </TextField>
+    <FormattedTextField name="street.number">
+        <tooltip>Hausnummer</tooltip>
+        <columns>3</columns>
+        <maxchars>4</maxchars>
+        <format type="number">#</format>
+    </FormattedTextField>
+    <TextField name="street.number.additional">
+        <tooltip>Hausnummernzusatz</tooltip>
+        <columns>2</columns>
+        <maxchars>6</maxchars>
+    </TextField>
+
+    <Label name="label.zip.city">
+        <text>PLZ/Ort:</text>
+    </Label>
+    <FormattedTextField name="zip">
+        <tooltip>Postleitzahl</tooltip>
+        <columns>6</columns>
+        <maxchars>5</maxchars>
+        <format type="number">#####</format>
+    </FormattedTextField>
+    <TextField name="city">
+        <tooltip>Ort</tooltip>
+        <columns>20</columns>
+        <maxchars>40</maxchars>
+    </TextField>
+
+    <Label name="customer.desired.date">
+        <text>Kundenwunschtermin:</text>
+    </Label>
+    <DateComponent name="customer.desired.date">
+        <tooltip>Kundenwunschtermin (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="time.slot">
+        <text>Zeitfenster:</text>
+    </Label>
+    <ComboBox name="time.slot">
+        <tooltip>Zeitfenster</tooltip>
+    </ComboBox>
+
+    <Label name="project.details">
+        <text>Projektkenner:</text>
+    </Label>
+    <TextField name="project.details">
+        <columns>30</columns>
+        <maxchars>30</maxchars>
+    </TextField>
+
+    <Label name="select.all.numbers">
+        <text>alle Rufnummern selektieren</text>
+    </Label>
+    <CheckBox name="select.all.numbers">
+        <tooltip>Selektiert alle in der Tabelle angegeben Rufnummern</tooltip>
+    </CheckBox>
+
+    <Label name="port.all.numbers">
+        <text>Alle Nummern der Anschlüsse portieren:</text>
+    </Label>
+    <CheckBox name="port.all.numbers">
+        <tooltip>Signalisieret den abgegebenden EKP, das alle Rufnummern des Anschlusses portiert werden müssen. Das Feld wird nur bei Anschlüssen mit mehreren Rufnummern ausgewertet.</tooltip>
+    </CheckBox>
+
+    <Label name="phone.numbers">
+        <text>Rufnummern:</text>
+    </Label>
+
+    <Label name="phone.identification.label">
+        <text>Identifikations ONKZ/Rufnummer:</text>
+    </Label>
+    <FormattedTextField name="phone.identification.onkz">
+        <columns>5</columns>
+        <maxchars>5</maxchars>
+        <tooltip>Ortsnetzkennzahl</tooltip>
+        <format type="number">##</format>
+    </FormattedTextField>
+    <FormattedTextField name="phone.identification.number">
+        <columns>14</columns>
+        <maxchars>14</maxchars>
+        <tooltip>Rufnummer</tooltip>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+    <Label name="automatable">
+        <text>Automatische Prozessierung</text>
+    </Label>
+    <CheckBox name="automatable">
+        <tooltip>Aktiviert die automatische Prozessierung der AKM-TR und das automatische Auslösen des WITA-Vorgangs</tooltip>
+    </CheckBox>
+
+</sf>

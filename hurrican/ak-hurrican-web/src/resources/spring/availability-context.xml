@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="de.mnet.hurrican.location.LocationNotificationHelper"
+          class="de.augustakom.hurrican.service.location.LocationNotificationHelper"/>
+
+    <!-- AvailabilityEndpointService (Target) -->
+    <bean id="availabilityEndpointServiceTarget"
+          class="de.mnet.hurrican.webservice.vento.availability.service.impl.AvailabilityEndpointServiceImpl"/>
+    <!-- AvailabilityEndpointService (Transaction-Proxy) -->
+    <bean id="de.mnet.hurrican.webservice.vento.availability.service.AvailabilityEndpointService"
+          class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="target" ref="availabilityEndpointServiceTarget"/>
+        <property name="transactionAttributes">
+            <props>
+                <prop key="getAvailabilityInformation">PROPAGATION_REQUIRED,
+                    -de.augustakom.hurrican.service.base.exceptions.FindException
+                </prop>
+            </props>
+        </property>
+    </bean>
+
+
+</beans>

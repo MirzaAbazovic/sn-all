@@ -1,0 +1,25 @@
+@startuml
+
+title State-transition diagram for a resource order. Cases that cen be resolved
+Acknowledged: Order received and passed message and basic business validation
+InProgress : Resource delivery has started
+Pending: Waiting for an action or activity
+Held: Cannot be processed due to an issue
+AssessingCancellation: ??
+
+[*] --> Acknowledged
+Acknowledged --> InProgress : Start order
+Acknowledged --> AssessingCancellation : Cancel order
+AssessingCancellation --> Acknowledged
+AssessingCancellation --> InProgress
+InProgress --> Pending: Order needs extra information to continue
+Pending --> InProgress: Extra information received
+InProgress --> AssessingCancellation: Cancel order
+InProgress --> Held: Ordering process is blocked due to an issue
+Held --> InProgress: Issue is resolved
+Pending --> AssessingCancellation
+AssessingCancellation --> Pending
+AssessingCancellation --> Held
+Held --> AssessingCancellation
+
+@enduml

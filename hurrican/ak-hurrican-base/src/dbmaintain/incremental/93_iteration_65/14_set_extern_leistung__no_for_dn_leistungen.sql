@@ -1,0 +1,2 @@
+update T_LEISTUNG_4_DN set EXTERN_LEISTUNG__NO=60014 where ID in (14); -- MCID
+update T_LEISTUNG_4_DN set EXTERN_LEISTUNG__NO=60027 where ID in (27); -- CFALD

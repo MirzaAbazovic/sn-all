@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TableModel Definition fuer das IpRoutPanel -->
+<table>
+
+    <column name="IP" property="ipAddressRef.address" type="java.lang.String" editable="false"/>
+    <column name="Metrik" property="metrik" type="java.lang.Long" editable="false"/>
+    <column name="Bemerkung" property="description" type="java.lang.String" editable="false"/>
+
+</table>

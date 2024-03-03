@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    <Text name="border.title">Bearbeitung von Rangierungen</Text>
+
+    <Button name="save">
+        <text>Änderungen speichern</text>
+        <tooltip>Speichert die Änderungen an den bearbeiteten Rangierungen</tooltip>
+    </Button>
+
+    <Button name="rangierungen.freigeben">
+        <text>Rangierungen freigeben</text>
+        <tooltip>Alle markierten Rangierungen werden freigegeben, falls möglich</tooltip>
+    </Button>
+
+    <Button name="rangierungen.aufbrechen">
+        <text>Rangierungen aufbrechen</text>
+        <tooltip>Alle markierten Rangierungen werden aufgebrochen, falls möglich</tooltip>
+    </Button>
+</sf>

@@ -1,0 +1,48 @@
+pipeline {
+    agent {
+        kubernetes {
+            inheritFrom 'node-docker-pod'
+        }
+    }
+
+    stages {
+        stage('Checkout Source') {
+            steps {
+                git credentialsId: 'adlatus-gui_ssh-key',
+                    url: 'git@bitbucket.org:bitconex/adlatus-gui.git',
+                    branch: 'main'
+            }
+        }
+
+        stage('Node Package') {
+            steps {
+                container('node'){
+                    sh 'npm install node'
+                    sh 'npm install --global nx@latest'
+                    sh 'node scripts/build-all-apps.js'
+                }
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                container('docker'){
+                    sh 'docker build -t docker.adl.dev.bitconex.com/bitconex-adlatus-gui:latest -f ci/Dockerfile .'
+                }
+            }
+        }
+
+        stage('Pushing Image'){
+            steps {
+                container('docker'){
+                    script {
+                        def registryCredential = 'nexus_id'
+                        docker.withRegistry('https://docker.adl.dev.bitconex.com', registryCredential){
+                            sh 'docker push docker.adl.dev.bitconex.com/bitconex-adlatus-gui:latest'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

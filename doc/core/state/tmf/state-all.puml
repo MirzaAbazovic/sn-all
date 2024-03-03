@@ -1,0 +1,72 @@
+@startuml
+
+title State-transition diagram for a resource order
+
+'11 states
+Acknowledged : Order received and passed message and basic business validation
+Rejected : Invalid information or failed business rules
+'InProgress : Resource delivery has started
+state InProgress  {
+  Acknowledged --> New_WITA_Order
+  New_WITA_Order --> QEBReceived : QEB received
+  QEBReceived --> ABMReceived : ABM received
+  state fork_state <<fork>>
+  ABMReceived --> fork_state
+  fork_state --> ERLM
+  fork_state --> ENTM
+  state join_state <<join>>
+  ERLM --> join_state
+  ENTM --> join_state
+  join_state --> WITA_ORDER_FINISHED
+}
+WITA_ORDER_FINISHED ->Completed
+Partial : Some items failed some items succeeded
+Pending : Waiting for an action or activity
+Held : Cannot be processed due to an issue
+Cancelled : The In-Flight Order has been successfully Cancelled
+Completed : Order has been provisioned and the resource is now active
+Failed : Order has been provisioned and the resource is now active
+AssessingCancellation : ?
+PendingCancellation : ?
+
+'3 paths from Acknowledged
+[*] --> Acknowledged
+Acknowledged --> Rejected: validation failed
+Acknowledged --> InProgress : Start order
+Acknowledged -> AssessingCancellation: Cancel order
+
+
+'6 paths from InProgress
+InProgress --> Held: Ordering process is blocked due to an issue
+InProgress --> AssessingCancellation : ?
+InProgress --> Pending : Order needs extra information to continue
+InProgress --> Partial : Order partially completed or failed
+InProgress --> Completed : Order completed
+InProgress --> Failed : All Order items have failed which results in the entire Order to fail
+
+Pending --> Cancelled : ?
+Pending --> AssessingCancellation : ?
+
+AssessingCancellation --> PendingCancellation : ?
+AssessingCancellation --> Held : ?
+
+PendingCancellation --> Cancelled: ?
+
+Held -> Cancelled: Issue cannot be solved
+
+'6 return paths
+AssessingCancellation --> Acknowledged : ?
+AssessingCancellation --> InProgress : ?
+AssessingCancellation --> Pending : ?
+Held --> InProgress: Issue is resolved
+Held --> AssessingCancellation: ?
+Pending --> InProgress: Extra information received
+
+'5 final states
+Completed --> [*] : Final
+Failed --> [*] : Final
+Cancelled --> [*] : Final
+Partial --> [*] : Final
+Rejected --> [*] : Final
+
+@enduml

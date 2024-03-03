@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur automatisierten Eingabe von LBZs.
+-->
+<sf>
+    
+    <Text name="title">LBZ-Eingabe</Text>
+    
+    <Text name="tooltip.save">Überprüft und übernimmt die eingetragene LBZ</Text>
+    <Text name="tooltip.cancel">Schliesst den Dialog ohne Übernahme der LBZ</Text>
+    
+</sf>

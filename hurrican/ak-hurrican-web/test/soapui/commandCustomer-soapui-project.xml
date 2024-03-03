@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="commandCustomer" resourceRoot="" soapui-version="3.6.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CommandCustomerDataWebServiceSoap11" type="wsdl" bindingName="{http://mnet.de/hurricanweb/command/customer/types/}CommandCustomerDataWebServiceSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/hurricanweb/command/customer/commandCustomerData.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/hurricanweb/command/customer/commandCustomerData.wsdl"><con:part><con:url>http://localhost:8080/hurricanweb/command/customer/commandCustomerData.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://mnet.de/hurricanweb/command/customer/types/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://mnet.de/hurricanweb/command/customer/types" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://mnet.de/hurricanweb/command/customer/types/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://mnet.de/hurricanweb/command/customer/types" xmlns:ns0="http://mnet.de/hurricanweb/command/customer/types" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="CommandCustomerDataRequest" type="ns0:CommandCustomerDataRequest"/>
+      <xs:element name="CommandCustomerDataRequestResponse" type="ns0:CommandCustomerDataRequestResponse"/>
+      <xs:element name="CommandCustomerDataRequestFailure" type="ns0:CommandCustomerDataRequestFailure"/>
+      <xs:complexType name="CommandCustomerDataRequest">
+        <xs:sequence>
+          <xs:element name="ontId" type="xs:string"/>
+          <xs:element name="mdu" type="xs:string"/>
+          <xs:element name="port" type="xs:string"/>
+          <xs:element name="datum" type="xs:date"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommandCustomerDataRequestResponse">
+        <xs:sequence>
+          <xs:element name="ontId" type="xs:string"/>
+          <xs:element name="mdu" type="xs:string"/>
+          <xs:element name="port" type="xs:string"/>
+          <xs:element name="kundeAnrede" type="xs:string"/>
+          <xs:element name="kundeName" type="xs:string"/>
+          <xs:element name="kundeVorname" type="xs:string"/>
+          <xs:element name="kundeTelefon" type="xs:string"/>
+          <xs:element name="kundeMobil" type="xs:string"/>
+          <xs:element name="kundeMail" type="xs:string"/>
+          <xs:element name="esAnrede" type="xs:string"/>
+          <xs:element name="esName" type="xs:string"/>
+          <xs:element name="esVorname" type="xs:string"/>
+          <xs:element name="esTelefon" type="xs:string"/>
+          <xs:element name="esMobil" type="xs:string"/>
+          <xs:element name="esMail" type="xs:string"/>
+          <xs:element name="anschlussdoseLage" type="xs:string"/>
+          <xs:element name="egTyp" type="xs:string"/>
+          <xs:element name="egSeriennummer" type="xs:string"/>
+          <xs:element name="egCwmpId" type="xs:string"/>
+          <xs:element name="auftragsnummerHurrican" type="xs:long"/>
+          <xs:element name="auftragsnummerTaifun" type="xs:long"/>
+          <xs:element name="vbz" type="xs:string"/>
+          <xs:element name="produkt" type="xs:string"/>
+          <xs:element name="auftragsstatus" type="xs:string"/>
+          <xs:element name="portstatus" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommandCustomerDataRequestFailure">
+        <xs:sequence>
+          <xs:element name="ontId" type="xs:string"/>
+          <xs:element name="mdu" type="xs:string"/>
+          <xs:element name="port" type="xs:string"/>
+          <xs:element name="errorMsg" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="CommandCustomerDataRequestResponse">
+    <wsdl:part element="sch:CommandCustomerDataRequestResponse" name="CommandCustomerDataRequestResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommandCustomerDataRequest">
+    <wsdl:part element="sch:CommandCustomerDataRequest" name="CommandCustomerDataRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommandCustomerDataRequestFailure">
+    <wsdl:part element="sch:CommandCustomerDataRequestFailure" name="CommandCustomerDataRequestFailure"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CommandCustomerDataWebService">
+    <wsdl:operation name="CommandCustomerData">
+      <wsdl:input message="tns:CommandCustomerDataRequest" name="CommandCustomerDataRequest"></wsdl:input>
+      <wsdl:output message="tns:CommandCustomerDataRequestResponse" name="CommandCustomerDataRequestResponse"></wsdl:output>
+      <wsdl:fault message="tns:CommandCustomerDataRequestFailure" name="CommandCustomerDataRequestFailure"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CommandCustomerDataWebServiceSoap11" type="tns:CommandCustomerDataWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CommandCustomerData">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CommandCustomerDataRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CommandCustomerDataRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CommandCustomerDataRequestFailure">
+        <soap:fault name="CommandCustomerDataRequestFailure" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommandCustomerData">
+    <wsdl:port binding="tns:CommandCustomerDataWebServiceSoap11" name="CommandCustomerDataWebServiceSoap11">
+      <soap:address location="http://localhost:8080/hurricanweb/command/customer"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/hurricanweb/command/customer</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="CommandCustomerData" bindingOperationName="CommandCustomerData" type="Request-Response" outputName="CommandCustomerDataRequestResponse" inputName="CommandCustomerDataRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/hurricanweb/command/customer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/command/customer/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:CommandCustomerDataRequest>
+         <typ:qayx>ONT-400006</typ:qayx>
+      </typ:CommandCustomerDataRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mnet.de/hurricanweb/command/customer/types/CommandCustomerDataWebService/CommandCustomerDataRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>

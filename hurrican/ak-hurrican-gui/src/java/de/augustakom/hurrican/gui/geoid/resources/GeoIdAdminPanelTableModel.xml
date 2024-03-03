@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TableModel Definition fuer das Geo ID Search Panel -->
+<table>
+
+    <column name="Geo ID" property="geoId" type="java.lang.Long" editable="false" width="80"/>
+    <column name="Standort" property="standort" type="java.lang.String" editable="false" width="150"/>
+    <column name="Standort Typ" property="standortTyp" type="java.lang.String" editable="false" width="80"/>
+    <column name="TAL Länge" property="talLength" type="java.lang.Long" editable="false" width="60"/>
+    <column name="TAL Länge gesichert" property="talLengthTrusted" type="java.lang.Boolean" editable="false" width="30"/>
+    <column name="KVZ Nummer" property="kvzNumber" type="java.lang.String" editable="false" width="70"/>
+    <column name="ADSL max. Bandbreite (kbit/s)" property="maxBandwidthAdsl" type="java.lang.Long" editable="false" width="90"/>
+    <column name="SDSL max. Bandbreite (kbit/s)" property="maxBandwidthSdsl" type="java.lang.Long" editable="false" width="90"/>
+    <column name="VDSL max. Bandbreite (kbit/s)" property="maxBandwidthVdsl" type="java.lang.Long" editable="false" width="90"/>
+    <column name="VDSL an HVT verfügbar seit" property="vdslAnHvtAvailableSince" type="java.util.Date" editable="false" width="90"/>
+    <column name="ONKZ" property="onkz" type="java.lang.String" editable="false" width="80"/>
+    <column name="ASB" property="asb" type="java.lang.Integer" editable="false" width="60"/>
+    <column name="Switch-Kennung" property="switchKennung" type="java.lang.String" editable="false" width="80"/>
+
+</table>

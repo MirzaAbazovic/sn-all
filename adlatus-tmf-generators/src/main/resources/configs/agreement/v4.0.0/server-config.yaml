@@ -1,0 +1,13 @@
+globalProperties:
+  apis: ""
+  supportingFiles: false
+  apiTests: ""
+  models: false
+
+additionalProperties:
+  library: spring-boot
+  modelsLibrary: de.bitconex.tmf.agreement.model
+  basePackage: de.bitconex.agreement
+  invokerPackage: de.bitconex.agreement
+  apiPackage: de.bitconex.agreement.api
+  configPackage: de.bitconex.agreement.configuration

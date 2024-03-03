@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring App-Context Definition fuer den FFM Client Bereich. -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+
+    <bean id="de.augustakom.hurrican.service.cc.ffm.FFMService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/cc/ffm/FFMService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.augustakom.hurrican.service.cc.ffm.FFMService</value>
+        </property>
+    </bean>
+
+</beans>

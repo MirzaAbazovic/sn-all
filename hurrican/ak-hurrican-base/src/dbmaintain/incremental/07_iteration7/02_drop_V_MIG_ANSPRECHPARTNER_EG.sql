@@ -1,0 +1,1 @@
+drop view V_MIG_ANSPRECHPARTNER_EG;

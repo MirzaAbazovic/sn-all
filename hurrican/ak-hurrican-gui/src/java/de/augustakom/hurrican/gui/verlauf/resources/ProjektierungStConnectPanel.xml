@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Projektierungs-Panel SDH und EWSD.
+-->
+<sf>
+
+    <Label name="status"><text>Status:              </text></Label>
+    <TextField name="status">
+        <tooltip>Aktueller Status des Verlaufs</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="bearbeiter"><text>Bearbeiter:</text></Label>
+    <TextField name="bearbeiter">
+        <tooltip>Name des Bearbeiters</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Button name="erledigen">
+        <text>Abschliessen</text>
+        <tooltip>Schliesst die Projektierung ab</tooltip>
+    </Button>
+
+    <Button name="uebernehmen">
+        <text>Übernehmen</text>
+        <tooltip>Übernahme der aktuellen Projektierung</tooltip>
+    </Button>
+
+    <Button name="print">
+        <text>Drucken</text>
+        <tooltip>Druckt die Projektierung aus</tooltip>
+    </Button>
+
+    <Button name="bemerkungen">
+        <text>Bemerkungen</text>
+        <tooltip>Zeigt alle Bemerkungen zu der Projektierung an</tooltip>
+    </Button>
+
+    <Button name="show.ports">
+        <text>Ports</text>
+        <tooltip>Zeigt alle Ports des Verlaufes an</tooltip>
+    </Button>
+
+</sf>

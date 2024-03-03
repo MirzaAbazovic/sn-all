@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit dem LBZ-DTAG Check.
+-->
+<sf>
+    
+    <CheckBox name="check.vtr.nr">
+        <text>Vtr-Nr. beachten</text>
+        <tooltip>Prüfung auf Vtr-Nr. erweitern</tooltip>
+    </CheckBox>
+    
+    <CheckBox name="check.kuend.bestaetigung">
+        <text>Kündigungsbestätigung kontrollieren</text>
+        <tooltip>wenn gesetzt, wird die Kündigungsbestätigung kontrolliert, falls CB auf keinem aktiven Auftrag ist</tooltip>
+    </CheckBox>
+    
+    <CheckBox name="ignore.gekuendigt">
+        <text>gekündigte CBs ignorieren</text>
+        <tooltip>ignoriert bereits gekündigte Carrierbestellungen</tooltip>
+    </CheckBox>
+    
+    <Button name="start.check">
+        <text>Start</text>
+        <tooltip>Startet mit dem LBZ-Check</tooltip>
+    </Button>
+    
+    <Button name="stop.check">
+        <text>Stop</text>
+        <tooltip>Hält den LBZ-Check baldmöglichst an</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/stop.gif</icon>
+    </Button>
+    
+</sf>

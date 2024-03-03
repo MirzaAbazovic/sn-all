@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur LBZ-Eingabe bei Carrier 'DTAG'.
+-->
+<sf>
+    
+    <TextField name="lbz.prefix">
+        <columns>4</columns>
+        <tooltip>Kennzeichnung fuer den Physiktyp der TAL</tooltip>
+        <maxchars>3</maxchars>
+    </TextField>
+    
+    <TextField name="lbz.suffix">
+        <columns>10</columns>
+        <tooltip>fortlaufende Nummer fuer die LBZ am HVT</tooltip>
+    </TextField>
+    
+</sf>

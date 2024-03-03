@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.view.BAuftragText
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="BAuftragText" table="AUFTRAGTEXT">
+	    
+	    <!-- PrimaryKey -->
+		<id name="atextNo" column="ATEXT_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<property name="auftragNo" column="AUFTRAG_NO" type="long"/>
+		<property name="textTyp" column="TEXTTYP" type="string"/>
+		<property name="eintrag" column="EINTRAG" type="string"/>
+		<property name="userw" column="USERW" type="string"/>
+		<property name="datew" column="DATEW" type="date"/>
+
+	</class>
+	
+</hibernate-mapping>

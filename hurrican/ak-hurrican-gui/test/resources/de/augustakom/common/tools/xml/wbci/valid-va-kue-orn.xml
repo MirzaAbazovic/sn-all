@@ -1,0 +1,77 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header>
+        <wsse:Security SOAP-ENV:mustUnderstand="1"
+                       xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+            <wsse:BinarySecurityToken
+                    EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary"
+                    ValueType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3" wsu:Id="X509-C74179BBC839760222137467461140610">MIICmjCCAYKgAwIBAgIETjaXyzANBgkqhkiG9w0BAQUFADAPMQ0wCwYDVQQDEwRtbmV0MB4XDTExMDgwMTEyMTA1MVoXDTE0MDQyNzEyMTA1MVowDzENMAsGA1UEAxMEbW5ldDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAIpY9YwuEaczObHJnyl2RS4QKR7BejmE3PFB7WdhZLoGejaXJ/tvPhTtkR3kxYk3PPnyZoIiN5SM4pp85mX+qTi6uVR145t1b3T45A8HS9KtXGjo3ZmcHCnN2Yz17fgjX5eQqMlIZEJhONctZ8Jlti625TPux0AdVajeH4TWP65JnJjlojPhWPtmCwjp3OkbnI1Os3bWTP6maztLggWjaWXIkMvyrPs1SiNLqrIQA1LT2Lx5GID1fmZdbaVcSJFwkLk4WfetTSyfugIk2OzWIqkTyUjvp7ddTQtiTIxiJa/Z5LzcK3guwYkqmWfpW/E7jvwnUUUg3ud0myM5N7z2RacCAwEAATANBgkqhkiG9w0BAQUFAAOCAQEAKIIFRbUCZvBTeUc0/biVVFHu78if1Mbgl7WyEyG+PK9eNFGeZRGFjBBRSo+u03KIym31kUM0iGUKo5fZpBN5B28TDj5k3AqBKMBuFWojZ88GZaWABi9nP7ACIqDJ703l6T7/2SYGIF3jb+gqRUWtn20SYsmXtD+4qxm9iigofZ3noafUA9E8FjIbXBOCkvp8ku8AleiHlP1WMepbroRKQT285g4xpDFruzBluL0VcUYOgS0StSjTEiJVTkIhX0bMFRbEkHnJJ+6U6cfx8yg0cAQc8vl4EPV+LdbehFQGk0PYrbDOnOxLyoog8RJ0nOIHpn6e7zCF4Bk919dSM9vmmw==</wsse:BinarySecurityToken>
+            <ds:Signature Id="SIG-8" xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:SignedInfo>
+                    <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#">
+                        <ec:InclusiveNamespaces PrefixList="SOAP-ENV" xmlns:ec="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+                    </ds:CanonicalizationMethod>
+                    <ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+                    <ds:Reference URI="#id-7">
+                        <ds:Transforms>
+                            <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#">
+                                <ec:InclusiveNamespaces PrefixList="" xmlns:ec="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+                            </ds:Transform>
+                        </ds:Transforms>
+                        <ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+                        <ds:DigestValue>fDJGB/FwhLPxkjjwRWZp1Num8Ss=</ds:DigestValue>
+                    </ds:Reference>
+                </ds:SignedInfo>
+                <ds:SignatureValue>AwsXa4hEgnbHBhDy26B/zRhJZVS76abYlMawRv+RpqMu+0hMwKQT4cDkzt/3lSMQ43txd/4XhKIebmZ+2AQcvZJLBO6mZb6zfcQK2oD20QlcO2LJuG+GXrB+9uiiRCr4CPJENefKAqpNonBKebMh0cV4qGNdTHWl9wwgHXUshsuIEG8/0UA1FhDxT4TX3ErwqUsZGTOxvy9cCN+jkvHn0HOsQcfStM/mIW3QhDxLqTCpqsufhaCoNfXkyxLTfoOBqu4fobKtKZulZX9toHC9IeJas5xb1/YN4F7YVmI1hmTJpbZuBWMDSzbqGUYjgGDHBFhHBm6ECidua0WSchlNcg==</ds:SignatureValue>
+                <ds:KeyInfo Id="KI-C74179BBC839760222137467461140611">
+                    <wsse:SecurityTokenReference wsu:Id="STR-C74179BBC839760222137467461140612">
+                        <wsse:Reference URI="#X509-C74179BBC839760222137467461140610" ValueType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3"/>
+                    </wsse:SecurityTokenReference>
+                </ds:KeyInfo>
+            </ds:Signature>
+        </wsse:Security>
+    </SOAP-ENV:Header>
+    <SOAP-ENV:Body wsu:Id="id-7" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+        <ns3:annehmenAnfrageRequest xmlns="" xmlns:ns3="http://www.vatm.de/wbci/v2/envelope">
+            <Control>
+                <zeitstempel>2013-07-24T16:03:31.387+02:00</zeitstempel>
+                <majorRelease>02</majorRelease>
+                <minorRelease>00</minorRelease>
+                <signaturId>
+                    <issuer>EMAILADDRESS=wita@m-net.de, CN=wita.m-net.de, OU=IT, O=M-net Telekommunikations GmbH, L=Munich, ST=Bavaria, C=DE</issuer>
+                    <serial>fc21b78feb81ebf3</serial>
+                </signaturId>
+            </Control>
+            <Anfrage xmlns:ns5="http://www.vatm.de/wbci/v2/request"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns5:KuendigungOhneRNPGeschaeftsfallType">
+                <Absender>
+                    <CarrierCode>DEU.MNET</CarrierCode>
+                </Absender>
+                <Endkundenvertragspartner>
+                    <EKPauf>
+                        <CarrierCode>DEU.MNET</CarrierCode>
+                    </EKPauf>
+                    <EKPabg>
+                        <CarrierCode>DEU.DTAG</CarrierCode>
+                    </EKPabg>
+                </Endkundenvertragspartner>
+                <VorabstimmungsId>DEU.MNET.V000000005</VorabstimmungsId>
+                <Kundenwunschtermin>2013-10-01</Kundenwunschtermin>
+                <Endkunde>
+                    <firma>
+                        <anrede>4</anrede>
+                        <firmenname>Bezirksjugendring Oberbayern</firmenname>
+                        <firmennameZweiterTeil> K.d.ö.R.</firmennameZweiterTeil>
+                    </firma>
+                </Endkunde>
+                <Standort>
+                    <strasse>
+                        <strassenname>Landshuter Allee</strassenname>
+                        <hausnummer>11</hausnummer>
+                    </strasse>
+                    <postleitzahl>80637</postleitzahl>
+                    <ort>München</ort>
+                </Standort>
+            </Anfrage>
+        </ns3:annehmenAnfrageRequest>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

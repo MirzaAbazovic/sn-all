@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updateResource xmlns="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1 /ResourceInventoryService.xsd">
+    <resource>
+        <id>1234567</id>
+        <inventory>command</inventory>
+        <resourceSpec>
+            <id>dpo-1</id>
+            <inventory>command</inventory>
+        </resourceSpec>
+        <name>DPO-400123</name>
+        <characteristic>
+            <name>hersteller</name>
+            <value>huawei</value>
+        </characteristic>
+        <characteristic>
+            <name>modellnummer</name>
+            <value>dpoModel</value>
+        </characteristic>
+        <characteristic>
+            <name>olt</name>
+            <value>OLT-400027</value>
+        </characteristic>
+        <characteristic>
+            <name>oltRack</name>
+            <value>1</value>
+        </characteristic>
+        <characteristic>
+            <name>oltSubrack</name>
+            <value>2</value>
+        </characteristic>
+        <characteristic>
+            <name>oltSlot</name>
+            <value>3</value>
+        </characteristic>
+        <characteristic>
+            <name>oltPort</name>
+            <value>4</value>
+        </characteristic>
+        <characteristic>
+            <name>oltGponId</name>
+            <value>5</value>
+        </characteristic>
+        <characteristic>
+            <name>standort</name>
+            <value>AGB-TECH-001</value>
+        </characteristic>
+        <characteristic>
+            <name>raumbezeichung</name>
+            <value>1. OG</value>
+        </characteristic>
+        <characteristic>
+            <!-- Freigabedatum wird von Command nicht an Hurrican geschickt, soll aber validiert werden -->
+            <name>freigabe</name>
+            <value>2014-04-16T15:53:52</value>
+        </characteristic>
+    </resource>
+
+</updateResource>

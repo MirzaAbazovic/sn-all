@@ -1,0 +1,1 @@
+delete from T_WITA_CONFIG where CONFIG_KEY like 'wbci.mode.receive';

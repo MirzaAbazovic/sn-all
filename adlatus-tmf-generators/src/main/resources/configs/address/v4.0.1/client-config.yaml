@@ -1,0 +1,10 @@
+globalProperties:
+  apis: ""
+  supportingFiles: ""
+  models: false
+
+additionalProperties:
+  modelsLibrary: de.bitconex.tmf.address.model
+  basePackage: de.bitconex.tmf.address.client
+  invokerPackage: de.bitconex.tmf.address.client
+  apiPackage: de.bitconex.tmf.address.client.api

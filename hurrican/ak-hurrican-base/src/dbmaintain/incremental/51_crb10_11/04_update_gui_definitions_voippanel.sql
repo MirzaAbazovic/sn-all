@@ -1,0 +1,1 @@
+update t_gui_definition set class = 'de.augustakom.hurrican.gui.auftrag.voip.AuftragVoIPPanel' where id = 212;

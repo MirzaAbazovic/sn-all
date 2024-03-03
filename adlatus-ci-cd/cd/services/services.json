@@ -1,0 +1,47 @@
+{ "services": [
+    {
+        "SERVICE-APP": "config-server",
+        "IMAGE": "docker.adl.dev.bitconex.com/bitconex-config-server",
+        "TAG": "latest"
+    },
+    {
+        "SERVICE-APP": "api-gate",
+        "IMAGE": "docker.adl.dev.bitconex.com/bitconex-api-gate",
+        "TAG": "latest"
+    },
+    {
+        "SERVICE-APP": "pm-api",
+        "IMAGE": "docker.adl.dev.bitconex.com/bitconex-pm-api",
+        "TAG": "latest"
+    },
+    {
+        "SERVICE-APP": "agreement-api",
+        "IMAGE": "docker.adl.dev.bitconex.com/bitconex-agreement-api",
+        "TAG": "latest"
+    },
+    {
+        "SERVICE-APP": "appointment-api",
+        "IMAGE": "docker.adl.dev.bitconex.com/bitconex-appointment-api",
+        "TAG": "latest"
+    },
+    {
+        "SERVICE-APP": "resource-catalog-api",
+        "IMAGE": "docker.adl.dev.bitconex.com/bitconex-resource-catalog-api",
+        "TAG": "latest"
+    },
+    {
+        "SERVICE-APP": "adlatus-gui",
+        "IMAGE": "docker.adl.dev.bitconex.com/bitconex-adlatus-gui",
+        "TAG": "latest"
+    },
+    {
+        "SERVICE-APP": "adlatus",
+        "IMAGE": "docker.adl.dev.bitconex.com/bitconex-adlatus",
+        "TAG": "latest"
+    }
+    
+    
+],
+ "NAMESPACE": "adl",
+ "DOMAIN": "dev.bitconex.com"
+}

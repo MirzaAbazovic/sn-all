@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog, um einen Auftragsstatus zu aendern.
+-->
+<sf>
+    
+	<Text name="title">Status ändern</Text>
+	
+    <Label name="auftrag.status"><text>Ziel-Status:</text></Label>
+    <ReferenceField name="auftrag.status">
+		<tooltip>moegliche Auftrags-Stati</tooltip>
+		<columns>20</columns>
+		<id.property>id</id.property>
+		<name.property>statusText</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.AuftragStatus</reference.class>
+	</ReferenceField>
+	
+	<Label name="inbetriebnahme"><text>Inbetriebnahme:</text></Label>
+	<DateComponent name="inbetriebnahme">
+		<tooltip>Datum, zu dem der Auftrag in Betrieb gegangen ist</tooltip>
+    	<format type="date">dd.MM.yyyy</format>
+	</DateComponent>
+	
+	<Label name="kuendigung"><text>Kündigung:</text></Label>
+	<DateComponent name="kuendigung">
+		<tooltip>Datum, zu dem der Auftrag gekündigt wurde</tooltip>
+    	<format type="date">dd.MM.yyyy</format>
+	</DateComponent>
+	
+	<Text name="state.change">Auftragsstatus geändert von {0};   alt: {1};   neu: {2}</Text>
+    
+</sf>

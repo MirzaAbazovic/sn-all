@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den abstrakten Option-Dialog.
+-->
+<sf>
+
+    <Button name="cancel">
+        <text>Abbrechen</text>
+        <tooltip>Schliesst den Dialog ohne Datenübername</tooltip>
+        <mnemonic>VK_A</mnemonic>
+    </Button>
+
+    <Button name="save">
+        <text>Ok</text>
+        <tooltip>Schliesst den Dialog und übernimmt die Daten</tooltip>
+        <mnemonic>VK_O</mnemonic>
+    </Button>
+    
+</sf>

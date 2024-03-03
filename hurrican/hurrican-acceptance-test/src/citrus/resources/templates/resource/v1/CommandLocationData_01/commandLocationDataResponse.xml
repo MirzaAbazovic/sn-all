@@ -1,0 +1,3 @@
+<ns:CommandLocationDataRequestResponse xmlns:ns="http://mnet.de/hurricanweb/command/location/types">
+    <ns:bezeichnung>${ortsteil}</ns:bezeichnung>
+</ns:CommandLocationDataRequestResponse>

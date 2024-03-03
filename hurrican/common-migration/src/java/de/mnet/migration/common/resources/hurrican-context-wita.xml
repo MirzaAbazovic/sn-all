@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true"
+       profile="wita-wbci-atlas">
+    <!-- um den default UND diesen Context anzuziehen, folgendes in den VM options angeben: -Dspring.profiles.active=wita-wbci-atlas-->
+
+    <import resource="classpath:/de/mnet/common/common-server-context.xml"/>
+    <import resource="classpath:/de/mnet/wita/v1/wita-server-context.xml"/>
+    <import resource="classpath:/de/mnet/wita/v1/wita-activiti-context.xml"/>
+    <import resource="classpath:/de/mnet/wbci/wbci-server-context.xml"/>
+    <import resource="classpath:/de/mnet/common/common-camel.xml"/>
+    <import resource="classpath:/de/augustakom/hurrican/service/exmodules/archive/resources/ArchiveServerServices.xml"/>
+    <import resource="classpath:/de/augustakom/hurrican/service/cc/ffm/resources/ffm-server-context.xml"/>
+    <import resource="classpath:/spring/ngn-context.xml"/>
+    <import resource="classpath:/spring/atlas-connection.xml"/>
+    <import resource="classpath:/spring/messagedelivery.xml"/>
+    <import resource="classpath:/de/mnet/hurrican/tools/mail/resources/mail-context.xml"/>
+    <import resource="classpath:/de/augustakom/hurrican/service/cc/resources/CCMailDefServer.xml"/>
+    <import resource="classpath:/de/augustakom/hurrican/service/wholesale/resources/wholesale-server-context.xml"/>
+
+</beans>

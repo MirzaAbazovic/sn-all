@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: resource-catalog-api-service
+  namespace: adl
+spec:
+  selector:
+    app: resource-catalog-api
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080

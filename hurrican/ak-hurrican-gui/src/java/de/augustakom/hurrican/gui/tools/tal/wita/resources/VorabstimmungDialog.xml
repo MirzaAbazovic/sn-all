@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog für die Vorabstimmung.
+-->
+<sf>
+
+    <Text name="title">Vorabstimmung</Text>
+
+    <Text name="subtitle.vorabstimmung.aufnehmend">Vorabstimmung aufnehmend</Text>
+
+    <Text name="subtitle.vorabstimmung.abgebend">Vorabstimmung abgebend</Text>
+</sf>

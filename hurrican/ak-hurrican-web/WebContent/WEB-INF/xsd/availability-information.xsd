@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:tns="http://vento.mnet.de/hurricanavailabilityproviderservice/"
+	attributeFormDefault="unqualified" elementFormDefault="unqualified"
+	targetNamespace="http://vento.mnet.de/hurricanavailabilityproviderservice/">
+	
+	<xs:element name="getAvailabilityInformationRequest">
+	    <xs:complexType>
+	        <xs:sequence>
+	            <xs:element name="geoId" type="xs:long" />
+	            <xs:element minOccurs="0" name="onkz" type="xs:string" />
+	            <xs:element minOccurs="0" name="asb" type="xs:string" />
+	            <xs:element minOccurs="0" name="kvz" type="xs:string" />
+	        </xs:sequence>
+	    </xs:complexType>
+    </xs:element>
+	<xs:element name="getAvailabilityInformationResponse">
+	    <xs:complexType>
+	        <xs:sequence>
+	            <xs:element maxOccurs="unbounded" minOccurs="0"
+	                name="availabilityInformation"
+	                type="tns:hurricanIncommingAvailabilityInformationType" />
+	        </xs:sequence>
+	    </xs:complexType>
+    </xs:element>
+	<xs:complexType name="hurricanIncommingAvailabilityInformationType">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="cableParts"
+				nillable="true" type="tns:cablePart" />
+			<xs:element minOccurs="0" name="connection" type="tns:connectionType" />
+			<xs:element minOccurs="0" name="distanceInMeters" type="xs:int" />
+			<xs:element minOccurs="0" name="distanceApproved" type="xs:boolean" />			
+			<xs:element minOccurs="0" name="maxDownstreamBandwidthInKB"
+				type="xs:int" />
+			<xs:element minOccurs="0" name="start" type="xs:date" />
+			<xs:element minOccurs="0" name="technology" type="tns:technologyType" />
+			<xs:element minOccurs="0" name="termination" type="xs:date" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="cablePart">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="diameterInMillimeter"
+				type="xs:decimal" />
+			<xs:element name="lengthInMeter" type="xs:int" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="connectionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="TAL_HVT" />
+			<xs:enumeration value="FTTB" />
+			<xs:enumeration value="FTTC" />
+			<xs:enumeration value="FTTH" />
+			<xs:enumeration value="FTTB_H" />
+			<xs:enumeration value="GEWOFAG" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="technologyType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ADSL" />
+			<xs:enumeration value="ADSL_POTS" />
+			<xs:enumeration value="ADSL_ISDN" />
+			<xs:enumeration value="ADSL2PLUS" />
+			<xs:enumeration value="ADSL2PLUS_POTS" />
+			<xs:enumeration value="ADSL2PLUS_ISDN" />
+			<xs:enumeration value="FTTX_POTS" />
+			<xs:enumeration value="GPON" />
+			<xs:enumeration value="ISDN" />
+			<xs:enumeration value="POTS" />
+			<xs:enumeration value="RF" />
+			<xs:enumeration value="SDSL" />
+			<xs:enumeration value="SHDSL" />
+			<xs:enumeration value="VDSL2" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="getAvailabilityInformationFault">
+		<xs:complexType>
+	        <xs:sequence>
+	            <xs:element name="errorCode" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+	            <xs:element name="errorDescription" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+	        </xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

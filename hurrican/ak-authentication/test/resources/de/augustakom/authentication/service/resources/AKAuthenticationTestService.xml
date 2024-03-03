@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer die Tests der Authentication-Services.
+Importiert die Spring-Konfigurationsdatei fuer die Authentication-Services.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+    <!-- Import der Authentication-Service-Konfiguration -->
+    <import resource="classpath:de/augustakom/authentication/service/resources/AKAuthenticationService.xml"/>
+
+    <!-- Use another user/password for the connection to the authentication database
+         for the tests, so that we have database permissions to change database contents
+         during the tests (they are rolled back later) -->
+    <bean id="authentication.dataSourceTarget" parent="authentication.dataSourceTargetParent">
+        <property name="username"><value>${test.authentication.jdbc.user}</value></property>
+        <property name="password"><value>${test.authentication.jdbc.password}</value></property>
+    </bean>
+
+    <bean id="entityBuilder" init-method="init">
+        <property name="sessionFactory" ref="authentication.sessionFactory"/>
+    </bean>
+
+    <bean class="de.augustakom.authentication.model.AKApplicationBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.authentication.model.AKCompBehaviourBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.authentication.model.AKDepartmentBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.authentication.model.AKGUIComponentBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.authentication.model.AKRoleBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.authentication.model.AKUserBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.authentication.model.AKUserRoleBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.authentication.model.AKUserSessionBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.authentication.model.AKTeamBuilder" scope="prototype" parent="entityBuilder"/>
+
+    <bean id="dbCheckApplicationListenerAuth" class="de.augustakom.common.DBUrlCheckApplicationListener" lazy-init="false" />
+</beans>

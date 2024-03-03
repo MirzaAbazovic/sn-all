@@ -1,0 +1,1360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema version='0.78' targetNamespace="http://www.ergon.ch/taifun/ws/messages"
+	xmlns:tns="http://www.ergon.ch/taifun/ws/messages" xmlns:types="http://www.ergon.ch/taifun/ws/types"
+	xmlns:faults="http://www.ergon.ch/taifun/ws/faults" xmlns="http://www.w3.org/2001/XMLSchema">
+
+	<import namespace="http://www.ergon.ch/taifun/ws/types"
+		schemaLocation="Types.xsd" />
+	<import namespace="http://www.ergon.ch/taifun/ws/faults"
+		schemaLocation="Faults.xsd" />
+
+	<element name='getAvailableProducts' type="tns:GetAvailableProductsType" />
+	<element name='getAvailableProductsResponse' type="tns:GetAvailableProductsResponseType" />
+	<element name='getProductCatalog' type="tns:GetProductCatalogType" />
+	<element name='getProductCatalogResponse' type="tns:GetProductCatalogResponseType" />
+	<element name='productAvailabilityCheck' type="tns:ProductAvailabilityCheckType" />
+	<element name='productAvailabilityCheckResponse' type="tns:ProductAvailabilityCheckResponseType" />
+	<element name='doServiceOrder' type="tns:DoServiceOrderType" />
+	<element name='doServiceOrderResponse' type="tns:DoServiceOrderResponseType" />
+	<element name='validateServiceOrder' type="tns:ValidateServiceOrderType" />
+	<element name='validateServiceOrderResponse' type="tns:ValidateServiceOrderResponseType" />
+	<element name="createCustomer" type="tns:CreateCustomerType" />
+	<element name="createCustomerResponse" type="tns:CreateCustomerResponseType" />
+	<element name="getCustomer" type="tns:GetCustomerType" />
+	<element name="getCustomerResponse" type="tns:GetCustomerResponseType" />
+	<element name="setSepaBankAccount" type="tns:SetSepaBankAccountType" />
+	<element name="setSepaBankAccountResponse" type="tns:SetSepaBankAccountResponseType" />
+	<element name="getBillTreeData" type="tns:GetBillTreeDataType" />
+	<element name="getBillTreeDataResponse" type="tns:GetBillTreeDataResponseType" />
+	<element name="updatePartner" type="tns:UpdatePartnerType" />
+	<element name="updatePartnerResponse" type="tns:UpdatePartnerResponseType" />
+	<element name="getPartner" type="tns:GetPartnerType" />
+	<element name="getPartnerResponse" type="tns:GetPartnerResponseType" />
+	<element name="addBlockade" type="tns:AddBlockadeType" />
+	<element name="addBlockadeResponse" type="tns:AddBlockadeResponseType" />
+	<element name="terminateBlockade" type="tns:TerminateBlockadeType" />
+	<element name="terminateBlockadeResponse" type="tns:TerminateBlockadeResponseType" />
+	<element name="getVersion" type="tns:GetVersionType" />
+	<element name="getVersionResponse" type="tns:GetVersionResponseType" />
+	<element name="getServiceOrderPrice" type="tns:GetServiceOrderPriceType" />
+	<element name="getServiceOrderPriceResponse" type="tns:GetServiceOrderPriceResponseType" />
+	<element name="getServiceOrderDetail" type="tns:GetServiceOrderDetailType" />
+	<element name="getServiceOrderDetailResponse" type="tns:GetServiceOrderDetailResponseType" />
+	<element name="getServiceOrderList" type="tns:GetServiceOrderListType" />
+	<element name="getServiceOrderListResponse" type="tns:GetServiceOrderListResponseType" />
+	<element name="getServiceOrderDetailPdf" type="tns:GetServiceOrderDetailType" />
+	<element name="getServiceOrderDetailPdfResponse" type="tns:GetServiceOrderDetailPdfResponseType" />
+	<element name="getServiceOrderListPdf" type="tns:GetServiceOrderListType" />
+	<element name="getServiceOrderListPdfResponse" type="tns:GetServiceOrderListPdfResponseType" />
+	<element name="getSepaMandateFormPdf" type="tns:GetSepaMandateFormPdfType" />
+	<element name="getSepaMandateFormPdfResponse" type="tns:GetSepaMandateFormPdfResponseType" />
+	<element name="getPortingFormPdf" type="tns:GetPortingFormPdfType" />
+	<element name="getPortingFormPdfResponse" type="tns:GetPortingFormPdfResponseType" />
+	<element name="getPremiumNumbersFormPdf" type="tns:GetPremiumNumbersFormPdfType" />
+	<element name="getPremiumNumbersFormPdfResponse" type="tns:GetPremiumNumbersFormPdfResponseType" />
+	<element name="hasServiceOrderStatusChanged" type="tns:HasServiceOrderStatusChangedType" />
+	<element name="hasServiceOrderStatusChangedResponse" type="tns:HasServiceOrderStatusChangedResponseType" />
+	<element name="updateHurricanOrderState" type="tns:updateHurricanOrderStateType" />
+	<element name="updateHurricanOrderStateResponse" type="tns:updateHurricanOrderStateResponseType" />
+	<element name="startHardwareOrderProcess" type="tns:startHardwareOrderProcessType" />
+	<element name="startHardwareOrderProcessResponse" type="tns:startHardwareOrderProcessResponseType" />
+	<element name="setAccount4Order" type="tns:setAccount4OrderType" />
+	<element name="setAccount4OrderResponse" type="tns:setAccount4OrderResponseType" />
+	<element name='validationFaults' type="faults:ValidationFaultsType" />
+	<element name='serviceFault' type="faults:ServiceFaultType" />
+	<element name='systemFault' type="faults:SystemFaultType" />
+	<element name="getPerson" type="tns:GetPersonType" />
+	<element name="getPersonResponse" type="tns:GetPersonResponseType" />
+	<element name="resetSubscriptions" type="tns:ResetSubscriptionsType" />
+	<element name="resetSubscriptionsResponse" type="tns:ResetSubscriptionsResponseType" />
+	<element name="getSubscriptionsDetailReport" type="tns:GetSubscriptionsDetailReportType" />
+	<element name="getSubscriptionsDetailReportResponse" type="tns:GetSubscriptionsDetailReportResponseType" />
+	<element name="createDomainOrder" type="tns:CreateDomainOrderType" />
+	<element name="createDomainOrderResponse" type="tns:CreateDomainOrderResponseType" />
+	<element name="chargeDomainOrder" type="tns:ChargeDomainOrderType" />
+	<element name="chargeDomainOrderResponse" type="tns:ChargeDomainOrderResponseType" />
+	<element name="activateDomain" type="tns:ActivateDomainType" />
+	<element name="activateDomainResponse" type="tns:ActivateDomainResponseType" />
+	<element name="transferDomain" type="tns:TransferDomainType" />
+	<element name="transferDomainResponse" type="tns:TransferDomainResponseType" />
+	<element name="terminateDomain" type="tns:TerminateDomainType" />
+	<element name="terminateDomainResponse" type="tns:TerminateDomainResponseType" />
+	<element name="activateSimCard" type="tns:activateSimCardType" />
+	<element name="activateSimCardResponse" type="tns:activateSimCardResponseType" />
+	<element name="cancelService" type="tns:cancelServiceType" />
+	<element name="cancelServiceResponse" type="tns:cancelServiceResponseType" />
+	<element name="undoPlannedServiceCancellation" type="tns:undoPlannedServiceCancellationType" />
+	<element name="undoPlannedServiceCancellationResponse" type="tns:undoPlannedServiceCancellationResponseType" />
+	<element name="getIpTvServiceAccount" type="tns:getIpTvServiceAccountType" />
+	<element name="getIpTvServiceAccountResponse" type="tns:getIpTvServiceAccountResponseType" />
+	<element name="setIpTvLogin" type="tns:setIpTvLoginRequestType" />
+	<element name="setIpTvLoginResponse" type="tns:SuccessResponseType" />
+	<element name="getIpTvServiceNo" type="tns:getIpTvServiceNoRequestType" />
+	<element name="getIpTvServiceNoResponse" type="tns:getIpTvServiceNoResponseType" />
+	<element name="getDialNumberInfo" type="tns:getDialNumberInfoRequestType" />
+	<element name="getDialNumberInfoResponse" type="tns:getDialNumberInfoResponseType" />
+
+	<complexType name="WebServiceRequestType" abstract='true'
+		block='restriction'>
+		<sequence>
+			<element name='authentication' type="types:AuthenticationType" />
+			<element name="testMode" type="int">
+				<annotation>
+					<documentation>This field allows to set the service in a test mode.
+						What kind of test modes exist will is defined in the Webservice
+						Interface Detail Specification. </documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+
+	<complexType name="WebServiceRequestOptionsType" abstract='true'
+		block='restriction'>
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="objectsPerPage" type="int">
+						<annotation>
+							<documentation>Number of rows or records given back in the
+								answer.</documentation>
+						</annotation>
+					</element>
+					<element name="pageNo" type="int">
+						<annotation>
+							<documentation>Pagenumber starting from 1.</documentation>
+						</annotation>
+					</element>
+					<element name="sortOrder" type="types:SortOrderType">
+						<annotation>
+							<documentation>Kennzeichnet die Sortierreihenfolge
+							</documentation>
+						</annotation>
+					</element>
+					<element name="sortField" type="string">
+						<annotation>
+							<documentation>The field to apply the sort order to. See the
+								webservice specific documentation.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="GetVersionType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GetVersionResponseType">
+		<sequence>
+			<element name="version" type="string" />
+		</sequence>
+	</complexType>
+	<complexType name="CreateDomainOrderType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="customerNo" minOccurs="1" maxOccurs="1"
+						type="int">
+						<annotation>
+							<documentation>The taifun customer number of the customer this
+								domain belongs to.</documentation>
+						</annotation>
+					</element>
+					<element name="bundleOrderNo" minOccurs="1" maxOccurs="1"
+						type="int">
+						<annotation>
+							<documentation>The taifun order number of the order this domain
+								order must be bundled to.</documentation>
+						</annotation>
+					</element>
+					<element name="domainName" minOccurs="1" maxOccurs="1"
+						type="string">
+						<annotation>
+							<documentation>The name of the domain to be created, for example
+								'test.de'.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CreateDomainOrderResponseType">
+		<sequence>
+			<element name="serviceOrderNo" minOccurs="1" maxOccurs="1"
+				type="int">
+				<annotation>
+					<documentation>The taifun order number of the order this domain
+						belongs to.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ChargeDomainOrderType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="customerNo" minOccurs="1" maxOccurs="1"
+						type="int">
+						<annotation>
+							<documentation>The taifun customer number of the customer the
+								domain order belongs to.</documentation>
+						</annotation>
+					</element>
+					<element name="serviceOrderNumber" minOccurs="1" maxOccurs="1"
+						type="int">
+						<annotation>
+							<documentation>The taifun order number of the domain order that
+								must be charged.</documentation>
+						</annotation>
+					</element>
+					<element name="productElementNo" minOccurs="1" maxOccurs="1"
+						type="int">
+						<annotation>
+							<documentation>The Taifun product element number of the product
+								element that must be referenced by the new serice order
+								position.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ChargeDomainOrderResponseType">
+		<sequence>
+			<element name="successful" minOccurs="1" maxOccurs="1" type="int">
+				<annotation>
+					<documentation>Is 'true ' if the domain order was successfully
+						charged, else 'false'.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ActivateDomainType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="customerNo" minOccurs="1" maxOccurs="1"
+						type="int">
+						<annotation>
+							<documentation>The taifun customer number of the customer this
+								domain belongs to.</documentation>
+						</annotation>
+					</element>
+					<element name="domainName" minOccurs="1" maxOccurs="1"
+						type="string">
+						<annotation>
+							<documentation>The name of the domain to be activated, for
+								example 'test.de'.</documentation>
+						</annotation>
+					</element>
+					<element name="validFrom" minOccurs="0" maxOccurs="1" type="date">
+						<annotation>
+							<documentation>This domain will be billable beginning with date
+								'validFrom'.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ActivateDomainResponseType">
+		<sequence>
+			<element name="successful" minOccurs="1" maxOccurs="1" type="boolean">
+				<annotation>
+					<documentation>Is 'true ' if the domain was successfully activated,
+						else 'false'.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="TransferDomainType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="oldCustomerNo" minOccurs="1" maxOccurs="1"
+						type="int">
+						<annotation>
+							<documentation>The taifun customer number of the customer this
+								domain belongs to and must be transferred from.</documentation>
+						</annotation>
+					</element>
+					<element name="newCustomerNo" minOccurs="1" maxOccurs="1"
+						type="int">
+						<annotation>
+							<documentation>The taifun customer number of the customer this
+								domain must be transferred to. This can be the same as
+								'oldCustomerNo. In this last case, the domain will be
+								transferred within the same customer.</documentation>
+						</annotation>
+					</element>
+					<element name="domainName" minOccurs="1" maxOccurs="1"
+						type="string">
+						<annotation>
+							<documentation>The name of the domain to be transferred, for
+								example 'test.de'.</documentation>
+						</annotation>
+					</element>
+					<element name="newBundleOrderNo" minOccurs="1" maxOccurs="1"
+						type="int">
+						<annotation>
+							<documentation>The domain order this domain is going to be
+								transferred to, must be bundled with the given
+								'newBundleOrderNo' Taifun order number.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TransferDomainResponseType">
+		<sequence>
+			<element name="serviceOrderNo" minOccurs="1" maxOccurs="1"
+				type="int">
+				<annotation>
+					<documentation>The taifun order number of the domain order the
+						transferred domain belongs to.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="TerminateDomainType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="customerNo" minOccurs="1" maxOccurs="1"
+						type="int">
+						<annotation>
+							<documentation>The taifun customer number of the customer this
+								domain belongs to.</documentation>
+						</annotation>
+					</element>
+					<element name="domainName" minOccurs="1" maxOccurs="1"
+						type="string">
+						<annotation>
+							<documentation>The name of the domain to be terminated, for
+								example 'test.de'.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TerminateDomainResponseType">
+		<sequence>
+			<element name="successful" minOccurs="1" maxOccurs="1" type="boolean">
+				<annotation>
+					<documentation>Is 'true ' if the domain was successfully
+						terminated, else 'false'.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="activateSimCardType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+                    <element name="customerNo" minOccurs="1" maxOccurs="1" type="int"></element>
+                    <element name="ICC-ID" minOccurs="1" maxOccurs="1"
+						type="string">
+						<annotation>
+							<documentation>The ICC-ID of the SIM card to be activated.</documentation>
+						</annotation>
+                    </element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="activateSimCardResponseType">
+		<sequence>
+			<element name="successful" minOccurs="1" maxOccurs="1" type="boolean">
+				<annotation>
+					<documentation>Is 'true ' if the SIM card was successfully activated, else 'false'.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="cancelServiceType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+                    <element name="serviceNo" minOccurs="1" maxOccurs="1" type="int">
+						<annotation>
+							<documentation>The service history key in Taifun (AUFTRAG__NO).</documentation>
+						</annotation>
+                    </element>
+                    <element name="validFrom" minOccurs="1" maxOccurs="1" type="date">
+						<annotation>
+							<documentation>The service will be cancelled per 'validFrom' date.</documentation>
+						</annotation>
+					</element>
+					<element name="cancelledBy" minOccurs="1" maxOccurs="1" type="types:CancelledByType">
+					    <annotation>
+							<documentation>The initiator of the cancellation (Customer or Company)</documentation>
+						</annotation>
+					</element>
+					<element name="cancellationReasonNo" minOccurs="1" maxOccurs="1" type="int">
+					    <annotation>
+							<documentation>Reason of the cancellation. This is the primary key to on the table "KUENDIGUNGSGRUND"</documentation>
+						</annotation>
+					</element>
+					<element name="distributionChannelId" minOccurs="1" maxOccurs="1" type="string">
+					    <annotation>
+							<documentation>Distribution channel through which the cancellation was initiated.</documentation>
+						</annotation>
+					</element>
+					<element name="businessCaseNo" minOccurs="1" maxOccurs="1" type="int">
+					    <annotation>
+							<documentation>Business case for the cancellation. This is the primary key to on the table "BUSINESS_CASE4SERVICE"</documentation>
+						</annotation>
+					</element>
+					<element name="portingInformation" minOccurs="0" maxOccurs="1" type="types:DNPortingInformationType">
+					    <annotation>
+							<documentation>Information for number porting (optional)</documentation>
+						</annotation>
+					</element>
+					<element name="entryDate" type="date" minOccurs="1" maxOccurs="1">
+						<annotation>
+							<documentation>Eingangsdatum</documentation>
+						</annotation></element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="cancelServiceResponseType">
+		<sequence>
+			<element name="successful" minOccurs="1" maxOccurs="1" type="boolean">
+				<annotation>
+					<documentation>Is 'true ' if the service was successfully cancelled, else 'false'.</documentation>
+				</annotation>
+			</element>
+			<element name="reclaimPositions" minOccurs="1" maxOccurs="1" type="boolean">
+				<annotation>
+					<documentation>Is 'true ' if the service has items to be reclaimed, else 'false'.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="undoPlannedServiceCancellationType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+                    <element name="serviceNo" minOccurs="1" maxOccurs="1" type="int">
+                    	<annotation>
+							<documentation>The service history key in Taifun (AUFTRAG__NO).</documentation>
+						</annotation>
+                    </element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="undoPlannedServiceCancellationResponseType">
+		<sequence>
+			<element name="successful" minOccurs="1" maxOccurs="1" type="boolean">
+				<annotation>
+					<documentation>Is 'true ' if the cancellation was successfully reverted, else 'false'.</documentation>
+				</annotation>
+			</element>
+			<element name="reclaimPositions" minOccurs="1" maxOccurs="1" type="boolean">
+				<annotation>
+					<documentation>Is 'true ' if the service has items to be reclaimed, else 'false'.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="getIpTvServiceAccountType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="ipTvServiceAccountQuery" type="types:IpTvServiceAccountQueryType" minOccurs="1" maxOccurs="1">
+						<annotation>
+							<documentation>The IP TV service account query.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="getIpTvServiceAccountResponseType">
+		<sequence minOccurs="1" maxOccurs="1">
+			<element name="ipTvServiceAccount" type="types:IpTvServiceAccountType" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>The IP TV service account.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="setIpTvLoginRequestType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="serviceNo" type="int" minOccurs="1" maxOccurs="1">
+						<annotation>
+							<documentation>The no. of the service this IPTV account is assigned to.</documentation>
+						</annotation>
+					</element>
+					<element name="userName" type="string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>The user name of this IPTV account.</documentation>
+						</annotation>
+					</element>
+					<element name="password" type="string" minOccurs="0" maxOccurs="1">
+						<annotation>
+							<documentation>The password of this IPTV account.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="SuccessResponseType">
+		<sequence minOccurs="1" maxOccurs="1">
+			<element name="successful" type="boolean" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>Always true, because a service fault is thrown otherwise.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="getIpTvServiceNoRequestType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="userName" type="string" minOccurs="1" maxOccurs="1">
+						<annotation>
+							<documentation>The IP TV user name.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="getIpTvServiceNoResponseType">
+		<sequence minOccurs="1" maxOccurs="1">
+			<element name="serviceNo" type="int" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>The no. of the service this IPTV account is assigned to.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="getDialNumberInfoRequestType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="serviceNoo" type="int" minOccurs="1" maxOccurs="1">
+						<annotation>
+							<documentation>A taifun service no (AUFTRAG__NO).</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="getDialNumberInfoResponseType">
+		<sequence minOccurs="1" maxOccurs="1">
+			<element name="portingIdentifier" type="string" minOccurs="1" maxOccurs="1">
+				<annotation>
+					<documentation>Porting identifier.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="GetSepaMandateFormPdfType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="billSpecNo" type="int" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GetSepaMandateFormPdfResponseType">
+		<sequence>
+			<element name="pdfFile" type="types:PdfFileType" />
+		</sequence>
+	</complexType>
+	<complexType name="GetPortingFormPdfType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="serviceOrderNo" minOccurs="1" maxOccurs="1"
+						type="int" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GetPortingFormPdfResponseType">
+		<sequence>
+			<element name="pdfFile" type="types:PdfFileType" />
+		</sequence>
+	</complexType>
+	<complexType name="GetPremiumNumbersFormPdfType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="serviceOrderNo" minOccurs="1" maxOccurs="1"
+						type="int" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GetPremiumNumbersFormPdfResponseType">
+		<sequence>
+			<element name="pdfFile" type="types:PdfFileType" />
+		</sequence>
+	</complexType>
+	<complexType name="GetServiceOrderDetailType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="serviceOrderNo" minOccurs="1" maxOccurs="1"
+						type="int" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GetServiceOrderDetailResponseType">
+		<sequence>
+			<element name="serviceOrderDetail" type="types:ServiceOrderDetailType" />
+		</sequence>
+	</complexType>
+	<complexType name="GetServiceOrderDetailPdfResponseType">
+		<sequence>
+			<element name="pdfFile" type="types:PdfFileType" />
+		</sequence>
+	</complexType>
+	<complexType name="GetServiceOrderListType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestOptionsType">
+				<sequence>
+					<element name="requestFromPartner" type="boolean"
+						minOccurs="1" maxOccurs="1">
+						<annotation>
+							<documentation>This boolean indicates if a partner or a custome
+								advisor (Mnet employee) is doing the call.</documentation>
+						</annotation>
+					</element>
+					<element name="partnerIds" type="string" minOccurs="0"
+						maxOccurs="unbounded">
+						<annotation>
+							<documentation>The list of partner identifiers, whose order
+								information must be returned.</documentation>
+						</annotation>
+					</element>
+					<element name="customerName" type="string" minOccurs="0"
+						maxOccurs="1">
+						<annotation>
+							<documentation>
+								The customer name to filter out the
+								orders of other
+								customers.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="serviceOrderNo" minOccurs="0" maxOccurs="1"
+						type="int">
+						<annotation>
+							<documentation>
+								The service order identifier of the
+								desired service
+								order.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="phoneCentral" type="string" minOccurs="0"
+						maxOccurs="1">
+					</element>
+					<element name="astatus" type="types:AStatusType" minOccurs="0"
+						maxOccurs="1">
+						<annotation>
+							<documentation>
+								The Taifun order status information.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="insertedFrom" type="dateTime" minOccurs="0"
+						maxOccurs="1">
+					</element>
+					<element name="insertedUntil" type="dateTime" minOccurs="0"
+						maxOccurs="1">
+					</element>
+					<element name="contractEndFrom" type="dateTime" minOccurs="0"
+						maxOccurs="1">
+					</element>
+					<element name="contractEndUntil" type="dateTime" minOccurs="0"
+						maxOccurs="1">
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GetServiceOrderListResponseType">
+		<sequence>
+			<element name="ServiceOrderListElem" type="types:ServiceOrderListElemType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	<complexType name="GetServiceOrderListPdfResponseType">
+		<sequence>
+			<element name="pdfFile" type="types:PdfFileType" />
+		</sequence>
+	</complexType>
+	<complexType name="GetServiceOrderPriceType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="serviceOrderNumbers" minOccurs="1"
+						maxOccurs="unbounded" type="int" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GetServiceOrderPriceResponseType">
+		<sequence>
+			<element name="monthlyCosts" type="decimal" />
+			<element name="fixedCosts" type="decimal" />
+		</sequence>
+	</complexType>
+	<complexType name="UpdatePartnerType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="partnerId" type="string">
+						<annotation>
+							<documentation>The partner identifier.</documentation>
+						</annotation>
+					</element>
+					<element name='newEmail' type='string'>
+						<annotation>
+							<documentation>The new emailaddress.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="UpdatePartnerResponseType">
+		<sequence>
+			<element name="successful" type="boolean" />
+		</sequence>
+	</complexType>
+	<complexType name="GetPartnerType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="requestFromPartner" type="boolean">
+						<annotation>
+							<documentation>This boolean indicates whether the request comes
+								from a partner or from a customer advisor.</documentation>
+						</annotation>
+					</element>
+					<element minOccurs="1" name="emailAddress" type="string"
+						maxOccurs="1">
+						<annotation>
+							<documentation>
+								The emailaddress of the partner/cusomer advisor.
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GetPartnerResponseType">
+		<sequence>
+			<element name="partners" type="types:PartnerType" maxOccurs="unbounded"
+				minOccurs="1">
+				<annotation>
+					<documentation>This list contains the partner itself if a partner
+						is doing the request or the list of supervised partners if a
+						customer supervisor is doing the request.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="CreateCustomerType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name='customer' type='types:CustomerType' />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CreateCustomerResponseType">
+		<sequence>
+			<element name='successful' type='boolean'>
+				<annotation>
+					<documentation>
+						'true' if the customer could be successfully
+						recorded, else 'false'.
+					</documentation>
+				</annotation>
+			</element>
+			<element name="customerNo" type="int"></element>
+		</sequence>
+	</complexType>
+	<complexType name="GetCustomerType">
+		<annotation>
+			<documentation>All the given fields will be evaluated to find the
+				best matching customer.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element minOccurs='0' name='customerNo' type='int'>
+						<annotation>
+							<documentation>
+								The Taifun identifier of the customer that
+								wants to buy this product
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GetCustomerResponseType">
+		<sequence>
+			<element name='matchingCustomer' type='types:CustomerType'>
+				<annotation>
+					<documentation>The matching customer.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="SetSepaBankAccountType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name='sepaBankAccount' type='types:SepaBankAccountType' />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SetSepaBankAccountResponseType">
+		<sequence>
+			<element name='ok' type='boolean'>
+				<annotation>
+					<documentation>true: okay
+								   false: not okay
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="GetBillTreeDataType">
+		<annotation>
+			<documentation>All the given fields will be evaluated to find the
+				bill tree data for a given customer.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element minOccurs='1' maxOccurs='1' name='customerNo'
+						type='int'>
+						<annotation>
+							<documentation>
+								The Taifun identifier of the customer that
+								received bills
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GetBillTreeDataResponseType">
+		<sequence>
+			<element name='matchingBillTreeData' type='types:BillTreeDataType'>
+				<annotation>
+					<documentation>The matching bill tree data.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ServiceOrderRequestType" abstract='true'
+		block='restriction'>
+		<annotation>
+			<documentation>Common abstact class for the doServiceOrder and
+				doServiceOrderValidation services.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="customerNo" type="int">
+						<annotation>
+							<documentation>
+								The Taifun customer number of an already
+								existing customer that wants this
+								product.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="partnerId" minOccurs="0"
+						type="string">
+						<annotation>
+							<documentation>
+								The unique identifier of the partner
+								that is doing the order for the
+								customer.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="salesperson"
+						type="types:SalespersonType" maxOccurs="1" minOccurs="0">
+					</element>
+					<element name="commonOrderId" type="string">
+						<annotation>
+							<documentation>
+								This can be a UUID or another unique id:
+								http://en.wikipedia.org/wiki/Universally_Unique_Identifier.
+								This will allow to uniquely identify
+								this request. This id is the same for
+								all orders sent together in one request,
+								thus it allows to find out which orders
+								were sent together.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="mainServiceOrder" type="types:ServiceOrderType" minOccurs="1" maxOccurs="1">
+						<annotation>
+							<documentation>Main service.</documentation>
+						</annotation></element>
+					<element name="additionalServiceOrders" minOccurs="0"
+						maxOccurs="unbounded" type="types:ServiceOrderType">
+						<annotation>
+							<documentation>Additional service orders. Service order types which can be bundled with a main service, such as Mobile and IPTV, will have their reference to the main service set automatically.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="DoServiceOrderType">
+		<complexContent>
+			<extension base="tns:ServiceOrderRequestType" />
+		</complexContent>
+	</complexType>
+	<complexType name="DoServiceOrderResponseType">
+		<sequence>
+			<element name="successful" type='boolean'>
+				<annotation>
+					<documentation>If the order could be processed this returns 'true', else 'false'.</documentation>
+				</annotation>
+			</element>
+			<element name="mainServiceOrderNumberPairs" minOccurs="1" maxOccurs="1" type="types:serviceOrderPairType" />
+			<element name="additionalServiceOrderNumberPairs" minOccurs="0" maxOccurs="unbounded" type="types:serviceOrderPairType" />
+			<element name="warning" type="types:WarningType" maxOccurs="1" minOccurs="0">
+				<annotation>
+					<documentation>This is a warning for the issuer of this order.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ValidateServiceOrderType">
+		<complexContent>
+			<extension base="tns:ServiceOrderRequestType" />
+		</complexContent>
+	</complexType>
+	<complexType name="ValidateServiceOrderResponseType">
+		<sequence>
+			<element name="valid" type='boolean'>
+				<annotation>
+					<documentation>If this is 'true' this order is valid, if this if
+						'false' the order is not valid.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="GetAvailableProductsType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="location" type="types:LocationType" />
+					<element minOccurs="0" name="requiredProperties" type="types:PropertiesType">
+						<annotation>
+							<documentation>
+								This are optional properties that the
+								product must
+								have. This generic list
+								allows to query for products which have
+								at least one of this properties. One
+								such property could be
+								"bandwith" with a
+								corresponding value in kbit/s.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="fromDate" type="date"></element>
+					<element name="toDate" type="date"></element>
+					<element name="sort" type="types:SortType" maxOccurs="1"
+						minOccurs="0">
+					</element>
+					<element name="levelOfDetail" type="types:AvailableProductsLevelOfDetailType"></element>
+					<element name="channel" type="types:ChannelType"></element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GetAvailableProductsResponseType">
+		<sequence>
+			<element minOccurs='0' maxOccurs="unbounded" name='products'
+				type="types:ProductAvailabilityType">
+				<annotation>
+					<documentation>These are all available products at a specific
+						location that have at least one of the specified properties.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="GetProductCatalogType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="productNo" type="int" maxOccurs="1"
+						minOccurs="0">
+						<annotation>
+							<documentation>The product identifier.</documentation>
+						</annotation>
+					</element>
+					<element minOccurs="0" name="productName" type="string">
+						<annotation>
+							<documentation>
+								The Taifun product name.
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GetProductCatalogResponseType">
+		<sequence>
+			<element minOccurs='0' maxOccurs="unbounded" name='catalogProducts'
+				type="types:CatalogProductType">
+				<annotation>
+					<documentation>The products with all their information.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ProductAvailabilityCheckType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="productInfo" type="types:ProductCheckType" />
+					<element name="location" type="types:LocationType" />
+					<element minOccurs="0" name="requiredProperties" type="types:PropertiesType">
+						<annotation>
+							<documentation>
+								This are optional properties that the
+								product must
+								have. This generic list
+								allows to query for products which have
+								all of this properties. One such
+								property could be "bandwith"
+								with a
+								corresponding value in kbit/s.
+							</documentation>
+						</annotation>
+					</element>
+					<element name="fromDate" type="date"></element>
+					<element name="toDate" type="date"></element>
+					<element name="levelOfDetail" type="types:ProductAvailabilityLevelOfDetailType" />
+					<element name="channel" type="types:ChannelType" minOccurs="0"
+						maxOccurs="1"></element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProductAvailabilityCheckResponseType">
+		<sequence>
+			<element name="products" type="types:ProductAvailabilityType"
+				maxOccurs="unbounded" minOccurs="0" />
+		</sequence>
+	</complexType>
+	<complexType name="AddBlockadeType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="serviceNo" type="int">
+						<annotation>
+							<documentation>The Taifun identifier of the service order.
+							</documentation>
+						</annotation>
+					</element>
+					<element minOccurs="0" name="blockUntil" type="date"></element>
+					<element name="reason" type="types:AddBlockadeReasonType"></element>
+					<element minOccurs="0" name="description" type="string"></element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AddBlockadeResponseType">
+		<sequence>
+			<element name="blockadeNo" type="int">
+				<annotation>
+					<documentation>The Taifun identifier of the blockade.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="TerminateBlockadeType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="blockadeNo" type="int">
+						<annotation>
+							<documentation>The Taifun identifier of the blockade.
+							</documentation>
+						</annotation>
+					</element>
+					<element minOccurs="0" name="reason" type="string"></element>
+					<element minOccurs="0" name="description" type="string"></element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TerminateBlockadeResponseType">
+		<sequence>
+			<element name='successful' type='boolean'>
+				<annotation>
+					<documentation>
+						'true' if the blockade could be terminated
+						successfully
+						, else 'false'.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="HasServiceOrderStatusChangedType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="partnerId" type="string">
+						<annotation>
+							<documentation>The unique identifier of the partner that is doing
+								the order for the customer.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="HasServiceOrderStatusChangedResponseType">
+		<sequence>
+			<element name="statusChanged" type="boolean">
+				<annotation>
+					<documentation>Tells whether the status of an order belonging to
+						this partner has changed since the last call of this service.
+					</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="updateHurricanOrderStateType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="service_no" type="int">
+						<annotation>
+							<documentation>Taifun service order identifier.</documentation>
+						</annotation>
+					</element>
+					<element name="hurricanServiceNo" type="int">
+						<annotation>
+							<documentation>Hurrican order identifier.</documentation>
+						</annotation>
+					</element>
+					<element name="statusNo" type="int">
+						<annotation>
+							<documentation>Taifun status identifier.</documentation>
+						</annotation>
+					</element>
+					<element name="value" type="string" minOccurs="0"
+						maxOccurs="1">
+						<annotation>
+							<documentation>The new value or information according to the new
+								state.</documentation>
+						</annotation>
+					</element>
+					<element name="user" type="string"></element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="updateHurricanOrderStateResponseType">
+		<sequence>
+			<element name="successful" type="boolean" />
+			<element name="Error" type="string" minOccurs="0" maxOccurs="1" />
+		</sequence>
+	</complexType>
+	<complexType name="startHardwareOrderProcessType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="purchaseOrderNo" type="int">
+						<annotation>
+							<documentation>Taifun service order identifier.</documentation>
+						</annotation>
+					</element>
+					<element name="plannedDeliveryDate" type="date" minOccurs="0">
+						<annotation>
+							<documentation>Taifun status identifier.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="startHardwareOrderProcessResponseType">
+		<sequence>
+			<element name="successful" type="boolean" />
+		</sequence>
+	</complexType>
+	<complexType name="setAccount4OrderType">
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element name="service_no" type="int">
+						<annotation>
+							<documentation>Taifun order identifier.</documentation>
+						</annotation>
+					</element>
+					<element name="hurricanServiceNo" type="int">
+						<annotation>
+							<documentation>Hurrican service order identifier.</documentation>
+						</annotation>
+					</element>
+					<element name="account" type="string" />
+					<element name="password" type="string" />
+					<element name="validFrom" type="date"></element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="setAccount4OrderResponseType">
+		<sequence>
+			<element name="successful" type="boolean" />
+			<element name="Error" type="string" minOccurs="0" maxOccurs="1" />
+		</sequence>
+	</complexType>
+	<complexType name="GetPersonType">
+		<annotation>
+			<documentation>All the given fields will be evaluated to find the
+				best matching person.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element minOccurs="1" maxOccurs="1" name="emailAddress"
+						type="string">
+						<annotation>
+							<documentation>
+								A person's email address
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GetPersonResponseType">
+		<sequence>
+			<element name='matchingPerson' type='types:PersonType'>
+				<annotation>
+					<documentation>The matching person.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ResetSubscriptionsType">
+		<annotation>
+			<documentation>All the given subscriptions will be resetted.
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<element minOccurs='1' maxOccurs="unbounded" name='subscriptions'
+						type="types:StringMin1Type">
+						<annotation>
+							<documentation>These are the subscriptions that must be resetted.
+							</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ResetSubscriptionsResponseType">
+		<sequence>
+			<element minOccurs='0' maxOccurs="unbounded" name='failedSubscriptions'
+				type="types:StringMin1Type">
+				<annotation>
+					<documentation>These are the subscriptions that failed to be
+						resetted.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="GetSubscriptionsDetailReportType">
+		<annotation>
+			<documentation>Will return a detailed report of all the given
+				subscriptions.</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:WebServiceRequestType">
+				<sequence>
+					<choice>
+						<element minOccurs="1" maxOccurs="unbounded" name="subscriptions"
+							type="types:StringMin1Type">
+							<annotation>
+								<documentation>
+									These are the subscriptions whose
+									reports must be
+									retrieved.
+								</documentation>
+							</annotation>
+						</element>
+						<element name="customerNo" type="int" maxOccurs="1"
+							minOccurs="1"></element>
+						<element name="serviceOrderNo" type="int" maxOccurs="1"
+							minOccurs="1"></element>
+					</choice>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GetSubscriptionsDetailReportResponseType">
+		<sequence>
+			<element minOccurs='0' maxOccurs="unbounded" name='detailsReports'
+				type="types:DetailsReportType">
+				<annotation>
+					<documentation>These are the subscriptions reports.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+</schema>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Spring-Konfigurationsdatei fuer die Physik-Services und -Commands im CustomerCare-Bereich.
+Die Datei wird von CCServices.xml importiert!
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+     default-lazy-init="true">
+
+    <context:annotation-config />
+
+    <!-- Rangierungs-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.RangierungsService"
+          class="de.augustakom.hurrican.service.cc.impl.RangierungsServiceImpl"
+          init-method="init">
+        <property name="rangierungDAO" ref="rangierungDAO"/>
+        <property name="equipmentDAO" ref="equipmentDAO"/>
+        <property name="physikUebernahmeDAO" ref="physikUebernahmeDAO"/>
+        <property name="rangierungsmatrixDAO" ref="rangierungsmatrixDAO"/>
+        <property name="rangierungsmatrixValidator" ref="rangierungsmatrixValidator"/>
+    </bean>
+
+    <bean id="changeEqOutPortTool" class="de.augustakom.hurrican.service.cc.impl.ports.ChangeEqOutPortTool">
+    </bean>
+
+    <!-- RangierungsAuftrag-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.RangierungAdminService"
+          class="de.augustakom.hurrican.service.cc.impl.RangierungAdminServiceImpl">
+        <property name="DAO" ref="rangierungsAuftragDAO"/>
+        <property name="equipmentDAO" ref="equipmentDAO"/>
+        <property name="rangierungsService" ref="de.augustakom.hurrican.service.cc.RangierungsService"/>
+    </bean>
+
+    <!-- RangierungFreigabe-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.RangierungFreigabeService"
+          class="de.augustakom.hurrican.service.cc.impl.RangierungFreigabeServiceImpl">
+    </bean>
+
+    <!-- Physik-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.PhysikService"
+          class="de.augustakom.hurrican.service.cc.impl.PhysikServiceImpl">
+        <property name="montageartDAO" ref="montageartDAO"/>
+        <property name="vbzDAO" ref="vbzDAO"/>
+        <property name="inhouseDAO" ref="inhouseDAO"/>
+        <property name="physikTypDAO" ref="physikTypDAO"/>
+        <property name="leitungsartDAO" ref="leitungsartDAO"/>
+        <property name="schnittstelleDAO" ref="schnittstelleDAO"/>
+        <property name="anschlussartDAO" ref="anschlussartDAO"/>
+        <property name="physikUebernahmeDAO" ref="physikUebernahmeDAO"/>
+        <property name="produktService" ref="de.augustakom.hurrican.service.cc.ProduktService"/>
+        <property name="auftragService" ref="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+        <property name="rangierungsService" ref="de.augustakom.hurrican.service.cc.RangierungsService"/>
+        <property name="endstellenService" ref="de.augustakom.hurrican.service.cc.EndstellenService"/>
+    </bean>
+
+    <!-- Endstellen-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.EndstellenService"
+          class="de.augustakom.hurrican.service.cc.impl.EndstellenServiceImpl">
+    </bean>
+
+    <!-- CrossConnection-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.EQCrossConnectionService"
+          class="de.augustakom.hurrican.service.cc.impl.EQCrossConnectionServiceImpl">
+        <property name="DAO" ref="eqCrossConnectionDAO"/>
+    </bean>
+
+    <!-- PortGenerator-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.PortGeneratorService" 
+          class="de.augustakom.hurrican.service.cc.impl.PortGeneratorServiceImpl">
+        <property name="hwService" ref="de.augustakom.hurrican.service.cc.HWService"/>
+        <property name="hwSwitchService" ref="de.augustakom.hurrican.service.cc.HWSwitchService"/>
+        <property name="portConfigurationChecks">
+            <list>
+                <ref bean="checkExistingPorts"/>
+                <ref bean="checkNecessaryPortData"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- EWSD-Service -->
+    <bean id="de.augustakom.hurrican.service.cc.EWSDService" 
+          class="de.augustakom.hurrican.service.cc.impl.EWSDServiceImpl">
+    </bean>
+
+    <!-- SdslEquipmentService -->
+    <bean id="de.augustakom.hurrican.service.cc.SdslEquipmentService" 
+          class="de.augustakom.hurrican.service.cc.impl.SdslEquipmentServiceImpl" />
+
+    <bean id="de.augustakom.hurrican.service.cc.PortStatisticService"
+          class="de.augustakom.hurrican.service.cc.impl.PortStatisticServiceImpl">
+        <property name="portStatisticDAO" ref="portStatisticDAO"/>
+    </bean>
+
+    <bean id="abstract.port.check" class="de.augustakom.hurrican.service.cc.impl.ports.AbstractPortConfigurationCheck" abstract="true">
+        <property name="hwService" ref="de.augustakom.hurrican.service.cc.HWService"/>
+    </bean>
+
+    <bean id="checkExistingPorts" class="de.augustakom.hurrican.service.cc.impl.ports.CheckExistingPorts" parent="abstract.port.check">
+        <property name="rangierungsService" ref="de.augustakom.hurrican.service.cc.RangierungsService"/>
+    </bean>
+
+    <bean id="checkNecessaryPortData" class="de.augustakom.hurrican.service.cc.impl.ports.CheckNecessaryPortData" parent="abstract.port.check">
+        <property name="hvtService" ref="de.augustakom.hurrican.service.cc.HVTService"/>
+    </bean>
+
+</beans>

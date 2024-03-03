@@ -1,0 +1,14 @@
+UPDATE GUICOMPONENT SET DESCRIPTION = REGEXP_REPLACE(DESCRIPTION, '(.*)IPS(.*)', '\1ST Online\2')
+    WHERE NAME IN ('open.projektierung.stonline.action');
+
+UPDATE GUICOMPONENT SET DESCRIPTION = REGEXP_REPLACE(DESCRIPTION, '(.*)SCT und FieldServiceK(.*)', '\1FieldService\2')
+    WHERE PARENT = 'de.augustakom.hurrican.gui.verlauf.BauauftragFieldServicePanel';
+
+UPDATE GUICOMPONENT SET DESCRIPTION = REGEXP_REPLACE(DESCRIPTION, '(.*)SCV(.*)', '\1AM\2')
+    WHERE NAME = 'vorgabe.am';
+
+UPDATE GUICOMPONENT SET DESCRIPTION = REGEXP_REPLACE(DESCRIPTION, '(.*)SCV(.*)', '\1AM\2')
+    WHERE NAME = 'auftrag.inbox.action';
+
+UPDATE GUICOMPONENT SET DESCRIPTION = REGEXP_REPLACE(DESCRIPTION, '(.*)SCV(.*)', '\1AM\2')
+    WHERE ID = 366;

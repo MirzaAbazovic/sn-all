@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Frame der Geo IDs.
+-->
+<sf>
+    <Text name="border.filter">Filter</Text>
+    <Text name="border.search.result">Ergebnisse</Text>
+
+    <Label name="filter.geoid"><text>Geo ID:</text></Label>
+    <TextField name="filter.geoid">
+        <tooltip>Gesuchte Geo ID</tooltip>
+        <columns>15</columns>
+    </TextField>
+    <Label name="filter.street"><text>Strasse/Hausnummer:</text></Label>
+    <TextField name="filter.street">
+        <tooltip>Gesuchte Strasse</tooltip>
+        <columns>10</columns>
+    </TextField>
+    <TextField name="filter.house.no">
+        <tooltip>Gesuchte Hausnummer</tooltip>
+        <columns>3</columns>
+    </TextField>
+    <Label name="filter.zip"><text>PLZ:</text></Label>
+    <TextField name="filter.zip">
+        <tooltip>Gesuchte PLZ</tooltip>
+    </TextField>
+    <Label name="filter.city"><text>Ort/Ortsteil:</text></Label>
+    <TextField name="filter.city">
+        <tooltip>Gesuchter Ort</tooltip>
+    </TextField>
+    <TextField name="filter.district">
+        <tooltip>Gesuchter Ortsteil</tooltip>
+    </TextField>
+    <Label name="filter.onkz"><text>ONKZ/ASB:</text></Label>
+    <TextField name="filter.onkz">
+        <tooltip>Gesuchte ONKZ (ASB mit angeben!)</tooltip>
+    </TextField>
+    <Label name="filter.asb"><text>ASB:</text></Label>
+    <TextField name="filter.asb">
+        <tooltip>Gesuchte ASB (ONKZ mit angeben!)</tooltip>
+    </TextField>
+
+    <Button name="filter">
+        <tooltip>Führt die Suche mit den definierten Parametern durch</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/filter.png</icon>
+        <mnemonic>VK_F</mnemonic>
+    </Button>
+
+</sf>

@@ -1,0 +1,69 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <ns2:notifyReplaceLocation xmlns:ns2="http://www.mnet.de/esb/cdm/Resource/LocationNotificationService/v1"
+                                   xmlns="http://www.mnet.de/esb/cdm/Resource/Location/v1">
+            <ns2:oldBuilding>
+                <id />
+                <modified />
+                <serviceable />
+                <houseNumber />
+                <street>
+                    <id />
+                    <modified />
+                    <serviceable />
+                    <name />
+                    <zipCode>
+                        <id />
+                        <modified />
+                        <serviceable />
+                        <zipCode />
+                        <city>
+                            <id />
+                            <modified />
+                            <serviceable />
+                            <name />
+                            <country>
+                                <id />
+                                <modified />
+                                <serviceable />
+                                <countryCode />
+                                <name />
+                            </country>
+                        </city>
+                    </zipCode>
+                </street>
+            </ns2:oldBuilding>
+            <ns2:newBuilding>
+                <id />
+                <modified />
+                <serviceable />
+                <houseNumber />
+                <street>
+                    <id />
+                    <modified />
+                    <serviceable />
+                    <name />
+                    <zipCode>
+                        <id />
+                        <modified />
+                        <serviceable />
+                        <zipCode />
+                        <city>
+                            <id />
+                            <modified />
+                            <serviceable />
+                            <name />
+                            <country>
+                                <id />
+                                <modified />
+                                <serviceable />
+                                <countryCode />
+                                <name />
+                            </country>
+                        </city>
+                    </zipCode>
+                </street>
+            </ns2:newBuilding>
+        </ns2:notifyReplaceLocation>
+    </soap:Body>
+</soap:Envelope>

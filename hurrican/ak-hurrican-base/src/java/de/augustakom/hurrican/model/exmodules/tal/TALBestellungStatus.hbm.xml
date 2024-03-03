@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse 
+de.augustakom.hurrican.model.exmodules.tal.TALBestellungStatus
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.exmodules.tal">
+	<class name="TALBestellungStatus" table="TTALBESTELLUNG_STATUS">
+	    
+		<cache usage="read-only"/>
+		
+	    <!-- PrimaryKey -->
+		<id name="id" column="BST_ID" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<property name="name" column="BST_NAME" type="string"/>
+		
+	</class>
+	
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.gui.IA
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.innenauftrag">
+    <class name="IA" table="T_IA">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_IA_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="auftragId" column="AUFTRAG_ID" type="long"/>
+        <property name="rangierungsAuftragId" column="RANGIERUNGS_AUFTRAG_ID" type="long"/>
+        <property name="iaNummer" column="IA_NUMMER" type="string" not-null="true"/>
+        <property name="projectLeadId" column="PROJEKTLEITER_USER_ID" type="long"/>
+        <property name="kostenstelle" column="KOSTENSTELLE" type="string"/>
+        <property name="projektbez" column="PROJEKTBEZ" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

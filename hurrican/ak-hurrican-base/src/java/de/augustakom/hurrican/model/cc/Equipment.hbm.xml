@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Equipment
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Equipment" table="T_EQUIPMENT">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="EQ_ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_EQUIPMENT_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="hvtIdStandort" column="HVT_ID_STANDORT" type="long"/>
+        <property name="hwEQN" column="HW_EQN" type="string"/>
+        <property name="hwSchnittstelle" column="HW_SCHNITTSTELLE" type="string"/>
+        <property name="ts1" column="TS1" type="string"/>
+        <property name="ts2" column="TS2" type="string"/>
+        <property name="kvzNummer" column="KVZ_NUMMER" type="string"/>
+        <property name="kvzDoppelader" column="KVZ_DA" type="string"/>
+        <property name="rangVerteiler" column="RANG_VERTEILER" type="string"/>
+        <property name="rangReihe" column="RANG_REIHE" type="string"/>
+        <property name="rangBucht" column="RANG_BUCHT" type="string"/>
+        <property name="rangLeiste1" column="RANG_LEISTE1" type="string"/>
+        <property name="rangStift1" column="RANG_STIFT1" type="string"/>
+        <property name="rangLeiste2" column="RANG_LEISTE2" type="string"/>
+        <property name="rangStift2" column="RANG_STIFT2" type="string"/>
+        <property name="rangSchnittstelle" column="RANG_SCHNITTSTELLE">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">de.augustakom.hurrican.model.cc.RangSchnittstelle</param>
+                <param name="type">12</param> <!-- java.sql.Types -->
+            </type>
+        </property>
+        <property name="carrier" column="CARRIER" type="string"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date"/>
+        <property name="status" column="STATUS">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">de.augustakom.hurrican.model.cc.EqStatus</param>
+                <param name="type">12</param> <!-- java.sql.Types -->
+            </type>
+        </property>
+        <property name="bemerkung" column="BEMERKUNG" type="string"/>
+        <property name="userW" column="USERW" type="string"/>
+        <property name="dateW" column="DATEW" type="date"/>
+        <property name="rangSSType" column="RANG_SS_TYPE" type="string"/>
+        <property name="uetv" column="UETV">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">de.augustakom.hurrican.model.cc.Uebertragungsverfahren</param>
+                <param name="type">12</param> <!-- java.sql.Types -->
+            </type>
+        </property>
+        <property name="hwBaugruppenId" column="HW_BAUGRUPPEN_ID" type="long"/>
+        <property name="cvlan" column="CVLAN" type="integer"/>
+        <property name="manualConfiguration" column="MANUAL_CONFIGURATION" type="boolean"/>
+        <property name="v5Port" column="V5_PORT" type="string"/>
+        <property name="verwendung" column="VERWENDUNG">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">de.augustakom.hurrican.model.cc.EqVerwendung</param>
+                <param name="type">12</param> <!-- java.sql.Types -->
+            </type>
+        </property>
+        <property name="schicht2Protokoll" column="SCHICHT2_PROTOKOLL">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">de.augustakom.hurrican.model.cc.Schicht2Protokoll</param>
+                <param name="type">12</param> <!-- java.sql.Types -->
+            </type>
+        </property>
+        <property name="uevtClusterNo" column="UEVT_CLUSTER_NO" type="integer"/>
+        <many-to-one name="hwSwitch" class="de.augustakom.hurrican.model.cc.hardware.HWSwitch"
+                     column="SWITCH" not-null="false" lazy="false" />
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sws="http://www.springframework.org/schema/web-services"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:oxm="http://www.springframework.org/schema/oxm"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services.xsd
+
+
+           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+
+           http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm.xsd">
+
+    <import resource="classpath:spring/jaxb-ws-base.xml"/>
+
+    <!-- Endpoint Definition fuer den CPS Endpunkt. -->
+    <bean id="cpsEndpoint" class="de.mnet.hurrican.webservice.cps.CpsEndpoint" />
+
+    <!-- siehe http://static.springsource.org/spring-ws/site/reference/html/server.html#server-endpoint-exception-resolver -->
+    <bean id="exceptionResolver"
+        class="org.springframework.ws.soap.server.endpoint.SoapFaultMappingExceptionResolver">
+        <property name="defaultFault" value="SERVER"/>
+        <property name="order" value="-2147483648"/>
+        <property name="exceptionMappings">
+            <value>
+                org.springframework.oxm.ValidationFailureException=CLIENT,Invalid request
+                java.lang.IllegalArgumentException=CLIENT
+            </value>
+        </property>
+    </bean>
+
+    <oxm:jaxb2-marshaller id="jaxbMarshaller" context-path="de.mnet.hurrican.cps"/>
+
+    <sws:interceptors>
+                <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+                <bean class="de.mnet.hurrican.webservice.common.PayloadValidatingEndpointInterceptor">
+                    <property name="xsdSchemaCollection" ref="cpsSchemaCollection"/>
+                    <property name="validateRequest" value="true"/>
+                    <property name="validateResponse" value="true"/>
+                </bean>
+    </sws:interceptors>
+
+    <!-- Publishing the WSDL -->
+    <!-- WSDL Generierung ueber http://host:port/hurricanweb/cps/cps.wsdl -->
+    <bean id="cps" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+        <property name="schema" ref="cpsSchema"/>
+        <property name="portTypeName" value="CpsService"/>
+        <property name="serviceName" value="CpsService"/>
+        <property name="locationUri" value="http://localhost:8080/hurricanweb/cps"/>
+        <property name="requestSuffix" value="Request" />
+        <property name="responseSuffix" value="Response" />
+        <!-- 
+        <property name="faultSuffix" value="Fault" />
+         -->
+        <property name="createSoap12Binding" value="false"/>
+        <property name="createSoap11Binding" value="true"/>
+        <property name="soapActions">
+            <props>
+                <prop key="getSoData">getSoData</prop>
+                <prop key="provision">provision</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="cpsSchema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+        <property name="xsd" value="/WEB-INF/xsd/cps-hurrican.xsd"/>
+    </bean>
+    <!-- ID muss gleich mit dem Basisname der XSD sein, siehe MessageDispatcherServlet#xsdSchemas -->
+    <bean id="cpsSchemaCollection" class="org.springframework.xml.xsd.commons.CommonsXsdSchemaCollection">
+        <property name="xsds">
+            <util:list>
+                <value>/WEB-INF/xsd/cps-hurrican.xsd</value>
+            </util:list>
+        </property>
+    </bean>
+
+    <!-- SOAP message factory. Configured to use SOAP 1.1 -->
+    <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+        <property name="soapVersion">
+            <util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_11" />
+        </property>
+    </bean>
+
+</beans>

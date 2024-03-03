@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den PhysikUebernahme-Dialog.
+-->
+<sf>
+    
+    <RadioButton name="anschlussuebernahme">
+        <text>Anschlussübernahme</text>
+        <tooltip>Übernimmt die Physik von einem anderen Auftrag</tooltip>
+    </RadioButton>
+    
+    <RadioButton name="wandel.analog.isdn">
+        <text>Wandel Analog --> ISDN</text>
+        <tooltip>Wandlung des Anschlusses von Analog auf ISDN</tooltip>
+    </RadioButton>
+    
+    <RadioButton name="wandel.isdn.analog">
+        <text>Wandel ISDN --> Analog</text>
+        <tooltip>Wandlung des Anschlusses von ISDN auf Analog</tooltip>
+    </RadioButton>
+    
+    <RadioButton name="bandbreitenaenderung">
+        <text>Bandbreitenänderung</text>
+        <tooltip>Änderung der Bandbreite des Auftrags</tooltip>
+    </RadioButton>
+    
+    <RadioButton name="dsl.kreuzung">
+        <text>DSL-Kreuzung</text>
+        <tooltip>Kreuzt die Stifte eines DSL-Auftrags (bzw. des zug. Phone-Auftrags)</tooltip>
+    </RadioButton>
+    
+    <RadioButton name="tal.na">
+        <text>TAL-Nutzungsänderung</text>
+        <tooltip>Führt eine TAL-Nutzungsänderung (z.B. von S0 nach ADSL) durch (=Stift-Kreuzung)</tooltip>
+    </RadioButton>
+    
+</sf>

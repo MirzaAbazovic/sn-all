@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Darstellung der
+Standardeigenschaften eines DB-Accounts.
+-->
+<sf>
+    <Text name="border.title">Bearbeitung von Equipments</Text>
+
+    <Button name="save">
+        <text>Speichern</text>
+        <tooltip>Speichert die bearbeiteten Equipments</tooltip>
+    </Button>
+</sf>

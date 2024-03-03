@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    GUI-Definitionen fuer das Housing-Filterpanel.
+-->
+<sf>
+    <Label name="transponder.id"><text>Transponder Nr:</text></Label>
+    <TextField name="transponder.id">
+        <tooltip>gesuchte Transpondernr</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="transponderowner.firstname"><text>Vorname:</text></Label>
+    <TextField name="tranponderowner.firstname">
+        <tooltip>Vorname des Transponderbesitzers</tooltip>
+    </TextField>
+
+    <Label name="transponderowner.lastname"><text>Nachname:</text></Label>
+    <TextField name="transponderowner.lastname">
+        <tooltip>Nachname des Transponderbesitzers</tooltip>
+    </TextField>
+</sf>

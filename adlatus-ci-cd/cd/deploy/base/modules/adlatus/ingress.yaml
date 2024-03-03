@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: adlatus-ingress
+  namespace: adl
+  annotations:
+    cert-manager.io/issuer: letsencrypt
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  tls:
+    - hosts:
+      - adlatus.adl.env.dev.bitconex.com
+      secretName: tls-secret
+  rules:
+    - host: adlatus.adl.env.dev.bitconex.com
+      http:
+        paths:
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: adlatus-service-test
+                port:
+                  number: 80

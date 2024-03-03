@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel, um die Rangierung von einer
+Endstelle zu entfernen.
+-->
+<sf>
+    
+    <Label name="es.id"><text>Endstellen-ID:</text></Label>
+    <FormattedTextField name="es.id">
+        <tooltip>ID der Endstelle, deren Rangierung entfernt werden soll</tooltip>
+        <columns>15</columns>
+        <format type="number">0</format>
+    </FormattedTextField>
+    
+    <DateComponent name="freigabe.ab">
+    	<tooltip>Datum, ab dem die Rangierung freigegeben werden kann</tooltip>
+    	<format type="date">dd.MM.yyyy</format>
+    	<columns>15</columns>
+    </DateComponent>
+    
+    <Label name="rangierung"><text>Rangierung:</text></Label>
+    <Label name="freigabe"><text>Freigabe-Optionen:</text></Label>
+    
+    <RadioButton name="freigabe.now">
+        <text>sofort</text>
+        <tooltip>Rangierung wird sofort freigegeben</tooltip>
+    </RadioButton>
+    
+    <RadioButton name="freigabe.date">
+        <text>ab:</text>
+        <tooltip>Rangierung wird ab dem eingegebenen Datum freigegeben</tooltip>
+    </RadioButton>
+    
+    <Button name="show">
+        <text>Anzeigen</text>
+        <tooltip>Ermittelt die Rangierungs-Daten, die der Endstelle zugeordnet sind.</tooltip>
+    </Button>
+    
+    <Button name="clear">
+        <text>Clear</text>
+        <tooltip>Entfernt alle Daten aus der Maske.</tooltip>
+    </Button>
+    
+    <Button name="remove.rangierung">
+        <text>entfernen</text>
+        <tooltip>Entfernt die Rangierung von der Endstelle</tooltip>
+    </Button>
+    
+</sf>

@@ -1,0 +1,6 @@
+ALTER table T_EG_PORT ADD CONSTRAINT egtype_no_unique UNIQUE (EG_TYPE_ID, NO);
+
+INSERT INTO T_EG_PORT (ID, NO, NAME) VALUES (S_T_EG_PORT_0.nextVal, 5, 'Port Fünf');
+INSERT INTO T_EG_PORT (ID, NO, NAME) VALUES (S_T_EG_PORT_0.nextVal, 6, 'Port Sechs');
+INSERT INTO T_EG_PORT (ID, NO, NAME) VALUES (S_T_EG_PORT_0.nextVal, 7, 'Port Sieben');
+INSERT INTO T_EG_PORT (ID, NO, NAME) VALUES (S_T_EG_PORT_0.nextVal, 8, 'Port Acht');

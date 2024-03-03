@@ -1,0 +1,11 @@
+@startuml
+LineOrderOut --> LineOrderOut:from("direct:lineOrderService")
+LineOrderOut -> Transactions: transacted(true)
+LineOrderOut --> options: process()
+LineOrderOut --> ConvertWitaToCdmProcessor: convertHurricanWita2CDM()
+LineOrderOut --> Atlas:atlasLineOrderOut()
+LineOrderOut --> CBVorgangStatus:updateCBVorgangStatus()
+LineOrderOut --> CreateSendLog:createAndSendLog()
+LineOrderOut --> WitaIoArchive:saveIoArchive()
+LineOrderOut --> LineOrderOut:end()
+@enduml

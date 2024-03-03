@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.DBQueryDef
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="DBQueryDef" table="T_DB_QUERIES">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_DB_QUERIES_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="name" column="NAME" type="string" not-null="true"/>
+        <property name="description" column="DESCRIPTION" type="string"/>
+        <property name="sqlQuery" column="SQL_QUERY" type="string" not-null="true"/>
+        <property name="service" column="SERVICE" type="string" not-null="true"/>
+        <property name="params" column="PARAMS" type="string"/>
+        <property name="notForTest" column="NOT_FOR_TEST" type="boolean"/>
+
+    </class>
+
+</hibernate-mapping>

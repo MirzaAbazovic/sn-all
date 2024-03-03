@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Auswahl der Produkte fuer
+die Rangierungsmatrix-Eintraege fuer einen best. UEVT angelegt 
+werden sollen.
+-->
+<sf>
+    
+    <Text name="anzahl.matrizen">Es wurden {0} Matrizen angelegt.</Text>
+    
+    <Text name="save.btn.text">Matrix erstellen</Text>
+    <Text name="save.btn.tooltip">Erstellt die Matrix für die selektierten Produkte und den angezeigten UEVT</Text>
+    
+    <Label name="uevt"><text>UEVT:</text></Label>
+    <TextField name="uevt">
+        <tooltip>UEVT für den die Rangierungsmatrizen angelegt werden</tooltip>
+        <columns>20</columns>
+    </TextField>
+    
+    <Label name="produkte"><text>Produkte:</text></Label>
+    
+    <CheckBox name="select.all">
+        <text>alle Produkte</text>
+        <tooltip>Selektiert alle Produkte in der Tabelle</tooltip>
+    </CheckBox>
+    
+</sf>

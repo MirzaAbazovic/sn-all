@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+
+    <!-- Taifun database -->
+    <bean id="taifunDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${taifun.db.jdbc.driver}"/>
+        <property name="url" value="${taifun.db.url}"/>
+        <property name="username" value="${taifun.db.user}"/>
+        <property name="password" value="${taifun.db.password}"/>
+        <property name="initialSize" value="1"/>
+        <property name="maxActive" value="15"/>
+        <property name="maxIdle" value="2"/>
+        <property name="maxWait" value="15000"/>
+        <property name="validationQuery" value="select 1 from dual"/>
+        <property name="logAbandoned" value="true"/>
+        <property name="removeAbandoned" value="true"/>
+        <property name="removeAbandonedTimeout" value="25"/>
+    </bean>
+</beans>

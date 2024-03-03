@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    <Text name="title">IP-Adresse</Text>
+    <Label name="ip"><text>IP-Adresse:</text></Label>
+    <IPAddressComponent name="ip">
+        <tooltip>Definition der IP-Adresse</tooltip>
+        <IPTypesAllowed>
+            <IPType>1</IPType>
+            <IPType>2</IPType>
+            <IPType>3</IPType>
+            <IPType>4</IPType>
+            <IPType>8</IPType>
+            <IPType>9</IPType>
+        </IPTypesAllowed>
+    </IPAddressComponent>
+</sf>

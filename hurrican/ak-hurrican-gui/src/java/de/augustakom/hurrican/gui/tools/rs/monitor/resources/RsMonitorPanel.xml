@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definition fuer das Panel des EQ-Monitors
+-->
+<sf>
+
+    <Label name="last.run"><text>Letzter Durchlauf:</text></Label>
+    <DateComponent name="last.run">
+        <tooltip>Zeitstempel der letzten Datenermittlung</tooltip>
+        <format type="date">dd.MM.yyyy HH:mm:ss</format>
+    </DateComponent>
+
+    <Label name="monitor.type"><text>Monitortyp:</text></Label>
+    <TextField name="monitor.type">
+        <tooltip>Monitortyp</tooltip>
+    </TextField>
+
+    <Label name="status"><text>Status:</text></Label>
+    <TextField name="status">
+        <tooltip>Status der letzten Datenermittlung</tooltip>
+    </TextField>
+
+    <Label name="last.user"><text>Letzter Bearbeiter:</text></Label>
+    <TextField name="last.user">
+        <tooltip>Name des letzten Bearbeiters</tooltip>
+    </TextField>
+
+    <Button name="show">
+        <text>Anzeigen</text>
+        <tooltip>Stellt die ermittelten Daten in einer Tabelle dar</tooltip>
+    </Button>
+
+    <Button name="config">
+        <text>Konfiguration</text>
+        <tooltip>Öffnet das Konfigurationspanel</tooltip>
+    </Button>
+
+    <Button name="start">
+        <text>Start</text>
+        <tooltip>Startet die Datenermittlung</tooltip>
+    </Button>
+
+    <Text name="filter">Filter</Text>
+
+    <Label name="filter.niederlassung"><text>Niederlassung:</text></Label>
+    <ComboBox name="filter.niederlassung">
+        <tooltip>Name der Niederlassung</tooltip>
+    </ComboBox>
+
+    <Label name="filter.standorttype"><text>Standorttyp:</text></Label>
+    <List name="filter.standorttype">
+        <tooltip>Typ des Standorts</tooltip>
+    </List>
+
+    <Label name="filter.cluster"><text>Cluster:</text></Label>
+    <TextField name="filter.cluster">
+        <tooltip>Name des Clusters</tooltip>
+    </TextField>
+
+    <Text name="start.ressourcen.monitor.title">Ressourcen-Monitor starten?</Text>
+    <Text name="start.ressourcen.monitor.msg">Soll der Ressourcen-Monitor wirklich gestartet werden?
+Die Analyse aller Standorte kann bis zu einer Stunde dauern.
+Bitte nur starten, wenn unbedingt aktuellste Werte benötigt werden.</Text>
+
+</sf>

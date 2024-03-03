@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+
+    <alias name="singleRowMigrationDao" alias="migrationDao"/>
+    <alias name="hurricanDataSource" alias="logDataSource"/>
+    <alias name="hurricanDataSource" alias="migrationDataSource"/>
+    <alias name="hurricanDataSource" alias="targetDataSource"/>
+
+    <bean id="migrationTransformator" class="de.mnet.migration.hellomigration.HelloMigration">
+        <!-- property name="endstellenService" ref="de.augustakom.hurrican.service.cc.EndstellenService" / -->
+    </bean>
+
+    <bean id="migrationController" parent="migrationControllerParent">
+        <property name="migrationName" value="BLUB"/>
+    </bean>
+
+    <bean id="databaseLogger" parent="databaseLoggerParent">
+        <property name="logTableName" value="MIG_LOG" />
+    </bean>
+
+    <bean class="de.mnet.migration.hellomigration.HelloAdditionalData"/>
+
+</beans>

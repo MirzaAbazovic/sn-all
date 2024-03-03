@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit dem History-Check.
+-->
+<sf>
+
+    <Text name="border.title">zu prüfende Tabellen</Text>
+
+    <CheckBox name="auftrag.daten">
+        <text>T_AUFTRAG_DATEN</text>
+        <tooltip>Tabelle T_AUFTRAG_DATEN in History-Check prüfen</tooltip>
+    </CheckBox>
+
+    <CheckBox name="auftrag.technik">
+        <text>T_AUFTRAG_TECHNIK</text>
+        <tooltip>Tabelle T_AUFTRAG_TECHNIK in History-Check prüfen</tooltip>
+    </CheckBox>
+
+    <CheckBox name="rangierung">
+        <text>T_RANGIERUNG</text>
+        <tooltip>Tabelle T_RANGIERUNG in History-Check prüfen</tooltip>
+    </CheckBox>
+
+    <CheckBox name="int.account">
+        <text>T_INT_ACCOUNT</text>
+        <tooltip>Tabelle T_INT_ACCOUNT in History-Check prüfen</tooltip>
+    </CheckBox>
+
+    <CheckBox name="es.ltg.daten">
+        <text>T_ES_LTG_DATEN</text>
+        <tooltip>Tabelle T_ES_LTG_DATEN in History-Check prüfen</tooltip>
+    </CheckBox>
+
+    <CheckBox name="es.ansprechpartner">
+        <text>T_ES_ANSP</text>
+        <tooltip>Tabelle T_ES_ANSP in History-Check prüfen</tooltip>
+    </CheckBox>
+
+</sf>

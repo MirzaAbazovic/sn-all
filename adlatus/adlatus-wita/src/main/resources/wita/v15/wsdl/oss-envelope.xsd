@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:envelope="http://wholesale.telekom.de/oss/v15/envelope" xmlns:order="http://wholesale.telekom.de/oss/v15/order" xmlns:message="http://wholesale.telekom.de/oss/v15/message" xmlns:complex="http://wholesale.telekom.de/oss/v15/complex" xmlns:simple="http://wholesale.telekom.de/oss/v15/simple" xmlns:pres="http://wholesale.telekom.de/oss/v15/pres" xmlns:tal="http://wholesale.telekom.de/oss/v15/tal" xmlns:xsdl="http://wholesale.telekom.de/oss/v15/xdsl" xmlns:ftth="http://wholesale.telekom.de/oss/v15/ftth" xmlns:sdslb="http://wholesale.telekom.de/oss/v15/sdslb" xmlns:conn="http://wholesale.telekom.de/oss/v15/connectivity" xmlns:ngorder="http://wholesale.telekom.de/oss/v15/ng/order" targetNamespace="http://wholesale.telekom.de/oss/v15/envelope" version="15.00.00/2020-05-09">
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/order" schemaLocation="../xsd/oss-order.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/message" schemaLocation="../xsd/oss-message.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/complex" schemaLocation="../xsd/oss-type-complex.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/simple" schemaLocation="../xsd/oss-type-simple.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/pres" schemaLocation="../xsd/oss-product-PRES.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/tal" schemaLocation="../xsd/oss-product-TAL.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/xdsl" schemaLocation="../xsd/oss-product-XDSL.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/ftth" schemaLocation="../xsd/oss-product-FTTH.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/sdslb" schemaLocation="../xsd/oss-product-SDSLB.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/connectivity" schemaLocation="../xsd/oss-connectivity.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/ng/order" schemaLocation="../xsd/oss-ng-order.xsd"/>	
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/ng/fttb" schemaLocation="../xsd/oss-ng-product-FTTB.xsd"/>
+	<!-- 
+		!
+		! annehmenAuftrag
+		!
+	-->
+	<xsd:element name="annehmenAuftragRequest" type="envelope:AnnehmenAuftragRequestType"/>
+	<xsd:complexType name="AnnehmenAuftragRequestType">
+		<xsd:sequence>
+			<xsd:element name="control" type="envelope:WholesaleRequestType">
+				<xsd:annotation>
+					<xsd:documentation>Kontrolldaten</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="auftrag" type="order:AuftragType">
+				<xsd:annotation>
+					<xsd:documentation>Auftragsdaten</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="annehmenAuftragResponse" type="envelope:AnnehmenAuftragResponseType"/>
+	<xsd:complexType name="AnnehmenAuftragResponseType">
+		<xsd:sequence>
+			<xsd:element name="control" type="envelope:WholesaleResponseType">
+				<xsd:annotation>
+					<xsd:documentation>Kontrolldaten</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="quittung" type="complex:MessageTEQType">
+				<xsd:annotation>
+					<xsd:documentation>die Quittung zum Auftrag (Meldung TEQ)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- 
+		!
+		! annehmenMeldung
+		!
+	-->
+	<xsd:element name="annehmenMeldungRequest" type="envelope:AnnehmenMeldungRequestType"/>
+	<xsd:complexType name="AnnehmenMeldungRequestType">
+		<xsd:sequence>
+			<xsd:element name="control" type="envelope:WholesaleRequestType">
+				<xsd:annotation>
+					<xsd:documentation>Kontrolldaten</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="meldung" type="message:MeldungType">
+				<xsd:annotation>
+					<xsd:documentation>Meldungsdaten</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="annehmenMeldungResponse" type="envelope:AnnehmenMeldungResponseType"/>
+	<xsd:complexType name="AnnehmenMeldungResponseType">
+		<xsd:sequence>
+			<xsd:element name="control" type="envelope:WholesaleResponseType">
+				<xsd:annotation>
+					<xsd:documentation>Kontrolldaten</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="quittung" type="complex:MessageTEQType">
+				<xsd:annotation>
+					<xsd:documentation>die Quittung zur Meldung (Meldung TEQ)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<!-- 
+		!
+		! annehmenAuftragNachVPO
+		!
+	-->
+	<xsd:element name="annehmenAuftragNachVPORequest" type="envelope:AnnehmenAuftragNachVPORequestType"/>
+	<xsd:complexType name="AnnehmenAuftragNachVPORequestType">
+		<xsd:sequence>
+			<xsd:element name="control" type="envelope:WholesaleRequestType">
+				<xsd:annotation>
+					<xsd:documentation>Kontrolldaten</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="auftragVPO" type="order:AuftragNachVPOType">
+				<xsd:annotation>
+					<xsd:documentation>Auftragsdaten nach Preorder</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="annehmenAuftragNachVPOResponse" type="envelope:AnnehmenAuftragNachVPOResponseType"/>
+	<xsd:complexType name="AnnehmenAuftragNachVPOResponseType">
+		<xsd:sequence>
+			<xsd:element name="control" type="envelope:WholesaleResponseType">
+				<xsd:annotation>
+					<xsd:documentation>Kontrolldaten</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="quittung" type="complex:MessageTEQType">
+				<xsd:annotation>
+					<xsd:documentation>die Quittung zum Auftrag (Meldung TEQ)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+   <!-- 
+		!
+		! annehmenKonnektivitaetsAuftrag
+		!
+	-->
+	<xsd:element name="annehmenNotConnectedAuftragRequest" type="envelope:AnnehmenNotConnectedAuftragRequestType"/>
+	<xsd:complexType name="AnnehmenNotConnectedAuftragRequestType">
+		<xsd:sequence>
+			<xsd:element name="control" type="envelope:WholesaleRequestType">
+				<xsd:annotation>
+					<xsd:documentation>Kontrolldaten</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="auftrag" type="conn:AbstractNotConnectedAuftragType">
+				<xsd:annotation>
+					<xsd:documentation>Auftragsdaten (Konnektivitaet)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="annehmenNotConnectedAuftragResponse" type="envelope:AnnehmenNotConnectedAuftragResponseType"/>
+	<xsd:complexType name="AnnehmenNotConnectedAuftragResponseType">
+		<xsd:sequence>
+			<xsd:element name="control" type="envelope:WholesaleResponseType">
+				<xsd:annotation>
+					<xsd:documentation>Kontrolldaten</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="quittung" type="complex:MessageTEQType">
+				<xsd:annotation>
+					<xsd:documentation>die Quittung zum Auftrag (Meldung TEQ)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	
+	   <!-- 
+		!
+		! Annahme eines NG Auftrags 
+		!
+	-->
+	<xsd:element name="annehmenNgAuftragRequest" type="envelope:AnnehmenNgAuftragRequestType"/>
+	<xsd:complexType name="AnnehmenNgAuftragRequestType">
+		<xsd:sequence>
+			<xsd:element name="control" type="envelope:WholesaleRequestType">
+				<xsd:annotation>
+					<xsd:documentation>Kontrolldaten</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="auftrag" type="ngorder:AbstractNgAuftragType">
+				<xsd:annotation>
+					<xsd:documentation>Auftragsdaten (Next generation order)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="annehmenNgAuftragResponse" type="envelope:AnnehmenNgAuftragResponseType"/>
+	<xsd:complexType name="AnnehmenNgAuftragResponseType">
+		<xsd:sequence>
+			<xsd:element name="control" type="envelope:WholesaleResponseType">
+				<xsd:annotation>
+					<xsd:documentation>Kontrolldaten</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="quittung" type="complex:MessageTEQType">
+				<xsd:annotation>
+					<xsd:documentation>die Quittung zum Auftrag (Meldung TEQ)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+		
+	<!-- 
+		!
+		! Control-Header
+		!
+	-->
+	<xsd:complexType name="WholesaleMessageType" abstract="true">
+		<xsd:sequence>
+			<xsd:element name="zeitstempel" type="simple:ZeitstempelType">
+				<xsd:annotation>
+					<xsd:documentation>Datum und Uhrzeit des Absendens der Nachricht</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="majorRelease">
+				<xsd:annotation>
+					<xsd:documentation>bezeichnet ein Release der Webservice-SST</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="15"/>
+					</xsd:restriction>
+				</xsd:simpleType>								
+			</xsd:element>
+			<xsd:element name="minorRelease" type="simple:MinorVersionType">
+				<xsd:annotation>
+					<xsd:documentation>bezeichnet eine Minorversion der Webservice-SST</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="signaturId" type="envelope:SignaturIdType">
+				<xsd:annotation>
+					<xsd:documentation>die Daten zur Identifikation des Absenders anhand seiner hinterlegten Signatur</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="WholesaleRequestType">
+		<xsd:complexContent>
+			<xsd:extension base="envelope:WholesaleMessageType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="WholesaleResponseType">
+		<xsd:complexContent>
+			<xsd:extension base="envelope:WholesaleMessageType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SignaturIdType">
+		<xsd:annotation>
+			<xsd:documentation>die Daten zur Identifikation des Absenders anhand seiner hinterlegten Signatur</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="issuer" type="envelope:SignatureIssuerType">
+				<xsd:annotation>
+					<xsd:documentation>der Identifikator des Ausstellers des Zertifikats</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="serial" type="envelope:SignatureSerialIdType">
+				<xsd:annotation>
+					<xsd:documentation>die Seriennummer des Zertifikats (eindeutig je Aussteller)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="SignatureIssuerType">
+		<xsd:annotation>
+			<xsd:documentation>der Identifikator des Ausstellers des Zertifikats</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="SignatureSerialIdType">
+		<xsd:annotation>
+			<xsd:documentation>die Seriennummer des Zertifikats (eindeutig je Aussteller)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+</xsd:schema>

@@ -1,0 +1,70 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+    <id>tomcat</id>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <formats>
+        <format>dir</format>
+    </formats>
+    <dependencySets>
+        <!-- jre und tomcat -->
+        <dependencySet>
+            <includes>
+                <include>*:jre:tgz:${jre.version.linux}</include>
+                <include>*:tomcat:zip:${tomcat.version}</include>
+            </includes>
+            <unpack>true</unpack>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>${webapp.service.name}</outputDirectory>
+        </dependencySet>
+        <dependencySet>
+            <includes>
+                <include>*:mnet-jolokia-war</include>
+            </includes>
+            <outputFileNameMapping>jolokia.${artifact.extension}</outputFileNameMapping>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>${webapp.service.name}/instance/webapps/</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+    <fileSets>
+        <fileSet>
+            <directory>../common-build/templates/tomcat</directory>
+            <excludes>
+                <exclude>**/bin/**.bat</exclude>
+                <exclude>**/scripts/**</exclude>
+                <exclude>**/war/**</exclude>
+            </excludes>
+            <filtered>true</filtered>
+            <lineEnding>unix</lineEnding>
+            <outputDirectory>${webapp.service.name}/instance</outputDirectory>
+        </fileSet>
+        <fileSet>
+            <directory>../common-build/templates/tomcat</directory>
+            <includes>
+                <include>**/bin/**.bat</include>
+            </includes>
+            <filtered>true</filtered>
+            <lineEnding>dos</lineEnding>
+            <outputDirectory>${webapp.service.name}/instance</outputDirectory>
+        </fileSet>
+        <!-- tomcat confs ergaenzen, aber nicht ueberschreiben -->
+        <fileSet>
+            <directory>${project.build.directory}/tomcat-tmp/apache-tomcat-${tomcat.version}/conf</directory>
+            <excludes>
+                <exclude>**/context.xml</exclude>
+                <exclude>**/logging.properties</exclude>
+                <exclude>**/server.xml</exclude>
+            </excludes>
+            <outputDirectory>${webapp.service.name}/instance/conf</outputDirectory>
+        </fileSet>
+
+
+        <!-- Installationsskripte -->
+        <fileSet>
+            <directory>../common-build/templates/tomcat/scripts</directory>
+            <filtered>true</filtered>
+            <lineEnding>unix</lineEnding>
+            <outputDirectory>scripts</outputDirectory>
+        </fileSet>
+    </fileSets>
+</assembly>

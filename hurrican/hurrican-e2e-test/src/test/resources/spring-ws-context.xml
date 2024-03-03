@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:sws="http://www.springframework.org/schema/web-services"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+
+           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <context:annotation-config/>
+    <sws:annotation-driven/>
+
+    <bean id="propertyBean" class="de.augustakom.common.tools.spring.PropertyBean">
+        <property name="fileBaseNames">
+            <list>
+                <value>hurrican-e2e-test</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean class="de.augustakom.common.tools.spring.ExtendedPropertyPlaceholderConfigurer" lazy-init="false">
+        <property name="propertyBean" ref="propertyBean"/>
+    </bean>
+
+    <bean id="de.mnet.hurrican.e2e.common.EkpDataBuilder" class="de.mnet.hurrican.e2e.common.EkpDataBuilder"
+          scope="prototype"/>
+    <bean id="de.mnet.hurrican.e2e.common.StandortDataBuilder" class="de.mnet.hurrican.e2e.common.StandortDataBuilder"
+          scope="prototype"/>
+
+    <bean id="de.mnet.hurrican.e2e.common.ProduktDataBuilder" class="de.mnet.hurrican.e2e.common.ProduktDataBuilder"
+          scope="prototype"/>
+    <bean id="de.mnet.hurrican.e2e.wholesale.acceptance.model.WholesaleOrderState"
+          class="de.mnet.hurrican.e2e.wholesale.acceptance.model.WholesaleOrderState" scope="prototype"/>
+
+    <bean id="cc.de.augustakom.hurrican.service.cc.BAService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${remoting.base.url}/cc/BAService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.BAService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.CCAuftragService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${remoting.base.url}/cc/AuftragService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.PhysikService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${remoting.base.url}/cc/PhysikService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.PhysikService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.HWService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${remoting.base.url}/cc/HWService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.HWService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.EndstellenService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${remoting.base.url}/cc/EndstellenService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.EndstellenService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.HVTService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${remoting.base.url}/cc/HVTService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.HVTService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.CCLeistungsService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${remoting.base.url}/cc/LeistungsService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.CCLeistungsService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.DSLAMService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${remoting.base.url}/cc/DslamService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.DSLAMService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.RangierungsService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${remoting.base.url}/cc/RangierungsService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.RangierungsService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.AvailabilityService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${remoting.base.url}/cc/AvailabilityService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.AvailabilityService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.ProduktService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${remoting.base.url}/cc/ProduktService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.ProduktService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.CPSService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${remoting.base.url}/cc/CPSService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.CPSService"/>
+    </bean>
+
+    <bean id="de.augustakom.hurrican.service.cc.fttx.EkpFrameContractService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${remoting.base.url}/cc/fttx/EkpFrameContractService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.fttx.EkpFrameContractService"/>
+    </bean>
+    <bean id="de.augustakom.hurrican.service.cc.fttx.VlanService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl" value="${remoting.base.url}/cc/fttx/VlanService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.fttx.VlanService"/>
+    </bean>
+
+    <!-- Definition des zu verwendenden Marshallers -->
+    <bean id="xmlBeanMarshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller"/>
+
+    <bean id="jaxb2Marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPaths">
+            <util:list>
+                <value>de.mnet.hurrican.wholesale.workflow</value>
+                <value>de.mnet.hurrican.wholesale.fault.clearance</value>
+                <value>de.mnet.hurrican.cps</value>
+                <value>de.mnet.hurrican.tvfeed</value>
+                <value>de.mnet.hurrican.tvprovider</value>
+                <value>de.m_net.hurrican.hurricanweb.resource.resourcereportingservice.v1</value>
+                <value>de.mnet.hurrican.adm.resourceinventoryservice.v1</value>
+            </util:list>
+        </property>
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.encoding">
+                    <value>UTF-8</value>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <!-- SOAP message factory. Configured to use SOAP 1.1 -->
+    <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+        <property name="soapVersion">
+            <util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_11"/>
+        </property>
+    </bean>
+
+    <bean id="wholesaleWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <constructor-arg ref="messageFactory"/>
+        <property name="defaultUri" value="${hurricanweb.http.url}/wholesale"/>
+        <property name="marshaller" ref="jaxb2Marshaller"/>
+        <property name="unmarshaller" ref="jaxb2Marshaller"/>
+        <property name="messageSender" ref="httpSender"/>
+    </bean>
+
+    <bean id="cpsSupportWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <constructor-arg ref="messageFactory"/>
+        <property name="defaultUri" value="${hurricanweb.http.url}/cps"/>
+        <property name="marshaller" ref="jaxb2Marshaller"/>
+        <property name="unmarshaller" ref="jaxb2Marshaller"/>
+        <property name="messageSender" ref="httpSender"/>
+    </bean>
+
+    <bean id="tvFeedWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <constructor-arg ref="messageFactory"/>
+        <property name="defaultUri" value="${hurricanweb.http.url}/tvfeed"/>
+        <property name="marshaller" ref="jaxb2Marshaller"/>
+        <property name="unmarshaller" ref="jaxb2Marshaller"/>
+        <property name="messageSender" ref="httpSender"/>
+    </bean>
+
+    <bean id="tvProviderWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <constructor-arg ref="messageFactory"/>
+        <property name="defaultUri" value="${hurricanweb.http.url}/tvprovider"/>
+        <property name="marshaller" ref="jaxb2Marshaller"/>
+        <property name="unmarshaller" ref="jaxb2Marshaller"/>
+        <property name="messageSender" ref="httpSender"/>
+    </bean>
+
+    <bean id="ipAddressWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <constructor-arg ref="messageFactory"/>
+        <property name="defaultUri" value="${hurricanweb.http.url}/ipAddressInfo"/>
+        <property name="marshaller" ref="xmlBeanMarshaller"/>
+        <property name="unmarshaller" ref="xmlBeanMarshaller"/>
+        <property name="messageSender" ref="httpSender"/>
+    </bean>
+
+    <bean id="taifunWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <constructor-arg ref="messageFactory"/>
+        <property name="defaultUri" value="${hurricanweb.http.url}/geoid/cluster"/>
+        <property name="marshaller" ref="xmlBeanMarshaller"/>
+        <property name="unmarshaller" ref="xmlBeanMarshaller"/>
+        <property name="messageSender" ref="httpSender"/>
+    </bean>
+
+    <bean id="resourceReportingWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <constructor-arg ref="messageFactory"/>
+        <property name="defaultUri" value="${hurricanweb.http.url}/resource/reporting"/>
+        <property name="marshaller" ref="jaxb2Marshaller"/>
+        <property name="unmarshaller" ref="jaxb2Marshaller"/>
+        <property name="messageSender" ref="httpSender"/>
+    </bean>
+
+    <bean id="taifunOrderWorkflowWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <constructor-arg ref="messageFactory"/>
+        <property name="defaultUri" value="${hurricanweb.http.url}/order/hurricanOrderWorkflow"/>
+        <property name="marshaller" ref="xmlBeanMarshaller"/>
+        <property name="unmarshaller" ref="xmlBeanMarshaller"/>
+        <property name="messageSender" ref="httpSender"/>
+    </bean>
+
+
+    <bean id="resourceInventoryWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <constructor-arg ref="messageFactory"/>
+        <property name="defaultUri" value="${hurricanweb.http.url}/resource/inventory"/>
+        <property name="marshaller" ref="jaxb2Marshaller"/>
+        <property name="unmarshaller" ref="jaxb2Marshaller"/>
+        <property name="messageSender" ref="httpSender"/>
+    </bean>
+
+
+    <bean id="cpsWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+        <constructor-arg ref="messageFactory"/>
+        <property name="defaultUri" value="${hurricanweb.http.url}/sourceAgent/sourceAgentResponse"/>
+        <property name="marshaller" ref="xmlBeanMarshaller"/>
+        <property name="unmarshaller" ref="xmlBeanMarshaller"/>
+        <property name="messageSender" ref="httpSender"/>
+        <property name="messageFactory">
+            <bean class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+                <property name="soapVersion">
+                    <util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_12"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <!-- HTTP Sender configured to define timeouts (in ms) -->
+    <bean id="httpSender" class="org.springframework.ws.transport.http.HttpComponentsMessageSender">
+        <property name="connectionTimeout" value="20000"/>
+        <property name="readTimeout" value="20000"/>
+        <property name="httpClient" ref="httpClient"/>
+    </bean>
+
+</beans>

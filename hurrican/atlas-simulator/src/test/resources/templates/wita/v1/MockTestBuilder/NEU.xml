@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ns3:annehmenAuftragRequest xmlns:ns3="http://wholesale.telekom.de/oss/v7/envelope" xmlns="">
+  <control>
+    <zeitstempel>@ignore@</zeitstempel>
+    <majorRelease>07</majorRelease>
+    <minorRelease>00</minorRelease>
+    <signaturId>
+      <issuer>EMAILADDRESS=wita@m-net.de, CN=wita.m-net.de, OU=IT, O=M-net Telekommunikations GmbH, L=Munich, ST=Bavaria, C=DE</issuer>
+      <serial>@ignore@</serial>
+    </signaturId>
+  </control>
+  <auftrag>
+    <externeAuftragsnummer>@ignore@</externeAuftragsnummer>
+    <kunde>
+      <kundennummer>@ignore@</kundennummer>
+      <leistungsnummer>@ignore@</leistungsnummer>
+    </kunde>
+    <besteller>
+      <kundennummer>@ignore@</kundennummer>
+      <leistungsnummer>@ignore@</leistungsnummer>
+    </besteller>
+    <geschaeftsfall xmlns:ns5="http://wholesale.telekom.de/oss/v7/order"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns5:BereitstellungType">
+      <BKTOFaktura>5883000391</BKTOFaktura>
+      <ansprechpartner>
+        <auftragsmanagement>
+          <anrede>9</anrede>
+          <vorname>TestFirstName</vorname>
+          <nachname>TAL_Bereit_Neu_01b</nachname>
+          <telefonnummer>089 0000000</telefonnummer>
+          <emailadresse>hurrican_developer@m-net.de</emailadresse>
+        </auftragsmanagement>
+      </ansprechpartner>
+      <termine>
+        <kundenwunschtermin>
+          <datum>citrus:currentDate('yyyy-MM-dd', '+14d')</datum>
+          <zeitfenster>2</zeitfenster>
+        </kundenwunschtermin>
+      </termine>
+      <auftragsposition>
+        <produkt xmlns:ns6="http://wholesale.telekom.de/oss/v7/tal" xsi:type="ns6:ProduktTALType">
+          <bezeichner>TAL; CuDA 4 Draht hbr (HVt)</bezeichner>
+        </produkt>
+        <geschaeftsfallProdukt xmlns:ns6="http://wholesale.telekom.de/oss/v7/tal" xsi:type="ns6:TALBereitstellungType">
+          <standortA>
+            <person>
+              <anrede>1</anrede>
+              <vorname>Max</vorname>
+              <nachname>Mustermann</nachname>
+            </person>
+            <strasse>
+              <strassenname>Mitteldeichstr.</strassenname>
+              <hausnummer>8</hausnummer>
+              <hausnummernZusatz>a</hausnummernZusatz>
+            </strasse>
+            <land>de</land>
+            <postleitzahl>26919</postleitzahl>
+            <ort>
+              <ortsname>Brake</ortsname>
+              <ortsteil>a.d.XYZ</ortsteil>
+            </ort>
+            <lageTAE_ONT>Keller</lageTAE_ONT>
+          </standortA>
+          <standortB>
+            <strasse>
+              <strassenname>Georgstr. 1 a</strassenname>
+              <hausnummer>0</hausnummer>
+            </strasse>
+            <postleitzahl>26919</postleitzahl>
+            <ort>
+              <ortsname>Brake</ortsname>
+              <ortsteil>zusatz</ortsteil>
+            </ort>
+            <lageKollokationsraum>
+              <ONKZ>4401</ONKZ>
+              <anschlussbereich>1</anschlussbereich>
+            </lageKollokationsraum>
+          </standortB>
+          <vormieter>
+            <Person>
+              <vorname>Vormieter2</vorname>
+              <nachname>Vormieter</nachname>
+            </Person>
+            <anschluss>
+              <ONKZ>4401</ONKZ>
+              <rufnummer>123456</rufnummer>
+            </anschluss>
+          </vormieter>
+          <montageleistung>
+            <ansprechpartner>
+              <anrede>9</anrede>
+              <vorname>Montage</vorname>
+              <nachname>Wita</nachname>
+              <telefonnummer>0821 532324</telefonnummer>
+              <emailadresse>hurrican_developer@m-net.de</emailadresse>
+            </ansprechpartner>
+          </montageleistung>
+          <uebertragungsverfahren>H04</uebertragungsverfahren>
+          <schaltangaben>
+            <schaltung xmlns:ns7="http://wholesale.telekom.de/oss/v7/complex" xsi:type="ns7:SchaltungKupferType">
+              <UEVT>1PH1</UEVT>
+              <EVS>01</EVS>
+              <doppelader>01</doppelader>
+            </schaltung>
+            <schaltung xmlns:ns7="http://wholesale.telekom.de/oss/v7/complex" xsi:type="ns7:SchaltungKupferType">
+              <UEVT>1PH1</UEVT>
+              <EVS>02</EVS>
+              <doppelader>02</doppelader>
+            </schaltung>
+          </schaltangaben>
+        </geschaeftsfallProdukt>
+      </auftragsposition>
+    </geschaeftsfall>
+  </auftrag>
+</ns3:annehmenAuftragRequest>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxws:bindings
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:jaxws="http://java.sun.com/xml/ns/jaxws"
+        xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+        xmlns="http://java.sun.com/xml/ns/jaxws"
+        xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc">
+    <enableWrapperStyle>false</enableWrapperStyle>
+
+    <jaxws:bindings
+            node="wsdl:definitions/wsdl:types/xsd:schema[@targetNamespace='http://www.mnet.de/esb/cdm/Resource/ResourceCharacteristicsService/v1']">
+        <jxb:globalBindings>
+            <xjc:serializable uid="1"/>
+        </jxb:globalBindings>
+
+        <jxb:bindings node="//xsd:element[@name='inventory']/xsd:simpleType">
+            <jxb:typesafeEnumClass name="Inventory"/>
+        </jxb:bindings>
+    </jaxws:bindings>
+</jaxws:bindings>
+

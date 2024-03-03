@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Endgeraete-Panel (Zuordnung von Endgeraeten zu einem Auftrag).
+-->
+<sf>
+
+    <Button name="defaults">
+        <icon>de/augustakom/hurrican/gui/images/matrix.gif</icon>
+        <tooltip>Fuegt dem Auftrag die Standard-Endgeraete hinzu.</tooltip>
+    </Button>
+
+    <Button name="new">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Fuegt dem Auftrag ein neues Endgeraet hinzu.</tooltip>
+    </Button>
+
+    <Button name="delete">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Entfernt das selektierte Endgeraet aus dem Auftrag</tooltip>
+    </Button>
+
+     <Button name="import.eg">
+        <icon>de/augustakom/hurrican/gui/images/import.gif</icon>
+        <tooltip>Endgeraet aus der Monline-Datenbank uebernehmen</tooltip>
+    </Button>
+
+    <Text name="montageart.akom">Es wurde NT-Montage durch AugustaKom Augsburg ausgewählt.
+Allerdings scheint es sich um einen Auftrag aus Kempten zu handeln.
+Bitte prüfen Sie, ob wirklich NT-Montage durch SCT-Augsburg ausgeführt werden soll.</Text>
+
+    <Text name="montageart.allgaeukom">Es wurde NT-Montage durch AugustaKom Kempten ausgewählt.
+Allerdings scheint es sich um einen Auftrag aus Augsburg zu handeln.
+Bitte prüfen Sie, ob wirklich NT-Montage durch SCT-Kempten ausgeführt werden soll.</Text>
+
+</sf>

@@ -1,0 +1,8 @@
+-- Die Datumswerte werden in Hurrican nur tagesgenau betrachtet
+CREATE OR REPLACE TRIGGER TRBIU_AUFTRAG_2_PP BEFORE INSERT OR UPDATE ON T_AUFTRAG_2_PEERING_PARTNER
+FOR EACH ROW
+  BEGIN
+    :new.GUELTIG_VON := TRUNC(:new.GUELTIG_VON);
+    :new.GUELTIG_BIS := TRUNC(:new.GUELTIG_BIS);
+  END;
+/

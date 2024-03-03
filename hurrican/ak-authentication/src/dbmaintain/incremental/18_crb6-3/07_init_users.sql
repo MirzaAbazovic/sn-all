@@ -1,0 +1,1 @@
+update users set MANAGER='0' where MANAGER is null;

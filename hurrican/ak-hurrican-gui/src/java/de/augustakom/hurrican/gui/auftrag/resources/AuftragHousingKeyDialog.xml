@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das HousingKey-Panel.
+-->
+<sf>
+
+    <Text name="title">Schlüssel- / Transponder anlegen</Text>
+    <Text name="title.housingkey">Schlüssel- / Transponder bearbeiten</Text>
+    
+    <Label name="housingkey.transpondergroup"><text>Gruppe:</text></Label>
+    <TextField name="housingkey.transpondergroup">
+        <tooltip>Zuzuordnende Transponder-Gruppe</tooltip>
+        <columns>25</columns>
+        <maxchars>30</maxchars>
+    </TextField>
+
+    <Label name="housingkey.transponderid"><text>Transponder Nr.:</text></Label>
+    <TextField name="housingkey.transponderid">
+        <tooltip>Transponder Nr. von zugriffsberechtigter Person</tooltip>
+        <format type="number">##########</format>
+        <maxchars>10</maxchars>
+    </TextField>
+
+    <Label name="housingkey.customerfirstname"><text>Vorname:</text></Label>
+    <TextField name="housingkey.customerfirstname">
+        <tooltip>Vorname der zugriffsberechtigten Person</tooltip>
+        <columns>25</columns>
+        <maxchars>30</maxchars>
+    </TextField>
+
+    <Label name="housingkey.customerlastname"><text>Nachname:</text></Label>
+    <TextField name="housingkey.customerlastname">
+        <tooltip>Nachname der zugriffsberechtigten Person</tooltip>
+        <maxchars>30</maxchars>
+    </TextField>
+
+</sf>

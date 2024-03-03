@@ -1,0 +1,1 @@
+update T_HW_BAUGRUPPEN_TYP set NAME = 'NGLTA' where NAME = 'NGLT-A';

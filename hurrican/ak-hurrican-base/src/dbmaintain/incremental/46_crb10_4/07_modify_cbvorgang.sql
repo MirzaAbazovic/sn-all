@@ -1,0 +1,1 @@
+alter table T_CB_VORGANG add SECOND_ABM_RECEIVED CHAR(1);

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer die Tests der Authentication-Services.
+Importiert die Spring-Konfigurationsdatei fuer die Authentication-Services.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+    <bean id="entityBuilder" init-method="init"/>
+
+    <bean class="de.augustakom.hurrican.model.billing.BAuftragBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.billing.BAuftragPosBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.billing.DeviceBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.billing.DeviceFritzBoxBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.billing.RufnummerBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.billing.LeistungBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.billing.DNTNBBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.billing.view.BAuftragLeistungViewBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.billing.PurchaseOrderBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AbteilungBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.Auftrag2DSLAMProfileBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.Auftrag2TechLeistungBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AnsprechpartnerBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AuftragBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AuftragConnectBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AuftragAktionBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AuftragDatenBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AuftragHousingBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AuftragHousingKeyBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AuftragInternBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AuftragMVSEnterpriseBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AuftragMVSSiteBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AuftragSIPInterTrunkBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AuftragTechnikBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AuftragTechnik2EndstelleBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AuftragUMTSBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AuftragVoIPDNBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.AuftragVoIPDN2EGPortBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.BrasPoolBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.CarrierBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.CarrierKennungBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.CarrierbestellungBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.Carrierbestellung2EndstelleBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.CarrierbestellungVormieterBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.CBUsecaseBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.CBVorgangBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.CBVorgangSubOrderBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.CCAddressBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.CfgRegularExpressionBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.IPSecClient2SiteTokenBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.CPSTransactionBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.DSLAMProfileBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.DSLAMProfileMonitorBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.EGBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.EG2AuftragBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.EGConfigBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.EGTypeBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.EndgeraetAclBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.EndgeraetPortBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.EndstelleBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.EndstelleConnectBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.EQCrossConnectionBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.EquipmentBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.ExtServiceProviderBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.ExceptionLogEntryBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.GeoIdBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.GeoIdCityBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.GeoIdCountryBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.GeoIdDistrictBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.GeoIdStreetSectionBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.GeoIdZipCodeBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.GeoIdClarificationBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.GeoId2TechLocationBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.GewofagWohnungBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HVTGruppeBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HVTStandortBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HVTStandortTechTypeBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HVTTechnikBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HvtUmzugBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HvtUmzugDetailBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HWBaugruppeBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HWBaugruppenTypBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HWDluBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HWDslamBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HWMduBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HWOntBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HWDpoBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HWOltBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HWSubrackBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HWSubrackTypBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HWSwitchBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.IntAccountBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.IPAddressBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.IpRouteBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.IPSecSite2SiteBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.KundeNbzBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.Leistung2DNBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.Leistung4DnBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.Leistungsbuendel2ProduktBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.LeistungsbuendelBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.LeistungParameterBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.Leistung2ParameterBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.LeitungsnummerBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.LockBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.LockDetailBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.MailAttachmentBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.MailBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.NiederlassungBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.PhysikTypBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.PhysikUebernahmeBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.PortforwardingBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.ProduktBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.ProduktGruppeBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.ProduktMappingBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.Produkt2PhysikTypBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.Produkt2TechLocationTypeBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.Produkt2SIPDomainBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.ProfileAuftragBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.EGType2SIPDomainBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.RangierungBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.RangierungsAuftragBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.RangierungsmatrixBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.ReferenceBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.RSMonitorConfig" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.RsmPortUsageBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.RsmRangCountBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.SperreInfoBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.SperreVerteilungBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.TechLeistungBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.UEVTBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.HVTBestellungBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.VerbindungsBezeichnungBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.VerlaufBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.VerlaufAbteilungBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.VPNBuilder" scope="prototype" parent="entityBuilder"/>
+
+    <bean class="de.augustakom.hurrican.model.cc.equipment.HWBaugruppenChangeBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.equipment.HWBaugruppenChangeBgTypeBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.equipment.HWBaugruppenChangeCardBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.equipment.HWBaugruppenChangeDslamSplitBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.equipment.HWBaugruppenChangePort2PortBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.equipment.HWBaugruppenChangeDluBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.equipment.HWBaugruppenChangeDluV5Builder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.equipment.PortGeneratorImportBuilder" scope="prototype"
+          parent="entityBuilder"/>
+
+    <bean class="de.augustakom.hurrican.model.cc.housing.HousingBuildingBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.housing.HousingFloorBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.housing.HousingRoomBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.housing.HousingParcelBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.housing.TransponderGroupBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.housing.TransponderBuilder" scope="prototype" parent="entityBuilder"/>
+
+    <bean class="de.augustakom.hurrican.model.cc.view.PhysikFreigebenViewBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.view.HWBaugruppenChangePort2PortViewBuilder" scope="prototype"
+          parent="entityBuilder"/>
+
+    <bean class="de.augustakom.hurrican.model.cc.fttx.Auftrag2EkpFrameContractBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.fttx.EkpFrameContractBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.fttx.CVlanBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.fttx.A10NspBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.fttx.A10NspPortBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.fttx.Produkt2CvlanBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.fttx.TechLeistung2CvlanBuilder" scope="prototype"
+          parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.fttx.EqVlanBuilder" scope="prototype" parent="entityBuilder"/>
+
+    <bean class="de.augustakom.hurrican.model.cc.EndstelleLtgDatenBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.SchnittstelleBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.LeitungsartBuilder" scope="prototype" parent="entityBuilder"/>
+
+    <bean class="de.augustakom.hurrican.model.cc.VPNKonfigurationBuilder" scope="prototype" parent="entityBuilder"/>
+
+    <bean class="de.augustakom.hurrican.model.cc.KvzAdresseBuilder" scope="prototype" parent="entityBuilder"/>
+
+    <bean class="de.augustakom.hurrican.model.cc.FeatureBuilder" scope="prototype" parent="entityBuilder"/>
+
+    <bean class="de.augustakom.hurrican.model.cc.ffm.FfmProductMappingBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.ffm.FfmQualificationBuilder" scope="prototype" parent="entityBuilder"/>
+
+    <bean class="de.augustakom.hurrican.model.cc.Produkt2DslamProfileBuilder" scope="prototype" parent="entityBuilder"/>
+
+    <bean class="de.augustakom.hurrican.model.cc.sip.SipSbcIpSetBuilder" scope="prototype" parent="entityBuilder"/>
+    <bean class="de.augustakom.hurrican.model.cc.sip.SipPeeringPartnerBuilder" scope="prototype" parent="entityBuilder"/>
+
+    <bean class="de.augustakom.hurrican.model.cc.innenauftrag.IaLevel1Builder" scope="prototype"
+          parent="entityBuilder"/>
+
+    <bean class="de.augustakom.hurrican.model.cc.ProfileParameterBuilder" scope="prototype"
+          parent="entityBuilder"/>
+</beans>

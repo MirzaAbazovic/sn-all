@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: resource-catalog-api-service
+  namespace: adl
+spec:
+  $patch: replace
+  selector:
+    app: resource-catalog-api
+  ports:
+    - $patch: replace
+    - port: 8080
+      targetPort: 8080

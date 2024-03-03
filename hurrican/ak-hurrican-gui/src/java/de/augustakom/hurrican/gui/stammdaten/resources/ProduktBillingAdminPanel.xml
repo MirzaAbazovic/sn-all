@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Panel fuer die Billing-Produkte.
+-->
+<sf>
+    <!-- Beginn von Panel mit 'Rufnummern konfigurationen' -->
+ 
+   
+	
+	<Label name="dn.lb"><text>Leistungsbündel</text></Label>
+	
+	<Button name="btn.new">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>neues Leistungsbündel anlegen </tooltip>
+    </Button>
+	
+	
+    
+</sf>

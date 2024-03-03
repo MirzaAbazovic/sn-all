@@ -1,0 +1,73 @@
+<mat-card
+  class="order-details-body-container"
+  *ngIf="orderDetails$ | async as order"
+>
+  <div class="order-details-header">
+    <h2>Order details - {{ order.report.orderNumber }}</h2>
+    <div class="status-tag status-tag-{{order.report.status}}">
+
+      {{ getFormattedOrderStatus(order.report.status) }}
+      <span
+
+        [class.animate-flicker]="order.report.status === 'inProgress'"
+      >
+          •
+        </span>
+    </div>
+  </div>
+
+  <mat-card-content class="order-details-container">
+    <div class="order-data">
+      <div class="order-data-unit">
+        <label>Order Name</label>
+        <input [value]="order.report.orderName" disabled>
+      </div>
+
+      <div class="order-data-unit">
+        <label>Order Number</label>
+        <input [value]="order.report.orderNumber" disabled>
+      </div>
+
+      <div class="order-data-unit">
+        <label>Order Date</label>
+        <input
+          [value]="order.report.orderDate.toLocaleDateString() + ' ' + order.report.orderDate.toLocaleTimeString()"
+          disabled>
+      </div>
+
+      <div class="order-data-unit">
+        <label>Expected Completion Date</label>
+        <input
+          [value]="order.report.expectedCompletionDate ? order.report.expectedCompletionDate.toLocaleDateString() + ' ' + order.report.expectedCompletionDate.toLocaleTimeString() : 'N/A'"
+          disabled>
+      </div>
+
+      <div class="order-data-unit">
+        <label>Message Interface</label>
+        <input [value]="order.report.messageInterface" disabled>
+      </div>
+
+      <div class="order-data-unit">
+        <label>Line ID</label>
+        <input [value]="order.report.lineID" disabled>
+      </div>
+    </div>
+
+    <div class="messages-container">
+      <h2>Message history</h2>
+      <div class="message" *ngFor="let message of order.orderMessageInfo"
+           (click)="openDialog(message.message)">
+        <div class="message-details">
+          <p>{{ message.arrivalTime.toLocaleTimeString() }}</p>
+          <div>
+            <mat-icon *ngIf="message.messageDirection === 'RECEIVED'">keyboard_arrow_left</mat-icon>
+            <mat-icon>mail_outline</mat-icon>
+            <mat-icon *ngIf="message.messageDirection === 'SENT'">keyboard_arrow_right</mat-icon>
+          </div>
+          <p>{{ message.messageType }}</p>
+        </div>
+        <p>{{ message.arrivalTime.toLocaleDateString() }}</p>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Rufnummer-Filterpanel.
+-->
+<sf>
+    
+    <Label name="onkz"><text>Vorwahl:</text></Label>
+    <TextField name="onkz">
+        <tooltip>Vorwahl des gesuchten Kunden</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="rufnummer"><text>Rufnummer:</text></Label>
+    <TextField name="rufnummer">
+    	<tooltip>Rufnummer des gesuchten Kunden</tooltip>
+    </TextField>
+
+    <Label name="only.active"><text>nur aktive RNs:</text></Label>
+    <CheckBox name="only.active">
+        <tooltip>Angabe, ob nur nach Rufnummern mit den Statis 'AKT' und 'NEU' gesucht werden soll.</tooltip>
+    </CheckBox>
+
+</sf>

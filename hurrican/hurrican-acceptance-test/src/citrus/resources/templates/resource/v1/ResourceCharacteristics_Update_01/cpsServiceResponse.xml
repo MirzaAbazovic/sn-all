@@ -1,0 +1,36 @@
+<ServiceResponse xmlns="http://www.evolving.com/wsdl/sa/v1/types">
+  <ServiceResponse>
+    <TransactionId>${cpsTransactionId}</TransactionId>
+    <SOResult>0</SOResult>
+    <SOResponseData>
+        <![CDATA[
+            <SERVICE_ORDER_RESPONSE>
+                <EXEC_DATE>citrus:currentDate('yyyy-MM-dd HH:mm:ss')</EXEC_DATE>
+                <COMMENT>
+                    <ELEMENT>
+                        <DATE>citrus:currentDate('yyyy-MM-dd HH:mm:ss')</DATE>
+                        <TASK>::MAIN</TASK>
+                        <MESSAGE>ServiceOrder received!</MESSAGE>
+                    </ELEMENT>
+                    <ELEMENT>
+                        <DATE>citrus:currentDate('yyyy-MM-dd HH:mm:ss')</DATE>
+                        <TASK>::MAIN</TASK>
+                        <MESSAGE>TimeScheduling SUCCESS</MESSAGE>
+                    </ELEMENT>
+                    <ELEMENT>
+                        <DATE>citrus:currentDate('yyyy-MM-dd HH:mm:ss')</DATE>
+                        <TASK>::MAIN</TASK>
+                        <MESSAGE>XSL Transformation done!</MESSAGE>
+                    </ELEMENT>
+                    <ELEMENT>
+                        <DATE>citrus:currentDate('yyyy-MM-dd HH:mm:ss')</DATE>
+                        <TASK>::MAIN</TASK>
+                        <MESSAGE>ServiceComposer done!</MESSAGE>
+                    </ELEMENT>
+                </COMMENT>
+                <ERROR_MSG></ERROR_MSG>
+            </SERVICE_ORDER_RESPONSE>
+        ]]>
+    </SOResponseData>
+  </ServiceResponse>
+</ServiceResponse>

@@ -1,0 +1,34 @@
+
+-- executed on Prod at 20th January 2012 15:30
+
+-- was not able to get the script below working with dbMaintain, such that here is just to document my doings ;)
+
+/*
+BEGIN
+   EXECUTE IMMEDIATE ('DROP INDEX IDX_IO_ARCHIVE_WITA_EXT_ORDER');
+EXCEPTION
+   WHEN OTHERS
+   THEN
+      NULL;
+END;
+/
+
+CREATE INDEX IDX_IO_ARCHIVE_WITA_EXT_ORDER
+   ON T_IO_ARCHIVE (WITA_EXT_ORDER_NO)
+   NOLOGGING
+/
+
+BEGIN
+   EXECUTE IMMEDIATE ('DROP INDEX IDX_IO_ARCHIVE_WITA_VERTRAGSNR');
+EXCEPTION
+   WHEN OTHERS
+   THEN
+      NULL;
+END;
+/
+
+CREATE INDEX IDX_IO_ARCHIVE_WITA_VERTRAGSNR
+   ON T_IO_ARCHIVE (WITA_VERTRAGSNUMMER)
+   NOLOGGING
+/
+*/

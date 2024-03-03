@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit Baugruppen-Schwenks.
+-->
+<sf>
+
+    <Label name="source.bgs"><text>alte Baugruppe(n):</text></Label>
+    <Label name="destination.bg"><text>Ziel-Baugruppe:</text></Label>
+
+    <Button name="add.source.bg">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Oeffnet einen Dialog, um eine weitere Baugruppe auszuwählen</tooltip>
+    </Button>
+
+    <Button name="remove.source.bg">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Entfernt die selektierte Baugruppe</tooltip>
+    </Button>
+
+    <Button name="add.dest.bg">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Oeffnet einen Dialog, um die Ziel-Baugruppe auszuwählen</tooltip>
+    </Button>
+
+    <Button name="remove.dest.bg">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Entfernt die selektierte Baugruppe</tooltip>
+    </Button>
+
+    <Button name="map.ports">
+        <icon>de/augustakom/hurrican/gui/images/matrix.gif</icon>
+        <text>Port-Mapping erstellen</text>
+        <tooltip>Erstellt die Port-Mappings und ermittelt die betroffenen Auftraege</tooltip>
+    </Button>
+
+</sf>

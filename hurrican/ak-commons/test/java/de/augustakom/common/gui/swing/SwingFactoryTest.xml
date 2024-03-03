@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+        <!-- Definition eines Textes -->
+    <Text name="test.text">simple töxt</Text>
+
+    <!-- Definition eines Icons -->
+    <Icon name="test.icon">de/augustakom/common/gui/images/Test.gif</Icon>
+
+    <!-- Definition einer Farbe -->
+    <Color name="bg.color.active">
+        <red>255</red>
+        <green>0</green>
+        <blue>0</blue>
+    </Color>
+
+    <Color name="bg.color.inactive">
+        <red>0</red>
+        <green>255</green>
+        <blue>0</blue>
+    </Color>
+
+    <Color name="bg.color.selection">
+        <red>0</red>
+        <green>0</green>
+        <blue>255</blue>
+    </Color>
+
+    <Color name="bg.color.selected.text">
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+    </Color>
+
+    <!-- Definition eines TextFields -->
+    <TextField name="test.textfield">
+        <text>simple text</text>
+        <tooltip>test.tooltip</tooltip>
+        <columns>20</columns>
+        <active>bg.color.active</active>
+        <inactive>bg.color.inactive</inactive>
+        <selection>bg.color.selection</selection>
+        <selectedtext>bg.color.selected.text</selectedtext>
+    </TextField>
+
+    <!-- Definition eines Formatted TextFields -->
+    <FormattedTextField name="test.formatted.textfield">
+        <text>formatted.text</text>
+        <tooltip>formatted.tooltip</tooltip>
+        <columns>20</columns>
+        <!--active>bg.color.active</active-->
+        <inactive>bg.color.inactive</inactive>
+        <!--selection>bg.color.selection</selection-->
+        <!-- Moeglichkeiten fuer 'type': date, number, mask, regexp -->
+        <!--format type="date">dd.MM.yyyy</format-->
+        <format type="number">####</format>
+        <!--format type="mask">##-###-###</format-->
+        <maxchars>4</maxchars>
+    </FormattedTextField>
+
+    <!-- Definition fuer TextAreas und TextPanes -->
+    <TextArea name="test.textarea">
+        <text>textarea.text</text>
+        <tooltip>textarea.tooltip</tooltip>
+        <columns>50</columns>
+        <rows>30</rows>
+        <active>bg.color.active</active>
+        <inactive>bg.color.inactive</inactive>
+        <selection>bg.color.selection</selection>
+    </TextArea>
+
+    <!-- Definition eines PasswordFields -->
+    <PasswordField name="test.passwordfield">
+        <tooltip>passwordfield.tooltip</tooltip>
+        <columns>20</columns>
+        <active>bg.color.active</active>
+        <inactive>bg.color.inactive</inactive>
+        <selection>bg.color.selection</selection>
+    </PasswordField>
+
+    <!-- Definition eines Labels -->
+    <Label name="test.label">
+        <text>label.text</text>
+        <icon>de/augustakom/common/gui/images/Test.gif</icon>
+        <mnemonic>VK_L</mnemonic>
+    </Label>
+
+    <!-- Definition eines Buttons -->
+    <Button name="test.button">
+        <text>button.text</text>
+        <tooltip>button.tooltip</tooltip>
+        <icon>de/augustakom/common/gui/images/Test.gif</icon>
+        <mnemonic>VK_T</mnemonic>
+    </Button>
+
+    <!-- Definition eines RadioButtons -->
+    <RadioButton name="test.radiobutton">
+        <text>radiobutton.text</text>
+        <tooltip>radiobutton.tooltip</tooltip>
+        <icon>de/augustakom/common/gui/images/Test.gif</icon>
+        <mnemonic>VK_R</mnemonic>
+    </RadioButton>
+
+    <!-- Definition eines ToggleButtons -->
+    <ToggleButton name="test.togglebutton">
+        <text>togglebutton.text</text>
+        <tooltip>togglebutton.tooltip</tooltip>
+        <icon>de/augustakom/common/gui/images/Test.gif</icon>
+        <mnemonic>VK_T</mnemonic>
+    </ToggleButton>
+
+    <!-- Definition einer ToolBar -->
+    <ToolBar name="test.toolbar">
+        <actions>
+            <action>test.action</action>
+            <separator/>
+            <action>test.action</action>
+        </actions>
+    </ToolBar>
+
+    <!-- Definition einer Action -->
+    <Action name="test.action">
+        <class>de.augustakom.common.gui.swing.TestAction</class>
+        <text>action.text</text>
+        <tooltip>action.tooltip</tooltip>
+        <icon>de/augustakom/common/gui/images/Test.gif</icon>
+        <mnemonic>VK_A</mnemonic>
+    </Action>
+
+    <!-- Definition einer CheckBox -->
+    <CheckBox name="test.checkbox">
+        <text>checkbox.text</text>
+        <tooltip>checkbox.tooltip</tooltip>
+        <mnemonic>VK_C</mnemonic>
+    </CheckBox>
+
+    <!-- Definition einer ComboBox mit Items -->
+    <ComboBox name="test.combobox">
+        <tooltip>combobox.tooltip</tooltip>
+        <items>
+            <item>item1</item>
+            <item>item2</item>
+            <item>item3</item>
+        </items>
+        <active>bg.color.active</active>
+        <inactive>bg.color.inactive</inactive>
+    </ComboBox>
+
+    <!-- Definition einer List -->
+    <List name="test.list">
+        <tooltip>list.tooltip</tooltip>
+        <items>
+            <item>item.1</item>
+            <item>item.2</item>
+        </items>
+        <active>bg.color.active</active>
+        <inactive>bg.color.inactive</inactive>
+    </List>
+
+    <!-- Definition fuer eine MenuBar -->
+    <MenuBar name="test.menubar">
+        <items>
+            <item>test.menu</item>
+            <item>test.sub.menu</item>
+        </items>
+    </MenuBar>
+
+    <!-- Definition fuer ein Menu -->
+    <Menu name="test.menu">
+        <text>menu.text</text>
+        <tooltip>menu.tooltip</tooltip>
+        <icon>de/augustakom/common/gui/images/Test.gif</icon>
+        <mnemonic>VK_M</mnemonic>
+
+        <items>
+            <item>test.menuitem</item>
+            <item>test.menuitem.2</item>
+            <separator/>
+            <item>test.menuitem.3</item>
+            <submenu>test.sub.menu</submenu>
+            <submenu>test.menu</submenu>    <!-- Darf nicht ausgewertet werden, da Rekursion! -->
+            <separator/>
+            <submenu>test.sub.menu.2</submenu>
+        </items>
+    </Menu>
+
+    <!-- Teil-Definition fuer ein Menu -->
+    <Menu name="test.sub.menu">
+        <text>sub menu</text>
+        <mnemonic>VK_S</mnemonic>
+        <tooltip>tooltip of sub menu</tooltip>
+        <items>
+            <item>test.menuitem</item>
+        </items>
+    </Menu>
+
+    <Menu name="test.sub.menu.2">
+        <text>sub menu 2</text>
+        <items>
+            <item>test.menuitem.4</item>
+        </items>
+    </Menu>
+
+    <!-- Definition fuer ein MenuItem -->
+    <MenuItem name="test.menuitem">
+        <action>test.action</action>
+        <text>menuitem.text</text>
+        <tooltip>menuitem.tooltip</tooltip>
+        <icon>de/augustakom/common/gui/images/Test.gif</icon>
+        <mnemonic>VK_I</mnemonic>
+        <!--
+        Beispiele fuer einen Accelerator (Doku siehe KeyStroke#getKeyStroke(String):
+        alt T
+        control shift DELETE
+        -->
+        <accelerator>alt I</accelerator>
+    </MenuItem>
+
+    <MenuItem name="test.menuitem.2">
+        <text>menuitem2.text</text>
+        <accelerator>alt 2</accelerator>
+    </MenuItem>
+
+    <MenuItem name="test.menuitem.3">
+        <text>menuitem3.text</text>
+    </MenuItem>
+
+    <MenuItem name="test.menuitem.4">
+        <text>menuitem4.text</text>
+    </MenuItem>
+
+</sf>
+
+
+

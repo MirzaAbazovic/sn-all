@@ -1,0 +1,25 @@
+<project basedir="." name="common-taifun">
+
+    <macrodef name="executeevalscript" description="Fuehrt ein beliebiges eval-Script in Taifun aus">
+        <attribute name="dir"/><!-- Verzeichnis in dem das eval-Skript ausgefuehrt weden soll -->
+        <attribute name="taifun.config"/><!-- E2E1,BILLINGTEST,USERTEST1 oder NAVICI -->
+        <attribute name="eval.script.to.execute"/><!-- eval-Skript, das ausgefuehrt werden soll -->
+
+        <sequential>
+            <property name="taifun.appserver.evalstartscript" location="/home/taifun/etc/deploy/mnet_eval_console.${taifun.site}"/>
+
+            <echo message="Eval startscript is ${taifun.appserver.evalstartscript}"/>
+            <echo message="Executing eval script @{eval.script.to.execute} on database ${db.taifun.user.schema}" />
+            <echo message="Used Taifun configuration is @{taifun.config}"/>
+
+            <exec executable="sh" dir="@{dir}" failonerror="true" >
+                <env key="DBOPTIONS" value="-D @{taifun.config} -U ${db.taifun.user.schema} -P ${db.taifun.user.password}"/>
+                <env key="CONFIG" value="@{taifun.config}"/>
+                <arg line="${taifun.appserver.evalstartscript} -trace 1"/>
+                <redirector input="@{eval.script.to.execute}"/>
+            </exec>
+        </sequential>
+    </macrodef>
+
+</project>
+

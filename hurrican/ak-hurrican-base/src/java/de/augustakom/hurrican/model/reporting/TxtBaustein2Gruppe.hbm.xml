@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.reporting.model.TxtBaustein2Gruppe
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.reporting">
+    <class name="TxtBaustein2Gruppe" table="t_txt_baustein_2_gruppe">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_TXT_BAUSTEIN_2_GRUPPE_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="txtBausteinIdOrig" column="BAUSTEIN_ID_ORIG" type="long" not-null="true"/>
+        <property name="txtBausteinGruppeId" column="GRUPPE_ID" type="long" not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

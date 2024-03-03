@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns3:changeOrderDialNumberResponse xmlns:ns3="http://www.mnet.de/elektra/services/1.0/">
+    <status>OK</status>
+    <modifications>Citrus modification</modifications>
+</ns3:changeOrderDialNumberResponse>

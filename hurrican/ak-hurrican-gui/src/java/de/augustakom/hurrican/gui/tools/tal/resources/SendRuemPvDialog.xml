@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Text name="title">Details für RUEM-PV</Text>
+
+    <Label name="antwort.code"><text>Antwort-Code:</text></Label>
+    <ComboBox name="antwort.code">
+        <tooltip>Auswahl des Antwort-Codes für die RUEM-PV Meldung</tooltip>
+    </ComboBox>
+
+    <Label name="antwort.text"><text>Antwort-Text:</text></Label>
+    <TextArea name="antwort.text">
+        <tooltip>Angabe eines Freitexts, der der Antwort hinzugefügt wird</tooltip>
+        <columns>20</columns>
+        <rows>5</rows>
+    </TextArea>
+
+    <Label name="new.date"><text>Neuer Termin:</text></Label>
+    <DateComponent name="new.date">
+        <tooltip>Angabe eines Datums, zu wann die AKM-PV akzeptiert wird</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Text name="antwort.text.missing">Bei dem gewählten Antwort-Code muss auch ein Antwort-Text angegeben werden!</Text>
+    <Text name="new.date.missing">Bei dem gewählten Antwort-Code muss auch ein neues Datum definiert werden!</Text>
+    <Text name="new.date.invalid">Es muss ein Datum >= dem heutigen Datum angegeben werden!</Text>
+
+</sf>

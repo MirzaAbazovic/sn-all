@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Routing-Dialog.
+-->
+<sf>
+
+    <Text name="title">Statische Route</Text>
+
+    <Label name="destinationAdress"><text>Ziel-Adresse:</text></Label>
+    <IPAddressComponent name="destinationAdress">
+        <tooltip>Zieladdresse der statischen Route</tooltip>
+        <IPTypesAllowed>
+            <IPType>8</IPType>
+            <IPType>9</IPType>
+        </IPTypesAllowed>
+    </IPAddressComponent>
+
+    <Label name="nextHop"><text>Next Hop:</text></Label>
+    <TextField name="nextHop">
+        <columns>20</columns>
+        <tooltip>Nächster Hop der Route</tooltip>
+    </TextField>
+
+    <Label name="bemerkung"><text>Bemerkung:</text></Label>
+    <TextArea name="bemerkung"/>
+
+</sf>

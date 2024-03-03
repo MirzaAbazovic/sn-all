@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog, um Equipments einer Rangierung zuzuordnen.
+-->
+<sf>
+
+	<Text name="title">manueller Rangierungsaufbau</Text>
+
+	<Label name="rangierung"><text>Rangierung:</text></Label>
+
+	<Label name="hvt.standort"><text>HVT Standort:</text></Label>
+    <ReferenceField name="hvt.standort">
+        <tooltip>Auswahl des HVT-Standorts, an dem nach freien Rangierungen gesucht werden soll</tooltip>
+        <columns>25</columns>
+        <id.property>hvtIdStandort</id.property>
+        <name.property>ortsteil</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.view.HVTGruppeStdView</reference.class>
+        <selection.dialog.class>de.augustakom.hurrican.gui.hvt.HVTSelectionDialog</selection.dialog.class>
+    </ReferenceField>
+
+    <!-- RadioButtons -->
+    <RadioButton name="rangierung.default">
+        <text>Standard</text>
+        <tooltip>Equipment-Zuordnung auf der ersten Rangierung</tooltip>
+    </RadioButton>
+
+    <RadioButton name="rangierung.additional">
+        <text>Zusatz</text>
+        <tooltip>Equipment-Zuordnung auf der zusätzlichen Rangierung</tooltip>
+    </RadioButton>
+
+</sf>

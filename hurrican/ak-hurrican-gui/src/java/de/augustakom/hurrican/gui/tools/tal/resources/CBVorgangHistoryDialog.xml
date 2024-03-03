@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die interne TAL-Bestellung.
+-->
+<sf>
+
+    <Text name="title">el. Vorgänge zu CB</Text>
+    <Text name="ok">Ok</Text>
+
+    <Label name="auftrag.id"><text>Auftrag-Nr:</text></Label>
+    <FormattedTextField name="auftrag.id">
+        <tooltip>Auftrag-ID aus dem CC-System (Hurrican)</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="carrier"><text>Carrier:</text></Label>
+    <ReferenceField name="carrier">
+        <tooltip>Name des Carriers, an den die Bestellung ging</tooltip>
+        <columns>20</columns>
+        <id.property>id</id.property>
+        <name.property>name</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Carrier</reference.class>
+    </ReferenceField>
+
+    <Label name="typ"><text>Typ:</text></Label>
+    <ReferenceField name="typ">
+        <tooltip>Typ der Bestellung</tooltip>
+        <columns>20</columns>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="dtag.usecase"><text>DTAG-Vorfall:</text></Label>
+    <ReferenceField name="dtag.usecase">
+        <tooltip>Bezeichnung des ausgeloesten DTAG-Vorfalls</tooltip>
+        <columns>20</columns>
+        <id.property>id</id.property>
+        <name.property>vorfall</name.property>
+        <reference.class>de.augustakom.hurrican.model.exmodules.tal.TALVorfall</reference.class>
+    </ReferenceField>
+
+    <Label name="status"><text>Status</text></Label>
+    <ReferenceField name="status">
+        <tooltip>Letzter Status der Bestellung</tooltip>
+        <columns>20</columns>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="submitted.at"><text>eingestellt am:</text></Label>
+    <DateComponent name="submitted.at">
+        <tooltip>Datum, zu dem die Bestellung an den Carrier uebermittelt wurde</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="bearbeiter.mnet"><text>Bearbeiter M-net:</text></Label>
+    <TextField name="bearbeiter.mnet">
+        <tooltip>Name des M-net Mitarbeiters, der die Bestellung ausgeloest hat</tooltip>
+    </TextField>
+
+    <Label name="vorgabe.mnet"><text>Vorgabe M-net:</text></Label>
+    <DateComponent name="vorgabe.mnet">
+        <tooltip>Vorgabe-Datum von M-net, zu wann die TAL bereitgestellt werden soll</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="bezeichnung.mnet"><text>Bezeichnung M-net:</text></Label>
+    <TextField name="bezeichnung.mnet">
+        <tooltip>interne Bezeichnung der Bestellung bei M-net</tooltip>
+    </TextField>
+
+    <Label name="dtag.ref.nr"><text>DTAG Ref-Nr:</text></Label>
+    <TextField name="dtag.ref.nr">
+        <tooltip>DTAG-Referenznummer der Bestellung</tooltip>
+    </TextField>
+
+    <Label name="answered.at"><text>Antwort am:</text></Label>
+    <DateComponent name="answered.at">
+        <tooltip>Datum, zu dem der Carrier die Bestellung bearbeitet hat</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="ret.ok"><text>Bestätigung:</text></Label>
+    <ComboBox name="ret.ok">
+        <tooltip>Angabe, ob die TAL-Bestellung positiv od. negativ bestätigt wird</tooltip>
+        <items>
+            <item text=" " value="null"/>
+            <item text="positiv" value="true" class="java.lang.Boolean"/>
+            <item text="negativ" value="false" class="java.lang.Boolean"/>
+        </items>
+    </ComboBox>
+
+    <Label name="ret.typ"><text>Ergebnis:</text></Label>
+    <ReferenceField name="ret.typ">
+        <tooltip>Ergebnis der TAL-Bestellung</tooltip>
+        <id.property>id</id.property>
+        <name.property>klasse</name.property>
+        <reference.class>de.augustakom.hurrican.model.exmodules.tal.TALFehlertyp</reference.class>
+    </ReferenceField>
+
+    <Label name="ret.kunde.vor.ort"><text>Kunde vor Ort</text></Label>
+    <ComboBox name="ret.kunde.vor.ort">
+        <tooltip>Angabe, ob der Kunde fuer die Schaltung vor Ort sein muss</tooltip>
+        <items>
+            <item text=" " value="null"/>
+            <item text="ja" value="true" class="java.lang.Boolean"/>
+            <item text="nein" value="false" class="java.lang.Boolean"/>
+        </items>
+    </ComboBox>
+
+    <Label name="ret.real.date"><text>Bereitstellung am:</text></Label>
+    <DateComponent name="ret.real.date">
+        <tooltip>Datum, zu dem die TAL bereitgestellt wird</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="ret.lbz"><text>Leitungsbezeichnung:</text></Label>
+    <TextField name="ret.lbz">
+        <tooltip>Leitungsbezeichnung, die als Referenz dient</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="ret.vtrnr"><text>Vertragsnummer:</text></Label>
+    <TextField name="ret.vtrnr">
+        <tooltip>Vertragsnummer für die Bestellung</tooltip>
+    </TextField>
+
+    <Label name="ret.aqs"><text>AQS:</text></Label>
+    <TextField name="ret.aqs">
+        <tooltip>Aderquerschnitt der zugeordneten TAL</tooltip>
+    </TextField>
+
+    <Label name="ret.laenge"><text>Leitungslänge:</text></Label>
+    <TextField name="ret.laenge">
+        <tooltip>ungefähre Länge der zugeordneten TAL</tooltip>
+    </TextField>
+
+    <Label name="montagehinweis"><text>Montagehinweis:</text></Label>
+    <TextArea name="montagehinweis">
+        <tooltip>Montagehinweis</tooltip>
+        <columns>20</columns>
+        <rows>5</rows>
+    </TextArea>
+
+    <Label name="ret.bemerkung"><text>Bemerkung (Carrier):</text></Label>
+    <TextArea name="ret.bemerkung">
+        <tooltip>Bemerkung zur TAL-Rueckmeldung</tooltip>
+        <columns>20</columns>
+        <rows>5</rows>
+    </TextArea>
+
+</sf>

@@ -1,0 +1,3 @@
+alter table T_USER_TASK ADD USER_ID number(19);
+
+-- migration von BEARBEITER auf USER_ID muss nachgelagert manuell erfolgen ...

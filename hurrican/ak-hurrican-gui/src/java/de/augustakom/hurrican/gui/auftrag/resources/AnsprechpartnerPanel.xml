@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Endgeraete-Panel (Zuordnung von Endgeraeten zu einem Auftrag).
+-->
+<sf>
+
+	<Button name="add.contact">
+		<icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Fuegt dem Auftrag einen Ansprechpartner hinzu.</tooltip>
+    </Button>
+
+    <Button name="remove.contact">
+		<icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Entfernt den aktuell selektierten Ansprechpartner.</tooltip>
+    </Button>
+
+    <Button name="copypaste.contact">
+        <icon>de/augustakom/hurrican/gui/images/copy.gif</icon>
+        <tooltip>Übernimmt Ansprechpartnerdaten aus anderen Aufträgen.</tooltip>
+    </Button>
+
+    <Text name="delete.msg">Soll der Ansprechpartner wirklich gelöscht werden?</Text>
+    <Text name="delete.title">Löschen?</Text>
+</sf>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.AuftragVoIP
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="AuftragVoIP" table="T_AUFTRAG_VOIP">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_AUFTRAG_VOIP_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="auftragId" column="AUFTRAG_ID" type="long" not-null="true"/>
+        <property name="egMode" column="EG_MODE" type="long"/>
+        <property name="isActive" column="IS_ACTIVE" type="boolean"/>
+        <property name="userW" column="USERW" type="string" not-null="true"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date" not-null="true"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date" not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

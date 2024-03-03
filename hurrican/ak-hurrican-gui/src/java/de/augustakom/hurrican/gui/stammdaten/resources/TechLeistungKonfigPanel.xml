@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Konfiguration
+von Billing-Leistungen.
+-->
+<sf>
+
+    <Label name="extern.leistung.no">
+        <text>ext. Leistung No:</text>
+    </Label>
+    <FormattedTextField name="extern.leistung.no">
+        <tooltip>Wert aus LEISTUNG.EXTERN_LEISTUNG__NO der zu konfigurierenden Leistung</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Label name="extern.misc.no">
+        <text>ext. Sonst. No:</text>
+    </Label>
+    <FormattedTextField name="extern.misc.no">
+        <tooltip>Wert aus LEISTUNG.EXTERN_MISC__NO der zu konfigurierenden Leistung</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Label name="typ">
+        <text>Typ:</text>
+    </Label>
+    <ComboBox name="typ">
+        <tooltip>Angabe des Leistungstyps</tooltip>
+    </ComboBox>
+
+    <Label name="name">
+        <text>Name:</text>
+    </Label>
+    <TextField name="name">
+        <tooltip>Name der Leistung (nur zur besseren Uebersicht)</tooltip>
+        <maxchars>100</maxchars>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="long.value">
+        <text>Long-Value:</text>
+    </Label>
+    <TextField name="long.value">
+        <tooltip>Long-Value fuer die Leistung</tooltip>
+        <maxchars>100</maxchars>
+    </TextField>
+
+    <Label name="str.value">
+        <text>String-Value:</text>
+    </Label>
+    <TextField name="str.value">
+        <tooltip>String-Value fuer die Leistung</tooltip>
+        <maxchars>100</maxchars>
+    </TextField>
+
+    <Label name="parameter">
+        <text>Parameter:</text>
+    </Label>
+    <TextField name="parameter">
+        <tooltip>Parameter fuer die Leistung</tooltip>
+    </TextField>
+
+    <Label name="baHinweis">
+        <text>Hinweis Ba-Dispo:</text>
+    </Label>
+    <TextField name="baHinweis">
+        <tooltip>Hinweistext für BA-Dispo Ansicht</tooltip>
+    </TextField>
+
+    <Label name="snapshot.rel">
+        <text>Snapshot rel.:</text>
+    </Label>
+    <CheckBox name="snapshot.rel">
+        <tooltip>Angabe, ob die Leistung fuer Snapshots relevant ist</tooltip>
+    </CheckBox>
+
+    <Label name="desc">
+        <text>Beschreibung:</text>
+    </Label>
+    <TextArea name="desc">
+        <tooltip>kurze Beschreibung zur Leistung</tooltip>
+        <maxchars>255</maxchars>
+    </TextArea>
+
+    <Label name="gueltig.von">
+        <text>Gültig von:</text>
+    </Label>
+    <DateComponent name="gueltig.von">
+        <tooltip>Datum, ab dem diese Leistungs-Konfiguration gültig ist</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="gueltig.bis">
+        <text>Gültig bis:</text>
+    </Label>
+    <DateComponent name="gueltig.bis">
+        <tooltip>Datum, bis zu dem diese Leistungs-Konfiguration gültig ist</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="ba.steuerung">
+        <text>Bauauftrags-Steuerung:</text>
+    </Label>
+
+    <CheckBox name="dispo">
+        <text>Dispo</text>
+        <tooltip>Dispo benötigt bei dieser Leistung einen Bauauftrag</tooltip>
+    </CheckBox>
+
+    <CheckBox name="ewsd">
+        <text>EWSD</text>
+        <tooltip>EWSD benötigt bei dieser Leistung einen Bauauftrag</tooltip>
+    </CheckBox>
+
+    <CheckBox name="sdh">
+        <text>SDH</text>
+        <tooltip>SDH benötigt bei dieser Leistung einen Bauauftrag</tooltip>
+    </CheckBox>
+
+    <CheckBox name="sct">
+        <text>SCT</text>
+        <tooltip>SCT benötigt bei dieser Leistung einen Bauauftrag</tooltip>
+    </CheckBox>
+
+    <CheckBox name="ips">
+        <text>IPS</text>
+        <tooltip>IPS benötigt bei dieser Leistung einen Bauauftrag</tooltip>
+    </CheckBox>
+
+</sf>

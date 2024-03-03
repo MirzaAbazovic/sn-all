@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Details einer HVT-Gruppe
+-->
+<sf>
+
+   <!-- ************ Dialog fuer die Darstellung der HVTGruppe-Details  **************** -->
+    <Text name="title">HVT-Details</Text>
+    <Label name="hvt.gruppe.onkz"><text>ONKZ:</text></Label>
+    <TextField name="hvt.gruppe.onkz">
+        <tooltip>Ortsnetzkennzahl des HVTs</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="hvt.gruppe.name"><text>HVT-Name:</text></Label>
+    <TextField name="hvt.gruppe.name">
+        <tooltip>Name des HVTs</tooltip>
+    </TextField>
+
+    <Label name="hvt.gruppe.strasse"><text>Strasse/Nr:</text></Label>
+    <TextField name="hvt.gruppe.strasse">
+        <tooltip>Strasse des HVTs</tooltip>
+    </TextField>
+    <TextField name="hvt.gruppe.nummer">
+        <tooltip>Hausnummer des HVTs</tooltip>
+    </TextField>
+
+    <Label name="hvt.gruppe.plz.ort"><text>PLZ/Ort:</text></Label>
+    <TextField name="hvt.gruppe.plz">
+        <tooltip>Postleitzahl des HVTs</tooltip>
+    </TextField>
+    <TextField name="hvt.gruppe.ort">
+        <tooltip>Ort, in dem sich der HVT befindet</tooltip>
+    </TextField>
+
+    <Label name="hvt.gruppe.switch"><text>Switch:</text></Label>
+    <TextField name="hvt.gruppe.switch">
+        <tooltip>Switch, an dem der HVT angeschlossen ist</tooltip>
+    </TextField>
+
+    <Label name="hvt.gruppe.niederlassung"><text>Niederlassung:</text></Label>
+    <ComboBox name="hvt.gruppe.niederlassung">
+        <tooltip>Niederlassung, die den HVT betreut</tooltip>
+    </ComboBox>
+
+    <Label name="hvt.gruppe.kostenstelle"><text>Kostenstelle:</text></Label>
+    <TextField name="hvt.gruppe.kostenstelle">
+        <tooltip>Kostenstelle des HVTs</tooltip>
+    </TextField>
+
+    <Label name="hvt.gruppe.innenauftrag"><text>Innenauftrags-Nr.:</text></Label>
+    <TextField name="hvt.gruppe.innenauftrag">
+        <tooltip>Innenauftrags-Nr. des HVTs</tooltip>
+    </TextField>
+
+    <Label name="hvt.gruppe.telefon"><text>Telefon:</text></Label>
+    <TextField name="hvt.gruppe.telefon">
+        <tooltip>Telefonnummer im HVT</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="hvt.gruppe.schaltungstage"><text>Schaltungstage:</text></Label>
+
+    <CheckBox name="hvt.gruppe.montag">
+        <text>Montag</text>
+        <tooltip>Schaltungstag für HVT ist Montag</tooltip>
+    </CheckBox>
+
+    <CheckBox name="hvt.gruppe.dienstag">
+        <text>Dienstag</text>
+        <tooltip>Schaltungstag für HVT ist Dienstag</tooltip>
+    </CheckBox>
+
+    <CheckBox name="hvt.gruppe.mittwoch">
+        <text>Mittwoch</text>
+        <tooltip>Schaltungstag für HVT ist Mittwoch</tooltip>
+    </CheckBox>
+
+    <CheckBox name="hvt.gruppe.donnerstag">
+        <text>Donnerstag</text>
+        <tooltip>Schaltungstag für HVT ist Donnerstag</tooltip>
+    </CheckBox>
+
+    <CheckBox name="hvt.gruppe.freitag">
+        <text>Freitag</text>
+        <tooltip>Schaltungstag für HVT ist Freitag</tooltip>
+    </CheckBox>
+
+</sf>

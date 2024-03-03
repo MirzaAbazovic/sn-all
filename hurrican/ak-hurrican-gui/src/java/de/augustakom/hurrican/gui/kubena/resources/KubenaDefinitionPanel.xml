@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Definition der GUI-Komponenten fuer das Panel mit den Kubena-Daten.
+-->
+<sf>
+
+    <Label name="kubena"><text>bisherige Kubenas:</text></Label>
+    <ComboBox name="kubena">
+        <tooltip>Liste mit allen bisher vorhandenen Kunden-Benachrichtigungen</tooltip>
+    </ComboBox>
+
+    <Label name="kubena.datum"><text>Datum:</text></Label>
+    <DateComponent name="kubena.datum">
+        <tooltip>Datum, an dem die Kubena-Benachrichtigung erstellt wurde</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="name"><text>Name:</text></Label>
+    <TextField name="name">
+        <tooltip>Name fuer die Kunden-Benachrichtigung</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="sz.von"><text>Schaltzeitraum von:</text></Label>
+    <DateComponent name="sz.von">
+        <tooltip>Beginn der Schaltzeit</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="sz.bis"><text>Schaltzeitraum bis:</text></Label>
+    <DateComponent name="sz.bis">
+        <tooltip>Ende der Schaltzeit</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="kriterium"><text>Filtern nach:</text></Label>
+
+    <RadioButton name="kritierium.vbz">
+        <text>Verbindungsbezeichnung (VBZ)</text>
+        <tooltip>Suche über die Verbindungsbezeichnung</tooltip>
+    </RadioButton>
+
+    <RadioButton name="kritierium.hvt">
+        <text>HVT</text>
+        <tooltip>Suche über den HVT-Standort</tooltip>
+    </RadioButton>
+
+    <RadioButton name="kritierium.hvt.prod">
+        <text>HVT und Produkt</text>
+        <tooltip>Suche über den HVT-Standort und das Produkt</tooltip>
+    </RadioButton>
+
+    <Button name="new.kubena">
+        <tooltip>Legt eine neue Kundenbenachrichtigung an</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+    </Button>
+
+    <Button name="save.kubena">
+        <tooltip>Speichert die Kundenbenachrichtigung</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/save.gif</icon>
+    </Button>
+
+    <Button name="execute">
+        <text>Kunden ermitteln</text>
+        <tooltip>Ermittelt die betroffenen Kunden</tooltip>
+        <mnemonic>VK_E</mnemonic>
+    </Button>
+
+</sf>

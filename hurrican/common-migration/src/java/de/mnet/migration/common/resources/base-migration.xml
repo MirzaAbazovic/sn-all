@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Basis Spring Context fuer alle Migrationen -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config />
+
+    <context:component-scan base-package="de.mnet.migration"/>
+
+    <bean id="propertyBean" class="de.augustakom.common.tools.spring.PropertyBean">
+        <property name="fileBaseNames">
+            <list>
+                <value>migration</value>
+            </list>
+        </property>
+        <property name="appendix" value="properties" />
+    </bean>
+
+    <bean class="de.augustakom.common.tools.spring.ExtendedPropertyPlaceholderConfigurer">
+        <property name="propertyBean" ref="propertyBean" />
+    </bean>
+
+
+    <!--
+        Basis-Konfiguration fuer MigrationController und DatabaseLogger
+        Beans, die in spezifischem Kontext definiert werden muessen:
+        * migrationTransformator
+        Beans, die in spezifischem Kontext ge-aliast werden muessen:
+        * migrationDao
+    -->
+    <bean id="migrationControllerParent"
+        class="de.mnet.migration.common.main.MigrationControllerImpl" abstract="true">
+        <property name="migrationDao" ref="migrationDao"/>
+        <property name="migrationResultDao" ref="migrationResultDao"/>
+        <property name="simulate" value="${migration.simulate}"/>
+        <property name="numberOfThreadsInThreadPool" value="1" />
+        <property name="removeIndices" value="false" />
+        <property name="databaseLogger" ref="databaseLogger"/>
+        <property name="transactionManager" ref="transactionManager"/>
+        <lookup-method name="createMigrationTransformator" bean="migrationTransformator"/>
+    </bean>
+
+    <!--
+        Beans, die in spezifischem Kontext ge-aliast werden muessen:
+        * logDataSource
+     -->
+    <bean id="databaseLogger" class="de.mnet.migration.common.main.DatabaseLoggerImpl">
+        <property name="loggingDataSource" ref="logDataSource"/>
+        <property name="simulate" value="${migration.simulate}"/>
+        <property name="logTableName" value="HURRICAN_MIG_LOG" />
+        <property name="logSequenceName" value="SEQ_HURRICAN_MIG_LOG" />
+        <property name="logIdTableName" value="HURRICAN_MIG_IDS" />
+    </bean>
+
+    <!-- ============================================= -->
+    <!-- = STANDARD-DAOs ============================= -->
+    <!-- ============================================= -->
+    <!--
+        DAO fuer Migrations-Ergebnisse
+        Beans, die in spezifischem Kontext ge-aliast werden muessen:
+        * logDataSource
+     -->
+    <bean id="migrationResultDao"
+        class="de.mnet.migration.common.main.MigrationResultDaoImpl">
+        <property name="dataSource" ref="logDataSource" />
+        <property name="simulate" value="${migration.simulate}"/>
+        <property name="migLogTableName" value="HURRICAN_MIG_LOG"/>
+        <property name="migResultTableName" value="HURRICAN_MIG_RESULT"/>
+        <property name="migResultSequenceName" value="SEQ_HURRICAN_MIG_RESULT"/>
+    </bean>
+
+    <!--
+        DAO fuer eine Migration, die nur eine Zeile hat
+        Beans, die in spezifischem Kontext ge-aliast werden muessen:
+        * migrationDataSource
+     -->
+    <bean id="singleRowMigrationDao" class="de.mnet.migration.common.dao.SingleRowMigrationDao"/>
+
+    <!--
+        Generic Hibernate Dao, das genutzt werden kann, um Entities via
+        Hibernate zu persistieren.
+        Properties, die in spezifischem Dao gesetzt werden muessen:
+        * <constructor-arg type="java.lang.String" value="com.my.class.Name"/>
+     -->
+    <bean id="hibernateDao" class="de.mnet.migration.common.dao.HibernateDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+
+    <!-- ============================================= -->
+    <!-- = TRANSACTION HANDLING / HIBERNATE ========== -->
+    <!-- ============================================= -->
+    <!--
+        Transaktionsmanager, der vom Controller genutzt wird, um Transaktionen
+        zu starten und committen bzw rollbacken.
+        Beans, die in spezifischem Kontext ge-aliast werden muessen:
+        * targetDataSource
+     -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="targetDataSource" />
+    </bean>
+
+    <!--
+        Hibernate SessionFactory. Konfiguriert ueber Bean hibernateProperties und
+        Liste der annotierten Klassen, die in spezifischem Kontext definiert werden
+        muss:
+        * hibernateEntities
+        Bsp: <util:list id="hibernateEntities"><value>de.mnet.my.Class</value></util:list>
+     -->
+    <bean id="sessionFactory"
+        class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="targetDataSource" />
+        <property name="configurationClass" value="org.hibernate.cfg.AnnotationConfiguration"/>
+        <property name="annotatedClasses" ref="hibernateEntities" />
+        <property name="hibernateProperties">
+            <ref bean="hibernateProperties" />
+        </property>
+        <property name="packagesToScan" ref="hibernateEntityPackages"/>
+        <property name="entityInterceptor">
+            <bean class="de.augustakom.hurrican.tools.hibernate.IPAddressInterceptor"/>
+        </property>
+    </bean>
+
+    <util:list id="hibernateEntityPackages">
+    </util:list>
+
+    <util:list id="hibernateEntities">
+    </util:list>
+
+    <bean id="hibernateProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="properties">
+            <props>
+                <prop key="hibernate.dialect">${db.hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${db.hibernate.showSql}</prop>
+                <prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+                <prop key="hibernate.connection.isolation">3</prop>
+                <prop key="hibernate.check_nullability">true</prop>
+                <prop key="jadira.usertype.databaseZone">jvm</prop>
+                <prop key="jadira.usertype.javaZone">jvm</prop>
+<!--                <prop key="hibernate.jdbc.batch_size">20</prop>-->
+<!--                <prop key="hibernate.order_inserts">true</prop>-->
+<!--                <prop key="hibernate.order_updates">true</prop>-->
+<!--                <prop key="hibernate.transaction.manager_lookup_class">-->
+<!--                    ${db.hibernate.transaction.manager_lookup_class}-->
+<!--                </prop>-->
+            </props>
+        </property>
+    </bean>
+
+
+    <!-- DATA SOURCES -->
+    <!-- Da DataSources eventuell auch für Hibernate genutzt werden, müssen sie an Spring -->
+    <!-- managed transactions teilnehmen, deshalb sind sie TransactionAwareDataSourceProxies. -->
+
+    <!-- ============================================= -->
+    <!-- = HURRICAN ================================== -->
+    <!-- ============================================= -->
+    <!-- Interceptor, um das Default-Schema der Datenbank-Connection zu setzen -->
+    <bean id="hurricanSchemaInterceptor"
+        class="de.augustakom.common.tools.dao.SetDefaultSchemaInterceptor">
+        <property name="schemaName" value="${db.hurrican.migration.user.schema}" />
+    </bean>
+
+    <!-- DataSource fuer Hurrican -->
+    <bean id="hurricanDataSourceTarget"
+        class="de.augustakom.common.tools.dao.jdbc.AKBasicDataSource"  destroy-method="close">
+        <property name="driverClassName" value="${db.hurrican.jdbc.driver}" />
+        <property name="url" value="${db.hurrican.jdbc.url}" />
+        <property name="username" value="${db.hurrican.migration.user.schema}" />
+        <property name="password" value="${db.hurrican.migration.user.password}" />
+        <property name="maxActive"><value>10</value></property>
+        <property name="maxIdle"><value>30</value></property>
+        <property name="validationQuery"><value>select 1 from dual</value></property>
+    </bean>
+    <bean id="hurricanDataSourceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces" value="javax.sql.DataSource" />
+        <property name="target">
+            <ref bean="hurricanDataSourceTarget" />
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <value>hurricanSchemaInterceptor</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="hurricanDataSource" class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
+        <property name="targetDataSource" ref="hurricanDataSourceProxy"/>
+    </bean>
+
+
+</beans>

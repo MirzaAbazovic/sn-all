@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/jms
+                        http://www.springframework.org/schema/jms/spring-jms.xsd
+                        http://activemq.apache.org/schema/core
+                        http://activemq.apache.org/schema/core/activemq-core.xsd">
+
+    <import resource="classpath:de/mnet/antivirus/scan/resources/AntivirusScanContext.xml"/>
+
+    <bean id="errorMailMsg" class="org.springframework.mail.SimpleMailMessage" scope="prototype">
+        <!-- Angabe von mehreren EMails: durch Komma (,) getrennt -->
+        <property name="to" value="${mail.error.recipients}"/>
+        <property name="from" value="Hurrican-Reporting"/>
+        <property name="subject" value="Report-Server Error"/>
+    </bean>
+
+    <bean id="de.mnet.hurrican.reporting.service.OpenOfficeService" class="de.mnet.hurrican.reporting.service.impl.OpenOfficeServiceImpl">
+        <constructor-arg value="${openoffice.host}"/>
+        <constructor-arg value="${openoffice.port}"/>
+    </bean>
+
+    <bean id="de.mnet.hurrican.reporting.service.OpenOfficeConnectionStatus" class="de.mnet.hurrican.reporting.service.OpenOfficeConnectionStatus" />
+
+    <bean id="de.mnet.hurrican.reporting.documentconvertor.service.DocumentConvertorService" class="de.mnet.hurrican.reporting.documentconvertor.service.DocumentConvertorService">
+        <property name="documentFormatRegistry" ref="documentFormatRegistry" />
+    </bean>
+
+    <bean id="de.mnet.hurrican.archive.ArchiveDumperService" class="de.mnet.hurrican.archive.ArchiveDumperServiceImpl" />
+
+    <bean id="documentFormatRegistry" class="com.artofsolving.jodconverter.XmlDocumentFormatRegistry" />
+
+    <bean id="messageListener" class="de.mnet.hurrican.reporting.ReportRequestMessageListener">
+        <constructor-arg ref="jmsTemplateToSendResponses"/>
+        <constructor-arg ref="de.mnet.hurrican.reporting.service.OpenOfficeService"/>
+        <constructor-arg ref="de.augustakom.hurrican.service.reporting.ReportService"/>
+        <constructor-arg ref="de.mnet.hurrican.tools.mail.ErrorHandler"/>
+        <constructor-arg ref="errorMailMsg"/>
+    </bean>
+
+    <jms:listener-container connection-factory="localConnectionFactory">
+        <jms:listener destination="requestQueue" ref="messageListener" />
+    </jms:listener-container>
+
+    <amq:broker id="embeddedReportActiveMQBroker" brokerName="reportBrokerFactory" persistent="false" useJmx="false">
+        <amq:transportConnectors>
+            <amq:transportConnector uri="${jms.broker.url}" />
+        </amq:transportConnectors>
+        <amq:systemUsage>
+            <amq:systemUsage>
+                <amq:tempUsage>
+                    <!--default sind 50000 mb-->
+                    <amq:tempUsage limit="1000mb"></amq:tempUsage>
+                </amq:tempUsage>
+            </amq:systemUsage>
+        </amq:systemUsage>
+
+    </amq:broker>
+
+    <amq:connectionFactory id="jmsLocalConnectionFactory" brokerURL="vm://localhost" />
+
+    <bean id="localConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+        <property name="targetConnectionFactory" ref="jmsLocalConnectionFactory"/>
+    </bean>
+
+    <amq:topic id="responseTopic" physicalName="responseTopic" />
+    <amq:queue id="requestQueue" physicalName="requestQueue" />
+
+    <bean id="jmsTemplateToSendResponses" class="org.springframework.jms.core.JmsTemplate">
+        <constructor-arg ref="localConnectionFactory"/>
+        <property name="defaultDestination" ref="responseTopic" />
+    </bean>
+
+</beans>

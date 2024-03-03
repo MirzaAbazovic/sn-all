@@ -1,0 +1,27 @@
+--
+-- SQL-Script, um Erweiterungen fuer AM-Projekte vorzunehmen
+--
+
+alter table T_PRODUKTGRUPPE add AM_RESPONSIBILITY NUMBER(10);
+
+CREATE INDEX IX_FK_PRODGR_2_REF ON T_PRODUKTGRUPPE (AM_RESPONSIBILITY) TABLESPACE "I_HURRICAN";
+ALTER TABLE T_PRODUKTGRUPPE
+  ADD CONSTRAINT FK_PRODGR_2_REF
+      FOREIGN KEY (AM_RESPONSIBILITY)
+      REFERENCES T_REFERENCE (ID);
+
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)
+  values (1200, 'AM_PART', 'AM', 1, 10, 'Auftragsmanagement - allgemein');
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)
+  values (1201, 'AM_PART', 'AM-Projekte', 1, 20, 'Auftragsmanagement - Projekte');
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)
+  values (1202, 'AM_PART', 'Netzplanung', 1, 30, 'Auftraege durch Netzplanung');
+commit;  
+  
+update T_PRODUKTGRUPPE set AM_RESPONSIBILITY=1201 where ID in (2,4,7,9,11);
+update T_PRODUKTGRUPPE set AM_RESPONSIBILITY=1202 where ID in (22);
+update T_PRODUKTGRUPPE set AM_RESPONSIBILITY=1200 where AM_RESPONSIBILITY is null;
+commit;
+
+
+  

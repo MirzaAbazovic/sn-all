@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel, um eine Kündigung rückgängig zu machen.
+-->
+<sf>
+
+    <Text name="dialog.title">Equipments Zuordnen</Text>
+
+    <Button name="choose.eq.in"><text>Auswahl EQ_IN</text></Button>
+    <Button name="choose.eq.out"><text>Auswahl EQ_OUT</text></Button>
+    <Button name="choose.eq.in2"><text>Auswahl EQ_IN 2</text></Button>
+    <Button name="choose.eq.out2"><text>Auswahl EQ_OUT 2</text></Button>
+
+</sf>

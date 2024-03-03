@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Body>
+    <v1:updateCarrierChange xmlns:v1="http://www.mnet.de/esb/cdm/SupplierPartner/CarrierNegotiationService/v1">
+      <v1:ABBM>
+        <v1:absender>
+          <v1:carrierCode>${carrierCodeAbg}</v1:carrierCode>
+        </v1:absender>
+        <v1:empfaenger>
+          <v1:carrierCode>${carrierCodeAuf}</v1:carrierCode>
+        </v1:empfaenger>
+        <v1:version>${wbciVersion}</v1:version>
+        <v1:vorabstimmungsIdRef>${preAgreementId}</v1:vorabstimmungsIdRef>
+        <v1:endkundenvertragspartner>
+          <v1:EKPauf>
+            <v1:carrierCode>${carrierCodeAuf}</v1:carrierCode>
+          </v1:EKPauf>
+          <v1:EKPabg>
+            <v1:carrierCode>${carrierCodeAbg}</v1:carrierCode>
+          </v1:EKPabg>
+        </v1:endkundenvertragspartner>
+        <v1:geschaeftsfall>STR-AEN</v1:geschaeftsfall>
+        <v1:position>
+          <v1:Meldungscode>8142</v1:Meldungscode>
+          <v1:Meldungstext>Storno abgelehnt</v1:Meldungstext>
+        </v1:position>
+        <v1:stornoIdRef>${stornoId}</v1:stornoIdRef>
+        <v1:begruendung>Begruendung</v1:begruendung>
+      </v1:ABBM>
+    </v1:updateCarrierChange>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

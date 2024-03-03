@@ -1,0 +1,1 @@
+update t_wita_config set config_value = '2' where config_key = 'default.wita.version';

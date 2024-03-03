@@ -1,0 +1,23 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified"
+        targetNamespace="http://mnet.de/hurricanweb/order/transfer/types"
+        xmlns:ns0="http://mnet.de/hurricanweb/order/transfer/types">
+
+    <xs:element name="TransferOrderType" type="ns0:TransferOrderType" />
+    <xs:element name="TransferOrderTypeAcknowledgement" type="ns0:TransferOrderTypeAcknowledgement" />
+
+    <xs:complexType name="TransferOrderType">
+        <xs:sequence>
+            <xs:element name="sourceOrderNumber" type="xs:long"/>
+            <xs:element name="sourceCustomerNumber" type="xs:long"/>
+            <xs:element name="targetCustomerNumber" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TransferOrderTypeAcknowledgement">
+        <xs:sequence>
+            <xs:element name="transferSuccessful" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Scheduler-Status Panel.
+-->
+<sf>
+
+    <Label name="scheduler.name"><text>Instanz-Name:</text></Label>
+    <TextField name="scheduler.name">
+        <tooltip>Name der Scheduler-Instanz</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="scheduler.host"><text>RMI-Host:</text></Label>
+    <TextField name="scheduler.host">
+        <tooltip>Host, auf dem der Scheduler laeuft</tooltip>
+    </TextField>
+
+    <Label name="scheduler.port"><text>RMI-Port:</text></Label>
+    <TextField name="scheduler.port">
+        <tooltip>Port, ueber den der Scheduler erreichbar ist</tooltip>
+    </TextField>
+
+    <Label name="summary"><text>Summary:</text></Label>
+    <TextArea name="summary">
+        <tooltip>Zeigt eine Zusammenfassung ueber den Scheduler an</tooltip>
+        <rows>7</rows>
+        <columns>30</columns>
+    </TextArea>
+
+    <Label name="current.jobs"><text>Running Jobs:</text></Label>
+
+    <Button name="refresh">
+        <text>Refresh</text>
+        <icon>de/augustakom/hurrican/gui/images/refresh.png</icon>
+    </Button>
+
+</sf>

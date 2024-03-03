@@ -1,0 +1,43 @@
+@startuml
+
+left to right direction
+
+
+actor "Cotract Admin" as ca
+rectangle EnteringNewContract {
+  usecase "Search contracts" as UC1
+  usecase "List contracts" as UC2
+  usecase "Display contract details" as UC3
+  usecase "Search and select supplier (Party mgm) with role in contract" as UC4
+  usecase "Add contract params and save contract" as UC5
+}
+
+ca --> UC1
+ca --> UC2
+ca --> UC3
+ca --> UC4
+ca --> UC5
+
+
+
+actor Employee as employee
+
+package Adlatus {
+  usecase "Enter new contract with parameters" as new_contract
+  usecase "Create resource catalog" as new_catalog
+  usecase "Create resource in resource catalog" as new_resource
+  usecase "Initiate ordering of resource from catalog" as initiate_order
+  usecase "List orders and search for an order" as search_for_order
+  usecase "View specific order details (model/props, TMF status, WITA/SPRI status)" as view_status_order
+}
+
+employee --> new_contract
+employee --> new_resource
+employee --> new_catalog
+employee --> initiate_order
+employee--> search_for_order
+employee--> view_status_order
+
+
+
+@enduml

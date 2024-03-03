@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/jms
+                        http://www.springframework.org/schema/jms/spring-jms.xsd
+                        http://activemq.apache.org/schema/core
+                        http://activemq.apache.org/schema/core/activemq-core.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config />
+
+    <import resource="classpath:de/augustakom/hurrican/service/reporting/resources/ReportServicesBase.xml"/>
+
+    <!-- Ueberschreiben der Service-Definition fuer den Report-Service mit einer Bean mit jmsTemplate -->
+    <bean id="de.augustakom.hurrican.service.reporting.ReportService"
+          class="de.augustakom.hurrican.service.reporting.impl.ReportServiceImpl">
+        <property name="reportDAO" ref="reportDAO"></property>
+        <property name="reportDataDAO" ref="reportDataDAO"></property>
+        <property name="reportRequestDAO" ref="reportRequestDAO"></property>
+        <property name="reportTemplateDAO" ref="reportTemplateDAO"></property>
+        <property name="txtBausteinDAO" ref="txtBausteinDAO"></property>
+        <property name="report2TechLsDAO" ref="report2TechLsDAO"></property>
+        <property name="txtBausteinGruppeDAO" ref="txtBausteinGruppeDAO"></property>
+        <property name="reportPaperFormatDAO" ref="reportPaperFormatDAO"></property>
+        <property name="reportReasonDAO" ref="reportReasonDAO"></property>
+        <property name="printerDAO" ref="printerDAO"></property>
+        <property name="jmsTemplateToSendReportRequests" ref="jmsTemplateToSendReportRequests"></property>
+        <property name="reportPathTemp" value="${report.path.temp}"/>
+        <property name="reportPathTemplates" value="${report.path.templates}"/>
+        <property name="reportPathOutput" value="${report.path.output}"/>
+    </bean>
+
+    <bean id="reportResponseListener" class="de.augustakom.hurrican.gui.reporting.ReportResponseListener">
+    </bean>
+
+    <amq:connectionFactory id="jmsConnectionFactory" brokerURL="${jms.broker.url}" />
+
+    <bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+        <property name="targetConnectionFactory" ref="jmsConnectionFactory"/>
+    </bean>
+
+    <amq:queue id="requestQueue" physicalName="requestQueue" />
+    <amq:topic id="responseTopic" physicalName="responseTopic" />
+
+    <bean id="jmsTemplateToSendReportRequests" class="org.springframework.jms.core.JmsTemplate">
+        <constructor-arg ref="connectionFactory"/>
+        <property name="defaultDestination" ref="requestQueue" />
+    </bean>
+
+    <jms:listener-container connection-factory="connectionFactory" destination-type="topic">
+        <jms:listener destination="responseTopic" ref="reportResponseListener" />
+    </jms:listener-container>
+
+</beans>

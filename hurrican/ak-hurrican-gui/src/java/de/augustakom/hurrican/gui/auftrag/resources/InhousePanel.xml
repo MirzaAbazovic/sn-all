@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den Inhouse-Daten zu 
+einer Endstelle.
+-->
+<sf>
+    
+    <Button name="new.inhouse">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Legt einen neuen Inhouse-Datensatz an</tooltip>
+    </Button>
+    
+    <Button name="edit.inhouse">
+        <icon>de/augustakom/hurrican/gui/images/edit.gif</icon>
+        <tooltip>Öffnet einen Dialog, um die Inhouse-Daten zu editieren</tooltip>
+    </Button>
+    
+    <Label name="raumnummer"><text>Raumnummer:</text></Label>
+    <TextField name="raumnummer">
+        <tooltip>Nummer oder Bezeichnung des Raums, in dem sich die Verkabelung befindet</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="verkabelung"><text>Verkabelung:</text></Label>
+    <TextField name="verkabelung">
+        <tooltip>Hinweise zur Verkabelung</tooltip>
+    </TextField>
+    
+    <Label name="ansprechpartner"><text>Ansprechp.:</text></Label>
+    <TextField name="ansprechpartner">
+        <tooltip>Ansprechpartner, der innerhalb des Gebäudes für AKOM zuständig ist</tooltip>
+    </TextField>
+    
+    <Label name="bemerkung"><text>Bemerkung:</text></Label>
+    <TextArea name="bemerkung">
+        <tooltip>Bemerkungen zur Inhouse-Verkabelung</tooltip>
+        <columns>20</columns>
+        <maxchars>255</maxchars>
+    </TextArea>
+
+</sf>

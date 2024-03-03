@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die offenen TAL-Bestellungen.
+-->
+<sf>
+
+    <Text name="functions">Funktionen</Text>
+    <Text name="details">Details</Text>
+
+    <ToggleButton name="eigene.tasks">
+        <icon>de/augustakom/hurrican/gui/images/user_icon.png</icon>
+        <tooltip>Zeigt nur die eigenen Tasks an</tooltip>
+    </ToggleButton>
+
+    <ToggleButton name="alle.tasks">
+        <icon>de/augustakom/hurrican/gui/images/user_all_icon.png</icon>
+        <tooltip>Zeigt die Tasks aller User/Teams an (auch nicht zugeordnete Tasks)</tooltip>
+    </ToggleButton>
+
+    <Button name="wiedervorlage">
+        <text>Wiedervorlage</text>
+        <tooltip>Selektierten Task auf Wiedervorlage setzen.</tooltip>
+    </Button>
+
+    <Button name="close">
+        <text>Abschliessen</text>
+        <tooltip>Übernimmt die zurück gemeldeten Daten der Carrierbestellung und schliesst den Vorgang ab</tooltip>
+    </Button>
+
+    <Button name="storno">
+        <text>Storno</text>
+        <tooltip>Storniert die aktuelle Carrierbestellung</tooltip>
+    </Button>
+
+    <Button name="fetch.result">
+        <text>Abholen</text>
+        <tooltip>Überprüft, ob bereits eine Rückmeldung vorliegt und holt die Daten ab.</tooltip>
+    </Button>
+
+    <Button name="history">
+        <text>History...</text>
+        <tooltip>Zeigt die History aller el. Vorgaenge zur TAL-Bestellung an</tooltip>
+    </Button>
+
+    <Label name="kunde">
+        <text>Kunde</text>
+    </Label>
+    <Label name="cb.details">
+        <text>Bestellungs-Details</text>
+    </Label>
+    <Label name="endstelle">
+        <text>Endstelle</text>
+    </Label>
+    <Label name="rueckmeldung">
+        <text>Rückmeldung</text>
+    </Label>
+    <Label name="hvt.kvz">
+        <text>HVt nach KVz Geschaeftsfall</text>
+    </Label>
+
+    <Label name="kunde.name">
+        <text>Name:</text>
+    </Label>
+    <TextField name="kunde.name">
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="kunde.vorname">
+        <text>Vorname:</text>
+    </Label>
+    <TextField name="kunde.vorname">
+    </TextField>
+
+    <Label name="dtag.usecase">
+        <text>DTAG-Gesch.:</text>
+    </Label>
+    <ReferenceField name="dtag.usecase">
+        <tooltip>DTAG-Geschäftsfall für die el. TAL-Bestellung</tooltip>
+        <id.property>id</id.property>
+        <name.property>vorfall</name.property>
+        <reference.class>de.augustakom.hurrican.model.exmodules.tal.TALVorfall</reference.class>
+    </ReferenceField>
+
+    <Label name="montagehinweis">
+        <text>Montagehinweis:</text>
+    </Label>
+    <TextArea name="montagehinweis">
+        <tooltip>Montagehinweis zur TAL-Bestellung</tooltip>
+        <columns>20</columns>
+        <rows>3</rows>
+    </TextArea>
+
+    <Label name="status.bemerkung">
+        <text>Bearbeitungsstatus:</text>
+    </Label>
+    <TextArea name="status.bemerkung">
+        <tooltip>Bemerkung zum aktuellen Status der TAL-Bestellung</tooltip>
+        <columns>20</columns>
+        <rows>3</rows>
+    </TextArea>
+
+    <Label name="es.name">
+        <text>Endstelle:</text>
+    </Label>
+    <TextField name="es.name">
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="es.strasse">
+        <text>Strasse:</text>
+    </Label>
+    <TextField name="es.strasse">
+    </TextField>
+
+    <Label name="es.plz.ort">
+        <text>PLZ/Ort:</text>
+    </Label>
+    <TextField name="es.plz">
+        <columns>5</columns>
+    </TextField>
+    <TextField name="es.ort">
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="es.hvt">
+        <text>HVT:</text>
+    </Label>
+    <TextField name="es.hvt">
+    </TextField>
+
+    <Label name="lbz">
+        <text>Leitungsbezeichnung:</text>
+    </Label>
+    <TextField name="lbz">
+        <tooltip>Leitungsbezeichnung, die als Referenz dient</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="vtrnr">
+        <text>Vertragsnummer:</text>
+    </Label>
+    <TextField name="vtrnr">
+        <tooltip>Vertragsnummer für die Bestellung</tooltip>
+    </TextField>
+
+    <Label name="aqs">
+        <text>AQS:</text>
+    </Label>
+    <TextField name="aqs">
+        <tooltip>Aderquerschnitt der zugeordneten TAL</tooltip>
+    </TextField>
+
+    <Label name="laenge">
+        <text>Leitungslänge:</text>
+    </Label>
+    <TextField name="laenge">
+        <tooltip>ungefähre Länge der zugeordneten TAL</tooltip>
+    </TextField>
+
+    <Label name="carrier.bearbeiter">
+        <text>C.-Bearbeiter:</text>
+    </Label>
+    <TextField name="carrier.bearbeiter">
+        <tooltip>Name des Bearbeiters vom Carrier</tooltip>
+    </TextField>
+
+    <Label name="exm.fehlertyp">
+        <text>Ergebnis:</text>
+    </Label>
+    <ReferenceField name="exm.fehlertyp">
+        <tooltip>Ergebnis der TAL-Bestellung</tooltip>
+        <id.property>id</id.property>
+        <name.property>klasse</name.property>
+        <reference.class>de.augustakom.hurrican.model.exmodules.tal.TALFehlertyp</reference.class>
+    </ReferenceField>
+
+    <Label name="description">
+        <text>Bemerkung:</text>
+    </Label>
+    <TextArea name="description">
+        <tooltip>Bemerkung zur TAL-Bestellung</tooltip>
+        <columns>40</columns>
+        <rows>6</rows>
+    </TextArea>
+
+    <Text name="date.difference">Das Realisierungsdatum weicht vom Vorgabetermin ab oder liegt in der Vergangenheit.
+        Vorgabe: {0}
+        Realisierung am: {1}
+    </Text>
+
+    <Text name="process.wita.abm.title">ABM automatisch verarbeiten</Text>
+    <Text name="process.wita.abm.message">Sollen die Daten der positiven WITA Rückmeldung (ABM) automatisch prozessiert werden?</Text>
+
+    <Label name="hvt.kvz.ref.auftrag.id">
+        <text>Referenzierter Auftrag:</text>
+    </Label>
+    <FormattedTextField name="hvt.kvz.ref.auftrag.id">
+    <columns>20</columns>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+</sf>

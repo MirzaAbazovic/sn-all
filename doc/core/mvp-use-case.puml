@@ -1,0 +1,59 @@
+@startuml
+title BEREITSTELLUNG (Order/Prousct activation)
+
+autonumber
+alt order resource
+MNet -> ROM: ROM TMF652 Create order\nPOST /resourceOrder
+ROM -> RCM: ROM RMF634 \nGET /resourceSpecification
+ROM -> ROM: Validate resource order (state = "acknowledged")
+ROM -> MNet: ROM TMF 652\n 201 Created (Resource Order, state="acknowledged")
+ROM -> ROM: Start execution of resource order
+ROM --> RIM: ROM TMF 652\n Resource Order Created Event
+ROM --> WITA_ADAPTER: ROM TMF 652\n Resource Order Created Event
+end
+alt order product
+WITA_ADAPTER -> ContractAndProductResolver: Resolve contract
+ContractAndProductResolver -> Agreement: Get agreements
+Agreement -> ContractAndProductResolver: Active Agreements
+ContractAndProductResolver -> ContractAndProductResolver: Resolve active agreement and product by resource order
+ContractAndProductResolver -> WITA_ADAPTER: Resolved agreement
+WITA_ADAPTER -> PM: Get party\GET party\{id}
+WITA_ADAPTER -> WITA_ADAPTER: Construct initial WITA SOAP message
+WITA_ADAPTER -> DTAG: Order product\n SOAP annehmenAuftragRequest
+DTAG -> WITA_ADAPTER: annehmenAuftragRequest
+end
+alt QEB
+DTAG -> WITA_ADAPTER: QEB
+WITA_ADAPTER --> DTAG: QEB Response
+WITA_ADAPTER -> ROM: PATCH /resource (state = "in progress")
+end
+alt ABM
+DTAG -> WITA_ADAPTER: ABM
+WITA_ADAPTER --> DTAG: ABM Response
+WITA_ADAPTER -> ROM: PATCH /resource (state = "in progress")
+end
+
+alt ERLM
+DTAG -> WITA_ADAPTER: ERLM
+WITA_ADAPTER --> DTAG: ERLM Response
+WITA_ADAPTER -> ROM: PATCH /resource (state = "completed")
+end
+
+alt ERLM
+DTAG -> WITA_ADAPTER: ENTM
+WITA_ADAPTER --> DTAG: ENTM Response
+end
+
+
+
+legend
+ROM: Resource Order Management TMF652
+RIM: Resource Inventory Management TMF639
+RCM: Resource Catalog Management TMF634
+PM: Party Management TMF632
+QEB: annehmenMeldungRequest meldungstyp="message:MeldungstypQEBType"
+ABM:
+ERLM:
+ENTM:
+end legend
+@enduml

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.EQCrossConnection
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="EQCrossConnection" table="T_EQ_CROSS_CONNECTION">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_EQ_CROSS_CONN_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="equipmentId" column="EQUIPMENT_ID" type="long"/>
+        <property name="crossConnectionTypeRefId" column="CC_TYPE_REF_ID" type="long"/>
+        <property name="ntOuter" column="NT_OUTER" type="integer"/>
+        <property name="ntInner" column="NT_INNER" type="integer"/>
+        <property name="ltOuter" column="LT_OUTER" type="integer"/>
+        <property name="ltInner" column="LT_INNER" type="integer"/>
+        <property name="brasOuter" column="BRAS_OUTER" type="integer"/>
+        <property name="brasInner" column="BRAS_INNER" type="integer"/>
+        <property name="gueltigVon" column="VALID_FROM" type="date"/>
+        <property name="gueltigBis" column="VALID_TO" type="date"/>
+        <property name="userW" column="USERW" type="string"/>
+        <property name="brasPoolId" column="BRAS_POOL_ID" type="long"/>
+    </class>
+
+</hibernate-mapping>

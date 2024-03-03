@@ -1,0 +1,26 @@
+print("Conistency check started.");
+print(cons_check_navision_migration("19900101"));
+
+func cons_check_navision_migration (valid_from)
+{
+        local err, errstr, valid_to;
+
+        valid_to = hist_get_last_date("");
+        errstr = 0;
+
+        if (sql_exec("delete from CHECK_TABLE") < 0) {
+                log_sql_error("cons_check_navision_migration");
+                return sql_error();
+        }
+        event_set_timestamp("CONS.CHECK", datetime());
+
+        err = check_table("ALL", valid_from, valid_to);
+
+        if (err > 0) {
+                errstr = "The consistency check found " + string(err) + " inconsistencies";
+        }
+
+        return errstr;
+}
+return;
+go

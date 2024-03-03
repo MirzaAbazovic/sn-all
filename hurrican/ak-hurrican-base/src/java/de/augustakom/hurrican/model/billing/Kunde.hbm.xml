@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.Kunde
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+    <class name="Kunde" table="CUSTOMER">
+
+        <!-- PrimaryKey -->
+        <id name="kundeNo" column="CUST_NO" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+
+        <!-- Sonstige Fields -->
+        <!--property name="kundeNoOrig" column="KUNDE__NO" type="long"/-->
+        <property name="areaNo" column="AREA_NO" type="long"/>
+        <property name="resellerKundeNo" column="RESELLER_CUST_NO" type="long"/>
+        <property name="brancheNo" column="SECTOR_NO" type="integer"/>
+        <property name="name" column="NAME" type="string"/>
+        <property name="vorname" column="FIRSTNAME" type="string"/>
+        <property name="hauptRufnummer" column="PHONE_CENTRAL" type="string"/>
+        <property name="rnGeschaeft" column="PHONE_BUSINESS" type="string"/>
+        <property name="rnPrivat" column="PHONE_PRIVATE" type="string"/>
+        <property name="rnMobile" column="MOBILE" type="string"/>
+        <property name="rnVoip" column="VOIP" type="string"/>
+        <property name="rnFax" column="FAX" type="string"/>
+        <property name="email" column="EMAIL" type="string"/>
+        <property name="kundenTyp" column="CUSTOMER_TYPE" type="string"/>
+        <property name="hauptKundenNo" column="PARENT_CUST_NO" type="long"/>
+        <property name="kundenbetreuerNo" column="CSR_NO" type="long"/>
+        <property name="vip" column="VIP" type="string"/>
+        <property name="hauptkunde" column="IST_HAUPTKUNDE" type="boolean"/>
+        <property name="kunde" column="IS_CUSTOMER" type="boolean"/>
+        <property name="fernkatastrophe" column="FERNKATASTROPHE" type="boolean"/>
+        <property name="postalAddrNo" column="POSTAL_ADDR_NO" type="long"/>
+        <property name="validFrom" column="VALID_FROM" type="timestamp"/>
+        <property name="createdAt" column="CREATED_AT" type="timestamp"/>
+        <property name="lockDate" column="LOCK_DATE" type="timestamp"/>
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns0:notifyUpdateOrder
+        xmlns:ns0="http://www.mnet.de/esb/cdm/SupplierPartner/LineOrderNotificationService/v2">
+    <ns0:order>
+        <ns0:geschaeftsfall>NEU</ns0:geschaeftsfall>
+        <ns0:aenderungsKennzeichen>Standard</ns0:aenderungsKennzeichen>
+        <ns0:geschaeftsfallart>Bereitstellung</ns0:geschaeftsfallart>
+    </ns0:order>
+    <ns0:message>
+        <ns0:QEB>
+            <ns0:meldungsattribute>
+                <ns0:externeAuftragsnummer>123456789</ns0:externeAuftragsnummer>
+                <ns0:kundennummer>KundenNum1</ns0:kundennummer>
+                <ns0:kundennummerBesteller>BKundenNum</ns0:kundennummerBesteller>
+            </ns0:meldungsattribute>
+            <ns0:meldungspositionen>
+                <ns0:position>
+                    <ns0:meldungscode>0041</ns0:meldungscode>
+                    <ns0:meldungstext>Der abgebende Provider hat die Kündigung seines Bestandes abgelehnt.
+                    </ns0:meldungstext>
+                    <ns0:positionsattribute>
+                        <ns0:ansprechpartnerTelekom>
+                            <ns0:anrede>9</ns0:anrede>
+                            <ns0:vorname>Sheldon</ns0:vorname>
+                            <ns0:nachname>Cooper</ns0:nachname>
+                            <ns0:telefonnummer>77779999</ns0:telefonnummer>
+                            <ns0:emailadresse>dr.cooper@caltech.edu</ns0:emailadresse>
+                        </ns0:ansprechpartnerTelekom>
+                    </ns0:positionsattribute>
+                </ns0:position>
+            </ns0:meldungspositionen>
+        </ns0:QEB>
+    </ns0:message>
+</ns0:notifyUpdateOrder>

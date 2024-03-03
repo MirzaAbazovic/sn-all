@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Anzeige der Sperrklasse.
+-->
+<sf>
+<Label name="abgehend"><text>Abgehend:</text></Label>
+    <CheckBox name="abgehend">
+        <tooltip>Abgehende Sperre</tooltip>
+    </CheckBox>
+
+	<Label name="national"><text>National:</text></Label>
+    <CheckBox name="national">
+        <tooltip>Sperre nnational</tooltip>
+    </CheckBox>
+
+	<Label name="inn.dienste"><text>innovative Dienste:</text></Label>
+    <CheckBox name="inn.dienste">
+        <tooltip>Sperre innovative Dienste</tooltip>
+    </CheckBox>
+
+	<Label name="mabez"><text>MABEZ:</text></Label>
+    <CheckBox name="mabez">
+        <tooltip>Sperre 0137 Dienste</tooltip>
+    </CheckBox>
+
+	<Label name="mobil"><text>Mobil:</text></Label>
+    <CheckBox name="mobil">
+        <tooltip>Sperre Mobil-Rufnummern</tooltip>
+    </CheckBox>
+
+	<Label name="vpn"><text>VPN:</text></Label>
+    <CheckBox name="vpn">
+        <tooltip>Sperre VPN</tooltip>
+    </CheckBox>
+
+	<Label name="prd"><text>PRD:</text></Label>
+    <CheckBox name="prd">
+        <tooltip>Sperre 0900 Premium Rate Dienste</tooltip>
+    </CheckBox>
+
+	<Label name="auskunftsdienste"><text>Auskunftsdienste:</text></Label>
+    <CheckBox name="auskunftsdienste">
+        <tooltip>Sperre Auskunftsdienste</tooltip>
+    </CheckBox>
+
+	<Label name="interna"><text>International:</text></Label>
+    <CheckBox name="interna">
+        <tooltip>Sperre International</tooltip>
+    </CheckBox>
+
+	<Label name="keine"><text>Keine:</text></Label>
+    <CheckBox name="keine">
+        <tooltip>keine Sperre</tooltip>
+    </CheckBox>
+
+	<Label name="standard"><text>Standard:</text></Label>
+    <CheckBox name="standard">
+        <tooltip>Standard Sperre</tooltip>
+    </CheckBox>
+
+    <Label name="offline"><text>Offline-Billing:</text></Label>
+    <CheckBox name="offline">
+        <tooltip>Offline-Billing Sperre</tooltip>
+    </CheckBox>
+
+    <Label name="premium.services.int"><text>Premium-Dienste Ausland:</text></Label>
+    <CheckBox name="premium.services.int">
+        <tooltip>Premium-Dienste im Ausland Sperre</tooltip>
+    </CheckBox>
+
+    <Label name="sperrklasse"><text>Sperrklasse:</text></Label>
+    <ComboBox name="sperrklasse">
+        <tooltip>Sperrklasse auswählen</tooltip>
+        <columns>60</columns>
+    </ComboBox>
+
+</sf>

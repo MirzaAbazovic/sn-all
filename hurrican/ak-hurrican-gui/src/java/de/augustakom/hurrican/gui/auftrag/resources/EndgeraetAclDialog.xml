@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den ACL-Dialog.
+-->
+<sf>
+
+    <Text name="title">ACL</Text>
+
+    <Button name="new.acl">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Legt eine neue ACL an</tooltip>
+    </Button>
+
+    <Button name="del.acl">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht alle markierten ACLs</tooltip>
+    </Button>
+
+</sf>

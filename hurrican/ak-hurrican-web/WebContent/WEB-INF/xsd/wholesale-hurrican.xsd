@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.mnet.de/hurrican/wholesale/workflow/1.0/"
+    xmlns:wholesale="http://www.mnet.de/hurrican/wholesale/common/1.0/"
+    attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.mnet.de/hurrican/wholesale/workflow/1.0/">
+    <xsd:import namespace="http://www.mnet.de/hurrican/wholesale/common/1.0/" schemaLocation="wholesale-common.xsd"></xsd:import>
+    <xsd:element name="reservePortRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="extOrderId" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="ekp" type="tns:ekp" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="reseller" type="tns:ekp" minOccurs="0" maxOccurs="1"></xsd:element>
+                <xsd:element name="geoId" type="xsd:long" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="product" type="tns:product" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="desiredExecutionDate" type="xsd:date" minOccurs="1" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="reservePortResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="lineId" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="executionDate" type="xsd:date" minOccurs="1" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="releasePortRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="lineId" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="releasePortResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="executionDate" type="xsd:date" minOccurs="1" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="modifyPortRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="lineId" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="ekp" type="tns:ekp" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="reseller" type="tns:ekp" minOccurs="0" maxOccurs="1"></xsd:element>
+                <xsd:element name="product" type="tns:product" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="desiredExecutionDate" type="xsd:date" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="changeOfPortAllowed" type="xsd:boolean" minOccurs="1" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="modifyPortResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="lineId" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="executionDate" type="xsd:date" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="portChanged" type="xsd:boolean" minOccurs="1" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="cancelModifyPortRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="lineId" type="xsd:string" minOccurs="1" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation>The LineId returned by modifyPort</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="cancelModifyPortResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="previousLineId" type="xsd:string" minOccurs="1" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation>The lineId before modifyPort was sent</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getOrderParametersResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="techLocation" type="tns:techLocation" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="onkz" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="asb" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="techType" type="tns:techType" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="manufacturer" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="gponPort" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="portId" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="mduType" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="mduName" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="mduSerialNumber" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="mduLocation" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="oltName" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="bgPort" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="portType" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="buchtLeisteStift" type="tns:buchtLeisteStift" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="upStream" minOccurs="1" maxOccurs="1">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:int">
+                            <xsd:minInclusive value="1"></xsd:minInclusive>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="downStream" minOccurs="1" maxOccurs="1">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:int">
+                            <xsd:minInclusive value="1"></xsd:minInclusive>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element name="targetMargin" type="xsd:int" minOccurs="0" maxOccurs="1"></xsd:element>
+                <xsd:element name="vdslProfile" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="pbit" type="tns:pbit"  minOccurs="0" maxOccurs="4"/>
+                <xsd:element name="vlans" type="tns:VLAN" minOccurs="1" maxOccurs="unbounded"></xsd:element>
+                <xsd:element name="a10nsp" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="a10nspPort" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getOrderParametersRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="lineId" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="executionDate" type="xsd:date" minOccurs="1" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="modifyPortReservationDateRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="lineId" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="desiredExecutionDate" type="xsd:date" minOccurs="1" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="modifyPortReservationDateResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="executionDate" type="xsd:date" minOccurs="1" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="reservePortFault" >
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="wholesale:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="releasePortFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="wholesale:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="modifyPortFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="wholesale:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getOrderParametersFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="wholesale:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="modifyPortReservationDateFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="wholesale:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="cancelModifyPortFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="wholesale:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="VLAN">
+        <xsd:sequence>
+            <xsd:element name="service" type="xsd:string" />
+            <xsd:element name="type" type="xsd:string" />
+            <xsd:element name="cvlan" type="xsd:int" />
+            <xsd:element name="svlan" type="xsd:int" />
+            <xsd:element name="svlan_backbone" type="xsd:int" />
+            <xsd:element minOccurs="0" name="ips" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="pbit">
+        <xsd:all>
+            <xsd:element name="service" type="xsd:string" />
+            <xsd:element name="limit">
+                <xsd:annotation>
+                    <xsd:documentation>The limit in kbit/s</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:int">
+                        <xsd:minExclusive value="1"></xsd:minExclusive>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:complexType name="techLocation">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string" />
+            <xsd:element name="street" type="xsd:string" />
+            <xsd:element name="housenum" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="zipcode" type="xsd:string" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="city" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="buchtLeisteStift">
+        <xsd:sequence>
+            <xsd:element name="bucht" type="xsd:string" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="leiste" type="xsd:string" minOccurs="0" maxOccurs="1" />
+            <xsd:element name="stift" type="xsd:string" minOccurs="0" maxOccurs="1" />
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="techType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="FTTB"></xsd:enumeration>
+            <xsd:enumeration value="FTTC"></xsd:enumeration>
+            <xsd:enumeration value="FTTH"></xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="productGroup">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1" />
+            <xsd:maxLength value="100" />
+            <xsd:enumeration value="FTTB BSA" />
+            <xsd:enumeration value="FTTH BSA" />
+            <xsd:enumeration value="FTTC BSA" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="productName">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1" />
+            <xsd:maxLength value="100" />
+            <xsd:enumeration value="FTTB 16" />
+            <xsd:enumeration value="FTTB 25" />
+            <xsd:enumeration value="FTTB 50" />
+            <xsd:enumeration value="FTTB 100" />
+            <xsd:enumeration value="FTTH 16" />
+            <xsd:enumeration value="FTTH 25" />
+            <xsd:enumeration value="FTTH 50" />
+            <xsd:enumeration value="FTTH 100" />
+            <xsd:enumeration value="FTTC 16" />
+            <xsd:enumeration value="FTTC 25" />
+            <xsd:enumeration value="FTTC 50" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="serviceAttribute">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="1" />
+            <xsd:maxLength value="100" />
+            <xsd:enumeration value="TP" />
+            <xsd:enumeration value="DU" />
+            <xsd:enumeration value="ExpEnt" />
+            <xsd:enumeration value="Premium" />
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="product">
+        <xsd:sequence>
+            <xsd:element name="productGroup" type="tns:productGroup" minOccurs="1" maxOccurs="1"></xsd:element>
+            <xsd:element name="productName" type="tns:productName" minOccurs="1" maxOccurs="1">
+            </xsd:element>
+            <xsd:element name="productAttributes" minOccurs="0" maxOccurs="1">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="serviceAttribute" type="tns:serviceAttribute" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ekp">
+        <xsd:sequence>
+                <xsd:element name="id" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+                <xsd:element name="frameContractId" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

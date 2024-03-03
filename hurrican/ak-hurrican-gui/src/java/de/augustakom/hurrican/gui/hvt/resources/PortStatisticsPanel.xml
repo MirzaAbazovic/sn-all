@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    GUI-Definition für das Panel zur Anzeige des Portverbrauchs
+-->
+<sf>
+    <Label name="filter.group"><text>Niederlassung/ONKZ/ASB:</text></Label>
+    <ComboBox name="filter.group">
+        <tooltip>Filtern nach Niederlassung/ONKZ/ASB</tooltip>
+    </ComboBox>
+
+    <Label name="filter.month"><text>Monat:</text></Label>
+    <ComboBox name="filter.month">
+        <tooltip>Filtern nach Monat</tooltip>
+    </ComboBox>
+</sf>

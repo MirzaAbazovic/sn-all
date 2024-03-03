@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gate-deployment
+  namespace: adl
+spec:
+  template:
+    spec:
+      containers:
+        - name: api-gate
+          env:
+          - name: KEY_STORE_PASS
+            value: matematika
+          ports:
+            - $patch: replace
+            - containerPort: 80
+              hostPort: 80
+            - containerPort: 443
+      imagePullSecrets:
+        - name: docker-regcred

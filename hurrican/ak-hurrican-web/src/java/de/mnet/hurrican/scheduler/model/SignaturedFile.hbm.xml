@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="de.mnet.hurrican.scheduler.model">
+	<class name="SignaturedFile" table="SIGNATURED_FILES">
+
+	    <!-- PrimaryKey -->
+		<id name="id" column="ID" unsaved-value="null" type="long">
+			<generator class="sequence"><param name="sequence">S_SIGNATURED_FILES_0</param></generator>
+		</id>
+
+		<!-- Sonstige Fields -->
+		<property name="billingYear" column="BILLING_YEAR" type="string" not-null="true"/>
+		<property name="billingMonth" column="BILLING_MONTH" type="string" not-null="true"/>
+		<property name="filename" column="FILENAME" type="string" not-null="true"/>
+		<property name="absolutePath" column="ABSOLUTE_PATH" type="string" not-null="true"/>
+		<property name="billingStream" column="BILLING_STREAM" type="string" not-null="true"/>
+		<property name="signatureStart" column="SIGNATURE_START" type="timestamp"/>
+		<property name="signatureEnd" column="SIGNATURE_END" type="timestamp"/>
+		<property name="signaturedReCopied" column="SIGNATURED_RE_COPIED" type="timestamp"/>
+
+	</class>
+</hibernate-mapping>

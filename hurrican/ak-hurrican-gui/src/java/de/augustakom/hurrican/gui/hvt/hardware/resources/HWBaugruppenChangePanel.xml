@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit Baugruppen-Schwenks.
+-->
+<sf>
+
+    <Text name="title.plannings">Planungen</Text>
+    <Text name="title.details">Details</Text>
+
+    <Button name="new.change">
+        <text>Neu</text>
+        <tooltip>Legt eine neue Planung an</tooltip>
+    </Button>
+
+    <Button name="cancel.change">
+        <text>Storno</text>
+        <tooltip>Storniert die aktuelle Planung</tooltip>
+    </Button>
+
+    <Button name="close.change">
+        <text>Abschließen</text>
+        <tooltip>Beendet die aktuelle Planung</tooltip>
+    </Button>
+
+    <Button name="prepare.change">
+        <text>Vorbereiten</text>
+        <tooltip>Markiert die aktuelle Planung als vorbereitet; dadurch werden z.B. Ports gesperrt</tooltip>
+    </Button>
+
+    <Button name="execute.change">
+        <text>Ausführen</text>
+        <tooltip>Führt die aktuelle Planung aus</tooltip>
+    </Button>
+
+    <Text name="prepare.title">Planung vorbereiten?</Text>
+    <Text name="prepare.message">Soll die aktuelle Planung wirklich vorbereitet werden?
+Nachträgliche Änderungen können nicht mehr vorgenommen werden.</Text>
+
+    <Text name="prepare.done">Die Planung wurde erfolgreich vorbereitet.
+Sie kann jetzt ausgeführt werden.</Text>
+
+    <Text name="execute.title">Planung ausführen?</Text>
+    <Text name="execute.message">Soll die aktuelle Planung wirklich ausgeführt werden?
+ACHTUNG:
+Eine Rücknahme der durchgeführten Änderungen ist nicht möglich!</Text>
+
+    <Text name="execute.done">Die Planung wurde ausgeführt.</Text>
+
+    <Text name="execute.done.with.warnings">Die Planung wurde ausgeführt.
+Bitte folgende Hinweise beachten:
+{0}
+    </Text>
+
+    <Text name="cancel.done">Die Planung wurde storniert.</Text>
+
+    <Text name="close.done">Die Planung wurde geschlossen.
+Sie wird bei der nächsten Aktualisierung des Frames nicht mehr angezeigt.</Text>
+
+    <Text name="invalid.cross.connections">Es sind Ports vorhanden, die ursprünglich eine manuelle CrossConnection besitzen.
+Dem gemappten / neuen Port sind aber nur Default CrossConnections zugeordnet!
+Die betroffenen HW_EQNs (alte Ports):
+    </Text>
+
+
+
+</sf>

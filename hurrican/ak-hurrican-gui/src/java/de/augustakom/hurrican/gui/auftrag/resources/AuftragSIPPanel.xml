@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das SIP-InterTrunk-Panel.
+-->
+<sf>
+
+    <Text name="border.title">Switch / TrunkGroup Zuordnung</Text>
+
+    <Button name="add.data">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Öffnet einen Dialog, um eine neue Switch / TrunkGroup Zuordnung anzulegen</tooltip>
+    </Button>
+
+</sf>

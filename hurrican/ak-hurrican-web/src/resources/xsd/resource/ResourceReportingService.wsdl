@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:tns="http://hurrican.m-net.de/hurricanweb/resource/ResourceReportingService/v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  name="ResourceReportingService"
+                  targetNamespace="http://hurrican.m-net.de/hurricanweb/resource/ResourceReportingService/v1">
+   <wsdl:documentation>Version 1.0</wsdl:documentation>
+   <wsdl:types>
+      <xs:schema xmlns="http://hurrican.m-net.de/hurricanweb/resource/ResourceReportingService/v1"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 targetNamespace="http://hurrican.m-net.de/hurricanweb/resource/ResourceReportingService/v1"
+                 version="1.0"
+                 elementFormDefault="qualified"
+                 attributeFormDefault="unqualified">
+          <xs:element name="GetTechnicalReportRequest">
+              <xs:complexType>
+                  <xs:sequence>
+                      <xs:element name="technicalOrderId" type="xs:long" minOccurs="1" maxOccurs="1" />
+                  </xs:sequence>
+              </xs:complexType>
+          </xs:element>
+          <xs:element name="GetTechnicalReportResponse">
+              <xs:complexType>
+                  <xs:sequence>
+                      <xs:element name="report" minOccurs="0" maxOccurs="1" type="xs:base64Binary">
+                          <xs:annotation>
+                              <xs:documentation>generierte PDF (binärer Dateninhalt)</xs:documentation>
+                          </xs:annotation>
+                      </xs:element>
+                  </xs:sequence>
+              </xs:complexType>
+          </xs:element>
+          <xs:element name="ResourceReportingFault">
+              <xs:complexType>
+                  <xs:sequence>
+                      <xs:element name="errorCode" type="xs:string"/>
+                      <xs:element name="errorMessage" type="xs:string"/>
+                      <xs:element name="errorDetail" minOccurs="0">
+                          <xs:complexType>
+                              <xs:sequence>
+                                  <xs:any minOccurs="0" processContents="skip" namespace="##any"/>
+                              </xs:sequence>
+                          </xs:complexType>
+                      </xs:element>
+                  </xs:sequence>
+              </xs:complexType>
+          </xs:element>
+      </xs:schema>
+   </wsdl:types>
+
+    <wsdl:message name="GetTechnicalReportRequest">
+        <wsdl:part element="tns:GetTechnicalReportRequest" name="GetTechnicalReportRequest" />
+    </wsdl:message>
+    <wsdl:message name="GetTechnicalReportResponse">
+        <wsdl:part element="tns:GetTechnicalReportResponse" name="GetTechnicalReportResponse" />
+    </wsdl:message>
+    <wsdl:message name="ResourceReportingFault">
+        <wsdl:part element="tns:ResourceReportingFault" name="ResourceReportingFault" />
+    </wsdl:message>
+
+    <wsdl:portType name="ResourceReportingService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <wsdl:operation name="getTechnicalReport" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+            <wsdl:input message="tns:GetTechnicalReportRequest" name="GetTechnicalReportRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+            </wsdl:input>
+            <wsdl:output message="tns:GetTechnicalReportResponse" name="GetTechnicalReportResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+            </wsdl:output>
+            <wsdl:fault message="tns:ResourceReportingFault" name="ResourceReportingFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="ResourceReportingServiceHTTPBinding" type="tns:ResourceReportingService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+        <wsdl:operation name="getTechnicalReport" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+            <soap:operation soapAction="getTechnicalReport" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            <wsdl:input name="GetTechnicalReportRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+                <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </wsdl:input>
+            <wsdl:output name="GetTechnicalReportResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+                <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </wsdl:output>
+            <wsdl:fault name="ResourceReportingFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+                <soap:fault name="ResourceReportingFault" use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="ResourceReportingService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <wsdl:port binding="tns:ResourceReportingServiceHTTPBinding" name="ResourceReportingService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+            <soap:address location="http://localhost:8080/hurricanweb/resource/reporting" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

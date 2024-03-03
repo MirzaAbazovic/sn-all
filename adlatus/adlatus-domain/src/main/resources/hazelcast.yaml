@@ -1,0 +1,8 @@
+hazelcast:
+  network:
+    join:
+      multicast:
+        enabled: true
+  map:
+    resource-catalog:
+      time-to-live-seconds: 0

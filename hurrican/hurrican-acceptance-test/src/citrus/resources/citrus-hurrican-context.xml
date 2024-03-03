@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:citrus-ws="http://www.citrusframework.org/schema/ws/config"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
+
+       http://www.citrusframework.org/schema/ws/config http://www.citrusframework.org/schema/ws/config/citrus-ws-config.xsd">
+
+    <citrus-ws:client id="tvProvider"
+                      request-url="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/tvprovider"
+                      message-factory="messageFactory11"
+                      fault-strategy="propagateError"
+                      timeout="60000"/>
+    <citrus-ws:client id="tvFeed"
+                      request-url="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/tvfeed"
+                      message-factory="messageFactory11"
+                      fault-strategy="propagateError"
+                      timeout="60000"/>
+
+    <citrus-ws:server id="resourceInventoryServer"
+                      port="${resource.inventory.server.port}"
+                      auto-start="true"
+                      timeout="60000"/>
+
+
+    <citrus-ws:client id="resourceInventoryClient"
+                      request-url="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/resource/inventory"
+                      message-factory="messageFactory11"
+                      fault-strategy="propagateError"
+                      timeout="60000"/>
+
+    <citrus-ws:client id="commandStiftDataClient"
+                      request-url="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/command/stift"
+                      message-factory="messageFactory11"
+                      fault-strategy="propagateError"
+                      timeout="60000"/>
+
+    <citrus-ws:client id="commandCustomerDataClient"
+                      request-url="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/command/customer"
+                      message-factory="messageFactory11"
+                      fault-strategy="propagateError"
+                      timeout="60000"/>
+
+    <citrus-ws:client id="commandLocationDataClient"
+                      request-url="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/command/location"
+                      message-factory="messageFactory11"
+                      fault-strategy="propagateError"
+                      timeout="60000"/>
+
+    <citrus-ws:client id="workforceDataV1Client"
+                      request-url="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/resource/workforcedata/v1"
+                      message-factory="messageFactory11"
+                      fault-strategy="propagateError"
+                      timeout="60000"/>
+
+    <citrus-ws:client id="resourceCharacteristicsClient"
+                      request-url="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/resource/characteristics"
+                      message-factory="messageFactory11"
+                      fault-strategy="propagateError"
+                      timeout="60000"/>
+
+    <citrus-ws:client id="portierungServiceClient"
+                      request-url="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/portierungService"
+                      message-factory="messageFactory11"
+                      fault-strategy="propagateError"
+                      timeout="60000"/>
+
+    <citrus-ws:client id="resourceOrderManagementServiceClient"
+                                                             request-url="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/resourceordermanagement"
+                                                             message-factory="messageFactory11"
+                                                             fault-strategy="propagateError"
+                                                             timeout="60000"/>
+    <citrus-ws:client id="resourceWholesaleOrderServiceClient"
+                      request-url="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/wholesaleorder"
+                      message-factory="messageFactory11"
+                      fault-strategy="propagateError"
+                      timeout="60000"/>
+
+</beans>

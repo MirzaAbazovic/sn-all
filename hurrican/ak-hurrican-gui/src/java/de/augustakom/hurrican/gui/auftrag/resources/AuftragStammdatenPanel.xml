@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Auftrags-Stammdaten Panel.
+-->
+<sf>
+
+    <Button name="print">
+        <text>Drucken</text>
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <tooltip>Sammelt alle relevanten Daten zu dem Auftrag und öffnet Word</tooltip>
+    </Button>
+
+    <Label name="auftrag.id">
+        <text>Tech. Auftragsnr.:</text>
+    </Label>
+    <FormattedTextField name="auftrag.id">
+        <tooltip>Auftragsnr. aus dem tech. System (Hurrican)</tooltip>
+        <columns>15</columns>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="vbz">
+        <text>Verbindungsbezeichnung (VBZ):</text>
+    </Label>
+    <TextField name="vbz">
+        <tooltip>Verbindungsbezeichnung, die dem Auftrag zugeordnet ist</tooltip>
+    </TextField>
+    <Button name="define.vbz">
+        <text>...</text>
+        <tooltip>Öffnet einen Dialog, um die Verbindungsbezeichnung zu ändern</tooltip>
+    </Button>
+
+    <Label name="produkt">
+        <text>Produkt (Hurrican):</text>
+    </Label>
+    <TextField name="produkt">
+        <tooltip>Produkt, das dem Auftrag zugeordnet ist</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="produkt.billing">
+        <text>Produkt (Billing):</text>
+    </Label>
+    <TextField name="produkt.billing">
+        <tooltip>Produktname aus dem Billing-System</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="status">
+        <text>Status:</text>
+    </Label>
+    <TextField name="status">
+        <tooltip>Aktueller Auftragstatus</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="verlauf.status">
+        <text>BA Status:</text>
+    </Label>
+    <TextField name="verlauf.status">
+        <tooltip>Zeigt den Bauauftrags-Status zu dem Auftrag an</tooltip>
+    </TextField>
+
+    <Label name="angebot.am">
+        <text>Angebot am:</text>
+    </Label>
+    <DateComponent name="angebot.am">
+        <tooltip>Datum, an dem das Angebot erstellt wurde (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="auftrag.am">
+        <text>Auftrag am:</text>
+    </Label>
+    <DateComponent name="auftrag.am">
+        <tooltip>Datum, an dem der Auftrag erstellt wurde (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="vorgabe.kunde">
+        <text>Vorgabe Kunde:</text>
+    </Label>
+    <DateComponent name="vorgabe.kunde">
+        <tooltip>Vorgabe des Kunden, an dem der Auftrag realisiert sein soll (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="vorgabe.am">
+        <text>Vorgabe AM:</text>
+    </Label>
+    <DateComponent name="vorgabe.am">
+        <tooltip>Vom AM bestimmtes Datum, zu dem der Auftrag realisiert werden soll (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="inbetriebnahme">
+        <text>Inbetriebnahme:</text>
+    </Label>
+    <DateComponent name="inbetriebnahme">
+        <tooltip>Datum, an dem der Auftrag in Betrieb genommen wurde (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="kuendigung">
+        <text>Kündigung:</text>
+    </Label>
+    <DateComponent name="kuendigung">
+        <tooltip>Datum, zu dem der Auftrag gekündigt wurde (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="prevent.cps.provisioning">
+        <text>keine CPS-Prov.:</text>
+    </Label>
+    <CheckBox name="prevent.cps.provisioning">
+        <tooltip>keine CPS-Provisionierung fuer diesen Auftrag (wenn Flag gesetzt)</tooltip>
+    </CheckBox>
+
+    <Label name="taifun.status.feed.back">
+        <text>Statusmeldungen:</text>
+    </Label>
+    <CheckBox name="taifun.status.feed.back">
+        <tooltip>Taifun Statusmeldungen aktivieren/deaktivieren</tooltip>
+    </CheckBox>
+
+    <Button name="lock.cps">
+        <icon>de/augustakom/hurrican/gui/images/locked.gif</icon>
+        <tooltip>Setzt den Auftrag auf 'CPS gesperrt'</tooltip>
+    </Button>
+
+    <Label name="niederlassung">
+        <text>Niederlassung:</text>
+    </Label>
+    <ComboBox name="niederlassung">
+        <tooltip>Zugeordnete Niederlassung</tooltip>
+    </ComboBox>
+
+    <Label name="billing.auftrag.no">
+        <text>Auftrag-Nr (Billing) / SAP ID:</text>
+    </Label>
+    <FormattedTextField name="billing.auftrag.no">
+        <tooltip>zugehörige Auftrags-Nr aus dem Billing-System</tooltip>
+        <format type="number">#########</format>
+        <columns>15</columns>
+    </FormattedTextField>
+    <TextField name="sap.id">
+        <tooltip>SAP ID aus Taifun zu dem Auftrag</tooltip>
+        <columns>12</columns>
+    </TextField>
+
+    <Label name="auftragsart">
+        <text>Auftragsart:</text>
+    </Label>
+    <ComboBox name="auftragsart">
+        <tooltip>Angabe der Auftragsart</tooltip>
+    </ComboBox>
+
+    <Label name="kunde.no.orig">
+        <text>Kunde__No:</text>
+    </Label>
+    <FormattedTextField name="kunde.no.orig">
+        <tooltip>original Kundennummer aus dem Billing-System</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="kunde.name">
+        <text>Name:</text>
+    </Label>
+    <TextField name="kunde.name">
+        <tooltip>Name des Kunden, dem der Auftrag zugeordnet ist</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="kunde.vorname">
+        <text>Vorname:</text>
+    </Label>
+    <TextField name="kunde.vorname">
+        <tooltip>Vorname des Kunden, dem der Auftrag zugeordnet ist</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="bestell.nr">
+        <text>Bestell-Nr:</text>
+    </Label>
+    <TextField name="bestell.nr">
+        <tooltip>Bestell-Nr des Kunden</tooltip>
+        <columns>15</columns>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="lbz.kunde">
+        <text>LBZ-Kunde:</text>
+    </Label>
+    <TextField name="lbz.kunde">
+        <tooltip>Leitungsbezeichnung beim Kunden</tooltip>
+        <columns>15</columns>
+        <maxchars>255</maxchars>
+    </TextField>
+
+    <Label name="bearbeiter">
+        <text>Bearbeiter:</text>
+    </Label>
+    <TextField name="bearbeiter">
+        <tooltip>Name des Bearbeiters, der den Auftrag ursprünglich angelegt hat</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="projektverantwortlicher">
+        <text>Hauptprojektverantwortl.:</text>
+    </Label>
+    <ComboBox name="projektverantwortlicher">
+        <tooltip>Bearbeiter, der hauptverantwortlich für die Projektierung ist.</tooltip>
+    </ComboBox>
+
+    <Label name="projektleiter">
+        <text>Projektleiter:</text>
+    </Label>
+    <ComboBox name="projektleiter">
+        <tooltip>Bearbeiter, der das Projekt leitet.</tooltip>
+    </ComboBox>
+
+    <Label name="bemerkung">
+        <text>Bemerkung:</text>
+    </Label>
+    <TextArea name="bemerkung">
+        <tooltip>Bemerkung zu dem Auftrag</tooltip>
+        <rows>5</rows>
+        <columns>30</columns>
+        <maxchars>1000</maxchars>
+    </TextArea>
+
+    <Label name="auto.sms.versand">
+        <text>SMS/E-Mail-Versand:</text>
+    </Label>
+    <CheckBox name="auto.sms.versand">
+        <tooltip>Automatischer SMS/E-Mail-Versand für WITA-Rückmeldungen</tooltip>
+    </CheckBox>
+
+    <Text name="buendel">Bündelaufträge</Text>
+    <Text name="verlauf">Bauaufträge</Text>
+
+</sf>

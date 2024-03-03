@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Beantwortung einer Abbruchmeldung
+-->
+<sf>
+
+    <Text name="dialog.title">Abbruchmeldung (ABBM) zur Stornoanfrage: %s</Text>
+
+    <Label name="dialog.info.label">
+        <text>Achtung:</text>
+    </Label>
+
+    <Label name="dialog.info.text">
+        <text>Stornoanfrage wird abgelehnt, dies kann nicht rückgängig gemacht werden!</text>
+    </Label>
+
+    <Label name="details.label">
+        <text>Details zur Abbruchmeldung</text>
+    </Label>
+
+    <Label name="sonstiges.label">
+        <text>Sonstiger Ablehnungsgrund:</text>
+    </Label>
+
+    <TextField name="sonstiges.text">
+        <columns>60</columns>
+        <maxchars>255</maxchars>
+    </TextField>
+
+    <Label name="sonstiges.exclusiv.label">
+        <text>Exklusiver Ablehnungsgrund:</text>
+    </Label>
+
+    <TextField name="sonstiges.exclusiv.grund">
+        <columns>60</columns>
+        <maxchars>255</maxchars>
+    </TextField>
+
+    <Text name="send.txt">ABBM senden</Text>
+    <Text name="send.tooltip">Abbruchmeldung zur Stornoanfrage wird versendet.</Text>
+
+    <Text name="cancel.txt">Abbrechen</Text>
+    <Text name="cancel.tooltip">Schließt den Dialog ohne eine Abbruchmeldung (ABBM) zu versenden.</Text>
+
+</sf>

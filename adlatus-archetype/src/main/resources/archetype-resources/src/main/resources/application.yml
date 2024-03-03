@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: ${SERVICE_NAME:adlatus-service}  # Name to register with Consul and use in Config server
+  cloud:
+    consul:
+      host: ${CONSUL_HOST:localhost}   # Consul agent host
+      port: ${CONSUL_PORT:8500}        # Consul agent port
+      discovery:
+        enabled: true
+        register: true
+        deregister: false
+        fail-fast: false
+  config:
+    import: "optional:configserver:${CONFIG_SERVER:http://localhost:8888}"  # Replace with your Config Server URL
+#local settings
+server:
+  port: 8080

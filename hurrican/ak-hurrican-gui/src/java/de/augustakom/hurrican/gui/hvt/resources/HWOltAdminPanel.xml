@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Administration der OLTs.
+-->
+<sf>
+
+    <Text name="title">OLT</Text>
+
+    <Label name="serial.no">
+        <text>Seriennummer:</text>
+    </Label>
+    <TextField name="serial.no">
+        <tooltip>Seriennummer der OLT</tooltip>
+        <columns>20</columns>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="qinq.von">
+        <text>QINQ von:</text>
+    </Label>
+    <TextField name="serial.no">
+        <tooltip>QINQ von</tooltip>
+        <columns>20</columns>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="qinq.bis">
+        <text>QINQ bis:</text>
+    </Label>
+    <TextField name="serial.no">
+        <tooltip>QINQ bis</tooltip>
+        <columns>20</columns>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="ip.netz.von">
+        <text>IP Netz von:</text>
+    </Label>
+    <TextField name="ip.netz.von">
+        <tooltip>IP Netz von</tooltip>
+        <columns>20</columns>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="olt.nr">
+        <text>Lfd. Nr. für VLAN-Berechnung:</text>
+    </Label>
+    <TextField name="olt.nr">
+        <tooltip>Diese lfd. Nr. darf nicht mehr verändert werden, da sonst alle berechteten VLANs der Aufträge neu
+            vergeben werden müssten
+        </tooltip>
+        <columns>20</columns>
+        <maxchars>3</maxchars>
+    </TextField>
+
+    <Label name="migriert">
+        <text>Mandantenfähig ab:</text>
+    </Label>
+    <DateComponent name="migriert">
+        <tooltip>Datum ab dem die OLT auf die mandantenfähige Netz-Topologie migriert ist</tooltip>
+    </DateComponent>
+
+    <Label name="svlan.offset">
+        <text>Alcatel SVLAN Offset:</text>
+    </Label>
+    <FormattedTextField name="svlan.offset">
+        <tooltip>Offset für die Alcatel SVLANOlt Berechnung (IAD und POTS)</tooltip>
+        <format type="number">######</format>
+    </FormattedTextField>
+
+    <Label name="olt.type">
+        <text>OLT Typ:</text>
+    </Label>
+    <TextField name="olt.type">
+        <tooltip>Typenbezeichnung</tooltip>
+        <columns>8</columns>
+        <maxchars>16</maxchars>
+    </TextField>
+
+</sf>

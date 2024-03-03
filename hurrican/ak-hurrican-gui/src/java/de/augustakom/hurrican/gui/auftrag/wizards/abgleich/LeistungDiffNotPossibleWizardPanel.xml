@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Anzeige von Problemen beim Leistungsabgleich.
+-->
+<sf>
+
+    <Label name="title"><text>Leistungsabgleich kann nicht durchgeführt werden! Gründe:</text></Label>
+	<TextArea name="diff.messages">
+		<tooltip>Anzeige von Gründen, wieso der Leistungsabgleich nicht durchgeführt werden kann.</tooltip>
+	</TextArea>
+    
+	<Label name="kuend.title"><text>Auftrag muss gekündigt und anschließend ein neuer Auftrag angelegt werden.</text></Label>
+	
+	<Label name="kuend.datum"><text>Kündigungsdatum für den Auftrag:</text></Label>
+	<DateComponent name="kuend.datum">
+		<tooltip>Kündigungsdatum für den Auftrag.</tooltip>
+		<columns>10</columns>
+	</DateComponent>
+    
+	<Text name="create.new.auftrag.title">Auftrag anlegen</Text>
+	<Text name="create.new.auftrag">Soll der neue Auftrag gleich angelegt werden?</Text>
+	
+</sf>

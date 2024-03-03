@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../base/modules/adlatus-gui
+
+namespace: adl-test
+nameSuffix: "-test"
+
+images: 
+- name: adlatus-gui
+  newName: docker.adl.dev.bitconex.com/bitconex-adlatus-gui
+  newTag: latest
+
+patches:
+  -  path: ./patches/ingress.yaml

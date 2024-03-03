@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema  xmlns:ns0="http://mnet.de/hurricanweb/command/customer/types"
+            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://mnet.de/hurricanweb/command/customer/types">
+
+    <xs:element name="CommandCustomerDataRequest" type="ns0:CommandCustomerDataRequest"/>
+    <xs:element name="CommandCustomerDataRequestResponse" type="ns0:CommandCustomerDataRequestResponse"/>
+    <xs:element name="CommandCustomerDataRequestFailure" type="ns0:CommandCustomerDataRequestFailure"/>
+
+    <xs:complexType name="CommandCustomerDataRequest">
+        <xs:sequence>
+            <xs:element name="networkElementId" type="xs:string"/>
+            <xs:element name="port" type="xs:string"/>
+            <xs:element name="datum" type="xs:date" nillable="true"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CommandCustomerDataRequestResponse">
+        <xs:sequence>
+            <xs:element name="networkElementId" type="xs:string"/>
+            <xs:element name="port" type="xs:string"/>
+            <xs:element name="kundeAnrede" type="xs:string"/>
+            <xs:element name="kundeName" type="xs:string"/>
+            <xs:element name="kundeVorname" type="xs:string"/>
+            <xs:element name="kundeTelefon" type="xs:string"/>
+            <xs:element name="kundeMobil" type="xs:string"/>
+            <xs:element name="kundeMail" type="xs:string"/>
+            <xs:element name="esAnrede" type="xs:string"/>
+            <xs:element name="esName" type="xs:string"/>
+            <xs:element name="esVorname" type="xs:string"/>
+            <xs:element name="esTelefon" type="xs:string"/>
+            <xs:element name="esMobil" type="xs:string"/>
+            <xs:element name="esMail" type="xs:string"/>
+            <xs:element name="anschlussdoseLage" type="xs:string"/>
+            <xs:element name="egTyp" type="xs:string"/>
+            <xs:element name="egSeriennummer" type="xs:string"/>
+            <xs:element name="egCwmpId" type="xs:string"/>
+            <xs:element name="auftragsnummerHurrican" type="xs:long"/>
+            <xs:element name="auftragsnummerTaifun" type="xs:long"/>
+            <xs:element name="vbz" type="xs:string"/>
+            <xs:element name="produkt" type="xs:string"/>
+            <xs:element name="auftragsstatus" type="xs:string"/>
+            <xs:element name="portstatus" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CommandCustomerDataRequestFailure">
+        <xs:sequence>
+            <xs:element name="networkElementId" type="xs:string"/>
+            <xs:element name="port" type="xs:string"/>
+            <xs:element name="errorMsg" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

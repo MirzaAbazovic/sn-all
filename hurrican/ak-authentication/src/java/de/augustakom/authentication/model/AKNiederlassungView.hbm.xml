@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse de.augustakom.authentication.model.AKNiederlassungView
+-->
+
+<hibernate-mapping package="de.augustakom.authentication.model">
+    <class name="AKNiederlassungView" table="V_NIEDERLASSUNG">
+
+        <id name="id" column="id" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+
+        <property name="name" column="TEXT" type="string" not-null="true"/>
+    </class>
+
+</hibernate-mapping>
+

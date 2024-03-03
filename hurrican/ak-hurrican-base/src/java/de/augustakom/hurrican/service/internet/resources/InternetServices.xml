@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer die Hurrican-Services
+im Internet-Bereich.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+     default-lazy-init="true">
+
+    <context:annotation-config />
+
+    <!-- Definition der Data-Source fuer die IP-Datenbank -->
+    <bean id="internet.DataSourceTarget" class="de.augustakom.common.tools.dao.jdbc.AKBasicDataSource" destroy-method="close"
+        autowire-candidate="false">
+        <property name="driverClassName"><value>${hurrican.monline.jdbc.driver}</value></property>
+        <property name="url"><value>${hurrican.monline.jdbc.url}</value></property>
+        <property name="username"><value>${hurrican.monline.jdbc.user}</value></property>
+        <property name="password"><value>${hurrican.monline.jdbc.password}</value></property>
+        <property name="maxActive"><value>${hurrican.monline.jdbc.max.active}</value></property>
+        <property name="maxIdle"><value>${hurrican.monline.jdbc.max.idle}</value></property>
+        <property name="maxWait"><value>${db.pool.default.timeout}</value></property>
+        <property name="validationQuery"><value>${db.pool.validation.query}</value></property>
+        <property name="validationQueryTimeout"><value>${db.pool.validation.query.timeout}</value></property>
+    </bean>
+    <!-- Interceptor, um das Default-Schema der Datenbank-Connection zu setzen. -->
+    <bean id="internet.setSchemaInterceptor" class="de.augustakom.common.tools.dao.SetDefaultSchemaInterceptor">
+        <property name="schemaName"><value>${hurrican.monline.schema}</value></property>
+    </bean>
+    <bean id="internet.DataSource" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces"><value>javax.sql.DataSource</value></property>
+        <property name="target" ref="internet.DataSourceTarget"/>
+        <property name="interceptorNames">
+            <list>
+                <value>internet.setSchemaInterceptor</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="internet.TransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="internet.DataSource" />
+    </bean>
+
+    <!-- ************************ Service-Definitionen ********************** -->
+
+
+    <bean id="de.augustakom.hurrican.service.internet.INetNumService" class="de.augustakom.hurrican.service.internet.impl.INetNumServiceImpl" />
+
+    <!-- ************************ DAO-Definitionen MUC ********************** -->
+   <bean id="internet.endgeraeteDao" class="de.augustakom.hurrican.dao.internet.impl.EndgeraeteDaoImpl">
+        <property name="dataSource" ref="internet.DataSource"/>
+    </bean>
+
+   <bean id="internet.inetNumDao" class="de.augustakom.hurrican.dao.internet.impl.INetNumDaoImpl">
+        <property name="dataSource" ref="internet.DataSource"/>
+    </bean>
+
+</beans>
+

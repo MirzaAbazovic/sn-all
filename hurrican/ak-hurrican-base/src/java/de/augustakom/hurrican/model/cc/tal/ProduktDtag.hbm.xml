@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.tal.ProduktDtag
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.tal">
+    <class name="ProduktDtag" table="T_PRODUKT_DTAG">
+
+        <cache usage="read-only"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="rangSsType" column="RANG_SS_TYPE" type="string"/>
+        <property name="produktDtag" column="PRODUKT_DTAG" type="integer"/>
+        <property name="b0102" column="B010_2" type="integer"/>
+        <property name="b0103" column="B010_3" type="string"/>
+        <property name="b0104" column="B010_4" type="string"/>
+    </class>
+
+</hibernate-mapping>

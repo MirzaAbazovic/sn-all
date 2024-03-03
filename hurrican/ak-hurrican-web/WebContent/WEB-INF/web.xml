@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+    version="2.5">
+    <display-name>Hurrican Web</display-name>
+    <description>Hurrican Web  -  by M-net Telekommunikations GmbH</description>
+
+    <!-- ContextLoaderListener definieren -->
+    <listener>
+        <!-- Listener fuer die Initialisierung der Spring-Services -->
+        <listener-class>de.mnet.hurrican.startup.InitHurricanServicesContextLoaderListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>getIpAddressInfo4NetId-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup>350</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>remoting-service</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>status-servlet</servlet-name>
+        <servlet-class>de.mnet.common.web.ApplicationStatusServlet</servlet-class>
+        <load-on-startup>20</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>version-servlet</servlet-name>
+        <servlet-class>de.mnet.common.web.VersionInfoServlet</servlet-class>
+        <load-on-startup>25</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>settings-servlet</servlet-name>
+        <servlet-class>de.mnet.common.web.SettingsListServlet</servlet-class>
+        <load-on-startup>25</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>dbConnectionPool-servlet</servlet-name>
+        <servlet-class>de.mnet.common.web.DbConnectionPoolServlet</servlet-class>
+        <load-on-startup>26</load-on-startup>
+    </servlet>
+
+    <servlet>
+    <servlet-name>alive-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup >100</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>loadtest-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup >200</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>sourceAgent-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup >50</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>orderWorkflow-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup >70</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>getReportingValues-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup >71</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>transferOrder-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup >72</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>commandLocationData-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup >300</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>commandPortData-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup >301</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>commandStiftData-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup >302</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>commandMDUData-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup >303</load-on-startup>
+    </servlet>
+
+     <servlet>
+        <servlet-name>commandCustomerData-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup >304</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>AvailabilityInformation-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup>305</load-on-startup>
+        <init-param>
+            <param-name>transformWsdlLocations</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>getCluster4GeoId-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup >306</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>wholesale-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup>360</load-on-startup>
+        <init-param>
+            <param-name>transformWsdlLocations</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>cps-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup>370</load-on-startup>
+        <init-param>
+            <param-name>transformWsdlLocations</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>tvfeed-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup>380</load-on-startup>
+        <init-param>
+            <param-name>transformWsdlLocations</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>tvprovider-service</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <load-on-startup>390</load-on-startup>
+        <init-param>
+            <param-name>transformWsdlLocations</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <description>Apache CXF Endpoint</description>
+        <display-name>cxf</display-name>
+        <servlet-name>cxf</servlet-name>
+        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>jolokia-agent</servlet-name>
+        <servlet-class>org.jolokia.http.AgentServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>jolokia-agent</servlet-name>
+        <url-pattern>/jolokia/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>getIpAddressInfo4NetId-service</servlet-name>
+        <url-pattern>/ipAddressInfo/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>remoting-service</servlet-name>
+        <url-pattern>/remoting/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>alive-service</servlet-name>
+        <url-pattern>/alive/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>loadtest-service</servlet-name>
+        <url-pattern>/loadtest/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>sourceAgent-service</servlet-name>
+        <url-pattern>/sourceAgent/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>orderWorkflow-service</servlet-name>
+        <url-pattern>/order/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>getReportingValues-service</servlet-name>
+        <url-pattern>/order/reporting/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>transferOrder-service</servlet-name>
+        <url-pattern>/order/transfer/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>commandLocationData-service</servlet-name>
+        <url-pattern>/command/location/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>commandPortData-service</servlet-name>
+        <url-pattern>/command/port/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>commandStiftData-service</servlet-name>
+        <url-pattern>/command/stift/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>commandMDUData-service</servlet-name>
+        <url-pattern>/command/mdu/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>commandCustomerData-service</servlet-name>
+        <url-pattern>/command/customer/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AvailabilityInformation-service</servlet-name>
+        <url-pattern>/availability/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>getCluster4GeoId-service</servlet-name>
+        <url-pattern>/geoid/cluster/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>status-servlet</servlet-name>
+        <url-pattern>/status</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>version-servlet</servlet-name>
+        <url-pattern>/version</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>settings-servlet</servlet-name>
+        <url-pattern>/settings</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>dbConnectionPool-servlet</servlet-name>
+        <url-pattern>/dbConnectionPool</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>wholesale-service</servlet-name>
+        <url-pattern>/wholesale/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>cps-service</servlet-name>
+        <url-pattern>/cps/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>tvfeed-service</servlet-name>
+        <url-pattern>/tvfeed/*</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet-mapping>
+        <servlet-name>tvprovider-service</servlet-name>
+        <url-pattern>/tvprovider/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>cxf</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog, um die Telefonbuch-Flags fuer einen best. Auftrag
+zu editieren.
+-->
+<sf>
+    
+    <Label name="title"><text>Telefonbucheintrag für:</text></Label>
+    
+    <Label name="telbuch"><text>Telefonbucheintrag:</text></Label>
+    <ComboBox name="telbuch">
+        <tooltip>Angabe, ob der Telefonbucheintrag erledigt ist oder nicht gewünscht wurde</tooltip>
+    </ComboBox>
+    
+    <Label name="invers"><text>Inverssuche:</text></Label>
+    <ComboBox name="invers">
+        <tooltip>Angabe, ob die Rufnummer für die Inverssuche freigeschaltet ist</tooltip>
+    </ComboBox>
+    
+</sf>

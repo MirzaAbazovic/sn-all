@@ -1,0 +1,34 @@
+server:
+  port: '8080'
+spring:
+  jackson:
+    date-format: de.bitconex.tmf.rom.RFC3339DateFormat
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: 'false'
+  data:
+    mongodb:
+      database: resource_order
+      port: '27017'
+      host: localhost
+hub:
+  notificator:
+    debug: true
+  eventRegistrationService: EventRegistrationServiceMongo
+logging:
+  level:
+    org:
+      springframework: DEBUG
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,refresh"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true

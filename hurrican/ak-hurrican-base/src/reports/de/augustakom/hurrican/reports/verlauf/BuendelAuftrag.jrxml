@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="BuendelAuftrag" language="java" pageWidth="340" pageHeight="128" columnWidth="340" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+    <property name="com.jasperassistant.designer.GridHeight" value="12"/>
+    <property name="com.jasperassistant.designer.GridWidth" value="12"/>
+    <property name="com.jasperassistant.designer.DataSource" value="emptyDS"/>
+    <property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+    <property name="com.jasperassistant.designer.Units" value="Millimeters"/>
+    <property name="com.jasperassistant.designer.Grid" value="true"/>
+    <reportFont name="Font_Default" isDefault="true" fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+    <field name="PRODUKT" class="java.lang.String">
+    </field>
+    <field name="VBZ" class="java.lang.String">
+    </field>
+    <variable name="COUNTER" class="java.lang.Integer" resetType="Column" incrementType="Column" calculation="Count">
+    </variable>
+    <detail>
+        <band height="11">
+            <textField>
+                <reportElement positionType="Float" x="67" y="0" width="252" height="11"/>
+                <textElement>
+                    <font pdfFontName="Helvetica"/>
+                </textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[""+$F{VBZ}+" "+(($F{PRODUKT} != null) ? " ("+$F{PRODUKT}+")" : "")]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement positionType="Float" x="0" y="0" width="64" height="11">
+                    <printWhenExpression><![CDATA[($V{COUNTER} != null && $V{COUNTER}.intValue() < 1) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+                </reportElement>
+                <textElement>
+                    <font pdfFontName="Helvetica"/>
+                </textElement>
+                <text><![CDATA[Bündel-Aufträge:]]></text>
+            </staticText>
+        </band>
+    </detail>
+</jasperReport>

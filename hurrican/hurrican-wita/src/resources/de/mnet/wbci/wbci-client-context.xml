@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring App-Context Definition fuer den WBCI Client Bereich. -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+
+    <bean id="de.mnet.wbci.service.WbciWitaServiceFacade" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciWitaServiceFacade</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciWitaServiceFacade</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciAutomationService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciAutomationService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciAutomationService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciAutomationDonatingService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciAutomationDonatingService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciAutomationDonatingService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciAutomationTxHelperService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciAutomationTxHelperService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciAutomationTxHelperService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciCommonService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciCommonService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciCommonService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciDeadlineService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciDeadlineService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciDeadlineService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciEscalationService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciEscalationService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciEscalationService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciKuendigungsService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciKuendigungsService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciKuendigungsService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciDecisionService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciDecisionService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciDecisionService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciGeschaeftsfallService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciGeschaeftsfallService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciGeschaeftsfallService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciElektraService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciElektraService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciElektraService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciMeldungService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciMeldungService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciMeldungService</value>
+        </property>
+    </bean>
+
+    <bean id="WbciVaKueMrnService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciVaKueMrnService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciVaService</value>
+        </property>
+    </bean>
+
+    <bean id="WbciVaKueOrnService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciVaKueOrnService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciVaService</value>
+        </property>
+    </bean>
+
+    <bean id="WbciVaRrnpService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciVaRrnpService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciVaService</value>
+        </property>
+    </bean>
+
+    <bean id="WbciTvService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciTvService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciTvService</value>
+        </property>
+    </bean>
+
+    <bean id="WbciRequestService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciRequestService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciRequestService</value>
+        </property>
+    </bean>
+
+    <bean id="WbciStornoService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciStornoService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciStornoService</value>
+        </property>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciValidationService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/wbci/WbciValidationService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.wbci.service.WbciValidationService</value>
+        </property>
+    </bean>
+
+</beans>

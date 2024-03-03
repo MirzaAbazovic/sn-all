@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="TransferOrder" resourceRoot="" soapui-version="3.6.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="TransferOrderWebServiceSoap11" type="wsdl" bindingName="{http://mnet.de/hurricanweb/order/transfer/types/}TransferOrderWebServiceSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/hurricanweb/order/transfer/hurricanTransferOrder.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/hurricanweb/order/transfer/hurricanTransferOrder.wsdl"><con:part><con:url>http://localhost:8080/hurricanweb/order/transfer/hurricanTransferOrder.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://mnet.de/hurricanweb/order/transfer/types/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://mnet.de/hurricanweb/order/transfer/types" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://mnet.de/hurricanweb/order/transfer/types/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://mnet.de/hurricanweb/order/transfer/types" xmlns:ns0="http://mnet.de/hurricanweb/order/transfer/types" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="TransferOrderType" type="ns0:TransferOrderType"/>
+      <xs:element name="TransferOrderTypeAcknowledgement" type="ns0:TransferOrderTypeAcknowledgement"/>
+      <xs:complexType name="TransferOrderType">
+        <xs:sequence>
+          <xs:element name="sourceOrderNumber" type="xs:long"/>
+          <xs:element name="sourceCustomerNumber" type="xs:long"/>
+          <xs:element name="targetCustomerNumber" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TransferOrderTypeAcknowledgement">
+        <xs:sequence>
+          <xs:element name="transferSuccessful" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="TransferOrderTypeAcknowledgement">
+    <wsdl:part element="sch:TransferOrderTypeAcknowledgement" name="TransferOrderTypeAcknowledgement"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TransferOrderType">
+    <wsdl:part element="sch:TransferOrderType" name="TransferOrderType"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="TransferOrderWebService">
+    <wsdl:operation name="TransferOrder">
+      <wsdl:input message="tns:TransferOrderType" name="TransferOrderType"></wsdl:input>
+      <wsdl:output message="tns:TransferOrderTypeAcknowledgement" name="TransferOrderTypeAcknowledgement"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TransferOrderWebServiceSoap11" type="tns:TransferOrderWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="TransferOrder">
+      <soap:operation soapAction="transferOrderRequest"/>
+      <wsdl:input name="TransferOrderType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TransferOrderTypeAcknowledgement">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TransferOrder">
+    <wsdl:port binding="tns:TransferOrderWebServiceSoap11" name="TransferOrderWebServiceSoap11">
+      <soap:address location="http://localhost:8080/hurricanweb/order/transfer"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/hurricanweb/order/transfer</con:endpoint></con:endpoints><con:operation isOneWay="false" action="transferOrderRequest" name="TransferOrder" bindingOperationName="TransferOrder" type="Request-Response" outputName="TransferOrderTypeAcknowledgement" inputName="TransferOrderType" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/hurricanweb/order/transfer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/order/transfer/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:TransferOrderType>
+         <typ:sourceOrderNumber>?</typ:sourceOrderNumber>
+         <typ:sourceCustomerNumber>?</typ:sourceCustomerNumber>
+         <typ:targetCustomerNumber>?</typ:targetCustomerNumber>
+      </typ:TransferOrderType>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="transferOrderRequest"/></con:call></con:operation></con:interface><con:testSuite name="TransferOrder TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TransferOrder TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="TransferOrder"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>TransferOrderWebServiceSoap11</con:interface><con:operation>TransferOrder</con:operation><con:request name="TransferOrder"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/hurricanweb/order/transfer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/order/transfer/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:TransferOrderType>
+         <typ:sourceOrderNumber>?</typ:sourceOrderNumber>
+         <typ:sourceCustomerNumber>?</typ:sourceCustomerNumber>
+         <typ:targetCustomerNumber>?</typ:targetCustomerNumber>
+      </typ:TransferOrderType>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig action="transferOrderRequest"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/></con:soapui-project>

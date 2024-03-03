@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer ein Panel um Physikdaten zurueckzumelden.
+-->
+<sf>
+
+    <Label name="zusatz"><text>Zusatzaufwand:</text></Label>
+    <ReferenceField name="zusatz">
+        <tooltip>Auswahl, ob ein Zusatzaufwand angefallen ist</tooltip>
+        <id.property>strValue</id.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+</sf>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    GUI-Definitionen fuer das Panel mit den Leitungsnummern.
+-->
+<sf>
+    <Button name="panel.button.new">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Neue Leitungsnummer für die Endstelle anlegen</tooltip>
+    </Button>
+
+    <Button name="panel.button.delete">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Entfernt die selektierte Leitungsnummer für diese Endstelle</tooltip>
+    </Button>
+
+    <Label name="dialog.label.typ"><text>Typ*:</text></Label>
+    <ComboBox name="dialog.combobox.typ">
+        <tooltip>Typ der Leitungsnummer</tooltip>
+    </ComboBox>
+
+    <Label name="dialog.label.leitungsnummer"><text>Leitungsnummer*:</text></Label>
+    <TextField name="dialog.textfield.leitungsnummer">
+        <tooltip>Bezeichnung der Leitungsnummer</tooltip>
+        <maxchars>300</maxchars>
+        <columns>50</columns>
+    </TextField>
+
+    <Text name="dialog.title.create">Leitungsnummer anlegen</Text>
+    <Text name="dialog.title.change">Leitungsnummer ändern</Text>
+</sf>

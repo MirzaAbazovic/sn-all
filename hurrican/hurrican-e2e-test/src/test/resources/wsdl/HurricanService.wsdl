@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://www.mnet.de/hurrican/wholesale/workflow/1.0/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.mnet.de/hurrican/wholesale/workflow/1.0/" targetNamespace="http://www.mnet.de/hurrican/wholesale/workflow/1.0/">
+  <wsdl:types xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wholesale="http://www.mnet.de/hurrican/wholesale/common/1.0/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.mnet.de/hurrican/wholesale/workflow/1.0/" xmlns:tns="http://www.mnet.de/hurrican/wholesale/workflow/1.0/">
+    <xsd:import namespace="http://www.mnet.de/hurrican/wholesale/common/1.0/" schemaLocation="wholesale-common.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+    <xsd:element name="reservePortRequest" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="extOrderId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="ekp" type="tns:ekp" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="0" name="reseller" type="tns:ekp" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="geoId" type="xsd:long" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="product" type="tns:product" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="desiredExecutionDate" type="xsd:date" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="reservePortResponse" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="lineId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="executionDate" type="xsd:date" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="releasePortRequest" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="lineId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="releasePortResponse" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="executionDate" type="xsd:date" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="modifyPortRequest" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="lineId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="ekp" type="tns:ekp" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="0" name="reseller" type="tns:ekp" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="product" type="tns:product" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="desiredExecutionDate" type="xsd:date" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="changeOfPortAllowed" type="xsd:boolean" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="modifyPortResponse" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="lineId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="executionDate" type="xsd:date" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="portChanged" type="xsd:boolean" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="cancelModifyPortRequest" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="lineId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                    <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                        <xsd:documentation xmlns:xsd="http://www.w3.org/2001/XMLSchema">The LineId returned by modifyPort</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="cancelModifyPortResponse" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="previousLineId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                    <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                        <xsd:documentation xmlns:xsd="http://www.w3.org/2001/XMLSchema">The lineId before modifyPort was sent</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getOrderParametersResponse" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="techLocation" type="tns:techLocation" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="onkz" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="asb" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="techType" type="tns:techType" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="manufacturer" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="gponPort" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="portId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="mduType" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="mduName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="mduSerialNumber" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="mduLocation" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="oltName" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="bgPort" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="portType" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="buchtLeisteStift" type="tns:buchtLeisteStift" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="upStream" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                    <xsd:simpleType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                        <xsd:restriction base="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                            <xsd:minInclusive value="1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element maxOccurs="1" minOccurs="1" name="downStream" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                    <xsd:simpleType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                        <xsd:restriction base="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                            <xsd:minInclusive value="1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+                <xsd:element maxOccurs="1" minOccurs="0" name="targetMargin" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="vdslProfile" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="4" minOccurs="0" name="pbit" type="tns:pbit" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="unbounded" minOccurs="1" name="vlans" type="tns:VLAN" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="a10nsp" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="a10nspPort" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getOrderParametersRequest" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="lineId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="executionDate" type="xsd:date" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="modifyPortReservationDateRequest" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="lineId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="desiredExecutionDate" type="xsd:date" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="modifyPortReservationDateResponse" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="executionDate" type="xsd:date" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="reservePortFault" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:complexContent xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:extension base="wholesale:fault" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="releasePortFault" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:complexContent xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:extension base="wholesale:fault" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="modifyPortFault" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:complexContent xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:extension base="wholesale:fault" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getOrderParametersFault" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:complexContent xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:extension base="wholesale:fault" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="modifyPortReservationDateFault" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:complexContent xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:extension base="wholesale:fault" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="cancelModifyPortFault" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:complexContent xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:extension base="wholesale:fault" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:complexType name="VLAN" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:element name="service" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element name="type" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element name="cvlan" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element name="svlan" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element name="svlan_backbone" type="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element minOccurs="0" name="ips" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="pbit" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:all xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:element name="service" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element name="limit" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                    <xsd:documentation xmlns:xsd="http://www.w3.org/2001/XMLSchema">The limit in kbit/s</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                    <xsd:restriction base="xsd:int" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                        <xsd:minExclusive value="1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:complexType name="techLocation" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:element name="name" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element name="street" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="housenum" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="zipcode" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element name="city" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="buchtLeisteStift" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:element maxOccurs="1" minOccurs="0" name="bucht" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="leiste" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element maxOccurs="1" minOccurs="0" name="stift" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="techType" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:restriction base="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:enumeration value="FTTB" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="FTTC" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="FTTH" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="productGroup" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:restriction base="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:minLength value="1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:maxLength value="100" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="FTTB BSA" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="FTTH BSA" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="FTTC BSA" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="productName" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:restriction base="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:minLength value="1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:maxLength value="100" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="FTTB 16" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="FTTB 25" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="FTTB 50" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="FTTB 100" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="FTTH 16" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="FTTH 25" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="FTTH 50" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="FTTH 100" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="FTTC 16" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="FTTC 25" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="FTTC 50" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="serviceAttribute" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:restriction base="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:minLength value="1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:maxLength value="100" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="TP" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="DU" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="ExpEnt" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:enumeration value="Premium" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="product" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:element maxOccurs="1" minOccurs="1" name="productGroup" type="tns:productGroup" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+            <xsd:element maxOccurs="1" minOccurs="1" name="productName" type="tns:productName" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            </xsd:element>
+            <xsd:element maxOccurs="1" minOccurs="0" name="productAttributes" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:complexType xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                    <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                        <xsd:element maxOccurs="unbounded" minOccurs="1" name="serviceAttribute" type="tns:serviceAttribute" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ekp" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <xsd:sequence xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                <xsd:element maxOccurs="1" minOccurs="1" name="id" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+                <xsd:element maxOccurs="1" minOccurs="1" name="frameContractId" type="xsd:string" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="reservePortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:reservePortFault" name="reservePortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="releasePortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:releasePortResponse" name="releasePortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="releasePortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:releasePortFault" name="releasePortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrderParametersResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:getOrderParametersResponse" name="getOrderParametersResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modifyPortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:modifyPortRequest" name="modifyPortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="reservePortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:reservePortResponse" name="reservePortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cancelModifyPortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:cancelModifyPortRequest" name="cancelModifyPortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrderParametersRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:getOrderParametersRequest" name="getOrderParametersRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cancelModifyPortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:cancelModifyPortFault" name="cancelModifyPortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modifyPortReservationDateFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:modifyPortReservationDateFault" name="modifyPortReservationDateFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOrderParametersFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:getOrderParametersFault" name="getOrderParametersFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="reservePortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:reservePortRequest" name="reservePortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modifyPortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:modifyPortResponse" name="modifyPortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modifyPortReservationDateResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:modifyPortReservationDateResponse" name="modifyPortReservationDateResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="releasePortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:releasePortRequest" name="releasePortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="cancelModifyPortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:cancelModifyPortResponse" name="cancelModifyPortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modifyPortReservationDateRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:modifyPortReservationDateRequest" name="modifyPortReservationDateRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="modifyPortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:part element="tns:modifyPortFault" name="modifyPortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HurricanService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:operation name="reservePort" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:reservePortRequest" name="reservePortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:reservePortResponse" name="reservePortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+      <wsdl:fault message="tns:reservePortFault" name="reservePortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="releasePort" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:releasePortRequest" name="releasePortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:releasePortResponse" name="releasePortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+      <wsdl:fault message="tns:releasePortFault" name="releasePortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getOrderParameters" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:getOrderParametersRequest" name="getOrderParametersRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:getOrderParametersResponse" name="getOrderParametersResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+      <wsdl:fault message="tns:getOrderParametersFault" name="getOrderParametersFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="modifyPort" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:modifyPortRequest" name="modifyPortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:modifyPortResponse" name="modifyPortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+      <wsdl:fault message="tns:modifyPortFault" name="modifyPortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="cancelModifyPort" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:cancelModifyPortRequest" name="cancelModifyPortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:cancelModifyPortResponse" name="cancelModifyPortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+      <wsdl:fault message="tns:cancelModifyPortFault" name="cancelModifyPortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="modifyPortReservationDate" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <wsdl:input message="tns:modifyPortReservationDateRequest" name="modifyPortReservationDateRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:input>
+      <wsdl:output message="tns:modifyPortReservationDateResponse" name="modifyPortReservationDateResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:output>
+      <wsdl:fault message="tns:modifyPortReservationDateFault" name="modifyPortReservationDateFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HurricanServiceSoap11" type="tns:HurricanService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    <wsdl:operation name="reservePort" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="reservePort" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="reservePortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="reservePortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+      <wsdl:fault name="reservePortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:fault name="reservePortFault" use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="releasePort" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="releasePort" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="releasePortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="releasePortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+      <wsdl:fault name="releasePortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:fault name="releasePortFault" use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getOrderParameters" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="getOrderParameters" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="getOrderParametersRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="getOrderParametersResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+      <wsdl:fault name="getOrderParametersFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:fault name="getOrderParametersFault" use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="modifyPort" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="modifyPort" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="modifyPortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="modifyPortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+      <wsdl:fault name="modifyPortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:fault name="modifyPortFault" use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="cancelModifyPort" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="cancelModifyPortRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="cancelModifyPortResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+      <wsdl:fault name="cancelModifyPortFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:fault name="cancelModifyPortFault" use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="modifyPortReservationDate" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:operation soapAction="modifyPortReservationDate" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      <wsdl:input name="modifyPortReservationDateRequest" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:input>
+      <wsdl:output name="modifyPortReservationDateResponse" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:body use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:output>
+      <wsdl:fault name="modifyPortReservationDateFault" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+        <soap:fault name="modifyPortReservationDateFault" use="literal" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HurricanService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:port binding="tns:HurricanServiceSoap11" name="HurricanServiceSoap11" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <soap:address location="http://localhost:8080/hurricanweb/wholesale" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

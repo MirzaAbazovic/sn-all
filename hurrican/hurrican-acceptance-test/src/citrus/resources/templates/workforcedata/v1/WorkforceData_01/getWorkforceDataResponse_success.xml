@@ -1,0 +1,6 @@
+<workforceDataResponse xmlns="http://mnet.de/hurrican/resource/workforceDataService/v1">
+    <activityType>RTL_Entstoerung</activityType>
+    <qualification>Endkundenservice FTTB</qualification>
+    <plannedDuration>60</plannedDuration>
+    <techParams>@ignore@</techParams>
+</workforceDataResponse>

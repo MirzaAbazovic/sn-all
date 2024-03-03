@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.SperreInfo
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="SperreInfo" table="T_SPERRE_INFO">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_SPERRE_INFO_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <property name="abteilungId" column="ABTEILUNG_ID" type="long" not-null="true"/>
+        <property name="email" column="EMAIL" type="string" not-null="true"/>
+        <property name="active" column="ACTIVE" type="boolean"/>
+
+    </class>
+
+</hibernate-mapping>

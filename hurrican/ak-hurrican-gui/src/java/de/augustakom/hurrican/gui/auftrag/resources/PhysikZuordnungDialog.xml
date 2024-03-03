@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog, ueber den einer Endstelle eine
+Physik (=Rangierung) zugewiesen werden kann.
+-->
+<sf>
+
+    <Text name="title">Physik zuordnen</Text>
+
+    <Text name="ok.text">Zuordnen</Text>
+    <Text name="ok.tooltip">Ordnet die selektierte Rangierung der Endstelle zu</Text>
+
+    <Label name="hvt.standort"><text>HVT Standort:</text></Label>
+    <ReferenceField name="hvt.standort">
+        <tooltip>Auswahl des HVT-Standorts, an dem nach freien Rangierungen gesucht werden soll</tooltip>
+        <columns>25</columns>
+        <id.property>hvtIdStandort</id.property>
+        <name.property>ortsteil</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.view.HVTGruppeStdView</reference.class>
+        <selection.dialog.class>de.augustakom.hurrican.gui.hvt.HVTSelectionDialog</selection.dialog.class>
+    </ReferenceField>
+
+    <Label name="hw.port"><text>HW-Port:</text></Label>
+    <ComboBox name="hw.port">
+        <tooltip>Selektion</tooltip>
+    </ComboBox>
+
+    <Label name="kvz.nummer"><text>KVZ Nummer:</text></Label>
+    <TextField name="kvz.nummer">
+        <tooltip>KVZ Nummer des techn. Standortes der Endstelle (sofern KVZ Standort)</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="rangierungen"><text>Freie Rangierungen:</text></Label>
+
+    <Button name="filter">
+        <text>Aktualisieren</text>
+        <tooltip>Aktualisiert Darstellung</tooltip>
+    </Button>
+
+    <Text name="save.question.title">Physik zuordnen?</Text>
+    <Text name="save.question.msg">Wollen Sie die gewählte Physik (EQN: {0})
+wirklich der Endstelle zuordnen?</Text>
+
+</sf>

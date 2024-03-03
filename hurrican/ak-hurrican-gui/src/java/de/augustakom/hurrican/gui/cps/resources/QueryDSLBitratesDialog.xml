@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GUI-Definitionen fuer den DSL Bitraten Dialog -->
+<sf>
+    <Text name="title">DSL Bitraten Ampel für Auftrag </Text>
+    <Text name="btn.close.tooltip">Schliesst den Dialog</Text>
+    <Text name="btn.close.text">Schließen</Text>
+    <Text name="progress.text">Abfrage an CPS läuft...</Text>
+
+    <Text name="result.yellow">Da die Bitraten momentan nicht ermittelbar sind, muss die Prüfung manuell (durch Technik) erfolgen!</Text>
+    <Text name="result.green">Anschlussübernahme durchführen, da die Leitung und nicht der Port die Bitrate begrenzt (schnellerer Port führt zu keiner höheren Bitrate)!</Text>
+    <Text name="result.red">Anschlussübernahme sollte nicht durchgeführt werden, da ein schnellerer Port höhere Bitraten ermöglichen würde!</Text>
+    <Text name="result.out">Daten nicht oder nicht vollständig zur Anzeige verfügbar</Text>
+
+    <Label name="tf.downstream"><text>max. Downstream Bitrate (KBit/s):</text></Label>
+    <FormattedTextField name="tf.downstream">
+        <tooltip>Maximaler erreichbarer Downstream</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="tf.upstream"><text>max. Upstream Bitrate (KBit/s):</text></Label>
+    <FormattedTextField name="tf.upstream">
+        <tooltip>Maximaler erreichbarer Upstream</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="lbl.ampel"><text></text></Label>
+    <TextArea name="ta.result">
+        <tooltip>Entscheidung ob Anschlussübernahme möglich, basiert auf Schwellwert aus Datenbank</tooltip>
+        <fontstyle>bold</fontstyle>
+        <wordwrap>true</wordwrap>
+        <columns>20</columns>
+        <rows>4</rows>
+    </TextArea>
+</sf>

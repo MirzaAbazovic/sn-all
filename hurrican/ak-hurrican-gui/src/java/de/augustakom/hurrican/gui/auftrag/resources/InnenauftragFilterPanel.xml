@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Innenauftrags-Filterpanel.
+-->
+<sf>
+    
+    <Label name="ia.nummer"><text>Innenauftrags-Nr:</text></Label>
+    <TextField name="ia.nummer">
+        <tooltip>Angabe der Innenauftrags-Nummer</tooltip>
+        <columns>15</columns>
+    </TextField>
+	
+	<Label name="bedarfs.nr"><text>Bedarfs-Nr:</text></Label>
+    <TextField name="bedarfs.nr">
+        <tooltip>Angabe der Bedarfs-Nummer</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+</sf>

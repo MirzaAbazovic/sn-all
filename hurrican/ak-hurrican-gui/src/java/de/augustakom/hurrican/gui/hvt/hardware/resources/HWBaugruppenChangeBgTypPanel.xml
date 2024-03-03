@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit Baugruppen-Schwenks vom Typ 'Baugruppentyp aendern'.
+-->
+<sf>
+
+    <Label name="source.bgs"><text>alte Baugruppe</text></Label>
+
+    <Button name="add.source.bg">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Oeffnet einen Dialog, um eine weitere Baugruppe auszuwählen</tooltip>
+    </Button>
+
+    <Button name="remove.source.bg">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Entfernt die selektierte Baugruppe</tooltip>
+    </Button>
+
+    <Label name="hw.baugruppe.typ.new"><text>Baugruppentyp (neu):</text></Label>
+    <ReferenceField name="hw.baugruppe.typ.new">
+        <columns>15</columns>
+        <tooltip>Angabe des neuen Baugruppen-Typs</tooltip>
+        <id.property>id</id.property>
+        <name.property>name</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.hardware.HWBaugruppenTyp</reference.class>
+    </ReferenceField>
+
+    <Button name="load.ports">
+        <icon>de/augustakom/hurrican/gui/images/matrix.gif</icon>
+        <text>Ports ermitteln</text>
+        <tooltip>Ermittelt die Ports (und Auftraege), die von der BG-Typ Aenderung betroffen sind</tooltip>
+    </Button>
+
+</sf>

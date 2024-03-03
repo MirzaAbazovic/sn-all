@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Kuendigungs-Panel.
+-->
+<sf>
+
+    <Label name="title"><text></text></Label>
+    <Text name="title.text">Wenn sie folgende Aufträge wirklich zum {0} kündigen wollen, bestätigen Sie dies bitte mit 'Fertigstellen'.</Text>
+
+    <List name="auftraege">
+        <tooltip>IDs (aus Hurrican) der zu kündigenden Aufträge</tooltip>
+    </List>
+
+</sf>

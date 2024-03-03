@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wfns:notifyOrderFeedback xmlns:wfns="http://www.mnet.de/esb/cdm/Resource/WorkforceNotificationService/v1">
+    <wfns:orderId>${orderId}</wfns:orderId>
+    <wfns:workUnit>citrus:randomNumber(7)</wfns:workUnit>
+    <wfns:captured>citrus:currentDate('yyyy-MM-dd'T'HH:mm:00')</wfns:captured>
+    <wfns:material>
+        <wfns:id>citrus:randomNumber(10)</wfns:id>
+        <wfns:serialNumber>citrus:concat('100', citrus:randomString(4), '001')</wfns:serialNumber>
+        <wfns:summary>TAE Dose</wfns:summary>
+        <wfns:description>Material Description</wfns:description>
+        <wfns:quantity>1.0</wfns:quantity>
+    </wfns:material>
+</wfns:notifyOrderFeedback>

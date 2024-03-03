@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Administration der HW-DLUs.
+-->
+<sf>
+
+    <Label name="type"><text>DLU-Typ:</text></Label>
+    <ReferenceField name="type">
+        <tooltip>Typ des Racks</tooltip>
+        <id.property>strValue</id.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="number"><text>Nummer:</text></Label>
+    <TextField name="number">
+        <tooltip>Nummer der DLU</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="switch"><text>Switch:</text></Label>
+    <TextField name="switch">
+        <tooltip>Switch-Bezeichnung</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="mg.name"><text>Media-Gateway (HiG):</text></Label>
+    <TextField name="mg.name">
+        <tooltip>Bezeichnung des Media-Gateways</tooltip>
+        <columns>50</columns>
+    </TextField>
+
+    <Label name="access.controller"><text>Access Controller (HiG):</text></Label>
+    <TextField name="access.controller">
+        <tooltip>Bezeichnung des Access Controllers</tooltip>
+        <columns>50</columns>
+        <maxchars>50</maxchars>
+    </TextField>
+
+</sf>

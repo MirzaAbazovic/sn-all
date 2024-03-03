@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.mnet.migration.hurrican</groupId>
+    <artifactId>hurrican-migrations</artifactId>
+    <name>${project.artifactId}</name>
+
+    <parent>
+        <groupId>de.mnet.hurrican</groupId>
+        <artifactId>hurrican-parent</artifactId>
+        <version>27.0.0-SNAPSHOT</version>
+        <relativePath>../parent</relativePath>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <dbMaintainer.executedScriptsTableName>DBMAINTAIN_MIGRATIONS</dbMaintainer.executedScriptsTableName>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>de.mnet.hurrican</groupId>
+            <artifactId>ak-hurrican-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.mnet.hurrican</groupId>
+            <artifactId>hurrican-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.mnet.hurrican</groupId>
+            <artifactId>hurrican-wita</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.mnet.hurrican</groupId>
+            <artifactId>mnet-wita-wsdl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>de.mnet.migration</groupId>
+            <artifactId>common-migration</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.xbean</groupId>
+            <artifactId>xbean-spring</artifactId>
+        </dependency>
+
+        <!-- Test dependencies -->
+
+        <dependency>
+            <groupId>de.mnet.hurrican</groupId>
+            <artifactId>ak-commons</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.mnet.migration</groupId>
+            <artifactId>common-migration</artifactId>
+            <type>test-jar</type>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>dbMaintain</id>
+            <activation>
+                <property>
+                    <!-- use -DskipDbMaintain in CMD LINE to skip DBMaintain -->
+                    <name>!skipDbMaintain</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.dbmaintain</groupId>
+                        <artifactId>dbmaintain-maven-plugin</artifactId>
+                        <configuration>
+
+                            <databases>
+                                <database>
+                                    <driverClassName>oracle.jdbc.driver.OracleDriver</driverClassName>
+                                    <userName>${db.hurrican.user.schema}</userName>
+                                    <password>${db.hurrican.user.password}</password>
+                                    <url>${db.dbmaintain.hurrican.jdbc.url}</url>
+                                    <schemaNames>${db.hurrican.user.schema}</schemaNames>
+                                </database>
+                            </databases>
+                            <scriptLocations>${basedir}/src/dbmaintain/hurrican</scriptLocations>
+                            <allowOutOfSequenceExecutionOfPatches>${dbmaintain.allowOutOfSequenceExecutionOfPatches}
+                            </allowOutOfSequenceExecutionOfPatches>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>ccHuaweiMigration</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <!-- CDM Transformation Tool: execute for generating Atlas ESB CDM message templates -->
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <configuration>
+                            <mainClass>de.mnet.migration.hurrican.cchuawei.CcHuaweiTransformator</mainClass>
+                            <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+ 
+        <profile>
+            <id>equipmentHwSwitchMigration</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <configuration>
+                            <mainClass>de.mnet.migration.hurrican.hwswitch.EquipmentHwSwitchTransformer</mainClass>
+                            <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>accessAddressMigration</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <configuration>
+                            <mainClass>de.mnet.migration.hurrican.accessaddress.AccessAddressTransformator</mainClass>
+                            <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>TALBestellungenFFM</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <configuration>
+                            <mainClass>de.mnet.migration.hurrican.talbestellungenffm.TALBestellungenFFMTransformer</mainClass>
+                            <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>AccountEvn</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <configuration>
+                            <mainClass>de.mnet.migration.hurrican.evn.AccountEvnTransformer</mainClass>
+                            <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>Wita10BestandSuche</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <configuration>
+                            <mainClass>de.mnet.migration.hurrican.wita10.Wita10BestandsucheMigrationTransformer</mainClass>
+                            <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>Wita10UndoBestandSucheMigration</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <configuration>
+                            <mainClass>de.mnet.migration.hurrican.wita10.Wita10BestandsucheUndoMigrationTransformer</mainClass>
+                            <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
+
+</project>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zum Kopieren der Rolle
+eines AKUser-Objekts.
+-->
+<sf>
+    <Text name="title">Benutzer</Text>
+    <Text name="title.role">Benutzer mit Rolle </Text>
+    <Text name="title.account">Benutzer mit Account</Text>
+    <Icon name="icon">de/augustakom/authentication/gui/images/users.gif</Icon>
+    
+	<Button name="cancel">
+        <text>Abbrechen</text>
+        <tooltip>Verwirft alle Änderungen und schliesst den Dialog</tooltip>
+        <mnemonic>VK_A</mnemonic>
+    </Button>
+    
+    <Button name="save">
+        <text>Speichern</text>
+        <tooltip>Speichert den neuen Benutzer mit den kopierten Rollen </tooltip>
+        <mnemonic>VK_S</mnemonic>
+    </Button>
+    
+</sf>

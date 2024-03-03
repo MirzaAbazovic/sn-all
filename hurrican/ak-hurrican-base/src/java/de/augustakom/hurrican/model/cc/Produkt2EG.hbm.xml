@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Produkt2EG
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Produkt2EG" table="T_PROD_2_EG">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_PROD_2_EG_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="prodId" column="PROD_ID" type="long" not-null="true"/>
+        <property name="endgeraetId" column="EG_ID" type="long" not-null="true"/>
+        <property name="isDefault" column="IS_DEFAULT" type="boolean"/>
+        <property name="isActive" column="IS_ACTIVE" type="boolean"/>
+
+    </class>
+
+</hibernate-mapping>

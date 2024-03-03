@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Body>
+        <ns2:handleError xmlns:ns2="http://www.mnet.de/esb/cdm/Shared/ErrorHandlingService/v1">
+            <ns2:trackingId>@ignore@</ns2:trackingId>
+            <ns2:component>
+                <ns2:name>Hurrican</ns2:name>
+                <ns2:processName>FFMNotificationConsumer</ns2:processName>
+                <ns2:host>@ignore@</ns2:host>
+                <ns2:service>WorkforceNotificationService</ns2:service>
+                <ns2:operation>notifyUpdateOrder</ns2:operation>
+                <ns2:processId>@ignore@</ns2:processId>
+            </ns2:component>
+            <ns2:error>
+                <ns2:code>FFM-TECH-001</ns2:code>
+                <ns2:message>FFM Bauauftrag Abteilung not found for workforce order ${workforceOrderId}</ns2:message>
+                <ns2:time>@ignore@</ns2:time>
+                <ns2:errorDetails>@ignore@</ns2:errorDetails>
+            </ns2:error>
+            <ns2:message>
+                <ns2:payload>citrus:cdataSection('@matchesXml('
+                    <?xml version='1.0' encoding='UTF-8'?>
+                    <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+                        <SOAP-ENV:Header/>
+                        <SOAP-ENV:Body>
+                            <wfns:notifyUpdateOrder
+                                    xmlns:wfns="http://www.mnet.de/esb/cdm/Resource/WorkforceNotificationService/v1">
+                                @ignore@
+                            </wfns:notifyUpdateOrder>
+                        </SOAP-ENV:Body>
+                    </SOAP-ENV:Envelope>
+                    ')@')
+                </ns2:payload>
+                <ns2:JMSEndpoint>mnet.Hurrican.op.cdm.dst.v1.WorkforceNotificationService</ns2:JMSEndpoint>
+                <ns2:JMSProperty>
+                    <ns2:key>ESB_TrackingId</ns2:key>
+                    <ns2:value>@ignore@</ns2:value>
+                </ns2:JMSProperty>
+                <ns2:JMSProperty>
+                    <ns2:key>SoapAction</ns2:key>
+                    <ns2:value>/WorkforceNotificationService/notifyUpdateOrder</ns2:value>
+                </ns2:JMSProperty>
+                <ns2:JMSProperty>
+                    <ns2:key>timestamp</ns2:key>
+                    <ns2:value>@ignore@</ns2:value>
+                </ns2:JMSProperty>
+            </ns2:message>
+            <ns2:businessKey>
+                <ns2:key>orderId</ns2:key>
+                <ns2:value>${workforceOrderId}</ns2:value>
+            </ns2:businessKey>
+        </ns2:handleError>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

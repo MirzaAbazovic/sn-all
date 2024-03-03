@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog, um ein Inhouse-Objekt zu editieren.
+-->
+<sf>
+
+    <Label name="raumnummer"><text>Raumnummer:</text></Label>
+    <TextField name="raumnummer">
+        <tooltip>Nummer oder Bezeichnung des Raums, in dem sich die Verkabelung befindet</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="verkabelung"><text>Verkabelung:</text></Label>
+    <TextField name="verkabelung">
+        <tooltip>Hinweise zur Verkabelung</tooltip>
+    </TextField>
+    
+    <Label name="ansprechpartner"><text>Ansprechp.:</text></Label>
+    <TextField name="ansprechpartner">
+        <tooltip>Ansprechpartner, der innerhalb des Gebäudes für AKOM zuständig ist</tooltip>
+    </TextField>
+    
+    <Label name="bemerkung"><text>Bemerkung:</text></Label>
+    <TextArea name="bemerkung">
+        <tooltip>Bemerkungen zur Inhouse-Verkabelung</tooltip>
+        <columns>20</columns>
+        <rows>5</rows>
+        <maxchars>255</maxchars>
+    </TextArea>
+
+</sf>

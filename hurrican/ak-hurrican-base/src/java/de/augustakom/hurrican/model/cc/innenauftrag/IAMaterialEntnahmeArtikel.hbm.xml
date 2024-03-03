@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.gui.IAMaterialEntnahmeArtikel
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.innenauftrag">
+    <class name="IAMaterialEntnahmeArtikel" table="T_IA_MAT_ENTNAHME_ARTIKEL">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_IA_MAT_ENTNAHME_ARTIK_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="materialEntnahmeId" column="MAT_ENTNAHME_ID" type="long" not-null="true"/>
+        <property name="artikel" column="ARTIKEL" type="string" not-null="true"/>
+        <property name="materialNr" column="MATERIAL_NR" type="string" not-null="true"/>
+        <property name="anzahl" column="ANZAHL" type="float" not-null="true"/>
+        <property name="einzelpreis" column="EINZELPREIS" type="float"/>
+        <property name="removedAt" column="REMOVED_AT" type="date"/>
+        <property name="removedFrom" column="REMOVED_FROM" type="string"/>
+        <property name="anlagenBez" column="ANLAGEBEZ" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

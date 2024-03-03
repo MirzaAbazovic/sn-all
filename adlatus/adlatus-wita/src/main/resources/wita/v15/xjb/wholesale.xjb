@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jaxb:bindings
+        xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+        xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        version="2.1">
+
+    <jaxb:globalBindings generateIsSetMethod="true" fixedAttributeAsConstantProperty="true">
+        <xjc:serializable uid="1"/>
+    </jaxb:globalBindings>
+
+    <jaxb:bindings schemaLocation="../xsd/oss-connectivity.xsd">
+        <jaxb:bindings node="//xsd:element[@name='ABM']">
+            <jaxb:class name="con_ABM"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ABMpos']">
+            <jaxb:class name="con_ABMpos"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ABBM']">
+            <jaxb:class name="con_ABBM"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ABBMpos']">
+            <jaxb:class name="con_ABBMpos"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ZWM']">
+            <jaxb:class name="con_ZWM"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ZWMpos']">
+            <jaxb:class name="con_ZWMpos"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/oss-product-PRES.xsd">
+        <jaxb:bindings node="//xsd:element[@name='NEU']">
+            <jaxb:class name="pres_NEU"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='produktAuftrag']">
+            <jaxb:class name="pres_produktAuftrag"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='produktMeldung']">
+            <jaxb:class name="pres_produktMeldung"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ABM']">
+            <jaxb:class name="pres_ABM"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/oss-product-TAL.xsd">
+        <jaxb:bindings node="//xsd:element[@name='NEU']">
+            <jaxb:class name="tal_NEU"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='produktAuftrag']">
+            <jaxb:class name="tal_produktAuftrag"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='produktMeldung']">
+            <jaxb:class name="tal_produktMeldung"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ABM']">
+            <jaxb:class name="tal_ABM"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='KUE-KD']">
+            <jaxb:class name="tal_KUE-KD"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='PV']">
+            <jaxb:class name="tal_PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='VBL']">
+            <jaxb:class name="tal_VBL"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='PGW']">
+            <jaxb:class name="tal_PGW"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='LAE']">
+            <jaxb:class name="tal_LAE"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='AEN-LMAE']">
+            <jaxb:class name="tal_AEN-LMAE"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='SER-POW']">
+            <jaxb:class name="tal_SER-POW"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ABM-PV']">
+            <jaxb:class name="tal_ABM-PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ABBM-PV']">
+            <jaxb:class name="tal_ABBM-PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='AKM-PV']">
+            <jaxb:class name="tal_AKM-PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ERLM-PV']">
+            <jaxb:class name="tal_ERLM-PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='RUEM-PV']">
+            <jaxb:class name="tal_RUEM-PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ERLM']">
+            <jaxb:class name="tal_ERLM"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ABBM']">
+            <jaxb:class name="tal_ABBM"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/oss-product-XDSL.xsd">
+        <jaxb:bindings node="//xsd:element[@name='NEU']">
+            <jaxb:class name="xdsl_NEU"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='produktAuftrag']">
+            <jaxb:class name="xdsl_produktAuftrag"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='produktMeldung']">
+            <jaxb:class name="xdsl_produktMeldung"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ABM']">
+            <jaxb:class name="xdsl_ABM"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='KUE-KD']">
+            <jaxb:class name="xdsl_KUE-KD"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='PV']">
+            <jaxb:class name="xdsl_PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='VBL']">
+            <jaxb:class name="xdsl_VBL"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='PGW']">
+            <jaxb:class name="xdsl_PGW"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='LAE']">
+            <jaxb:class name="xdsl_LAE"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='AEN-LMAE']">
+            <jaxb:class name="xdsl_AEN-LMAE"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='AKM-PV']">
+            <jaxb:class name="xdsl_AKM-PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='RUEM-PV']">
+            <jaxb:class name="xdsl_RUEM-PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ABBM']">
+            <jaxb:class name="xdsl_ABBM"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/oss-product-FTTH.xsd">
+        <jaxb:bindings node="//xsd:element[@name='NEU']">
+            <jaxb:class name="ftth_NEU"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='produktAuftrag']">
+            <jaxb:class name="ftth_produktAuftrag"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='produktMeldung']">
+            <jaxb:class name="ftth_produktMeldung"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ABM']">
+            <jaxb:class name="ftth_ABM"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='KUE-KD']">
+            <jaxb:class name="ftth_KUE-KD"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='PV']">
+            <jaxb:class name="ftth_PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='VBL']">
+            <jaxb:class name="ftth_VBL"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='PGW']">
+            <jaxb:class name="ftth_PGW"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='LAE']">
+            <jaxb:class name="ftth_LAE"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='AEN-LMAE']">
+            <jaxb:class name="ftth_AEN-LMAE"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='AKM-PV']">
+            <jaxb:class name="ftth_AKM-PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='RUEM-PV']">
+            <jaxb:class name="ftth_RUEM-PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ABBM']">
+            <jaxb:class name="ftth_ABBM"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/oss-product-SDSLB.xsd">
+        <jaxb:bindings node="//xsd:element[@name='NEU']">
+            <jaxb:class name="sdslb_NEU"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='produktAuftrag']">
+            <jaxb:class name="sdslb_produktAuftrag"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='produktMeldung']">
+            <jaxb:class name="sdslb_produktMeldung"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ABM']">
+            <jaxb:class name="sdslb_ABM"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='KUE-KD']">
+            <jaxb:class name="sdslb_KUE-KD"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='PV']">
+            <jaxb:class name="sdslb_PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='PGW']">
+            <jaxb:class name="sdslb_PGW"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='AKM-PV']">
+            <jaxb:class name="sdslb_AKM-PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='RUEM-PV']">
+            <jaxb:class name="sdslb_RUEM-PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ABBM']">
+            <jaxb:class name="sdslb_ABBM"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+    <jaxb:bindings schemaLocation="../xsd/oss-ng-product-FTTB.xsd">
+        <jaxb:bindings node="//xsd:element[@name='NEU']">
+            <jaxb:class name="fttb_NEU"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='produktMeldung']">
+            <jaxb:class name="fttb_produktMeldung"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ABM']">
+            <jaxb:class name="fttb_ABM"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='KUE-KD']">
+            <jaxb:class name="fttb_KUE-KD"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='PV']">
+            <jaxb:class name="fttb_PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='VBL']">
+            <jaxb:class name="fttb_VBL"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='PGW']">
+            <jaxb:class name="fttb_PGW"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='LAE']">
+            <jaxb:class name="fttb_LAE"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='AEN-LMAE']">
+            <jaxb:class name="fttb_AEN-LMAE"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='AKM-PV']">
+            <jaxb:class name="fttb_AKM-PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='RUEM-PV']">
+            <jaxb:class name="fttb_RUEM-PV"/>
+        </jaxb:bindings>
+        <jaxb:bindings node="//xsd:element[@name='ZWM']">
+            <jaxb:class name="fttb_ZWM"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+
+</jaxb:bindings>

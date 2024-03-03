@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Endstelle-Filterpanel.
+-->
+<sf>
+
+    <Label name="endstelle"><text>Endstelle:</text></Label>
+    <TextField name="endstelle">
+        <tooltip>gesuchte Endstelle</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="endstelle.ort"><text>Ort:</text></Label>
+    <TextField name="endstelle.ort">
+        <tooltip>Ort, in dem sich die gesuchte Endstelle befinden soll</tooltip>
+    </TextField>
+
+    <Label name="vbz">
+        <text>Verbindungsbezeichnung (VBZ):</text>
+    </Label>
+    <TextField name="vbz">
+        <tooltip>gesuchte Verbindungsbezeichnung (früher: TDN - Technische Dokumentationsnummer)</tooltip>
+    </TextField>
+
+    <Label name="ltgArt"><text>Leitungsart:</text></Label>
+    <TextField name="ltgArt">
+        <tooltip>Bandbreite oder Leitungsart</tooltip>
+        <columns>5</columns>
+    </TextField>
+
+</sf>

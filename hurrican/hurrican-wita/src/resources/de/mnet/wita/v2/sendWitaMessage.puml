@@ -1,0 +1,14 @@
+@startuml
+actor WitaTest
+WitaTest --> WitaTalOrderService: new Order (HTTP)
+WitaTalOrderService -> WitaWFS:startWorkflow
+WitaWFS --> TalOrderWFS: newProcessInstance
+TalOrderWFS -> CommonWFS: newInstance
+CommonWFS --> RuntimeService:newInstance
+RuntimeService --> WitaDataAggregationTask:execute
+WitaDataAggregationTask --> WitaDataAggregationTask:send
+WitaDataAggregationTask --> WitaTaskService:sendToWita
+WitaTaskService --> WitaSendMessageServiceImpl:sendAndProcessMessage
+WitaSendMessageServiceImpl --> LineOrderOut : process
+Note right: Das ist die Camel-Route
+@enduml

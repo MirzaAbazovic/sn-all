@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+GUI-Definitionen fuer den Dialog zur DSLAM-Profil Auswahl.
+-->
+<sf>
+	
+	<Label name="dslam.profile"><text>DSLAM-Profil:</text></Label>
+	<ReferenceField name="dslam.profile">
+		<tooltip>Auswahl des DSLAM-Profils</tooltip>
+		<id.property>id</id.property>
+		<name.property>name</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.DSLAMProfile</reference.class>
+		<columns>20</columns>
+	</ReferenceField>
+	
+	<Label name="gueltig.von"><text>Gültig von:</text></Label>
+	<DateComponent name="gueltig.von">
+		<tooltip>Datum, ab dem das Profil fuer den Auftrag gültig ist</tooltip>
+	</DateComponent>
+	
+	<Label name="change.reason"><text>Änderungsgrund:</text></Label>
+	<ReferenceField name="change.reason">
+		<tooltip>Auswahl vom Änderungsgrund</tooltip>
+		<id.property>id</id.property>
+		<name.property>name</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.DSLAMProfileChangeReason</reference.class>
+	</ReferenceField>
+	
+	<Label name="bemerkung"><text>Bemerkung:</text></Label>
+	<TextArea name="bemerkung">
+		<tooltip>zus. Bemerkung fuer die Änderung</tooltip>
+		<rows>5</rows>
+	</TextArea>
+	
+</sf>

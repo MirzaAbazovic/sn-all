@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Text name="title">Terminverschiebung Details</Text>
+
+    <Label name="neuer.kwt"><text>neuer KWT:</text></Label>
+    <DateComponent name="neuer.kwt">
+        <tooltip>angegebener, neuer Kundenwunschtermin</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+</sf>

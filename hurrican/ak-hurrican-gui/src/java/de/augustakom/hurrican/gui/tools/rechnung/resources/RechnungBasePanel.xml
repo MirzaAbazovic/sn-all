@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definition fuer das Panel mit den Zugangsdaten zum
+Billing-Server und zum Ziel-Host fuer Rechnungen. 
+-->
+<sf>
+	<Label name="bill.info"><text>Rechnungslauf:</text></Label>
+    
+    <Label name="bill.run"><text>Bill-Run:</text></Label>
+	<ComboBox name="bill.run">
+        <tooltip>Auswahl des Bill-Runs</tooltip>
+    </ComboBox>
+	
+    <Label name="info"><text>Info-Daten:</text></Label>
+    
+    <Label name="info.email"><text>EMail:</text></Label>
+    <TextField name="info.email">
+        <tooltip>EMail-Adressen, an die Informationen verschickt werden sollen (Trennzeichen: ,)</tooltip>
+    </TextField>
+    
+</sf>

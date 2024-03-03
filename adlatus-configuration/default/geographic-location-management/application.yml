@@ -1,0 +1,16 @@
+server:
+  port: '8484'
+app:
+  api-base-path: /tmf-api/geographicLocation/v4
+  host: http://localhost:8081
+spring:
+  data:
+    mongodb:
+      database: geographic_location_management
+      port: '27017'
+      host: localhost
+logging:
+  level:
+    org:
+      springframework: ERROR
+    root: ERROR

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="de.mnet.hurrican.scheduler.model">
+    <class name="JobExecution" table="JOB_EXECUTION">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_JOB_EXECUTION_0</param></generator>
+        </id>
+
+        <!-- Sonstige Fields -->
+        <property name="jobName" column="JOB_NAME" type="string" not-null="true"/>
+        <property name="jobClass" column="JOB_CLASS" type="string" not-null="true"/>
+        <property name="startTime" column="START_TIME" type="timestamp" not-null="true"/>
+        <property name="endTime" column="END_TIME" type="timestamp"/>
+        <property name="nextTime" column="NEXT_TIME" type="timestamp"/>
+
+    </class>
+</hibernate-mapping>

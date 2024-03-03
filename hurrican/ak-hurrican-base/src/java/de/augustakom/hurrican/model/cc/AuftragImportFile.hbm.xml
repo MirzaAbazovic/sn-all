@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.AuftragImportFile
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="AuftragImportFile" table="T_AUFTRAG_IMPORT_FILES">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_AUFTRAG_IMPORT_FILES_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="auftragImportId" column="AUFTRAG_IMPORT_ID" type="long" not-null="true"/>
+        <property name="origFileName" column="ORIG_FILE_NAME" type="string"/>
+        <property name="fileType" column="FILE_TYPE" type="short" not-null="true"/>
+        <property name="fileStream" column="FILE_STREAM" type="binary" not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

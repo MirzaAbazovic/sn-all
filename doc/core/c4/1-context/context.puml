@@ -1,0 +1,25 @@
+@startuml LAYOUT_TOP_DOWN Sample
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+
+Person(admin, "Resource orders admin")
+
+System_Boundary(c1, 'Resource Order Management') {
+    Container(web_app, "Web Application","Allows users to order a resource and view their state")
+    Container(rom, "Adlatus","Creates and handles resource order. Resource catalog and inventory. Order validation and his state management")
+    Container(wita_adapter, "WITA Adapter","Handles mapping between WITA and TMF")
+}
+
+System(dtag, "DTAG")
+System(mnet, "MNET")
+
+Rel(admin, web_app, "Uses", "HTTPS")
+Rel(wita_adapter, dtag, "Sends WITA messages", "SOAP")
+Rel(dtag, wita_adapter, "Receives WITA messages", "SOAP")
+Rel(web_app, rom, "TMF API order management, catalog and inventory", "REST")
+Rel(wita_adapter, rom, "TMF API order management, catalog and inventory", "REST")
+Rel(mnet, rom, "TMF API order management, catalog and inventory", "REST")
+Rel(rom, wita_adapter, "Emits events from TMF ROM","REST")
+Rel(rom, mnet, "Emits events from TMF ROM","REST")
+
+@enduml

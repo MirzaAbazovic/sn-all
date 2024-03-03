@@ -1,0 +1,13 @@
+globalProperties:
+  apis: ""
+  supportingFiles: false
+  apiTests: ""
+  models: false
+
+additionalProperties:
+  library: spring-boot
+  modelsLibrary: de.bitconex.tmf.rcm.model
+  basePackage: de.bitconex.rcm
+  invokerPackage: de.bitconex.rcm
+  apiPackage: de.bitconex.rcm.api
+  configPackage: de.bitconex.rcm.configuration

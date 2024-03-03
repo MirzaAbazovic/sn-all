@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    GUI-Definitionen fuer das ConsistenceCheck-Frame.
+-->
+<sf>
+    <Text name="title">Datenbank Konsistenz-Check</Text>
+
+    <Text name="consistence.check.history">Historisierung</Text>
+    <Text name="consistence.check.history.tooltip">Prüft, ob für Aufträge/Rangierungen immer nur ein aktiver Datensatz vorhanden ist.</Text>
+
+    <Text name="consistence.check.intaccount">IntAccounts</Text>
+    <Text name="consistence.check.intaccount.tooltip">Ermittelt alle Accounts, die mehreren aktiven Aufträgen zugeordnet sind.</Text>
+
+    <Text name="consistence.physiktyp">Physiktyp</Text>
+    <Text name="consistence.physiktyp.tooltip">Ermittelt Aufträge, denen ein ungültiger Physiktyp zugeordnet ist</Text>
+</sf>

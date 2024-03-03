@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog, um Equipments einer Rangierung zuzuordnen.
+-->
+<sf>
+
+   	<Label name="port"><text>Port-Seite:</text></Label>
+
+    <RadioButton name="eq.in">
+        <text>EQ_IN</text>
+        <tooltip>Zuordnung auf EQ_IN Seite</tooltip>
+    </RadioButton>
+
+    <RadioButton name="eq.out">
+        <text>EQ_OUT</text>
+        <tooltip>Zuordnung auf EQ_OUT Seite</tooltip>
+    </RadioButton>
+
+</sf>

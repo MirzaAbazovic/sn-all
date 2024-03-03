@@ -1,0 +1,1 @@
+alter table T_TECH_LEISTUNG add BA_HINWEIS VARCHAR2(30);

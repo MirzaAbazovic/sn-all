@@ -1,0 +1,95 @@
+@startuml
+node "Core" {
+  [Resource Order Management ROM TMF652]as ROM
+  note right of ROM: Handles resource ordering.\nUses catalog to find resource with spec. and then creates resource in inventory by managing ordering workflow of the resource.\n Also sends notifications for interested listeners.   
+
+  [Resource Inventory Management RIM TMF639] as RIM
+ note right of RIM: Instances of ordered resources from resource catalog
+  
+ [Resource catalog management RCM TMF634] as RCM
+  note right of RCM: Collection of resources with ther spec and involved parties with framework contracts.
+  
+  ROM--RCM
+  RIM--RCM
+  portout WITA_PORT
+  portout SPRI_PORT
+  portin TMF_ROM_PORT
+}
+
+node "WITA Adapter" as WITA_AD {
+  [WITA transformator]
+}
+
+node "S/PRI Adapter" as SPRI_AD {
+  [SPRI transformator] as SPRI_TRANS
+}
+
+node "ROM Adapter" as ROM_AD{
+  [Transformator for custom tenant sytem to TMF ROM] as TMF_ROM_CUSTOM
+}
+
+
+[WITA_AD] --> "DTAG"
+[SPRI_AD] --> "1und1"
+
+
+
+[TMF_ROM_PORT] --> ROM_AD
+[TMF_ROM_PORT] --> [Tenent TMF ROM system]
+[TMF_ROM_PORT] --> [UI]
+
+[WITA_PORT] --> WITA_AD
+[SPRI_PORT] --> SPRI_AD
+
+
+legend
+TMF634 - Resource Catalog Management
+Resource Catalog API goal is to provide a catalog of resources.
+Operations:
+- Resource Catalog API performs the following operations on the resources :
+- Retrieve an entity or a collection of entities depending on filter criteria
+- Partial update of an entity (including updating rules)
+- Create an entity (including default values and creation rules)
+- Delete an entity
+- Manage notification of events
+
+
+TMF639 - Resource Inventory 
+Resource Inventory  API goal is to provide the ability to manage Resources. 
+Operations
+Resource Inventory API performs the following operations on the resources :
+- Retrieve an entity or a collection of entities depending on filter criteria
+- Partial update of an entity (including updating rules)
+- Create an entity (including default values and creation rules)
+- Delete an entity (for administration purposes)
+- Manage notification of events
+
+TMF652 - Resource oreder manageent
+Responsible for creating, updating and retrieving Resource Orders
+(including filtering).
+Provides a standard mechanism for placing a Resource Order with all necessary order
+parameters. 
+
+A Resource Order is created based on a resource candidate that is defined in the resource catalog. 
+Resource candidate is an entity that makes a Resource Specification available to a resource catalog.
+A Resource Specification is an abstract base class for representing a generic means for implementing a particular
+type of Resource. In essence, a Resource Specification defines the common attributes and relationships of a set of
+related Resources, while Resource defines a specific instance that is based on a particular Resource Specification.
+      
+
+Resource Order API manages resource order resource:
+- A Resource Order is a type of order which can be used to place an order between a service provider and a
+partner and vice versa
+- Main order items attributes are the orders resource candidates and resource characteristics with the
+related action to be performed (e.g: add or delete resources), state.
+Resource Order API performs the following operations on the Resource Order:
+- Retrieval of a Resource Order or a collection of Resource Orders depending on filter criteria
+- Partial update of a ResourceOrder
+- Creation of a Resource order
+- Deletion of a resource order (for admin purposes)
+- Notifications of events on resource order
+
+The following Assumptions were considered in the development of this document:
+- The Order Management system has access to the catalog system
+end legend
+@enduml

@@ -1,0 +1,1 @@
+Update T_WEBSERVICE_CONFIG set WS_URL='http://mnetcrm42.intern.m-net.de:8080/mnet/services/ORSapiPort' where id=10;

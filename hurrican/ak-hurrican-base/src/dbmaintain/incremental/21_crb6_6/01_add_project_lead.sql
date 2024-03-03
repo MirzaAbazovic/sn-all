@@ -1,0 +1,4 @@
+ALTER TABLE T_AUFTRAG_TECHNIK
+ ADD (PROJECT_LEAD  NUMBER(10));
+
+COMMENT ON COLUMN T_AUFTRAG_TECHNIK.PROJECT_LEAD IS 'ID des Hurrican Users, der Projektleiter fuer den Auftrag ist';

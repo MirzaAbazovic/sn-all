@@ -1,0 +1,24 @@
+[
+  {
+    "id": "1",
+    "tradingName": "My Trading Company",
+    "name": "Company Name",
+    "nameType": "Type A",
+    "organizationType": "Type B",
+    "isHeadOffice": true,
+    "isLegalEntity": true,
+    "contactMedium": [
+      {
+        "mediumType": "Email",
+        "preferred": true,
+        "characteristic": {
+          "city": "New York",
+          "contactType": "Phone",
+          "faxNumber": "123-456-7890",
+          "street1": "123 Main Street",
+          "street2": "Apt 4B"
+        }
+      }
+    ]
+  }
+]

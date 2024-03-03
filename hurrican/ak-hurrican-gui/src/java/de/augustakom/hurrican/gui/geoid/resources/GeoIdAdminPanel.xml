@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Frame der Geo IDs.
+-->
+<sf>
+    <Text name="border.tech.locations">Standort Zuordnungen</Text>
+
+    <Button name="btn.new">
+        <text>Neu</text>
+        <mnemonic>VK_N</mnemonic>
+        <tooltip>Erstellt eine neue Standort Zuordnung</tooltip>
+    </Button>
+    <Button name="btn.edit">
+        <text>Bearbeiten</text>
+        <mnemonic>VK_B</mnemonic>
+        <tooltip>Bearbeitet die selektierte Standort Zuordnung</tooltip>
+    </Button>
+    <Button name="btn.delete">
+        <text>Löschen</text>
+        <mnemonic>VK_L</mnemonic>
+        <tooltip>Löscht die selektierte Standort Zuordnung</tooltip>
+    </Button>
+
+</sf>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified"
+        targetNamespace="http://monline.mnet.de/IPProviderService/IPP"
+        xmlns:tns="http://monline.mnet.de/IPProviderService/IPP">
+
+    <xs:element name="AssignIPV6Request" type="tns:AssignIPV6Request" />
+    <xs:element name="AssignIPV6Response" type="tns:AssignIPV6Response" />
+    <xs:element name="ReleaseIPV6Request" type="tns:ReleaseIPV6Request" />
+    <xs:element name="ReleaseIPV6Response" type="tns:ReleaseIPV6Response" />
+
+    <xs:element name="AssignIPV4Request" type="tns:AssignIPV4Request" />
+    <xs:element name="AssignIPV4Response" type="tns:AssignIPV4Response" />
+    <xs:element name="ReleaseIPV4Request" type="tns:ReleaseIPV4Request" />
+    <xs:element name="ReleaseIPV4Response" type="tns:ReleaseIPV4Response" />
+
+    <xs:element name="InvalidArgumentException" type="tns:InvalidArgumentException"/>
+
+    <xs:complexType name="InvalidArgumentException">
+      <xs:sequence/>
+    </xs:complexType>
+    <xs:simpleType name="productGroup">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="XDSL" />
+            <xs:enumeration value="DirectAccess" />
+            <xs:enumeration value="C2S" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="purpose">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Kundennetz" />
+            <xs:enumeration value="Transfernetz" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="site">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MUC" />
+            <xs:enumeration value="AGB" />
+            <xs:enumeration value="NUE" />
+            <xs:enumeration value="MKK" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="success">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="yes" />
+            <xs:enumeration value="no" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="AssignIPV6Request">
+        <xs:sequence>
+            <xs:element name="productGroup" type="tns:productGroup"/>
+            <xs:element name="vpnId" type="xs:long"/>
+            <xs:element name="netmaskSize" type="xs:int"/>
+            <xs:element name="site" type="tns:site"/>
+            <xs:element name="user" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AssignIPV6Response">
+        <xs:sequence>
+            <xs:element name="success" type="tns:success"/>
+            <xs:element minOccurs="0" name="errorDetails" type="xs:string"/>
+            <xs:element name="netId" type="xs:long"/>
+            <xs:element name="netAddress" type="xs:string"/>
+            <xs:element name="netmaskSize" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ReleaseIPV6Request">
+        <xs:sequence>
+            <xs:element name="netId" type="xs:long"/>
+            <xs:element name="netAddress" type="xs:string"/>
+            <xs:element name="netmaskSize" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ReleaseIPV6Response">
+        <xs:sequence>
+            <xs:element name="success" type="tns:success"/>
+            <xs:element minOccurs="0" name="errorDetails" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AssignIPV4Request">
+        <xs:sequence>
+            <xs:element name="productGroup" type="tns:productGroup"/>
+            <xs:element name="vpnId" type="xs:long"/>
+            <xs:element name="purpose" type="tns:purpose"/>
+            <xs:element name="netmaskSize" type="xs:int"/>
+            <xs:element name="site" type="tns:site"/>
+            <xs:element name="user" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AssignIPV4Response">
+        <xs:sequence>
+            <xs:element name="success" type="tns:success"/>
+            <xs:element minOccurs="0" name="errorDetails" type="xs:string"/>
+            <xs:element name="netId" type="xs:long"/>
+            <xs:element name="netAddress" type="xs:string"/>
+            <xs:element name="netmaskSize" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ReleaseIPV4Request">
+        <xs:sequence>
+            <xs:element name="netId" type="xs:long"/>
+            <xs:element name="netAddress" type="xs:string"/>
+            <xs:element name="netmaskSize" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ReleaseIPV4Response">
+        <xs:sequence>
+            <xs:element name="success" type="tns:success"/>
+            <xs:element minOccurs="0" name="errorDetails" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

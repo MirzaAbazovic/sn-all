@@ -1,0 +1,57 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans    http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/tx       http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+  <tx:annotation-driven proxy-target-class="true"/>
+  <context:annotation-config />
+
+
+  <bean id="cc.hibernateTxManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="cc.dataSource" />
+  </bean>
+
+  <!-- overwrite beans -->
+  <bean id="cc.dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+    <property name="driverClass" value="org.h2.Driver" />
+    <property name="url" value="jdbc:h2:mem:activiti;DB_CLOSE_DELAY=1000" />
+    <property name="username" value="sa" />
+    <property name="password" value="" />
+  </bean>
+
+  <bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+    <property name="dataSource" ref="cc.dataSource" />
+    <property name="transactionManager" ref="cc.hibernateTxManager" />
+
+    <!-- Database managed by dbMaintain -->
+    <property name="databaseSchemaUpdate" value="true" />
+
+    <!-- timers are only fired when the job executor is enabled (i.e. jobExecutorActivate needs to be set to true) -->
+    <property name="jobExecutorActivate" value="false" />
+
+    <property name="mailServerHost" value="localhost" />
+    <property name="mailServerDefaultFrom" value="5025" />
+    <property name="deploymentResources" value="classpath*:/de/mnet/wita/v1/bpm/*.bpmn20.xml"/>
+
+    <property name="customPreVariableTypes">
+      <list>
+        <ref bean="ruemPvAntwortCodeVariableTypeSpy" />
+      </list>
+    </property>
+  </bean>
+
+  <bean id="ruemPvAntwortCodeVariableTypeSpy" class="org.mockito.Mockito" factory-method="spy">
+    <constructor-arg ref="ruemPvAntwortCodeVariableType" />
+  </bean>
+
+  <bean id="activitiTestNGRule" class="de.mnet.wita.bpm.test.ActivitiTestNGRule">
+    <property name="processEngine" ref="processEngine" />
+  </bean>
+
+  <bean id="activitiTestBean" class="de.mnet.wita.bpm.impl.ActivitiTestBean"></bean>
+
+  <bean id="de.mnet.common.integration.CamelProxyLookupService" class="de.augustakom.hurrican.service.location.CamelProxyLookupService" />
+
+</beans>

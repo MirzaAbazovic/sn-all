@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.Rufnummer
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="Rufnummer" table="DN">
+
+	    <!-- PrimaryKey -->
+		<id name="dnNo" column="DN_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+
+		<!-- Sonstige Fields -->
+		<property name="dnNoOrig" column="DN__NO" type="long"/>
+        <property name="auftragNoOrig" column="ORDER__NO" type="long"/>
+        <property name="onKz" column="ONKZ" type="string"/>
+        <property name="dnBase" column="DN_BASE" type="string"/>
+        <property name="directDial" column="DIRECT_DIAL" type="string"/>
+        <property name="rangeFrom" column="RANGE_FROM" type="string"/>
+        <property name="rangeTo" column="RANGE_TO" type="string"/>
+        <property name="dnSize" column="DN_SIZE" type="long"/>
+        <property name="mainNumber" column="IS_MAIN_NUMBER" type="boolean"/>
+        <property name="oeNoOrig" column="OE__NO" type="long"/>
+        <property name="blockNoOrig" column="BLOCK__NO" type="long"/>
+        <property name="portMode" column="PORT_MODE" type="string"/>
+        <property name="realDate" column="REAL_DATE" type="date"/>
+        <property name="wishDate" column="WISH_DATE" type="date"/>
+        <property name="remarks" column="REMARKS" type="string"/>
+        <property name="state" column="STATE" type="string"/>
+        <!--<property name="lastCarrier" column="LAST_CARRIER" type="string"/>-->
+        <!--<property name="actCarrier" column="ACT_CARRIER" type="string"/>-->
+        <!--<property name="futureCarrier" column="FUTURE_CARRIER" type="string"/>-->
+        <property name="portierungVon" column="REAL_TIME_FROM" type="timestamp"/>
+        <property name="portierungBis" column="REAL_TIME_TO" type="timestamp"/>
+        <property name="nonBillable" column="NON_BILLABLE" type="boolean"/>
+
+        <property name="gueltigVon" column="VALID_FROM" type="date"/>
+        <property name="gueltigBis" column="VALID_TO" type="date"/>
+        <property name="histStatus" column="HIST_STATE" type="string"/>
+        <property name="histCnt" column="HIST_CNT" type="integer"/>
+        <property name="histLast" column="HIST_LAST" type="boolean"/>
+
+        <many-to-one name="lastCarrierDnTnb" column="LAST_CARRIER"
+                     class="de.augustakom.hurrican.model.billing.DNTNB" cascade="none" not-null="false" lazy="false"/>
+        <many-to-one name="actCarrierDnTnb" column="ACT_CARRIER"
+                     class="de.augustakom.hurrican.model.billing.DNTNB" cascade="none" not-null="false" lazy="false"/>
+        <many-to-one name="futureCarrierDnTnb" column="FUTURE_CARRIER"
+                     class="de.augustakom.hurrican.model.billing.DNTNB" cascade="none" not-null="false" lazy="false"/>
+
+	</class>
+
+</hibernate-mapping>

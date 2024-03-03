@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TableModel Definition fuer das IpRoutPanel -->
+<table>
+
+    <column name="Ziel-Adresse" property="destinationAdressRef.address" type="java.lang.String" editable="false"/>
+    <column name="Next Hop" property="nextHop" type="java.lang.String" editable="false"/>
+    <column name="Bemerkung" property="bemerkung" type="java.lang.String" editable="false"/>
+
+</table>

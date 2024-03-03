@@ -1,0 +1,39 @@
+<div *ngIf="(organization$ | async) as organization">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>{{organization.name}}</mat-card-title>
+      <mat-card-subtitle>{{ organization.nameType}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+      <span><b> Trading name </b> {{ organization.tradingName }}</span>
+      <span><b> Organization type </b> {{ organization.organizationType }}</span>
+
+      <h4> Contact mediums </h4>
+      <ul>
+        <li *ngFor="let contactMedium of organization.contactMedium">
+          <h5>{{ contactMedium.mediumType }}</h5>
+
+          <ul>
+            <li *ngIf="contactMedium.characteristic">
+              <div><b>City: </b> {{ contactMedium.characteristic.city! }}</div>
+              <div><b>Country: </b> {{ contactMedium.characteristic.country! }}</div>
+              <div><b>Address: </b> {{ contactMedium.characteristic.street1! }}</div>
+              <div><b>Phone number: </b> {{ contactMedium.characteristic.phoneNumber! }}</div>
+              <div><b>Email Address: </b> {{ contactMedium.characteristic.emailAddress! }}</div>
+              <div><b>Fax number: </b> {{ contactMedium.characteristic.faxNumber! }}</div>
+              <div><b>State of province: </b> {{ contactMedium.characteristic.stateOrProvince! }}</div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <button mat-button color="warn" (click)="deleteOrganization(organization.id)">
+        <mat-icon>delete</mat-icon>
+        <span> Delete organization </span>
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+

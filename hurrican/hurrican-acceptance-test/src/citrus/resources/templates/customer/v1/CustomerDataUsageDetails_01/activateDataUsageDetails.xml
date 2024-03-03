@@ -1,0 +1,8 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://www.mnet.de/esb/cdm/Customer/CustomerOrderService/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <v1:activateDataUsageDetails>
+            <v1:radiusAccountId>${radiusAccountId}</v1:radiusAccountId>
+        </v1:activateDataUsageDetails>
+    </soapenv:Body>
+</soapenv:Envelope>

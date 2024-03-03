@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Details eines Carrier-Kontakts
+-->
+<sf>
+
+    <!-- ************ Panel fuer die Darstellung der Carrier-Kontakts  **************** -->
+    <Label name="carriercontact.carrier"><text>Carrier:</text></Label>
+    <ReferenceField name="carriercontact.carrier">
+        <tooltip>Carrier für den Carrier-Kontakt</tooltip>
+    </ReferenceField>
+    
+    <Label name="carriercontact.niederlassung"><text>Niederlassung:</text></Label>
+    <TextField name="carriercontact.niederlassung">
+        <tooltip>Name der Carrier-Niederlassung</tooltip>
+        <maxchars>30</maxchars>
+    </TextField>
+    
+    <Label name="carriercontact.ressort"><text>Ressort:</text></Label>
+    <TextField name="carriercontact.ressort">
+        <tooltip>Ressortname für den Kontakt</tooltip>
+        <maxchars>30</maxchars>
+    </TextField>
+    
+    <Label name="carriercontact.name"><text>Name:</text></Label>
+    <TextField name="carriercontact.name">
+        <tooltip>Ansprechpartner des Carriers</tooltip>
+        <maxchars>20</maxchars>
+    </TextField>
+    
+    <Label name="carriercontact.strasse"><text>Straße:</text></Label>
+    <TextField name="carriercontact.strasse">
+        <tooltip>Straße des Carrier-Kontakts</tooltip>
+        <maxchars>30</maxchars>
+    </TextField>
+    
+    <Label name="carriercontact.hausnummer"><text>Hausnummer:</text></Label>
+    <TextField name="carriercontact.hausnummer">
+        <tooltip>Hausnummer des Carrier-Kontakts</tooltip>
+        <maxchars>10</maxchars>
+    </TextField>
+    
+    <Label name="carriercontact.postleitzahl"><text>Postleitzahl:</text></Label>
+    <TextField name="carriercontact.postleitzahl">
+        <tooltip>Postleitzahl des Carrier-Kontakts</tooltip>
+        <maxchars>10</maxchars>
+    </TextField>
+    
+    <Label name="carriercontact.ort"><text>Ort:</text></Label>
+    <TextField name="carriercontact.ort">
+        <tooltip>Ort des Carrier-Kontakts</tooltip>
+        <maxchars>30</maxchars>
+    </TextField>
+    
+    <Label name="carriercontact.telefon"><text>Telefon:</text></Label>
+    <TextField name="carriercontact.telefon">
+        <tooltip>Telefon des Carrier-Kontakts</tooltip>
+        <maxchars>20</maxchars>
+    </TextField>
+    
+    <Label name="carriercontact.fax"><text>Fax:</text></Label>
+    <TextField name="carriercontact.fax">
+        <tooltip>Fax des Carrier-Kontakts</tooltip>
+        <maxchars>20</maxchars>
+    </TextField>
+    
+    <Label name="carriercontact.email"><text>Email:</text></Label>
+    <TextField name="carriercontact.email">
+        <tooltip>Email des Carrier-Kontakts</tooltip>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="carriercontact.type"><text>Typ:</text></Label>
+    <TextField name="carriercontact.type">
+      <tooltip>Type des Carrier-Kontakts</tooltip>
+      <maxchars>50</maxchars>
+    </TextField>
+	
+</sf>

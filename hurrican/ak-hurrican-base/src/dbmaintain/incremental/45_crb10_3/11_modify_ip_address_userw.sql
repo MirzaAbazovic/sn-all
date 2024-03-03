@@ -1,0 +1,2 @@
+-- NET_ID darf für 'nicht MOnline IPs' NULL sein
+ALTER TABLE T_IP_ADDRESS MODIFY (USERW VARCHAR(50) NULL );

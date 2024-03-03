@@ -1,0 +1,1 @@
+alter table T_HVT_UMZUG_DETAIL add PRODAK_ORDER__NO NUMBER(19,0);

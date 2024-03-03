@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema  xmlns:ns0="http://mnet.de/hurricanweb/command/stift/types"
+            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://mnet.de/hurricanweb/command/stift/types">
+
+    <xs:element name="CommandStiftDataRequest" type="ns0:CommandStiftDataRequest"/>
+    <xs:element name="CommandStiftDataRequestResponse" type="ns0:CommandStiftDataRequestResponse"/>
+    <xs:element name="CommandStiftDataRequestFailure" type="ns0:CommandStiftDataRequestFailure"/>
+
+    <xs:complexType name="CommandStiftDataRequest">
+        <xs:sequence>
+            <xs:element name="standort" type="xs:string"/>
+            <xs:element name="versorger" type="xs:string"/>
+            <xs:element name="typ" type="xs:string"/>
+            <xs:element name="leiste" type="xs:string"/>
+            <xs:element name="stifte">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="stift" minOccurs="1" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="stift" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CommandStiftDataRequestResponse">
+        <xs:sequence>
+            <xs:element name="leiste" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CommandStiftDataRequestFailure">
+        <xs:sequence>
+            <xs:element name="leiste" type="xs:string"/>
+            <xs:element name="stifte">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="stift" minOccurs="1" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="stift" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="errorMsg" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+</xs:schema>

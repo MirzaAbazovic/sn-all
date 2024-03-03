@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Adress-Auswahl fuer 
+einen Endgeraete-Versand.
+-->
+<sf>
+
+    <Button name="choose.adresse">
+        <text>Lieferanschrift auswählen</text>
+        <tooltip>Zeigt die für den Kunden vorhandenen Adressen an</tooltip>
+    </Button>
+   
+</sf>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den IP-Routen.
+-->
+<sf>
+
+    <Button name="add.ip.route">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Erstellt eine neue IP-Route</tooltip>
+    </Button>
+
+    <Button name="delete.ip.route">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht die ausgewählte IP-Route</tooltip>
+    </Button>
+
+</sf>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.PhysikaenderungsTyp
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="PhysikaenderungsTyp" table="T_PHYSIKAENDERUNGSTYP">
+
+        <cache usage="read-only"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="name" column="NAME" type="string" not-null="true"/>
+        <property name="ewsd" column="EWSD" type="boolean"/>
+        <property name="sdh" column="SDH" type="boolean"/>
+        <property name="ips" column="IPS" type="boolean"/>
+        <property name="sct" column="SCT" type="boolean"/>
+
+    </class>
+
+</hibernate-mapping>

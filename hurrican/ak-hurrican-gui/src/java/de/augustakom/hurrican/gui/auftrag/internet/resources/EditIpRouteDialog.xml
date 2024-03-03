@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das SIP-InterTrunk-Panel.
+-->
+<sf>
+
+    <Text name="title">Route anlegen / editieren</Text>
+
+    <Label name="ip.address"><text>IP-Netz:</text></Label>
+    <IPAddressComponent name="ip.address">
+        <tooltip>IP Adresse der Route</tooltip>
+        <IPTypesAllowed>
+            <IPType>8</IPType>
+            <IPType>9</IPType>
+        </IPTypesAllowed>
+    </IPAddressComponent>
+    <TextField name="ip.address">
+        <maxchars>40</maxchars>
+        <tooltip>IP-Adresse der IP-Route</tooltip>
+    </TextField>
+
+    <Label name="metrik"><text>Metrik:</text></Label>
+    <FormattedTextField name="metrik">
+        <tooltip>Definiert die Metrik der Route</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="description"><text>Bemerkung:</text></Label>
+    <TextArea name="description">
+        <tooltip>Bemerkung zur Route</tooltip>
+        <rows>5</rows>
+        <columns>30</columns>
+        <maxchars>255</maxchars>
+    </TextArea>
+
+</sf>

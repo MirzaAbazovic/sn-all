@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.BAuftrag
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+    <class name="BAuftrag" table="AUFTRAG">
+
+        <!-- PrimaryKey -->
+        <id name="auftragNo" column="AUFTRAG_NO" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+
+        <!-- Sonstige Fields -->
+        <property name="auftragNoOrig" column="AUFTRAG__NO" type="long"/>
+        <property name="oldAuftragNoOrig" column="OLD_SERVICE__NO" type="string"/>
+        <property name="sapId" column="SAP_ID" type="string"/>
+        <property name="atyp" column="ATYP" type="string"/>
+        <property name="astatus" column="ASTATUS" type="integer"/>
+        <property name="kundeNo" column="CUST_NO" type="long"/>
+        <property name="oeNoOrig" column="OE__NO" type="long"/>
+        <property name="wunschTermin" column="WUNSCH_TERMIN" type="date"/>
+        <property name="vertragsdatum" column="VERTRAGSDATUM" type="date"/>
+        <property name="user" column="USERW" type="string"/>
+        <property name="bundleOrderNo" column="BUNDLE_ORDER_NO" type="integer"/>
+        <property name="apAddressNo" column="AP_ADDRESS_NO" type="long"/>
+        <property name="haendlerNo" column="HAENDLER__NO" type="long"/>
+        <property name="vertragsLaufzeit" column="AUFTRAGSBINDUNG" type="long"/>
+        <property name="kuendigungsdatum" column="CANCEL_DATE" type="date"/>
+        <property name="vertragsendedatum" column="VERTRAGSENDE" type="date"/>
+
+        <property name="gueltigVon" column="VALID_FROM" type="date"/>
+        <property name="gueltigBis" column="VALID_TO" type="date"/>
+        <property name="histStatus" column="HIST_STATUS" type="string"/>
+        <property name="histCnt" column="HIST_CNT" type="integer"/>
+        <property name="histLast" column="HIST_LAST" type="boolean"/>
+        <property name="rechInfoNoOrig" column="BILL_SPEC_NO" type="long"/>
+        <property name="eingangsdatum" column="EINGANGSDATUM" type="date"/>
+        <property name="tatsaechlicherTermin" column="TATSAECHLICHER_TERMIN" type="date"/>
+        <property name="ausfuehrZeit" column="AUSFUEHR_ZEIT" type="date"/>
+        <property name="bearbeiterKundeName" column="BEARBEITER_KUNDE" type="string"/>
+        <property name="bearbeiterKundeRN" column="BEARBEITER_KUNDE_RN" type="string"/>
+        <property name="bearbeiterKundeFax" column="BEARBEITER_KUNDE_FAX" type="string"/>
+        <property name="bearbeiterKundeEmail" column="BEARBEITER_KUNDE_EMAIL" type="string"/>
+        <property name="bestellId" column="BESTELL_ID" type="string"/>
+        <property name="hauptAuftragNo" column="HAUPT_AUFTRAG__NO" type="java.lang.Long"/>
+        <property name="aktuellesVertragsende" column="CURRENT_CONTRACT_END" type="java.util.Date"/>
+     </class>
+
+</hibernate-mapping>

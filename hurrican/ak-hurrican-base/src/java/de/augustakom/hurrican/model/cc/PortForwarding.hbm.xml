@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.PortForwarding
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="PortForwarding" table="T_PORT_FORWARD">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_PORT_FORWARD_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="bemerkung" column="BEMERKUNG" type="string"/>
+        <property name="active" column="ACTIVE" type="boolean"/>
+        <property name="bearbeiter" column="BEARBEITER" type="string"/>
+        <property name="transportProtocol" column="TRANSPORT_PROTOCOL" type="string"/>
+
+        <property name="sourcePort" column="SOURCE_PORT" type="integer"/>
+        <property name="destPort" column="DEST_PORT" type="integer" not-null="true"/>
+        <!--  destIpAddressRef ist OneToOne! -->
+        <many-to-one name="destIpAddressRef" class="de.augustakom.hurrican.model.cc.IPAddress"
+            column="DEST_IP_ADDRESS_ID" not-null="true" cascade="all" unique="true" lazy="false"/>
+        <!--  sourceIpAddressRef ist OneToOne! -->
+        <many-to-one name="sourceIpAddressRef" class="de.augustakom.hurrican.model.cc.IPAddress"
+            column="SOURCE_IP_ADDRESS_ID" not-null="false" cascade="all" unique="true" lazy="false"/>
+    </class>
+
+</hibernate-mapping>

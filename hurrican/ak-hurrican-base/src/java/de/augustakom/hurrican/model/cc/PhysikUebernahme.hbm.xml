@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.PhysikUebernahme
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="PhysikUebernahme" table="T_PHYSIKUEBERNAHME">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_PHYSIKUEBERNAHME_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="vorgang" column="VORGANG" type="long" not-null="true"/>
+        <property name="auftragIdA" column="AUFTRAG_ID_A" type="long" not-null="true"/>
+        <property name="auftragIdB" column="AUFTRAG_ID_B" type="long" not-null="true"/>
+        <property name="kriterium" column="KRITERIUM" type="integer" not-null="true"/>
+        <property name="aenderungstyp" column="AENDERUNGSTYP" type="long"/>
+        <property name="verlaufId" column="VERLAUF_ID" type="long"/>
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+pipeline {
+    agent {
+        kubernetes {
+            inheritFrom 'maven-pod'
+        }
+    }
+    
+    stages {
+        stage('Checkout Source') {
+            steps {
+                git credentialsId: 'adlatus-tmf-artifacts_ssh-key',
+                    url: 'git@bitbucket.org:bitconex/adlatus-tmf-artifacts.git',
+                    branch: 'master'
+            }
+        }
+
+        stage('Maven Deploy') {
+            steps {
+                container('maven'){
+                    configFileProvider([configFile(fileId: '6378b853-e085-4888-8d65-d36cdf692d46', variable: 'MAVEN_SETTINGS_XML')]) {
+                        sh 'mvn -s $MAVEN_SETTINGS_XML clean deploy'
+                    }
+                }
+            }
+        }
+    }
+}

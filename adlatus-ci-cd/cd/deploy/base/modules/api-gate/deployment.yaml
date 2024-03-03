@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gate-deployment
+  namespace: adl
+  labels:
+    app: api-gate
+spec:
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-gate
+  template:
+    metadata:
+      labels:
+        app: api-gate
+    spec:
+      containers:
+        - name: api-gate
+          image: api-gate:latest
+          ports:
+            - containerPort: 8080
+          # envFrom:
+          #  - configMapRef:
+          #      name: api-gate-config
+          #  - secretRef:
+          #      name: api-gate-secret

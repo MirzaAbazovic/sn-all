@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Administration der MDUs und ONTs.
+-->
+<sf>
+    <Label name="olt"><text>OLT:</text></Label>
+    <ReferenceField name="olt">
+        <tooltip>Angabe der OLT, an der die MDU/ONT angeschlossen ist</tooltip>
+        <id.property>id</id.property>
+        <name.property>geraeteBez</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.hardware.HWRack</reference.class>
+    </ReferenceField>
+
+    <Label name="serial.no"><text>Seriennummer:</text></Label>
+    <TextField name="serial.no">
+        <tooltip>Seriennummer der MDU/ONT</tooltip>
+        <columns>20</columns>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Label name="ip.address"><text>IP Adresse:</text></Label>
+    <TextField name="ip.address">
+        <tooltip>IP Adresse der MDU/ONT</tooltip>
+        <maxchars>20</maxchars>
+    </TextField>
+
+    <Label name="tdd.profil"><text>TDD-Profil:</text></Label>
+
+    <Label name="catv"><text>Cable TV:</text></Label>
+    <TextField name="catv">
+        <tooltip>Flag gibt an, ob Cable TV auf der MDU aktiviert ist</tooltip>
+        <maxchars>20</maxchars>
+    </TextField>
+
+    <Label name="olt.frame"><text>OLT Frame/Rack:</text></Label>
+    <TextField name="olt.frame">
+        <tooltip>Angabe des OLT-Frames, auf dem die MDU/ONT angeschlossen ist</tooltip>
+        <maxchars>2</maxchars>
+    </TextField>
+
+    <Label name="olt.subrack"><text>OLT Shelf/Subrack:</text></Label>
+    <TextField name="olt.subrack">
+        <tooltip>Angabe des OLT-Shelfs bzw. -Subracks, auf dem die MDU/ONT angeschlossen ist</tooltip>
+        <maxchars>2</maxchars>
+    </TextField>
+
+    <Label name="olt.slot"><text>OLT Slot/LT:</text></Label>
+    <TextField name="olt.slot">
+        <tooltip>Angabe des OLT-Slots bzw. -LTs, auf dem die MDU/ONT angeschlossen ist</tooltip>
+        <maxchars>2</maxchars>
+    </TextField>
+
+    <Label name="olt.gpon.port"><text>OLT Port:</text></Label>
+    <TextField name="olt.gpon.port">
+        <tooltip>Angabe des G.PON Ports, auf dem die MDU/ONT angeschlossen ist</tooltip>
+        <maxchars>2</maxchars>
+    </TextField>
+
+    <Label name="olt.gpon.id"><text>OLT GPONID:</text></Label>
+    <TextField name="olt.gpon.id">
+        <tooltip>Angabe der G.PON ID, auf der die MDU/ONT angeschlossen ist</tooltip>
+        <columns>4</columns>
+        <maxchars>4</maxchars>
+    </TextField>
+
+    <TextField name="rack.type">
+        <tooltip>Typenbezeichnung</tooltip>
+        <columns>8</columns>
+        <maxchars>16</maxchars>
+    </TextField>
+
+    <Label name="freigabe"><text>Freigabedatum:</text></Label>
+    <DateComponent name="freigabe">
+        <tooltip>Produktionsfreigabe</tooltip>
+    </DateComponent>
+
+    <Label name="dpo.chassis.identifier"><text>Chassis-Bezeichnung:</text></Label>
+    <TextField name="dpo.chassis.identifier">
+        <tooltip>Chassis-Bezeichnung</tooltip>
+        <maxchars>30</maxchars>
+    </TextField>
+
+    <Label name="dpo.chassis.slot"><text>Steckplatz:</text></Label>
+    <TextField name="dpo.chassis.identifier">
+        <tooltip>Chassis-Steckplatz</tooltip>
+        <maxchars>30</maxchars>
+    </TextField>
+
+    <Label name="dpu.stromversorgung"><text>Stromversorgung durch Kunden:</text></Label>
+    <CheckBox name="dpu.stromversorgung">
+        <tooltip>wird der Strom durch den Kunden versorgt?</tooltip>
+    </CheckBox>
+
+    <Button name="mdu.init">
+        <text>MDU initialisieren</text>
+    </Button>
+
+    <Button name="ont.init">
+        <text>ONT initialisieren</text>
+    </Button>
+
+    <Button name="ont.modify">
+        <text>ONT aktualisieren</text>
+    </Button>
+
+    <Button name="ont.delete">
+        <text>ONT löschen</text>
+    </Button>
+
+    <Button name="dpo.init">
+        <text>DPO initialisieren</text>
+    </Button>
+
+    <Button name="dpo.modify">
+        <text>DPO aktualisieren</text>
+    </Button>
+
+    <Button name="dpo.delete">
+        <text>DPO löschen</text>
+    </Button>
+
+    <Button name="dpu.init">
+        <text>DPU initialisieren</text>
+    </Button>
+
+    <Button name="dpu.modify">
+        <text>DPU aktualisieren</text>
+    </Button>
+
+    <Button name="dpu.delete">
+        <text>DPU löschen</text>
+    </Button>
+</sf>

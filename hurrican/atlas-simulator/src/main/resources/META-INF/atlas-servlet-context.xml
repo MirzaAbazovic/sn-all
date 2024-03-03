@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:citrus="http://www.citrusframework.org/schema/config"
+       xmlns:citrus-jms="http://www.citrusframework.org/schema/jms/config"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+              http://www.citrusframework.org/schema/config http://www.citrusframework.org/schema/config/citrus-config.xsd
+              http://www.citrusframework.org/schema/jms/config http://www.citrusframework.org/schema/jms/config/citrus-jms-config.xsd">
+
+    <context:annotation-config/>
+
+    <bean id="loggingInterceptor" class="com.consol.citrus.ws.interceptor.LoggingEndpointInterceptor">
+        <description>This interceptor logs the complete message (SOAP envelope)</description>
+    </bean>
+
+    <bean id="simulatorPayloadMapping" class="org.springframework.ws.server.endpoint.mapping.UriEndpointMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="loggingInterceptor"/>
+            </list>
+        </property>
+        <property name="defaultEndpoint" ref="simulatorEndpoint"/>
+    </bean>
+
+    <!-- Simulator message handler-->
+    <bean id="simulatorEndpoint" class="com.consol.citrus.ws.server.WebServiceEndpoint">
+        <property name="endpointAdapter">
+            <bean class="com.consol.citrus.endpoint.adapter.EmptyResponseEndpointAdapter"/>
+        </property>
+    </bean>
+
+    <!-- FFM Workforce message endpoint over JMS -->
+    <bean id="ffmSimulatorEndpoint" class="de.mnet.hurrican.simulator.endpoint.JmsSimulatorEndpoint">
+        <property name="jmsEndpoint" ref="atlasWorkforceServiceJmsEndpoint"/>
+        <property name="endpointAdapter">
+            <ref bean="ffmSimulatorEndpointAdapter"/>
+        </property>
+    </bean>
+
+    <bean id="ffmSimulatorEndpointAdapter" class="de.mnet.hurrican.atlas.simulator.ffm.FFMSimulatorEndpointAdapter">
+        <property name="mappingKeyExtractor">
+            <bean class="de.mnet.hurrican.atlas.simulator.ffm.mapping.FFMMappingKeyExtractor"/>
+        </property>
+        <property name="responseEndpointAdapter" ref="simulatorInboundAdapter"/>
+        <property name="notificationEndpointAdapter" ref="notificationInboundAdapter"/>
+    </bean>
+
+    <!-- Workforce JMS service endpoints -->
+    <citrus-jms:endpoint id="atlasWorkforceServiceJmsEndpoint"
+                         connection-factory="atlasConnectionFactory"
+                         timeout="5000"
+                         destination-name="mnet.Resource.op.cdm.src.v1.WorkforceService"/>
+
+    <!-- Document Archive message endpoint over JMS -->
+    <bean id="documentArchiveSimulatorEndpoint" class="de.mnet.hurrican.simulator.endpoint.JmsSimulatorEndpoint">
+        <property name="jmsEndpoint" ref="atlasDocumentArchiveServiceJmsEndpoint"/>
+        <property name="endpointAdapter">
+            <ref bean="documentArchiveSimulatorEndpointAdapter"/>
+        </property>
+    </bean>
+
+    <bean id="documentArchiveSimulatorEndpointAdapter" class="de.mnet.hurrican.atlas.simulator.archive.DocumentArchiveSimulatorEndpointAdapter">
+        <property name="mappingKeyExtractor">
+            <bean class="de.mnet.hurrican.atlas.simulator.archive.mapping.DocumentArchiveMappingKeyExtractor"/>
+        </property>
+        <property name="responseEndpointAdapter" ref="simulatorInboundAdapter"/>
+        <property name="notificationEndpointAdapter" ref="notificationInboundAdapter"/>
+    </bean>
+
+    <!-- Document Archive JMS endpoints -->
+    <citrus-jms:sync-endpoint id="atlasDocumentArchiveServiceJmsEndpoint"
+                              connection-factory="atlasConnectionFactory"
+                              timeout="5000"
+                              destination-name="mnet.Customer.op.cdm.src.v1.DocumentArchiveService"/>
+
+    <!-- Wita Line Order message endpoint over JMS -->
+    <bean id="witaLineOrderSimulatorEndpoint" class="de.mnet.hurrican.simulator.endpoint.JmsSimulatorEndpoint">
+        <property name="jmsEndpoint" ref="atlasWitaLineOrderJmsEndpoint"/>
+        <property name="endpointAdapter">
+            <ref bean="witaLineOrderSimulatorEndpointAdapter"/>
+        </property>
+    </bean>
+
+    <!-- Wita Line Order JMS endpoint -->
+    <citrus-jms:endpoint id="atlasWitaLineOrderJmsEndpoint"
+                         connection-factory="atlasConnectionFactory"
+                         destination-name="mnet.SupplierPartner.op.cdm.src.v1.LineOrderService"
+                         timeout="5000"/>
+
+    <!-- Atlas Error Service message endpoint over JMS -->
+    <bean id="atlasErrorServiceEndpoint" class="de.mnet.hurrican.simulator.endpoint.JmsSimulatorEndpoint">
+        <property name="jmsEndpoint" ref="atlasErrorJmsEndpoint"/>
+        <property name="endpointAdapter">
+            <ref bean="witaLineOrderSimulatorEndpointAdapter"/>
+        </property>
+    </bean>
+
+    <!-- Atlas Error Service JMS endpoint -->
+    <citrus-jms:endpoint id="atlasErrorJmsEndpoint"
+                         connection-factory="atlasConnectionFactory"
+                         destination-name="mnet.Shared.x.cdm.src.v1.ErrorHandlingService"
+                         timeout="5000"/>
+
+    <!-- Simulator message handler -->
+    <bean id="witaLineOrderSimulatorEndpointAdapter" class="de.mnet.hurrican.atlas.simulator.wita.WitaLineOrderSimulatorEndpointAdapter">
+        <property name="mappingKeyExtractor">
+            <bean class="de.mnet.hurrican.simulator.mapping.SimulatorMappingKeyExtractor">
+                <property name="xpathExpression" value="//*[local-name() = 'ansprechpartner']/*[local-name() = 'auftragsmanagement']/*[local-name() = 'nachname'][1]"/>
+            </bean>
+        </property>
+        <property name="responseEndpointAdapter" ref="simulatorInboundAdapter"/>
+        <property name="notificationEndpointAdapter" ref="notificationInboundAdapter"/>
+    </bean>
+
+    <!-- Utility and helper implementations -->
+    <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory"/>
+    <bean id="soapMessageHelper" class="de.mnet.hurrican.simulator.helper.SoapMessageHelper"/>
+    <bean id="xpathHelper" class="de.mnet.hurrican.simulator.helper.XPathHelper"/>
+    <bean id="simulatorOrderManager" class="de.mnet.hurrican.simulator.handler.SimulatorOrderManager"/>
+
+    <bean id="testBuilderService" class="de.mnet.hurrican.atlas.simulator.service.AtlasTestBuilderService"/>
+    <bean id="messageTemplateService" class="de.mnet.hurrican.atlas.simulator.service.AtlasMessageTemplateService"/>
+
+    <bean class="de.mnet.hurrican.atlas.simulator.config.AtlasSimulatorConfiguration">
+        <property name="messageAutoDelay" value="${message.auto.delay}"/>
+        <property name="defaultTimeout" value="${default.timeout}"/>
+        <property name="templatePath" value="${template.path}"/>
+        <property name="defaultBuilder" value="${default.builder.name}"/>
+        <property name="templateValidation" value="${simulator.template.validation}"/>
+    </bean>
+
+</beans>

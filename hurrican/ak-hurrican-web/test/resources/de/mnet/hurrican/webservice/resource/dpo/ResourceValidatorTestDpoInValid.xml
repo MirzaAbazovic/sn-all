@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updateResource xmlns="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1 /ResourceInventoryService.xsd">
+    <resource>
+        <id>987654321</id>
+        <inventory>command</inventory>
+        <resourceSpec>
+            <id>dpo-1</id>
+            <inventory>command</inventory>
+        </resourceSpec>
+        <name>dpo123</name>
+        <characteristic>
+            <name>olt</name>
+            <value>OLT-400027</value>
+        </characteristic>
+        <characteristic>
+            <name>olt</name>
+            <value>OLT-400027</value>
+        </characteristic>
+        <characteristic>
+            <name>oltRack</name>
+            <value>abc</value>
+        </characteristic>
+        <characteristic>
+            <name>raumbezeichung</name>
+            <value>1. OG</value>
+        </characteristic>
+        <characteristic>
+            <name>gibtsnich</name>
+        </characteristic>
+    </resource>
+
+</updateResource>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.mnet.de/hurrican/tvprovider/" xmlns:tns="http://www.mnet.de/hurrican/tvprovider/"
+	attributeFormDefault="unqualified" elementFormDefault="unqualified"
+	targetNamespace="http://www.mnet.de/hurrican/tvprovider/">
+
+	<xsd:simpleType name="orderStateType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="IN_ERFASSUNG" />
+			<xsd:enumeration value="AKTIV" />
+			<xsd:enumeration value="GEKUENDIGT" />
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:element name="getTvAvailabilityInformationRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="geoId" type="xsd:long" />
+				<xsd:element minOccurs="0" name="onkz" type="xsd:string" />
+				<xsd:element minOccurs="0" name="asb" type="xsd:string" />
+				<xsd:element minOccurs="0" name="kvz" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="getTvAvailabilityInformationResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element minOccurs="0" maxOccurs="unbounded"
+					name="tvAvailabilityInformation" type="tvAvailabilityInformationType" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="tvAvailabilityInformationType">
+		<xsd:sequence>
+			<xsd:element name="billingOrderNo" type="xsd:long" />
+			<xsd:element name="productName" type="xsd:string" />
+			<xsd:element name="productGroup" type="xsd:string" />
+			<xsd:element name="orderState" type="tns:orderStateType" />
+			<xsd:element name="geoId" type="xsd:long" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="getTvAvailabilityInformationFault">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="errorCode" type="xsd:string"></xsd:element>
+				<xsd:element name="errorDescription" type="xsd:string"></xsd:element>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

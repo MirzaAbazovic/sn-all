@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:sws="http://www.springframework.org/schema/web-services"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/web-services
+      http://www.springframework.org/schema/web-services/web-services.xsd">
+
+    <sws:annotation-driven />
+    <context:annotation-config/>
+
+    <bean id="de.mnet.hurrican.webservice.monline.endpoint.CustomerOrderCombinationConverter" class="de.mnet.hurrican.webservice.monline.endpoint.CustomerOrderCombinationConverter" />
+    <bean id="de.mnet.hurrican.webservice.monline.endpoint.IpAddressInfoEndpoint" class="de.mnet.hurrican.webservice.monline.endpoint.IpAddressInfoEndpoint" />
+
+    <bean class="org.springframework.ws.server.endpoint.adapter.GenericMarshallingMethodEndpointAdapter">
+        <property name="marshaller" ref="xmlBeanMarshaller" />
+        <property name="unmarshaller" ref="xmlBeanMarshaller" />
+    </bean>
+
+    <!-- Definition of the Endpoint-Mapping -->
+    <bean class="org.springframework.ws.server.endpoint.mapping.PayloadRootAnnotationMethodEndpointMapping"/>
+
+    <!-- Definition des zu verwendenden Marshallers -->
+    <bean id="xmlBeanMarshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller" />
+
+    <!-- Publishing the WSDL -->
+    <!-- WSDL Generierung ueber http://localhost:8080/hurricanweb/ipAddressInfo/ipAddressInfo.wsdl -->
+    <bean id="ipAddressInfo" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+        <property name="schema" ref="schema"/>
+        <property name="portTypeName" value="IpAddressInfo"/>
+        <property name="locationUri" value="http://localhost:8080/hurricanweb/ipAddressInfo/ipAddressInfo.wsdl"/>
+    </bean>
+
+    <bean id="schema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+        <property name="xsd" value="classpath:monline/IPAddressInfo.xsd"/>
+    </bean>
+
+</beans>
+

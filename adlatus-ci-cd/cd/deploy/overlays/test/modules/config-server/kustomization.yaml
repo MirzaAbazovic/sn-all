@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../base/modules/config-server
+
+namespace: adl-test
+nameSuffix: "-test"
+
+images: 
+- name: config-server
+  newName: docker.adl.dev.bitconex.com/bitconex-config-server
+  newTag: latest
+
+patches:

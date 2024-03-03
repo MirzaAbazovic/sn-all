@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="getCluster4GeoId" resourceRoot="" soapui-version="3.6.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="GetCluster4GeoIdWebServiceSoap11" type="wsdl" bindingName="{http://mnet.de/hurricanweb/geoid/cluster/types/}GetCluster4GeoIdWebServiceSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/hurricanweb/geoid/cluster/hurricanGetCluster4GeoId.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/hurricanweb/geoid/cluster/hurricanGetCluster4GeoId.wsdl"><con:part><con:url>http://localhost:8080/hurricanweb/geoid/cluster/hurricanGetCluster4GeoId.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://mnet.de/hurricanweb/geoid/cluster/types/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://mnet.de/hurricanweb/geoid/cluster/types" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://mnet.de/hurricanweb/geoid/cluster/types/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://mnet.de/hurricanweb/geoid/cluster/types" xmlns:ns0="http://mnet.de/hurricanweb/geoid/cluster/types" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="GetCluster4GeoIdRequest" type="ns0:GetCluster4GeoIdRequest"/>
+      <xs:element name="GetCluster4GeoIdResponse" type="ns0:GetCluster4GeoIdResponse"/>
+      <xs:complexType name="GetCluster4GeoIdRequest">
+        <xs:sequence>
+          <xs:element name="geoId" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetCluster4GeoIdResponse">
+        <xs:sequence>
+          <xs:element name="clusterId" type="xs:string"/>
+          <xs:element name="areaNo" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="GetCluster4GeoIdResponse">
+    <wsdl:part element="sch:GetCluster4GeoIdResponse" name="GetCluster4GeoIdResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetCluster4GeoIdRequest">
+    <wsdl:part element="sch:GetCluster4GeoIdRequest" name="GetCluster4GeoIdRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="GetCluster4GeoIdWebService">
+    <wsdl:operation name="GetCluster4GeoId">
+      <wsdl:input message="tns:GetCluster4GeoIdRequest" name="GetCluster4GeoIdRequest"></wsdl:input>
+      <wsdl:output message="tns:GetCluster4GeoIdResponse" name="GetCluster4GeoIdResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GetCluster4GeoIdWebServiceSoap11" type="tns:GetCluster4GeoIdWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetCluster4GeoId">
+      <soap:operation soapAction="getCluster4GeoIdRequest"/>
+      <wsdl:input name="GetCluster4GeoIdRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetCluster4GeoIdResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GetCluster4GeoId">
+    <wsdl:port binding="tns:GetCluster4GeoIdWebServiceSoap11" name="GetCluster4GeoIdWebServiceSoap11">
+      <soap:address location="http://localhost:8080/hurricanweb/geoid/cluster"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://mnethc10.intern.m-net.de:8080/hurricanweb/geoid/cluster</con:endpoint></con:endpoints><con:operation isOneWay="false" action="getCluster4GeoIdRequest" name="GetCluster4GeoId" bindingOperationName="GetCluster4GeoId" type="Request-Response" outputName="GetCluster4GeoIdResponse" inputName="GetCluster4GeoIdRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://mnethc10.intern.m-net.de:8080/hurricanweb/geoid/cluster</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/geoid/cluster/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:GetCluster4GeoIdRequest>
+         <typ:geoId>1045755</typ:geoId>
+      </typ:GetCluster4GeoIdRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="getCluster4GeoIdRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="Cluster4GeoID_TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="Cluster4GeoID_TestCase" searchProperties="true" id="49c541d3-29a1-446f-8021-ed2a7b5e1dff"><con:settings/><con:testStep type="request" name="Fehler: ohne Typ"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>GetCluster4GeoIdWebServiceSoap11</con:interface><con:operation>GetCluster4GeoId</con:operation><con:request name="Fehler: ohne Typ"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://mnethc10.intern.m-net.de:8080/hurricanweb/geoid/cluster</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/geoid/cluster/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:GetCluster4GeoIdRequest>
+      </typ:GetCluster4GeoIdRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Not SOAP Fault Assertion"/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Fehler: &lt;a> statt &lt;geoId>"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>GetCluster4GeoIdWebServiceSoap11</con:interface><con:operation>GetCluster4GeoId</con:operation><con:request name="Fehler: &lt;a> statt &lt;geoId>"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://mnethc10.intern.m-net.de:8080/hurricanweb/geoid/cluster</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/geoid/cluster/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:GetCluster4GeoIdRequest>
+         <typ:a>1</typ:a>
+      </typ:GetCluster4GeoIdRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Not SOAP Fault Assertion"/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Fehler: &lt;a> und &lt;geoId>"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>GetCluster4GeoIdWebServiceSoap11</con:interface><con:operation>GetCluster4GeoId</con:operation><con:request name="Fehler: &lt;a> und &lt;geoId>"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://mnethc10.intern.m-net.de:8080/hurricanweb/geoid/cluster</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/geoid/cluster/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:GetCluster4GeoIdRequest>
+         <typ:a>1</typ:a>
+         <typ:geoId>1</typ:geoId>
+      </typ:GetCluster4GeoIdRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Not SOAP Fault Assertion"/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Fehler: &lt;geoId> alphanumerisch"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>GetCluster4GeoIdWebServiceSoap11</con:interface><con:operation>GetCluster4GeoId</con:operation><con:request name="Fehler: &lt;geoId> alphanumerisch"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://mnethc10.intern.m-net.de:8080/hurricanweb/geoid/cluster</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/geoid/cluster/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:GetCluster4GeoIdRequest>
+         <typ:geoId>12ab</typ:geoId>
+      </typ:GetCluster4GeoIdRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Not SOAP Fault Assertion"/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Fehler: zwei &lt;geoId>"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>GetCluster4GeoIdWebServiceSoap11</con:interface><con:operation>GetCluster4GeoId</con:operation><con:request name="Fehler: zwei &lt;geoId>"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://mnethc10.intern.m-net.de:8080/hurricanweb/geoid/cluster</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/geoid/cluster/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:GetCluster4GeoIdRequest>
+         <typ:geoId>1</typ:geoId>
+         <typ:geoId>2</typ:geoId>
+      </typ:GetCluster4GeoIdRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Not SOAP Fault Assertion"/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Fehler: Geo ID '1' existiert nicht"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>GetCluster4GeoIdWebServiceSoap11</con:interface><con:operation>GetCluster4GeoId</con:operation><con:request name="Fehler: Geo ID '1' existiert nicht"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://mnethc10.intern.m-net.de:8080/hurricanweb/geoid/cluster</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/geoid/cluster/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:GetCluster4GeoIdRequest>
+         <typ:geoId>1</typ:geoId>
+      </typ:GetCluster4GeoIdRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Not SOAP Fault Assertion"/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Fehler: keine Cluster ID für Geo ID 1000000"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>GetCluster4GeoIdWebServiceSoap11</con:interface><con:operation>GetCluster4GeoId</con:operation><con:request name="Fehler: keine Cluster ID für Geo ID 1000000"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://mnethc10.intern.m-net.de:8080/hurricanweb/geoid/cluster</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/geoid/cluster/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:GetCluster4GeoIdRequest>
+         <typ:geoId>1000000</typ:geoId>
+      </typ:GetCluster4GeoIdRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Not SOAP Fault Assertion"/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="OK: Geo ID 1031193"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>GetCluster4GeoIdWebServiceSoap11</con:interface><con:operation>GetCluster4GeoId</con:operation><con:request name="OK: Geo ID 1031193"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://mnethc10.intern.m-net.de:8080/hurricanweb/geoid/cluster</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/geoid/cluster/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:GetCluster4GeoIdRequest>
+         <typ:geoId>1031193</typ:geoId>
+      </typ:GetCluster4GeoIdRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:assertion type="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="SOAP Fault Assertion"/><con:assertion type="XPath Match"><con:configuration><path>declare namespace typ="http://mnet.de/hurricanweb/geoid/cluster/types";
+//typ:GetCluster4GeoIdResponse[1]/typ:clusterId='MUC-25'</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match"><con:configuration><path>declare namespace typ="http://mnet.de/hurricanweb/geoid/cluster/types";
+//typ:GetCluster4GeoIdResponse[1]/typ:areaNo=2</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/></con:soapui-project>

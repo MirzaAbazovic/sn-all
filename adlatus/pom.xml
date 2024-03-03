@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.bitconex.adlatus</groupId>
+    <artifactId>adlatus</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <packaging>pom</packaging>
+
+    <name>adlatus</name>
+    <description>adlatus parent</description>
+
+    <modules>
+        <module>adlatus-wita</module>
+        <module>adlatus-domain</module>
+        <module>citrus-it</module>
+    </modules>
+
+    <repositories>
+        <repository>
+            <id>nexus-snapshots-bitconex</id>
+            <url>https://nexus.dev.bitconex.com/repository/maven-snapshots/</url>
+        </repository>
+        <repository>
+            <id>nexus-releases-bitconex</id>
+            <url>https://nexus.dev.bitconex.com/repository/maven-releases/</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases-bitconex</id>
+            <url>https://nexus.dev.bitconex.com/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots-bitconex</id>
+            <url>https://nexus.dev.bitconex.com/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

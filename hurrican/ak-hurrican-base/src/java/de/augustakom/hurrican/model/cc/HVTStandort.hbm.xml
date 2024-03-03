@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.HVTStandort
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="HVTStandort" table="T_HVT_STANDORT">
+
+        <cache usage="read-write"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="HVT_ID_STANDORT" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_HVT_STANDORT_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="hvtGruppeId" column="HVT_GRUPPE_ID" type="long"/>
+        <property name="asb" column="ASB" type="integer"/>
+        <property name="standortTypRefId" column="STANDORT_TYP_REF_ID" type="long"/>
+        <property name="gesicherteRealisierung" column="GESICHERTE_REALISIERUNG" type="string"/>
+        <property name="ewsdOr1" column="EWSD_OR1" type="integer"/>
+        <property name="ewsdOr2" column="EWSD_OR2" type="integer"/>
+        <property name="beschreibung" column="BESCHREIBUNG" type="string"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date"/>
+        <property name="virtuell" column="VIRTUELL" type="boolean"/>
+        <property name="carrierId" column="CARRIER_ID" type="long"/>
+        <property name="carrierKennungId" column="CARRIER_KENNUNG_ID" type="long"/>
+        <property name="carrierContactId" column="CARRIER_CONTACT_ID" type="long"/>
+        <property name="cpsProvisioning" column="CPS_PROVISIONING" type="boolean"/>
+        <property name="breakRangierung" column="BREAK_RANG" type="boolean"/>
+        <property name="fcRaumId" column="FC_RAUM_ID" type="long"/>
+        <property name="betriebsraumId" column="BETRIEBSRAUM_ID" type="long"/>
+        <property name="autoVerteilen" column="AUTO_VERTEILEN" type="boolean"/>
+        <property name="clusterId" column="CLUSTER_ID" type="string"/>
+        <property name="gfastStartfrequenz" column="GFAST_STARTFREQ" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

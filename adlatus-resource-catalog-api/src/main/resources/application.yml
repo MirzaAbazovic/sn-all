@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: resource-catalog-management
+  config:
+    import: optional:configserver:${CONFIG_SERVER:http://configserver.adl.dev.bitconex.com:8888}
+  cloud:
+    config:
+      uri: ${CONFIG_SERVER:http://configserver.adl.dev.bitconex.com:8888}
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:default}

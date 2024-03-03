@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: adlatus-gui-ingress
+  namespace: adl
+spec:
+  ingressClassName: adl-ingress-nginx
+  tls:
+    - hosts:
+      - adlatus-gui.adl-test.dev.bitconex.com
+      secretName: tls-secret-adlatus-gui
+  rules:
+    - host: adlatus-gui.adl-test.dev.bitconex.com
+      http:
+        paths:
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: adlatus-gui-service-test
+                port:
+                  number: 80

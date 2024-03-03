@@ -1,0 +1,13 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <getDataUsageDetailsStatusResponse xmlns="http://www.mnet.de/esb/cdm/Customer/CustomerOrderService/v1" xmlns:ns2="http://www.mnet.de/esb/cdm/Shared/Common/v1">
+            <customerOrder>
+                <customerOrderId>${customerOrderId}</customerOrderId>
+                <account>
+                    <radiusAccountId>${radiusAccountId}</radiusAccountId>
+                    <status>${status}</status>
+                </account>
+            </customerOrder>
+        </getDataUsageDetailsStatusResponse>
+    </soap:Body>
+</soap:Envelope>

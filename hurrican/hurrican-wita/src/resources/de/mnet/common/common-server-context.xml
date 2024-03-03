@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring App-Context Definition fuer den WITA Server Bereich. -->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+
+                        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+
+    <!-- common services -->
+    <bean id="de.mnet.common.service.HistoryService" class="de.mnet.common.service.impl.HistoryServiceImpl"/>
+    <bean id="de.mnet.common.service.impl.WitaMessageHistoryCreator" class="de.mnet.common.service.impl.WitaMessageHistoryCreator"/>
+    <bean name="/common/HistoryService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.common.service.HistoryService"/>
+        <property name="serviceInterface" value="de.mnet.common.service.HistoryService"/>
+    </bean>
+
+    <bean id="de.mnet.wita.service.WitaConfigService" class="de.mnet.wita.service.impl.WitaConfigServiceImpl"/>
+    <bean name="/wita/WitaConfigService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wita.service.WitaConfigService"/>
+        <property name="serviceInterface" value="de.mnet.wita.service.WitaConfigService"/>
+    </bean>
+
+    <!-- Connection Test for the ATLAS ESB EMS connection -->
+    <bean id="jmsConnectionStatusService" class="de.mnet.common.service.status.JmsConnectionStatusService">
+        <property name="jmsFactoryName" value="atlasConnectionFactory"/>
+    </bean>
+
+    <bean id="de.mnet.common.exceptions.HurricanExceptionLogErrorHandler"
+          class="de.mnet.common.exceptions.HurricanExceptionLogErrorHandlerImpl"/>
+
+    <!-- Camel-Konfiguration fuer Zugriff auf Atlas -->
+    <bean id="atlasJmsComponent" class="org.apache.camel.component.jms.JmsComponent" >
+        <constructor-arg ref="atlasJmsConfiguration"/>
+    </bean>
+
+    <bean id="atlasJmsConfiguration" class="org.apache.camel.component.jms.JmsConfiguration">
+        <property name="connectionFactory" ref="atlasConnectionFactory"/>
+        <property name="transactionManager" ref="atlasTransactionManager" />
+        <property name="taskExecutor" ref="atlasJmsThreadPoolTaskExecutor"/>
+    </bean>
+
+    <!-- Thread pool introduced for JMS message listener container that consume messages from JMS destinations. In default behavior listener container
+         creates a new thread for each receive operation. With JMS transaction manager set this has the effect a new JMS connection and session are created
+         when listener asks queue for new messages. This leads to permanent reconnect on JMS message broker. With this thread pool this reconnecting is
+         limited to the maximum of pooled threads as JMS transaction manager binds transaction to a thread.
+    -->
+    <bean id="atlasJmsThreadPoolTaskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="${camel.jms.thread.pool.size.initial}"/>
+        <property name="maxPoolSize" value="${camel.jms.thread.pool.size.max}"/>
+    </bean>
+
+    <bean id="ems.required" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+        <property name="transactionManager" ref="atlasTransactionManager"/>
+        <property name="propagationBehaviorName" value="PROPAGATION_REQUIRED"/>
+    </bean>
+
+    <bean id="ems.propagation_not_supported" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+        <property name="transactionManager" ref="atlasTransactionManager"/>
+        <property name="propagationBehaviorName" value="PROPAGATION_NOT_SUPPORTED"/>
+    </bean>
+
+    <bean id="ems.requires_new" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+        <property name="transactionManager" ref="atlasTransactionManager"/>
+        <property name="propagationBehaviorName" value="PROPAGATION_REQUIRES_NEW"/>
+    </bean>
+
+    <bean id="db.required" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="propagationBehaviorName" value="PROPAGATION_REQUIRED"/>
+    </bean>
+
+    <bean id="db.requires_new" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+        <property name="transactionManager" ref="cc.hibernateTxManager"/>
+        <property name="propagationBehaviorName" value="PROPAGATION_REQUIRES_NEW"/>
+    </bean>
+
+    <!-- SOAP message factory for Atlas ESB interface. Configured to use SOAP 1.1 -->
+    <bean id="atlasEsbSoapMessageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+        <property name="soapVersion">
+            <util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_11" />
+        </property>
+        <property name="messageProperties">
+            <props>
+                <prop key="javax.xml.soap.write-xml-declaration">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <context:component-scan base-package="de.mnet.common.route"/>
+
+    <!-- Atlas error handling service related beans -->
+    <!-- JAXB Bean Marshaller for the ErrorHandlingService -->
+    <bean id="jaxb2MarshallerErrorHandlingService" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="de.mnet.esb.cdm.shared.errorhandlingservice.v1"/>
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.encoding" value="UTF-8"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- Build up all marshaller/unmarshaller beans-->
+    <context:component-scan base-package="de.mnet.common.errorhandling.marshal"/>
+    <context:component-scan base-package="de.mnet.common.errorhandling.processor"/>
+
+    <bean id="ErrorHandlingSchemaValidationService" class="de.mnet.common.errorhandling.service.ErrorHandlingSchemaValidationService">
+        <property name="schemas">
+            <list>
+                <bean class="de.mnet.common.xml.WsdlXsdSchema">
+                    <property name="wsdl" value="classpath:/xsd/esb/errorhandling/ErrorHandlingService.wsdl"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Customer service related beans -->
+    <!-- JAXB Bean Marshaller for the CustomerService -->
+    <bean id="jaxb2MarshallerCustomerService" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="de.mnet.esb.cdm.customer.customerservice.v1"/>
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.encoding" value="UTF-8"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- Build up all marshaller/unmarshaller beans-->
+    <context:component-scan base-package="de.mnet.common.customer.marshal"/>
+    <context:component-scan base-package="de.mnet.common.customer.route"/>
+
+    <bean id="CustomerSchemaValidationService" class="de.mnet.common.customer.service.CustomerSchemaValidationService">
+        <property name="schemas">
+            <list>
+                <bean class="de.mnet.common.xml.WsdlXsdSchema">
+                    <property name="wsdl" value="classpath:/wsdl/CustomerService.wsdl"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <camel:proxy
+            id="customerService"
+            camelContextId="camel"
+            serviceInterface="de.mnet.common.customer.service.CustomerService"
+            serviceUrl="direct:customerService"/>
+
+    <!--
+    Proxy-Service, um das Messaging zu kapseln und die Funktion als Service anzubieten.
+    !! VORSICHT BEIM UMBENENNEN VON PROXY IDS, WEIL DIE BEAN-IDS DIREKT IM CODE VERWENDET WERDEN !! (siehe CamelProxyLookupService)
+    -->
+    <camel:proxy
+            id="locationService"
+            camelContextId="camel"
+            serviceInterface="de.augustakom.hurrican.service.location.LocationService"
+            serviceUrl="direct:locationService"/>
+
+</beans>

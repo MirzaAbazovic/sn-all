@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das abstrakte Daten-Frame.
+-->
+<sf>
+    
+    <Button name="save">
+        <text>Speichern</text>
+        <tooltip>Speichert den aktuellen Datensatz</tooltip>
+        <mnemonic>VK_S</mnemonic>
+    </Button>
+    
+</sf>
+
+
+
+    
+  

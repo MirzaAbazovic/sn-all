@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Anzeige aller Adressen für einen Kunden.
+-->
+<sf>
+    
+    <Text name="title">Adressen für Kunde ({0})</Text>
+    
+    <Text name="taifun.adressen">Taifun-Adressen</Text>
+    <Text name="liefer.adressen">Lieferadressen</Text>
+    <Text name="endstellen.adressen">Endstellenadressen</Text>
+ 	<Text name="owner.adressen">Anschlussinhaberadressen</Text>
+  	<Text name="various.adressen">Allgemeine Adressen</Text>
+   
+    <Button name="change">
+        <tooltip>Adresse ändern</tooltip>
+        <text>Ändern</text>
+    </Button>
+    
+    <Button name="new">
+        <tooltip>Neue Adresse anlegen</tooltip>
+        <text>Neu</text>
+    </Button>
+   
+    
+</sf>

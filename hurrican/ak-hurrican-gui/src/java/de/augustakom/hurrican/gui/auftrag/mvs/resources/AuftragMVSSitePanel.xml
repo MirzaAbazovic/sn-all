@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel "MVS Site".
+-->
+<sf>
+    <Text name="border.title">MVS Site Daten</Text>
+
+    <Button name="new">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Erstellt einen neuen Eintrag zu MVS Site.</tooltip>
+    </Button>
+
+    <Label name="username"><text>Benutzername:</text></Label>
+    <TextField name="username">
+        <tooltip>Benutzername</tooltip>
+        <columns>30</columns>
+    </TextField>
+
+    <Label name="password"><text>Passwort:</text></Label>
+    <TextField name="password">
+        <tooltip>Zufällig generiertes Passwort</tooltip>
+        <columns>30</columns>
+    </TextField>
+
+    <Label name="domain"><text>Subdomain:</text></Label>
+    <TextField name="domain">
+        <tooltip>Subdomain</tooltip>
+        <columns>30</columns>
+    </TextField>
+
+    <Label name="standortKuerzel"><text>Standort Kürzel:</text></Label>
+    <TextField name="standortKuerzel">
+        <tooltip>Standort Kürzel</tooltip>
+        <columns>30</columns>
+    </TextField>
+    
+    <Text name="mvs.enterprise.not.found">Die zugehörigen MVS Enterprise Daten konnten nicht ermittelt werden!
+Der Enterprise-Auftrag muss unter dem gleichen Kunden (sofern keine Hauptkunden-Nr eingetragen ist),
+bzw. auf dem Hauptkunden (wenn der Kunde einem Hauptkunden zugeordnet ist) befinden!</Text>
+
+</sf>

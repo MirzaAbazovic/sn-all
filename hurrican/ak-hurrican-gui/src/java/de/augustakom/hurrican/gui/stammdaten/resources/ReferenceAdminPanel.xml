@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Panel fuer die Reference-Tabelle.
+-->
+<sf>
+    
+    <Label name="id"><text>ID:</text></Label>
+    <FormattedTextField name="id">
+        <tooltip>ID der Referenz</tooltip>
+        <maxchars>9</maxchars>
+        <format type="number">#</format>
+    </FormattedTextField>
+    
+    <Label name="type"><text>Typ:</text></Label>
+    <TextField name="type">
+        <tooltip>Typ der Referenz</tooltip>
+        <maxchars>20</maxchars>
+    </TextField>
+    
+    <Label name="strval"><text>String-Wert:</text></Label>
+    <TextField name="strval">
+        <tooltip>String-Value der Referenz</tooltip>
+        <maxchars>100</maxchars>
+    </TextField>
+    
+    <Label name="intval"><text>Integer-Wert:</text></Label>
+    <FormattedTextField name="intval">
+        <tooltip>Integer-Value der Referenz</tooltip>
+        <maxchars>9</maxchars>
+        <format type="number">#</format>
+    </FormattedTextField>
+    
+    <Label name="floatval"><text>Float-Wert:</text></Label>
+    <FormattedTextField name="floatval">
+        <tooltip>Float-Value der Referenz</tooltip>
+        <maxchars>9</maxchars>
+        <format type="number">#</format>
+    </FormattedTextField>
+    
+    <Label name="unitid"><text>Unit-ID:</text></Label>
+    <FormattedTextField name="unitid">
+        <tooltip>Unit-ID der Referenz</tooltip>
+        <maxchars>9</maxchars>
+        <format type="number">#</format>
+    </FormattedTextField>
+    
+    <Label name="orderno"><text>Order-No:</text></Label>
+    <FormattedTextField name="orderno">
+        <tooltip>Order-No der Referenz</tooltip>
+        <maxchars>9</maxchars>
+        <format type="number">#</format>
+    </FormattedTextField>
+    
+   	<Label name="gui"><text>GUI sichtbar:</text></Label>
+    <CheckBox name="gui">
+        <tooltip>GUI sichtbar</tooltip>
+    </CheckBox>
+  
+    <Label name="beschreibung"><text>Beschreibung:</text></Label>
+    <TextArea name="beschreibung">
+        <tooltip>Kurze Beschreibung der Referenz</tooltip>
+        <maxchars>255</maxchars>
+    </TextArea>
+  
+</sf>

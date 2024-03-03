@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pm-api-deployment
+  namespace: adl
+  labels:
+    app: pm-api
+spec:
+  revisionHistoryLimit: 0
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pm-api
+  template:
+    metadata:
+      labels:
+        app: pm-api
+    spec:
+      containers:
+        - name: pm-api
+          image: pm-api:latest
+          ports:
+            - containerPort: 8080
+          # envFrom:
+          #  - configMapRef:
+          #      name: pm-api-config
+          #  - secretRef:
+          #      name: pm-api-secret

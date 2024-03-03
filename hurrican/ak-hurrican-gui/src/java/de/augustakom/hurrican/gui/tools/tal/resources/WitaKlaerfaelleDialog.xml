@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Text name="title">Korrigieren der Workflow Instanz</Text>
+
+    <Label name="status.code"><text>Neuer Zustand:</text></Label>
+    <ComboBox name="status.code">
+        <tooltip>Auswahl des neuen Zustandes für die Workflow Instanz</tooltip>
+    </ComboBox>
+    
+    <Label name="meldung"><text>Sende Nachricht erneut an Workflow:</text></Label>
+    <ComboBox name="meldung">
+        <tooltip>Nachdem der Status gesetzt wurde, wird die Meldung gesendet</tooltip>
+    </ComboBox>
+</sf>

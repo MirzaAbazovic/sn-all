@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definition fuer das Signierungs-Panel. 
+-->
+<sf>
+    
+    <Button name="start">
+        <text>Starte Kopieren</text>
+        <tooltip>Startet den Rechnungkopiervorgang</tooltip>
+    </Button>
+    
+    <Button name="cancel">
+        <text>Kopieren abbrechen</text>
+        <tooltip>Bricht einen aktiven Kopier-Job vom AK-Scheduler ab.</tooltip>
+    </Button>
+	
+	<Label name="taifun"><text>Taifun-Daten:</text></Label>
+    
+    <Label name="taifun.base.dir"><text>Basis-Dir.:</text></Label>
+    <TextField name="taifun.base.dir">
+        <tooltip>Basis-Verzeichnis, in dem die zu kopierenden Rechnungen liegen</tooltip>
+    </TextField>
+
+	<Label name="export"><text>Export-Daten:</text></Label>  
+
+	<Label name="portal.base.dir"><text>Portal-Basis:</text></Label>
+    <TextField name="portal.base.dir">
+        <tooltip>Basisverzeichnis vom Portal (fuer die Ablage des Mapping-Files DebId~Account)</tooltip>
+    </TextField>
+	
+	<Label name="portal.bill.import.dir"><text>Bill-Import:</text></Label>
+    <TextField name="portal.bill.import.dir">
+        <tooltip>Portal Import-Verzeichnis fuer die Rechnungen</tooltip>
+    </TextField>
+	    
+</sf>

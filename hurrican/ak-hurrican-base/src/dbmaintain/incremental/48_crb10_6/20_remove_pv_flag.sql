@@ -1,0 +1,1 @@
+alter table T_CARRIER drop column AUSWAEHLBAR_PV;

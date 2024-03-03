@@ -1,0 +1,1 @@
+update T_TECH_LEISTUNG set LONG_VALUE = 1000, EXTERN_LEISTUNG__NO = null where ID = 43;

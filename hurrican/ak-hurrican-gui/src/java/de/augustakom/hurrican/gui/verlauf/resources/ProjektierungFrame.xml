@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    GUI-Definitionen fuer das Projektierungs-Frame
+-->
+<sf>
+
+    <Text name="title.universal">Projektierungen</Text>
+
+    <!-- ST Connect -->
+    <Text name="title.abteilung.1">Projektierungen ST Connect</Text>
+
+    <!-- ST Online -->
+    <Text name="title.abteilung.2">Projektierungen ST Online</Text>
+
+    <!-- ST Voice -->
+    <Text name="title.abteilung.3">Projektierungen ST Voice</Text>
+
+    <!-- DISPO -->
+    <Text name="title.abteilung.4">Projektierungen DISPO</Text>
+    <Text name="title.ruecklaeufer.4">Projektierungs-Rückläufer DISPO</Text>
+
+    <Text name="title.abteilung.11">Projektierungen Netzplanung</Text>
+    <Text name="title.ruecklaeufer.11">Projektierungs-Rückläufer NP</Text>
+
+    <!-- FieldService -->
+    <Text name="title.abteilung.5">Projektierungen FieldService</Text>
+
+    <!-- AM -->
+    <Text name="title.ruecklaeufer.7">Projektierungs-Rückläufer AM</Text>
+
+</sf>

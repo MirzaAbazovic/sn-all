@@ -1,0 +1,2 @@
+drop view MIGRATION_IPROUTE;
+drop view MIGRATION_IPSUBNET;

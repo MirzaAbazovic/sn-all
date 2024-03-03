@@ -1,0 +1,1 @@
+alter table t_hvt_technik drop column NAME;

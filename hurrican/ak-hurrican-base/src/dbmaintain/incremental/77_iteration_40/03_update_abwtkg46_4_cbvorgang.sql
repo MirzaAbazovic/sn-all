@@ -1,0 +1,1 @@
+update T_CB_VORGANG v set v.ANBIETERWECHSEL_TKG46 = '1' where v.MONTAGEHINWEIS like '#abw#%';

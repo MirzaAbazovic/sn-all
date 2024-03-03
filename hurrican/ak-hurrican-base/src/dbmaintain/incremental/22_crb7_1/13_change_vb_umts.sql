@@ -1,0 +1,3 @@
+
+update T_PRODUKT set TDN_KIND_OF_USE_TYPE='M' where PROD_ID=470;
+update T_PRODUKT set TDN_KIND_OF_USE_TYPE='B' where PROD_ID=471;

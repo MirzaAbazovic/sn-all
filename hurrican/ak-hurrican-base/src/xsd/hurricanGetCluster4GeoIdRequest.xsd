@@ -1,0 +1,24 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified"
+        targetNamespace="http://mnet.de/hurricanweb/geoid/cluster/types"
+        xmlns:ns0="http://mnet.de/hurricanweb/geoid/cluster/types">
+
+    <xs:element name="GetCluster4GeoIdRequest" type="ns0:GetCluster4GeoIdRequest" />
+    <xs:element name="GetCluster4GeoIdResponse" type="ns0:GetCluster4GeoIdResponse" />
+
+    <xs:complexType name="GetCluster4GeoIdRequest">
+        <xs:sequence>
+            <xs:element name="geoId" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GetCluster4GeoIdResponse">
+        <xs:sequence>
+            <xs:element name="clusterId" type="xs:string"/>
+            <xs:element name="areaNo" type="xs:long"/>
+            <xs:element name="onkz" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

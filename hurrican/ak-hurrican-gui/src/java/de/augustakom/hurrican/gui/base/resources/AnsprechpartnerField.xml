@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Ansprechpartner-Field.
+-->
+<sf>
+
+    <TextField name="contact">
+        <tooltip>Ansprechpartner</tooltip>
+    </TextField>
+
+    <Button name="open">
+        <text>...</text>
+        <tooltip>Öffnet den Ansprechpartner-Dialog</tooltip>
+    </Button>
+
+</sf>
+
+
+
+

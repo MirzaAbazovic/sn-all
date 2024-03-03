@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog für die Vorabstimmung.
+-->
+<sf>
+
+    <Label name="sub.title"><text>Vormieter-Daten (optional):</text></Label>
+
+    <Label name="vormieter.vorname"><text>Vorname:</text></Label>
+    <TextField name="vormieter.vorname">
+        <columns>20</columns>
+        <maxchars>30</maxchars>
+    </TextField>
+
+    <Label name="vormieter.nachname"><text>Nachname:</text></Label>
+    <TextField name="vormieter.nachname">
+        <columns>20</columns>
+        <maxchars>30</maxchars>
+    </TextField>
+
+    <Label name="vormieter.onkz"><text>ONKZ:</text></Label>
+    <TextField name="vormieter.onkz">
+        <columns>20</columns>
+        <maxchars>5</maxchars>
+    </TextField>
+
+    <Label name="vormieter.rufnummer"><text>Rufnummer:</text></Label>
+    <TextField name="vormieter.rufnummer">
+        <columns>20</columns>
+        <maxchars>14</maxchars>
+    </TextField>
+
+    <Label name="vormieter.ufa.nummer"><text>UFA Nummer:</text></Label>
+    <TextField name="vormieter.ufa.nummer">
+        <columns>20</columns>
+        <maxchars>14</maxchars>
+    </TextField>
+
+</sf>

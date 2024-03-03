@@ -1,0 +1,2 @@
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, INT_VALUE, FLOAT_VALUE, UNIT_ID, GUI_VISIBLE, ORDER_NO, DESCRIPTION)
+values (11012, 'STANDORT_TYP', 'FTTX_BR', null, null, null, 1, null, 'FTTX Betriebsraum');

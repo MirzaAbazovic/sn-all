@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions id="Definition" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:activiti="http://activiti.org/bpmn"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             targetNamespace="Examples"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
+
+    <!-- ids von Usertasks (und evtl auch anderen Tasks) in dem Enum de.mnet.wita.bpm.WorkflowTaskName festhalten -->
+    <process id="KueDt" name="KueDt">
+
+        <startEvent id="start" name="Start" />
+        <sequenceFlow sourceRef="start" targetRef="processKueDt" id="start-processKueDt" />
+
+        <serviceTask id="processKueDt" name="processKueDt" activiti:delegateExpression="${processKueDtTask}"
+            default="processKueDt-waitForENTMMessage" />
+        <sequenceFlow sourceRef="processKueDt" targetRef="workflowError" id="processKueDt-workflowError">
+            <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${workflowError.equals(true)}]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow sourceRef="processKueDt" targetRef="waitForENTMMessage" id="processKueDt-waitForENTMMessage" />
+
+        <receiveTask id="waitForENTMMessage" name="Wait for ENTM" />
+        <sequenceFlow sourceRef="waitForENTMMessage" targetRef="end" id="waitForENTMMessage-end">
+            <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"ENTM".equals(witaMessageType)}]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow sourceRef="waitForENTMMessage" targetRef="workflowError" id="waitForENTMMessage-workflowError">
+            <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${workflowError.equals(true)}]]>
+            </conditionExpression>
+        </sequenceFlow>
+
+        <endEvent id="end" name="End">
+            <terminateEventDefinition />
+        </endEvent>
+
+        <userTask id="workflowError" name="Error State" activiti:candidateGroups="clearance" default="workflowError-workflowError" />
+        <sequenceFlow sourceRef="workflowError" targetRef="waitForENTMMessage" id="workflowError-waitForENTMMessage">
+            <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"WAIT_FOR_ENTM".equals(workflowErrorResetState)}]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow sourceRef="workflowError" targetRef="end" id="workflowError-end">
+            <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"CLOSED".equals(workflowErrorResetState)}]]>
+            </conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow sourceRef="workflowError" targetRef="workflowError" id="workflowError-workflowError" />
+
+    </process>
+</definitions>

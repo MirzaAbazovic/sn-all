@@ -1,0 +1,8 @@
+server:
+  port: '8787'
+spring:
+  data:
+    mongodb:
+      database: geographic_address_management
+      port: '27017'
+      host: localhost

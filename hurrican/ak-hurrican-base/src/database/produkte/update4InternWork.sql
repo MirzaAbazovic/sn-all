@@ -1,0 +1,523 @@
+--
+-- SQL-Script, um die notwendigen Strukturen fuer die "internen" Produkte
+-- anzulegen.
+--
+
+CREATE TABLE T_AUFTRAG_INTERN (
+       ID NUMBER(10) NOT NULL
+     , AUFTRAG_ID NUMBER(10) NOT NULL
+     , HVT_ID_STANDORT NUMBER(10)
+     , WORKING_TYPE_REF_ID NUMBER(10)
+     , CONTACT_NAME VARCHAR2(100)
+     , CONTACT_PHONE VARCHAR2(30)
+     , CONTACT_MAIL VARCHAR2(100)
+     , EXT_SERVICE_PROVIDER_ID NUMBER(10)
+     , EXT_ORDER_DATE DATE
+     , BEDARFSNUMMER VARCHAR2(20)
+     , WORKING_HOURS NUMBER(12, 2)
+     , DESCRIPTION VARCHAR2(2000)
+     , GUELTIG_VON DATE NOT NULL
+     , GUELTIG_BIS DATE NOT NULL
+);
+
+ALTER TABLE T_AUFTRAG_INTERN
+  ADD CONSTRAINT PK_T_AUFTRAG_INTERN
+      PRIMARY KEY (ID);
+
+
+CREATE TABLE T_EXT_SERVICE_PROVIDER (
+       ID NUMBER(10) NOT NULL
+     , NAME VARCHAR2(50) NOT NULL
+     , FIRSTNAME VARCHAR2(50)
+     , STREET VARCHAR2(50)
+     , HOUSE_NUM VARCHAR2(8)
+     , POSTAL_CODE VARCHAR2(10)
+     , CITY VARCHAR2(50)
+     , PHONE VARCHAR2(30)
+     , MAIL VARCHAR2(70)
+     , FAX VARCHAR2(30)
+     , CONTACT_TYPE NUMBER(10)
+);
+
+ALTER TABLE T_EXT_SERVICE_PROVIDER
+  ADD CONSTRAINT PK_T_EXT_SERVICE_PROVIDER
+      PRIMARY KEY (ID);
+
+
+CREATE INDEX IX_FK_AUFTRAG_INTERN_2_AUFTRAG
+	ON T_AUFTRAG_INTERN (AUFTRAG_ID) TABLESPACE "I_HURRICAN";
+ALTER TABLE T_AUFTRAG_INTERN
+  ADD CONSTRAINT FK_AUFTRAG_INTERN_2_AUFTRAG
+      FOREIGN KEY (AUFTRAG_ID)
+      REFERENCES t_auftrag (ID);
+
+CREATE INDEX IX_FK_AUFTRAG_INTERN_2_REF
+	ON T_AUFTRAG_INTERN (AUFTRAG_ART_REF_ID) TABLESPACE "I_HURRICAN";
+ALTER TABLE T_AUFTRAG_INTERN
+  ADD CONSTRAINT FK_AUFTRAG_INTERN_2_REF
+      FOREIGN KEY (AUFTRAG_ART_REF_ID)
+      REFERENCES t_reference (ID);
+
+CREATE INDEX IX_FK_AUFTRAG_INTERN_2_HVT
+	ON T_AUFTRAG_INTERN (HVT_ID_STANDORT) TABLESPACE "I_HURRICAN";
+ALTER TABLE T_AUFTRAG_INTERN
+  ADD CONSTRAINT FK_AUFTRAG_INTERN_2_HVT
+      FOREIGN KEY (HVT_ID_STANDORT)
+      REFERENCES t_hvt_standort (HVT_ID_STANDORT);
+
+CREATE INDEX IX_FK_AUFTRAG_INTERN_2_EXTSP
+	ON T_AUFTRAG_INTERN (EXT_SERVICE_PROVIDER_ID) TABLESPACE "I_HURRICAN";
+ALTER TABLE T_AUFTRAG_INTERN
+  ADD CONSTRAINT FK_AUFTRAG_INTERN_2_EXTSP
+      FOREIGN KEY (EXT_SERVICE_PROVIDER_ID)
+      REFERENCES T_EXT_SERVICE_PROVIDER (ID);
+      
+create SEQUENCE S_T_AUFTRAG_INTERN_0 start with 1;
+grant select on S_T_AUFTRAG_INTERN_0 to public;
+
+create SEQUENCE S_T_EXT_SERVICE_PROVIDER_0 start with 10;
+grant select on S_T_EXT_SERVICE_PROVIDER_0 to public;
+
+GRANT SELECT, INSERT, UPDATE ON T_AUFTRAG_INTERN TO R_HURRICAN_USER;
+GRANT SELECT ON T_AUFTRAG_INTERN TO R_HURRICAN_READ_ONLY;
+
+GRANT SELECT, INSERT, UPDATE ON T_EXT_SERVICE_PROVIDER TO R_HURRICAN_USER;
+GRANT SELECT ON T_EXT_SERVICE_PROVIDER TO R_HURRICAN_READ_ONLY;
+
+ALTER TABLE T_IA_MAT_ENTNAHME add HVT_ID_STANDORT NUMBER(10);
+CREATE INDEX IX_FK_IAMATENT_2_HVTSTD
+	ON T_IA_MAT_ENTNAHME (HVT_ID_STANDORT) TABLESPACE "I_HURRICAN";
+ALTER TABLE T_IA_MAT_ENTNAHME
+  ADD CONSTRAINT FK_IAMATENT_2_HVTSTD
+      FOREIGN KEY (HVT_ID_STANDORT)
+      REFERENCES T_HVT_STANDORT (HVT_ID_STANDORT);
+commit;
+      
+
+-- Master Produkt: 'interne Arbeit'
+-- Slave Produkt:  'interne Arbeit - Zusatz'
+INSERT INTO T_PRODUKTGRUPPE (ID, PRODUKTGRUPPE) VALUES (22, 'interne Arbeiten');
+
+insert into T_BA_VERL_AEND_GRUPPE (ID, BESCHREIBUNG) values (6, 'intern');
+insert into T_BA_VERL_ANLASS (ID, NAME, BA_VERL_GRUPPE, IS_CONFIGURABLE, IS_AUFTRAGSART, POSITION_NO, AKT) 
+  values (70, 'interne Arbeit', 6, 1, 1, 200, 1);
+commit;
+
+alter session set nls_date_format='yyyy-mm-dd';
+INSERT INTO T_PRODUKT (PROD_ID, PRODUKTGRUPPE_ID, PRODUKT_NR, ANSCHLUSSART, LEITUNGSART, AKTIONS_ID,
+	BRAUCHT_DN, AUFTRAGSERSTELLUNG, LTGNR_VORS, LTGNR_ANLEGEN, BRAUCHT_BUENDEL, 
+	ELVERLAUF, ABRECHNUNG_IN_HURRICAN, ENDSTELLEN_TYP, ACCOUNT_VORS, LI_NR, VPN_PHYSIK, IS_PARENT,
+	CHECK_CHILD, VERTEILUNG_DURCH, GUELTIG_VON, GUELTIG_BIS) 
+	VALUES (110, 22, '', 'interne Arbeit', null, 0, 
+	0, 1, 'WORK', 1, 1, 
+	1, 0, 1, null, null, 0, 1, 
+	0, 11, '2009-02-01', '2200-01-01');
+INSERT INTO T_BA_VERL_AEND_PROD_2_GRUPPE (PROD_ID, BA_VERL_AEND_GRUPPE_ID) VALUES (110, 6);
+
+
+INSERT INTO T_PRODUKT (PROD_ID, PRODUKTGRUPPE_ID, PRODUKT_NR, ANSCHLUSSART, LEITUNGSART, AKTIONS_ID,
+	BRAUCHT_DN, AUFTRAGSERSTELLUNG, LTGNR_VORS, LTGNR_ANLEGEN, BRAUCHT_BUENDEL, 
+	ELVERLAUF, ABRECHNUNG_IN_HURRICAN, ENDSTELLEN_TYP, ACCOUNT_VORS, LI_NR, VPN_PHYSIK, IS_PARENT,
+	CHECK_CHILD, VERTEILUNG_DURCH, GUELTIG_VON, GUELTIG_BIS) 
+	VALUES (111, 22, '', 'interne Arbeit - Zusatz', null, 0, 
+	0, 1, 'WORK', 1, 1, 
+	1, 0, 1, null, null, 0, 0, 
+	0, 11, '2009-02-01', '2200-01-01');
+INSERT INTO T_BA_VERL_AEND_PROD_2_GRUPPE (PROD_ID, BA_VERL_AEND_GRUPPE_ID) VALUES (111, 6);
+
+
+INSERT INTO T_GUI_DEFINITION (ID, CLASS, TYPE, NAME, TEXT, TOOLTIP, ORDER_NO, ADD_SEPARATOR, ACTIVE)
+  VALUES (214, 'de.augustakom.hurrican.gui.auftrag.AuftragInternPanel', 'PANEL',
+  'auftrag.intern.panel', 'interne Arbeit', 'Panel zur Verwaltung von internen Arbeiten', 70, 0, 1);
+
+INSERT INTO T_GUI_MAPPING (ID, GUI_ID, REFERENZ_ID, REFERENZ_HERKUNFT) 
+	VALUES (280, 214, 22,'de.augustakom.hurrican.model.cc.ProduktGruppe');
+INSERT INTO T_GUI_MAPPING (ID, GUI_ID, REFERENZ_ID, REFERENZ_HERKUNFT) 
+	VALUES (281, 211,110,'de.augustakom.hurrican.model.cc.Produkt');
+commit;
+
+
+-- References fuer 'Auftragsart' definieren
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)  
+	values (13000, 'WORKING_TYPE', 'Neuaufbau', '1', 10, 
+	'Wert definiert einen <Neuaufbau> fuer interne Arbeiten');
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)  
+	values (13001, 'WORKING_TYPE', 'Erweiterung', '1', 20,
+	'Wert definiert eine <Erweiterung> fuer interne Arbeiten');
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)  
+	values (13002, 'WORKING_TYPE', 'Wartung', '1', 30,
+	'Wert definiert eine <Wartung> fuer interne Arbeiten');
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)  
+	values (13003, 'WORKING_TYPE', 'Abbau', '1', 40,
+	'Wert definiert einen <Abbau> fuer interne Arbeiten');
+	
+commit;	
+
+
+-- Verlauf-Chain definieren
+insert into T_SERVICE_COMMANDS (ID, NAME, CLASS, TYPE, DESCRIPTION)
+  values (2012, 'verl.check.intern.work', 
+  'de.augustakom.hurrican.service.cc.impl.command.verlauf.CheckAuftragInternCommand', 
+  'VERLAUF_CHECK', 'Command prueft, ob ein interner Arbeitsauftrag ausreichend definiert ist.');
+
+insert into T_SERVICE_CHAIN (ID, NAME, TYPE, DESCRIPTION)
+  values (44, 'intern-work Check', 'VERLAUF_CHECK', '');
+
+insert into T_SERVICE_COMMAND_MAPPING (ID, COMMAND_ID, REF_ID, REF_CLASS, ORDER_NO)
+  values (786, 2012, 44, 'de.augustakom.hurrican.model.cc.command.ServiceChain', 1);
+insert into T_SERVICE_COMMAND_MAPPING (ID, COMMAND_ID, REF_ID, REF_CLASS, ORDER_NO)
+  values (787, 2008, 44, 'de.augustakom.hurrican.model.cc.command.ServiceChain', 2);
+commit;
+
+update T_PRODUKT set VERLAUF_CHAIN_ID=44, VERLAUF_CANCEL_CHAIN_ID=44 where PROD_ID in (110,111);
+commit;
+
+
+-- weitere Standorttypen anlegen
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)  
+	values (11004, 'STANDORT_TYP', 'NK', '1', null, 
+	'Standort-Typ fuer Netzknoten');
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)  
+	values (11005, 'STANDORT_TYP', 'NMC', '1', null, 
+	'Standort-Typ fuer Netzwerk Management Center');
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)  
+	values (11006, 'STANDORT_TYP', 'TEST-LAB', '1', null, 
+	null);
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)  
+	values (11007, 'STANDORT_TYP', 'TV', '1', null, 
+	'TV-Standort');	
+commit;
+
+
+-- Unit-IDs zu den Standorttypen definieren (notwendig fuer Taifun-Mappings)
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)  
+	values (11100, 'VERBINDUNGS_TYP', 'TAL_HVT', '1', null, 
+	'Wert analog zu Standort-Typ <HVT> (fuer Taifun-Mapping)');	
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)  
+	values (11101, 'VERBINDUNGS_TYP', 'TAL_KVZ', '1', null, 
+	'Wert analog zu Standort-Typ <KVZ> (fuer Taifun-Mapping)');	
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)  
+	values (11102, 'VERBINDUNGS_TYP', 'GPON', '1', null, 
+	'Wert analog zu Standort-Typ <FTTB> u. <FTTH> (fuer Taifun-Mapping)');	
+update t_reference set unit_id=11100 where id=11000;
+update t_reference set unit_id=11101 where id=11001;
+update t_reference set unit_id=11102 where id=11002;
+update t_reference set unit_id=11100 where id=11003;
+update t_reference set unit_id=11100 where id=11004;
+
+	
+-- Betriebsraeume und Netzknoten anlegen/aktualisieren
+update t_hvt_standort set standort_typ_ref_id=11006 where hvt_id_standort=63;
+update t_hvt_standort set standort_typ_ref_id=11001 where hvt_id_standort in (62,64);
+update t_hvt_standort set standort_typ_ref_id=11004 where hvt_id_standort in (51,52);
+
+alter session set nls_date_format='yyyy-mm-dd';
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (156, '0821', 'AGB-CUFRS-004', 'Curt-Frenzel-Str', '4', '86167', 'Augsburg', 1, 'A519500', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID)
+  values (156, 156, 11005, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4);
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (105, 156, '4. OG, NMC');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ, ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (157, '0821', 'AGB-HALDE-005', 'Halderstr.', '5', '86150', 'Augsburg', 1, 'A519501', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (157, 157, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK05, Verteiler STAWA');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (106, 157, '1');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (158, '0821', 'AGB-HIRTE-008', 'Hirtenmahdweg', '8', '86154', 'Augsburg', 1, 'A519502', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (158, 158, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK08');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (107, 158, '2. OG, Raum 2104');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (159, '0821', 'AGB-HOHWG-001', 'Hoher Weg', '1', '86152', 'Augsburg', 1, 'A519504', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (159, 159, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK02');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (108, 159, 'U08');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (160, '0821', 'AGB-BAUMG-009', 'Baumgartenstr', '9', '86161', 'Augsburg', 1, 'A519506', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (160, 160, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK04; Strassenbahndepot');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (109, 160, 'TS920');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (161, '0821', 'AGB-TUNNE-160', 'Tunnelstr', '', '86156', 'Augsburg', 1, 'A519507', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (161, 161, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK07');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (110, 161, 'TS268');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (162, '0821', 'GHN-GABLI-002', 'Gablinger Str', '2', '86368', 'Gersthofen', 1, 'A519508', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (162, 162, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK11');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (111, 162, '12');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (163, '0821', 'AGB-RUMPL-xxx', 'Rumplerstr', '', '86159', 'Augsburg', 1, 'A519509', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (163, 163, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK10');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (112, 163, 'TS460');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (164, '0821', 'AGB-CUFRS-004', 'Curt-Frenzel-Str', '4', '86167', 'Augsburg', 1, 'A519510', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (164, 164, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK09');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (113, 164, 'U08');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (165, '0821', 'AGB-STENG-002', 'Stenglinstr', '2', '86156', 'Augsburg', 1, 'A519511', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (165, 165, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'Zentralklinikum Augsburg');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (114, 165, 'ZK');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (167, '0821', 'AGB-TATTE-015', 'Tattenbachstr', '15', '86179', 'Augsburg', 1, 'A519513', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (167, 167, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK06');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (168, '0821', 'AGB-GOEGG-050', 'Göggingerstr', '50', '86159', 'Augsburg', 1, 'A519514', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (168, 168, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK00');
+  
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (169, '0821', 'AGB-ULMST-078', 'Ulmer Str', '78', '86156', 'Augsburg', 1, 'A519515', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (169, 169, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK15');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (116, 169, 'TK');
+  
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (170, '08251', 'AIC-PB300-300', 'nähe OBI', '', '86551', 'Aichach', 1, 'A519603', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (170, 170, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK');
+  
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (171, '0821', 'AGB-ANNAS-016a', 'Annastr', '16a', '86150', 'Augsburg', 1, 'A519638', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (171, 171, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK01');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (172, '0821', 'AGB-WIHAU-002', 'Wilhlem-Hauff-Str', '2', '86161', 'Augsburg', 1, 'A519639', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (172, 172, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'Schwabencenter');  
+  
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (173, '08233', 'MIG-ASABG-001', 'Am Sandberg', '1-14', '86415', 'Mering', 1, 'A519642', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (173, 173, 11007, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'Kopfstation TV');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (117, 173, 'Garage');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (174, '0821', 'AGB-DOTTM-XXX', 'Doktor-Otto-Meyer-Str', '', '86169', 'Augsburg', 1, 'A519643', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (174, 174, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'FC-Raum');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (118, 174, 'FC');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (175, '0821', 'AGB-AUGWE-031', 'August-Wessels-Str', '31', '86154', 'Augsburg', 1, 'A519644', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (175, 175, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK16');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (119, 175, 'UG');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (176, '0821', 'AGB-JOHAA-07a', 'Johannes-Haag-Str', '7a', '86153', 'Augsburg', 1, 'A519701', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (176, 176, null, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'Batterieraum');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (120, 176, 'EQH5');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (177, '0821', 'AGB-JOHAA-07a', 'Johannes-Haag-Str', '7a', '86153', 'Augsburg', 1, 'A519702', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (177, 177, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK018, ehemalig Fiber Net Raum');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (121, 177, 'NK018');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (178, '08373', 'ALR-ORTST-01b', 'Ortsstr', '1', '87452', 'Altusried', 2, 'KE518502', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (178, 178, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK, Fernwirkraum');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (122, 178, 'FWR');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (179, '0831', 'UUR-DIESE-008', 'Dieselstr', '8', '87437', 'Ursularied', 2, 'KE518503', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (179, 179, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK, Fernwirkraum');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (123, 179, 'FWR');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (180, '0831', 'KEN-SCHUM-106', 'Schuhmacherring', '106', '87439', 'Kempten', 2, 'KE518504', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (180, 180, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK, Garagen, Zentrallager');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (124, 180, 'XX');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (181, '0831', 'KEN-WIESS-020a', 'Wiesstr', '20a', '87435', 'Kempten', 2, 'KE518505', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (181, 181, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK, Fernwirkraum');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (125, 181, 'FWR');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (182, '0831', 'KEN-IALLM-XXX', 'Im Allmey', '', '87439', 'Kempten', 2, 'KE518507', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (182, 182, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK, Fernwirkraum (UW-West)');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (126, 182, 'FWR');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (183, '0831', 'KEN-DURAC-XXX', 'Duracher Str', '', '87437', 'Kempten', 2, 'KE518508', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (183, 183, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK, Fernwirkraum (UW-Ost)');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (127, 183, 'FWR');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (184, '0831', 'SUB-AU-004', 'Au', '4', '87477', 'Sulzberg-Weidach', 2, 'KE518509', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (184, 184, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK Kempten Au (EQH)');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (128, 184, 'BR1');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (185, '08361', 'NWG-KREIS-001', 'Kreisstr', '1', '87481', 'Nesselwang', 2, 'KE518510', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (185, 185, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK/UW');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (129, 185, 'TS');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (186, '08323', 'RNZ-NETZK-001', 'Rauhenzell', '1', '87509', 'Rauhenzell', 2, 'KE518511', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (186, 186, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK, Fernwirkraum');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (130, 186, 'FWR');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (187, '08386', 'OSA-NETZK-001', 'Oberstaufen', '1', '87534', 'Oberstaufen/Zell', 2, 'KE518512', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (187, 187, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (188, '08321', 'SFN-MITTA-008', 'Mittagstr', '8', '87527', 'Sonthofen', 2, 'KE518513', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (188, 188, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK (UW-Sonthofen-West)');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (189, '08362', 'FSS-FORCH-030', 'Forchenweg', '30', '87645', 'Füssen', 2, 'KE518514', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (189, 189, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK');
+  
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (190, '08860', 'LUK-HELME-029', 'Helmensteinerstr', '29', '86983', 'Lechbruck', 2, 'KE518515', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (190, 190, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK, Fernwirkraum'); 
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (131, 190, 'FWR');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (191, '08322', 'RBI-NETZK-001', 'Reichenbach', '1', '87561', 'Rubi / Oberstdorf', 2, 'KE518516', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (191, 191, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK UW Rubi');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (192, '0831', 'KEN-ILLER-010', 'Illerstr', '10', '87435', 'Kempten', 2, 'KE518518', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (192, 192, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK; NM-Rau; VG2');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (132, 192, 'NMC');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (193, '08363', 'PFR-MEILI-004', 'Meilingerstr', '4', '87459', 'Pfronten', 2, 'KE518519', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (193, 193, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK UW Pfronten');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (133, 193, 'UW');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (194, 'A-xxxx', 'RZL-ALSCH-008', 'Alte Schwendstr', '8', 'A-8756', 'Riezlern Österreich', 2, 'KE518520', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (194, 194, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK, Fernwirkraum');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (134, 194, 'FWR1');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (195, '08303', 'WTZ-NETZK-001', 'Waltenhofen', '1', '87448', 'Waltenhofen', 2, 'KE518529', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (195, 195, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK Waltenhofen-Lanzen');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (196, '0731', 'ULM-MUENC-011', 'Münchenerstr', '11', '89073', 'Ulm', 1, 'UL519591', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (196, 196, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK01');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (135, 196, 'SWU');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (197, '0731', 'ULM-MAGIR-041', 'Magirusstr', '41', '89077', 'Ulm', 1, 'UL519592', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (197, 197, 11007, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'NK02');
+
+insert into t_hvt_gruppe (HVT_GRUPPE_ID, ONKZ, ORTSTEIL, STRASSE, HAUS_NR, PLZ,  ORT, NIEDERLASSUNG_ID, KOSTENSTELLE, EXPORT_4_PORTAL)
+  values (198, '0731', 'ULM-SÖFIN-100', 'Söflinger Str', '100', '89077', 'Ulm', 1, 'UL573131', 0);
+insert into t_hvt_standort (HVT_ID_STANDORT, HVT_GRUPPE_ID, STANDORT_TYP_REF_ID, HOCHGERECHNETER_TERMIN, GESICHERTE_REALISIERUNG,
+  GUELTIG_VON, GUELTIG_BIS, CARRIER_ID, BESCHREIBUNG)
+  values (198, 198, 11004, 'in Betrieb', 'in Betrieb', '2009-01-01', '2200-01-01', 4, 'Fernkollokation HVT 31');
+insert into t_hvt_raum (ID, HVT_ID_STANDORT, RAUM) values (136, 198, 'Serco');
+commit;
+
+drop sequence S_T_HVT_GRUPPE_0;
+create sequence S_T_HVT_GRUPPE_0 start with 200;
+grant SELECT on S_T_HVT_GRUPPE_0 to public;
+commit;
+
+drop sequence S_T_HVT_STANDORT_0;
+create sequence S_T_HVT_STANDORT_0 start with 200;
+grant SELECT on S_T_HVT_STANDORT_0 to public;
+commit;
+
+drop sequence S_T_HVT_RAUM_0;
+create sequence S_T_HVT_RAUM_0 start with 140;
+grant SELECT on S_T_HVT_RAUM_0 to public;
+commit;
+
+
+
+
+
+alter table T_AUFTRAG_INTERN add PROJECT_DIRECTORY VARCHAR2(500);
+commit;
+
+
+
+

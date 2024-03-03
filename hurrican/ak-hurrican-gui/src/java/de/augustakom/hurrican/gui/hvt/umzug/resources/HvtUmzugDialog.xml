@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    <Text name="title">HVT Umzug anlegen</Text>
+
+    <Button name="btn.hvt.auswaehlen">
+        <text>HVT auswählen</text>
+    </Button>
+
+    <Button name="btn.hvt.dest.auswaehlen">
+        <text>Ziel-HVT auswählen</text>
+    </Button>
+
+    <Label name="dc.schalttag">
+        <text>Schalttag</text>
+    </Label>
+    <DateComponent name="dc.schalttag">
+        <tooltip>Schalttag für den Umzug der Aufträge des KVZs (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>10</columns>
+    </DateComponent>
+
+    <Label name="tf.hvt.standort">
+        <text>HVT</text>
+        <tooltip>Angabe des HVTs, der aufgelöst werden soll</tooltip>
+    </Label>
+    <TextField name="tf.hvt.standort">
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="tf.hvt.dest.standort">
+        <text>Ziel-HVT</text>
+        <tooltip>Angabe des HVTs, auf den die Aufträge umgezogen werden sollen</tooltip>
+    </Label>
+    <TextField name="tf.hvt.dest.standort">
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="tf.kvz.nr">
+        <text>KVZ-Nr.</text>
+    </Label>
+    <TextField name="tf.kvz.nr">
+        <columns>15</columns>
+    </TextField>
+
+</sf>

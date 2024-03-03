@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Administration der HW-Racks.
+-->
+<sf>
+
+    <Label name="prod"><text>Hersteller:</text></Label>
+    <ReferenceField name="prod">
+        <tooltip>Hersteller des Racks</tooltip>
+        <columns>20</columns>
+    </ReferenceField>
+
+    <Label name="raum"><text>HVT-Raum:</text></Label>
+    <ReferenceField name="raum">
+        <tooltip>Offizielle Raumnummer, in der sich das Rack befindet</tooltip>
+        <id.property>id</id.property>
+        <name.property>raum</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.HVTRaum</reference.class>
+    </ReferenceField>
+
+    <Label name="type"><text>Typ:</text></Label>
+    <ReferenceField name="type">
+        <tooltip>Typ des Racks</tooltip>
+        <id.property>strValue</id.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="anlagen.bezeichnung"><text>Anlagenbez.:</text></Label>
+    <TextField name="anlagen.bezeichnung">
+        <tooltip>Anlagenbezeichnung des Racks</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="geraete.bezeichnung"><text>Gerätebezeichnung:</text></Label>
+    <TextField name="geraete.bezeichnung">
+        <tooltip>Geraetebezeichnung des Racks</tooltip>
+    </TextField>
+
+    <Label name="management.bezeichnung"><text>Management-Bez.:</text></Label>
+    <TextField name="management.bezeichnung">
+        <tooltip>Bezeichnung des Racks im Management-System</tooltip>
+    </TextField>
+
+    <Label name="gueltig.von"><text>Gültig von:</text></Label>
+    <DateComponent name="gueltig.von">
+        <tooltip>Gültigkeit</tooltip>
+    </DateComponent>
+
+    <Label name="gueltig.bis"><text>Gültig bis:</text></Label>
+    <DateComponent name="gueltig.bis">
+        <tooltip>Gültigkeit</tooltip>
+    </DateComponent>
+
+    <Text name="border">Rack</Text>
+
+</sf>

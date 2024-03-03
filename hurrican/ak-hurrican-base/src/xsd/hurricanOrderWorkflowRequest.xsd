@@ -1,0 +1,66 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified"
+        targetNamespace="http://mnet.de/hurricanweb/order/workflow/types"
+        xmlns:ns0="http://mnet.de/hurricanweb/order/workflow/types">
+    
+    <xs:element name="CreateTechOrderType" type="ns0:CreateTechOrderType" />
+    <xs:element name="CreateTechOrderTypeAcknowledgement" type="ns0:CreateTechOrderTypeAcknowledgement" />
+    <xs:element name="CreateTechOrderTypeFault" type="ns0:CreateTechOrderTypeFault" />
+
+    <xs:element name="TerminateTechOrdersType" type="ns0:TerminateTechOrdersType"/>
+    <xs:element name="TerminateTechOrdersTypeAcknowledgement" type="ns0:TerminateTechOrdersTypeAcknowledgement"/>
+    <xs:element name="TerminateTechOrdersTypeFault" type="ns0:TerminateTechOrdersTypeFault"/>
+    
+    <xs:complexType name="CreateTechOrderType">
+        <xs:sequence>
+        	<xs:element name="customerNo" type="xs:long"/>
+            <xs:element name="orderNo" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="CreateTechOrderTypeAcknowledgement">
+        <xs:sequence>
+        	<xs:element name="customerNo" type="xs:long"/>
+            <xs:element name="orderNo" type="xs:long"/>
+            <xs:element name="hurricanServiceNo" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="CreateTechOrderTypeFault">
+        <xs:sequence>
+        	<xs:element name="customerNo" type="xs:long"/>
+            <xs:element name="orderNo" type="xs:long"/>
+            <xs:element name="errorCode" type="xs:integer"/>
+            <xs:element name="errorMessage" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TerminateTechOrdersType">
+        <xs:sequence>
+            <xs:element name="orderNo" type="xs:long"/>
+            <xs:element name="terminationDate" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TerminateTechOrdersTypeAcknowledgement">
+        <xs:sequence>
+            <xs:element name="orderNo" type="xs:long"/>
+            <xs:element name="hurricanServiceNos">
+                <xs:simpleType>
+                    <xs:list itemType="xs:long"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="info" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TerminateTechOrdersTypeFault">
+        <xs:sequence>
+            <xs:element name="orderNo" type="xs:long"/>
+            <xs:element name="errorCode" type="xs:integer"/>
+            <xs:element name="errorMessage" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

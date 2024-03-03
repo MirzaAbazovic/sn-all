@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das abstrakte Admin-Frame.
+-->
+<sf>
+
+    <Button name="create.new">
+        <text>Neu</text>
+        <tooltip>Legt einen neuen Datensatz an</tooltip>
+        <mnemonic>VK_N</mnemonic>
+    </Button>
+    
+    <Button name="save">
+        <text>Speichern</text>
+        <tooltip>Speichert den aktuellen Datensatz</tooltip>
+        <mnemonic>VK_S</mnemonic>
+    </Button>
+    
+</sf>

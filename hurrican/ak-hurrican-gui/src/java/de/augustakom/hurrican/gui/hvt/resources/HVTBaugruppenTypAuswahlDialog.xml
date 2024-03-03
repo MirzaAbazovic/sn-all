@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Darstellung der HVT-Standorte und
+Produkte einer HVT-Gruppe.
+-->
+<sf>
+    <Text name="title">Baugruppentyp Auswahl Dialog</Text>
+    <Text name="tooltip.cmd.save">Schliesst den Dialog und übernimmt die Auswahl in das Referenzfeld</Text>
+
+</sf>

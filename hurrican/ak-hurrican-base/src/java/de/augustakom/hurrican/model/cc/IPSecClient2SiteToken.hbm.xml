@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse de.augustakom.hurrican.model.cc.IPSecClient2SiteToken
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="IPSecClient2SiteToken" table="T_IPSEC_C2S_TOKEN">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_IPSEC_C2S_TOKEN_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="auftragId" column="AUFTRAG_ID" type="long"/>
+        <property name="serialNumber" column="SERIAL_NUMBER" type="string" not-null="true"/>
+        <property name="bemerkung" column="BEMERKUNG" type="string"/>
+        <property name="sapOrderId" column="SAP_ORDER_ID" type="string" not-null="true"/>
+        <property name="laufzeitInMonaten" column="LAUFZEIT_IN_MONATEN" type="integer" not-null="true"/>
+        <property name="lieferdatum" column="LIEFERDATUM" type="date" not-null="true"/>
+        <property name="batterieEnde" column="BATTERIE_ENDE" type="date" not-null="true"/>
+        <property name="batch" column="BATCH" type="string"/>
+        <property name="statusRefId" column="STATUS_REF_ID" type="long"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Filter-Panel zur Suche ueber
+Equipment-Daten.
+-->
+<sf>
+
+    <Label name="hvt.standort"><text>HVT Standort:</text></Label>
+    <ReferenceField name="hvt.standort">
+        <tooltip>Auswahl des HVT-Standorts</tooltip>
+        <id.property>hvtIdStandort</id.property>
+        <name.property>ortsteil</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.view.HVTGruppeStdView</reference.class>
+        <selection.dialog.class>de.augustakom.hurrican.gui.hvt.HVTSelectionDialog</selection.dialog.class>
+    </ReferenceField>
+
+    <Label name="eq.bucht"><text>Bucht:</text></Label>
+    <TextField name="eq.bucht">
+        <tooltip>Bezeichnung der Bucht</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="eq.leiste1"><text>Leiste 1:</text></Label>
+    <TextField name="eq.leiste1">
+        <tooltip>Bezeichnung der Leiste 1</tooltip>
+    </TextField>
+
+    <Label name="eq.stift1"><text>Stift 1:</text></Label>
+    <TextField name="">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="switch"><text>Switch:</text></Label>
+    <ComboBox name="switch">
+        <tooltip>Auswahl des Switch für die Suche nach einer HW-EQN</tooltip>
+        <items>
+            <item> </item>
+            <item>AUG01</item>
+            <item>AUG02</item>
+            <item>MUC01</item>
+            <item>MUC02</item>
+            <item>MUC03</item>
+            <item>MUC04</item>
+            <item>MUC05</item>
+            <item>MUC06</item>
+            <item>MUC07</item>
+            <item>MUC08</item>
+            <item>NEF01</item>
+        </items>
+    </ComboBox>
+
+    <Label name="hw.eqn"><text>HW-EQN:</text></Label>
+    <TextField name="hw.eqn">
+        <tooltip>Bezeichnung der HW-EQN</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="eq.bezeichnung.geraet"><text>Gerätebezeichnung:</text></Label>
+    <TextField name="eq.bezeichnung.geraet">
+        <tooltip>Bezeichnung des Gerätes</tooltip>
+    </TextField>
+
+    <Label name="eq.bezeichnung.mgmt"><text>Managementbezeichnung:</text></Label>
+    <TextField name="eq.bezeichnung.mgmt">
+        <tooltip>Managementbezeichnung des Gerätes</tooltip>
+    </TextField>
+
+    <Label name="only.active"><text>nur aktive Aufträge:</text></Label>
+    <CheckBox name="only.active">
+        <tooltip>nur nach aktiven Aufträgen filtern</tooltip>
+    </CheckBox>
+
+</sf>

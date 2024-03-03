@@ -1,0 +1,1214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://www.mnet.de/elektra/services/1.0/"
+        xmlns:elektra="http://www.mnet.de/elektra/common/1.0/"
+        attributeFormDefault="unqualified"
+        elementFormDefault="unqualified"
+        targetNamespace="http://www.mnet.de/elektra/services/1.0/">
+    <xsd:import namespace="http://www.mnet.de/elektra/common/1.0/" schemaLocation="elektra-common.xsd"></xsd:import>
+
+
+    <!-- Service definitions -->
+
+    <xsd:element name="deleteDialNumbersRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="billingOrderNoOrig" type="xsd:long" minOccurs="1" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation>Angabe der Auftragsnummer, zu der die Rufnummern geloescht werden sollen</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="dialNumbers"
+                             type="tns:DialingNumberType"
+                             maxOccurs="99">
+                    <xsd:annotation>
+                        <xsd:documentation>Auflistung der zu loeschenden Rufnummern</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="deleteDialNumbersResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="tns:defaultResponseType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="deleteDialNumbersFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <xsd:element name="addDialNumbersRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="billingOrderNoOrig" type="xsd:long" minOccurs="1" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation>Angabe der Auftragsnummer, zu der die Rufnummer(n) hinzugefuegt werden soll(en)</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="realDate" minOccurs="1" maxOccurs="1" type="xsd:date"/>
+                <xsd:element name="portKennungTnbAbg" minOccurs="1" maxOccurs="1" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>Portierungskennung des urspruenglichen Providers</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="portKennungTnbAuf" minOccurs="1" maxOccurs="1" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>Portierungskennung des aufnehmenden Providers (Mnet/Akom/Nefkom)</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="dialNumbers"
+                             type="tns:DialingNumberType"
+                             maxOccurs="99">
+                    <xsd:annotation>
+                        <xsd:documentation>Auflistung der hinzuzufuegenden Rufnummern</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="addDialNumbersResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="tns:defaultResponseType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="addDialNumbersFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <xsd:element name="updatePortKennungTnbRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="billingOrderNoOrig" type="xsd:long" minOccurs="1" maxOccurs="unbounded"/>
+                <xsd:element name="portKennungTnbAbg" minOccurs="1" maxOccurs="1" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>Portierungskennung des abgebenden Providers</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="portKennungTnbAuf" minOccurs="1" maxOccurs="1" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>Portierungskennung des aufnehmenden Providers</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="updatePortKennungTnbResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="tns:defaultResponseType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="updatePortKennungTnbFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="changeOrderDialNumberRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="billingOrderNoOrig" type="xsd:long" maxOccurs="unbounded"/>
+                <xsd:element name="realDate" type="xsd:date"/>
+                <xsd:element name="vaOrderSentAt" type="xsd:date">
+                    <xsd:annotation>
+                        <xsd:documentation>Das Datum, an dem die Vorabstimmung versendet wurde.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="ruemVaReceivedAt" type="xsd:date">
+                    <xsd:annotation>
+                        <xsd:documentation>Das Datum, an dem die RuemVa erhalten wurde.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="numberPortierung" type="tns:numberPortierungType" minOccurs="0">
+                    <xsd:annotation>
+                        <xsd:documentation>Die zu portierenden Rufnummern, die in der RuemVa enthalten waren.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="changeOrderDialNumberResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="tns:defaultResponseType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="changeOrderDialNumberFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="defaultResponseType">
+        <xsd:sequence>
+            <xsd:element name="status" type="tns:responseStatusType"></xsd:element>
+            <xsd:element name="modifications" type="xsd:string"></xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:simpleType name="responseStatusType">
+        <xsd:annotation>
+            <xsd:documentation>Enumeration-Type for a response status.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="OK" />
+            <xsd:enumeration value="ERROR" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:element name="portCancelledDialNumberRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="portKennungTnbAuf" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation>Portierungskennung des aufnehmenden Providers</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="realTimeFrom" type="xsd:dateTime" />
+                <xsd:element name="realTimeTo" type="xsd:dateTime" />
+                <xsd:element name="dialNumbers"
+                             type="tns:DialingNumberType"
+                             maxOccurs="99">
+                    <xsd:annotation>
+                        <xsd:documentation>Auflistung der zu portierenden Rufnummern</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="rrnpRequestReceivedAt" type="xsd:date" minOccurs="1" maxOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation>Das Datum, an dem die RRNP-Vorabstimmung erhalten wurde.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="portCancelledDialNumberResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="tns:defaultResponseType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="portCancelledDialNumberFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="changeOrderRealDateRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="billingOrderNoOrig" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="billingOrderNoOld" type="xsd:long" minOccurs="0" maxOccurs="1"/>
+                <xsd:element name="orderType" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="realDate" type="xsd:date" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="account" minOccurs="0" maxOccurs="1">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="accountName" minOccurs="1" maxOccurs="1" type="xsd:string"/>
+                            <xsd:element name="password" minOccurs="1" maxOccurs="1" type="xsd:string"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="changeOrderRealDateResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="modifications" type="xsd:string" minOccurs="1" maxOccurs="1"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="changeOrderRealDateFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="changeOrderCancellationDateRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="billingOrderNoOrig" type="xsd:long" minOccurs="1" maxOccurs="unbounded"/>
+                <xsd:element name="realDate" type="xsd:date" minOccurs="1" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="changeOrderCancellationDateResponse">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="tns:defaultResponseType"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="changeOrderCancellationDateFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    
+    
+    <xsd:element name="cancelOrderRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="billingOrderNoOrig" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="cancelDate" type="xsd:date" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="futureCarrier" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+                <xsd:element name="dialNumbers" type="tns:DialingNumberType" minOccurs="0" maxOccurs="99">
+                    <xsd:annotation>
+                        <xsd:documentation>Auflistung der zu portierenden Rufnummern</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="entryDate" type="xsd:date" minOccurs="1" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="cancelOrderResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="reclaimPositions" type="xsd:boolean">
+                    <xsd:annotation>
+                        <xsd:documentation>Is 'true ' if the service has items to be reclaimed, else 'false'.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="status" type="tns:responseStatusType"></xsd:element>
+                <xsd:element name="modifications" type="xsd:string"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="cancelOrderFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    
+    
+    <xsd:element name="undoPlannedOrderCancellationRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="billingOrderNoOrig" type="xsd:long" minOccurs="1" maxOccurs="1"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="undoPlannedOrderCancellationResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="reclaimPositions" type="xsd:boolean">
+                    <xsd:annotation>
+                        <xsd:documentation>Is 'true ' if the service has items to be reclaimed, else 'false'.</xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+                <xsd:element name="status" type="tns:responseStatusType"></xsd:element>
+                <xsd:element name="modifications" type="xsd:string"></xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="undoPlannedOrderCancellationFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    
+
+    <xsd:element name="generateAndPrintReportRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:choice>
+                    <xsd:element name="generateAndPrintReportWithEvaluationRequest" type="tns:generateAndPrintReportWithEvaluationType" minOccurs="0"/>
+                    <xsd:element name="generateAndPrintReportByTypeRequest" type="tns:generateAndPrintReportByType" minOccurs="0"/>
+                </xsd:choice>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="generateAndPrintReportResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="result" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="generateAndPrintReportFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="terminateOrderRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="billingOrderNoOrig" type="xsd:long"/>
+                <xsd:element name="orderType" type="xsd:long"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="terminateOrderResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="modifications" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="terminateOrderFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="replaceInvoiceAddressRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:choice>
+                    <xsd:element name="person" type="tns:personUpdateType" minOccurs="0"/>
+                    <xsd:element name="organisation" type="tns:organisationType" minOccurs="0"/>
+                </xsd:choice>
+                <!-- ansprechpartner -->
+                <xsd:element name="contactPerson" type="tns:personUpdateType" minOccurs="0"/>
+                <xsd:element name="address" type="tns:letterboxAddressUpdateType"/>
+                <!-- BILL_SPEC#bill_spec_no -->
+                <xsd:element name="customerAccountId" type="xsd:long"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="replaceInvoiceAddressResponse">
+        <xsd:complexType/>
+    </xsd:element>
+    <xsd:element name="replaceInvoiceAddressFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getCustomerAccountsRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:choice>
+                    <xsd:element name="customerNumber" type="xsd:long" minOccurs="0"/>
+                    <xsd:element name="customerOrderNumber" type="xsd:long" minOccurs="0"/>
+                    <!-- AUTRAG#sap_id -->
+                    <xsd:element name="externalOrderNumber" type="xsd:string" minOccurs="0"/>
+                </xsd:choice>
+                <xsd:element name="contractHistory" type="xsd:unsignedShort" minOccurs="0"/>
+                <xsd:element name="excludeContractType" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:enumeration value="DEVICE"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getCustomerAccountsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="customerAccounts" type="tns:customerAccountType" minOccurs="0"
+                             maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getCustomerAccountsFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getCustomerRequest">
+        <xsd:complexType>
+            <xsd:choice>
+                <xsd:element name="customerNumber" type="xsd:long" minOccurs="0"/>
+                <xsd:element name="customerOrderNumber" type="xsd:long" minOccurs="0"/>
+            </xsd:choice>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getCustomerResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="customer" type="tns:customerType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getCustomerFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getSepaBankNameRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="bic" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getSepaBankNameResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="sepaBankName" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="getSepaBankNameFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="setSepaBankAccountRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <!-- BILL_SPEC#bill_spec_no -->
+                <xsd:element name="customerAccountId" type="xsd:string"/>
+                <xsd:element name="sepaBankAccount" type="tns:sepaBankAccountType"/>
+                <xsd:element name="bankAccountHolderAddress" type="tns:letterboxAddressUpdateType" minOccurs="0"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="setSepaBankAccountResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="sepaDDMandatePdf" type="xsd:base64Binary"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="setSepaBankAccountFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="setCommunicationChannelsRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <!-- CUSTOMER -->
+                <xsd:element name="customerNumber" type="xsd:long"/>
+                <xsd:element name="communicationChannels" type="tns:communicationChannelsType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="setCommunicationChannelsResponse">
+        <xsd:complexType/>
+    </xsd:element>
+    <xsd:element name="setCommunicationChannelsFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getExpiredOrdersRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="searchStartDate" type="xsd:date"/>
+                <xsd:element name="searchEndDate" type="xsd:date"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getExpiredOrdersResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="order" type="tns:orderType" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getExpiredOrdersFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault"/>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getResourcesRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="customerOrderNumber" type="xsd:long" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getResourcesResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="resourcesByOrder" type="tns:ResourceListByOrderType" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="getResourcesFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault" />
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+    
+    <xsd:element name="filterOutActiveCustomersRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="customerNumber" type="xsd:long" minOccurs="0" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="filterOutActiveCustomersResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="notActiveCustomerNumber" type="xsd:long" minOccurs="0" maxOccurs="unbounded" />
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="filterOutActiveCustomersFault">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="elektra:fault" />
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- Type definitions from here -->
+
+    <xsd:complexType name="letterboxAddressUpdateType">
+        <xsd:sequence>
+            <xsd:element name="countryCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:length value="2"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="cityName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="50"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="zipCode" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="10"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="streetName" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="60"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="houseNumber" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="20"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="houseNumberExtension" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="20"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="addressAddOn" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="60"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <!-- Vento convention begin -->
+            <xsd:element name="cityId" type="xsd:long"/>
+            <xsd:element name="streetSectionId" type="xsd:long"/>
+            <!-- geoId -->
+            <xsd:element name="buildingId" type="xsd:long"/>
+            <!-- Vento convention end -->
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="letterboxAddressType">
+        <xsd:complexContent>
+            <xsd:extension base="tns:letterboxAddressUpdateType">
+                <xsd:sequence>
+                    <!-- Taifun convention begin -->
+                    <xsd:element name="addressId" type="xsd:long"/>
+                    <!-- Taifun convention end -->
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="personType">
+        <xsd:sequence>
+            <xsd:element name="salutation" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="HERR"/>
+                        <xsd:enumeration value="FRAU"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="firstname" minOccurs="0">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="50"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="lastname">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="50"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="languageCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:length value="2"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="personReadType">
+        <xsd:complexContent>
+            <xsd:extension base="tns:personType">
+                <xsd:sequence>
+                    <xsd:element name="title" minOccurs="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:maxLength value="50"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="personUpdateType">
+        <xsd:complexContent>
+            <xsd:extension base="tns:personType">
+                <xsd:sequence>
+                    <xsd:element name="title" minOccurs="0">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:enumeration value="Dr."/>
+                                <xsd:enumeration value="Dr. Dr."/>
+                                <xsd:enumeration value="Prof."/>
+                                <xsd:enumeration value="Prof. Dr."/>
+                                <xsd:enumeration value="Dres."/>
+                                <xsd:enumeration value="M.A."/>
+                                <xsd:enumeration value="Dipl.-Ing."/>
+                                <xsd:enumeration value="Dipl.-Ing.(FH)"/>
+                                <xsd:enumeration value="Dipl.-Kfm."/>
+                                <xsd:enumeration value="Dipl.-Kffr."/>
+                                <xsd:enumeration value="Dipl.-Inform."/>
+                                <xsd:enumeration value="Dipl.-Arch."/>
+                                <xsd:maxLength value="50"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="organisationType">
+        <xsd:sequence>
+            <xsd:element name="name">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="103"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="languageCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:length value="2"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="customerAccountType">
+        <xsd:sequence>
+            <!-- CUST_ACCOUNT#cust_no -->
+            <xsd:element name="customerNumber" type="xsd:long"/>
+            <!-- Taifun convention begin -->
+            <!-- BILL_SPEC#bill_spec_no -->
+            <xsd:element name="customerAccountId" type="xsd:long"/>
+            <!-- Taifun convention end -->
+            <!-- BILL_SPEC#ext_debitor_id -->
+            <xsd:element name="debitorNumber">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="50"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <!-- CUSTOMER#reseller_cust_no -->
+            <xsd:element name="mandatorNumber" type="xsd:long"/>
+            <xsd:element name="validFrom" type="xsd:date" minOccurs="0"/>
+            <xsd:element name="validTo" type="xsd:date" minOccurs="0"/>
+            <xsd:element name="vatIdNumber" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="placeOfBusinessCountryCode" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="customerBillAddress" type="tns:letterboxAddressType"/>
+            <xsd:choice>
+                <xsd:element name="customerBillPerson" type="tns:personReadType" minOccurs="0"/>
+                <xsd:element name="customerBillOrganisation" type="tns:organisationType" minOccurs="0"/>
+            </xsd:choice>
+            <xsd:element name="customerBillContactPerson" type="tns:personReadType" minOccurs="0"/>
+            <xsd:element name="order" type="tns:orderType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="sepaBankAccount" type="tns:sepaBankAccountType" minOccurs="0"/>
+            <xsd:element name="sepaDirectDebitMandate" type="tns:sepaDirectDebitMandateType" minOccurs="0"/>
+            <xsd:element name="customerBillSpec" type="tns:customerBillSpecType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="customerType">
+        <xsd:sequence>
+            <xsd:element name="customerNumber" type="xsd:string"/>
+            <xsd:element name="customerName" type="xsd:string"/>
+            <xsd:choice>
+                <xsd:element name="customerPerson" type="tns:personReadType" minOccurs="0"/>
+                <xsd:element name="customerOrganisation" type="tns:organisationType" minOccurs="0"/>
+            </xsd:choice>
+            <xsd:element name="customerContactPerson" type="tns:personReadType" minOccurs="0"/>
+            <xsd:element name="customerType" type="xsd:string"/>
+            <xsd:element name="communicationChannels" type="tns:communicationChannelsType"/>
+            <xsd:element name="customerCommunicationPermission" type="tns:communicationPermissionType"/>
+            <xsd:element name="customerContactAddress" type="tns:letterboxAddressType" minOccurs="0"/>
+            <xsd:element name="credentialString" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="orderType">
+        <xsd:sequence>
+            <xsd:element name="customerOrderNumber" type="xsd:string"/>
+            <!-- AUTRAG#sap_id -->
+            <xsd:element name="externalOrderNumber" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="debitorNumber" type="xsd:string"/>
+            <xsd:element name="orderState" type="xsd:string"/>
+            <xsd:element name="contractStartDate" type="xsd:date"/>
+            <xsd:element name="contractEndDate" type="xsd:date"/>
+            <xsd:element name="cancellationDate" type="xsd:date" minOccurs="0"/>
+            <xsd:element name="minimumContractEndDate" type="xsd:date"/>
+            <xsd:element name="desiredRealisationDate" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="realisationDate" type="xsd:date" minOccurs="0"/>
+            <xsd:element name="contractAddress" type="tns:letterboxAddressType" minOccurs="0"/>
+            <xsd:element name="realisationAddress" type="tns:letterboxAddressType" minOccurs="0"/>
+            <xsd:element name="productNumber" type="xsd:string"/>
+            <xsd:element name="productName" type="xsd:string"/>
+            <xsd:element name="productPrimaryElementName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="mobileSimBlockade" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="customerBillSpecType">
+        <xsd:sequence>
+            <!-- Rechnungsausgabe per Papier -->
+            <xsd:element name="paperBillOutput" type="xsd:boolean" minOccurs="0"/>
+            <!-- Rechnungsausgabe per Webseite -->
+            <xsd:element name="onlineBillOutput" type="xsd:boolean" minOccurs="0"/>
+            <!-- Infomail bei Bereitstellung einer OnlineRechnung -->
+            <xsd:element name="onlineBillEmailNotification" type="xsd:boolean" minOccurs="0"/>
+            <!-- Rechnungsausgabe per Mail -->
+            <xsd:element name="emailBillOutput" type="xsd:boolean" minOccurs="0"/>
+            <!-- Mailadresse für Rechnungsausgabe wenn Mail ja oder bei Online-Notification -->
+            <xsd:element name="emailAddress" type="xsd:string" minOccurs="0"/>
+            <!-- Einzelverbindungsnachweis -->
+            <xsd:element name="itemizedBillOutput" type="xsd:boolean" minOccurs="0"/>
+            <!-- Verkürzung der Rufnummern beim Einzelverbindungsnachweis -->
+            <xsd:element name="itemizedBillNumberTruncation" type="xsd:boolean" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="communicationChannelsType">
+        <xsd:sequence>
+            <xsd:element name="phoneBusiness" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="phonePrivate" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="phoneMobile" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="phoneCentral" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="fax" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="emailAddressBusiness" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="emailAddressPrivate" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="communicationPermissionType">
+        <xsd:sequence>
+            <xsd:element name="letterPermission" type="xsd:boolean"/>
+            <xsd:element name="phoneCallPermission" type="xsd:boolean"/>
+            <xsd:element name="smsPermission" type="xsd:boolean"/>
+            <xsd:element name="emailPermission" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="sepaBankAccountType">
+        <xsd:sequence>
+            <!-- CUST_ACCOUNT#cust_acct_no -->
+            <xsd:element name="paymentChannelId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="bankName" type="xsd:string"/>
+            <xsd:element name="bankAccountHolder" type="xsd:string"/>
+            <xsd:element name="iban" type="xsd:string"/>
+            <xsd:element name="bic" type="xsd:string"/>
+            <xsd:element name="validFrom" type="xsd:date"/>
+            <xsd:element name="validTo" type="xsd:date" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="sepaDirectDebitMandateType">
+        <xsd:sequence>
+            <xsd:element name="mandateReferenceNumber" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="validFrom" type="xsd:date" minOccurs="0"/>
+            <xsd:element name="validTo" type="xsd:date" minOccurs="0"/>
+            <xsd:element name="signatureDate" type="xsd:date" minOccurs="0"/>
+            <xsd:element name="bankAccountHolder" type="xsd:string"/>
+            <xsd:element name="debtorName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="bankAccountHolderAddress" type="tns:letterboxAddressType" minOccurs="0"/>
+            <xsd:element name="recurringPayment" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="state" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="numberPortierungType">
+        <xsd:sequence>
+            <xsd:element name="portKennungTnbAbg" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>Portierungskennung des abgebenden Providers</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="portKennungTnbAuf" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>Portierungskennung des aufnehmenden Providers</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="dialNumbers"
+                         type="tns:DialingNumberType"
+                         maxOccurs="99">
+                <xsd:annotation>
+                    <xsd:documentation>Auflistung der zu aktualisierenden Rufnummern</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ResourceListByOrderType">
+        <xsd:annotation>
+            <xsd:documentation>Type for resources grouped by order, wrapper</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="customerOrderNumber" type="xsd:string" />
+            <xsd:element name="resource" type="tns:ResourceType" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="ResourceType">
+        <xsd:annotation>
+            <xsd:documentation>Type for resources</xsd:documentation>
+        </xsd:annotation>
+        <xsd:sequence>
+            <xsd:element name="resourceNumber" type="xsd:string" minOccurs="0" />
+            <xsd:element name="resourceName" type="xsd:string" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="LogicalResourceType">
+        <xsd:annotation>
+            <xsd:documentation>Type for logical resources</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:ResourceType" />
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="AddressResourceType">
+        <xsd:annotation>
+            <xsd:documentation>Type for addresses as resources</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:LogicalResourceType">
+                <xsd:sequence>
+                    <xsd:element name="realisationAddress" type="tns:letterboxAddressType" />
+                    <xsd:element name="addressType" type="tns:addressType" />
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="CredentialType">
+        <xsd:annotation>
+            <xsd:documentation>Type for credentials as resources</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:LogicalResourceType">
+                <xsd:sequence>
+                    <xsd:element name="validFrom" type="xsd:date" minOccurs="0"/>
+                    <xsd:element name="validTo" type="xsd:date" minOccurs="0" />
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="CredentialLoginType">
+        <xsd:annotation>
+            <xsd:documentation>Type for dial-ins as resources</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:CredentialType">
+                <xsd:sequence>
+                    <xsd:element name="loginUsername" type="xsd:string" />
+                    <xsd:element name="loginPassword" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="CredentialStringType">
+        <xsd:annotation>
+            <xsd:documentation>Type for licences as resources</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:CredentialType">
+                <xsd:sequence>
+                    <xsd:element name="credentialString" type="xsd:string" />
+                    <xsd:element name="allowedUsageNumber" type="xsd:long" />
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="DomainType">
+        <xsd:annotation>
+            <xsd:documentation>Type for domains as resources</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:LogicalResourceType">
+                <xsd:sequence>
+                    <xsd:element name="domainName" type="xsd:string" />
+                    <xsd:element name="topLevelDomain" type="xsd:string" />
+                    <xsd:element name="origin">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:enumeration value="INTERNAL"/>
+                                <xsd:enumeration value="EXTERNAL"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="DialingNumberType">
+        <xsd:annotation>
+            <xsd:documentation>Type for dialing numbers as resources</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:LogicalResourceType">
+                <xsd:sequence>
+                    <xsd:element name="mainNumber" type="xsd:boolean" />
+                    <xsd:element name="countryDialingCode" type="xsd:string" />
+                    <xsd:element name="areaDialingCode" type="xsd:string" />
+                    <xsd:element name="dialingNumber" type="xsd:string" />
+                    <xsd:element name="rangeFrom" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="rangeTo" type="xsd:int" minOccurs="0" />
+                    <xsd:element name="size" type="xsd:long" minOccurs="0" />
+                    <xsd:element name="central" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="TechnicalQuotaType">
+        <xsd:annotation>
+            <xsd:documentation>Type for technical quotas as resources</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:LogicalResourceType">
+                <xsd:sequence>
+                    <xsd:element name="noOfHomepages" type="xsd:int">
+                        <xsd:annotation>
+                            <xsd:documentation>max. Anzahl von Homepages.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="noOfMailBoxes" type="xsd:int">
+                        <xsd:annotation>
+                            <xsd:documentation>max. Anzahl von Mailboxen.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="webSpace" type="tns:sizeType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>max. Speicherplatz für Homepages.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="mailSpace" type="tns:sizeType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>max. Speicherplatz für Emails.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="addressType">
+        <xsd:annotation>
+            <xsd:documentation>Enumeration-Type for different addresses.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="AP-ADDRESS-A" />
+            <xsd:enumeration value="AP-ADDRESS-B" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="ServiceDialingNumberType">
+        <xsd:annotation>
+            <xsd:documentation>Type for service dialing numbers as resources</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexContent>
+            <xsd:extension base="tns:LogicalResourceType">
+                <xsd:sequence>
+                    <xsd:element name="countryDialingCode" type="xsd:string" />
+                    <xsd:element name="areaDialingCode" type="xsd:string" />
+                    <xsd:element name="dialingNumber" type="xsd:string" />
+                    <xsd:element name="targetDialingNumber" type="xsd:string" />
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="unitType">
+        <xsd:annotation>
+            <xsd:documentation>Enumeration-Type for units of size.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="KB" />
+            <xsd:enumeration value="MB" />
+            <xsd:enumeration value="GB" />
+            <xsd:enumeration value="TB" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="sizeType">
+        <xsd:annotation>
+            <xsd:documentation>Type for sizes, consisting of a quantity and a unit</xsd:documentation>
+        </xsd:annotation>
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:long">
+                <xsd:attribute name="unit" type="tns:unitType" use="required" />
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="generateAndPrintReportWithEvaluationType">
+        <xsd:sequence>
+            <xsd:element name="billingOrderNoOrig" type="xsd:long"/>
+            <xsd:element name="orderType">
+                <xsd:annotation>
+                    <xsd:documentation>Angabe einer Id fuer den Haupt-Geschaeftsfall (i.d.R. aus Hurrican WITA Vorgang)</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:long">
+                        <xsd:enumeration value="8000"/>
+                        <xsd:enumeration value="8001"/>
+                        <xsd:enumeration value="8002"/>
+                        <xsd:enumeration value="8003"/>
+                        <xsd:enumeration value="8004"/>
+                        <xsd:enumeration value="8005"/>
+                        <xsd:enumeration value="8006"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="businessCaseIntern" minOccurs="0">
+                <xsd:annotation>
+                    <xsd:documentation>Angabe eines M-net internen Geschaeftsfalls</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:long">
+                        <xsd:enumeration value="8800"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="realDate" type="xsd:date"/>
+            <xsd:element name="hurricanProdId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="kundeVorOrt" type="xsd:boolean" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="generateAndPrintReportByType">
+        <xsd:sequence>
+            <xsd:element name="billingOrderNoOrig" type="xsd:long"/>
+            <xsd:element name="doScanViewUpdate" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
+            <xsd:element name="documentName">
+                <xsd:annotation>
+                    <xsd:documentation>Angabe des Anschreiben-Namens</xsd:documentation>
+                </xsd:annotation>
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="KB_OHNE_RUECKFORDERUNG"/>
+                        <xsd:enumeration value="KB_MIT_RUECKFORDERUNG"/>
+                        <xsd:enumeration value="KB_STORNO"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>

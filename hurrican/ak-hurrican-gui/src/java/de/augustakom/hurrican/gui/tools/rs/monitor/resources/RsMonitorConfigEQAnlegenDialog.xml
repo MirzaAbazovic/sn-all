@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definition fuer den Dialog zur Anlage eines neuen Konfigurationsdatensatzes.
+-->
+<sf>
+  	<Text name="title">Schwellwerteingabe</Text>
+              
+	<Label name="uevt"><text>UEVT:</text></Label>
+    <ComboBox name="uevt">
+        <tooltip>Auswahl des Übergabeverteilers</tooltip>
+    </ComboBox>
+    
+    <Label name="rang.ss"><text>Schnittstellentyp:</text></Label>
+    <ComboBox name="rang.ss">
+        <tooltip>Auswahl des Schnittstellentyps</tooltip>
+    </ComboBox>
+      
+</sf>

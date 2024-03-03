@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="AKMailHostingLeistungen" language="java" pageWidth="340" pageHeight="283" columnWidth="340" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="com.jasperassistant.designer.GridWidth" value="12"/>
+	<property name="com.jasperassistant.designer.GridHeight" value="12"/>
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+	<property name="com.jasperassistant.designer.Units" value="Millimeters"/>
+	<property name="com.jasperassistant.designer.Grid" value="true"/>
+	<reportFont name="Font_Title" isDefault="false" fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<reportFont name="Font_Detail" isDefault="true" fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<field name="MENGE" class="java.lang.Long">
+	</field>
+	<field name="LEISTUNG" class="java.lang.String">
+	</field>
+	<title>
+		<band height="22">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="11" width="43" height="11"/>
+				<textElement>
+					<font reportFont="Font_Title"/>
+				</textElement>
+				<text><![CDATA[MENGE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="53" y="11" width="281" height="11"/>
+				<textElement>
+					<font reportFont="Font_Title"/>
+				</textElement>
+				<text><![CDATA[LEISTUNG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="0" width="335" height="12"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Folgende Leistungen wurden für Ihre AK-Online Aufträge eingerichtet:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="12">
+			<textField>
+				<reportElement positionType="Float" x="1" y="0" width="43" height="11">
+					<printWhenExpression><![CDATA[($F{MENGE} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.Long"><![CDATA[$F{MENGE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="53" y="0" width="282" height="11">
+					<printWhenExpression><![CDATA[($F{LEISTUNG} != null && $F{LEISTUNG}.length() > 0) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{LEISTUNG}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

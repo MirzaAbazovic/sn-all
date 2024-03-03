@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse 
+de.augustakom.hurrican.model.billing.BLZ
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="BLZ" table="BLZ">
+	    
+	    <!-- PrimaryKey -->
+		<id name="blzNo" column="BLZ_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<property name="name" column="NAME" type="string"/>
+  		<property name="plz" column="PLZ" type="string"/>
+  		<property name="ort" column="ORT" type="string"/>
+  	
+	</class>
+	
+</hibernate-mapping>

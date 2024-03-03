@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definition fuer den Dialog zur Anlage eines neuen Konfigurationsdatensatzes.
+-->
+<sf>
+
+    <Label name="alarm"><text>Alarmierung:</text></Label>
+    <CheckBox name="alarm">
+        <tooltip>Soll eine Alarmierung ausgelöst werden?</tooltip>
+    </CheckBox>
+
+    <Label name="sw"><text>Schwellwert:</text></Label>
+    <FormattedTextField name="sw">
+        <tooltip>Schwellwert</tooltip>
+    </FormattedTextField>
+
+    <Label name="anzahlTage"><text>Anzahl Tage:</text></Label>
+    <FormattedTextField name="anzahlTage">
+        <tooltip>Anzahl Tage</tooltip>
+    </FormattedTextField>
+
+    <Label name="date"><text>Änderungsdatum:</text></Label>
+    <TextField name="date">
+        <tooltip>Datum der letzten Änderung</tooltip>
+    </TextField>
+
+    <Label name="user"><text>Bearbeiter:</text></Label>
+    <TextField name="user">
+        <tooltip>Letzter Bearbeiter</tooltip>
+    </TextField>
+
+</sf>

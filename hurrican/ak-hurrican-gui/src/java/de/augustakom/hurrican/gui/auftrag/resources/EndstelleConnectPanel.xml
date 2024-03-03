@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    GUI-Definitionen fuer das Panel zur Darstellung der Connect-Daten einer Endstelle
+-->
+<sf>
+
+    <Button name="new.connect">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Legt ein neues Objekt fuer die Kundenuebergabe an</tooltip>
+    </Button>
+
+    <Label name="connect.gebaeude"><text>Gebäude:</text></Label>
+    <TextField name="connect.gebaeude">
+        <tooltip>Gebäude für die Connect-Daten der Endstelle</tooltip>
+        <maxchars>200</maxchars>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="connect.etage"><text>Etage:</text></Label>
+    <TextField name="connect.etage">
+        <tooltip>Etage für die Connect-Daten der Endstelle</tooltip>
+        <maxchars>200</maxchars>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="connect.raum"><text>Raum:</text></Label>
+    <TextField name="connect.raum">
+        <tooltip>Raum für die Connect-Daten der Endstelle</tooltip>
+        <maxchars>200</maxchars>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="connect.schrank"><text>Schrank:</text></Label>
+    <TextField name="connect.schrank">
+        <tooltip>Schrank für die Connect-Daten der Endstelle</tooltip>
+        <maxchars>200</maxchars>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="connect.uebergabe"><text>EG–Übergabeport:</text></Label>
+    <TextField name="connect.uebergabe">
+        <tooltip>Endgerät – Übergabeport für die Connect-Daten der Endstelle</tooltip>
+        <maxchars>200</maxchars>
+    </TextField>
+
+    <Label name="connect.bandbreite"><text>Bandbreite:</text></Label>
+    <TextField name="connect.bandbreite">
+        <tooltip>Bandbreite für die Connect-Daten der Endstelle</tooltip>
+        <maxchars>200</maxchars>
+    </TextField>
+
+    <Label name="connect.if"><text>Schnittstelle:</text></Label>
+    <ComboBox name="connect.if">
+        <tooltip>Schnittstelle für die Connect-Daten der Endstelle</tooltip>
+    </ComboBox>
+
+    <Label name="connect.if-einstellung"><text>Einstellung*:</text></Label>
+    <ComboBox name="connect.if-einstellung">
+        <tooltip>Einstellung der Schnittstelle für die Connect-Daten der Endstelle</tooltip>
+    </ComboBox>
+
+    <Label name="connect.routerinfo"><text>Routerinfo (DA):</text></Label>
+    <ComboBox name="connect.routerinfo">
+        <tooltip>Routerinfo bei Direct Access für die Connect-Daten der Endstelle</tooltip>
+    </ComboBox>
+    
+    <Label name="connect.default.gateway"><text>Default Gateway:</text></Label>
+    <ComboBox name="connect.default.gateway">
+        <tooltip>Angabe des Default-Gateways für den Router</tooltip>
+    </ComboBox>
+
+    <Label name="connect.routertyp"><text>Routertyp:</text></Label>
+    <TextField name="connect.routertyp">
+        <tooltip>Routertyp für die Connect-Daten der Endstelle</tooltip>
+        <maxchars>200</maxchars>
+    </TextField>
+
+    <Label name="connect.bemerkung"><text>Bemerkung:</text></Label>
+    <TextArea name="connect.bemerkung">
+        <tooltip>Bemerkung für die Connect-Daten der Endstelle</tooltip>
+        <maxchars>4000</maxchars>
+    </TextArea>
+</sf>

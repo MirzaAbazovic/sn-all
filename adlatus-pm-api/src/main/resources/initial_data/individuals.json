@@ -1,0 +1,107 @@
+[
+  {
+    "id": "1",
+    "familyName": "Doe",
+    "fullName": "technician Doe",
+    "givenName": "technician",
+    "title": "mr",
+    "contactMedium": [
+      {
+        "mediumType": "",
+        "preferred": null,
+        "characteristic": {
+          "city": null,
+          "contactType": null,
+          "country": null,
+          "emailAddress": "technician.doe@bitconex.de",
+          "faxNumber": null,
+          "phoneNumber": "+38166123456",
+          "postCode": null,
+          "socialNetworkId": null,
+          "stateOrProvince": null,
+          "street1": null,
+          "street2": null,
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null
+        },
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "status": "initialized",
+    "isDeleted": false
+  },
+  {
+    "id": "2",
+    "familyName": "Doe",
+    "fullName": "endCustomer Doe",
+    "givenName": "endCustomer",
+    "title": "mr",
+    "contactMedium": [
+      {
+        "mediumType": "",
+        "preferred": null,
+        "characteristic": {
+          "city": null,
+          "contactType": null,
+          "country": null,
+          "emailAddress": "endCustomer.doe@bitconex.de",
+          "faxNumber": null,
+          "phoneNumber": "+38166123456",
+          "postCode": null,
+          "socialNetworkId": null,
+          "stateOrProvince": null,
+          "street1": null,
+          "street2": null,
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null
+        },
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "status": "initialized",
+    "isDeleted": false
+  },
+  {
+    "id": "3",
+    "familyName": "Doe",
+    "fullName": "orderManagementContactPerson Doe",
+    "givenName": "orderManagementContactPerson",
+    "title": "mr",
+    "contactMedium": [
+      {
+        "mediumType": "",
+        "preferred": null,
+        "characteristic": {
+          "city": null,
+          "contactType": null,
+          "country": null,
+          "emailAddress": "orderManagementContactPerson.doe@bitconex.de",
+          "faxNumber": null,
+          "phoneNumber": "+38166123456",
+          "postCode": null,
+          "socialNetworkId": null,
+          "stateOrProvince": null,
+          "street1": null,
+          "street2": null,
+          "@baseType": null,
+          "@schemaLocation": null,
+          "@type": null
+        },
+        "validFor": null,
+        "@baseType": null,
+        "@schemaLocation": null,
+        "@type": null
+      }
+    ],
+    "status": "initialized",
+    "isDeleted": false
+  }
+]

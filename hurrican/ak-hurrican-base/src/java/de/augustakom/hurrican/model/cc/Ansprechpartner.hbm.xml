@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- Hibernate-Mapping fuer die Klasse de.augustakom.hurrican.model.cc.EQCrossConnection -->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc"
+    auto-import="false">
+    <class name="Ansprechpartner" table="T_ANSPRECHPARTNER">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence">
+                <param name="sequence">S_T_ANSPRECHPARTNER_0</param>
+            </generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null" />
+
+        <!-- Sonstige Fields -->
+        <many-to-one name="address" column="ADDRESS_ID" cascade="save-update"
+            lazy="false" />
+        <property name="auftragId" column="AUFTRAG_ID" type="long" not-null="true" />
+        <property name="typeRefId" column="TYPE_REF_ID" type="long" not-null="true" />
+        <property name="preferred" column="PREFERRED" type="boolean" not-null="true" />
+        <property name="text" column="TEXT" type="string" />
+        <property name="prio" column="PRIO" type="integer" />
+    </class>
+</hibernate-mapping>

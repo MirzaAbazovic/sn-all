@@ -1,0 +1,1159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:order="http://wholesale.telekom.de/oss/v15/order" xmlns:conn="http://wholesale.telekom.de/oss/v15/connectivity" xmlns:complex="http://wholesale.telekom.de/oss/v15/complex" xmlns:simple="http://wholesale.telekom.de/oss/v15/simple" xmlns:enum="http://wholesale.telekom.de/oss/v15/enm" targetNamespace="http://wholesale.telekom.de/oss/v15/order" version="15.00.00/2020-05-09">
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/complex" schemaLocation="oss-type-complex.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/simple" schemaLocation="oss-type-simple.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/enm" schemaLocation="oss-type-enum.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/connectivity" schemaLocation="oss-connectivity.xsd"/>
+	<!-- 
+		!
+		! Auftrag
+		!
+	-->
+	<xsd:element name="auftrag" type="order:AuftragType"/>
+	<xsd:complexType name="AuftragType">
+		<xsd:sequence>
+			<xsd:element name="externeAuftragsnummer" type="simple:ExterneAuftragsnummerType">
+				<xsd:annotation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Die Auftragsnummer kann wieder verwendet werden, wenn Vorgängeraufträge mit gleicher Auftragsnummer abgeschlossen sind</xsd:documentation>
+				</xsd:annotation>					
+			</xsd:element>
+			<xsd:element name="kunde" type="complex:KundeType">
+				<xsd:annotation>
+					<xsd:documentation>Kundendaten (bei Beauftragung im Namen des Kunden ist der Kunde gemeint, für den bestellt wird)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="besteller" type="complex:KundeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Angaben zum Besteller, für den Fall dass der Besteller im Namen eines anderen Kunden handelt (nur bei Beauftragung im Namen Dritter)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="geschaeftsfall" type="complex:GeschaeftsfallType">
+				<xsd:annotation>
+					<xsd:documentation>Erweiterungspunkt für die konkreten Geschäftsfälle</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="kenner" type="complex:KennerType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>ID zur Gruppierung von Aufträgen</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- 
+		!
+		! AuftragNachVPO
+		!
+	-->
+	<xsd:element name="auftragNachVPO" type="order:AuftragNachVPOType"/>
+	<xsd:complexType name="AuftragNachVPOType">
+		<xsd:sequence>
+			<xsd:element name="preOrderID" type="simple:PreOrderIDType">
+				<xsd:annotation>
+					<xsd:documentation>ID einer gültigen PreOrder, der Auftrag wird mit den Daten dieser PreOrder vervollständigt.</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Status der PreOrder: abgeschlossen oder in_Auftragspruefung; Eine PreOrder kann im Rahmen des Gültigkeitszeitraums wiederverwendet werden, wenn ein Vorgängerauftrag in der Auftragsprüfung abgelehnt worden ist</xsd:documentation>
+				</xsd:annotation>					
+			</xsd:element>
+			<xsd:element name="externeAuftragsnummer" type="simple:ExterneAuftragsnummerType">
+				<xsd:annotation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Die Auftragsnummer kann wieder verwendet werden, wenn Vorgängeraufträge mit gleicher Auftragsnummer abgeschlossen sind</xsd:documentation>
+				</xsd:annotation>					
+			</xsd:element>
+			<xsd:element name="kunde" type="simple:KundennummerType">
+				<xsd:annotation>
+					<xsd:documentation>Kundennummer</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Die Angabe muss mit der Kundennummer der PreOrder übereinstimmen</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="besteller" type="complex:KundeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Angaben zum Besteller, für den Fall dass der Besteller im Namen eines anderen Kunden handelt (nur bei Beauftragung im Namen Dritter)</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Die Angabe muss nicht mit dem Besteller der PreOrder übereinstimmen.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="geschaeftsfall" type="enum:GeschaeftsfallPreOrderType">
+				<xsd:annotation>
+					<xsd:documentation>Geschäftsfall des Auftrags</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Der Geschäftsfall muss zum Typ der PreOrder passen.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>ID der Vorabstimmungsanfrage aus dem Vorabstimmungsprozesss beim Anbieterwechsel.</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Bei VBL: Pflichtangabe bei Wechsel von Telekom zu Provider.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="anschlussInhaber" type="complex:AnschlussInhaberType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Angaben zum Anschlussinhaber; Pflichtangabe bei NEU, VBL, PV</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="kenner" type="complex:KennerType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>ID zur Gruppierung von Aufträgen</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="BKTOFaktura" type="simple:BuchungskontonummerType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Nummer, die zur Fakturierung heranzuziehen ist</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>			
+			<xsd:element name="ansprechpartner" type="order:AnsprechpartnerVPOType">
+				<xsd:annotation>
+					<xsd:documentation>Angaben zu Ansprechpartnern des Kunden</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="anlagen" type="complex:AnlageMitTypType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>Anlagen entsprechend Geschäftsfall</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Bei PV, VBL: Pflichtangabe, falls keine Hafttungsfreistellung in den Dienstverträgen vereinbart ist</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="lageTAE_ONT" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Kommentar zur Beschreibung der TAE-Dose oder ONT (für FTTH) am Standort A</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="simple:ErlaubterZeichenBereichMehrzeiligType">
+						<xsd:minLength value="1"/>
+						<xsd:maxLength value="160"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>	
+	<xsd:complexType name="AnsprechpartnerType">
+		<xsd:sequence>
+			<xsd:element name="auftragsmanagement" type="complex:AnsprechpartnerMitEmailType">
+				<xsd:annotation>
+					<xsd:documentation>Angaben zu Ansprechpartnern des Kunden für das Auftragsmanagement</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ansprechpartner" type="complex:AnsprechpartnerMitRolleType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>Angaben zu weiteren Ansprechpartnern des Kunden</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="AnsprechpartnerVPOType">
+		<xsd:sequence>
+			<xsd:element name="auftragsmanagement" type="complex:AnsprechpartnerMitEmailType">
+				<xsd:annotation>
+					<xsd:documentation>Angaben zu Ansprechpartnern des Kunden für das Auftragsmanagement</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="montage" type="complex:AnsprechpartnerType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>der Ansprechpartner, mit dem die Montageleistung abzustimmen ist</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ansprechpartner" type="complex:AnsprechpartnerMitRolleType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>Angaben zu weiteren Ansprechpartnern des Kunden</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+
+	
+	
+	
+	<xsd:complexType name="GeschaeftsfallAenderungType" abstract="true"/>
+	
+	
+	<!-- 
+		!
+		!  Auftragsposition
+		!
+	-->
+	<xsd:element name="auftragsposition" type="order:AuftragspositionType"/>
+	<xsd:complexType name="AuftragspositionType">
+		<xsd:sequence>
+			<xsd:element name="aktionscode" type="enum:AktionscodeType">
+				<xsd:annotation>
+					<xsd:documentation>Kenner für Zugang Wegfall oder Änderung des Produktes</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="produkt" type="complex:ProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Beschreibung des Produktes der Auftragsposition</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="geschaeftsfallProdukt" type="complex:GeschaeftsfallProduktType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>die Geschäftsfall-spezifischen Ergänzungen des Produktes der Auftragsposition</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="position" type="order:AuftragspositionType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>die Unterpositionen zur Auftragsposition</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LeistungsmerkmalPositionType">
+		<xsd:complexContent>
+			<xsd:extension base="order:AuftragspositionType" />
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! Stornierung / Terminverschiebung
+		!
+	-->
+	<xsd:element name="stornierung" type="order:StornierungType"/>
+	<xsd:complexType name="StornierungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:AuftragType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="terminverschiebung" type="order:TerminverschiebungType"/>
+	<xsd:complexType name="TerminverschiebungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:AuftragType">
+				<xsd:sequence>
+					<xsd:element name="geschaeftsfallAenderung" type="order:GeschaeftsfallTerminverschiebungType">
+						<xsd:annotation>
+							<xsd:documentation>Änderungen zum Geschäftsfall bei dem Änderungskennzeichen: Terminverschiebung</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Bei AUS-BUE: Keine Terminverschiebung möglich</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="GeschaeftsfallTerminverschiebungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:GeschaeftsfallAenderungType">
+				<xsd:sequence>
+					<xsd:element name="kundenwunschtermin" type="simple:TerminType">
+						<xsd:annotation>
+							<xsd:documentation>Wunschtermin bei der Terminverschiebung</xsd:documentation>
+						</xsd:annotation>					
+					</xsd:element>
+					<xsd:element name="zeitfenster" type="simple:ZeitfensterType">
+						<xsd:annotation>
+							<xsd:documentation>Eingrenzung des Kundenwunschtermins auf definierte Stundenintervalle</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nur zulässige Zeitfenster möglich. Zeitfenster und Kundenwunschtermin müssen konsistent sein.</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Die Zuordnungen von einzelnen Werten zu den Zeitfenstern müssen aus der Zeitfenstertabelle entnommen werden</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>		
+					<xsd:element name="OSL" type="complex:OSLType" minOccurs="0" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Optionale Serviceleistungen (OSL) die innerhalb der Terminverschiebung zusätzlich zu bereits im Originalauftrag angegebenen OSLs gebucht werden sollen</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Für alle Geschäftsfälle außer KUE-KD und alle Produktgruppen außer Preselection</xsd:documentation>							
+						</xsd:annotation>																		
+					</xsd:element>			                    								
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:element name="stornierungNachVPO" type="order:StornierungNachVPOType"/>
+	<xsd:complexType name="StornierungNachVPOType">
+		<xsd:complexContent>
+			<xsd:extension base="order:AuftragNachVPOType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:element name="terminverschiebungNachVPO" type="order:TerminverschiebungNachVPOType"/>
+	<xsd:complexType name="TerminverschiebungNachVPOType">
+		<xsd:complexContent>
+			<xsd:extension base="order:AuftragNachVPOType">
+				<xsd:sequence>
+					<xsd:element name="geschaeftsfallAenderung" type="order:GeschaeftsfallTerminverschiebungNachVPOType">
+						<xsd:annotation>
+							<xsd:documentation>Änderungen bei einer Terminverschiebung</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>	
+	
+	
+	<xsd:complexType name="GeschaeftsfallTerminverschiebungNachVPOType">
+		<xsd:complexContent>
+			<xsd:extension base="order:GeschaeftsfallAenderungType">
+				<xsd:sequence>
+					<xsd:element name="kundenwunschtermin" type="simple:TerminType">
+						<xsd:annotation>
+							<xsd:documentation>Wunschtermin bei der Terminverschiebung</xsd:documentation>
+						</xsd:annotation>					
+					</xsd:element>
+					<xsd:element name="zeitfenster" type="simple:ZeitfensterType">
+						<xsd:annotation>
+							<xsd:documentation>Eingrenzung des Kundenwunschtermins auf definierte Stundenintervalle</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nur zulässige Zeitfenster möglich. Zeitfenster und Kundenwunschtermin müssen konsistent sein.</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Die Zuordnungen von einzelnen Werten zu den Zeitfenstern müssen aus der Zeitfenstertabelle entnommen werden</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>					
+					<xsd:element name="OSL" type="complex:OSLType" minOccurs="0" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Optionale Serviceleistungen (OSL) die innerhalb der Terminverschiebung zusätzlich zu bereits im Originalauftrag angegebenen OSLs gebucht werden sollen</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Für alle Geschäftsfälle außer KUE-KD und Produktgruppen außer Preselection</xsd:documentation>							
+						</xsd:annotation>																		
+					</xsd:element>			                    													
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+		
+	<!-- 
+		!
+		! Bereitstellung
+		!
+	-->
+	<xsd:element name="NEU" type="order:BereitstellungType"/>
+	<xsd:complexType name="BereitstellungType">
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallType">
+				<xsd:sequence>
+					<xsd:element name="BKTOFaktura" type="simple:BuchungskontonummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Nummer, die zur Fakturierung heranzuziehen ist</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Wünscht Kunde dass ein Auftrag auf eine andere als die Standard BKTO abgerechnet wird, kann Kunde hier eine ihm zugeteilte aktive BKTO angeben</xsd:documentation>							
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Keine Angabe für die PG Preselection</xsd:documentation>														
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="anlagen" type="order:BereitstellungAnlagenType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Anlagen zum Auftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ansprechpartner" type="order:AnsprechpartnerType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Ansprechpartnern des Kunden</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="termine" type="order:BereitstellungTermineType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Terminen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="teilausfuehrung" type="enum:BoolDecisionType" minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>Auftrag kann auch durchgeführt werden, wenn nur ein Teil der bestellten Produkte lieferbar ist</xsd:documentation>
+                            <xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angabe nur bei PG Preselection möglich, bei allen anderen PG wird die Angabe ignoriert. Bei fehlender Angabe wird der Wert 'N'(Nein) genommen.</xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>					
+					<xsd:element name="auftragsposition" type="order:AuftragspositionBereitstellungType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Liste der Auftragspositionen, in der die Produkte / Leistungsmerkmale aufgeführt sind, die im Auftrag bearbeitet werden sollen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="AuftragspositionBereitstellungType">
+		<xsd:sequence>
+			<xsd:element name="produkt" type="complex:ProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Beschreibung des Produktes der Auftragsposition (Erweiterungspunkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="geschaeftsfallProdukt" type="order:BereitstellungProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Geschäftsfall-spezifischen Angaben zum Produkt (Erweiterungspunkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="position" type="order:AuftragspositionType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>die Unterpositionen zur Auftragsposition</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BereitstellungProduktType" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation>die abstrakte Basis für alle geschäftsfall-spezifischen Produkt-Daten (Erweiterungspunkt)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallProduktType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="BereitstellungTermineType">
+		<xsd:annotation>
+			<xsd:documentation>die möglichen Termine für eine Bereitstellung</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="kundenwunschtermin" type="complex:KundenwunschterminType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BereitstellungAnlagenType">
+		<xsd:annotation>
+			<xsd:documentation>die möglichen Anlagen für eine Bereitstellung (je Dokument max. 1 Mb, insgesamt max. 4 Mb)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="lageplan" type="complex:AnlageType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>der Lageplan für eventuelle Montageleistungen</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Mögliche Beilage zur Unterstützung des Service. Kann nur genutzt werden wenn zusätlich im Montagehinweis auf die Anlage hingewiesen wird oder im Rahmen von Projekten mit Projektkenner.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sonstige" type="complex:AnlageMitTypType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>weitere Anlagen</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Neben Portierungsanzeige (notwendig im Anbieterwechsel wenn keine Haftungsfreistellungserklärung vorliegt) kann hier auch Lageplan und Kündigungsschreiben beigefügt werden</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="BereitstellungTerminverschiebungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:GeschaeftsfallTerminverschiebungType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! Kündigung
+		!
+	-->
+	<xsd:element name="KUE-KD" type="order:KuendigungType"/>
+	<xsd:complexType name="KuendigungType">
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallType">
+				<xsd:sequence>
+					<xsd:element name="BKTOFaktura" type="simple:BuchungskontonummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Nummer, die zur Fakturierung heranzuziehen ist</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Wünscht Kunde dass ein Auftrag auf eine andere als die Standard BKTO abgerechnet wird, kann Kunde hier eine ihm zugeteilte aktive BKTO angeben</xsd:documentation>							
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation>bezeichnet den Einzelvertrag, auf den sich der Auftrag bezieht</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="anlagen" type="order:KuendigungAnlagenType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Anlagen zum Auftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ansprechpartner" type="order:AnsprechpartnerType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Ansprechpartnern des Kunden</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="termine" type="order:KuendigungTermineType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Terminen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="auftragsposition" type="order:AuftragspositionKuendigungType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Liste der Auftragspositionen, in der die Produkte / Leistungsmerkmale aufgeführt sind, die im Auftrag bearbeitet werden sollen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="AuftragspositionKuendigungType">
+		<xsd:sequence>
+			<xsd:element name="produkt" type="complex:ProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Beschreibung des Produktes der Auftragsposition (Erweiterungspunkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="geschaeftsfallProdukt" type="order:KuendigungProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Geschäftsfall-spezifischen Angaben zum Produkt (Erweiterungspunkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="position" type="order:AuftragspositionType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>die Unterpositionen zur Auftragsposition</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="KuendigungProduktType" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation>die abstrakte Basis für alle geschäftsfall-spezifischen Produkt-Daten (Erweiterungspunkt)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallProduktType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="KuendigungTermineType">
+		<xsd:annotation>
+			<xsd:documentation>die möglichen Termine für eine Kündigung</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="kundenwunschtermin" type="complex:KundenwunschterminType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="KuendigungAnlagenType">
+		<xsd:annotation>
+			<xsd:documentation>die möglichen Anlagen für eine Kündigung (je Dokument max. 1 Mb, insgesamt max. 4 Mb)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="kuendigungsschreiben" type="complex:AnlageType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>das Kündigungsschreiben des Endkunden</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Beilage z.B. in Interimsprozessen. Siehe AHB4WITA</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sonstige" type="complex:AnlageMitTypType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>weitere Anlagen</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Neben Portierungsanzeige (notwendig im Anbieterwechsel wenn keine Haftungsfreistellungserklärung vorliegt) kann hier auch Lageplan und Kündigungsschreiben beigefügt werden</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="KuendigungTerminverschiebungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:GeschaeftsfallTerminverschiebungType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! Providerwechsel
+		!
+	-->
+	<xsd:element name="PV" type="order:ProviderwechselType"/>
+	<xsd:complexType name="ProviderwechselType">
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallType">
+				<xsd:sequence>
+					<xsd:element name="BKTOFaktura" type="simple:BuchungskontonummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Nummer, die zur Fakturierung heranzuziehen ist</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Wünscht Kunde dass ein Auftrag auf eine andere als die Standard BKTO abgerechnet wird, kann Kunde hier eine ihm zugeteilte aktive BKTO angeben</xsd:documentation>							
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation>bezeichnet den Einzelvertrag, auf den sich der Auftrag bezieht</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">falls abgebender Provider nicht Telekom ist, muss die Vertragsnummer des abgebenden Providers angegeben werden. Ist abgebender Provider die Telekom und Vorabstimmungsprozess über WBCI erfolgt, muss die Pseudo-Vertragsnummer angegeben werden.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="anlagen" type="order:ProviderwechselAnlagenType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Anlagen zum Auftrag</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Pflichtangabe, falls keine Hafttungsfreistellung in den Dienstverträgen vereinbart</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ansprechpartner" type="order:AnsprechpartnerType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Ansprechpartnern des Kunden</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="termine" type="order:ProviderwechselTermineType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Terminen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="auftragsposition" type="order:AuftragspositionProviderwechselType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Liste der Auftragspositionen, in der die Produkte / Leistungsmerkmale aufgeführt sind, die im Auftrag bearbeitet werden sollen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="AuftragspositionProviderwechselType">
+		<xsd:sequence>
+			<xsd:element name="produkt" type="complex:ProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Beschreibung des Produktes der Auftragsposition (Erweiterungspunkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="geschaeftsfallProdukt" type="order:ProviderwechselProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Geschäftsfall-spezifischen Angaben zum Produkt (Erweiterungspunkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="position" type="order:AuftragspositionType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>die Unterpositionen zur Auftragsposition</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProviderwechselProduktType" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation>die abstrakte Basis für alle geschäftsfall-spezifischen Produkt-Daten (Erweiterungspunkt)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallProduktType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProviderwechselTermineType">
+		<xsd:annotation>
+			<xsd:documentation>die möglichen Termine für einen Providerwechsel</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="kundenwunschtermin" type="complex:KundenwunschterminType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProviderwechselAnlagenType">
+		<xsd:annotation>
+			<xsd:documentation>die möglichen Anlagen für einen Providerwechsel (je Dokument max. 1 Mb, insgesamt max. 4 Mb)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="kuendigungsschreiben" type="complex:AnlageType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>das Kündigungsschreiben des Endkunden</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Beilage z.B. in Interimsprozessen. Siehe AHB4WITA</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sonstige" type="complex:AnlageMitTypType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>weitere Anlagen</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Neben Portierungsanzeige (notwendig im Anbieterwechsel wenn keine Haftungsfreistellungserklärung vorliegt) kann hier auch Lageplan und Kündigungsschreiben beigefügt werden</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProviderwechselTerminverschiebungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:GeschaeftsfallTerminverschiebungType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! Leistungsänderung
+		!
+	-->
+	<xsd:element name="LAE" type="order:LeistungsaenderungType"/>
+	<xsd:complexType name="LeistungsaenderungType">
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallType">
+				<xsd:sequence>
+					<xsd:element name="BKTOFaktura" type="simple:BuchungskontonummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Nummer, die zur Fakturierung heranzuziehen ist</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Wünscht Kunde dass ein Auftrag auf eine andere als die Standard BKTO abgerechnet wird, kann Kunde hier eine ihm zugeteilte aktive BKTO angeben</xsd:documentation>							
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation>bezeichnet den Einzelvertrag, auf den sich der Auftrag bezieht</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="anlagen" type="order:LeistungsaenderungAnlagenType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Anlagen zum Auftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ansprechpartner" type="order:AnsprechpartnerType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Ansprechpartnern des Kunden</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="termine" type="order:LeistungsaenderungTermineType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Terminen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="auftragsposition" type="order:AuftragspositionLeistungsaenderungType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Liste der Auftragspositionen, in der die Produkte / Leistungsmerkmale aufgeführt sind, die im Auftrag bearbeitet werden sollen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="AuftragspositionLeistungsaenderungType">
+		<xsd:sequence>
+			<xsd:element name="aktionscode" type="enum:AktionscodeType">
+				<xsd:annotation>
+					<xsd:documentation>Kenner für Zugang Wegfall oder Änderung des Produktes</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="produkt" type="complex:ProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Beschreibung des Produktes der Auftragsposition (Erweiterungspunkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="geschaeftsfallProdukt" type="order:LeistungsaenderungProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Geschäftsfall-spezifischen Angaben zum Produkt (Erweiterungspunkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="position" type="order:LeistungsmerkmalPositionType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>die Unterpositionen zur Auftragsposition</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LeistungsaenderungProduktType" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation>die abstrakte Basis für alle geschäftsfall-spezifischen Produkt-Daten (Erweiterungspunkt)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallProduktType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="LeistungsaenderungTermineType">
+		<xsd:annotation>
+			<xsd:documentation>die möglichen Termine für eine Leistungsänderung</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="kundenwunschtermin" type="complex:KundenwunschterminType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LeistungsaenderungAnlagenType">
+		<xsd:annotation>
+			<xsd:documentation>die möglichen Anlagen für eine Leistungsänderung(je Dokument max. 1 Mb, insgesamt max. 4 Mb)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="sonstige" type="complex:AnlageMitTypType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>weitere Anlagen</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Neben Portierungsanzeige (notwendig im Anbieterwechsel wenn keine Haftungsfreistellungserklärung vorliegt) kann hier auch Lageplan und Kündigungsschreiben beigefügt werden</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LeistungsaenderungTerminverschiebungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:GeschaeftsfallTerminverschiebungType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! LeistungsmerkmalÄnderung
+		!
+	-->
+	<xsd:element name="AEN-LMAE" type="order:LeistungsmerkmalAenderungType"/>
+	<xsd:complexType name="LeistungsmerkmalAenderungType">
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallType">
+				<xsd:sequence>
+					<xsd:element name="BKTOFaktura" type="simple:BuchungskontonummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Nummer, die zur Fakturierung heranzuziehen ist</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Wünscht Kunde dass ein Auftrag auf eine andere als die Standard BKTO abgerechnet wird, kann Kunde hier eine ihm zugeteilte aktive BKTO angeben</xsd:documentation>							
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation>bezeichnet den Einzelvertrag, auf den sich der Auftrag bezieht</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="anlagen" type="order:LeistungsmerkmalAenderungAnlagenType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Anlagen zum Auftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ansprechpartner" type="order:AnsprechpartnerType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Ansprechpartnern des Kunden</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="termine" type="order:LeistungsmerkmalAenderungTermineType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Terminen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="auftragsposition" type="order:AuftragspositionLeistungsmerkmalAenderungType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Liste der Auftragspositionen, in der die Produkte / Leistungsmerkmale aufgeführt sind, die im Auftrag bearbeitet werden sollen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="AuftragspositionLeistungsmerkmalAenderungType">
+		<xsd:sequence>
+			<xsd:element name="aktionscode" type="enum:AktionscodeType">
+				<xsd:annotation>
+					<xsd:documentation>Kenner für Zugang Wegfall oder Änderung des Produktes</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="produkt" type="complex:ProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Beschreibung des Produktes der Auftragsposition (Erweiterungspunkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="geschaeftsfallProdukt" type="order:LeistungsmerkmalAenderungProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Geschäftsfall-spezifischen Angaben zum Produkt (Erweiterungspunkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="position" type="order:LeistungsmerkmalPositionType" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>die Unterpositionen zur Auftragsposition</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LeistungsmerkmalAenderungProduktType" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation>die abstrakte Basis für alle geschäftsfall-spezifischen Produkt-Daten (Erweiterungspunkt)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallProduktType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="LeistungsmerkmalAenderungTermineType">
+		<xsd:annotation>
+			<xsd:documentation>die möglichen Termine für eine Leistungsmerkmaländerung</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="kundenwunschtermin" type="complex:KundenwunschterminType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LeistungsmerkmalAenderungAnlagenType">
+		<xsd:annotation>
+			<xsd:documentation>die möglichen Anlagen für eineLeistungsmerkmaländerung (je Dokument max. 1 Mb, insgesamt max. 4 Mb)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="sonstige" type="complex:AnlageMitTypType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>weitere Anlagen</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Neben Portierungsanzeige (notwendig im Anbieterwechsel wenn keine Haftungsfreistellungserklärung vorliegt) kann hier auch Lageplan und Kündigungsschreiben beigefügt werden</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="LeistungsmerkmalAenderungTerminverschiebungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:GeschaeftsfallTerminverschiebungType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<!-- 
+		!
+		! Bestandsuebersicht
+		!
+	-->
+	<xsd:element name="AUS-BUE" type="order:BestandsuebersichtType"/>
+	<xsd:complexType name="BestandsuebersichtType">
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallType">
+				<xsd:sequence>
+					<xsd:element name="BKTOFaktura" type="simple:BuchungskontonummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Nummer, die zur Fakturierung heranzuziehen ist</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Wünscht Kunde dass ein Auftrag auf eine andere als die Standard BKTO abgerechnet wird, kann Kunde hier eine ihm zugeteilte aktive BKTO angeben</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="BKTOBestand" type="simple:BuchungskontonummerType">
+						<xsd:annotation>
+							<xsd:documentation>Nummer, die zur Ermittlung des  Gesamtbestandes heranzuziehen ist</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Keine Angabe bei Online-Abfrage eines Einzelbestandes über Dialog</xsd:documentation>							
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ansprechpartner" type="order:AnsprechpartnerType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Ansprechpartnern des Kunden</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>					
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<!-- 
+		!
+		! Produktgruppenwechsel
+		!
+	-->
+	<xsd:element name="PGW" type="order:ProduktgruppenwechselType"/>
+	<xsd:complexType name="ProduktgruppenwechselType">
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallType">
+				<xsd:sequence>
+					<xsd:element name="BKTOFaktura" type="simple:BuchungskontonummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Nummer, die zur Fakturierung heranzuziehen ist</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Wünscht Kunde dass ein Auftrag auf eine andere als die Standard BKTO abgerechnet wird, kann Kunde hier eine ihm zugeteilte aktive BKTO angeben</xsd:documentation>							
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation>bezeichnet den Einzelvertrag, auf den sich der Auftrag bezieht</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="anlagen" type="order:ProduktgruppenwechselAnlagenType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Anlagen zum Auftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ansprechpartner" type="order:AnsprechpartnerType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Ansprechpartnern des Kunden</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="termine" type="order:ProduktgruppenwechselTermineType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Terminen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="auftragsposition" type="order:AuftragspositionProduktgruppenwechselType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Liste der Auftragspositionen, in der die Produkte / Leistungsmerkmale aufgeführt sind, die im Auftrag bearbeitet werden sollen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="AuftragspositionProduktgruppenwechselType">
+		<xsd:sequence>
+			<xsd:element name="produkt" type="complex:ProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Beschreibung des Produktes der Auftragsposition (Erweiterungspunkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="geschaeftsfallProdukt" type="order:ProduktgruppenwechselProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Geschäftsfall-spezifischen Angaben zum Produkt (Erweiterungspunkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="position" type="order:AuftragspositionType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>die Unterpositionen zur Auftragsposition</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProduktgruppenwechselProduktType" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation>die abstrakte Basis für alle geschäftsfall-spezifischen Produkt-Daten (Erweiterungspunkt)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallProduktType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProduktgruppenwechselTermineType">
+		<xsd:annotation>
+			<xsd:documentation>die möglichen Termine für einen Produktgruppenwechsel</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="kundenwunschtermin" type="complex:KundenwunschterminType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProduktgruppenwechselAnlagenType">
+		<xsd:annotation>
+			<xsd:documentation>die möglichen Anlagen für einen Produktgruppenwechsel (je Dokument max. 1 Mb, insgesamt max. 4 Mb)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="sonstige" type="complex:AnlageMitTypType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>weitere Anlagen</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Neben Portierungsanzeige (notwendig im Anbieterwechsel wenn keine Haftungsfreistellungserklärung vorliegt) kann hier auch Lageplan und Kündigungsschreiben beigefügt werden</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ProduktgruppenwechselTerminverschiebungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:GeschaeftsfallTerminverschiebungType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! Verbundleistung
+		!
+	-->
+	<xsd:element name="VBL" type="order:VerbundleistungType"/>
+	<xsd:complexType name="VerbundleistungType">
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallType">
+				<xsd:sequence>
+					<xsd:element name="BKTOFaktura" type="simple:BuchungskontonummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Nummer, die zur Fakturierung heranzuziehen ist</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Wünscht Kunde dass ein Auftrag auf eine andere als die Standard BKTO abgerechnet wird, kann Kunde hier eine ihm zugeteilte aktive BKTO angeben</xsd:documentation>							
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>bezeichnet den Einzelvertrag, auf den sich der Auftrag bezieht</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">falls abgebender Provider nicht Telekom ist, muss die Vertragsnummer des abgebenden Providers angegeben werden. Ist abgebender Provider die Telekom und Vorabstimmungsprozess über WBCI erfolgt, muss die Pseudo-Vertragsnummer angegeben werden.</xsd:documentation>							
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="anlagen" type="order:VerbundleistungAnlagenType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Anlagen zum Auftrag</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Pflichtangabe, falls keine Hafttungsfreistellung in den Dienstverträgen vereinbart</xsd:documentation>							
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ansprechpartner" type="order:AnsprechpartnerType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Ansprechpartnern des Kunden</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="termine" type="order:VerbundleistungTermineType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Terminen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="auftragsposition" type="order:AuftragspositionVerbundleistungType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Liste der Auftragspositionen, in der die Produkte / Leistungsmerkmale aufgeführt sind, die im Auftrag bearbeitet werden sollen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="AuftragspositionVerbundleistungType">
+		<xsd:sequence>
+			<xsd:element name="produkt" type="complex:ProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Beschreibung des Produktes der Auftragsposition (Erweiterungspunkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="geschaeftsfallProdukt" type="order:VerbundleistungProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Geschäftsfall-spezifischen Angaben zum Produkt (Erweiterungspunkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="position" type="order:AuftragspositionType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>die Unterpositionen zur Auftragsposition</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VerbundleistungProduktType" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation>die abstrakte Basis für alle geschäftsfall-spezifischen Produkt-Daten (Erweiterungspunkt)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallProduktType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="VerbundleistungTermineType">
+		<xsd:annotation>
+			<xsd:documentation>die möglichen Termine für eine Verbundleistung</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="kundenwunschtermin" type="complex:KundenwunschterminType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VerbundleistungAnlagenType">
+		<xsd:annotation>
+			<xsd:documentation>die möglichen Anlagen für eine Verbundleistung (je Dokument max. 1 Mb, insgesamt max. 4 Mb)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="kuendigungsschreiben" type="complex:AnlageType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>das Kündigungsschreiben des Endkunden</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>		
+			<xsd:element name="sonstige" type="complex:AnlageMitTypType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>weitere Anlagen</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Neben Portierungsanzeige (notwendig im Anbieterwechsel wenn keine Haftungsfreistellungserklärung vorliegt) kann hier auch Lageplan und Kündigungsschreiben beigefügt werden</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="VerbundleistungTerminverschiebungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:GeschaeftsfallTerminverschiebungType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<!-- 
+		!
+		! Portwechsel
+		!
+	-->
+	<xsd:element name="SER-POW" type="order:PortwechselType"/>
+	<xsd:complexType name="PortwechselType">
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallType">
+				<xsd:sequence>
+					<xsd:element name="BKTOFaktura" type="simple:BuchungskontonummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Nummer, die zur Fakturierung heranzuziehen ist</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Wünscht Kunde dass ein Auftrag auf eine andere als die Standard BKTO abgerechnet wird, kann Kunde hier eine ihm zugeteilte aktive BKTO angeben</xsd:documentation>							
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation>bezeichnet den Einzelvertrag, auf den sich der Auftrag bezieht</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="anlagen" type="order:PortwechselAnlagenType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Anlagen zum Auftrag</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ansprechpartner" type="order:AnsprechpartnerType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Ansprechpartnern des Kunden</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="termine" type="order:PortwechselTermineType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Terminen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="auftragsposition" type="order:AuftragspositionPortwechselType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Liste der Auftragspositionen, in der die Produkte / Leistungsmerkmale aufgeführt sind, die im Auftrag bearbeitet werden sollen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="AuftragspositionPortwechselType">
+		<xsd:sequence>
+			<xsd:element name="produkt" type="complex:ProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Beschreibung des Produktes der Auftragsposition (Erweiterungspunkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="geschaeftsfallProdukt" type="order:PortwechselProduktType">
+				<xsd:annotation>
+					<xsd:documentation>die Geschäftsfall-spezifischen Angaben zum Produkt (Erweiterungspunkt)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="position" type="order:AuftragspositionType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>die Unterpositionen zur Auftragsposition</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PortwechselProduktType" abstract="true">
+		<xsd:annotation>
+			<xsd:documentation>die abstrakte Basis für alle geschäftsfall-spezifischen Produkt-Daten (Erweiterungspunkt)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="complex:GeschaeftsfallProduktType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PortwechselTermineType">
+		<xsd:annotation>
+			<xsd:documentation>die möglichen Termine für eine Service Bereitstellung</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="kundenwunschtermin" type="complex:KundenwunschterminType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PortwechselAnlagenType">
+		<xsd:annotation>
+			<xsd:documentation>die möglichen Anlagen für eine Service Bereitstellung (je Dokument max. 1 Mb, insgesamt max. 4 Mb)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="sonstige" type="complex:AnlageMitTypType" minOccurs="0" maxOccurs="99">
+				<xsd:annotation>
+					<xsd:documentation>weitere Anlagen</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Neben Portierungsanzeige (notwendig im Anbieterwechsel wenn keine Haftungsfreistellungserklärung vorliegt) kann hier auch Lageplan und Kündigungsschreiben beigefügt werden</xsd:documentation>					
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="PortwechselTerminverschiebungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:GeschaeftsfallTerminverschiebungType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

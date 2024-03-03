@@ -1,0 +1,9 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <v1:searchBuildingsResponse xmlns:v1="http://www.mnet.de/esb/cdm/Resource/LocationService/v1" xmlns:ns1="http://www.mnet.de/esb/cdm/Resource/Location/v1">
+      <v1:limit>100</v1:limit>
+      <v1:offset>0</v1:offset>
+    </v1:searchBuildingsResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

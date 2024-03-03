@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:citrus-jms="http://www.citrusframework.org/schema/jms/config"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.citrusframework.org/schema/jms/config http://www.citrusframework.org/schema/jms/config/citrus-jms-config.xsd">
+
+    <context:annotation-config/>
+
+    <bean id="jmsSoapMessageConverter" class="com.consol.citrus.jms.message.SoapJmsMessageConverter"/>
+
+    <!-- Wita Line Order JMS endpoint -->
+    <citrus-jms:endpoint id="atlasLineOrderServiceSrcEndpointV2"
+                         connection-factory="atlasConnectionFactory"
+                         message-converter="jmsSoapMessageConverter"
+                         destination-name="mnet.SupplierPartner.op.cdm.src.v2.LineOrderService"/>
+
+    <!-- WITA Line Order Notification outbound message endpoint -->
+    <citrus-jms:endpoint id="atlasLineOrderNotificationServiceDstEndpointV2"
+                         connection-factory="atlasConnectionFactory"
+                         destination-name="mnet.Hurrican.op.cdm.dst.v2.LineOrderNotificationService"/>
+</beans>

@@ -1,0 +1,1 @@
+alter table T_HW_BG_CHANGE_DLU_V5 add USERW VARCHAR2(25);

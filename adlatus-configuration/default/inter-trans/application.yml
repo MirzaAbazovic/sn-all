@@ -1,0 +1,21 @@
+server:
+  port: '9191'
+soap:
+  url: ${SOAP_URL:http://localhost:8123/wita/v15}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,refresh"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+logging:
+  level:
+    root: 'DEBUG'

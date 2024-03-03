@@ -1,0 +1,31 @@
+agreement:
+  api:
+    basepath: http://localhost/agreementManagement/v4
+hub:
+  eventRegistrationService: EventRegistrationServiceJpa
+pm:
+  api:
+    basepath: http://localhost/tmf-api/party/v4
+rcm:
+  api:
+    basepath: http://localhost/tmf-api/resourceCatalog/v4
+spring:
+  datasource:
+    driverClassName: org.h2.Driver
+    password: ''
+    url: jdbc:h2:mem:testdb
+    username: sa
+  h2:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+  liquibase:
+    change-log: db/changelog/h2/changelog-h2.yaml
+    enabled: false

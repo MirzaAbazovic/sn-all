@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="sendWitaRequestsJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.wita.SendWitaRequestsJob"/>
+        <property name="group" value="wita"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="true"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="sendWitaRequestsJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="sendWitaRequestsJob"/>
+        <property name="volatility" value="true"/>
+        <property name="cronExpression" value="${cronTrigger.wita.sendWitaRequestsJobTrigger}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+    <bean id="vetoSendWitaRequestsJobListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoSendWitaRequestsJobListener"/>
+        <property name="jobName" value="sendWitaRequestsJob"/>
+        <property name="jobGroup" value="wita"/>
+    </bean>
+
+    <bean id="scanAndArchiveWitaFilesJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.wita.archive.ScanAndArchiveWitaFilesJob"/>
+        <property name="group" value="wita"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="false"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="scanAndArchiveWitaFilesJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="scanAndArchiveWitaFilesJob"/>
+        <property name="volatility" value="false"/>
+        <property name="cronExpression" value="${cronTrigger.wita.scanAndArchiveWitaFilesJob}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+    <bean id="vetoScanAndArchiveWitaFilesJobListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoScanAndArchiveWitaFilesJobListener"/>
+        <property name="jobName" value="scanAndArchiveWitaFilesJob"/>
+        <property name="jobGroup" value="wita"/>
+    </bean>
+
+    <bean id="witaMeldungBsiProtocolEntryJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.wita.ticketing.WitaBsiProtokollEintragJob"/>
+        <property name="group" value="wita"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="false"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="witaMeldungBsiProtocolEntryJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="witaMeldungBsiProtocolEntryJob"/>
+        <property name="volatility" value="false"/>
+        <property name="cronExpression" value="${cronTrigger.wita.witaMeldungBsiProtocolEntryJob}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+    <bean id="vetoWitaMeldungBsiProtocolEntryJobListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoWitaMeldungBsiProtocolEntryJobListener"/>
+        <property name="jobName" value="witaMeldungBsiProtocolEntryJob"/>
+        <property name="jobGroup" value="wita"/>
+    </bean>
+
+    <bean id="witaBsiRemoveDeadPvMeldungenJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass"
+                  value="de.mnet.hurrican.scheduler.job.wita.ticketing.WitaBsiRemoveDeadPvMeldungenJob"/>
+        <property name="group" value="wita"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="false"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="witaBsiRemoveDeadPvMeldungenJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="witaBsiRemoveDeadPvMeldungenJob"/>
+        <property name="volatility" value="false"/>
+        <property name="cronExpression" value="${cronTrigger.wita.witaMeldungBsiProtocolEntryJob}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+    <bean id="vetoWitaBsiRemoveDeadPvMeldungenJobListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoWitaBsiRemoveDeadPvMeldungenJobListener"/>
+        <property name="jobName" value="witaBsiRemoveDeadPvMeldungenJob"/>
+        <property name="jobGroup" value="wita"/>
+    </bean>
+
+    <!-- Job for processing Wita order responses automatically -->
+    <bean id="automaticallyProcessWitaOrdersJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.wita.AutomaticallyProcessWitaOrdersJob"/>
+        <property name="group" value="wita"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="false"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="automaticallyProcessWitaOrdersJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="automaticallyProcessWitaOrdersJob"/>
+        <property name="volatility" value="false"/>
+        <property name="cronExpression" value="${cronTrigger.wita.automaticallyProcessWitaOrdersJob}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+    <bean id="vetoAutomaticallyProcessWitaOrdersJobListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoAutomaticallyProcessWitaOrdersJobListener"/>
+        <property name="jobName" value="automaticallyProcessWitaOrdersJob"/>
+        <property name="jobGroup" value="wita"/>
+    </bean>
+
+    <!-- Job for processing Wita cancellation responses automatically -->
+    <bean id="automaticallyProcessWitaCancellationsJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.wita.AutomaticallyProcessWitaCancellationsJob"/>
+        <property name="group" value="wita"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="false"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="automaticallyProcessWitaCancellationsJobTrigger"
+          class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="automaticallyProcessWitaCancellationsJob"/>
+        <property name="volatility" value="false"/>
+        <property name="cronExpression" value="${cronTrigger.wita.automaticallyProcessWitaCancellationsJob}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+    <bean id="vetoAutomaticallyProcessWitaCancellationsJobListener"
+          class="de.mnet.hurrican.scheduler.job.listener.VetoMultipleExecutionTriggerListener">
+        <property name="name" value="vetoAutomaticallyProcessWitaCancellationsJobListener"/>
+        <property name="jobName" value="automaticallyProcessWitaCancellationsJob"/>
+        <property name="jobGroup" value="wita"/>
+    </bean>
+
+    <!-- Job fuer den Versand von SMS an den Kunden (WITA Meldungen triggern den Versand) -->
+    <bean id="smsSendJob" class="org.springframework.scheduling.quartz.JobDetailBean">
+        <property name="jobClass" value="de.mnet.hurrican.scheduler.job.sms.SmsSendJob"/>
+        <property name="group" value="wita"/>
+        <property name="durability" value="true"/>
+        <property name="volatility" value="false"/>
+        <property name="jobListenerNames">
+            <list>
+                <value>log.job.execution.listener</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="smsSendJobTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="smsSendJob"/>
+        <property name="volatility" value="false"/>
+        <property name="cronExpression" value="${cronTrigger.smsSendJob}"/>
+        <property name="misfireInstruction" ref="org.quartz.CronTrigger.MISFIRE_INSTRUCTION_DO_NOTHING"/>
+    </bean>
+</beans>

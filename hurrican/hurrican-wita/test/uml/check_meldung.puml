@@ -1,0 +1,8 @@
+@startuml
+Test --> WorkflowTestRole:waitForVzmPv
+WorkflowTestRole -> WorkflowTestRole:waitForNotification()
+WorkFlowTestRole -> WaitForWitaNotificationTestAction:create
+Note right: Die Action wird vom Citrus-Framework aufgerufen
+WaitForWitaNotificationTestAction --> AcceptanceTestWorkflow:waitForVZMPV()
+Note right: Innerhalb der wait...-Methode wird zyklisch eine Methode aufgerufen.\nSobald die Abbruchbedingung erfüllt ist, wird der Check beendet.
+@enduml

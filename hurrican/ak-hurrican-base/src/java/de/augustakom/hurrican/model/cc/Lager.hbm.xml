@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Lager
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Lager" table="T_LAGER">
+
+        <cache usage="read-only"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="name" column="NAME" type="string"/>
+        <property name="strasse" column="STRASSE" type="string"/>
+        <property name="nummer" column="NUMMER" type="string"/>
+        <property name="plz" column="PLZ" type="string"/>
+        <property name="ort" column="ORT" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

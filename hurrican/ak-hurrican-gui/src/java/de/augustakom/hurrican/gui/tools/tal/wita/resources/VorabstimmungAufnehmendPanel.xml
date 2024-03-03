@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Label name="vorabstimmung.id">
+        <text>WBCI-Vorabstimmung:</text>
+    </Label>
+    <ComboBox name="vorabstimmung.id">
+        <tooltip>ID der WBCI-Vorabstimmung</tooltip>
+    </ComboBox>
+
+    <Text name="no.carrier">Bitte einen Carrier für die Vorabstimmung aufnehmend auswählen.</Text>
+
+    <Label name="vorabstimmung.carrier">
+        <text>Abgebender Carrier:</text>
+    </Label>
+    <ComboBox name="vorabstimmung.carrier">
+        <tooltip>Der abgebende Carrier für die Vorabstimmung</tooltip>
+    </ComboBox>
+
+    <Label name="vorabstimmung.produktGruppe">
+        <text>Produkt Gruppe:</text>
+    </Label>
+    <ComboBox name="vorabstimmung.produktGruppe">
+        <tooltip>Die Produkt Gruppe für die Vorabstimmung</tooltip>
+    </ComboBox>
+
+    <Label name="vorabstimmung.providerVertragsnr">
+        <text>DTAG Vertrags-Nr:</text>
+    </Label>
+    <TextField name="vorabstimmung.providerVertragsnr">
+        <tooltip>DTAG Vertragsnummer des Carriers</tooltip>
+        <columns>25</columns>
+        <maxchars>35</maxchars>
+    </TextField>
+
+    <Label name="vorabstimmung.providerLbz">
+        <text>DTAG LBZ:</text>
+    </Label>
+    <TextField name="vorabstimmung.providerLbz">
+        <tooltip>DTAG LBZ des Carriers</tooltip>
+        <columns>25</columns>
+        <maxchars>35</maxchars>
+    </TextField>
+
+    <Label name="vorabstimmung.bestandssucheOnkz">
+        <text>Bestandssuche Vorwahl (ONKZ):</text>
+    </Label>
+    <TextField name="vorabstimmung.bestandssucheOnkz">
+        <tooltip>Bestandssuche Vorwahl bzw. ONKZ (z.B. 089)</tooltip>
+        <columns>25</columns>
+        <maxchars>35</maxchars>
+    </TextField>
+
+    <Label name="vorabstimmung.bestandssucheDn">
+        <text>Bestandssuche Rufnummerstamm:</text>
+    </Label>
+    <TextField name="vorabstimmung.bestandssucheDn">
+        <tooltip>Bestandssuche Rufnummerstamm (z.B. 45200)</tooltip>
+        <columns>25</columns>
+        <maxchars>35</maxchars>
+    </TextField>
+
+    <Label name="vorabstimmung.bestandssucheDirectDial">
+        <text>Bestandssuche Durchwahl:</text>
+    </Label>
+    <TextField name="vorabstimmung.bestandssucheDirectDial">
+        <tooltip>Bestandssuche Durchwahl (z.B. 0)</tooltip>
+        <columns>25</columns>
+        <maxchars>35</maxchars>
+    </TextField>
+
+    <Label name="vorabstimmung.previous.location.address">
+        <text>Portierungsadresse:</text>
+    </Label>
+    <TextField name="vorabstimmung.previous.location.address">
+        <tooltip>Angabe der ursprünglichen Standort-Adresse des Kunden (notwendig für REX-MK mit Umzug).</tooltip>
+    </TextField>
+
+    <Button name="edit.carrier.lbz">
+        <text>...</text>
+        <tooltip>Öffnet einen Dialog, über den die LBZ komfortabel eingegeben werden kann.</tooltip>
+    </Button>
+
+    <Button name="edit.previous.location.address">
+        <text>...</text>
+        <tooltip>Öffnet einen Adress-Dialog, über den eine Adresse erfasst werden kann.</tooltip>
+    </Button>
+
+</sf>

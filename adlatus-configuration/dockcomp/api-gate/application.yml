@@ -1,0 +1,104 @@
+server:
+  ssl:
+    key-store: classpath:ssl-server.jks
+    key-store-password: ${KEY_STORE_PASS}
+    key-alias: selfsigned_localhost_sslserver
+  port: 443
+spring:
+  cloud:
+    gateway:
+      enabled: true
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: '*'
+            allowedMethods: 
+              - POST
+              - GET
+              - PATCH
+              - DELETE
+            allowedHeaders: '*'
+      routes:
+        - id: agreement
+          uri: http://agreement-management:8080/
+          predicates:
+            - Path=/agreementManagement/v4/**
+          filters:
+            - StripPrefix=2
+        - id: appointment
+          uri: http://appointment-management:8080/
+          predicates:
+            - Path=/tmf-api/appointment/v4/**
+          filters:
+            - StripPrefix=3
+        - id: geo
+          uri: http://geo:8080/
+          predicates:
+            - Path=/tmf-api/geographicLocation/v4/**
+          filters:
+            - StripPrefix=3
+        - id: party
+          uri: http://party-management:8080/
+          predicates:
+            - Path=/tmf-api/party/v4/**
+          filters:
+            - StripPrefix=3
+        - id: resourceCatalog
+          uri: http://resource-catalog:8080/
+          predicates:
+            - Path=/tmf-api/resourceCatalog/v4/**
+          filters:
+            - StripPrefix=3
+        - id: resourceInventory
+          uri: http://resource-inventory:8080/
+          predicates:
+            - Path=/tmf-api/resourceInventoryManagement/v4/**
+          filters:
+            - StripPrefix=3
+        - id: resourceOrderManagement
+          uri: http://resource-order-management:8080/
+          predicates:
+            - Path=/tmf-api/resourceOrdering/v4/**
+          filters:
+            - StripPrefix=3
+        - id: geographic-address-management
+          uri: http://geographic-address-management:8080/
+          predicates:
+            - Path=/tmf-api/geographicAddressManagement/v4/**
+          filters:
+            - StripPrefix=3
+        - id: reporting
+          uri: http://adlatus-reporting:8080/
+          predicates:
+            - Path=/reporting/**
+          filters:
+            - StripPrefix=1
+        - id: adlatus
+          uri: http://adlatus:8080/
+          predicates:
+            - Path=/adlatus/**
+          filters:
+            - StripPrefix=1
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,refresh,gateway"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+    gateway:
+      enabled: true
+logging:
+  level:
+    org:
+      springframework: INFO

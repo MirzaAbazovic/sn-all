@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Auftragsuebersicht-Panel.
+-->
+<sf>
+    
+    <Label name="kunde.no.orig"><text>Kunde__No:</text></Label>
+    <FormattedTextField name="kunde.no.orig">
+        <tooltip>Original Kundennummer</tooltip>
+        <columns>10</columns>
+		<format type="number">0</format>
+    </FormattedTextField>
+    
+    <Label name="haupt.kunde.no"><text>Hauptkunde-No:</text></Label>
+    <FormattedTextField name="haupt.kunde.no">
+        <tooltip>Kundennummer des Hauptkunden</tooltip>
+		<format type="number">0</format>
+    </FormattedTextField>
+    
+    <Label name="name"><text>Name:</text></Label>
+    <TextField name="name">
+        <tooltip>Name des Kunden</tooltip>
+        <columns>20</columns>
+    </TextField>
+    
+    <Label name="vorname"><text>Vorname:</text></Label>
+    <TextField name="vorname">
+        <tooltip>Vorname des Kunden</tooltip>
+    </TextField>
+    
+    <Label name="strasse"><text>Strasse/Nr:</text></Label>
+    <TextField name="strasse">
+        <tooltip>Strasse der Kundenanschrift</tooltip>
+    </TextField>
+    
+    <TextField name="plz">
+        <tooltip>PLZ der Kundenanschrift</tooltip>
+        <columns>5</columns>
+    </TextField>
+    
+    <Label name="ort"><text>PLZ/Ort:</text></Label>
+    <TextField name="ort">
+        <tooltip>Ort der Kundenanschrift</tooltip>
+        <columns>12</columns>
+    </TextField>
+    
+    <Button name="kunde.details">
+        <text>Details...</text>
+        <tooltip>Zeigt Details zu dem Kunden an</tooltip>
+    </Button>
+    
+    <Button name="print">
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <tooltip>Erstellt einen Report über die Auftragsdaten des Kunden</tooltip>
+    </Button>
+    
+    <Button name="pdf">
+        <icon>de/augustakom/hurrican/gui/images/pdf.gif</icon>
+        <tooltip>Erstellt ein PDF-Dokument mit den Auftragsdaten des Kunden</tooltip>
+    </Button>
+
+	<Button name="report">
+        <text>Report</text>
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <tooltip>Sammelt alle relevanten Daten zu dem Kunden und erstellt einen Report</tooltip>
+    </Button>
+    
+    <Button name="refresh">
+        <icon>de/augustakom/hurrican/gui/images/refresh.png</icon>
+        <tooltip>Aktualisiert die Auftragsübersicht des Kunden</tooltip>
+    </Button>
+	
+	<Button name="load.all">
+		<icon>de/augustakom/hurrican/gui/images/expand_all.gif</icon>
+		<tooltip>Laedt auch konsolidierte Auftraege des Kunden nach</tooltip>
+	</Button>
+    
+    <Label name="auftraege"><text>Aufträge: </text></Label>
+    <Label name="count"><text></text></Label>
+    
+    <Label name="produktgruppe"><text>Produktgruppe:</text></Label>
+    <ComboBox name="produktgruppe">
+        <tooltip>Filtert nach allen Aufträgen, die der gewählten Produktgruppe angehören</tooltip>
+    </ComboBox>
+
+    <Label name="auftragstatus"><text>Status:</text></Label>
+    <ComboBox name="auftragstatus">
+        <tooltip>Filtert nach allen Aufträgen, die dem angegebenen Status entsprechen</tooltip>
+    </ComboBox>
+
+</sf>

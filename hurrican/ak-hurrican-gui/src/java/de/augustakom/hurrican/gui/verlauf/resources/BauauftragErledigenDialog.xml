@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Abschlussdialog eines Bauauftrags.
+-->
+<sf>
+
+    <Label name="bearbeiter"><text>Bearbeiter:</text></Label>
+    <ComboBox name="bearbeiter">
+        <tooltip>Auswahl, wer den Bauauftrag erledigt hat</tooltip>
+    </ComboBox>
+
+    <Label name="realisierungstermin"><text>Realisiert am:</text></Label>
+    <DateComponent name="realisierungstermin">
+        <tooltip>Datum, zu dem der Bauauftrag ausgeführt wurde</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>25</columns>
+    </DateComponent>
+
+    <Label name="not.possible"><text>NICHT realisierbar:</text></Label>
+    <ComboBox name="not.possible">
+        <tooltip>Angabe, dass der Auftrag nicht realisierbar ist</tooltip>
+    </ComboBox>
+
+    <Label name="not.possible.reason"><text>Grund:</text></Label>
+    <ReferenceField name="not.possible.reason">
+		<tooltip>Angabe eines Grundes, weshalb der Auftrag nicht realisierbar ist</tooltip>
+		<id.property>id</id.property>
+		<name.property>strValue</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+	</ReferenceField>
+
+    <Label name="bemerkung"><text>Bemerkung:</text></Label>
+    <TextArea name="bemerkung">
+        <tooltip>Bemerkungen zu dem Bauauftrag</tooltip>
+        <column>20</column>
+        <rows>5</rows>
+        <maxchars>1000</maxchars>
+    </TextArea>
+
+</sf>

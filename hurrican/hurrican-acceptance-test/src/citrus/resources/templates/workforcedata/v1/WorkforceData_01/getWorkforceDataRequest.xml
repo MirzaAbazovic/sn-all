@@ -1,0 +1,4 @@
+<v1:workforceDataRequest xmlns:v1="http://mnet.de/hurrican/resource/workforceDataService/v1">
+    <v1:technicalOrderId>${auftragId}</v1:technicalOrderId>
+    <v1:incidentReason>${incidentReason}</v1:incidentReason>
+</v1:workforceDataRequest>

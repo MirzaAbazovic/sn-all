@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="AKDSLAccounts" language="java" pageWidth="482" pageHeight="283" columnWidth="482" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+    <property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+    <property name="com.jasperassistant.designer.Units" value="Millimeters"/>
+    <property name="com.jasperassistant.designer.Grid" value="true"/>
+    <property name="com.jasperassistant.designer.GridHeight" value="12"/>
+    <property name="com.jasperassistant.designer.GridWidth" value="12"/>
+    <reportFont name="Arial_Default" isDefault="true" fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+    <parameter name="ACCOUNT_TITLE" class="java.lang.String">
+    </parameter>
+    <parameter name="PRINT_NAMESERVER" class="java.lang.Boolean" isForPrompting="false">
+    </parameter>
+    <field name="BENUTZERNAME" class="java.lang.String">
+    </field>
+    <field name="PASSWORT" class="java.lang.String">
+    </field>
+    <field name="PRODUKT" class="java.lang.String">
+    </field>
+    <field name="VBZ" class="java.lang.String">
+    </field>
+    <field name="AUFTRAG_ID" class="java.lang.Long">
+    </field>
+    <field name="RUFNUMMER" class="java.lang.String">
+    </field>
+    <field name="EINWAHL_RN" class="java.lang.String">
+    </field>
+    <title>
+        <band height="12">
+            <textField>
+                <reportElement positionType="Float" x="0" y="0" width="401" height="11" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true">
+                    <printWhenExpression><![CDATA[new Boolean($P{ACCOUNT_TITLE} != null)]]></printWhenExpression>
+                </reportElement>
+                <textElement>
+                    <font size="9" isBold="true"/>
+                </textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA["Details zu Ihren "+$P{ACCOUNT_TITLE}+" Auftr\u00e4gen:"]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    <detail>
+        <band height="70">
+            <textField>
+                <reportElement positionType="Float" x="9" y="1" width="463" height="12"/>
+                <textElement>
+                    <font reportFont="Arial_Default" isBold="true"/>
+                </textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA["Internetzugang \u00fcber "+$F{PRODUKT}+" auf "+(($F{RUFNUMMER} != null) ? ("Rufnummer: "+$F{RUFNUMMER}) : ("Auftragsnummer: "+$F{VBZ}))]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement positionType="Float" x="9" y="12" width="456" height="12"/>
+                <textElement/>
+                <text><![CDATA[Zur Konfiguration Ihres Internetzugangs benötigen Sie folgende Zugangsdaten:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement positionType="Float" x="9" y="24" width="79" height="11" isRemoveLineWhenBlank="true">
+                    <printWhenExpression><![CDATA[($F{BENUTZERNAME} != null && $F{BENUTZERNAME}.length() > 0) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+                </reportElement>
+                <textElement verticalAlignment="Middle"/>
+                <text><![CDATA[Ihr Benutzername:]]></text>
+            </staticText>
+            <staticText>
+                <reportElement positionType="Float" x="9" y="36" width="78" height="11" isRemoveLineWhenBlank="true">
+                    <printWhenExpression><![CDATA[($F{BENUTZERNAME} != null && $F{BENUTZERNAME}.length() > 0) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+                </reportElement>
+                <textElement verticalAlignment="Middle"/>
+                <text><![CDATA[Ihr Passwort:]]></text>
+            </staticText>
+            <textField>
+                <reportElement positionType="Float" x="101" y="24" width="171" height="11" isRemoveLineWhenBlank="true">
+                    <printWhenExpression><![CDATA[($F{BENUTZERNAME} != null && $F{BENUTZERNAME}.length() > 0) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+                </reportElement>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression class="java.lang.String"><![CDATA[$F{BENUTZERNAME}+"@augustakom.net"]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement positionType="Float" x="101" y="36" width="171" height="11" isRemoveLineWhenBlank="true">
+                    <printWhenExpression><![CDATA[($F{BENUTZERNAME} != null && $F{BENUTZERNAME}.length() > 0) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+                </reportElement>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression class="java.lang.String"><![CDATA[$F{PASSWORT}]]></textFieldExpression>
+            </textField>
+            <subreport>
+                <reportElement positionType="Float" x="19" y="50" width="459" height="20" isRemoveLineWhenBlank="true"/>
+                <dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.cc.impl.reportdata.AKInetIPJasperDS($F{AUFTRAG_ID})]]></dataSourceExpression>
+                <subreportExpression class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/auftrag/AKInetIP.jasper"]]></subreportExpression>
+            </subreport>
+            <textField>
+                <reportElement positionType="Float" x="367" y="25" width="95" height="12">
+                    <printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+                </reportElement>
+                <textElement/>
+                <textFieldExpression class="java.lang.String"><![CDATA[""+$F{AUFTRAG_ID}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement positionType="Float" x="282" y="22" width="82" height="12" isRemoveLineWhenBlank="true">
+                    <printWhenExpression><![CDATA[new Boolean(false)]]></printWhenExpression>
+                </reportElement>
+                <textElement/>
+                <textFieldExpression class="java.lang.String"><![CDATA[""+$F{RUFNUMMER}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement positionType="Float" x="275" y="36" width="198" height="11" isRemoveLineWhenBlank="true">
+                    <printWhenExpression><![CDATA[($F{EINWAHL_RN} != null && $F{EINWAHL_RN}.length() > 0) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+                </reportElement>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression class="java.lang.String"><![CDATA["Ihre Einwahlrufnummer: "+$F{EINWAHL_RN}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <summary>
+        <band height="19">
+            <staticText>
+                <reportElement positionType="Float" x="9" y="1" width="438" height="17" isRemoveLineWhenBlank="true">
+                    <printWhenExpression><![CDATA[$P{PRINT_NAMESERVER}]]></printWhenExpression>
+                </reportElement>
+                <textElement>
+                    <font size="7"/>
+                </textElement>
+                <text><![CDATA[Zusätzliche Angaben, die Sie evtl. zur Konfiguration Ihres Internetzugangs über einen Router benötigen:
+                                 Nameserver 1 = 212.18.0.5;  Nameserver 2 = 212.18.3.5]]></text>
+            </staticText>
+        </band>
+    </summary>
+</jasperReport>

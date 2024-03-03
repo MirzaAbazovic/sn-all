@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="KundeUebersichtMaster" language="java" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="812" leftMargin="20" rightMargin="10" topMargin="25" bottomMargin="15">
+    <property name="com.jasperassistant.designer.GridWidth" value="12"/>
+    <property name="com.jasperassistant.designer.GridHeight" value="12"/>
+    <property name="com.jasperassistant.designer.DataSource" value="emptyDS"/>
+    <property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+    <property name="com.jasperassistant.designer.Grid" value="true"/>
+    <parameter name="KUNDE_NAME" class="java.lang.String">
+    </parameter>
+    <parameter name="KUNDE_VORNAME" class="java.lang.String">
+    </parameter>
+    <parameter name="KUNDE_NO_ORIG" class="java.lang.Long">
+    </parameter>
+    <parameter name="AUFTRAG_DETAILS_DS" class="net.sf.jasperreports.engine.JRDataSource">
+    </parameter>
+    <field name="AUFTRAG__NO" class="java.lang.Long">
+    </field>
+    <field name="INBETRIEBNAHME" class="java.util.Date">
+    </field>
+    <field name="KUENDIGUNG" class="java.util.Date">
+    </field>
+    <field name="VBZ" class="java.lang.String">
+    </field>
+    <field name="ANSCHLUSSART" class="java.lang.String">
+    </field>
+    <field name="AUFTRAGSTATUS" class="java.lang.String">
+    </field>
+    <field name="BUENDEL_NR" class="java.lang.Integer">
+    </field>
+    <title>
+        <band height="57">
+            <staticText>
+                <reportElement positionType="Float" x="0" y="0" width="766" height="21"/>
+                <textElement>
+                    <font size="16" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Auftragsübersicht]]></text>
+            </staticText>
+            <textField>
+                <reportElement positionType="Float" x="6" y="21" width="552" height="33"/>
+                <textElement verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA[(($P{KUNDE_NAME} != null) ? $P{KUNDE_NAME}+" " : "")+(($P{KUNDE_VORNAME} != null) ? $P{KUNDE_VORNAME} : "")]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement positionType="Float" x="568" y="21" width="198" height="33"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <textFieldExpression class="java.lang.String"><![CDATA["Kunde__NO: "+$P{KUNDE_NO_ORIG}]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+    <detail>
+        <band height="44">
+            <subreport>
+                <reportElement positionType="Float" x="0" y="22" width="805" height="20"/>
+                <dataSourceExpression><![CDATA[$P{AUFTRAG_DETAILS_DS}]]></dataSourceExpression>
+                <subreportExpression class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/kunde/KundeAuftragDetails.jasper"]]></subreportExpression>
+            </subreport>
+            <subreport>
+                <reportElement positionType="Float" x="0" y="0" width="800" height="20"/>
+                <dataSourceExpression><![CDATA[$P{REPORT_DATA_SOURCE}]]></dataSourceExpression>
+                <subreportExpression class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/kunde/KundeUebersichtDetail.jasper"]]></subreportExpression>
+            </subreport>
+        </band>
+    </detail>
+    <pageFooter>
+        <band height="20">
+            <textField>
+                <reportElement positionType="Float" x="1" y="2" width="193" height="16"/>
+                <textElement/>
+                <textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("dd.MM.yyyy").format(new java.util.Date())]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement positionType="Float" x="374" y="2" width="366" height="15"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression class="java.lang.String"><![CDATA["Seite "+$V{PAGE_NUMBER}.toString()+" von "]]></textFieldExpression>
+            </textField>
+            <textField evaluationTime="Report">
+                <reportElement positionType="Float" x="741" y="2" width="28" height="15"/>
+                <textElement/>
+                <textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+            <line>
+                <reportElement positionType="Float" x="2" y="1" width="766" height="1"/>
+                <graphicElement/>
+            </line>
+        </band>
+    </pageFooter>
+</jasperReport>

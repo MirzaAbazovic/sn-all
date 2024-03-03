@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Produkt2Produkt-Konfiguration.
+-->
+<sf>
+    
+    <Button name="delete.config">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht die aktuell angezeigte Service-Chain</tooltip>
+    </Button>
+    
+    <Button name="new.config">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Erstellt eine neue ServiceChain-Definition</tooltip>
+    </Button>
+    
+    <Button name="save.config">
+        <icon>de/augustakom/hurrican/gui/images/save.gif</icon>
+        <tooltip>Speichert die aktuelle ServiceChain-Definition</tooltip>
+    </Button>
+    
+    <Label name="prod.dest"><text>Ziel-Produkt:</text></Label>
+    <ComboBox name="prod.dest">
+        <tooltip>Auswahl des Ziel-Produkts</tooltip>
+    </ComboBox>
+    
+    <Label name="aend.typ"><text>Änderungstyp:</text></Label>
+    <ComboBox name="aend.typ">
+        <tooltip>Auswahl des durchzuführenden Physik-Änderungstyps</tooltip>
+    </ComboBox>
+    
+    <Label name="chain"><text>Service-Chain:</text></Label>
+    <ComboBox name="chain">
+        <tooltip>Auswahl der Service-Chain, die für die Produkt-Änderung ausgeführt werden soll.</tooltip>
+    </ComboBox>
+    
+    <Label name="desc"><text>Beschreibung</text></Label>
+    <TextArea name="desc">
+        <tooltip>Beschreibung für die Produkt-Änderung</tooltip>
+        <columns>30</columns>
+        <rows>4</rows>
+        <maxchars>255</maxchars>
+    </TextArea>
+    
+    <Text name="delete.title">Konfiguration löschen?</Text>
+    <Text name="delete.msg">Soll die Produkt-2-Produkt Konfiguration
+wirklich gelöscht werden?</Text>
+    
+</sf>

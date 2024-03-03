@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Bauauftrags-RL-Panel AM.
+-->
+<sf>
+
+    <Text name="abgeschlossen">Bauauftrag wurde abgeschlossen</Text>
+
+    <Label name="anlass"><text>Anlass:</text></Label>
+    <TextField name="anlass">
+        <tooltip></tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="order.no"><text>Order__No:</text></Label>
+    <FormattedTextField name="order.no">
+        <tooltip>(Original) Auftrags-Nummer aus Mistral</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="produkt"><text>Produkt (H.):</text></Label>
+    <TextField name="produkt">
+        <tooltip>Produkt-Name aus Hurrican</tooltip>
+    </TextField>
+
+    <Label name="realisierungstermin"><text>Realisierung:</text></Label>
+    <DateComponent name="realisierungstermin">
+        <tooltip>Geplantes Realisierungsdatum fuer den gesamten Auftrag</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="inbetriebnahme"><text>Inbetriebnahme:</text></Label>
+    <DateComponent name="inbetriebnahme">
+        <tooltip>Datum der Inbetriebnahme</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="vbz">
+        <text>Verbindungsbezeichnung (VBZ):</text>
+    </Label>
+    <TextField name="vbz">
+        <tooltip></tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="auftrag.id"><text>Tech. Auftragsnr.:</text></Label>
+    <FormattedTextField name="auftrag.id">
+        <tooltip>Auftragsnr. aus Hurrican</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="vpn.nr"><text>VPN-Nr:</text></Label>
+    <FormattedTextField name="vpn.nr">
+        <tooltip></tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="buendel.nr"><text>Bündel-Nr:</text></Label>
+    <FormattedTextField name="buendel.nr">
+        <tooltip></tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="kunde.name"><text>Kunde:</text></Label>
+    <TextField name="kunde.name">
+        <tooltip></tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="schnittstelle"><text>Schnittstelle:</text></Label>
+    <TextField name="schnittstelle">
+        <tooltip></tooltip>
+    </TextField>
+
+    <Label name="montage.akom"><text>Montage M-net?</text></Label>
+    <CheckBox name="montage.akom">
+        <tooltip>Flag ist gesetzt, wenn die Montage durch M-net erfolgen soll</tooltip>
+    </CheckBox>
+
+    <Label name="hvt.anschlussart"><text>Anschlussart:</text></Label>
+    <TextField name="hvt.anschlussart">
+        <tooltip>Art der Leitungsanbindung (HVT oder Direktanschluss)</tooltip>
+    </TextField>
+
+    <Label name="bearbeiter.am"><text>Bearbeiter AM:</text></Label>
+    <TextField name="bearbeiter.am">
+        <tooltip>Name des Bearbeiters, der den Auftrag erstellt hat</tooltip>
+    </TextField>
+
+    <Label name="bearbeiter.ba"><text>Bearbeiter BA:</text></Label>
+    <TextField name="bearbeiter.ba">
+        <tooltip>Name des Bearbeiters, der den Bauauftrag erstellt hat</tooltip>
+    </TextField>
+
+    <Text name="border.bauauftraege">Bauaufträge: </Text>
+
+    <Button name="bemerkungen">
+        <text>Bemerkungen</text>
+        <tooltip>Zeigt alle Bemerkungen des Verlaufs an</tooltip>
+    </Button>
+
+    <Button name="ba.abschliessen">
+        <text>Abschliessen</text>
+        <tooltip>Schliesst den BA ab</tooltip>
+    </Button>
+
+    <Button name="show.ports">
+        <text>Ports</text>
+        <tooltip>Zeigt alle Ports des Verlaufes an</tooltip>
+    </Button>
+
+</sf>

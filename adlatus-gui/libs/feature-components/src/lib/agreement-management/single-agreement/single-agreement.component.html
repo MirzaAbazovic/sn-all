@@ -1,0 +1,59 @@
+<div *ngIf="(agreement$ | async) as agreement">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>{{agreement.name}}</mat-card-title>
+      <mat-card-subtitle>{{agreement.agreementType }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ agreement.description }}</p>
+
+      <span><b> Initial date </b> {{ agreement.initialDate | date }}</span>
+      <span *ngIf="agreement.agreementPeriod"><b> Period </b> {{ agreement.agreementPeriod.startDateTime | date }}
+        - {{ agreement.agreementPeriod.endDateTime | date }}</span>
+
+      <h4> Characteristics </h4>
+      <ul>
+        <li *ngFor="let characteristic of agreement.characteristic">
+          <span><b>{{ characteristic.name }} </b> {{ characteristic.value }}
+            <small>({{ characteristic.valueType!.toLowerCase()}})</small></span>
+        </li>
+      </ul>
+
+      <h4> Agreement items</h4>
+      <ul>
+        <li *ngFor="let agreementItem of agreement.agreementItem">
+          <h4> Product offering </h4>
+          <uL>
+            <li *ngFor="let productOffer of agreementItem.productOffering">
+              {{ productOffer.name }}
+            </li>
+          </uL>
+
+          <h4> Term or conditions </h4>
+          <uL>
+            <li *ngFor="let termOrCondition of agreementItem.termOrCondition">
+              {{ termOrCondition.description }}
+            </li>
+          </uL>
+        </li>
+      </ul>
+
+      <h4> Engaged parties </h4>
+      <ul>
+        <li *ngFor="let engagedParty of agreement.engagedParty">
+          <span> <b>{{ engagedParty.role }}</b> {{ engagedParty.name }}</span>
+        </li>
+      </ul>
+
+      <hr>
+      <button mat-button color="primary" [routerLink]="['/agreements', 'edit', agreement.id]">
+        <mat-icon>edit</mat-icon>
+        <span> Edit Agreement </span>
+      </button>
+      <button mat-button color="warn" (click)="deleteAgreement(agreement.id!)">
+        <mat-icon>delete</mat-icon>
+        <span> Delete Agreement </span>
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>

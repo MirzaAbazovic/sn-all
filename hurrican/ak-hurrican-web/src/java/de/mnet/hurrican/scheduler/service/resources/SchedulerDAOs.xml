@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer die Scheduler-DAOs.
+-->
+<beans  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.springframework.org/schema/beans"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    Diese Definition veranlasst das Framework dazu, Platzhalter - ${...} - durch
+    System-Properties zu ersetzen.
+    -->
+    <bean id="placeholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
+
+    <!-- Definition der Data-Source fuer die Scheduler-Datenbank -->
+    <bean id="scheduler.dataSourceTarget" class="de.augustakom.common.tools.dao.jdbc.AKBasicDataSource" destroy-method="close">
+        <property name="driverClassName"><value>${hurrican.scheduler.jdbc.driver}</value></property>
+        <property name="url"><value>${hurrican.scheduler.jdbc.url}</value></property>
+        <property name="username"><value>${hurrican.scheduler.jdbc.user}</value></property>
+        <property name="password"><value>${hurrican.scheduler.jdbc.password}</value></property>
+        <property name="maxActive"><value>${hurrican.scheduler.jdbc.max.active}</value></property>
+        <property name="maxIdle"><value>${hurrican.scheduler.jdbc.max.idle}</value></property>
+    </bean>
+    <!-- Interceptor, um das Default-Schema der Datenbank-Connection zu setzen. -->
+    <bean id="scheduler.setSchemaInterceptor" class="de.augustakom.common.tools.dao.SetDefaultSchemaInterceptor">
+        <property name="schemaName"><value>${hurrican.scheduler.schema}</value></property>
+    </bean>
+    <bean id="scheduler.dataSource" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces"><value>javax.sql.DataSource</value></property>
+        <property name="target"><ref bean="scheduler.dataSourceTarget"/></property>
+        <property name="interceptorNames">
+            <list>
+                <value>scheduler.setSchemaInterceptor</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Definition der Hibernate-SessionFactory fuer die Scheduler-Datenbank -->
+    <bean id="scheduler.sessionFactory" class="de.augustakom.common.tools.dao.hibernate.AKLocalSessionFactoryBean">
+        <property name="mappingLocations">
+            <value>classpath*:de/mnet/hurrican/scheduler/model/**/*.hbm.xml</value>
+        </property>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hurrican.scheduler.hibernate.dialect}</prop>
+                <prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+                <prop key="hibernate.jdbc.use_scrollable_resultset">false</prop>
+                <prop key="jadira.usertype.databaseZone">jvm</prop>
+                <prop key="jadira.usertype.javaZone">jvm</prop>
+            </props>
+        </property>
+        <property name="dataSource">
+            <ref bean="scheduler.dataSource"/>
+        </property>
+    </bean>
+
+    <!-- Transaction-Manager fuer die Hibernate-Session -->
+    <bean id="scheduler.hibernateTxManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="scheduler.sessionFactory"/>
+    </bean>
+
+    <!-- DAO fuer die Protokollierung von Job-Executions -->
+    <bean id="de.mnet.hurrican.scheduler.dao.JobExecutionDAO" class="de.mnet.hurrican.scheduler.dao.impl.JobExecutionDAOImpl"/>
+
+    <!-- DAO fuer die Protokollierung von Errors waehrend einer Job-Ausfuehrung -->
+    <bean id="de.mnet.hurrican.scheduler.dao.JobErrorDAO" class="de.mnet.hurrican.scheduler.dao.impl.JobErrorDAOImpl"/>
+
+    <!-- DAO fuer die Signatur-Files -->
+    <bean id="de.mnet.hurrican.scheduler.dao.SignaturedFileDAO" class="de.mnet.hurrican.scheduler.dao.impl.SignaturedFileDAOImpl"/>
+
+    <!-- DAO fuer die Protokollierung von exportierten Rechnung-Files -->
+    <bean id="de.mnet.hurrican.scheduler.dao.ExportedBillingFileDAO" class="de.mnet.hurrican.scheduler.dao.impl.ExportedBillingFileDAOImpl"/>
+
+</beans>

@@ -1,0 +1,12 @@
+<div *ngIf="(agreement$ | async) as agreement">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Editing agreement {{ agreement.name}}</mat-card-title>
+      <mat-card-subtitle>{{agreement.agreementType }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <adlatus-gui-entry-form [fields]="editAgreementFormConfig" [model]="agreement"
+                              (formSubmitHandler)="onSubmit($event)"/>
+    </mat-card-content>
+  </mat-card>
+</div>

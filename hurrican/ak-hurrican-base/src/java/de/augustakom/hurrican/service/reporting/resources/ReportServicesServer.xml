@@ -1,0 +1,33 @@
+<!-- Spring-Konfiguratio fuer die Reporting-Hurrican-Service für den Server -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="false">
+
+    <context:annotation-config />
+
+    <import resource="classpath:de/augustakom/hurrican/service/reporting/resources/ReportServicesBase.xml"/>
+
+    <!-- Service-Definition fuer den Report-Service -->
+    <bean id="de.augustakom.hurrican.service.reporting.ReportService"
+          class="de.augustakom.hurrican.service.reporting.impl.ReportServiceImpl">
+        <property name="reportDAO"><ref bean="reportDAO"/></property>
+        <property name="reportDataDAO"><ref bean="reportDataDAO"/></property>
+        <property name="reportRequestDAO"><ref bean="reportRequestDAO"/></property>
+        <property name="reportTemplateDAO"><ref bean="reportTemplateDAO"/></property>
+        <property name="txtBausteinDAO"><ref bean="txtBausteinDAO"/></property>
+        <property name="report2TechLsDAO"><ref bean="report2TechLsDAO"/></property>
+        <property name="txtBausteinGruppeDAO"><ref bean="txtBausteinGruppeDAO"/></property>
+        <property name="reportPaperFormatDAO"><ref bean="reportPaperFormatDAO"/></property>
+        <property name="reportReasonDAO"><ref bean="reportReasonDAO"/></property>
+        <property name="printerDAO"><ref bean="printerDAO"/></property>
+        <property name="reportPathTemp" value="${report.path.temp}"/>
+        <property name="reportPathTemplates" value="${report.path.templates}"/>
+        <property name="reportPathOutput" value="${report.path.output}"/>
+    </bean>
+
+</beans>

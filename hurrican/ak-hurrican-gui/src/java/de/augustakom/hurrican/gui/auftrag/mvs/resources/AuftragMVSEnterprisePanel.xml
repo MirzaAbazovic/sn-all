@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel "MVS Enterprise".
+-->
+<sf>
+
+    <Text name="border.title">MVS Enterprise Daten</Text>
+
+    <Button name="new">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Erstellt einen neuen Eintrag zu MVS Enterprise.</tooltip>
+    </Button>
+
+    <Label name="username"><text>Benutzername:</text></Label>
+    <TextField name="username">
+        <tooltip>Benutzername</tooltip>
+        <columns>30</columns>
+    </TextField>
+
+    <Label name="password"><text>Passwort:</text></Label>
+    <TextField name="password">
+        <tooltip>Zufällig generiertes Passwort</tooltip>
+        <columns>30</columns>
+    </TextField>
+
+    <Label name="emailAddress"><text>Email-Adresse:</text></Label>
+    <TextField name="emailAddress">
+        <tooltip>Email-Adresse</tooltip>
+        <columns>30</columns>
+    </TextField>
+
+    <Label name="domain"><text>Domain:</text></Label>
+    <TextField name="domain">
+        <tooltip>Domain</tooltip>
+        <columns>30</columns>
+    </TextField>
+
+</sf>

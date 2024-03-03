@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Text name="title">AKM-TR Details</Text>
+
+    <Label name="sicherer.hafen"><text>Sicherer Hafen:</text></Label>
+    <CheckBox name="sicherer.hafen">
+        <tooltip>Angabe, ob die Option 'sicherer Hafen' verwendet werden soll</tooltip>
+    </CheckBox>
+
+    <Label name="pki.auf"><text>Portierungskng aufnehmend:</text></Label>
+    <TextField name="pki.auf">
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="ressourcen.uebernahme"><text>Ressourcenübernahme:</text></Label>
+    <CheckBox name="ressourcen.uebernahme">
+        <tooltip>Angabe, ob die Option 'sicherer Hafen' verwendet werden soll</tooltip>
+    </CheckBox>
+
+    <Label name="uebernahme.leitung"><text>Übernahme Leitungen:</text></Label>
+    <TextArea name="uebernahme.leitung">
+        <tooltip>Angabe der zu übernehmenden Leitungen</tooltip>
+        <columns>30</columns>
+        <rows>4</rows>
+    </TextArea>
+
+</sf>

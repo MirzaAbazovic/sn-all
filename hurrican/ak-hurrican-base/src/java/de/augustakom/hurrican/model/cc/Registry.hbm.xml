@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Registry
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Registry" table="T_REGISTRY">
+
+        <cache usage="nonstrict-read-write"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="name" column="NAME" type="string" not-null="true"/>
+        <property name="stringValue" column="STR_VALUE" type="string"/>
+        <property name="intValue" column="INT_VALUE" type="integer"/>
+        <property name="description" column="DESCRIPTION" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

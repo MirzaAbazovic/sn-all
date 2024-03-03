@@ -1,0 +1,250 @@
+<!--
+    ANT Build-Script enthaelt Targets, um den Build zu parametrisieren
+    (Stichwort: build.properties).
+    ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-->
+<project name="common.ant">
+
+    <dirname file="${ant.file.common.ant}" property="common.basedir" />
+    <property name="common.lib" location="${common.basedir}/lib" />
+
+    <!-- ant contrib einbinden -->
+    <path id="ant.contrib.path">
+        <pathelement location="${common.lib}/ant-contrib/ant-contrib.jar" />
+    </path>
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+        <classpath refid="ant.contrib.path" />
+    </taskdef>
+
+    <target name="ready-to-compile" />
+    <target name="ready-to-clean" />
+    <target name="ready-to-assemble"/>
+
+    <!-- Man will folgendes:
+        <property name="project.version" value="${${major.project.name}.project.version}"/>
+
+        Man muss mit dem Folgenden Makro dann das machen:
+        <propcopy name="project.version" from="${major.project}.project.version"/>
+
+        Dieses Makro checkt zusätzlich noch ob die Zielproperty schon gesetzt ist. -->
+    <macrodef name="propcopy">
+        <attribute name="property" />
+        <attribute name="from" />
+        <sequential>
+            <fail if="@{property}"
+                message="Die Property @{property} ist schon gesetzt und kann deswegen nicht durch die Property @{from} überschrieben werden!" />
+            <fail unless="@{from}"
+                message="Die Property @{from} ist nicht gesetzt und kann deswegen nicht auf die Property @{property} geschrieben werden!" />
+            <propertycopy property="@{property}" from="@{from}" />
+        </sequential>
+    </macrodef>
+
+    <macrodef name="setbuildmode">
+        <sequential>
+            <echo message="db.property.name is ${db.property.name}" />
+            <propcopy property="build.mode" from="build.${db.property.name}.mode" />
+            <echo message="build.mode is ${build.mode}" />
+        </sequential>
+    </macrodef>
+
+
+    <!--
+    Example:
+    <check.properties.replaced>
+        <fileset dir="test_dir"/>
+    </check.properties.replaced>
+    -->
+    <macrodef name="check.properties.replaced" description="
+        Checks if any file in the filesets given as implicit element
+        contains the regular expression pattern. The default pattern is
+        (?&lt;!^#.{0,10000})\$\{.*?\}, this means there should be no
+        unresolved ant properties in the file which are not part of a
+        comment
+        ">
+        <element name="files.to.check" implicit="true"/>
+        <attribute name="pattern" default="(?&lt;!^#.{0,10000})\$\{.*?\}"/>
+        <attribute name="message" default="Still contains unresolved properties: " />
+        <sequential>
+            <for param="file">
+                <path>
+                    <files.to.check/>
+                </path>
+                <sequential>
+                    <fail message="@{message}@{file}">
+                        <condition>
+                            <isfileselected file="@{file}">
+                                <containsregexp expression="@{pattern}" />
+                            </isfileselected>
+                        </condition>
+                    </fail>
+                </sequential>
+            </for>
+        </sequential>
+    </macrodef>
+
+    <!--
+    Example:
+    <check.contains pattern="${taifun.server.url}">
+        <fileset dir="test_dir"/>
+    </check.properties.replaced>
+    -->
+    <macrodef name="check.contains" description="
+        Checks if any file in the filesets given as implicit element
+        contains the regular expression pattern and fails if not
+        ">
+        <element name="files.to.check" implicit="true"/>
+        <attribute name="pattern"/>
+        <attribute name="message" default="Does not contain the pattern @{pattern}: "/>
+        <sequential>
+            <for param="file">
+                <path>
+                    <files.to.check/>
+                </path>
+                <sequential>
+                    <fail message="@{message}@{file}">
+                        <condition>
+                            <not>
+                                <isfileselected file="@{file}">
+                                    <containsregexp expression="@{pattern}" />
+                                </isfileselected>
+                            </not>
+                        </condition>
+                    </fail>
+                </sequential>
+            </for>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="query-password">
+        <attribute name="message"/>
+        <attribute name="property"/>
+        <attribute name="handler" default="secure"/>
+        <sequential>
+            <local name="input.@{property}"/>
+            <input addproperty="input.@{property}"
+                message="@{message}">
+                <handler type="@{handler}"/>
+            </input>
+            <propertycopy property="@{property}" from="input.@{property}" override="true"/>
+        </sequential>
+    </macrodef>
+
+    <!-- Globale Properties -->
+    <property name="encoding.default" value="iso-8859-1" />
+    <property name="module" value="${ant.project.name}"/>
+
+    <!-- Definition der Verzeichnisse -->
+    <property name="lib" location="${basedir}/../ak-lib" />
+    <property name="src" location="${basedir}/src/java" />
+    <property name="src.tests" location="${basedir}/test/java" />
+    <property name="src.resources" location="${basedir}/src/resources" />
+    <property name="test.resources" location="${basedir}/test/resources" />
+    <property name="basedir.target" location="${basedir}/target" />
+    <property name="artifacts.dir" location="${basedir.target}/artifacts" />
+    <property name="project-bin" location="${basedir}/bin" />
+    <property name="bin" location="${basedir.target}/bin" />
+    <property name="bin.tests" location="${basedir.target}/bin-test" />
+    <property name="dist" location="${basedir}/dist" />
+    <property name="dist.src" location="${basedir}/src/dist" />
+    <property name="dist.config" location="${dist}/config" />
+    <property name="doc.dir" location="${basedir}/javadoc" />
+    <property name="test.report.dir" location="${basedir.target}/test-report" />
+    <property name="test.suite" value="test-suite" />
+    <property name="test.jar" location="${dist}/${module}-test.jar" />
+
+    <!-- Propertyfile laden. Wenn prefix nicht angegeben dann werden die ohne Properties ohne Prefix
+         analog zu loadproperties nur mit mehr Checks
+    -->
+    <macrodef name="loadpropertiesprefix">
+        <attribute name="srcfile"/>
+        <attribute name="prefix" default=""/>
+        <sequential>
+            <if>
+                <available file="@{srcfile}" />
+                <then>
+                    <if>
+                        <equals arg1="@{prefix}" arg2=""/>
+                        <then>
+                            <echo message="*** Reading @{srcfile}" />
+                            <loadproperties srcfile="@{srcfile}" />
+                        </then>
+                        <else>
+                            <echo message="*** Reading @{srcfile} to prefix @{prefix}" />
+                            <loadproperties srcfile="@{srcfile}" prefix="@{prefix}" />
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <echo message="*** Would have read @{srcfile} but did not find it." />
+                </else>
+            </if>
+        </sequential>
+    </macrodef>
+
+    <!--
+        Properties fuer bestimmte Benutzer / Umgebungen laden.
+        Zuerst geladene Properties ueberschreiben spaeter geladene!!
+    -->
+    <macrodef name="loadspecialproperties">
+        <attribute name="dir" />
+        <attribute name="config" />
+        <sequential>
+            <if>
+                <isset property="@{config}" />
+                <then>
+                    <loadpropertiesprefix srcfile="@{dir}/build_properties/build.${@{config}}.properties"/>
+                </then>
+                <else>
+                    <echo message="*** Config @{config} is not set" />
+                </else>
+            </if>
+        </sequential>
+    </macrodef>
+
+    <!--
+        Propertyfiles laden
+        Erst use.config, dann host.name, dann user.name.lowercase und am Schluss build.properties
+    -->
+    <macrodef name="loadpropertyhierarchy">
+        <attribute name="basedir"/>
+        <sequential>
+            <loadspecialproperties dir="@{basedir}" config="use.config" />
+            <loadspecialproperties dir="@{basedir}" config="host.name" />
+            <loadspecialproperties dir="@{basedir}" config="user.name.lowercase" />
+            <echo message="*** Reading @{basedir}/build_properties/build.properties" />
+            <property file="@{basedir}/build_properties/build.properties" />
+        </sequential>
+    </macrodef>
+
+    <!-- host -->
+    <taskdef name="stringutil" classname="ise.antelope.tasks.StringUtilTask"
+        classpath="${common.lib}/antelope/antelopetasks.jar" />
+    <property environment="env" />
+    <exec executable="hostname" outputproperty="host.name" />
+    <stringutil string="${host.name}" property="host.name">
+        <lowercase />
+    </stringutil>
+    <!-- username -->
+    <property name="user.name.lowercase" value="user.${user.name}" />
+    <stringutil string="${user.name.lowercase}" property="user.name.lowercase">
+        <lowercase />
+    </stringutil>
+    <property file="${common.basedir}/build_properties/meta.properties" />
+
+    <!-- load specific properties -->
+    <echo />
+    <echo message="Load configuration" />
+    <loadpropertyhierarchy basedir="${basedir}"/>
+    <loadpropertyhierarchy basedir="${common.basedir}"/>
+
+    <!-- runtime properties -->
+    <condition property="isunix">
+        <os family="unix"/>
+    </condition>
+
+    <condition property="iswinnt">
+        <os family="winnt"/>
+    </condition>
+
+
+</project>

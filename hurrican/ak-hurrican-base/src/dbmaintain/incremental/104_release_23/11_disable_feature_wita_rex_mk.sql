@@ -1,0 +1,1 @@
+UPDATE T_FEATURE SET FLAG = '0' WHERE ID = 62; -- disables 'WITA_REX_MK'

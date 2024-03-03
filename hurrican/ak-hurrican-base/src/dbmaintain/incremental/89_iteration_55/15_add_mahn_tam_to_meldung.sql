@@ -1,0 +1,3 @@
+-- Add MahnTam to T_MWF_MELDUNG tables
+ALTER TABLE T_MWF_MELDUNG ADD (MAHN_TAM CHAR(1));
+update T_MWF_MELDUNG set MAHN_TAM = 0;

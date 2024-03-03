@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Auswahl einer HVT-Technik.
+-->
+<sf>
+    
+    <Label name="header"><text>Bitte wählen Sie die HVT-Technik aus,</text></Label>
+    <Label name="header.2"><text>der die Stifte zugeordnet werden sollen.</text></Label>
+    
+</sf>

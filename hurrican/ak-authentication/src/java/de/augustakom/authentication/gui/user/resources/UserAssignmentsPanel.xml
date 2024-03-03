@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Darstellung von
+Benutzer-Zuordnungen.
+-->    
+<sf>
+    <Label name="applications"><text>Applikation:</text></Label>
+    <ComboBox name="applications">
+        <tooltip>Applikation, für die die Rollenzuordnung angezeigt werden soll</tooltip>
+    </ComboBox>
+    
+    <Text name="tab.roles">Rollen</Text>
+    <Text name="tab.db.accounts">DB-Accounts</Text>
+    <Text name="assignments">Zuordnungen</Text>
+</sf>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+GUI-Definitionen fuer den Auftrags-Copy - Dialog.
+-->
+<sf>
+
+    <Label name="abrechnungsauftrag"><text>Abrechnungsauftrag:</text></Label>
+    <FormattedTextField name="abrechnungsauftrag">
+        <tooltip>ID des Auftrags, über den die Abrechnung erfolgt</tooltip>
+        <columns>15</columns>
+    </FormattedTextField>
+    <Button name="search">
+        <icon>de/augustakom/hurrican/gui/images/search.gif</icon>
+        <tooltip>Auswahl des Abrechnungsauftrags für die zu erstellenden Leitungen</tooltip>
+    </Button>
+
+    <Label name="buendel.nr"><text>Bündel-Nr:</text></Label>
+    <FormattedTextField name="buendel.nr">
+        <tooltip>Bündel-Nr des zu kopierenden Auftrags</tooltip>
+        <columns>15</columns>
+    </FormattedTextField>
+
+    <Label name="vorgabe.scv"><text>Vorgabe AM:</text></Label>
+    <DateComponent name="vorgabe.scv">
+        <tooltip>Vorgabe-Datum AM für die neuen Aufträge</tooltip>
+    </DateComponent>
+
+    <Label name="anzahl.kopien"><text>Anzahl Kopien:</text></Label>
+    <FormattedTextField name="anzahl.kopien">
+        <tooltip>Angabe, wie viele Kopien erstellt werden sollen</tooltip>
+        <maxchars>3</maxchars>
+    </FormattedTextField>
+
+    <Label name="copy.es"><text>Endstellen kopieren:</text></Label>
+    <CheckBox name="copy.es">
+        <tooltip>Angabe, ob die Endstellendaten ebenfalls kopiert werden sollen</tooltip>
+    </CheckBox>
+
+</sf>

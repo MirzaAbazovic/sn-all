@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Darstellung der
+Standardeigenschaften eines DB-Accounts.
+-->
+<sf>
+    <Label name="account.id"><text>ID:</text></Label>
+    <FormattedTextField name="account.id">
+        <tooltip>ID des DB-Accounts</tooltip>
+        <format type="number">######</format>
+    </FormattedTextField>
+
+    <Label name="account.name"><text>Name:</text></Label>
+    <TextField name="account.name">
+        <tooltip>Name des DB-Accounts</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="account.user"><text>Benutzername:</text></Label>
+    <TextField name="account.user">
+        <tooltip>Benutzername für die Datenquelle</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="account.password"><text>Passwort:</text></Label>
+    <PasswordField name="account.password">
+        <tooltip>Passwort für die Datenquelle</tooltip>
+        <columns>25</columns>
+    </PasswordField>
+
+    <Label name="account.max.active"><text>Max Active:</text></Label>
+    <FormattedTextField name="account.max.active">
+        <tooltip>Maximale Anzahl gleichzeitig bestehender DB-Connections</tooltip>
+        <format type="number">######</format>
+    </FormattedTextField>
+
+    <Label name="account.max.idle"><text>Max Idle:</text></Label>
+    <FormattedTextField name="account.max.idle">
+        <tooltip>Maximale Anzahl wartender DB-Connections</tooltip>
+        <format type="number">######</format>
+    </FormattedTextField>
+
+    <Label name="account.description"><text>Beschreibung:</text></Label>
+    <TextArea name="account.description">
+        <tooltip>Kurze Beschreibung des Accounts (max. 255 Zeichen)</tooltip>
+        <columns>30</columns>
+        <rows>5</rows>
+    </TextArea>
+
+    <Label name="applications"><text>Applikation:</text></Label>
+    <ComboBox name="applications">
+        <tooltip>Applikation, für die der DB-Account bestimmt ist</tooltip>
+    </ComboBox>
+</sf>

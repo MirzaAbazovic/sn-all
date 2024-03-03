@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "tradingName": "My Trading Company",
+    "name": "Company Name",
+    "nameType": "Type A",
+    "organizationType": "Type B",
+    "isHeadOffice": true,
+    "isLegalEntity": true,
+    "contactMedium": [
+      {
+        "mediumType": "Email",
+        "preferred": true,
+        "characteristic": {
+          "city": "New York",
+          "contactType": "Phone",
+          "faxNumber": "123-456-7890",
+          "street1": "123 Main Street",
+          "street2": "Apt 4B"
+        }
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "tradingName": "Another Company",
+    "name": "Another Name",
+    "nameType": "Type C",
+    "organizationType": "Type D",
+    "isHeadOffice": false,
+    "isLegalEntity": false,
+    "contactMedium": [
+      {
+        "mediumType": "phone",
+        "preferred": true,
+        "characteristic": {
+          "city": "Los Angeles",
+          "contactType": "Phone",
+          "faxNumber": "987-654-3210",
+          "street1": "456 Elm Street",
+          "street2": "Suite 202"
+        }
+      }
+    ]
+  }
+]

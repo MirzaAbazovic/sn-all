@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das TextBaustein-Panel der Reports
+-->
+<sf>
+    
+    <Label name="id"><text>ID:</text></Label>
+    <FormattedTextField name="id">
+        <tooltip>ID des Text-Bausteins</tooltip>
+        <maxchars>11</maxchars>
+        <format type="number">#</format>
+    </FormattedTextField>
+  
+    <Label name="id.orig"><text>Original-ID:</text></Label>
+    <FormattedTextField name="id.orig">
+        <tooltip>Original-ID des Text-Bausteins</tooltip>
+        <maxchars>11</maxchars>
+        <format type="number">#</format>
+    </FormattedTextField>
+    
+    <Label name="name"><text>Name:</text></Label>
+    <TextField name="name">
+        <tooltip>Name für den aktuellen Text-Baustein</tooltip>
+        <maxchars>50</maxchars>
+    </TextField>
+    
+    <Label name="text"><text>Text:</text></Label>
+    <TextArea name="text">
+        <tooltip>Text-Baustein</tooltip>
+  	</TextArea>
+    
+    <Label name="gueltig.von"><text>Gültig von:</text></Label>
+    <DateComponent name="gueltig.von">
+        <tooltip>Gültigkeit des Text-Bausteins</tooltip>
+    </DateComponent>
+    
+    <Label name="gueltig.bis"><text>Gültig bis:</text></Label>
+    <DateComponent name="gueltig.bis">
+        <tooltip>Gültigkeit des Text-Bausteins</tooltip>
+    </DateComponent>
+    
+    <Label name="editable"><text>Editierbar:</text></Label>
+    <CheckBox name="editable">
+        <tooltip>Text-Baustein ist editierbar</tooltip>
+  	</CheckBox>
+    
+    <Label name="mandatory"><text>Mandatory:</text></Label>
+    <CheckBox name="mandatory">
+        <tooltip>Text-Baustein ist mandatory</tooltip>
+    </CheckBox> 
+    
+   	<Label name="property"><text>Key:</text></Label>
+    <ComboBox name="property">
+        <tooltip>Key für Text-Baustein</tooltip>
+    </ComboBox> 
+    
+    <Button name="save">
+        <text>Speichern</text>
+        <tooltip>Speichert den Text-Baustein</tooltip>
+    </Button>
+    
+    <Button name="new">
+        <text>Neu</text>
+        <tooltip>Erstellt einen neuen Text-Baustein</tooltip>
+    </Button>  
+    
+    <Button name="history">
+      	<text>Historisierung</text>
+        <tooltip>Historisiere aktuellen Text-Baustein</tooltip>
+	</Button> 
+	
+	<Button name="delete">
+      	<text>Löschen</text>
+        <tooltip>Aktuellen Text-Baustein löschen</tooltip>
+	</Button>
+    
+    
+</sf>

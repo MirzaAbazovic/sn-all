@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.kubena.KubenaProdukt
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.kubena">
+    <class name="KubenaProdukt" table="T_KUBENA_PROD">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_KUBENA_PROD_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="kubenaId" column="KUBENA_ID" type="long"/>
+        <property name="prodId" column="PROD_ID" type="long"/>
+
+    </class>
+
+</hibernate-mapping>

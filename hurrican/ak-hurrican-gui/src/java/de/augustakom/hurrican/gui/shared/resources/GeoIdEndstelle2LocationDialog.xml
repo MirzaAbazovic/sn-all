@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den Endstellen-Daten.
+-->
+<sf>
+    <Text name="title">Standort bearbeiten</Text>
+    <Text name="edit.panel.title.border">Zuordnung Standort zu Endstelle/GeoID bearbeiten</Text>
+
+    <Label name="geoid.description"><text>GeoID:</text></Label>
+    <TextField name="geoid.description">
+        <tooltip>Geo ID für die der Standort editierbar ist</tooltip>
+        <columns>1</columns>
+    </TextField>
+
+    <Label name="standort.prio.liste"><text>Zugeordneter Standort:</text></Label>
+    <ComboBox name="standort.prio.liste">
+        <tooltip>Selektierter Standort wird der Endstelle/GeoID zugeordnet</tooltip>
+    </ComboBox>
+
+</sf>

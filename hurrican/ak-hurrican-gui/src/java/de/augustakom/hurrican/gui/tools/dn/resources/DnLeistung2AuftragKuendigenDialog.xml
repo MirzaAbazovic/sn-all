@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Kuendigung zugeordneter der Leistungen.
+-->
+<sf>
+	<Label name="leistung"><text>Leistung:</text></Label>
+    <TextField name="leistung">
+        <tooltip>Zu kündigende Leistung</tooltip>
+        <columns>15</columns>
+    </TextField>
+	
+	<Label name="kuend.am"><text>Kündigung am:</text></Label>
+    <DateComponent name="kuend.am">
+    	<tooltip>Datum, an dem die Leistung gekündigt werden soll  (Format: dd.MM.yyyy)</tooltip>
+    	<format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+	
+    <Label name="kuend.alldn"><text>Für alle Rufnummern kündigen?</text></Label>
+    <CheckBox name="kuend.alldn" /> 
+   
+</sf>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zum 'verschieben' eines Accounts
+-->    
+<sf>
+    
+    <Label name="account"><text>Account:</text></Label>
+    <TextField name="account">
+        <tooltip>Account, der auf einen anderen Auftrag verschoben werden soll</tooltip>
+        <columns>15</columns>
+    </TextField>
+    
+    <Label name="auftrag.id"><text>Auftrag-ID:</text></Label>
+    <FormattedTextField name="auftrag.id">
+        <tooltip>ID des Auftrags, dem der Account zugeordnet werden soll</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+    
+    <Label name="entsperren"><text>Entsperren:</text></Label>
+    <CheckBox name="entsperren">
+        <tooltip>Flag, ob der Account entsperrt werden soll</tooltip>
+    </CheckBox>
+    
+    <Button name="save">
+        <text>verschieben</text>
+        <tooltip><![CDATA[Verschiebt den Account auf den angegebenen Auftrag]]></tooltip>
+    </Button>
+    
+</sf>

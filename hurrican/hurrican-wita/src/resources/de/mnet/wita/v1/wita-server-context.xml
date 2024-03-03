@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring App-Context Definition fuer den WITA Server Bereich. -->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+
+                        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+
+    <bean name="/wita/CarrierElTALService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.augustakom.hurrican.service.cc.CarrierElTALService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.CarrierElTALService"/>
+    </bean>
+
+    <bean id="de.mnet.wita.service.TalQueryService" class="de.mnet.wita.service.impl.TalQueryServiceImpl"/>
+    <bean name="/wita/TalQueryService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wita.service.TalQueryService"/>
+        <property name="serviceInterface" value="de.mnet.wita.service.TalQueryService"/>
+    </bean>
+
+    <bean id="de.mnet.wita.service.WitaTalOrderService" class="de.mnet.wita.service.impl.WitaTalOrderServiceImpl"/>
+    <bean name="/wita/WitaTalOrderService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wita.service.WitaTalOrderService"/>
+        <property name="serviceInterface" value="de.mnet.wita.service.WitaTalOrderService"/>
+    </bean>
+    <alias name="de.mnet.wita.service.WitaTalOrderService" alias="de.augustakom.hurrican.service.cc.TALOrderService"/>
+
+    <bean id="de.mnet.wita.service.WitaCheckConditionService"
+          class="de.mnet.wita.service.impl.WitaCheckConditionServiceImpl"/>
+    <bean name="/wita/WitaCheckConditionService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wita.service.WitaCheckConditionService"/>
+        <property name="serviceInterface" value="de.mnet.wita.service.WitaCheckConditionService"/>
+    </bean>
+
+    <bean id="de.mnet.wita.service.TalAenderungstypService"
+          class="de.mnet.wita.service.impl.TalAenderungstypServiceImpl"/>
+    <bean id="de.mnet.wita.service.TalAnbieterwechseltypService"
+          class="de.mnet.wita.service.impl.TalAnbieterwechseltypServiceImpl"/>
+
+    <!--  Remote fuer den acceptance test -->
+    <bean name="/wita/WorkflowTaskService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wita.bpm.WorkflowTaskService"/>
+        <property name="serviceInterface" value="de.mnet.wita.bpm.WorkflowTaskService"/>
+    </bean>
+
+    <bean id="de.mnet.wita.bpm.WorkflowTaskValidationService"
+          class="de.mnet.wita.bpm.impl.WorkflowTaskValidationServiceImpl"/>
+
+    <bean name="/wita/WitaUsertaskService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wita.service.WitaUsertaskService"/>
+        <property name="serviceInterface" value="de.mnet.wita.service.WitaUsertaskService"/>
+    </bean>
+
+    <bean name="/wita/WitaVorabstimmungService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wita.service.WitaVorabstimmungService"/>
+        <property name="serviceInterface" value="de.mnet.wita.service.WitaVorabstimmungService"/>
+    </bean>
+
+    <bean id="de.mnet.wita.service.MwfEntityService" class="de.mnet.wita.service.impl.MwfEntityServiceImpl"/>
+    <bean name="/wita/MwfEntityService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wita.service.MwfEntityService"/>
+        <property name="serviceInterface" value="de.mnet.wita.service.MwfEntityService"/>
+    </bean>
+
+    <bean name="/wita/CommonWorkflowService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wita.bpm.CommonWorkflowService"/>
+        <property name="serviceInterface" value="de.mnet.wita.bpm.CommonWorkflowService"/>
+    </bean>
+
+    <bean name="/wita/TalOrderWorkflowService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wita.bpm.TalOrderWorkflowService"/>
+        <property name="serviceInterface" value="de.mnet.wita.bpm.TalOrderWorkflowService"/>
+    </bean>
+
+    <bean name="/wita/AbgebendPvWorkflowService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wita.bpm.AbgebendPvWorkflowService"/>
+        <property name="serviceInterface" value="de.mnet.wita.bpm.AbgebendPvWorkflowService"/>
+    </bean>
+
+    <bean name="/wita/KueDtWorkflowService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wita.bpm.KueDtWorkflowService"/>
+        <property name="serviceInterface" value="de.mnet.wita.bpm.KueDtWorkflowService"/>
+    </bean>
+
+    <bean id="de.mnet.wita.service.WitaAdminService" class="de.mnet.wita.service.impl.WitaAdminServiceImpl"/>
+    <bean name="/wita/WitaAdminService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wita.service.WitaAdminService"/>
+        <property name="serviceInterface" value="de.mnet.wita.service.WitaAdminService"/>
+    </bean>
+
+    <bean name="/wita/WitaSendMessageService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wita.service.WitaSendMessageService"/>
+        <property name="serviceInterface" value="de.mnet.wita.service.WitaSendMessageService"/>
+    </bean>
+
+    <!-- WITA <-> WBCI Facade -->
+    <bean id="de.mnet.wita.service.WitaWbciServiceFacade" class="de.mnet.wita.service.impl.WitaWbciServiceFacadeImpl"/>
+    <bean name="/wita/WitaWbciServiceFacade"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wita.service.WitaWbciServiceFacade"/>
+        <property name="serviceInterface" value="de.mnet.wita.service.WitaWbciServiceFacade"/>
+    </bean>
+
+    <!-- Hibernate DAOs -->
+
+    <bean id="de.mnet.wita.dao.AnbieterwechselConfigDao" class="de.mnet.wita.dao.impl.AnbieterwechselConfigDaoImpl"/>
+    <bean id="de.mnet.wita.dao.MwfEntityDao" class="de.mnet.wita.dao.impl.MwfEntityDaoImpl"/>
+    <bean id="de.mnet.wita.dao.IoArchiveDao" class="de.mnet.wita.dao.impl.IoArchiveDaoImpl"/>
+    <bean id="de.mnet.wita.dao.TaskDao" class="de.mnet.wita.dao.impl.TaskDaoImpl"/>
+    <bean id="de.mnet.wita.dao.VorabstimmungDao" class="de.mnet.wita.dao.impl.VorabstimmungDaoImpl"/>
+    <bean id="de.mnet.wita.dao.VorabstimmungAbgebendDao" class="de.mnet.wita.dao.impl.VorabstimmungAbgebendDaoImpl"/>
+    <!-- DAO-Klasse fuer die Verwaltung von Wita-TAL-Bestellungen. -->
+    <bean id="de.mnet.wita.dao.WitaCBVorgangDao" class="de.mnet.wita.dao.impl.WitaCBVorgangDaoImpl"/>
+    <bean id="de.mnet.wita.dao.WitaConfigDao" class="de.mnet.wita.dao.impl.WitaConfigDaoImpl"/>
+
+    <!-- Services -->
+
+    <bean id="de.mnet.wita.ticketing.WitaBsiProtokollService"
+          class="de.mnet.wita.ticketing.WitaBsiProtokollServiceImpl"/>
+
+
+    <bean id="witaSchemaValidationService" class="de.mnet.wita.service.impl.WitaSchemaValidationServiceImpl">
+        <property name="schemas">
+            <list>
+                <bean class="de.mnet.common.xml.WsdlXsdSchema">
+                    <property name="wsdl" value="classpath:/wsdl/v1/LineOrderService.wsdl"/>
+                </bean>
+                <bean class="de.mnet.common.xml.WsdlXsdSchema">
+                    <property name="wsdl" value="classpath:/wsdl/v1/LineOrderNotificationService.wsdl"/>
+                </bean>
+                <bean class="de.mnet.common.xml.WsdlXsdSchema">
+                    <property name="wsdl" value="classpath:/wsdl/v2/LineOrderService.wsdl"/>
+                </bean>
+                <bean class="de.mnet.common.xml.WsdlXsdSchema">
+                    <property name="wsdl" value="classpath:/wsdl/v2/LineOrderNotificationService.wsdl"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Converter -->
+    <bean id="de.mnet.wita.ticketing.converter.AuftragBsiProtokollConverter"
+          class="de.mnet.wita.ticketing.converter.AuftragBsiProtokollConverter"/>
+    <bean id="de.mnet.wita.ticketing.converter.TerminVerschiebungBsiProtokollConverter"
+          class="de.mnet.wita.ticketing.converter.TerminVerschiebungBsiProtokollConverter"/>
+    <bean id="de.mnet.wita.ticketing.converter.StornoBsiProtokollConverter"
+          class="de.mnet.wita.ticketing.converter.StornoBsiProtokollConverter"/>
+    <bean id="de.mnet.wita.ticketing.converter.AbmBsiProtokollConverter"
+          class="de.mnet.wita.ticketing.converter.AbmBsiProtokollConverter"/>
+    <bean id="de.mnet.wita.ticketing.converter.AbbmBsiProtokollConverter"
+          class="de.mnet.wita.ticketing.converter.AbbmBsiProtokollConverter"/>
+    <bean id="de.mnet.wita.ticketing.converter.TamBsiProtokollConverter"
+          class="de.mnet.wita.ticketing.converter.TamBsiProtokollConverter"/>
+    <bean id="de.mnet.wita.ticketing.converter.ErlmBsiProtokollConverter"
+          class="de.mnet.wita.ticketing.converter.ErlmBsiProtokollConverter"/>
+    <bean id="de.mnet.wita.ticketing.converter.ErlmkBsiProtokollConverter"
+          class="de.mnet.wita.ticketing.converter.ErlmkBsiProtokollConverter"/>
+    <bean id="de.mnet.wita.ticketing.converter.AbmPvBsiProtokollConverter"
+          class="de.mnet.wita.ticketing.converter.AbmPvBsiProtokollConverter"/>
+    <bean id="de.mnet.wita.ticketing.converter.AbbmPvBsiProtokollConverter"
+          class="de.mnet.wita.ticketing.converter.AbbmPvBsiProtokollConverter"/>
+    <bean id="de.mnet.wita.ticketing.converter.AkmPvBsiProtokollConverter"
+          class="de.mnet.wita.ticketing.converter.AkmPvBsiProtokollConverter"/>
+    <bean id="de.mnet.wita.ticketing.converter.ErlmPvBsiProtokollConverter"
+          class="de.mnet.wita.ticketing.converter.ErlmPvBsiProtokollConverter"/>
+    <bean id="de.mnet.wita.ticketing.converter.RuemPvBsiProtokollConverter"
+          class="de.mnet.wita.ticketing.converter.RuemPvBsiProtokollConverter"/>
+    <!-- Delay-Converter -->
+    <bean id="de.mnet.wita.ticketing.converter.AuftragBsiDelayProtokollConverter"
+          class="de.mnet.wita.ticketing.converter.AuftragBsiDelayProtokollConverter"/>
+
+
+    <!-- Build up all marshaller/unmarshaller beans-->
+    <context:component-scan base-package="de.mnet.wita.marshal"/>
+    <context:component-scan base-package="de.mnet.wita.unmarshal"/>
+
+    <bean id="objectFactoryLineorderServiceV1"
+          class="de.mnet.esb.cdm.supplierpartner.lineorderservice.v1.ObjectFactory"/>
+    <bean id="objectFactoryLineorderServiceV2"
+          class="de.mnet.esb.cdm.supplierpartner.lineorderservice.v2.ObjectFactory"/>
+
+    <!-- add routes -->
+    <context:component-scan base-package="de.mnet.wita.route"/>
+
+    <bean id="jaxb2MarshallerLineOrderServiceV1" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="de.mnet.esb.cdm.supplierpartner.lineorderservice.v1"/>
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.encoding" value="UTF-8"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="jaxb2MarshallerLineOrderNotificationServiceV1" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="de.mnet.esb.cdm.supplierpartner.lineordernotificationservice.v1"/>
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.encoding" value="UTF-8"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="jaxb2MarshallerLineOrderServiceV2" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="de.mnet.esb.cdm.supplierpartner.lineorderservice.v2"/>
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.encoding" value="UTF-8"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="jaxb2MarshallerLineOrderNotificationServiceV2" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="de.mnet.esb.cdm.supplierpartner.lineordernotificationservice.v2"/>
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.encoding" value="UTF-8"/>
+            </map>
+        </property>
+    </bean>
+
+    <!--
+    Proxy-Service, um das Messaging zu kapseln und die Funktion als Service anzubieten.
+    Die Nachricht wird zuerst in den lokalen Camel-Context gepushed und ueber die LineOrderOutRoute auf
+    die 'lineorder-out' JMS-Komponente verschoben.
+
+    !! VORSICHT BEIM UMBENENNEN VON PROXY IDS, WEIL DIE BEAN-IDS DIREKT IM CODE VERWENDET WERDEN !!
+    (siehe CamelProxyLookupService)
+    -->
+    <camel:proxy
+            id="lineOrderService"
+            camelContextId="camel"
+            serviceInterface="de.mnet.wita.integration.LineOrderService"
+            serviceUrl="direct:lineOrderService"/>
+
+</beans>

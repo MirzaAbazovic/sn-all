@@ -1,0 +1,88 @@
+<ns0:annehmenAuftragRequest xmlns:ns0="http://wholesale.telekom.de/oss/v15/envelope">
+    <control>
+        <zeitstempel>2023-05-12T09:35:01.73+02:00</zeitstempel>
+        <majorRelease>15</majorRelease>
+        <minorRelease>10</minorRelease>
+        <signaturId>
+            <issuer>CN=wita.m-net.de, OU=IT, O=M-net Telekommunikations GmbH, L=Munich, ST=Bavaria, C=DE</issuer>
+            <serial>1d2fc434</serial>
+        </signaturId>
+    </control>
+    <auftrag>
+        <externeAuftragsnummer>H_00859639</externeAuftragsnummer>
+        <kunde>
+            <kundennummer>5920312290</kundennummer>
+            <leistungsnummer>0000303328</leistungsnummer>
+        </kunde>
+        <geschaeftsfall xmlns:ns="http://wholesale.telekom.de/oss/v15/order"
+                        xmlns:pfx4="http://wholesale.telekom.de/oss/v15/complex"
+                        xmlns:ns15="http://wholesale.telekom.de/oss/v15/tal"
+                        xmlns:ns2="http://wholesale.telekom.de/oss/v15/xdsl"
+                        xmlns:ns3="http://wholesale.telekom.de/oss/v15/ftth"
+                        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ns:BereitstellungType">
+            <BKTOFaktura>5883006816</BKTOFaktura>
+            <ansprechpartner>
+                <auftragsmanagement>
+                    <anrede>9</anrede>
+                    <vorname>Dayrl</vorname>
+                    <nachname>Schröder-Rupp</nachname>
+                    <telefonnummer>089 452008366</telefonnummer>
+                    <emailadresse>Schroeder-Rupp.Dayrl@m-net.de</emailadresse>
+                </auftragsmanagement>
+            </ansprechpartner>
+            <termine>
+                <kundenwunschtermin>
+                    <datum>2023-05-30</datum>
+                    <zeitfenster>9</zeitfenster>
+                </kundenwunschtermin>
+            </termine>
+            <auftragsposition>
+                <produkt xsi:type="ns2:ProduktXDSLType">
+                    <bezeichner>VDSL SA 250 Mbit/s SV</bezeichner>
+                </produkt>
+                <geschaeftsfallProdukt xsi:type="ns2:XDSLBereitstellungType">
+                    <standortA>
+                        <firma>
+                            <anrede>4</anrede>
+                            <firmenname>M-net Telekommunikations GmbH</firmenname>
+                        </firma>
+                        <strasse>
+                            <strassenname>Frankfurter Ring</strassenname>
+                            <hausnummer>158</hausnummer>
+                        </strasse>
+                        <land>de</land>
+                        <postleitzahl>80807</postleitzahl>
+                        <ort>
+                            <ortsname>München</ortsname>
+                        </ort>
+                        <lageTAE_ONT>UG 04-1 EDV Raum APL</lageTAE_ONT>
+                    </standortA>
+                    <ansprechpartnerMontage>
+                        <anrede>9</anrede>
+                        <nachname>Branko Dosenovic</nachname>
+                        <telefonnummer>+49 89 452009217</telefonnummer>
+                        <emailadresse>branko.dosenovic@m-net.de</emailadresse>
+                    </ansprechpartnerMontage>
+                </geschaeftsfallProdukt>
+                <position>
+                    <aktionscode>Z</aktionscode>
+                    <produkt xsi:type="ns2:ProduktXDSLType">
+                        <bezeichner>Express-Entstörung Wholesale</bezeichner>
+                    </produkt>
+                </position>
+                <position>
+                    <aktionscode>Z</aktionscode>
+                    <produkt xsi:type="ns2:ProduktXDSLType">
+                        <bezeichner>Search Call</bezeichner>
+                    </produkt>
+                </position>
+                <position>
+                    <aktionscode>Z</aktionscode>
+                    <produkt xsi:type="ns2:ProduktXDSLType">
+                        <bezeichner>Courtesy Call</bezeichner>
+                    </produkt>
+                </position>
+            </auftragsposition>
+        </geschaeftsfall>
+    </auftrag>
+</ns0:annehmenAuftragRequest>

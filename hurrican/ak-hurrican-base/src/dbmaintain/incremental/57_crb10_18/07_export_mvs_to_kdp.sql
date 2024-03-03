@@ -1,0 +1,1 @@
+update t_produkt set EXPORT_KDP_M='1' where PROD_ID=535;

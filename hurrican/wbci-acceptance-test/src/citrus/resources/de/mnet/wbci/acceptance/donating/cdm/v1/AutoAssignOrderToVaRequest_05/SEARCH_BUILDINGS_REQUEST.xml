@@ -1,0 +1,19 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <v1:searchBuildings xmlns:v1="http://www.mnet.de/esb/cdm/Resource/LocationService/v1">
+      <v1:city>
+        <v1:name>${standort.ort}</v1:name>
+      </v1:city>
+      <v1:zipCode>
+        <v1:zipCode>${standort.plz}</v1:zipCode>
+      </v1:zipCode>
+      <v1:streetSection>
+        <v1:name>${standort.strasse}</v1:name>
+      </v1:streetSection>
+      <v1:building>
+        <v1:houseNumber>${standort.hnr}</v1:houseNumber>
+      </v1:building>
+    </v1:searchBuildings>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

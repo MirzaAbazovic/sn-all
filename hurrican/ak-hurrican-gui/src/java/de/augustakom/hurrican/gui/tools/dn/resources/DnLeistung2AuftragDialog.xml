@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel der Leistungszuordnung.
+-->
+<sf>
+
+    <Label name="rufnummer"><text>Rufnummer:</text></Label>
+    <TextField name="rufnummer">
+        <tooltip>Ausgewählte Rufnummer </tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="produkt"><text>Produkt:</text></Label>
+    <TextField name="produkt">
+        <tooltip>Produkt des Auftrages </tooltip>
+        <columns>35</columns>
+        <maxchars>100</maxchars>
+    </TextField>
+
+    <Label name="switchKennung"><text>Kennung Switch (Typ):</text></Label>
+    <TextField name="switchKennung">
+        <tooltip>Kennung des Switches </tooltip>
+        <columns>35</columns>
+        <maxchars>100</maxchars>
+    </TextField>
+
+    <List name="ls.parameter">
+        <tooltip>Auswahl der Parameter zur gewählten Leistung</tooltip>
+    </List>
+
+    <Label name="parameter"></Label>
+    <ComboBox name="parameter">
+        <tooltip> mögliche Parameter zu gewählter Leistung </tooltip>
+        <columns>30</columns>
+    </ComboBox>
+
+    <TextField name="tf.parameter">
+        <tooltip>Wert des Parameters </tooltip>
+        <columns>35</columns>
+        <!--maxchars>100</maxchars-->
+    </TextField>
+
+    <Label name="real.am"><text>Realisierung am:</text></Label>
+    <DateComponent name="real.am">
+        <tooltip>Datum, an dem die Leistung realisiert werden soll  (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>8</columns>
+    </DateComponent>
+
+    <Label name="chb.standard"><text>Standardleistungen</text></Label>
+    <CheckBox name="chb.standard">
+        <tooltip>Die Standardleistungen fuer diesen Rufnummerntyp werden gewählt. Es
+                kann dann noch entschieden werden ob diese Leistungen auf alle
+                Rufummern oder nur auf die gewählte Rufnummer übernommen werden. </tooltip>
+    </CheckBox>
+
+    <Button name="all.dn">
+        <text>fuer alle Rufnummern anlegen</text>
+        <tooltip>Legt eine neue Rufnummernleistung fuer alle entsprechenden
+            Rufnummern in diesem Auftrag an </tooltip>
+    </Button>
+
+    <Button name="single.dn">
+        <text>fuer  e i n e  Rufnummer anlegen</text>
+        <tooltip>Legt eine neue Rufnummernleistung fuer die gewählte
+            Rufnummer an </tooltip>
+    </Button>
+
+    <Text name="dn.leistungen.fehlen">Es fehlen bei mindestens einer Rufnummer die Standardleistungen.
+Bitte anlegen.</Text>
+
+    <Text name="dn.leistung.angelegt">Die Leistung(en) wurde(n) erfolgreich angelegt.</Text>
+    <Text name="keine.dn.leistung.angelegt">Es konnte keine Rufnummer ausgewählt werden. Entsprechend sind keine Leistungen angelegt!</Text>
+
+</sf>

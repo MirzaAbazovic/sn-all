@@ -1,0 +1,13 @@
+globalProperties:
+  apis: ""
+  supportingFiles: false
+  apiTests: ""
+  models: false
+
+additionalProperties:
+  library: spring-boot
+  modelsLibrary: de.bitconex.tmf.address.model
+  basePackage: de.bitconex.address
+  invokerPackage: de.bitconex.address
+  apiPackage: de.bitconex.address.api
+  configPackage: de.bitconex.address.configuration

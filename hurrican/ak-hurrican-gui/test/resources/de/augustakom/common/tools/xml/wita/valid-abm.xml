@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header>
+    <wsse:Security xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" SOAP-ENV:mustUnderstand="1">
+      <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#" Id="Signature-106">
+        <ds:SignedInfo>
+          <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+          <ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" />
+          <ds:Reference URI="#id-107">
+            <ds:Transforms>
+              <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+            </ds:Transforms>
+            <ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+            <ds:DigestValue>3uQfX351oqu3Vjw6Da8sKlUXDTo=</ds:DigestValue>
+          </ds:Reference>
+          <ds:Reference URI="#SigConf-105">
+            <ds:Transforms>
+              <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" />
+            </ds:Transforms>
+            <ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+            <ds:DigestValue>yRmT0uvwZKTi2cdmx6nN+EsF8hU=</ds:DigestValue>
+          </ds:Reference>
+        </ds:SignedInfo>
+        <ds:SignatureValue>
+          fyAvAUEj54K2NqlmEONfyl/DNK+eQwNvPb6ks3BS200R8uKaAfgVfVQQlF8Zi4Ca/px510tmUHP9
+          QDLnZkSprPpo7LtdJz2Aiblmx7kaVztlGiNLXhvmBywR+3pOJsyIVkeUqAvn5+MqKURcZmVTXpcl
+          Jegr7y1b9eTr5Brvba714ELZ/WpqICfhRxZh8c1eUPPllghGfQt5kQJ1Ru2eb0tTUQySAzjX0ByT
+          yqXjLePf53+FPiyFQt0Mh+bAge04hSLTr4J0Ihok8bCC6JVa48wLjr0GPScGqaU077sXzBMjo4ZS
+          kLo+B9PjI5rNZi1utAnnA/wZjZ6dLVypNaxy8A==
+        </ds:SignatureValue>
+        <ds:KeyInfo Id="KeyId-6A79B7E229F723E8251315468400905116">
+          <wsse:SecurityTokenReference xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+            wsu:Id="STRId-6A79B7E229F723E8251315468400905117" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd">
+            <ds:X509Data>
+              <ds:X509IssuerSerial>
+                <ds:X509IssuerName>CN=mnet</ds:X509IssuerName>
+                <ds:X509SerialNumber>1312200651</ds:X509SerialNumber>
+              </ds:X509IssuerSerial>
+            </ds:X509Data>
+          </wsse:SecurityTokenReference>
+        </ds:KeyInfo>
+      </ds:Signature>
+      <wsse11:SignatureConfirmation xmlns:wsse11="http://docs.oasis-open.org/wss/oasis-wss-wssecurity-secext-1.1.xsd"
+        xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+        Value="SIwhxi9iGpZC5MBwhasXxRBLrP+sO/EC3+U+tdzNe4LcS4A7DB3AJymrAeLC9K5Oa9QdiyZGEexegnqRuWQyifm/KvKALwkTVITbVUZIjSQgRUc4YH/od+mBcgc6P42PfOlDdjofB7ymfLy/d3Ojfl1ocUC1+zvIVZ874/tneuY="
+        wsu:Id="SigConf-105" />
+    </wsse:Security>
+  </SOAP-ENV:Header>
+  <SOAP-ENV:Body xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" wsu:Id="id-107">
+    <ns3:annehmenMeldungResponse xmlns:ns3="http://wholesale.telekom.de/oss/v4/envelope" xmlns="">
+      <control>
+        <zeitstempel>2011-09-08T09:53:20.905+02:00</zeitstempel>
+        <majorRelease>4</majorRelease>
+        <minorRelease>00</minorRelease>
+        <signaturId>
+          <issuer>EMAILADDRESS=wita@m-net.de, CN=wita, OU=IT, O=M-net Telekommunikations GmbH, L=Munich, ST=Bavaria, C=DE</issuer>
+          <serial>fc21b78feb81ebf3</serial>
+        </signaturId>
+      </control>
+      <quittung>
+        <meldungsTyp>TEQ</meldungsTyp>
+        <externeAuftragsnummer>0200001929</externeAuftragsnummer>
+        <meldungspositionen>
+          <position>
+            <meldungscode>OK</meldungscode>
+            <meldungstext>OK</meldungstext>
+          </position>
+        </meldungspositionen>
+      </quittung>
+    </ns3:annehmenMeldungResponse>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <import resource="classpath:de/mnet/hurrican/scheduler/job/resources/scheduler-common.xml"/>
+
+    <util:list id="triggers" value-type="org.springframework.scheduling.quartz.JobDetailAwareTrigger">
+        <ref bean="validateLeistungSnapshotTrigger"/>
+        <ref bean="deleteLoggingsTrigger"/>
+        <ref bean="removeExpiredSessionsTrigger"/>
+        <ref bean="cleanLeistungDNTrigger"/>
+        <ref bean="deleteReportsTrigger"/>
+        <ref bean="deleteReportDataTrigger"/>
+        <ref bean="startEQRessourcenMonitorTrigger"/>
+        <ref bean="startRangRessourcenMonitorTrigger"/>
+        <ref bean="startMonitorAlarmTrigger"/>
+        <ref bean="createCPSTx4BATrigger"/>
+        <ref bean="createCPSTx4BATodayTrigger"/>
+        <ref bean="createCPSTx4DNServicesTrigger"/>
+        <ref bean="createCPSTx4LocksJobTrigger"/>
+        <ref bean="processPendingEmailsTrigger"/>
+        <ref bean="finishExpiredCPSTransactionsTrigger"/>
+        <ref bean="automaticClearanceOfPhysicsTrigger"/>
+        <ref bean="importEWSDFilesTrigger"/>
+        <ref bean="sendWitaRequestsJobTrigger"/>
+        <ref bean="sendExceptionLogsMailJobTrigger"/>
+        <ref bean="scanAndArchiveWitaFilesJobTrigger"/>
+        <ref bean="ipDeallocationJobTriggerNight"/>
+        <ref bean="checkMonitoredDSLAMProfileJobTrigger"/>
+        <ref bean="witaMeldungBsiProtocolEntryJobTrigger"/>
+        <ref bean="witaBsiRemoveDeadPvMeldungenJobTrigger"/>
+        <ref bean="automaticallyProcessWitaOrdersJobTrigger"/>
+        <ref bean="automaticallyProcessWitaCancellationsJobTrigger"/>
+        <ref bean="sendWbciRequestsJobTrigger"/>
+        <ref bean="houseKeepingJobTrigger"/>
+        <ref bean="smsSendJobTrigger"/>
+        <ref bean="escalationReportJobTrigger"/>
+        <ref bean="processWbciAutomatableRuemVAsJobTrigger"/>
+        <ref bean="processWbciAutomatableOutgoingRuemVAsJobTrigger"/>
+        <ref bean="processWbciAutomatableAkmTRsJobTrigger"/>
+        <ref bean="processWbciAutomatableIncomingAkmTRsJobTrigger"/>
+        <ref bean="processWbciAutomatableErlmTvsJobTrigger"/>
+        <ref bean="processWbciAutomatableStrAufErlmsJobTrigger"/>
+        <ref bean="processWbciAutomatableStrAufErlmsDonatingJobTrigger"/>
+        <ref bean="notifyMaterialFeedbackJobTrigger"/>
+        <ref bean="ffmUpdateOrders4BAsTodayJobTrigger"/>
+        <ref bean="ffmUpdateOrders4BAsIn8DaysJobTrigger"/>
+        <ref bean="executeHvtUmzugAndSendCpsTxJobTrigger"/>
+        <ref bean="processExpiredServicesJobTrigger"/>
+    </util:list>
+
+    <bean id="errorSMSMsg" class="org.springframework.mail.SimpleMailMessage" scope="prototype">
+        <!--
+            Mail an Mail2SMS-Gateway. Empfaenger werdem mit HandyNr@sms.augustakom.net angegeben.
+            Subject kann leer bleiben. SMS-Text in Body aufnehmen - aber auf 160 Zeichen begrenzen,
+            da sonst mehrere SMS geschrieben werden!
+        -->
+        <property name="to" value="${sms.error.recipients}"/>
+        <property name="from" value="Hurrican-Scheduler"/>
+        <property name="subject" value=""/>
+    </bean>
+</beans>
+

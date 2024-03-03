@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Spring-Konfigurationsdatei fuer DAO-Objekte im CustomerCare-Bereich.
+Die Datei wird von CCServices.xml importiert!
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+
+    <!-- ************************ HIBERNATE DAO-Definitionen ********************* -->
+    <bean id="dslamProfileMonitorDAO" class="de.augustakom.hurrican.dao.cc.impl.DSLAMProfileMonitorDAOImpl" primary="true" />
+
+    <bean id="auftrag2PeeringPartnerDAO" class="de.augustakom.hurrican.dao.cc.impl.Auftrag2PeeringPartnerDAOImpl" primary="true"/>
+
+    <bean id="sipPeeringPartnerDAO" class="de.augustakom.hurrican.dao.cc.impl.SipPeeringPartnerDaoImpl" primary="true"/>
+
+    <!-- Definition DAO für Sperrklassen -->
+    <bean id="sperrklasseDAO" class="de.augustakom.hurrican.dao.cc.impl.SperrklasseDAOImpl" primary="true" />
+
+    <!-- Definition DAO für HW Switches -->
+    <bean id="hwSwitchDAO" class="de.augustakom.hurrican.dao.cc.impl.HWSwitchDAOImpl" primary="true" />
+
+    <bean id="switchMigrationLogDao" class="de.augustakom.hurrican.dao.cc.impl.SwitchMigrationLogDaoImpl" primary="true" />
+
+    <!-- Definition DAO für IPAddress -->
+    <bean id="ipAddressDAO" class="de.augustakom.hurrican.dao.cc.impl.IPAddressDAOImpl" primary="true" />
+
+    <!-- Definition einer einfachen DAO-Klasse fuer Find-Operationen -->
+    <bean id="simpleFindDAO" class="de.augustakom.hurrican.dao.base.impl.SimpleFindDAOImpl">
+        <property name="sessionFactory" ref="cc.sessionFactory"/>
+    </bean>
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs 'CCAddress' -->
+    <bean id="ccAddressDAO" class="de.augustakom.hurrican.dao.cc.impl.CCAddressDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs 'Counter' -->
+    <bean id="counterDAO" class="de.augustakom.hurrican.dao.cc.impl.CounterDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs 'AK0800' und 'AK0800Modell' -->
+    <bean id="ak0800DAO" class="de.augustakom.hurrican.dao.cc.impl.AK0800DAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs HVTGruppe -->
+    <bean id="hvtGruppeDAO" class="de.augustakom.hurrican.dao.cc.impl.HVTGruppeDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs HVTStandort -->
+    <bean id="hvtStandortDAO" class="de.augustakom.hurrican.dao.cc.impl.HVTStandortDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs HVTTechnik -->
+    <bean id="hvtTechnikDAO" class="de.augustakom.hurrican.dao.cc.impl.HVTTechnikDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs Anschlussart -->
+    <bean id="anschlussartDAO" class="de.augustakom.hurrican.dao.cc.impl.AnschlussartDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs PhysikTyp -->
+    <bean id="physikTypDAO" class="de.augustakom.hurrican.dao.cc.impl.PhysikTypDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs UEVT -->
+    <bean id="uevtDAO" class="de.augustakom.hurrican.dao.cc.impl.UevtDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs UEVT2Ziel -->
+    <bean id="uevt2ZielDAO" class="de.augustakom.hurrican.dao.cc.impl.UEVT2ZielDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer die Definition der BA-Verlaeufe -->
+    <bean id="baVerlaufDefinitionDAO" class="de.augustakom.hurrican.dao.cc.impl.BAVerlaufDefinitionDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs ProduktGruppe -->
+    <bean id="produktGruppeDAO" class="de.augustakom.hurrican.dao.cc.impl.ProduktGruppeDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Produkt -->
+    <bean id="produktDAO" class="de.augustakom.hurrican.dao.cc.impl.ProduktDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer die Schnittstellen-Definition (Objekte Schnittstelle, Produkt2Schnittstelle) -->
+    <bean id="schnittstelleDAO" class="de.augustakom.hurrican.dao.cc.impl.SchnittstelleDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Leitungsart -->
+    <bean id="leitungsartDAO" class="de.augustakom.hurrican.dao.cc.impl.LeitungsartDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Niederlassung -->
+    <bean id="niederlassungDAO" class="de.augustakom.hurrican.dao.cc.impl.NiederlassungDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Abteilung -->
+    <bean id="abteilungDAO" class="de.augustakom.hurrican.dao.cc.impl.AbteilungDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer die GUI-Objekte (GUIDefinition, GUIMapping) -->
+    <bean id="guiDAO" class="de.augustakom.hurrican.dao.cc.impl.GuiDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Auftrag -->
+    <bean id="auftragDAO" class="de.augustakom.hurrican.dao.cc.impl.CCAuftragDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs AuftragTvGeoId -->
+    <bean id="auftragTvDAO" class="de.augustakom.hurrican.dao.cc.impl.AuftragTvDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs AuftragAktion -->
+    <bean id="auftragAktionDAO" class="de.augustakom.hurrican.dao.cc.impl.AuftragAktionDAOImpl" primary="true" />
+
+    <!-- Definition einer einfachen DAO-Klasse fuer Find-Operationen -->
+    <bean id="auftragWholesaleDAO" class="de.augustakom.hurrican.dao.cc.impl.AuftragWholesaleDAOImpl" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs AuftragStatus -->
+    <bean id="auftragStatusDAO" class="de.augustakom.hurrican.dao.cc.impl.AuftragStatusDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs AuftragDaten -->
+    <bean id="auftragDatenDAO" class="de.augustakom.hurrican.dao.cc.impl.AuftragDatenDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs AuftragTechnik -->
+    <bean id="auftragTechnikDAO" class="de.augustakom.hurrican.dao.cc.impl.AuftragTechnikDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs AuftragIntern -->
+    <bean id="de.augustakom.hurrican.dao.cc.AuftragInternDAO" class="de.augustakom.hurrican.dao.cc.impl.AuftragInternDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs AuftragTechLeistung -->
+    <bean id="auftrag2TechLeistungDAO" class="de.augustakom.hurrican.dao.cc.impl.Auftrag2TechLeistungDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs SperreVerteilung -->
+    <bean id="sperreVerteilungDAO" class="de.augustakom.hurrican.dao.cc.impl.SperreVerteilungDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs SperreInfo -->
+    <bean id="sperreInfoDAO" class="de.augustakom.hurrican.dao.cc.impl.SperreInfoDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Lock -->
+    <bean id="lockDAO" class="de.augustakom.hurrican.dao.cc.impl.LockDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Carrierbestellung -->
+    <bean id="carrierbestellungDAO" class="de.augustakom.hurrican.dao.cc.impl.CarrierbestellungDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer die Verwaltung von el. TAL-Bestellungen. -->
+    <bean id="cbVorgangDAO" class="de.augustakom.hurrican.dao.cc.impl.CBVorgangDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Rangierung -->
+    <bean id="rangierungDAO" class="de.augustakom.hurrican.dao.cc.impl.RangierungDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs RangierungsAuftrag -->
+    <bean id="rangierungsAuftragDAO" class="de.augustakom.hurrican.dao.cc.impl.RangierungsAuftragDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Rangierungsmatrix -->
+    <bean id="rangierungsmatrixDAO" class="de.augustakom.hurrican.dao.cc.impl.RangierungsmatrixDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Equipment -->
+    <bean id="equipmentDAO" class="de.augustakom.hurrican.dao.cc.impl.EquipmentDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer die EQCrossConnections -->
+    <bean id="eqCrossConnectionDAO" class="de.augustakom.hurrican.dao.cc.impl.EQCrossConnectionDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Montageart -->
+    <bean id="montageartDAO" class="de.augustakom.hurrican.dao.cc.impl.MontageartDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte der Typen Endgeraet, EndgeraetTyp und EndgeraetHerkunft -->
+    <bean id="endgeraetDAO" class="de.augustakom.hurrican.dao.cc.impl.EndgeraetDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Rangierung -->
+    <bean id="wohnheimDAO" class="de.augustakom.hurrican.dao.cc.impl.WohnheimDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs VBZ und VBZZaehler -->
+    <bean id="vbzDAO" class="de.augustakom.hurrican.dao.cc.impl.VerbindungsBezeichnungDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs IntAccount -->
+    <bean id="de.augustakom.hurrican.dao.cc.impl.IntAccountDAO"
+          class="de.augustakom.hurrican.dao.cc.impl.IntAccountDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Endstelle -->
+    <bean id="endstelleDAO" class="de.augustakom.hurrican.dao.cc.impl.EndstelleDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs EndstelleLtgDaten -->
+    <bean id="endstelleLtgDAO" class="de.augustakom.hurrican.dao.cc.impl.EndstelleLtgDatenDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Inhouse -->
+    <bean id="inhouseDAO" class="de.augustakom.hurrican.dao.cc.impl.InhouseDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Anrede -->
+    <bean id="anredeDAO" class="de.augustakom.hurrican.dao.cc.impl.AnredeDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs VPN -->
+    <bean id="vpnDAO" class="de.augustakom.hurrican.dao.cc.impl.VpnDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs AccountArt -->
+    <bean id="accountArtDAO" class="de.augustakom.hurrican.dao.cc.impl.AccountArtDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Zugang -->
+    <bean id="zugangDAO" class="de.augustakom.hurrican.dao.cc.impl.ZugangDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs PhysikUebernahme -->
+    <bean id="physikUebernahmeDAO" class="de.augustakom.hurrican.dao.cc.impl.PhysikUebernahmeDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Verlauf -->
+    <bean id="verlaufDAO" class="de.augustakom.hurrican.dao.cc.impl.VerlaufDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs VerlaufAbteilung -->
+    <bean id="verlaufAbteilungDAO" class="de.augustakom.hurrican.dao.cc.impl.VerlaufAbteilungDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer die Ermittlung von Verlauf-Views. -->
+    <bean id="verlaufViewDAO" class="de.augustakom.hurrican.dao.cc.impl.VerlaufViewDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs Registry. -->
+    <bean id="registryDAO" class="de.augustakom.hurrican.dao.cc.impl.RegistryDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer die Rufnummer-Leistungen. -->
+    <bean id="dnLeistungDAO" class="de.augustakom.hurrican.dao.cc.impl.DNLeistungDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer die Kubena-Daten. -->
+    <bean id="kubenaDAO" class="de.augustakom.hurrican.dao.cc.impl.KubenaDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer die PortGes-Daten. -->
+    <bean id="portGesamtDAO" class="de.augustakom.hurrican.dao.cc.impl.PortGesamtDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer die ServiceCommand-Objekte -->
+    <bean id="serviceCommandDAO" class="de.augustakom.hurrican.dao.cc.impl.ServiceCommandDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer AuftragImport-Objekte. -->
+    <bean id="auftragImportDAO" class="de.augustakom.hurrican.dao.cc.impl.AuftragImportDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer die TechLeistung-Objekte -->
+    <bean id="techLeistungDAO" class="de.augustakom.hurrican.dao.cc.impl.TechLeistungDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer die Dialer-Objekte -->
+    <bean id="dialerDAO" class="de.augustakom.hurrican.dao.cc.impl.DialerDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer Reference-objekte -->
+    <bean id="referenceDAO" class="de.augustakom.hurrican.dao.cc.impl.ReferenceDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer Endgeraet-Konfigurationen -->
+    <bean id="egConfigDAO" class="de.augustakom.hurrican.dao.cc.impl.EGConfigDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer Endgeraet-Typen -->
+    <bean id="egTypeDAO" class="de.augustakom.hurrican.dao.cc.impl.EGTypeDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer IA-Budgets -->
+    <bean id="iaBudgetDAO" class="de.augustakom.hurrican.dao.cc.impl.IABudgetDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer IA-Materialien -->
+    <bean id="iaMaterialDAO" class="de.augustakom.hurrican.dao.cc.impl.IAMaterialDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer Lager -->
+    <bean id="lagerDAO" class="de.augustakom.hurrican.dao.cc.impl.LagerDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer DSLAM-Profile -->
+    <bean id="dslamProfileDAO" class="de.augustakom.hurrican.dao.cc.impl.DSLAMProfileDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer VoIP-Auftraege -->
+    <bean id="auftragVoIPDAO" class="de.augustakom.hurrican.dao.cc.impl.AuftragVoIPDAOImpl" primary="true" />
+
+    <bean id="endgeraetPortDao" class="de.augustakom.hurrican.dao.cc.impl.EndgeraetPortDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer CC-Objekte des Typs AuftragVoIPDN -->
+    <bean id="auftragVoIPDNDAO" class="de.augustakom.hurrican.dao.cc.impl.AuftragVoIPDNDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer SIP Domains -->
+    <bean id="sipDomainDAO" class="de.augustakom.hurrican.dao.cc.impl.SIPDomainDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer QoS-Daten -->
+    <bean id="auftragQoSDAO" class="de.augustakom.hurrican.dao.cc.impl.AuftragQoSDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer Tree-Definitions -->
+    <bean id="treeDefinitionDAO" class="de.augustakom.hurrican.dao.cc.impl.TreeDefinitionDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer GUI-Configs innerhalb eines Trees -->
+    <bean id="treeGUIConfigDAO" class="de.augustakom.hurrican.dao.cc.impl.TreeGUIConfigDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs HVTBestellung  -->
+    <bean id="hvtBestellungDAO" class="de.augustakom.hurrican.dao.cc.impl.HVTBestellungDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer den Ressourcen-Monitor -->
+    <bean id="monitorDAO" class="de.augustakom.hurrican.dao.cc.impl.MonitorDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer den externe ServiceProvider -->
+    <bean id="extServiceProviderDAO" class="de.augustakom.hurrican.dao.cc.impl.ExtServiceProviderDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer die RegularExpression-Config -->
+    <bean id="de.augustakom.hurrican.dao.cc.CfgRegularExpressionDAO"
+          class="de.augustakom.hurrican.dao.cc.impl.CfgRegularExpressionDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer Hardware-Objekte -->
+    <bean id="de.augustakom.hurrican.dao.cc.HardwareDAO"
+          class="de.augustakom.hurrican.dao.cc.impl.HardwareDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer Hardware-Objekte -->
+    <bean id="de.augustakom.hurrican.dao.cc.HWBaugruppenChangeDAO"
+          class="de.augustakom.hurrican.dao.cc.impl.HWBaugruppenChangeDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs HWSubrack  -->
+    <bean id="de.augustakom.hurrican.dao.cc.HWSubrackDAO"
+          class="de.augustakom.hurrican.dao.cc.impl.HWSubrackDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs BrasPool -->
+    <bean id="de.augustakom.hurrican.dao.cc.BrasPoolDAO"
+          class="de.augustakom.hurrican.dao.cc.impl.BrasPoolDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs Ansprechpartner -->
+    <bean id="de.augustakom.hurrican.dao.cc.AnsprechpartnerDAO"
+          class="de.augustakom.hurrican.dao.cc.impl.AnsprechpartnerDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs Gewofag -->
+    <bean id="de.augustakom.hurrican.dao.cc.GewofagDao"
+          class="de.augustakom.hurrican.dao.cc.impl.GewofagDaoImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs Endstelle -->
+    <bean id="endstelleViewDAO" class="de.augustakom.hurrican.dao.cc.impl.EndstelleViewDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs ProduktGruppe -->
+    <bean id="produktViewDAO" class="de.augustakom.hurrican.dao.cc.impl.ProduktViewDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs AuftragHousing -->
+    <bean id="de.augustakom.hurrican.dao.cc.AuftragHousingDAO"
+          class="de.augustakom.hurrican.dao.cc.impl.AuftragHousingDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs AuftragHousingKey -->
+    <bean id="de.augustakom.hurrican.dao.cc.AuftragHousingKeyDAO"
+          class="de.augustakom.hurrican.dao.cc.impl.AuftragHousingKeyDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs AuftragMVS -->
+    <bean id="de.augustakom.hurrican.dao.cc.AuftragMVSDAO" class="de.augustakom.hurrican.dao.cc.impl.AuftragMVSDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs AuftragSIPInterTrunk -->
+    <bean id="de.augustakom.hurrican.dao.cc.AuftragSIPInterTrunkDAO"
+          class="de.augustakom.hurrican.dao.cc.impl.AuftragSIPInterTrunkDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs AuftragSIPInterTrunk -->
+    <bean id="de.augustakom.hurrican.dao.cc.IpRouteDAO" class="de.augustakom.hurrican.dao.cc.impl.IpRouteDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs AuftragUMTS -->
+    <bean id="de.augustakom.hurrican.dao.cc.AuftragUMTSDAO"
+          class="de.augustakom.hurrican.dao.cc.impl.AuftragUMTSDAOImpl" primary="true" />
+
+    <bean id="de.augustakom.hurrican.dao.cc.AuftragConnectDAO"
+          class="de.augustakom.hurrican.dao.cc.impl.AuftragConnectDAOImpl" primary="true" />
+
+    <!-- Generische DAO-Klassen mit FindDAO-Implementierung, Speichern und Löschen -->
+    <bean id="defaultDAO" class="de.augustakom.common.tools.dao.hibernate.Hibernate4DefaultDAO">
+        <property name="sessionFactory" ref="cc.sessionFactory"/>
+    </bean>
+
+    <bean id="defaultDeleteDAO" class="de.augustakom.common.tools.dao.hibernate.Hibernate4DefaultDeleteDAO">
+        <property name="sessionFactory" ref="cc.sessionFactory"/>
+    </bean>
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs KundeNbz -->
+    <bean id="ccKundeNbzDAO" class="de.augustakom.hurrican.dao.cc.impl.KundeNbzDAOImpl" primary="true" />
+
+    <bean id="mailDAO" class="de.augustakom.hurrican.dao.cc.impl.MailDAOImpl" primary="true" />
+
+    <bean id="ffmDAO" class="de.augustakom.hurrican.dao.cc.ffm.impl.FfmDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer die Ermittlung von speziellen SCV-Views. -->
+    <bean id="scvViewDAO" class="de.augustakom.hurrican.dao.cc.impl.ScvViewDAOImplJdbc" primary="true">
+        <property name="dbDriver" value="org.hsqldb.jdbcDriver"/>
+        <property name="dbUrl" value="jdbc:hsqldb:file:./data/scv/scvviews"/>
+        <property name="dbUser" value="sa"/>
+        <property name="dbPassword" value=""/>
+    </bean>
+
+    <!-- DAO-Klasse fuer die DBQuery-Definitionen. -->
+    <bean id="dbQueryDefDAO" class="de.augustakom.hurrican.dao.cc.impl.DBQueryDefDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs 'AK0800' und 'AK0800Modell' -->
+    <bean id="consistenceCheckDAO" class="de.augustakom.hurrican.dao.cc.impl.ConsistenceCheckDAOImpl" primary="true" />
+
+    <!-- Definition der DAO-Klasse fuer CC-Objekte des Typs HVTStandortTechType -->
+    <bean id="hvtStandortTechTypeDAO" class="de.augustakom.hurrican.dao.cc.impl.HVTStandortTechTypeDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer Objekte des Typs ExceptionLogEntry. -->
+    <bean id="exceptionLogEntryDAO" class="de.augustakom.hurrican.dao.exceptions.impl.ExceptionLogEntryDAOImpl" primary="true" />
+
+    <bean id="kvzAdresseDAO" class="de.augustakom.hurrican.dao.cc.impl.KvzAdresseDAOImpl" primary="true" />
+
+    <bean id="kvzSperreDAO" class="de.augustakom.hurrican.dao.cc.impl.KvzSperreDAOImpl" primary="true" />
+
+    <!-- DAO-Klasse fuer Objekte des Typs Feature. -->
+    <bean id="de.augustakom.hurrican.dao.cc.FeatureDAO" class="de.augustakom.hurrican.dao.cc.impl.FeatureDAOImpl" primary="true" />
+
+    <bean id="de.augustakom.hurrican.dao.cc.GeoIdDAO" class="de.augustakom.hurrican.dao.cc.impl.GeoIdDAOImpl" primary="true" />
+
+    <bean id="portStatisticDAO" class="de.augustakom.hurrican.dao.cc.impl.PortStatisticDAOImpl" primary="true"/>
+
+    <!-- DAO-Klasse fuer View-Objekte, die sich auf Auftrags-Daten beziehen. -->
+    <bean id="auftragViewDAO" class="de.augustakom.hurrican.dao.cc.impl.CCAuftragViewDAOImplJdbc" primary="true"/>
+
+    <bean id="hvtUmzugDao" class="de.augustakom.hurrican.dao.cc.impl.HvtUmzugDAOImpl" primary="true"/>
+
+    <bean id="profileDAO" class="de.augustakom.hurrican.dao.cc.impl.ProfileDAOImpl" primary="true"/>
+
+    <!-- Allgmeine DAO-Klasse fuer beliebige SQL-Queries auf der CC-Datenbank -->
+    <bean id="queryDAO" class="de.augustakom.hurrican.dao.base.impl.QueryDAOImplJdbc">
+        <property name="sessionFactory" ref="cc.sessionFactory"/>
+    </bean>
+
+    <!-- DAO-Klasse fuer ErrorLog -->
+    <bean id="errorLogDao" class="de.augustakom.hurrican.dao.cc.errorlog.ErrorLogDAOImpl" primary="true" />
+
+    <!-- ************************ ENDE HIBERNATE DAO-Definitionen ************ -->
+
+</beans>

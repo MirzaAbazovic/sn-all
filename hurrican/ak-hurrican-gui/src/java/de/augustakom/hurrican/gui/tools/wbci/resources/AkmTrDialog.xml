@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den AKM-TR Dialog
+-->
+<sf>
+
+    <Text name="akmtr.title">AKM-TR für: %s</Text>
+
+    <Text name="ressourcen.uebernahme.sonstiges.title">Ressourcen-Übernahme prüfen</Text>
+    <Text name="ressourcen.uebernahme.sonstiges.msg">Als Technologie wurde \021 Sonstiges\ angegeben.
+Bitte prüfen, ob die Ressource tatsächlich übernommen werden kann.
+    </Text>
+
+    <Text name="ressourcen.uebernahme.adapresent.title">Ressourcen-Übernahme nicht möglich</Text>
+    <Text name="ressourcen.uebernahme.adapresent.msg">In der RUEM-VA ist ein ADA Meldungscode vorhanden.
+Eine Ressourcen-Übernahme ist nur dann möglich wenn eine neue Vorabstimmung mit der richtigen Adresse ausgelöst wird.
+        (Bitte Storno-Änderung durchführen, wenn eine Ressourcen-Übernahme gewünscht ist).
+    </Text>
+
+    <Text name="automated.wita.order.info.dialog.title">Automatisierte WITA-Bestellung</Text>
+    <Text name="automated.wita.order.info.dialog.msg">Die WITA-Bestellung wird zeitversetzt automatisiert erstellt und versendet!</Text>
+
+    <Label name="wechseltermin">
+        <text>best. Wechseltermin:</text>
+    </Label>
+    <DateComponent name="wechseltermin">
+        <tooltip>bestätigter Wechseltermin</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="leitungsuebernahme">
+        <text>Leitungsuebernahme:</text>
+    </Label>
+    <CheckBox name="leitungsuebernahme">
+        <tooltip>Angabe, ob die techn. Resource (Leitung) mit übernommen werden soll</tooltip>
+    </CheckBox>
+    <Label name="wholesale.hinweis">
+        <text>PORTÜBERNAHME AUS WHOLESALE AUFTRAG</text>
+    </Label>
+
+    <Label name="sicherer.hafen">
+        <text>Sicherer Hafen:</text>
+    </Label>
+    <CheckBox name="sicherer.hafen">
+        <tooltip>Angabe, ob der 'sichere Hafen' verwendet werden soll</tooltip>
+    </CheckBox>
+
+    <Label name="pki.auf">
+        <text>PKI aufnehmend:</text>
+    </Label>
+    <TextField name="pki.auf">
+        <tooltip>Bezeichnung des aufnehmenden Providers</tooltip>
+        <columns>40</columns>
+    </TextField>
+
+    <Label name="vtr.nrs">
+        <text>WITA Vtr.-Nrs /</text>
+    </Label>
+    <Label name="line.ids">
+        <text>WBCI LineIds:</text>
+    </Label>
+    <List name="vtr.nrs">
+        <tooltip>Angabe der zu übernehmenden WITA Vertragsnummern bzw. WBCI LineIds.\n
+Keine Auswahl, aber Leitungsübernahme=ja: alle zum Anschluss gehörenden Leitungen übernehmen
+        </tooltip>
+    </List>
+
+</sf>

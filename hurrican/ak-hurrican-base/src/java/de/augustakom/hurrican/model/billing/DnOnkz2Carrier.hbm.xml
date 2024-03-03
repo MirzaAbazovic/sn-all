@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.DNBlock
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="DnOnkz2Carrier" table="DN_ONKZ_2_CARRIER">
+	    
+	    <!-- PrimaryKey -->
+		<id name="onkz" column="ONKZ" unsaved-value="null" type="string">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<property name="carrier" column="CARRIER" type="string"/>
+	</class>
+	
+</hibernate-mapping>

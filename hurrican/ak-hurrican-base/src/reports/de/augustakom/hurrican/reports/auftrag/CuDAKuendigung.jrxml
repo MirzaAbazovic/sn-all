@@ -1,0 +1,1219 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="CuDAKuendigung"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="595"
+		 pageHeight="842"
+		 columnWidth="527"
+		 columnSpacing="0"
+		 leftMargin="48"
+		 rightMargin="20"
+		 topMargin="51"
+		 bottomMargin="30"
+		 whenNoDataType="AllSectionsNoDetail"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="com.jasperassistant.designer.GridWidth" value="12" />
+	<property name="com.jasperassistant.designer.GridHeight" value="12" />
+	<property name="com.jasperassistant.designer.DataSource" value="emptyDS" />
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false" />
+	<property name="com.jasperassistant.designer.Units" value="Millimeters" />
+	<property name="com.jasperassistant.designer.Grid" value="true" />
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+	<reportFont name="Font_Default" isDefault="true" fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<reportFont name="Font_Small" isDefault="false" fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+
+
+	<field name="VBZ" class="java.lang.String"/>
+	<field name="CB_VTRNR" class="java.lang.String"/>
+	<field name="BEARBEITER" class="java.lang.String"/>
+	<field name="ES_NAME" class="java.lang.String"/>
+	<field name="ES_ENDSTELLE" class="java.lang.String"/>
+	<field name="ES_PLZ_ORT" class="java.lang.String"/>
+	<field name="CB_LBZ" class="java.lang.String"/>
+	<field name="HVT_ONKZ" class="java.lang.String"/>
+	<field name="HVT_PLZ" class="java.lang.String"/>
+	<field name="HVT_ORT" class="java.lang.String"/>
+	<field name="HVT_ASB" class="java.lang.Integer"/>
+	<field name="HVT_STRASSE" class="java.lang.String"/>
+	<field name="HVT_HAUSNR" class="java.lang.String"/>
+	<field name="PHONE" class="java.lang.String"/>
+	<field name="FAX" class="java.lang.String"/>
+	<field name="CB_BESTELLT_AM" class="java.util.Date"/>
+	<field name="CK_NAME" class="java.lang.String"/>
+	<field name="CK_KUNDEN_NR" class="java.lang.String"/>
+	<field name="CK_PLZ" class="java.lang.String"/>
+	<field name="CK_ORT" class="java.lang.String"/>
+
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="677"  isSplitAllowed="true" >
+				<rectangle>
+					<reportElement
+						x="0"
+						y="0"
+						width="232"
+						height="54"
+						key="rectangle"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<staticText>
+					<reportElement
+						x="2"
+						y="8"
+						width="228"
+						height="20"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font reportFont="Font_Default" size="16" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Kündigung CuDA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="2"
+						y="30"
+						width="228"
+						height="20"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement textAlignment="Center">
+						<font reportFont="Font_Small" size="10" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Bei unvollständigen oder falschen Angaben kann der
+Antrag durch die Telekom zurückgewiesen werden]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="75"
+						width="136"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Default" size="12" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Angaben zu KUNDE]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement
+						x="0"
+						y="90"
+						width="488"
+						height="122"
+						key="rectangle"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="111"
+						width="488"
+						height="1"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="130"
+						width="488"
+						height="1"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="150"
+						width="488"
+						height="1"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="170"
+						width="488"
+						height="1"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="190"
+						width="488"
+						height="1"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="88"
+						y="91"
+						width="1"
+						height="119"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="249"
+						y="111"
+						width="1"
+						height="40"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="249"
+						y="170"
+						width="1"
+						height="40"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="357"
+						y="111"
+						width="1"
+						height="40"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="357"
+						y="170"
+						width="1"
+						height="40"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<staticText>
+					<reportElement
+						x="3"
+						y="233"
+						width="256"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Default" size="12" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Angaben zur Endstelle (Endkunde)]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement
+						x="0"
+						y="249"
+						width="488"
+						height="207"
+						key="rectangle"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="269"
+						width="488"
+						height="1"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="289"
+						width="488"
+						height="1"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="309"
+						width="488"
+						height="1"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="351"
+						width="488"
+						height="1"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="371"
+						width="488"
+						height="1"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="414"
+						width="488"
+						height="1"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="150"
+						y="249"
+						width="1"
+						height="207"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<staticText>
+					<reportElement
+						x="3"
+						y="477"
+						width="231"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Default" size="12" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Beauftragte CuDA-Variante]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement
+						x="0"
+						y="493"
+						width="488"
+						height="60"
+						key="rectangle"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="533"
+						width="488"
+						height="1"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="88"
+						y="493"
+						width="1"
+						height="40"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="116"
+						y="533"
+						width="1"
+						height="20"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</line>
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="649"
+						width="213"
+						height="1"
+						key="line"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch"/>
+				</line>
+				<staticText>
+					<reportElement
+						x="2"
+						y="650"
+						width="195"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement>
+						<font reportFont="Font_Small" size="10"/>
+					</textElement>
+				<text><![CDATA[Unterschrift, Datum]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="93"
+						width="80"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[Zentrale Kunde]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="113"
+						width="80"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[Kundennummer]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="133"
+						width="80"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[Auftragsdatum]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="153"
+						width="80"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[PLZ, Ort]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="173"
+						width="80"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[Ansprechpartner]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="193"
+						width="80"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[Telefon-Nr.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="251"
+						y="113"
+						width="78"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[Vertragsnummer]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="329"
+						y="116"
+						width="27"
+						height="11"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" size="6"/>
+					</textElement>
+				<text><![CDATA[(Kunde)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="251"
+						y="133"
+						width="78"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[Vertragsnummer]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="330"
+						y="136"
+						width="27"
+						height="11"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" size="6"/>
+					</textElement>
+				<text><![CDATA[(DTAG)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="251"
+						y="172"
+						width="80"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[Stelle]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="251"
+						y="193"
+						width="80"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[Fax-Nr.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="252"
+						width="137"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[Name, Vorname]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="272"
+						width="137"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[Straße, Hausnummer]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="291"
+						width="137"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[PLZ, Ort]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="312"
+						width="146"
+						height="37"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Small" size="10"/>
+					</textElement>
+				<text><![CDATA[eindeutige Beschreibung der Lage
+der 1. TAE (Lage der Wohnung,
+Etage, Raum, etc.)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="354"
+						width="137"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[Leitungsbezeichnung]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="374"
+						width="137"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[bisherige Rufnummer]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="417"
+						width="145"
+						height="34"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Small" size="10"/>
+					</textElement>
+				<text><![CDATA[Angaben zum ÜVt-Standort
+(ONKZ, AsB, PLZ, Ort, Strasse,
+Hausnummer)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="2"
+						y="535"
+						width="112"
+						height="17"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[CuDA-Kündigung zum]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="115"
+						y="495"
+						width="346"
+						height="17"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[mit hochbitratiger Nutzung]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="115"
+						y="514"
+						width="346"
+						height="17"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[mit Zwischenregenerator (sofern zum Zeitpunkt der Nachfrage vorhanden)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="24"
+						y="495"
+						width="53"
+						height="17"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[2 - Draht]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="24"
+						y="514"
+						width="53"
+						height="17"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[4 - Draht]]></text>
+				</staticText>
+				<rectangle>
+					<reportElement
+						x="6"
+						y="498"
+						width="11"
+						height="11"
+						key="rectangle"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</rectangle>
+				<rectangle>
+					<reportElement
+						x="6"
+						y="517"
+						width="11"
+						height="11"
+						key="rectangle"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</rectangle>
+				<rectangle>
+					<reportElement
+						x="95"
+						y="498"
+						width="11"
+						height="11"
+						key="rectangle"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</rectangle>
+				<rectangle>
+					<reportElement
+						x="95"
+						y="517"
+						width="11"
+						height="11"
+						key="rectangle"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</rectangle>
+				<staticText>
+					<reportElement
+						x="360"
+						y="172"
+						width="121"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<text><![CDATA[AM]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="155"
+						y="416"
+						width="32"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<text><![CDATA[ONKZ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="238"
+						y="434"
+						width="35"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Straße]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="397"
+						y="434"
+						width="43"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<text><![CDATA[HausNr.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="325"
+						y="416"
+						width="21"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<text><![CDATA[Ort]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="240"
+						y="416"
+						width="28"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<text><![CDATA[PLZ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="155"
+						y="434"
+						width="32"
+						height="16"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<text><![CDATA[AsB]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="94"
+						y="133"
+						width="149"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{CB_BESTELLT_AM} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[""+new SimpleDateFormat("dd.MM.yyyy").format(new java.util.Date())]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="363"
+						y="113"
+						width="119"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{VBZ} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{VBZ}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="362"
+						y="133"
+						width="119"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{CB_VTRNR} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CB_VTRNR}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="93"
+						y="173"
+						width="149"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{BEARBEITER} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{BEARBEITER}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="154"
+						y="253"
+						width="329"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{ES_NAME} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{ES_NAME}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="153"
+						y="272"
+						width="329"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{ES_ENDSTELLE} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{ES_ENDSTELLE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="154"
+						y="291"
+						width="329"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{ES_PLZ_ORT} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{ES_PLZ_ORT}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="153"
+						y="354"
+						width="329"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{CB_LBZ} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CB_LBZ}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="270"
+						y="416"
+						width="45"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{HVT_PLZ} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{HVT_PLZ}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="276"
+						y="434"
+						width="117"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{HVT_STRASSE} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{HVT_STRASSE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="443"
+						y="434"
+						width="43"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{HVT_HAUSNR} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{HVT_HAUSNR}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="190"
+						y="434"
+						width="46"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{HVT_ASB} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[""+$F{HVT_ASB}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="347"
+						y="416"
+						width="138"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{HVT_ORT} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{HVT_ORT}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="190"
+						y="416"
+						width="46"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{HVT_ONKZ} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{HVT_ONKZ}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="2"
+						y="556"
+						width="46"
+						height="17"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default"/>
+					</textElement>
+				<text><![CDATA[Wird neu:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="93"
+						y="193"
+						width="149"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{PHONE} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{PHONE}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="360"
+						y="193"
+						width="121"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{FAX} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{FAX}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="94"
+						y="93"
+						width="386"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{CK_NAME} != null) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CK_NAME}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="94"
+						y="113"
+						width="148"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{CK_KUNDEN_NR} != null) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{CK_KUNDEN_NR}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="94"
+						y="153"
+						width="388"
+						height="16"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{CK_ORT} != null) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Default" isBold="true"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[""+$F{CK_PLZ}+" "+$F{CK_ORT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

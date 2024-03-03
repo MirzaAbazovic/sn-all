@@ -1,0 +1,7 @@
+<div *ngFor="let field of field.fieldGroup; let i = index;" class="repeat-field mat-elevation-z2 mb-3">
+  <formly-field class="mat-form-field" [field]="field"></formly-field>
+  <button mat-icon-button (click)="remove(i)" class="remove-button">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
+<button class="mt-10 ml-3" mat-raised-button color="primary" (click)="add()" type="button">Add</button>

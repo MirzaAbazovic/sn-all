@@ -1,0 +1,41 @@
+@startuml
+
+actor       TMF_USER
+participant Adlatus_ROM_API
+participant Resource_Catalog
+database    TMF_INBOX_DB
+participant TMF_HUB
+participant Adlatus_Order_Processor
+database Adlatus_DB
+participant Agreement_API
+participant Party_Mgm_API
+database WITA_OUTBOX_DB
+participant Adlatus_WITA_API
+activate Adlatus_ROM_API
+TMF_USER -> Adlatus_ROM_API : Create order 
+group receive TMF order
+Adlatus_ROM_API <-> Resource_Catalog: Get Catalog
+Adlatus_ROM_API -> Adlatus_ROM_API : Validate order
+Adlatus_ROM_API -> TMF_INBOX_DB : Persist order as ACK
+note right: ACKNOWLEDGED,\nIN_PROGRESS,\nFINISHED
+Adlatus_ROM_API -> TMF_USER: Created (201)
+Adlatus_ROM_API -> TMF_HUB: notify subscribers OrderCreatedEvent
+end
+deactivate Adlatus_ROM_API
+...n seconds later...
+Adlatus_Order_Processor -> TMF_INBOX_DB: pull acknowledged
+Adlatus_Order_Processor -> Adlatus_DB: persist order
+Adlatus_Order_Processor -> TMF_INBOX_DB: set IN_PROGRESS
+group create initial WITA message
+Adlatus_Order_Processor -> Agreement_API: resolve agreement
+Adlatus_Order_Processor -> Party_Mgm_API: resolve party
+Adlatus_Order_Processor -> Adlatus_Order_Processor: create outbox message
+Adlatus_Order_Processor -> WITA_OUTBOX_DB: persist outgoing message as CREATED
+note right: CREATED,\nSENT
+end
+...n seconds later...
+Adlatus_WITA_API -> WITA_OUTBOX_DB: pull created
+Adlatus_WITA_API -> DTAG: Send init WITA msg
+DTAG -> Adlatus_WITA_API: ACK
+Adlatus_WITA_API -> WITA_OUTBOX_DB: udate to SENT
+@enduml

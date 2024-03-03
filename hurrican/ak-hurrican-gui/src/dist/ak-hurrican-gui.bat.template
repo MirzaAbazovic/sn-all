@@ -1,0 +1,64 @@
+@echo off
+SETLOCAL
+rem #######################################################
+rem
+rem Start-Skript fuer die Hurrican-GUI
+rem
+rem Ueber den Parameter %1 kann definiert werden, ob die
+rem Applikation im Produktiv- oder Debug-Modus gestartet
+rem werden soll.
+rem Moegliche Werte:
+rem    d - debug
+rem    alles andere wird als javaw-Modus erkannt
+rem
+rem #######################################################
+title=Hurrican II
+
+set HURRICAN_ROOT=%~dp0
+FOR /D %%G in ("jre*") DO SET LOCAL_HURRICAN_JAVA_HOME=%%G
+
+IF EXIST %LOCAL_HURRICAN_JAVA_HOME%\bin\java.exe (
+   SET HURRICAN_JAVA_HOME=%LOCAL_HURRICAN_JAVA_HOME%
+   goto classpath
+)
+
+IF NOT EXIST %HURRICAN_JAVA_HOME%\bin\java.exe (
+   goto nojava
+)
+
+:classpath
+set CLASSPATH=%HURRICAN_ROOT%\hurrican-gui.jar;%HURRICAN_ROOT%\config
+
+@echo on
+set APP_MODUS=%1
+rem app-modus: %APP_MODUS%
+
+IF "%APP_MODUS%" EQU "d" (
+  rem starte hurrican-gui im Debug-Modus
+  %HURRICAN_JAVA_HOME%\bin\java -cp %CLASSPATH% -Xms64m -Xmx512m -Duse.config=${use.config} -Duser.dir=%HURRICAN_ROOT% -Djava.library.path=%HURRICAN_ROOT%/3rdparty -Djava.security.policy=config/ak.java.policy de.augustakom.hurrican.gui.system.HurricanStart
+  goto shutdown
+) ELSE (
+  rem starte hurrican-gui im javaw-Modus
+  start %HURRICAN_JAVA_HOME%\bin\javaw -cp %CLASSPATH% -Xms64m -Xmx512m -Duse.config=${use.config} -Duser.dir=%HURRICAN_ROOT% -Djava.library.path=%HURRICAN_ROOT%/3rdparty -Djava.security.policy=config/ak.java.policy de.augustakom.hurrican.gui.system.HurricanStart
+  goto done
+)
+
+GOTO shutdown
+
+:nojava
+@echo on
+rem System-Variable HURRICAN_JAVA_HOME ist nicht gesetzt!
+pause
+
+:shutdown
+ENDLOCAL
+exit
+
+:done
+@echo.
+@echo *****************************
+@echo **
+@echo ** Hurrican wird gestartet...
+@echo **
+@echo *****************************
+@ping 127.0.0.1 -n 8 -w 1000 >nul

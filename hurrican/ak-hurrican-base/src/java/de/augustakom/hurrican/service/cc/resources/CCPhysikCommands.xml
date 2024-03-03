@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer ServiceCommand-Objekte im CustomerCare-Bereich.
+Die Datei wird von CCServices.xml importiert!
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+     default-lazy-init="true">
+
+    <context:annotation-config />
+    <context:component-scan base-package="de.augustakom.hurrican.service.cc.impl.command.physik"/>
+
+    <!-- Command-Definition, um Rangierungen zu generieren. -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.CreateRangierungenCommand"
+        class="de.augustakom.hurrican.service.cc.impl.command.CreateRangierungenCommand"
+        scope="prototype">
+        <property name="rangierungDAO" ref="rangierungDAO"/>
+    </bean>
+
+    <!-- Command-Definition, um eine Standortadresse von Taifun auf eine Hurrican-Endstelle zu uebernehmen. -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.CopyAPAddressCommand"
+        class="de.augustakom.hurrican.service.cc.impl.command.CopyAPAddressCommand"
+        scope="prototype">
+    </bean>
+
+    <!-- Command-Definition, um IP Adressen zu uebernehmen. -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.ipaddress.MoveIpAddressesCommand"
+        class="de.augustakom.hurrican.service.cc.impl.command.ipaddress.MoveIpAddressesCommand"
+        scope="prototype">
+    </bean>
+
+    <!-- Command-Definition, um IP Adressen zu uebernehmen (inklusive Nachfrage via ServiceCallback). -->
+    <bean id="de.augustakom.hurrican.service.cc.impl.command.ipaddress.AskAndMoveIpAddressesCommand"
+        class="de.augustakom.hurrican.service.cc.impl.command.ipaddress.AskAndMoveIpAddressesCommand"
+        scope="prototype">
+    </bean>
+
+</beans>

@@ -1,0 +1,44 @@
+{
+  "agreementType": "ugovor",
+  "name": "ugovor",
+  "agreementItem": [
+    {
+      "productOffering": [
+        {
+          "name": "VDSL SA 250 Mbit/s SV"
+        },
+        {
+          "name": "VDSL SA 500 Mbit/s SV"
+        }
+      ],
+      "termOrCondition": []
+    }
+  ],
+  "agreementPeriod": {
+    "endDateTime": "2024-12-27T23:00:00.000Z",
+    "startDateTime": "2023-12-09T23:00:00.000Z"
+  },
+  "characteristic": [
+    {
+      "name": "interfaceType",
+      "valueType": "string",
+      "value": "WITA"
+    },
+    {
+      "name": "interfaceVersion",
+      "valueType": "number",
+      "value": "15"
+    },
+    {
+      "name": "customerNumber",
+      "valueType": "string",
+      "value": "5920312290"
+    },
+    {
+      "name": "type",
+      "valueType": "string",
+      "value": "XDSL"
+    }
+  ],
+  "engagedParty": []
+}

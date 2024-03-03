@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Administration der HW-Router.
+-->
+<sf>
+       
+	<Label name="rack"><text>Rack:</text></Label>
+	<ReferenceField name="rack">
+		<tooltip>Name des Racks</tooltip>
+		<id.property>id</id.property>
+		<name.property>anlagenBez</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.hardware.HWRack</reference.class>
+	</ReferenceField>
+	
+    <Label name="type"><text>Router-Typ:</text></Label>
+	 <TextField name="type">
+    	<tooltip>Typ des Routers</tooltip>
+    	<columns>20</columns>
+    </TextField>
+		
+    <Label name="number"><text>Seriennummer:</text></Label>
+    <TextField name="number">
+    	<tooltip>Seriennummer des Routers</tooltip>
+    	<columns>20</columns>
+    </TextField>
+  
+    <Label name="gueltig.von"><text>Gültig von:</text></Label>    
+    <DateComponent name="gueltig.von">
+        <tooltip>Gültigkeit</tooltip>
+    </DateComponent>
+    
+    <Label name="gueltig.bis"><text>Gültig bis:</text></Label>    
+    <DateComponent name="gueltig.bis">
+        <tooltip>Gültigkeit</tooltip>
+    </DateComponent>
+	
+</sf>

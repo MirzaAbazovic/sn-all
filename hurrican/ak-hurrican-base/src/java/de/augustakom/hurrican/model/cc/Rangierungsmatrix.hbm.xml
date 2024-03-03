@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Rangierungsmatrix
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Rangierungsmatrix" table="T_RANGIERUNGSMATRIX">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_RANGIERUNGSMATRIX_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="produktId" column="PROD_ID" type="long" not-null="true"/>
+        <property name="uevtId" column="UEVT_ID" type="long" not-null="true"/>
+        <property name="produkt2PhysikTypId" column="PRODUKT2PHYSIKTYP_ID" type="long" not-null="true"/>
+        <property name="priority" column="PRIORITY" type="integer"/>
+        <property name="hvtStandortIdZiel" column="HVT_STANDORT_ID_ZIEL" type="long"/>
+        <property name="projektierung" column="PROJEKTIERUNG" type="boolean"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date" not-null="true"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date" not-null="true"/>
+        <property name="bearbeiter" column="BEARBEITER" type="string" not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

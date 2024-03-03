@@ -1,0 +1,1 @@
+alter table t_produkt_mapping add PRIORITY NUMBER(10);

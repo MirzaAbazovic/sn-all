@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur graphischen Darstellung
+der UEVT-Belegung.
+-->
+<sf>
+    
+    <ToggleButton name="leisten.akom">
+        <text>Leisten AKom</text>
+        <tooltip>Zeigt die Leisten der AKom-Seite an</tooltip>
+    </ToggleButton>
+    
+    <ToggleButton name="leisten.carrier">
+        <text>Leisten Carrier</text>
+        <tooltip>Zeigt die Leisten der Carrier-Seite an</tooltip>
+    </ToggleButton>
+    
+</sf>

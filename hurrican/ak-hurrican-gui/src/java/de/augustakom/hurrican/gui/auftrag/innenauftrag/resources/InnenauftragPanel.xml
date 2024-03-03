@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Innenauftrags-Panel.
+-->
+<sf>
+
+    <Label name="ia.nummer"><text>Innenauftrags-Nr.:</text></Label>
+    <TextField name="ia.nummer">
+        <tooltip>die Innenauftragsnummer</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="ia.projectlead"><text>Projektleiter:</text></Label>
+    <TextField name="ia.projectlead">
+        <tooltip>der Projektleiter</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="ia.kostenstelle"><text>Kostenstelle:</text></Label>
+    <TextField name="ia.kostenstelle">
+        <tooltip>Kostenstelle</tooltip>
+        <columns>20</columns>
+        <maxchars>255</maxchars>
+    </TextField>
+
+    <Label name="ia.projektbez">
+        <text>Projektbez.:</text>
+    </Label>
+    <TextField name="ia.projektbez">
+        <tooltip>Projektbezeichnung</tooltip>
+        <columns>20</columns>
+        <maxchars>64</maxchars>
+    </TextField>
+
+    <Button name="add.budget">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Erstellt ein neues Budget für den Innenauftrag</tooltip>
+    </Button>
+
+    <Button name="print.budget">
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <tooltip>Erstellt einen Budget-Report</tooltip>
+    </Button>
+
+    <Button name="mail.budget">
+        <icon>de/augustakom/hurrican/gui/images/message.gif</icon>
+        <tooltip>Erstellt einen Budget-Report und verschickt diesen als E-Mail</tooltip>
+    </Button>
+
+    <Button name="close.budget">
+        <text>Schliessen</text>
+        <tooltip>Schlieest das Budget - keine weiteren Erfassungen mehr moeglich</tooltip>
+    </Button>
+
+    <Button name="cancel.budget">
+        <text>Storno</text>
+        <tooltip>Storniert das Budget - keine weiteren Erfassungen mehr moeglich</tooltip>
+    </Button>
+
+    <Button name="add.material.withdrawl">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Erstellt eine neue Materialentnahme</tooltip>
+    </Button>
+
+    <Button name="print.material.withdrawl">
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <tooltip>Erstellt einen Report für die Materialentnahme</tooltip>
+    </Button>
+
+    <Button name="add.article">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Fügt der Materialentnahme einen weiteren Artikel hinzu</tooltip>
+    </Button>
+
+    <Button name="remove.article">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Entfernt den Artikel aus der Materialentnahme</tooltip>
+    </Button>
+
+    <Button name="import.article">
+        <icon>de/augustakom/hurrican/gui/images/import.gif</icon>
+        <tooltip>Artikelliste importieren (erwartete Daten im CSV-File: Mat-Nr;Artikel;Text;Quantity;Value)</tooltip>
+    </Button>
+
+    <Text name="budgets">Budgets</Text>
+    <Text name="material.withdrawls">Materialentnahmen</Text>
+
+    <Label name="assigned.articles"><text>zugeordnete Artikel:</text></Label>
+
+    <!-- EMail Subject/Body, wenn ein Budget geschlossen wird -->
+    <Text name="close.budget.mail.subject">Innenauftrag {0} geschlossen</Text>
+    <Text name="close.budget.mail.body">Das Budget zum Innenauftrag {0} wurde geschlossen.
+Der Projektaufwand wurde mit der Kategorie {1} festgelegt.
+Arbeiten wurden an eine externe Firma vergeben: {2}
+Bitte Rest-Budget frei geben.
+
+Geplanter Projektabschluss: {5}
+
+Gruß
+{3} {4}
+</Text>
+
+    <Text name="mnet.stunden.title">Projektaufwand:</Text>
+    <Text name="mnet.stunden.message">Bitte legen Sie den Projektaufwand mit der Kategorie 1,2 oder 3 fest</Text>
+
+    <Text name="work.extern.title">Arbeit durch extern?</Text>
+    <Text name="work.extern.message">Wurden Arbeiten an externe Firmen (z.B. SWM) vergeben?</Text>
+    <Text name="work.extern.yes">ja</Text>
+    <Text name="work.extern.no">nein</Text>
+
+    <Text name="close.enhancement.budget.mail.body">Das Budget für die HVT-Erweiterung (Innenauftrag) {0} wurde geschlossen.
+Der Projektaufwand wurde mit der Kategorie {1} festgelegt.
+Bitte Rest-Budget frei geben.
+
+Gruß
+{2} {3}
+</Text>
+
+    <!-- EMail Subject/Body, wenn ein Budget storniert wird -->
+    <Text name="cancel.budget.mail.subject">Innenauftrag {0} storniert</Text>
+    <Text name="cancel.budget.mail.body">Das Budget zum Innenauftrag {0} wurde storniert.
+Bitte Budget wieder frei geben.
+
+Gruß
+{1} {2}
+</Text>
+
+    <Text name="mail.budget.subject">Budgetantrag für {0}</Text>
+    <Text name="mail.budget.body">Liebe Kollegen,
+
+bitte für die im Betreff genannte Verbindung den Budgetantrag im Anhang bearbeiten.
+
+Mit freundlichen Grüßen
+
+{0} {1}</Text>
+
+</sf>

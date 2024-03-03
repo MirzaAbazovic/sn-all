@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema  xmlns:ns0="http://mnet.de/hurricanweb/netid/customer/"
+            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://mnet.de/hurricanweb/netid/customer/">
+
+    <xs:element name="GetCustomerByIpRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="netId" type="xs:long" />
+                <xs:element name="date" type="xs:dateTime" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="CustomerOrderCombination">
+        <xs:sequence>
+            <xs:element name="customerNo" type="xs:long" />
+            <xs:element name="orderNo" type="xs:long" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:element name="GetCustomerByIpResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="customerOrderCombination" type="ns0:CustomerOrderCombination"
+                    maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

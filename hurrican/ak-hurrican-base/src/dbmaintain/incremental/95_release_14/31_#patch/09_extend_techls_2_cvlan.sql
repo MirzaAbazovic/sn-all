@@ -1,0 +1,4 @@
+alter table T_TECH_LEISTUNG_2_CVLAN add REMOVE_LOGIC CHAR(1);
+update T_TECH_LEISTUNG_2_CVLAN set REMOVE_LOGIC = 0;
+
+alter table T_TECH_LEISTUNG_2_CVLAN modify REMOVE_LOGIC not null;

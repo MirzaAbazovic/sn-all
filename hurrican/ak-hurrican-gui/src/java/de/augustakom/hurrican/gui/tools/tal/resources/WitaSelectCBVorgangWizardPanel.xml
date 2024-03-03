@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GUI-Definitionen fuer die Auswahl des auszufuehrenden CB-Vorgangs (z.B. Neubestellung). -->
+<sf>
+
+    <Label name="sub.title.wbci">
+        <text>Vorabstimmung</text>
+    </Label>
+
+    <Button name="create.va.kue.mrn">
+        <text>Kündigung mit{linebreak}Rufnummerportierung</text>
+        <tooltip>Vorabstimmung 'Kündigung mit Rufnummermitnahme'</tooltip>
+    </Button>
+
+    <Button name="create.va.kue.orn">
+        <text>Kündigung ohne{linebreak}Rufnummerportierung</text>
+        <tooltip>Vorabstimmung 'Kündigung ohne Rufnummermitnahme'</tooltip>
+    </Button>
+
+    <Button name="create.va.kue.rrnp">
+        <text>RRNP ohne Kündigung{linebreak}und nachträgliche Portierung</text>
+        <tooltip>Vorabstimmung 'Portierung aus laufenden Verträgen, die nicht gekündigt werden ODER nachträgliche Portierung bei gekündigten/abgeschalteten Verträgen'</tooltip>
+    </Button>
+
+    <Label name="sub.title">
+        <text>Leitungsbestellung WITA/intern</text>
+    </Label>
+
+    <Text name="no.selection">Es muss ein Vorgangstyp für die TAL-Bestellung ausgewählt werden.</Text>
+    <Text name="no.dtag.usecase">Es muss ein DTAG-Geschäftsfall ausgewählt werden.</Text>
+    <Text name="lbz.96q.not.allowed">Elektr. Nutzungsänderungen für 96Q Leitungen sind nicht erlaubt!</Text>
+
+    <Label name="cb.vorgang.typ">
+        <text>Typ:</text>
+    </Label>
+    <ReferenceField name="cb.vorgang.typ">
+        <tooltip>Grundsätzlicher Vorgangstyp für die el. TAL-Bestellung</tooltip>
+        <columns>35</columns>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="gf.typ.intern">
+        <text>interner Geschäftsfall:</text>
+    </Label>
+    <ReferenceField name="gf.typ.intern">
+        <tooltip>optionale Angabe eines internen Geschäftsfalls zur Steuerung des Kundenanschreibens (sofern Vorgang automatisiert verarbeitet wrid)</tooltip>
+        <columns>35</columns>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="dtag.usecase">
+        <text>DTAG-Geschäftsfall:</text>
+    </Label>
+    <ReferenceField name="dtag.usecase">
+        <tooltip>Auswahl des DTAG-Geschäftsfalles für die el. TAL-Bestellung</tooltip>
+        <id.property>id</id.property>
+        <name.property>vorfall</name.property>
+        <reference.class>de.augustakom.hurrican.model.exmodules.tal.TALVorfall</reference.class>
+    </ReferenceField>
+
+    <Label name="klammerung">
+        <text>DTAG TAL-Klammerung:</text>
+    </Label>
+    <CheckBox name="klammerung">
+        <tooltip>TAL-Klammerung bei DTAG</tooltip>
+    </CheckBox>
+
+    <Label name="vierDraht">
+        <text>4-Draht (96X):</text>
+    </Label>
+    <CheckBox name="vierDraht">
+        <tooltip>4-Draht-Bestellung (96X) bei DTAG</tooltip>
+    </CheckBox>
+
+    <Label name="vormieter">
+        <text>Vormieter (nur bei Neubestellung):</text>
+    </Label>
+    <CheckBox name="vormieter">
+        <tooltip>Haken setzen, wenn Vormieter-Daten gesetzt/verifiziert im TAL-Wizard angezeigt werden sollen</tooltip>
+    </CheckBox>
+
+    <Label name="test.am.user"><text>Benutzer AM (NUR FUER TESTZWECKE):</text></Label>
+    <TextField name="test.am.user">
+        <tooltip>Angabe des Test-Cases fuer den Simulator</tooltip>
+    </TextField>
+
+    <Text name="no.test.am.user">Es muss ein Benutzer AM eingegeben werden, um das richtige Kriterium im WITA-Simulator zu addressieren.</Text>
+    <Text name="incorrect.test.am.user">"{0}" ist kein gültiges Kriterium, um im WITA-Simulator die gewünschten Rückmeldungen zu erhalten. Stattdessen wird Ihre gestellte TAL-Anfrage nur mit einer TEQ quittiert. Wollen Sie trotzdem fortfahren?</Text>
+</sf>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Rufnummern-Panel.
+-->
+<sf>
+    <Label name="telefonbuch"><text>Telefonbucheintrag erledigt:</text></Label>
+    <ComboBox name="telefonbuch">
+        <tooltip>Angabe, ob die Rufnummern ins Telefonbuch eingetragen wurden</tooltip>
+    </ComboBox>
+
+    <Label name="inverssuche"><text>Inverssuche freigeschaltet:</text></Label>
+    <ComboBox name="inverssuche">
+        <tooltip>Angabe, ob die Rufnummern für die Inverssuche freigegeben sind</tooltip>
+    </ComboBox>
+
+    <Button name="add.dn">
+        <icon>de/augustakom/hurrican/gui/images/plus.gif</icon>
+        <tooltip>Leistungen zu einer Rufnummer anlegen</tooltip>
+    </Button>
+
+    <Button name="del.dn">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Leistungen kündigen</tooltip>
+    </Button>
+</sf>

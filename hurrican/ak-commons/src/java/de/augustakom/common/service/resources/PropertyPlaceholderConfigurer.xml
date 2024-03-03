@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer den CustomerCare-Bereich der Hurrican-Applikation.
+In dieser Datei werden lediglich andere XML-Dateien importiert, in denen
+die eigentlichen Services-, DAO- und DataAccess-Definitionen etc. hinterlegt sind.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+
+    <!--
+    Diese Definition veranlasst das Spring-Framework dazu, Platzhalter - ${...} - durch
+    gleichnamige System-Properties zu ersetzen.
+    -->
+    <bean id="placeholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
+</beans>

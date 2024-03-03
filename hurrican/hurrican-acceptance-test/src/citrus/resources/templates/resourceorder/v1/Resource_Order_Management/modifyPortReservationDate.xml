@@ -1,0 +1,5 @@
+<v1:modifyPortReservationDate xmlns:v1="http://www.mnet.de/esb/cdm/Resource/ResourceOrderManagementService/v1">
+    <v1:orderId>${orderId}</v1:orderId>
+    <v1:lineId>${lineId}</v1:lineId>
+    <v1:desiredExecutionDate>${modifyDate}</v1:desiredExecutionDate>
+</v1:modifyPortReservationDate>

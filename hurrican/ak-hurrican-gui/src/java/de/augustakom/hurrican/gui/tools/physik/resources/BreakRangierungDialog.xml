@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel, um eine Kündigung rückgängig zu machen.
+-->
+<sf>
+
+    <Text name="title">Rangierung aufbrechen</Text>
+
+    <Label name="header"><text>Selektion der zu entfernenden Ports:</text></Label>
+
+    <Label name="eq.in"><text>EQ-IN:</text></Label>
+    <CheckBox name="eq.in">
+        <tooltip>EQ-IN Port wird von Rangierung entfernt</tooltip>
+    </CheckBox>
+
+    <Label name="eq.out"><text>EQ-OUT:</text></Label>
+    <CheckBox name="eq.out">
+        <tooltip>EQ-OUT Port wird von Rangierung entfernt</tooltip>
+    </CheckBox>
+
+    <Label name="eq.in.add"><text>EQ-IN Zusatz:</text></Label>
+    <CheckBox name="eq.in.add">
+        <tooltip>2. EQ-IN Port wird von Rangierung entfernt</tooltip>
+    </CheckBox>
+
+    <Label name="eq.out.add"><text>EQ-OUT Zusatz:</text></Label>
+    <CheckBox name="eq.out.add">
+        <tooltip>2. EQ-OUT Port wird von Rangierung entfernt</tooltip>
+    </CheckBox>
+
+</sf>

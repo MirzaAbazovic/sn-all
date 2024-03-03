@@ -1,0 +1,1 @@
+alter table T_WBCI_REQUEST add RECEIVED_AT TIMESTAMP(6);

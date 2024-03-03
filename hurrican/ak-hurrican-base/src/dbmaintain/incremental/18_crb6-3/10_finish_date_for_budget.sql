@@ -1,0 +1,1 @@
+alter table T_IA_BUDGET add PLANNED_FINISH_DATE DATE;

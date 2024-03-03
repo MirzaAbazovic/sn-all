@@ -1,0 +1,45 @@
+{
+  "name": "L2BSA",
+  "resourceSpecCharacteristic": [
+    {
+      "name": "downstream",
+      "resourceSpecCharacteristicValue": [
+        {
+          "unitOfMeasure": "Mbit/s",
+          "valueType": "integer",
+          "value": "100"
+        },
+        {
+          "unitOfMeasure": "Mbit/s",
+          "valueType": "integer",
+          "value": "200"
+        },
+        {
+          "unitOfMeasure": "Mbit/s",
+          "valueType": "integer",
+          "value": "500"
+        }
+      ]
+    },
+    {
+      "name": "upstream",
+      "resourceSpecCharacteristicValue": [
+        {
+          "unitOfMeasure": "Mbit/s",
+          "valueType": "integer",
+          "value": "50"
+        },
+        {
+          "unitOfMeasure": "Mbit/s",
+          "valueType": "integer",
+          "value": "150"
+        },
+        {
+          "unitOfMeasure": "Mbit/s",
+          "valueType": "integer",
+          "value": "300"
+        }
+      ]
+    }
+  ]
+}

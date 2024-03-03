@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Beantwortung einer Terminverschiebung
+-->
+<sf>
+
+  <Text name="dialog.title">Erledigtmeldung (ERLM) zur Terminverschiebung: %s</Text>
+
+  <Label name="dialog.info.label">
+    <text>Achtung:</text>
+  </Label>
+
+  <Label name="dialog.info.text">
+    <text>Die Terminverschiebung muss manuell in Taifun/Hurrican nachgepflegt werden.</text>
+  </Label>
+
+  <Label name="old.termin"><text>Aktuell bestätigter Termin:</text></Label>
+  <DateComponent name="old.termin">
+    <tooltip>Aktuell bestätigter Kundenwunschtermin</tooltip>
+    <format type="date">dd.MM.yyyy</format>
+  </DateComponent>
+
+  <Label name="new.termin"><text>Neuer Kundenwunschtermin:</text></Label>
+  <DateComponent name="new.termin">
+    <tooltip>Neuer Kundenwunschtermin</tooltip>
+    <format type="date">dd.MM.yyyy</format>
+  </DateComponent>
+
+  <Text name="send.txt">TV mit ERLM bestätigen</Text>
+  <Text name="send.tooltip">Erledigtmeldung (ERLM) zur Terminverschiebung wird versendet.</Text>
+
+  <Text name="cancel.txt">Abbrechen</Text>
+  <Text name="cancel.tooltip">Schließt den Dialog ohne eine Erledigtmeldung (ERLM) zu versenden.</Text>
+
+</sf>

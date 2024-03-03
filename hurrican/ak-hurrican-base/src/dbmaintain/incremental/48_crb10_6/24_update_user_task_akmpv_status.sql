@@ -1,0 +1,2 @@
+
+update T_USER_TASK set AKM_PV_STATUS='AKM_PV_EMPFANGEN' where AKM_PV_STATUS is null;

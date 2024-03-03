@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Beantwortung einer Abbruchmeldung
+-->
+<sf>
+
+    <Text name="dialog.title">Abbruchmeldung (ABBM) zur Vorabstimmung: %s</Text>
+
+    <Label name="details.label">
+        <text>Details zur Abbruchmeldung</text>
+    </Label>
+
+    <Label name="sonstiges.label">
+        <text>Sonstiger Ablehnungsgrund:</text>
+    </Label>
+
+    <TextField name="sonstiges.text">
+        <columns>60</columns>
+        <maxchars>255</maxchars>
+    </TextField>
+
+    <Label name="sonstiges.exclusiv.label">
+        <text>Exklusiver Ablehnungsgrund:</text>
+    </Label>
+
+    <TextField name="sonstiges.exclusiv.grund">
+        <columns>60</columns>
+        <maxchars>255</maxchars>
+    </TextField>
+
+    <Text name="send.txt">ABBM senden</Text>
+    <Text name="send.tooltip">Abbruchmeldung zur Vorabstimmung wird versendet.</Text>
+
+    <Text name="cancel.txt">Abbrechen</Text>
+    <Text name="cancel.tooltip">Schließt den Dialog ohne eine Abbruchmeldung (ABBM) zu versenden.</Text>
+
+</sf>

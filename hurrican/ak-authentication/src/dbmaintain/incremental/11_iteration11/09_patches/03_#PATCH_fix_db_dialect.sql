@@ -1,0 +1,1 @@
+UPDATE DB SET HIBERNATE_DIALECT = REPLACE(HIBERNATE_DIALECT, 'net.sf.hibernate.dialect.MySQLDialect', 'org.hibernate.dialect.MySQLDialect');

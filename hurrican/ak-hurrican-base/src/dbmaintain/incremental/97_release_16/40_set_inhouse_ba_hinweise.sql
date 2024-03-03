@@ -1,0 +1,1 @@
+update T_TECH_LEISTUNG set BA_HINWEIS = 'Inhouse' where id in (600, 601, 602);

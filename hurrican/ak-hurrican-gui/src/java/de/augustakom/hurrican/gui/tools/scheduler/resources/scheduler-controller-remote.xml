@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="placeholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
+
+    <bean id="rmiSchedulerConnectClient"
+        class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+        <property name="serviceUrl" value="rmi://${hurricanweb.host}:${hurricanweb.rmi.schedulerConnect.port}/schedulerConnect" />
+        <property name="serviceInterface" value="de.mnet.common.scheduler.IRMISchedulerConnect" />
+    </bean>
+
+    <bean id="rmiSchedulerListenerServer" class="de.augustakom.hurrican.gui.tools.scheduler.controller.AKSchedulerListener">
+    </bean>
+    <bean id="rmiSchedulerListener" class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <property name="registryPort" value="2111" />
+        <property name="serviceName" value="schedulerListener" />
+        <property name="service" ref="rmiSchedulerListenerServer" />
+        <property name="serviceInterface" value="org.quartz.SchedulerListener" />
+    </bean>
+
+    <bean id="rmiJobListenerServer" class="de.augustakom.hurrican.gui.tools.scheduler.controller.AKJobListener">
+    </bean>
+    <bean id="rmiJobListener" class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <property name="registryPort" value="2111" />
+        <property name="serviceName" value="jobListener" />
+        <property name="service" ref="rmiJobListenerServer" />
+        <property name="serviceInterface" value="org.quartz.JobListener" />
+    </bean>
+
+    <bean id="rmiTriggerListenerServer" class="de.augustakom.hurrican.gui.tools.scheduler.controller.AKTriggerListener">
+    </bean>
+    <bean id="rmiTriggerListener" class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <property name="registryPort" value="2111" />
+        <property name="serviceName" value="triggerListener" />
+        <property name="service" ref="rmiTriggerListenerServer" />
+        <property name="serviceInterface" value="org.quartz.TriggerListener" />
+    </bean>
+
+</beans>

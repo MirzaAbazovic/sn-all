@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:tns="http://www.mnet.de/esb/cdm/Customer/CustomerService/v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:jms="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  name="CustomerService"
+                  targetNamespace="http://www.mnet.de/esb/cdm/Customer/CustomerService/v1">
+   <wsdl:documentation>Version 1.0</wsdl:documentation>
+   <wsdl:types>
+      <xs:schema xmlns="http://www.mnet.de/esb/cdm/Customer/CustomerService/v1"
+                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                 targetNamespace="http://www.mnet.de/esb/cdm/Customer/CustomerService/v1"
+                 version="1.1"
+                 elementFormDefault="qualified"
+                 attributeFormDefault="unqualified">
+         <xs:element name="addCommunication">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="customerId" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>Id of the customer the communication event will be added</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="context" minOccurs="0">
+                     <xs:annotation>
+                        <xs:documentation>additional context information about the customer communication</xs:documentation>
+                     </xs:annotation>
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element name="contractId" type="xs:string" minOccurs="0">
+                              <xs:annotation>
+                                 <xs:documentation>Contract id of the customer if the communication happend in context of a certain contract.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element name="time" type="xs:dateTime">
+                     <xs:annotation>
+                        <xs:documentation>Date and time the communicaiton happend</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="type" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>Type of customer communication. Currently known and allowed values are: Mail, Phone, SMS, WITA. For a complete list of currently known values please contact the service owner.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="reason" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>The reason for the customer communication. For a complete list of currently known and allowed values please contact the service owner.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="notes" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>Additional remarks about the communication.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:schema>
+   </wsdl:types>
+   <wsdl:service name="CustomerService">
+      <wsdl:port name="CustomerServiceJMS" binding="tns:CustomerServiceJMSBinding">
+         <soap:address location="mnet.Customer.op.cdm.src.v1.CustomerService"/>
+         <jms:connectionFactory>QueueConnectionFactory</jms:connectionFactory>
+         <jms:targetAddress destination="queue">mnet.Customer.op.cdm.src.v1.CustomerService</jms:targetAddress>
+      </wsdl:port>
+      <wsdl:port name="CustomerServiceHTTP" binding="tns:CustomerServiceHTTPBinding">
+         <soap:address location="http://@domain.loadbalancer.url@:12080/esb/Customer/CustomerService/v1"/>
+      </wsdl:port>
+   </wsdl:service>
+   <wsdl:portType name="CustomerService">
+      <wsdl:operation name="addCommunication">
+         <wsdl:input message="tns:addCommunication"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="CustomerServiceJMSBinding" type="tns:CustomerService">
+      <soap:binding style="document"
+                    transport="http://www.tibco.com/namespaces/ws/2004/soap/binding/JMS"/>
+      <jms:binding messageFormat="Text"/>
+      <wsdl:operation name="addCommunication">
+         <soap:operation style="document" soapAction="/CustomerService/addCommunication"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:binding name="CustomerServiceHTTPBinding" type="tns:CustomerService">
+      <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="addCommunication">
+         <soap:operation style="document" soapAction="/CustomerService/addCommunication"/>
+         <wsdl:input>
+            <soap:body use="literal" parts="in"/>
+         </wsdl:input>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:message name="addCommunication">
+      <wsdl:part name="in" element="tns:addCommunication"/>
+   </wsdl:message>
+</wsdl:definitions>

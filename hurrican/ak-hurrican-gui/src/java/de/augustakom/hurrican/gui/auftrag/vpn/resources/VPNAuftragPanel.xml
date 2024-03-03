@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Anzeige der Auftraege, die einem
+VPN zuegordnet sind.
+-->
+<sf>
+    <Label name="anzahl"><text>Anzahl Aufträge im VPN: </text></Label>
+
+    <Button name="add">
+        <text>Auftrag aufnehmen</text>
+        <tooltip>Fügt dem VPN einen weiteren Auftrag hinzu</tooltip>
+        <mnemonic>VK_A</mnemonic>
+    </Button>
+    
+    <Button name="remove">
+        <text>Auftrag entfernen</text>
+        <tooltip>Entfernt den selektierten Auftrag aus dem VPN</tooltip>
+        <mnemonic>VK_E</mnemonic>
+    </Button>
+    
+    <Button name="print">
+        <text>Drucken</text>
+        <tooltip>Druckt die Auftragsliste aus</tooltip>
+        <mnemonic>VK_D</mnemonic>
+    </Button>
+
+</sf>

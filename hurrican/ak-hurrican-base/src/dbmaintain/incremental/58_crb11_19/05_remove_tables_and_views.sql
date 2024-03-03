@@ -1,0 +1,25 @@
+drop table DBMAINTAIN_VENTO;
+drop table DBMAINTAIN_IPMIGRATION;
+drop table IP_MIG_IDS;
+drop table IP_MIG_LOG;
+drop table IP_MIG_RESULT;
+drop table MIG_LOG_CRB6;
+drop table MIG_MIGRATIONRESULT;
+drop table MIG_RANG_MAPPING;
+
+drop view MIG_V_ADSL_BSINUM;
+drop view MIG_V_ADSL_TELEFONIELEISTUNG;
+drop view MIG_V_RESULT_ACC_ALWAYSON;
+drop view MIG_V_RESULT_ACC_TO_ORDER_ADSL;
+drop view MIG_IP_EG2AUFTRAG;
+drop view MIG_IP_EGCONFIG;
+drop view MIG_IP_EGIAD;
+drop view MIG_IP_EGIP;
+drop view MIG_IP_EGROUTING;
+drop view MIG_IP_IPROUTE;
+drop view MIG_IP_PORTFORWARD;
+drop view V_MIG_ANSPRECHPARTNER;
+drop view V_MIG_CONNECT_ADDRESS;
+drop view V_MIG_CPE_DECRYPTION;
+drop view V_MIG_CPS_INIT;
+drop view V_MIG_KUNDENNR;

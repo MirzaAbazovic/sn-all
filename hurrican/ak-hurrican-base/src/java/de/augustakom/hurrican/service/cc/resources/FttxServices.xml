@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Spring-Konfigurationsdatei fuer die Fttx-Services.
+Die Datei wird von CCServices.xml importiert!
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+     default-lazy-init="true">
+     
+    <context:annotation-config />
+
+    <!-- TODO move daos to CCDefaultDAOs.xml -->
+    <bean id="de.augustakom.hurrican.dao.cc.fttx.EkpFrameContractDAO" class="de.augustakom.hurrican.dao.cc.fttx.impl.EkpFrameContractDAOImpl"/>
+    <bean id="de.augustakom.hurrican.dao.cc.fttx.A10NspPortDao" class="de.augustakom.hurrican.dao.cc.fttx.impl.A10NspPortDaoImpl"/>
+    <bean id="de.augustakom.hurrican.dao.cc.fttx.A10NspDao" class="de.augustakom.hurrican.dao.cc.fttx.impl.A10NspDaoImpl"/>
+    <bean id="de.augustakom.hurrican.dao.cc.fttx.VlanDao" class="de.augustakom.hurrican.dao.cc.fttx.impl.VlanDaoImpl"/>
+
+    <bean id="de.augustakom.hurrican.service.cc.fttx.EkpFrameContractService"
+          class="de.augustakom.hurrican.service.cc.fttx.impl.EkpFrameContractServiceImpl" />
+    
+    <bean id="de.augustakom.hurrican.service.cc.fttx.VlanService"
+          class="de.augustakom.hurrican.service.cc.fttx.impl.VlanServiceImpl" />
+    
+</beans>

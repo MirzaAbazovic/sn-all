@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den Carrierbestellungen.
+-->
+<sf>
+
+    <Button name="new">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Legt eine neue Carrierbestellung an</tooltip>
+    </Button>
+
+    <Button name="delete">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht die aktuell angezeigte Carrierbestellung</tooltip>
+    </Button>
+
+    <Label name="carrier"><text>Carrier:</text></Label>
+    <ComboBox name="carrier">
+        <tooltip>Name des Carriers, an den die Bestellung geschickt wird</tooltip>
+    </ComboBox>
+
+    <Label name="vorgabe.datum"><text>Vorgabedatum:</text></Label>
+    <DateComponent name="vorgabe.datum">
+        <tooltip>Vorgabedatum für die TAL-Bestellung od. Änderung/Kündigung (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="bestellt.am"><text>Bestellt am:</text></Label>
+    <DateComponent name="bestellt.am">
+        <tooltip>Datum, an dem die Leitung bestellt wurde (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="zurueck.am"><text>Zurück am:</text></Label>
+    <DateComponent name="zurueck.am">
+        <tooltip>Datum, an dem die Rückmeldung des Carriers erfolgt (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="bereitstellung.am"><text>Bereitstellung am:</text></Label>
+    <DateComponent name="bereitstellung.am">
+        <tooltip>Datum, ab dem die Leitung vom Carrier bereitgestellt wird (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="lbz"><text>Leitungsbezeichnung:</text></Label>
+    <TextField name="lbz">
+        <tooltip>Leitungsbezeichnung des Carriers</tooltip>
+        <columns>25</columns>
+        <maxchars>35</maxchars>
+    </TextField>
+
+    <Label name="vtr.nr"><text>Vertrags-Nr.:</text></Label>
+    <TextField name="vtr.nr">
+        <tooltip>Vertragsnummer für die Bestellung</tooltip>
+    </TextField>
+
+    <Label name="kunde.vor.ort"><text>Kunde vor Ort?</text></Label>
+    <ComboBox name="kunde.vor.ort">
+        <items>
+            <item text=" " value="null"/>
+            <item text="ja" value="true" class="java.lang.Boolean"/>
+            <item text="nein" value="false" class="java.lang.Boolean"/>
+        </items>
+    </ComboBox>
+
+    <Label name="negative.rm"><text>Negative RM Carrier:</text></Label>
+    <ComboBox name="negative.rm">
+        <tooltip>Aktion bei einer negativen Rückmeldung des Carriers</tooltip>
+    </ComboBox>
+
+    <Label name="wiedervorlage"><text>Wiedervorlage:</text></Label>
+    <DateComponent name="wiedervorlage">
+        <tooltip>Datum, zu dem die Carrierbestellung wieder vorgelegt werden soll (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="kuendigung"><text>Kündigung an Carrier:</text></Label>
+    <DateComponent name="kuendigung">
+        <tooltip>Datum, an dem die Kündigung an den Carrier erfolgt ist (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="kuendigung.best"><text>Kündigung am:</text></Label>
+    <DateComponent name="kuendigung.best">
+        <tooltip>Datum, zu dem die TAL gekündigt wird (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="aqs"><text>AQS:</text></Label>
+    <TextField name="aqs">
+        <tooltip>Aderquerschnnitte der Leitung</tooltip>
+    </TextField>
+
+    <Label name="ll"><text>Leitungslänge:</text></Label>
+    <TextField name="ll">
+        <tooltip>Angabe der Leitungslänge</tooltip>
+    </TextField>
+
+    <Label name="ll.sum"><text>Gesamtleitungslänge:</text></Label>
+    <TextField name="ll.sum">
+        <tooltip>Die Gesamtleitungslänge</tooltip>
+    </TextField>
+
+    <Label name="tal.na"><text>Nutzungsänd. mit Auftrag:</text></Label>
+    <FormattedTextField name="tal.na">
+        <tooltip>ID des Auftrags, mit dem eine TAL-Nutzungsänderung durchgeführt wird/wurde</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Label name="ai.address"><text>AI-Adresse:</text></Label>
+    <TextField name="ai.address">
+        <tooltip>Anschlussinhaberadresse</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="max.bitrate"><text>Max. Brutto-Bitrate:</text></Label>
+    <TextField name="max.bitrate">
+        <tooltip>Maximale Brutto-Bitrate</tooltip>
+        <columns>25</columns>
+    </TextField>
+
+    <Label name="tal.realisierungs.zeitfenster"><text>Real.-Zeitfenster:</text></Label>
+    <TextField name="tal.realisierungs.zeitfenster">
+        <tooltip>Gibt das Realisierungszeitfenster des Carriers für die TAL an</tooltip>
+    </TextField>
+
+    <Button name="change.ai.address">
+        <text>AI ändern</text>
+        <tooltip>Ändert die Anschlussinhaberadresse</tooltip>
+    </Button>
+
+    <Button name="aqs.anzeigen">
+        <text>bek. Leitungsdaten</text>
+        <tooltip>Zeigt alle bekannten Leitungsdaten der aktuellen Endstellen-Strasse an</tooltip>
+    </Button>
+
+    <Button name="cb.kuendigen">
+        <text>kündigen</text>
+        <tooltip>Kündigt die aktuell angezeigte Carrierbestellung</tooltip>
+    </Button>
+
+    <Button name="cb.vorgang.terminverschiebung">
+        <text>Terminverschiebung</text>
+        <tooltip>Verschiebt den Termin der TAL-Bestellung</tooltip>
+    </Button>
+
+    <Button name="cb.vorgang.storno">
+        <text>Storno</text>
+        <tooltip>Storniert die elektronische TAL-Bestellung</tooltip>
+    </Button>
+
+    <Button name="cb.vorgang.history">
+        <text>History...</text>
+        <tooltip>Zeigt die History aller el. Vorgaenge zur TAL-Bestellung an</tooltip>
+    </Button>
+
+    <Button name="esaa.intern.history">
+        <text>ESAA/Interne History...</text>
+        <tooltip>Zeigt die alte ESAA/Interne History aller el. Vorgaenge zur TAL-Bestellung an</tooltip>
+    </Button>
+
+    <Button name="create.cbv">
+        <text>el. Vorgang...</text>
+        <tooltip>Löst einen el. Vorgang für die TAL-Bestellung aus (Auswahldialog für den Vorgangstyp)</tooltip>
+    </Button>
+
+    <Button name="create.lbz">
+        <text>...</text>
+        <tooltip>Öffnet einen Dialog, über den die LBZ komfortabel eingegeben werden kann.</tooltip>
+    </Button>
+
+    <Button name="cb.vorabstimmung">
+        <text>Vorabstimmung...</text>
+        <tooltip>Öffnet einen Dialog, über den die Vorabstimmungsdaten für einen Providerwechsel eingegeben werden können.</tooltip>
+    </Button>
+
+    <Button name="cb.vormieter">
+        <text>Vormieter...</text>
+        <tooltip>Öffnet einen Dialog, über den die Vormieterdaten für eine Neuschaltung eingegeben werden können.</tooltip>
+    </Button>
+
+    <Text name="create.cb.not.allowed">Sie können nur dann eine neue Carrierbestellung erfassen, wenn von der vorherigen CB eine Kündigung eingetragen wurde oder sich der Wert von 'negative RM' auf 'neue CB' befindet.</Text>
+
+    <Text name="change.kuend.date.title">Kündiungsdatum ändern?</Text>
+    <Text name="change.kuend.date.msg">Soll das Kündigungsdatum des Ursprung-Auftrags
+geändert/angepasst werden?</Text>
+
+    <Text name="el.tal.date.title">Vorgabedatum</Text>
+    <Text name="el.tal.date.sub.title">Vorgabedatum für die el. TAL-Bestellung:</Text>
+    <Text name="el.tal.date.label">Vorgabedatum:</Text>
+
+    <Text name="tal.vorgang.created">Es wurde ein el. TAL-Vorgang eingestellt.
+Der Status kann über die offenen TAL-Bestellungen abgefragt werden.</Text>
+
+</sf>

@@ -1,0 +1,46 @@
+pipeline {
+    agent {
+        kubernetes {
+            inheritFrom 'maven-docker-pod'
+        }
+    }
+    
+    stages {
+        stage('Checkout Source') {
+            steps {
+                git credentialsId: 'adlatus-pm-api_ssh-key',
+                    url: 'git@bitbucket.org:bitconex/adlatus-pm-api.git',
+                    branch: 'master'
+            }
+        }
+
+        stage('Maven Package') {
+            steps {
+                container('maven'){
+                    sh 'mvn clean package'
+                }
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                container('docker'){
+                    sh 'docker build -t docker.adl.dev.bitconex.com/bitconex-pm-api:latest -f ci/Dockerfile .'
+                }
+            }
+        }
+
+        stage('Pushing Image'){
+            steps {
+                container('docker'){
+                    script {
+                        def registryCredential = 'nexus_id'
+                        docker.withRegistry('https://docker.adl.dev.bitconex.com', registryCredential){
+                            sh 'docker push docker.adl.dev.bitconex.com/bitconex-pm-api:latest'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Details eines Carrier-Mappings
+-->
+<sf>
+
+    <!-- ************ Panel fuer die Darstellung der Carrier-Mappings  **************** -->
+    <Label name="carriermapping.carrier"><text>Carrier:</text></Label>
+    <ReferenceField name="carriermapping.carrier">
+        <tooltip>Auswahl des Carriers für die Mapping-Angabe</tooltip>
+    </ReferenceField>
+    
+    <Label name="carriermapping.carriercontact"><text>Carrier-Kontakt:</text></Label>
+    <ReferenceField name="carriermapping.carriercontact">
+        <tooltip>Carrier-Kontakt des Carrier-Mappings</tooltip>
+    </ReferenceField>
+    
+    <Label name="carriermapping.carrieridentifier"><text>Carrier-Kennung:</text></Label>
+    <ReferenceField name="carriermapping.carrieridentifier">
+        <tooltip>Carrier-Kennung des Carrier-Mappings</tooltip>
+    </ReferenceField>
+    
+</sf>

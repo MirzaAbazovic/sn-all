@@ -1,0 +1,13 @@
+globalProperties:
+  apis: ""
+  supportingFiles: false
+  apiTests: ""
+  models: false
+
+additionalProperties:
+  library: spring-boot
+  modelsLibrary: de.bitconex.tmf.appointment.model
+  basePackage: de.bitconex.appointment
+  invokerPackage: de.bitconex.appointment
+  apiPackage: de.bitconex.appointment.api
+  configPackage: de.bitconex.appointment.configuration

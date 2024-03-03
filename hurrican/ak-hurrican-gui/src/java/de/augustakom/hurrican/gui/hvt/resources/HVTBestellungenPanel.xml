@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit HVT-Bestellungen.
+-->
+<sf>
+
+   <Button name="edit">
+       <icon>de/augustakom/hurrican/gui/images/edit.gif</icon>
+       <text>Bearbeiten</text>
+       <tooltip>Öffnet einen Dialog, um die gewählte HVT-Bestellung zu bearbeiten</tooltip>
+   </Button>
+   
+   <Button name="history">
+       <icon>de/augustakom/hurrican/gui/images/book.gif</icon>
+       <text>Bestell-History</text>
+       <tooltip>Öffnet einen Dialog zur Anzeige aller HVT-Bestellungen zu dem gewählten UEVT.</tooltip>
+   </Button>
+   
+   <Button name="refresh">
+       <icon>de/augustakom/hurrican/gui/images/refresh.png</icon>
+       <text>Aktualisieren</text>
+       <tooltip>Aktualisiert die Anzeige (alternativ F5 in Tabelle).</tooltip>
+   </Button>
+    
+</sf>

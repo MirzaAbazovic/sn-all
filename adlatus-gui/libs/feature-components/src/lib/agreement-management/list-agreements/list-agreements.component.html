@@ -1,0 +1,9 @@
+<mat-card>
+    <mat-card-header>
+        <h2>List agreements</h2>
+    </mat-card-header>
+    <mat-card-content>
+        <adlatus-gui-entries-table *ngIf="agreements$ | async as agreements" [data]="agreements"
+                                   [columns]="columns" (clickHandler)="openAgreement($event)"/>
+    </mat-card-content>
+</mat-card>

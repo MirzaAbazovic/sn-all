@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das RangierungsKlaerfaellePanel
+-->
+<sf>
+
+    <Button name="alle.auswaehlen">
+        <text>alle Auswählen</text>
+        <tooltip>Es werden alle angezeigten Datensätze markiert</tooltip>
+    </Button>
+
+    <Button name="freigeben">
+        <text>Auswahl freigeben</text>
+        <tooltip>Alle markierten Datensätze werden freigegeben</tooltip>
+    </Button>
+
+    <Button name="auswahl.cancel">
+        <text>Auswahl zurücksetzen</text>
+        <tooltip>Auswahl wird zurückgesetzt</tooltip>
+    </Button>
+
+</sf>

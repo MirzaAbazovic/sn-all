@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache updateCheck="false">
+    <!-- default cache config -->
+    <defaultCache
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="120"
+        overflowToDisk="false"/>
+
+    <!-- caches for migrations -->
+    <cache
+        name="de.augustakom.hurrican.service.billing.impl.LeistungServiceImpl.findLeistung(java.lang.Long)"
+        maxElementsInMemory="1000">
+    </cache>
+    <cache
+        name="de.augustakom.hurrican.service.billing.impl.LeistungServiceImpl.findServiceValue(java.lang.Long,java.lang.String)"
+        maxElementsInMemory="1000">
+    </cache>
+    <cache
+        name="de.augustakom.hurrican.service.cc.impl.ProduktServiceImpl.findProduktMappings()"
+        maxElementsInMemory="1000">
+    </cache>
+    <cache
+        name="de.augustakom.hurrican.dao.billing.impl.AuftragDAOImpl.findByAuftragNoOrig(java.lang.Long)"
+        maxElementsInMemory="10">
+    </cache>
+    <cache
+        name="de.augustakom.hurrican.dao.billing.impl.AuftragDAOImpl.findAuftragPos4Auftrag(java.lang.Long)"
+        maxElementsInMemory="1000">
+    </cache>
+    <!-- TODO -->
+    <cache
+        name="de.augustakom.hurrican.dao.cc.impl.TechLeistungDAOImpl.findTechLeistungen4Auftrag(java.lang.Integer, java.lang.String, boolean)"
+        maxElementsInMemory="100">
+    </cache>
+    <cache
+        name="de.augustakom.hurrican.service.cc.impl.CCLeistungsServiceImpl.findTechLeistungenByType(java.lang.String)"
+        maxElementsInMemory="1000">
+    </cache>
+    <cache
+        name="de.augustakom.hurrican.dao.billing.OeDAO.findByOeNoOrig(java.lang.Long)"
+        maxElementsInMemory="1000">
+    </cache>
+    <cache
+        name="de.augustakom.hurrican.dao.cc.impl.TechLeistungDAOImpl.findTechLeistungen4Produkt(java.lang.Integer, boolean)"
+        maxElementsInMemory="1000">
+    </cache>
+    <cache
+        name="de.augustakom.hurrican.dao.cc.impl.TechLeistungDAOImpl.findTechLeistungen4Produkt(java.lang.Integer, java.lang.String, boolean)"
+        maxElementsInMemory="1000">
+    </cache>
+    <cache
+        name="de.augustakom.hurrican.service.cc.impl.ProduktServiceImpl.findProdId4MappingGroup(java.lang.Integer)"
+        maxElementsInMemory="1000">
+    </cache>
+    <cache
+        name="de.augustakom.hurrican.dao.cc.impl.TechLeistungDAOImpl.findTechLeistungen(java.lang.Long)"
+        maxElementsInMemory="1000">
+    </cache>
+    <cache
+        name="de.augustakom.hurrican.service.cc.impl.HWServiceImpl.findRacksByManagementBez(java.lang.String)"
+        maxElementsInMemory="1000">
+    </cache>
+    <cache
+        name="de.augustakom.hurrican.service.cc.impl.HWServiceImpl.findBaugruppenTypByName(java.lang.String)"
+        maxElementsInMemory="100">
+    </cache>
+    <cache
+        name="de.augustakom.hurrican.dao.cc.impl.CfgRegularExpressionDAOImpl.findRegularExpression(java.lang.Long, java.lang.String, java.lang.Class, de.augustakom.hurrican.model.cc.CfgRegularExpression.Info)"
+        maxElementsInMemory="100">
+    </cache>
+    <cache
+        name="de.augustakom.hurrican.service.cc.impl.ProduktServiceImpl.findProdukt(java.lang.Integer)"
+        maxElementsInMemory="200">
+    </cache>
+    <cache
+        name="de.augustakom.hurrican.service.cc.EndstellenService.findEndstellen4Address(java.lang.Long)"
+        maxElementsInMemory="10000">
+    </cache>
+
+</ehcache>

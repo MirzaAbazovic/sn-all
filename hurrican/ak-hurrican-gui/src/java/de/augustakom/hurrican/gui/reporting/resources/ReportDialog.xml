@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Report-Dialog.
+-->
+<sf>
+    <Text name="title">Report-Auswahl</Text>
+    
+    <Button name="word">
+        <text>Word-Serienbrief</text>
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <tooltip>Sammelt alle relevanten Daten zu dem Auftrag und öffnet Word</tooltip>
+    </Button> 
+    
+    <Button name="account">
+        <text>Account-Anschreiben</text>
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <tooltip>Druckt das Account-Anschreiben über Jasper-Reports</tooltip>
+    </Button> 
+</sf>

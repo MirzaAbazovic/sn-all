@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring App-Context Definition fuer den WITA Server Bereich. -->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+
+    <!-- WBCI Services -->
+
+    <bean id="de.mnet.wbci.service.WbciSendMessageService"
+          class="de.mnet.wbci.service.impl.WbciSendMessageServiceImpl"/>
+
+    <bean name="/wbci/WbciSendMessageService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wbci.service.WbciSendMessageService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciSendMessageService"/>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciCommonService" class="de.mnet.wbci.service.impl.WbciCommonServiceImpl"/>
+    <bean name="/wbci/WbciCommonService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wbci.service.WbciCommonService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciCommonService"/>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciElektraService" class="de.mnet.wbci.service.impl.WbciElektraServiceImpl"/>
+    <bean name="/wbci/WbciElektraService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wbci.service.WbciElektraService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciElektraService"/>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciDeadlineService" class="de.mnet.wbci.service.impl.WbciDeadlineServiceImpl"/>
+    <bean name="/wbci/WbciDeadlineService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wbci.service.WbciDeadlineService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciDeadlineService"/>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciEscalationService" class="de.mnet.wbci.service.impl.WbciEscalationServiceImpl"/>
+    <bean name="/wbci/WbciEscalationService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wbci.service.WbciEscalationService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciEscalationService"/>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciKuendigungsService" class="de.mnet.wbci.service.impl.WbciKuendigungsServiceImpl"/>
+    <bean name="/wbci/WbciKuendigungsService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wbci.service.WbciKuendigungsService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciKuendigungsService"/>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciDecisionService" class="de.mnet.wbci.service.impl.WbciDecisionServiceImpl"/>
+    <bean name="/wbci/WbciDecisionService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wbci.service.WbciDecisionService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciDecisionService"/>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciGeschaeftsfallService" class="de.mnet.wbci.service.impl.WbciGeschaeftsfallServiceImpl"/>
+    <bean name="/wbci/WbciGeschaeftsfallService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wbci.service.WbciGeschaeftsfallService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciGeschaeftsfallService"/>
+    </bean>
+
+    <bean id="WbciMeldungService" class="de.mnet.wbci.service.impl.WbciMeldungServiceImpl"/>
+    <bean name="/wbci/WbciMeldungService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+      <property name="service" ref="WbciMeldungService"/>
+      <property name="serviceInterface" value="de.mnet.wbci.service.WbciMeldungService"/>
+    </bean>
+
+    <bean id="WbciVaKueMrnService" class="de.mnet.wbci.service.impl.WbciVaKueMrnServiceImpl"/>
+    <bean name="/wbci/WbciVaKueMrnService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="WbciVaKueMrnService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciVaService"/>
+    </bean>
+
+    <bean id="WbciVaKueOrnService" class="de.mnet.wbci.service.impl.WbciVaKueOrnServiceImpl"/>
+    <bean name="/wbci/WbciVaKueOrnService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="WbciVaKueOrnService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciVaService"/>
+    </bean>
+
+    <bean id="WbciVaRrnpService" class="de.mnet.wbci.service.impl.WbciVaRrnpServiceImpl"/>
+    <bean name="/wbci/WbciVaRrnpService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="WbciVaRrnpService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciVaService"/>
+    </bean>
+
+    <bean id="WbciTvService" class="de.mnet.wbci.service.impl.WbciTvServiceImpl"/>
+    <bean name="/wbci/WbciTvService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="WbciTvService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciTvService"/>
+    </bean>
+
+    <bean id="WbciRequestService" class="de.mnet.wbci.service.impl.WbciRequestServiceImpl"/>
+    <bean name="/wbci/WbciRequestService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="WbciRequestService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciRequestService"/>
+    </bean>
+
+    <bean id="WbciStornoService" class="de.mnet.wbci.service.impl.WbciStornoServiceImpl"/>
+    <bean name="/wbci/WbciStornoService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="WbciStornoService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciStornoService"/>
+    </bean>
+
+    <bean id="WbciRequestStatusUpdateService" class="de.mnet.wbci.service.impl.WbciRequestStatusUpdateServiceImpl"/>
+    <bean id="WbciGeschaeftsfallStatusUpdateService" class="de.mnet.wbci.service.impl.WbciGeschaeftsfallStatusUpdateServiceImpl"/>
+
+    <bean id="de.mnet.wbci.service.WbciSchedulerService" class="de.mnet.wbci.service.impl.WbciSchedulerServiceImpl"/>
+    <bean name="/wbci/WbciSchedulerService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wbci.service.WbciSchedulerService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciSchedulerService"/>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciAutomationService" class="de.mnet.wbci.service.impl.WbciAutomationServiceImpl"/>
+    <bean name="/wbci/WbciAutomationService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wbci.service.WbciAutomationService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciAutomationService"/>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciAutomationDonatingService" class="de.mnet.wbci.service.impl.WbciAutomationDonatingServiceImpl"/>
+    <bean name="/wbci/WbciAutomationDonatingService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wbci.service.WbciAutomationDonatingService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciAutomationDonatingService"/>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciAutomationTxHelperService" class="de.mnet.wbci.service.impl.WbciAutomationTxHelperServiceImpl"/>
+    <bean name="/wbci/WbciAutomationTxHelperService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wbci.service.WbciAutomationTxHelperService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciAutomationTxHelperService"/>
+    </bean>
+
+    <bean id="WbciLocationService" class="de.mnet.wbci.service.impl.WbciLocationServiceImpl"/>
+    <bean name="/wbci/WbciLocationService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="WbciLocationService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciLocationService"/>
+    </bean>
+
+    <bean id="WbciCustomerService" class="de.mnet.wbci.service.impl.WbciCustomerServiceImpl"/>
+    <bean name="/wbci/WbciCustomerService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="WbciCustomerService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciCustomerService"/>
+    </bean>
+
+    <bean id="de.mnet.wbci.service.WbciValidationService" class="de.mnet.wbci.service.impl.WbciValidationServiceImpl"/>
+    <bean name="/wbci/WbciValidationService" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wbci.service.WbciValidationService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciValidationService"/>
+    </bean>
+
+    <!-- WBCI -> WITA Facade -->
+    <bean id="de.mnet.wbci.service.WbciWitaServiceFacade" class="de.mnet.wbci.service.impl.WbciWitaServiceFacadeImpl" />
+    <bean name="/wbci/WbciWitaServiceFacade" class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.mnet.wbci.service.WbciWitaServiceFacade"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciWitaServiceFacade"/>
+    </bean>
+
+    <bean id="WbciSchemaValidationService" class="de.mnet.wbci.service.impl.WbciSchemaValidationServiceImpl">
+      <property name="schemas">
+        <list>
+            <bean class="de.mnet.common.xml.WsdlXsdSchema">
+                <property name="wsdl" value="classpath:/wsdl/CarrierNegotiationService.wsdl"/>
+            </bean>
+            <bean class="de.mnet.common.xml.WsdlXsdSchema">
+                <property name="wsdl" value="classpath:/wsdl/LocationService.wsdl"/>
+            </bean>
+        </list>
+      </property>
+    </bean>
+
+    <!-- WBCI DAOs -->
+    <bean id="de.mnet.wbci.dao.WbciDao" class="de.mnet.wbci.dao.impl.WbciDaoImpl"/>
+    <bean id="de.mnet.wbci.dao.WBCIVorabstimmungFaxDAO" class="de.mnet.wbci.dao.impl.WBCIVorabstimmungFaxDAOImpl"/>
+    <bean id="de.mnet.wbci.dao.WbciMapper" class="de.mnet.wbci.dao.impl.WbciMapper"/>
+    <bean id="de.mnet.wbci.dao.impl.PreagreementVOTransformer" class="de.mnet.wbci.dao.impl.PreAgreementVOTransformer"/>
+    <bean id="de.mnet.wbci.dao.impl.OverdueAbmPvVOTransformer" class="de.mnet.wbci.dao.impl.OverdueAbmPvVOTransformer"/>
+
+    <!-- JAXB Bean für die Marshaller and UnMarschaller -->
+    <bean id="jaxb2MarshallerCarrierNegotiationV1" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="de.mnet.esb.cdm.supplierpartner.carriernegotiationservice.v1"/>
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.encoding" value="UTF-8"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- JAXB Bean Marshaller for the LocationService -->
+    <bean id="jaxb2MarshallerLocationService" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="contextPath" value="de.mnet.esb.cdm.resource.locationservice.v1"/>
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.encoding" value="UTF-8"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- Build up all marshaller/unmarshaller beans-->
+    <context:component-scan base-package="de.mnet.wbci.marshal"/>
+    <context:component-scan base-package="de.mnet.wbci.unmarshal"/>
+
+    <context:component-scan base-package="de.mnet.wbci.route"/>
+    <context:component-scan base-package="de.mnet.wbci.validation"/>
+    <context:component-scan base-package="de.mnet.wbci.ticketing"/>
+    <context:component-scan base-package="de.mnet.common.integration"/>
+
+    <!--
+    Proxy-Service, um das Messaging zu kapseln und die Funktion als Service anzubieten.
+    Die Nachricht wird zuerst in den lokalen Camel-Context gepushed und ueber die WbciOutRoute auf
+    die 'wbci-out' JMS-Komponente verschoben.
+
+    !! VORSICHT BEIM UMBENENNEN VON PROXY IDS, WEIL DIE BEAN-IDS DIREKT IM CODE VERWENDET WERDEN !!
+    (siehe CamelProxyLookupService)
+    -->
+    <camel:proxy
+          id="carrierNegotiationService"
+          camelContextId="camel"
+          serviceInterface="de.mnet.wbci.integration.CarrierNegotationService"
+          serviceUrl="direct:carrierNegotiationService"/>
+
+</beans>

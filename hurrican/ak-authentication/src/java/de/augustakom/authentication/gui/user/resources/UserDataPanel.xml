@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Darstellung der
+Standardeigenschaften eines Users.
+-->
+<sf>
+    <Label name="user.id">
+        <text>ID:</text>
+    </Label>
+    <FormattedTextField name="user.id">
+        <tooltip>ID des Benutzers</tooltip>
+        <format type="number">######</format>
+    </FormattedTextField>
+
+    <Label name="user.name">
+        <text>Name:</text>
+    </Label>
+    <TextField name="user.name">
+        <tooltip>Name des Benutzers</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="user.firstname">
+        <text>Vorname:</text>
+    </Label>
+    <TextField name="user.firstname">
+        <tooltip>Vorname des Benutzers</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="user.loginname">
+        <text>Login-Name:</text>
+    </Label>
+    <TextField name="user.loginname">
+        <tooltip>Login-Name des Benutzers</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="user.email">
+        <text>EMail:</text>
+    </Label>
+    <TextField name="user.email">
+        <tooltip>EMail-Adresse des Benutzers</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="user.phone">
+        <text>Telefon:</text>
+    </Label>
+    <TextField name="user.phone">
+        <tooltip>Telefonnummer des Benutzers</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="user.phoneneutral">
+        <text>Telefon (neutral):</text>
+    </Label>
+    <TextField name="user.phoneneutral">
+        <tooltip>neutrale Telefonnummer des Benutzers</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="user.fax">
+        <text>Fax:</text>
+    </Label>
+    <TextField name="user.fax">
+        <tooltip>Fax-Nummer des Benutzers</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="user.projektleiter">
+        <text>Projektleiter:</text>
+    </Label>
+    <CheckBox name="user.projektleiter">
+        <tooltip>Benutzer ist möglicher Hauptverantwortlicher für einen Auftrag</tooltip>
+    </CheckBox>
+
+    <Label name="user.active">
+        <text>aktiv:</text>
+    </Label>
+    <CheckBox name="user.active">
+        <tooltip>Benutzer ist aktiv/inaktiv</tooltip>
+    </CheckBox>
+
+    <Label name="departments">
+        <text>Abteilung:</text>
+    </Label>
+    <ComboBox name="departments">
+        <tooltip>Abteilung, der der Benutzer angehört</tooltip>
+    </ComboBox>
+
+    <Label name="niederlassung">
+        <text>Niederlassung:</text>
+    </Label>
+    <ComboBox name="niederlassung">
+        <tooltip>Niederlassung</tooltip>
+    </ComboBox>
+
+    <Label name="ext.partner">
+        <text>Externer Partner:</text>
+    </Label>
+    <ComboBox name="ext.partner">
+        <tooltip>Externer Partner</tooltip>
+    </ComboBox>
+
+    <Label name="user.team">
+        <text>Team:</text>
+    </Label>
+    <ComboBox name="user.team">
+        <tooltip>Team innerhalb der Abteilung</tooltip>
+    </ComboBox>
+    <Label name="user.bereich">
+        <text>Bereich</text>
+    </Label>
+    <ComboBox name="user.bereich">
+        <tooltip>Bereich dem der User zugeordnet ist (optional)</tooltip>
+    </ComboBox>
+</sf>

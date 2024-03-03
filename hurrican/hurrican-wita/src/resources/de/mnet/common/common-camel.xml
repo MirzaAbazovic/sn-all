@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring App-Context Definition fuer den WITA Client Bereich. -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd"
+       default-lazy-init="true">
+
+    <!--
+    Camel-Routen als Prototype-Bean deklariert, damit sie in den Tests noch einmal in den Camel-Context gesetzt
+    werden koennen, nachdem sie veraendert wurden. -->
+    <bean id="carrierNegotiationOutRoute" class="de.mnet.wbci.route.CarrierNegotiationOutRoute" scope="prototype"/>
+    <bean id="carrierNegotiationInV1Route" class="de.mnet.wbci.route.CarrierNegotiationInV1Route" scope="prototype"/>
+    <bean id="lineOrderOutRoute" class="de.mnet.wita.route.LineOrderOutRoute" scope="prototype"/>
+    <bean id="lineOrderInV1Route" class="de.mnet.wita.route.LineOrderInV1Route" scope="prototype"/>
+    <bean id="lineOrderInV2Route" class="de.mnet.wita.route.LineOrderInV2Route" scope="prototype"/>
+    <bean id="customerServiceOutRoute" class="de.mnet.common.customer.route.CustomerServiceOutRoute" scope="prototype"/>
+    <bean id="locationServiceOutRoute" class="de.mnet.wbci.route.LocationServiceOutRoute" scope="prototype"/>
+
+    <camel:camelContext id="camel" trace="true" errorHandlerRef="loggingErrorHandler">
+        <camel:properties>
+            <camel:property key="CamelLogDebugBodyMaxChars" value="2500"/>
+        </camel:properties>
+        <!--
+        Zuordnung der Routen zum Camel-Context erfolgt ueber den InitHurricanServicesContextLoaderListener.
+        Grund: sind die Routen bereits hier in den CamelContext eingetragen worden gab es Probleme mit dem
+        Autowiring in den Camel-Prozessoren (zurueckzufuehren auf zirkulaere Dependencies zwischen
+        Prozessor-ServiceBeans-CamelProxy)
+        -->
+    </camel:camelContext>
+
+    <camel:errorHandler id="loggingErrorHandler"
+                        type="LoggingErrorHandler"
+                        logName="camel.route.logger"
+                        level="ERROR"/>
+
+    <!-- Trace-Formatter for camel routes - using default output parameters (like showBreadCrum=true) -->
+    <bean id="traceFormatter" class="org.apache.camel.processor.interceptor.DefaultTraceFormatter"/>
+
+</beans>

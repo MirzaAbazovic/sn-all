@@ -1,0 +1,9 @@
+<mat-card>
+    <mat-card-header>
+        <h2>List agreements</h2>
+    </mat-card-header>
+    <mat-card-content>
+        <adlatus-gui-entries-table *ngIf="resourceOrders$ | async as resourceOrders" [data]="resourceOrders"
+                                   [columns]="columns" (clickHandler)="openResourceOrder($event)"/>
+    </mat-card-content>
+</mat-card>

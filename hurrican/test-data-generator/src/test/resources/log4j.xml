@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<!--
+   | For more configuration information and examples see the Jakarta Log4j
+   | owebsite: http://jakarta.apache.org/log4j
+ -->
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+    <!-- ============================== -->
+    <!-- Append messages to the console -->
+    <!-- ============================== -->
+
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <param name="Target" value="System.out"/>
+        <param name="Threshold" value="DEBUG"/>
+
+        <layout class="org.apache.log4j.PatternLayout">
+            <!-- The default pattern: Date Priority [Category] Message\n -->
+            <param name="ConversionPattern" value="%d{ABSOLUTE} %-5p [%c{3}] %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- ================ -->
+    <!-- Limit categories -->
+    <!-- ================ -->
+
+    <!-- Our own classes-->
+    <logger name="de.mnet">
+        <level value="DEBUG"/>
+    </logger>
+
+    <logger name="org.dozer">
+        <level value="WARN"/>
+    </logger>
+    <logger name="org.apache.commons.beanutils.converters">
+        <level value="WARN"/>
+    </logger>
+
+
+    <!-- ======================= -->
+    <!-- Setup the Root logger -->
+    <!-- ======================= -->
+
+    <root>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</log4j:configuration>

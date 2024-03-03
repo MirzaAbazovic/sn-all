@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Auftrag PeeringPartner Partner.
+-->
+<sf>
+
+    <Text name="peering.partner">zugeordnete Peering Partner</Text>
+    <Text name="sbc">aktuelle SBC Adressen des Peering Partners</Text>
+
+    <Text name="deactivate.title">Peering Partner deaktivieren</Text>
+    <Text name="deactivate.sub.title">Geben Sie bitte das Datum an, zu dem der Peering Partner nicht mehr dem Auftrag zugeordnet sein soll.</Text>
+    <Text name="deactivate.lable">Datum:</Text>
+
+
+    <Text name="add.title">Peering Partner hinzufügen</Text>
+    <Text name="add.message">Peering Partner auswählen:</Text>
+    <Text name="add.peering.partner">Peering Partner:</Text>
+
+    <Text name="valid.from.title">Datum wählen</Text>
+    <Text name="valid.from.sub.title">Bitte geben Sie das Datum an, ab dem der Peering Partner dem Auftrag zugeordnet sein soll.</Text>
+    <Text name="valid.from.label">Datum:</Text>
+
+    <Button name="add.peering.partner">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>neuen Peering Partner auswählen und dem Auftrag zuordnen</tooltip>
+    </Button>
+
+    <Button name="deactivate.peering.partner">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Zuordnung des Peering-Partners zum Auftrag deaktivieren</tooltip>
+    </Button>
+
+
+</sf>

@@ -1,0 +1,7 @@
+<ns:changeVdslProfileRequest xmlns:ns="http://www.mnet.de/hurrican/wholesale/fault/clearance/1.0/">
+    <lineId>${lineId}</lineId>
+    <newProfileId>2302</newProfileId>
+    <validFrom>${validFrom}</validFrom>
+    <changeReasonId>1</changeReasonId>
+    <username>wolfst</username>
+</ns:changeVdslProfileRequest>

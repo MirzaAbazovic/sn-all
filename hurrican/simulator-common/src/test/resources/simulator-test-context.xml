@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <context:annotation-config/>
+
+  <!-- Citrus component mocks -->
+  <bean class="com.consol.citrus.config.CitrusBaseConfig"/>
+
+  <bean id="simInboundEndpoint" class="org.mockito.Mockito" factory-method="mock">
+      <constructor-arg value="com.consol.citrus.endpoint.Endpoint"/>
+  </bean>
+
+  <bean id="notificationInboundEndpoint" class="org.mockito.Mockito" factory-method="mock">
+      <constructor-arg value="com.consol.citrus.endpoint.Endpoint"/>
+  </bean>
+
+  <bean id="notificationOutboundEndpoint" class="org.mockito.Mockito" factory-method="mock">
+      <constructor-arg value="com.consol.citrus.endpoint.Endpoint"/>
+  </bean>
+
+  <bean id="orderManager" class="de.mnet.hurrican.simulator.handler.SimulatorOrderManager"/>
+  <bean id="xpathHelper" class="de.mnet.hurrican.simulator.helper.XPathHelper"/>
+  <bean id="outboundMessageTransformer" class="de.mnet.hurrican.simulator.transform.OutboundMessageTransformer"/>
+
+  <bean id="namespaceContextBuilder" class="com.consol.citrus.xml.namespace.NamespaceContextBuilder">
+    <property name="namespaceMappings">
+      <props>
+        <prop key="sim1">http://mnet.de/sim/v1/envelope</prop>
+        <prop key="sim2">http://mnet.de/sim/v2/envelope</prop>
+      </props>
+    </property>
+  </bean>
+
+  <!-- Test objects -->
+  <bean class="de.mnet.hurrican.simulator.handler.SimulatorEndpointAdapter">
+    <property name="mappingKeyExtractor">
+      <bean class="com.consol.citrus.endpoint.adapter.mapping.XPathPayloadMappingKeyExtractor">
+        <property name="xpathExpression" value="//*[local-name() = 'TestMessage']/Text"/>
+      </bean>
+    </property>
+    <property name="taskExecutor">
+      <bean class="org.springframework.core.task.SyncTaskExecutor"/> <!-- must use sync task executor otherwise unit tests do fail from time to time -->
+    </property>
+  </bean>
+
+  <bean class="de.mnet.hurrican.simulator.config.SimulatorConfiguration"/>
+
+  <bean id="SIM1" class="de.mnet.hurrican.simulator.builder.MockTestBuilder" scope="singleton"/>
+  <bean id="SIM2" class="de.mnet.hurrican.simulator.builder.MockTestBuilder" scope="singleton"/>
+
+  <bean id="DEFAULT_BUILDER" class="de.mnet.hurrican.simulator.builder.MockTestBuilder" scope="singleton"/>
+
+</beans>

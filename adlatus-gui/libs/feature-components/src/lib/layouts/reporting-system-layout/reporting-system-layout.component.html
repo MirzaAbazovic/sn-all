@@ -1,0 +1,42 @@
+<mat-toolbar class="navbar" color="primary">
+  <div class="navLeft">
+    <img src='https://bitconex.ba/wp-content/uploads/2022/03/BITConEx.png' alt="Bitconex Logo" width="120px">
+  </div>
+
+  <mat-nav-list
+    class="navCenter"
+  >
+    <a
+      *ngFor="let linkData of mainNavigation"
+      mat-list-item
+      [routerLink]="linkData.link"
+      disableRipple
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <div class="spacer"></div>
+      <p>{{linkData.title}}</p>
+      <div class="underLine"></div>
+    </a>
+  </mat-nav-list>
+
+  <div
+    class="navRight"
+  >
+    <p>John Doe</p>
+    <adlatus-gui-avatar
+      [avatarUrl]="'https://as2.ftcdn.net/v2/jpg/03/64/21/11/1000_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg'"
+      [username]="'john'"
+      [size]="50"></adlatus-gui-avatar>
+  </div>
+
+</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+<footer>
+  <p>
+    &copy; {{ currentYear }} BITConEx - All Rights Reserved
+  </p>
+</footer>
+

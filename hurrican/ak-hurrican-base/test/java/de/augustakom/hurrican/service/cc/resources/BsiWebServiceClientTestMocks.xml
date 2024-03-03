@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       default-lazy-init="false"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="de.augustakom.hurrican.service.cc.CCAuftragService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.cc.CCAuftragService" />
+    </bean>
+    <bean id="de.augustakom.hurrican.service.billing.BillingAuftragService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.billing.BillingAuftragService" />
+    </bean>
+    <bean id="de.augustakom.authentication.service.AKUserService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.authentication.service.AKUserService" />
+    </bean>
+
+
+    <bean id="de.augustakom.hurrican.service.cc.QueryCCService" class="de.augustakom.hurrican.service.ticketing.bsi.CCQueryServiceMockFactory" factory-method="createMockCCServiceWithWsUrl">
+        <constructor-arg type="Long">
+            <util:constant static-field="de.augustakom.hurrican.model.cc.WebServiceConfig.WS_CFG_BSI"/>
+        </constructor-arg>
+        <constructor-arg type="de.augustakom.hurrican.model.cc.WebServiceConfig">
+            <bean class="de.augustakom.hurrican.model.cc.WebServiceConfig">
+                <property name="wsURL" value="http://sollte.nie.aufgerufen.werden/da.mock.web.service" />
+            </bean>
+        </constructor-arg>
+    </bean>
+
+</beans>

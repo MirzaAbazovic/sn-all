@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema  xmlns:ns0="http://mnet.de/hurricanweb/command/customer/types"
+            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://mnet.de/hurricanweb/command/customer/types">
+
+    <xs:element name="CommandMDUActivateDataRequest" type="ns0:CommandMDUActivateDataRequest"/>
+    <xs:element name="CommandMDUActivateDataRequestResponse" type="ns0:CommandMDUActivateDataRequestResponse"/>
+    <xs:element name="CommandMDUActivateDataRequestFailure" type="ns0:CommandMDUActivateDataRequestFailure"/>
+
+    <xs:complexType name="CommandMDUActivateDataRequest">
+        <xs:sequence>
+            <xs:element name="mdu" type="xs:string"/>
+            <xs:element name="datum" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CommandMDUActivateDataRequestResponse">
+        <xs:sequence>
+            <xs:element name="mdu" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CommandMDUActivateDataRequestFailure">
+        <xs:sequence>
+            <xs:element name="mdu" type="xs:string"/>
+            <xs:element name="errorMessage" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Atlas ESB JMS connection factory -->
+    <bean id="atlasConnectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+        <property name="targetConnectionFactory" ref="atlasUserCredentialConnectionFactory"/>
+    </bean>
+
+    <bean id="atlasUserCredentialConnectionFactory"
+          class="org.springframework.jms.connection.UserCredentialsConnectionFactoryAdapter">
+        <property name="targetConnectionFactory" ref="atlasJndiConnectionFactory"/>
+        <!-- authenticate against jms provider -->
+        <property name="username" value="${atlas.ems.username}"/>
+        <property name="password" value="${atlas.ems.password}"/>
+    </bean>
+
+    <bean id="atlasJndiConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiTemplate" ref="atlasEmsJndiTemplate"/>
+        <property name="jndiName" value="QueueConnectionFactory"/>
+    </bean>
+
+    <bean id="atlasEmsJndiTemplate" class="org.springframework.jndi.JndiTemplate" lazy-init="true">
+        <property name="environment">
+            <props>
+                <prop key="java.naming.provider.url">${atlas.ems.url}</prop>
+                <prop key="java.naming.factory.initial">${atlas.ems.initial.context.factory}</prop>
+                <!-- authenticate against jndi service -->
+                <prop key="java.naming.security.principal">${atlas.ems.username}</prop>
+                <prop key="java.naming.security.credentials">${atlas.ems.password}</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

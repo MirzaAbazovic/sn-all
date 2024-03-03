@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns3:changeOrderDialNumberRequest xmlns:ns3="http://www.mnet.de/elektra/services/1.0/">
+    <billingOrderNoOrig>${billingOrderNoOrig}</billingOrderNoOrig>
+    <realDate>${requestedCustomerDate}</realDate>
+    <vaOrderSentAt>citrus:currentDate('yyyy-MM-dd')</vaOrderSentAt>
+    <ruemVaReceivedAt>citrus:currentDate('yyyy-MM-dd')</ruemVaReceivedAt>
+    <numberPortierung>
+        <portKennungTnbAbg>D123</portKennungTnbAbg>
+        <portKennungTnbAuf>D052</portKennungTnbAuf>
+        <dialNumbers>
+            <resourceName>ignored</resourceName>
+            <mainNumber>false</mainNumber>
+            <countryDialingCode>+49</countryDialingCode>
+            <areaDialingCode>0${portierung.onkz.0}</areaDialingCode>
+            <dialingNumber>${portierung.rufnummer.0}</dialingNumber>
+        </dialNumbers>
+    </numberPortierung>
+</ns3:changeOrderDialNumberRequest>

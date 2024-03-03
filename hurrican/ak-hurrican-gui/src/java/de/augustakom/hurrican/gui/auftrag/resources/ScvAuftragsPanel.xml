@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den offenen Auftraegen.
+-->
+<sf>
+
+    <Button name="refresh">
+        <icon>de/augustakom/hurrican/gui/images/refresh.png</icon>
+        <tooltip>Aktualisiert die Liste</tooltip>
+    </Button>
+
+    <ToggleButton name="alle.auftraege">
+        <text>alle Aufträge</text>
+        <tooltip>Zeigt alle offenen Aufträge an</tooltip>
+    </ToggleButton>
+
+    <ToggleButton name="ohne.ba">
+        <text>ohne BA</text>
+        <tooltip>Zeigt alle Aufträge an, zu denen noch kein Bauauftrag erstellt wurde</tooltip>
+    </ToggleButton>
+
+    <ToggleButton name="ohne.ba.vorgabe">
+        <text>ohne BA >= Heute</text>
+        <tooltip>Aufträge ohne BA und Vorgabe-AM >= Heute</tooltip>
+    </ToggleButton>
+
+    <ToggleButton name="ohne.lbz">
+        <text>ohne LBZ Carrier</text>
+        <tooltip>Aufträge mit CuDA-Bestellung aber ohne Rückmeldung bzw. LBZ</tooltip>
+    </ToggleButton>
+
+    <ToggleButton name="cuda.bestellungen">
+        <text>überfällige CuDA-Best.</text>
+        <tooltip>Aufträge mit CuDA-Bestellung, bei denen Rückmeldung überfällig ist (heute-7 AT)</tooltip>
+    </ToggleButton>
+
+    <ToggleButton name="cuda.kuendigungen">
+        <text>überfällige CuDA-Künd.</text>
+        <tooltip>Aufträge mit CuDA-Kündigung, bei denen Rückmeldung überfällig ist (heute-7 AT)</tooltip>
+    </ToggleButton>
+
+    <ToggleButton name="date.filter">
+        <text>Datums-Filter</text>
+        <tooltip>Ermöglicht die Suche nach Aufträgen über Vorgabe-AM und Realisierungsdatum</tooltip>
+    </ToggleButton>
+
+    <Label name="niederlassung"><text>Niederlassung:</text></Label>
+    <ComboBox name="niederlassung">
+        <tooltip>Filtert nach ausgewählter Niederlassung</tooltip>
+    </ComboBox>
+
+    <!-- Eintraege fuer Sub-Class SelectDateDialog -->
+    <Text name="date.filter.title">Angabe der Filter:</Text>
+
+    <Label name="vorgabe.scv"><text>Vorgabe AM:</text></Label>
+    <DateComponent name="vorgabe.scv">
+        <tooltip>Filter-Wert für Vorgabe-AM (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>15</columns>
+    </DateComponent>
+
+    <Label name="realisierungsdatum"><text>Realisierungsdatum:</text></Label>
+    <DateComponent name="realisierungsdatum">
+        <tooltip>Filter-Wert für Realisierungstermin (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+</sf>

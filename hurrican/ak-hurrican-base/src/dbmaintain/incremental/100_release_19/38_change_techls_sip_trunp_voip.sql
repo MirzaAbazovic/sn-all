@@ -1,0 +1,1 @@
+update T_TECH_LEISTUNG set TYP = 'VOIP' where ID = 470;

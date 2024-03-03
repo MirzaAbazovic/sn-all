@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+
+    <!-- Spring App-Context Definition fuer den Hurrican Client Bereich. -->
+    <bean id="exceptionLogService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/exceptions/ExceptionLogService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.exceptions.ExceptionLogService"/>
+    </bean>
+
+    <bean id="mailService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/MailService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.MailService"/>
+    </bean>
+
+    <bean id="ffmService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/ffm/FFMService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.ffm.FFMService"/>
+    </bean>
+
+    <bean id="baService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/BAService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.BAService"/>
+    </bean>
+
+    <bean id="auftragService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/AuftragService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+    </bean>
+    <bean id="physikService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/PhysikService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.PhysikService"/>
+    </bean>
+    <bean id="hwService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/HWService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.HWService"/>
+    </bean>
+    <bean id="endstellenService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/EndstellenService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.EndstellenService"/>
+    </bean>
+    <bean id="hvtService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/HVTService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.HVTService"/>
+    </bean>
+    <bean id="leistungsService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/LeistungsService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.CCLeistungsService"/>
+    </bean>
+    <bean id="dslamService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/DslamService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.DSLAMService"/>
+    </bean>
+    <bean id="rangierungsService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/RangierungsService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.RangierungsService"/>
+    </bean>
+    <bean id="availabilityService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/AvailabilityService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.AvailabilityService"/>
+    </bean>
+    <bean id="produktService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/ProduktService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.ProduktService"/>
+    </bean>
+    <bean id="cpsService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/CPSService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.CPSService"/>
+    </bean>
+    <bean id="hwSwitchService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/HWSwitchService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.HWSwitchService"/>
+    </bean>
+
+    <bean id="ekpFrameContractService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/fttx/EkpFrameContractService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.fttx.EkpFrameContractService"/>
+    </bean>
+    <bean id="vlanService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/fttx/VlanService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.fttx.VlanService"/>
+    </bean>
+    <bean id="archiveService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/exmodules/ArchiveService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.exmodules.archive.ArchiveService"/>
+    </bean>
+
+    <bean id="ccRufnummernService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/CCRufnummernService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.CCRufnummernService"/>
+    </bean>
+    <bean id="rufnummerService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/billing/RufnummerService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.billing.RufnummerService"/>
+    </bean>
+    <bean id="accountService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/AccountService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.AccountService"/>
+    </bean>
+    <bean id="wholesaleOrderOutboundService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/ws/WholesaleOrderOutboundService"/>
+        <property name="serviceInterface" value="de.mnet.hurrican.wholesale.ws.outbound.WholesaleOrderOutboundService"/>
+
+    </bean>
+
+</beans>

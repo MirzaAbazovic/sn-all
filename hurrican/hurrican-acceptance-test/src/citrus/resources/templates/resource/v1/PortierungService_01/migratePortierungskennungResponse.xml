@@ -1,0 +1,11 @@
+<ns2:migratePortierungskennungResponse xmlns:ns2="http://mnet.de/hurrican/ngn/portierungService">
+    <portierungStatusEntries>
+        <billingOrderNumber>
+            <billingOrderNumber>@ignore@</billingOrderNumber>
+        </billingOrderNumber>
+        <portierungStatus>
+            <portierungStatusEnum>@ignore@</portierungStatusEnum>
+            <message>@ignore@</message>
+        </portierungStatus>
+    </portierungStatusEntries>
+</ns2:migratePortierungskennungResponse>

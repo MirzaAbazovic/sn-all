@@ -1,0 +1,9 @@
+drop procedure P_FDB_MIGCL_ALL;
+drop procedure P_FDB_MIG_ANSP_BESTAND;
+drop procedure P_FDB_MIG_ANSP_BESTAND_1;
+drop procedure P_FDB_MIG_HUR_UND_CL;
+drop procedure P_FDB_MIG_HUR_UND_CL_TMP;
+drop procedure P_FDB_MIG_UPD_ANSP_BESTAND;
+drop procedure P_FDB_MIG_UPD_ANSP_BESTAND_1;
+drop procedure P_FDB_MIG_ANSP_BESTAND_FIX1;
+drop procedure P_FDB_MIG_ANSP_BESTAND_FIX2;

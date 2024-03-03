@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TableModel Definition fuer den Auftragsmonitor -->
+<table>
+	
+	<column name="Order__NO" property="auftragNoOrig" type="java.lang.Long" editable="false"/>
+	<column name="OLD__NO" property="oldAuftragNoOrig" type="java.lang.Long" editable="false"/>
+	<column name="CC-Produkt" property="ccProdukt" type="java.lang.String" editable="false"/>
+	<column name="Produkt" property="oeName" type="java.lang.String" editable="false"/>
+	<column name="Aktion" property="amText" type="java.lang.String" editable="false"/>
+	<column name="Bündel-No" property="bundleOrderNo" type="java.lang.Long" editable="false"/>
+	
+</table>

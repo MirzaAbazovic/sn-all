@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring App-Context Definition fuer alle Error Services im Server. -->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+
+    <!-- Service Beans-->
+    <!-- Error service to log excpetion into the database -->
+    <bean id="de.augustakom.hurrican.service.exceptions.ExceptionLogService"
+          class="de.augustakom.hurrican.service.exceptions.impl.ExceptionLogServiceImpl"/>
+    <bean name="/exceptions/ExceptionLogService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+        <property name="service" ref="de.augustakom.hurrican.service.exceptions.ExceptionLogService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.exceptions.ExceptionLogService"/>
+    </bean>
+
+    <!-- Error servcie for the ATLAS ESB, currently is only inside of the server needed -->
+    <bean id="de.augustakom.hurrican.service.exceptions.AtlasErrorHandlingService"
+          class="de.augustakom.hurrican.service.exceptions.impl.AtlasErrorHandlingServiceImpl"/>
+
+    <!-- SOAP-Endpoints -->
+    <jaxws:client xmlns:lns="http://www.mnet.de/esb/cdm/Shared/ErrorHandlingService/v1"
+                  id="errorHandlingService"
+                  serviceClass="de.mnet.esb.cdm.shared.errorhandlingservice.v1.ErrorHandlingService"
+                  address="jms://"
+                  serviceName="lns:ErrorHandlingService"
+                  endpointName="lns:ErrorHandlingServiceJMS"
+                  transportId="http://cxf.apache.org/transports/jms">
+        <jaxws:properties>
+            <entry key="schema-validation-enabled" value="true"/>
+        </jaxws:properties>
+        <jaxws:features>
+            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature">
+                <property name="jmsConfig">
+                    <bean id="jmsWorkforceServiceConfig" class="org.apache.cxf.transport.jms.JMSConfiguration">
+                        <property name="connectionFactory" ref="atlasConsumerCachingConnectionFactory"/>
+                        <property name="targetDestination" value="mnet.Shared.x.cdm.src.v1.ErrorHandlingService"/>
+                        <property name="jmsProviderTibcoEms" value="true"/>
+                        <property name="sessionTransacted" value="true"/>
+                    </bean>
+                </property>
+            </bean>
+        </jaxws:features>
+        <jaxws:outInterceptors>
+            <ref bean="esbTrackingOutInterceptor"/>
+            <bean class="de.mnet.common.webservice.tools.TibcoSoapActionWithoutQuotesInterceptor"/>
+        </jaxws:outInterceptors>
+        <jaxws:outFaultInterceptors>
+            <ref bean="esbTrackingOutInterceptor"/>
+        </jaxws:outFaultInterceptors>
+    </jaxws:client>
+
+
+</beans>

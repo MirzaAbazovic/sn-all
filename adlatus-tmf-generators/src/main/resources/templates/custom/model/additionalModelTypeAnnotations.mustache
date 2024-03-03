@@ -1,0 +1,13 @@
+{{#useLombok}}
+@lombok.Data
+{{^parent}}
+@lombok.Builder
+{{/parent}}
+@lombok.AllArgsConstructor
+@lombok.NoArgsConstructor
+{{/useLombok}}
+{{#jackson}}
+@JsonInclude(JsonInclude.Include.NON_NULL)
+{{/jackson}}
+{{#additionalModelTypeAnnotations}}{{{.}}}
+{{/additionalModelTypeAnnotations}}

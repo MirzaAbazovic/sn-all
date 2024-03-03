@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<getResourceSpecsResponse xmlns="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1"
+                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                          xsi:schemaLocation="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1 ./xsd/resource/ResourceInventoryService.xsd">
+
+    <resourceSpec>
+        <id>ont-1</id>
+        <inventory>command</inventory>
+        <name>ONT</name>
+        <type>PHYSICAL</type>
+        <description>optical network terminal (Netzelement)</description>
+        <!-- char. "Bezeichung" entfällt an dieser Stelle, die Information wird im Feld "NAME" der Resource selbst übertragen -->
+        <characteristic>
+            <name>hersteller</name>
+            <type>string</type>
+            <description>Name des Herstellers</description>
+        </characteristic>
+        <characteristic>
+            <name>seriennummer</name>
+            <type>string</type>
+            <description>Seriennummer des Netzelementes</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <characteristic>
+            <name>modellnummer</name>
+            <type>string</type>
+            <description>Modellbezeichnung des Netzelementes</description>
+        </characteristic>
+        <characteristic>
+            <name>olt</name>
+            <type>string</type>
+            <description>Bezeichnung der OLT, an der das Netzelement angeschlossen ist</description>
+        </characteristic>
+        <characteristic>
+            <name>oltRack</name>
+            <type>long</type>
+            <description>Rack der OLT</description>
+        </characteristic>
+        <characteristic>
+            <name>oltSubrack</name>
+            <type>long</type>
+            <description>Subrack der OLT (bei Huawei leer)</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <characteristic>
+            <name>oltSlot</name>
+            <type>long</type>
+            <description>Slot-Bezeichnung</description>
+        </characteristic>
+        <characteristic>
+            <name>oltPort</name>
+            <type>long</type>
+            <description>Port-Bezeichnung</description>
+        </characteristic>
+        <characteristic>
+            <name>oltGponId</name>
+            <type>long</type>
+            <description>G.PON-ID</description>
+        </characteristic>
+        <characteristic>
+            <name>standort</name>
+            <type>string</type>
+            <description>Standortbezeichnung des Gebäudes</description>
+        </characteristic>
+        <characteristic>
+            <name>raumbezeichung</name>
+            <type>string</type>
+            <description>Raum-Nummer bzw. –Name</description>
+        </characteristic>
+        <characteristic>
+            <name>freigabe</name>
+            <type>dateTime</type>
+            <description>Zeitstempel Produktionsfreigabe</description>
+        </characteristic>
+        <characteristic>
+            <!-- nur GELOESCHT wird von Hurrican ausgewertet -->
+            <name>installationsstatus</name>
+            <type>string</type>
+            <description>Planungsstatus der Resource</description>
+            <restrictions>
+                <value>GEPLANT</value>
+                <value>IST</value>
+                <value>GELOESCHT</value>
+            </restrictions>
+        </characteristic>
+    </resourceSpec>
+
+    <resourceSpec>
+        <id>ontport-1</id>
+        <inventory>command</inventory>
+        <name>Port</name>
+        <type>PHYSICAL</type>
+        <description>ONT Port</description>
+        <characteristic>
+            <name>schnittstelle</name>
+            <type>string</type>
+            <description>Port-Typ: VDSL2, POTS, RF, ETH</description>
+        </characteristic>
+        <parentSpec>
+            <id>ont-1</id>
+            <inventory>command</inventory>
+        </parentSpec>
+    </resourceSpec>
+
+    <!-- wird durch Hurrican ignoriert -->
+    <resourceSpec>
+        <id>mdu-1</id>
+        <inventory>command</inventory>
+        <name>MDU</name>
+        <type>PHYSICAL</type>
+        <description>multi dwelling unit (Netzelement)</description>
+        <characteristic>
+            <name>hersteller</name>
+            <type>string</type>
+            <description>Name des Herstellers</description>
+        </characteristic>
+        <characteristic>
+            <name>seriennummer</name>
+            <type>string</type>
+            <description>Seriennummer des Netzelementes</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <characteristic>
+            <name>modellnummer</name>
+            <type>string</type>
+            <description>Modellbezeichnung des Netzelementes</description>
+        </characteristic>
+        <characteristic>
+            <name>olt</name>
+            <type>string</type>
+            <description>Bezeichnung der OLT, an der das Netzelement angeschlossen ist</description>
+        </characteristic>
+        <characteristic>
+            <name>oltRack</name>
+            <type>long</type>
+            <description>Rack der OLT</description>
+        </characteristic>
+        <characteristic>
+            <name>oltSubrack</name>
+            <type>long</type>
+            <description>Subrack der OLT (bei Huawei leer)</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <characteristic>
+            <name>oltSlot</name>
+            <type>long</type>
+            <description>Slot der OLT</description>
+        </characteristic>
+        <characteristic>
+            <name>oltPort</name>
+            <type>long</type>
+            <description>Port der OLT</description>
+        </characteristic>
+        <characteristic>
+            <name>oltGponId</name>
+            <type>long</type>
+            <description>G.PON-ID</description>
+        </characteristic>
+        <characteristic>
+            <name>standort</name>
+            <type>string</type>
+            <description>Standortbezeichnung des Gebäudes</description>
+        </characteristic>
+        <characteristic>
+            <name>raumbezeichung</name>
+            <type>string</type>
+            <description>Raum-Nummer bzw. –Name</description>
+        </characteristic>
+        <characteristic>
+            <name>freigabe</name>
+            <type>dateTime</type>
+            <description>Zeitstempel Produktionsfreigabe</description>
+        </characteristic>
+        <characteristic>
+            <name>installationsstatus</name>
+            <type>string</type>
+            <description>Planungsstatus der Resource</description>
+            <restrictions>
+                <value>GEPLANT</value>
+                <value>IST</value>
+            </restrictions>
+        </characteristic>
+    </resourceSpec>
+
+    <!-- wird von Hurrican ignoriert -->
+    <resourceSpec>
+        <id>mduport-1</id>
+        <inventory>command</inventory>
+        <name>Port</name>
+        <type>PHYSICAL</type>
+        <description>MDU Port</description>
+        <characteristic>
+            <name>schnittstelle</name>
+            <type>string</type>
+            <description>Port-Typ: VDSL2, POTS, RF</description>
+        </characteristic>
+        <characteristic>
+            <name>leiste</name>
+            <type>string</type>
+            <description>Leisten-Bezeichnung</description>
+        </characteristic>
+        <characteristic>
+            <name>stift</name>
+            <type>string</type>
+            <description>Bezeichnung des Stifts</description>
+        </characteristic>
+        <parentSpec>
+            <id>mdu-1</id>
+            <inventory>command</inventory>
+        </parentSpec>
+    </resourceSpec>
+
+    <resourceSpec>
+        <id>dpo-1</id>
+        <inventory>command</inventory>
+        <name>DPO</name>
+        <type>PHYSICAL</type>
+        <description>distribution point optical network terminal (Netzelement)</description>
+        <!-- char. "Bezeichung" entfällt an dieser Stelle, die Information wird im Feld "NAME" der Resource selbst übertragen -->
+        <characteristic>
+            <name>hersteller</name>
+            <type>string</type>
+            <description>Name des Herstellers</description>
+        </characteristic>
+        <characteristic>
+            <name>seriennummer</name>
+            <type>string</type>
+            <description>Seriennummer des Netzelementes</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <characteristic>
+            <name>modellnummer</name>
+            <type>string</type>
+            <description>Modellbezeichnung des Netzelementes</description>
+        </characteristic>
+        <characteristic>
+            <name>olt</name>
+            <type>string</type>
+            <description>Bezeichnung der OLT, an der das Netzelement angeschlossen ist</description>
+        </characteristic>
+        <characteristic>
+            <name>oltRack</name>
+            <type>long</type>
+            <description>Rack der OLT</description>
+        </characteristic>
+        <characteristic>
+            <name>oltSubrack</name>
+            <type>long</type>
+            <description>Subrack der OLT (bei Huawei leer)</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <characteristic>
+            <name>oltSlot</name>
+            <type>long</type>
+            <description>Slot-Bezeichnung</description>
+        </characteristic>
+        <characteristic>
+            <name>oltPort</name>
+            <type>long</type>
+            <description>Port-Bezeichnung</description>
+        </characteristic>
+        <characteristic>
+            <name>oltGponId</name>
+            <type>long</type>
+            <description>G.PON-ID</description>
+        </characteristic>
+        <characteristic>
+            <name>standort</name>
+            <type>string</type>
+            <description>Standortbezeichnung des Gebäudes</description>
+        </characteristic>
+        <characteristic>
+            <name>raumbezeichung</name>
+            <type>string</type>
+            <description>Raum-Nummer bzw. –Name</description>
+        </characteristic>
+        <characteristic>
+            <name>chassisbezeichung</name>
+            <type>string</type>
+            <description>DPO-Chassis-Bezeichnung (DPC)</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <characteristic>
+            <name>positionInChassis</name>
+            <type>string</type>
+            <description>Einbauposition der DPO im DPO-Chassis entspr. Command-Modellierung (entspricht nicht dem tatsächlichen Layout)</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <characteristic>
+            <name>freigabe</name>
+            <type>dateTime</type>
+            <description>Zeitstempel Produktionsfreigabe</description>
+        </characteristic>
+        <characteristic>
+            <!-- nur GELOESCHT wird von Hurrican ausgewertet -->
+            <name>installationsstatus</name>
+            <type>string</type>
+            <description>Planungsstatus der Resource</description>
+            <restrictions>
+                <value>GEPLANT</value>
+                <value>IST</value>
+                <value>GELOESCHT</value>
+            </restrictions>
+        </characteristic>
+    </resourceSpec>
+
+    <resourceSpec>
+        <id>dpoport-1</id>
+        <inventory>command</inventory>
+        <name>Port</name>
+        <type>PHYSICAL</type>
+        <description>DPO Port</description>
+        <characteristic>
+            <name>schnittstelle</name>
+            <type>string</type>
+            <description>Port-Typ: VDSL2, POTS, RF, ETH</description>
+        </characteristic>
+        <characteristic>
+            <name>leiste</name>
+            <type>string</type>
+            <description>Leisten-Bezeichnung</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <characteristic>
+            <name>stift</name>
+            <type>string</type>
+            <description>Bezeichnung des Stifts</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <parentSpec>
+            <id>dpo-1</id>
+            <inventory>command</inventory>
+        </parentSpec>
+    </resourceSpec>
+
+    <resourceSpec>
+        <id>dpu-1</id>
+        <inventory>command</inventory>
+        <name>dpu</name>
+        <type>PHYSICAL</type>
+        <description>Distribution Point Unit für G.Fast an GPON (Netzelement)</description>
+
+        <characteristic>
+            <name>bezeichnung</name>
+            <type>string</type>
+            <!-- "ID" in Tabelle "GERAETE" z.B. DPU-404263 -->
+            <description>Bezeichnung der Netzelementes</description>
+        </characteristic>
+        <characteristic>
+            <name>hersteller</name>
+            <type>string</type>
+            <!-- "HERSTELLER" in Tabelle "GERAETESTAMM" z.B. Huawei -->
+            <description>Name des Herstellers</description>
+        </characteristic>
+        <characteristic>
+            <name>seriennummer</name>
+            <type>string</type>
+            <!-- "SERIENNR" in Tabelle "GERAETE" z.B. ABC1234DEF) -->
+            <description>Seriennummer des Netzelementes</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <characteristic>
+            <name>modellnummer</name>
+            <type>string</type>
+            <!-- "TYPE" in Tabelle "GERAETESTAMM" -->
+            <description>Modellbezeichnung des Netzelementes: MA5811S_AE04, MA5811S_AE08, MA5811S_DE16</description>
+        </characteristic>
+        <characteristic>
+            <name>olt</name>
+            <type>string</type>
+            <!-- "ID" in Tabelle "SERVICE_DETAIL" z.B. OLT-400028-1-1-10-1-017 -->
+            <description>Bezeichnung der OLT, an der das Netzelement angeschlossen ist</description>
+        </characteristic>
+        <characteristic>
+            <name>oltRack</name>
+            <type>long</type>
+            <description>Rack der OLT</description>
+        </characteristic>
+        <characteristic>
+            <name>oltSubrack</name>
+            <type>long</type>
+            <description>Subrack der OLT (bei Huawei leer)</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <characteristic>
+            <name>oltSlot</name>
+            <type>long</type>
+            <description>Slot-Bezeichnung</description>
+        </characteristic>
+        <characteristic>
+            <name>oltPort</name>
+            <type>long</type>
+            <description>Port-Bezeichnung</description>
+        </characteristic>
+        <characteristic>
+            <name>oltGponId</name>
+            <type>long</type>
+            <description>G.PON-ID</description>
+        </characteristic>
+        <characteristic>
+            <name>standort</name>
+            <type>string</type>
+            <!-- "BEZEICHNUNG" in Tabelle "STOCKWERK" z.B. MUC-AACHE-011 -->
+            <description>Standortbezeichnung des Gebäudes</description>
+        </characteristic>
+        <characteristic>
+            <name>raumbezeichung</name>
+            <type>string</type>
+            <!-- "NAME" in Tabelle "RAUM" z.B. Kellergang -->
+            <description>Raum-Nummer bzw. –Name</description>
+        </characteristic>
+        <characteristic>
+            <name>freigabe</name>
+            <type>dateTime</type>
+            <description>Zeitstempel Produktionsfreigabe</description>
+        </characteristic>
+        <characteristic>
+            <!-- wird durch Hurrican ignoriert -->
+            <name>installationsstatus</name>
+            <type>string</type>
+            <description>Planungsstatus der Resource</description>
+            <restrictions>
+                <value>GEPLANT</value>
+                <value>IST</value>
+                <value>GELOESCHT</value>
+            </restrictions>
+        </characteristic>
+        <characteristic>
+            <name>reversePower</name>
+            <type>string</type>
+            <description>Stromversorgung durch den Kunden</description>
+            <restrictions>
+                <value>TRUE</value>
+                <value>FALSE</value>
+            </restrictions>
+        </characteristic>
+    </resourceSpec>
+
+    <resourceSpec>
+        <id>dpuport-1</id>
+        <inventory>command</inventory>
+        <name>Port</name>
+        <type>PHYSICAL</type>
+        <description>DPU Port</description>
+        <characteristic>
+            <name>schnittstelle</name>
+            <type>string</type>
+            <description>Port-Typ: GFAST</description>
+        </characteristic>
+        <characteristic>
+            <name>leiste</name>
+            <type>string</type>
+            <description>Leisten-Bezeichnung</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <characteristic>
+            <name>stift</name>
+            <type>string</type>
+            <description>Bezeichnung des Stifts</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <parentSpec>
+            <id>parent-1</id>
+            <inventory>command</inventory>
+        </parentSpec>
+    </resourceSpec>
+
+    <resourceSpec>
+        <id>dpuport-2</id>
+        <inventory>command</inventory>
+        <name>Port</name>
+        <type>PHYSICAL</type>
+        <description>DPU Port</description>
+        <characteristic>
+            <name>schnittstelle</name>
+            <type>string</type>
+            <description>Port-Typ: GFAST</description>
+        </characteristic>
+        <characteristic>
+            <name>leiste</name>
+            <type>string</type>
+            <description>Leisten-Bezeichnung</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <characteristic>
+            <name>stift</name>
+            <type>string</type>
+            <description>Bezeichnung des Stifts</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <parentSpec>
+            <id>parent-1</id>
+            <inventory>command</inventory>
+        </parentSpec>
+    </resourceSpec>
+
+    <resourceSpec>
+        <id>dpu-karte-1</id>
+        <inventory>command</inventory>
+        <name>Karte</name>
+        <type>PHYSICAL</type>
+        <description>DPU Karte</description>
+        <characteristic>
+            <name>kartentyp</name>
+            <type>string</type>
+            <description>Kartentyp</description>
+            <cardinality>
+                <min>0</min>
+            </cardinality>
+        </characteristic>
+        <parentSpec>
+            <id>dpu-1</id>
+            <inventory>command</inventory>
+        </parentSpec>
+    </resourceSpec>
+</getResourceSpecsResponse>

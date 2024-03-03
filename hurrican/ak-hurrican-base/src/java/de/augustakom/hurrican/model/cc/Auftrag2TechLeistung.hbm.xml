@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Auftrag2TechLeistung
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Auftrag2TechLeistung" table="T_AUFTRAG_2_TECH_LS">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_AUFTRAG_2_TECH_LS_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="auftragId" column="AUFTRAG_ID" type="long" not-null="true"/>
+        <property name="techLeistungId" column="TECH_LS_ID" type="long" not-null="true"/>
+        <property name="quantity" column="QUANTITY" type="long" not-null="true"/>
+        <property name="aktivVon" column="AKTIV_VON" type="date" not-null="true"/>
+        <property name="aktivBis" column="AKTIV_BIS" type="date"/>
+        <property name="verlaufIdReal" column="VERLAUF_ID_REAL" type="long"/>
+        <property name="verlaufIdKuend" column="VERLAUF_ID_KUEND" type="long"/>
+        <property name="auftragAktionsIdAdd" column="AKTIONS_ID_ADD" type="long"/>
+        <property name="auftragAktionsIdRemove" column="AKTIONS_ID_REMOVE" type="long"/>
+
+    </class>
+
+</hibernate-mapping>

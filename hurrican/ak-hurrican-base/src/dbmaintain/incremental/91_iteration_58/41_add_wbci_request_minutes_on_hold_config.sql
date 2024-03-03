@@ -1,0 +1,2 @@
+-- Insert a new config property wbci.count.of.minutes.request.onhold
+INSERT INTO T_WITA_CONFIG (ID, CONFIG_KEY, CONFIG_VALUE, VERSION) VALUES (S_T_WITA_CONFIG_0.nextval, 'wbci.count.of.minutes.request.onhold', '15', 1);

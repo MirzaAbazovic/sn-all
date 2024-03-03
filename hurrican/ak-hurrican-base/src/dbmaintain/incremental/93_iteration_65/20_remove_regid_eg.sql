@@ -1,0 +1,1 @@
+delete from t_registry where id in (202,203,204,205,206,207);

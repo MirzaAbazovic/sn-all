@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="QoSProfil"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Landscape"
+		 pageWidth="538"
+		 pageHeight="283"
+		 columnWidth="538"
+		 columnSpacing="0"
+		 leftMargin="0"
+		 rightMargin="0"
+		 topMargin="0"
+		 bottomMargin="0"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="com.jasperassistant.designer.GridWidth" value="12" />
+	<property name="com.jasperassistant.designer.GridHeight" value="12" />
+	<property name="com.jasperassistant.designer.DataSource" value="emptyDS" />
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false" />
+	<property name="com.jasperassistant.designer.Units" value="Millimeters" />
+	<property name="com.jasperassistant.designer.Grid" value="true" />
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+	<reportFont name="Font_Title" isDefault="false" fontName="Arial" size="8" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<reportFont name="Font_Detail" isDefault="false" fontName="Arial" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+
+
+	<field name="QOS_PROFIL" class="java.lang.String"/>
+	<field name="QOS_PRIO" class="java.lang.Long"/>
+	<field name="QOS_DOWNSTREAM" class="java.lang.Long"/>
+    <field name="AKTIV_AB" class="java.util.Date"/>
+
+    <background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="11"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="56"
+						y="0"
+						width="80"
+						height="11"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Top">
+						<font reportFont="Font_Title" pdfFontName="Helvetica-Bold" size="7"/>
+					</textElement>
+				<text><![CDATA[Profil]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="226"
+						y="0"
+						width="80"
+						height="11"
+						key="staticText"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Top">
+						<font reportFont="Font_Title" pdfFontName="Helvetica-Bold" size="7"/>
+					</textElement>
+				<text><![CDATA[Priorität (%)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="3"
+						y="0"
+						width="48"
+						height="11"
+						key="staticText-1"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Top">
+						<font reportFont="Font_Title" pdfFontName="Helvetica-Bold" size="7"/>
+					</textElement>
+				<text><![CDATA[QoS-Profil:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="311"
+						y="0"
+						width="80"
+						height="11"
+						key="staticText-2"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Top">
+						<font reportFont="Font_Title" pdfFontName="Helvetica-Bold" size="7"/>
+					</textElement>
+				<text><![CDATA[Bandbreite (kbit/s)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="141"
+						y="0"
+						width="80"
+						height="11"
+						key="staticText-3"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Top">
+						<font reportFont="Font_Title" pdfFontName="Helvetica-Bold" size="7"/>
+					</textElement>
+				<text><![CDATA[Service-Klasse]]></text>
+				</staticText>
+                <staticText>
+                    <reportElement
+                            x="396"
+                            y="0"
+                            width="80"
+                            height="11"
+                            key="staticText-3"
+                            positionType="Float"/>
+                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000"
+                         rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                    <textElement verticalAlignment="Top">
+                        <font reportFont="Font_Title" pdfFontName="Helvetica-Bold" size="7"/>
+                    </textElement>
+                    <text><![CDATA[Aktiv ab]]></text>
+                </staticText>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="11"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="56"
+						y="0"
+						width="80"
+						height="10"
+						key="textField"
+						positionType="Float">
+							<printWhenExpression><![CDATA[($F{QOS_PROFIL} != null) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Detail" size="7"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{QOS_PROFIL}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="226"
+						y="0"
+						width="80"
+						height="10"
+						key="textField"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true">
+							<printWhenExpression><![CDATA[($F{QOS_PRIO} != null) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Detail" size="7"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Long"><![CDATA[$F{QOS_PRIO}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="311"
+						y="0"
+						width="80"
+						height="10"
+						key="textField-1"
+						positionType="Float"
+						isPrintWhenDetailOverflows="true">
+							<printWhenExpression><![CDATA[($F{QOS_DOWNSTREAM} != null) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+						</reportElement>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000" rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font reportFont="Font_Detail" size="7"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Long"><![CDATA[$F{QOS_DOWNSTREAM}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="141"
+						y="0"
+						width="80"
+						height="11"
+						key="staticText-4"
+						positionType="Float"/>
+					<box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000"
+                         rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                    <textElement verticalAlignment="Middle">
+                        <font reportFont="Font_Title" size="7"/>
+                    </textElement>
+                    <text><![CDATA[VOICE]]></text>
+                </staticText>
+                <textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now"
+                           hyperlinkType="None" hyperlinkTarget="Self">
+                    <reportElement
+                            x="396"
+                            y="0"
+                            width="80"
+                            height="10"
+                            key="textField"
+                            positionType="Float">
+                        <printWhenExpression>
+                            <![CDATA[($F{AKTIV_AB} != null) ? Boolean.TRUE : Boolean.FALSE]]></printWhenExpression>
+                    </reportElement>
+                    <box topBorder="None" topBorderColor="#000000" leftBorder="None" leftBorderColor="#000000"
+                         rightBorder="None" rightBorderColor="#000000" bottomBorder="None" bottomBorderColor="#000000"/>
+                    <textElement verticalAlignment="Middle">
+                        <font reportFont="Font_Detail" size="7"/>
+                    </textElement>
+                    <textFieldExpression   class="java.util.Date"><![CDATA[$F{AKTIV_AB}]]></textFieldExpression>
+                </textField>
+
+            </band>
+		</detail>
+		<columnFooter>
+			<band height="2"  isSplitAllowed="true" >
+				<line direction="TopDown">
+					<reportElement
+						x="0"
+						y="1"
+						width="538"
+						height="1"
+						key="line-1"
+						positionType="Float"/>
+					<graphicElement stretchType="NoStretch" pen="Thin"/>
+				</line>
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</pageFooter>
+		<summary>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

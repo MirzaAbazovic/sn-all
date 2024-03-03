@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Endgeraete-Panel.
+-->
+<sf>
+
+    <Button name="new">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Legt ein neues Endgerät für den Auftrag an</tooltip>
+    </Button>
+
+    <Label name="typ"><text>Typ:</text></Label>
+    <ComboBox name="typ">
+        <tooltip>Auswahl des Endgeräte-Typs</tooltip>
+    </ComboBox>
+
+    <Label name="hersteller"><text>Hersteller:</text></Label>
+    <TextField name="hersteller">
+        <columns>20</columns>
+        <tooltip>Hersteller des Endgeräts</tooltip>
+    </TextField>
+
+    <Label name="modell"><text>Modell:</text></Label>
+    <TextField name="modell">
+        <tooltip>Modellbezeichnung des Endgeräts</tooltip>
+    </TextField>
+
+    <Label name="serial.no"><text>Serial No:</text></Label>
+    <TextField name="serial.no">
+        <tooltip>Seriennummer des Endgeräts</tooltip>
+    </TextField>
+
+    <Label name="software.version"><text>Softwarestand:</text></Label>
+    <TextField name="software.version">
+        <maxchars>128</maxchars>
+        <tooltip>Softwarestand des Endgeräts</tooltip>
+    </TextField>
+
+    <Label name="modell.zusatz"><text>Modellzusatz:</text></Label>
+    <TextField name="modell.zusatz">
+        <tooltip>Zusatzbezeichnung des Modells</tooltip>
+    </TextField>
+
+    <Label name="nat"><text>NAT aktiv:</text></Label>
+    <CheckBox name="nat">
+        <tooltip>Flag, ob NAT aktiviert ist</tooltip>
+    </CheckBox>
+
+    <Label name="wan.ip.fest"><text>WAN-IP fest konfiguriert:</text></Label>
+    <CheckBox name="wan.ip.fest">
+        <tooltip>Flag, ob die WAN-IP fest konfiguriert ist</tooltip>
+    </CheckBox>
+
+    <Label name="dhcp"><text>DHCP aktiv:</text></Label>
+    <CheckBox name="dhcp">
+        <tooltip>Flag, ob DHCP aktiviert ist</tooltip>
+    </CheckBox>
+
+    <Label name="qos.active"><text>QoS aktiv:</text></Label>
+    <CheckBox name="qos.active">
+        <tooltip>Flag, ob QoS auf dem Endgeraet aktiv ist</tooltip>
+    </CheckBox>
+
+    <Label name="ansp.admin"><text>admin. Ansp.:</text></Label>
+    <Label name="ansp.tech"><text>techn. Ansp.:</text></Label>
+
+    <Label name="ip.lan"><text>IP (LAN):</text></Label>
+    <TextField name="ip.lan">
+        <columns>25</columns>
+        <tooltip>IP-Adresse des LANs</tooltip>
+        <maxchars>18</maxchars>
+    </TextField>
+
+    <Label name="ip.count"><text>Anzahl IPs:</text></Label>
+    <FormattedTextField name="ip.count">
+        <tooltip>Anzahl der gewünschten IP-Adressen</tooltip>
+        <format type="number">##</format>
+    </FormattedTextField>
+
+    <Label name="bemerkung">
+        <text>Bemerkungen (intern):</text>
+    </Label>
+    <TextArea name="bemerkung">
+    </TextArea>
+
+    <Label name="bemerkungKunde">
+        <text>Bemerkung (geht an Kunden):</text>
+    </Label>
+    <TextArea name="bemerkungKunde">
+    </TextArea>
+
+    <Label name="eg.zugang"><text>Login-Zugang:</text></Label>
+    <TextField name="eg.user">
+        <tooltip>Benutzerkennung für das Endgerät</tooltip>
+        <columns>7</columns>
+        <maxchars>25</maxchars>
+    </TextField>
+    <TextField name="eg.password">
+        <tooltip>Passwort für das Endgerät</tooltip>
+        <columns>7</columns>
+        <maxchars>25</maxchars>
+    </TextField>
+   <Button name="create.password">
+        <icon>de/augustakom/hurrican/gui/images/left.gif</icon>
+        <tooltip>Erzeugt ein zufälliges Passwort</tooltip>
+    </Button>
+
+
+    <Label name="wan.vpvc"><text>WAN VP/VC:</text></Label>
+    <Label name="wan.vc"><text>VC:</text></Label>
+    <TextField name="wan.vc">
+        <tooltip>WAN VC</tooltip>
+        <format type="number">##</format>
+    </TextField>
+
+    <Label name="wan.vp"><text>VP:</text></Label>
+    <TextField name="wan.vp">
+        <tooltip>WAN VC</tooltip>
+        <format type="number">##</format>
+    </TextField>
+
+    <Label name="dhcp.pool.from"><text>DHCP-Pool von:</text></Label>
+    <IPAddressComponent name="dhcp.pool.from">
+        <tooltip>DHCP-Pool von</tooltip>
+        <IPTypesAllowed>
+            <IPType>1</IPType>
+        </IPTypesAllowed>
+    </IPAddressComponent>
+
+    <Label name="dhcp.pool.to"><text>DHCP-Pool bis:</text></Label>
+    <IPAddressComponent name="dhcp.pool.to">
+        <tooltip>DHCP-Pool bis</tooltip>
+        <IPTypesAllowed>
+            <IPType>1</IPType>
+        </IPTypesAllowed>
+    </IPAddressComponent>
+
+    <Label name="mtu"><text>MTU:</text></Label>
+    <TextField name="mtu">
+        <tooltip>Maximum Transmission Unit (MTU) beschreibt die maximale Paketgröße eines Protokolls der Vermittlungsschicht (Schicht 3)</tooltip>
+        <format type="number">#########</format>
+    </TextField>
+
+    <Label name="dns.active"><text>DNS aktiv:</text></Label>
+    <CheckBox name="dns.active">
+        <tooltip>Flag, ob DNS aktiviert ist</tooltip>
+    </CheckBox>
+
+    <Label name="snmp.mnet"><text>SNMP M-Net:</text></Label>
+    <CheckBox name="snmp.mnet">
+        <tooltip>MNet seitiges SNMP aktiv</tooltip>
+    </CheckBox>
+
+    <Label name="snmp.customer"><text>SNMP Kunde:</text></Label>
+    <CheckBox name="snmp.customer">
+        <tooltip>Kunden seitiges SNMP aktiv</tooltip>
+    </CheckBox>
+
+    <Label name="dns.server.ip"><text>DNS Server IP:</text></Label>
+    <TextField name="dns.server.ip">
+        <tooltip>Komma separierte IP Adressen der DNS Server</tooltip>
+        <columns>19</columns>
+        <maxchars>40</maxchars>
+    </TextField>
+
+    <Label name="firewall.active"><text>Firewall aktiv:</text></Label>
+    <CheckBox name="firewall.active">
+        <tooltip>Flag, ob DNS aktiviert ist</tooltip>
+    </CheckBox>
+
+    <Button name="new.port.forward">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Legt einen einen neuen Port-Forwarding Eintrag an</tooltip>
+    </Button>
+
+   <Button name="del.port.forward">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht einen Port-Forwarding Eintrag</tooltip>
+    </Button>
+
+    <Button name="new.routing">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Legt einen eine neue statische Route an</tooltip>
+    </Button>
+
+   <Button name="del.routing">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht eine statische Route</tooltip>
+    </Button>
+
+    <Button name="del.endgeraet.ip">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht eine IP des Endgeräts</tooltip>
+    </Button>
+
+    <Button name="new.lan.ip">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Legt eine neue LAN-IP für das Endgerät an</tooltip>
+    </Button>
+
+    <Button name="new.lan.vrrp.ip">
+        <icon>de/augustakom/hurrican/gui/images/matrix.gif</icon>
+        <tooltip>Legt eine neue LAN-VRRP-IP für das Endgerät an</tooltip>
+    </Button>
+
+    <Button name="select.wan.ip">
+        <icon>de/augustakom/hurrican/gui/images/wan.gif</icon>
+        <tooltip>Auswahl der WAN-IP für das Endgerät</tooltip>
+    </Button>
+
+    <Button name="del.acl">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht eine ACL für das Endgerät</tooltip>
+    </Button>
+
+    <Button name="add.acl">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Ordnet dem Endgerät eine zusätzlich ACL zu</tooltip>
+    </Button>
+
+    <Label name="triggerpunkt"><text>Triggerpunkt</text></Label>
+    <IPAddressComponent name="triggerpunkt">
+        <tooltip>Triggerpunkt</tooltip>
+        <IPTypesAllowed>
+            <IPType>1</IPType>
+            <IPType>3</IPType>
+        </IPTypesAllowed>
+    </IPAddressComponent>
+
+    <Label name="called.station.id"><text>Called Station ID</text></Label>
+    <TextField name="called.station.id">
+        <tooltip></tooltip>
+        <columns>10</columns>
+        <maxchars>45</maxchars>
+    </TextField>
+
+    <Label name="calling.station.id"><text>Calling Station ID</text></Label>
+    <TextField name="calling.station.id">
+        <tooltip></tooltip>
+        <columns>10</columns>
+        <maxchars>45</maxchars>
+    </TextField>
+
+    <Label name="intervall"><text>Intervall</text></Label>
+    <FormattedTextField name="intervall">
+        <tooltip>gjkgkg</tooltip>
+        <format type="number">##</format>
+        <maxchars>4</maxchars>
+
+    </FormattedTextField>
+
+    <Label name="re.enable"><text>ReEnable</text></Label>
+    <FormattedTextField name="re.enable">
+        <tooltip></tooltip>
+        <columns>10</columns>
+        <format type="number">##</format>
+        <maxchars>4</maxchars>
+    </FormattedTextField>
+
+    <Label name="idle.timer"><text>Idle-Timer</text></Label>
+    <FormattedTextField name="idle.timer">
+        <tooltip></tooltip>
+        <columns>10</columns>
+        <format type="number">##</format>
+        <maxchars>4</maxchars>
+    </FormattedTextField>
+
+    <Label name="attempts"><text>Attempts</text></Label>
+    <FormattedTextField name="attempts">
+        <tooltip></tooltip>
+        <columns>10</columns>
+        <format type="number">##</format>
+        <maxchars>4</maxchars>
+    </FormattedTextField>
+
+    <Label name="frequency"><text>Frequency</text></Label>
+    <FormattedTextField name="frequency">
+        <tooltip></tooltip>
+        <columns>10</columns>
+        <format type="number">##</format>
+        <maxchars>4</maxchars>
+    </FormattedTextField>
+
+    <Label name="kanalbuendelung"><text>Kanalbuendelung</text></Label>
+    <CheckBox name="kanalbuendelung">
+        <tooltip>Flag, ob Kanalbündelung aktiviert ist</tooltip>
+    </CheckBox>
+
+    <Label name="endstelle"><text>Endstelle:</text></Label>
+    <ComboBox name="endstelle">
+        <tooltip>Endstelle des Endgeräts (optional)</tooltip>
+    </ComboBox>
+
+    <Label name="layer2Protocol"><text>Schicht 2 Protokoll:</text></Label>
+    <ComboBox name="layer2Protocol">
+        <tooltip>Schicht 2 Protokoll des Endgeräts</tooltip>
+    </ComboBox>
+
+    <Label name="servicevertrag"><text>Service-Vertrag:</text></Label>
+    <ComboBox name="serviceVertrag">
+        <tooltip>Service Vertrag bzw Rahmenvertrag des Endgeräts</tooltip>
+    </ComboBox>
+
+    <Label name="vrrp.priority"><text>VRRP:</text></Label>
+    <ComboBox name="vrrp.priority">
+        <tooltip>Priorität für das VRRP-Protokoll</tooltip>
+    </ComboBox>
+
+    <Label name="ip.dhcpv6_pd"><text>DHCPv6-PD</text></Label>
+    <TextField name="ip.dhcpv6_pd">
+        <tooltip>das gezogene IPV6 Netz (DHCPv6-PD) zu diesem Auftrag</tooltip>
+    </TextField>
+
+</sf>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den AssignIPAddressDialog.
+-->
+<sf>
+
+    <Text name="title">IP V4/V6 Adresse für den Auftrag reservieren</Text>
+    <Text name="btn.execute">Reservieren</Text>
+    <Text name="north.panel.title">IP Protokoll</Text>
+    <Text name="center.panel.title">Einstellung</Text>
+
+    <RadioButton name="rb.ipv6">
+        <text>IPv6</text>
+        <tooltip>IPV6-Adresse reservieren</tooltip>
+    </RadioButton>
+
+    <RadioButton name="rb.ipv4">
+        <text>IPv4</text>
+        <tooltip>IPV4-Adresse reservieren</tooltip>
+    </RadioButton>
+
+    <Label name="cb.purpose"><text>Verwendungszweck:</text></Label>
+    <ComboBox name="cb.purpose">
+        <tooltip>Verwendungszweck der Adresse</tooltip>
+    </ComboBox>
+
+    <Label name="cb.site"><text>Standort:</text></Label>
+    <ComboBox name="cb.site">
+        <tooltip>Backbone Standort</tooltip>
+    </ComboBox>
+
+    <Label name="tf.netmask.size"><text>Größe der Netzmaske:</text></Label>
+    <FormattedTextField name="tf.netmask.size">
+        <tooltip>Größe der Netzmaske (/nnn)</tooltip>
+        <format type="number">###</format>
+    </FormattedTextField>
+</sf>

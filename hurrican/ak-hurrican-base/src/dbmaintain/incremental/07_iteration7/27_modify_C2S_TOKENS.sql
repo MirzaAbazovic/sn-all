@@ -1,0 +1,10 @@
+--
+-- Unnoetige Spalte loeschen und Seriennummer auf NOT-NULL setzen
+--
+
+
+ALTER TABLE T_IPSEC_C2S_TOKEN
+MODIFY(SERIAL_NUMBER  NOT NULL);
+
+
+ALTER TABLE T_IPSEC_C2S_TOKEN DROP COLUMN RADIUS_ACCOUNT;

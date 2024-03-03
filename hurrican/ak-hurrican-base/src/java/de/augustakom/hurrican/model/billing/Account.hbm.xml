@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.Account
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="Account" table="ACCOUNT">
+	    
+	    <!-- PrimaryKey -->
+		<composite-id>
+			<key-property name="auftragNo" column="AUFTRAG_NO" type="long"/>
+			<key-property name="accountId" column="ACCOUNT_ID" type="string"/>
+		</composite-id>
+		
+		<!-- Sonstige Fields -->
+		<property name="accountName" column="ACCOUNTNAME" type="string"/>
+		<property name="password" column="PASSWORD" type="string"/>
+
+	</class>
+	
+</hibernate-mapping>

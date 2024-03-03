@@ -1,0 +1,1094 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<clay-model clay-version="1.2.0">
+<database-model alias="" author="Glink" begin-script="--&#10;-- SQL-Script, um eine komplett neue Authentication-Datenbank&#10;-- anzulegen.&#10;-- Vorsicht: Tabellen, die evtl. schon bestehen, werden durch dieses&#10;-- Script geloescht.&#10;--" end-script="commit;" name="AuthenticationDB" remarks="" sql-dialect-id="jp.azzurri.clay.model.physical.dialect.MySQL_4_0_Dialect" version="1.0">
+<database-model-description/>
+<schema-list>
+<schema alias="" name="DEFAULT_SCHEMA" remarks="">
+<schema-description/>
+<domain-list/>
+<table-list>
+<table alias="" name="USER" remarks="Tabelle fuer die Definition der Benutzer.">
+<table-description>In dieser Tabelle werden alle Benutzer definiert, die die AK-Applikationen verwenden duerfen.</table-description>
+<table-figure-bounds height="219" width="178" x="165" y="113"/>
+<column-list>
+<column alias="" auto-increment="true" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="ID" remarks="Eindeutige ID fuer jeden User.">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="LOGINNAME" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="NAME" remarks="Name des Benutzers.">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="FIRSTNAME" remarks="Vorname des Benutzers">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="DEP_ID" remarks="ForeignKey auf die Department-ID, der der User zugeordnet ist.">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="PASSWORD" remarks="Passwort des Benutzers">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="PWDEPRECATION" remarks="Datum, ab dem das Passwort ungueltig ist.">
+<column-description/>
+<data-type jdbc-type="91" literal-prefix="'" literal-suffix="'" name="DATE" selected-variant-pattern="DATE">
+<variant type-name-pattern="DATE"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="100" decimal-digits="0" default-value="" mandatory="false" name="EMAIL" remarks="EMail-Adresse des Users.">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="20" decimal-digits="0" default-value="" mandatory="false" name="PHONE" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="20" decimal-digits="0" default-value="" mandatory="false" name="FAX" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="20" decimal-digits="0" default-value="" mandatory="false" name="PHONE_NEUTRAL" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="1" decimal-digits="0" default-value="1" mandatory="true" name="ACTIVE" remarks="Markiert einen User als aktiv oder inaktiv">
+<column-description/>
+<data-type jdbc-type="-6" name="TINYINT" selected-variant-pattern="TINYINT(%n)">
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n)"/>
+<variant type-name-pattern="TINYINT"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) UNSIGNED"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) ZEROFILL"/>
+<variant type-name-pattern="TINYINT UNSIGNED"/>
+<variant type-name-pattern="TINYINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="TINYINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="false" name="NIEDERLASSUNG_ID" remarks="">
+<column-description/>
+<data-type jdbc-type="4" name="INT" selected-variant-pattern="INT(%n)">
+<variant type-name-pattern="INT"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INT(%n)"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INT(%n) UNSIGNED"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INT(%n) ZEROFILL"/>
+<variant type-name-pattern="INT UNSIGNED"/>
+<variant type-name-pattern="INT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="INT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="10" decimal-digits="0" default-value="" mandatory="false" name="EXT_SERVICE_PROVIDER_ID" remarks="">
+<column-description/>
+<data-type jdbc-type="4" name="INT" selected-variant-pattern="INT(%n)">
+<variant type-name-pattern="INT"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INT(%n)"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INT(%n) UNSIGNED"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INT(%n) ZEROFILL"/>
+<variant type-name-pattern="INT UNSIGNED"/>
+<variant type-name-pattern="INT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="INT ZEROFILL"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_USER" remarks="">
+<primary-key-description/>
+<primary-key-column name="ID"/>
+</primary-key>
+<unique-key-list>
+<unique-key alias="" name="UQ_USER" remarks="Ein LoginName eines Users muss eindeutig sein.">
+<unique-key-description/>
+<unique-key-column name="LOGINNAME"/>
+</unique-key>
+</unique-key-list>
+<foreign-key-list>
+<foreign-key alias="" name="FK_USER_TO_DEPART" on-delete="NO ACTION" on-update="CASCADE" referenced-key="PK_DEPARTMENT" referenced-table="DEPARTMENT" referenced-table-schema="DEFAULT_SCHEMA" remarks="Foreign Key von USER.DEP_ID auf DEPARTMENT_ID." source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-description>ForeignKey-Verbindung von USER.DEP_ID auf DEPARTMENT_ID.</foreign-key-description>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="DEP_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="DEPARTMENT" remarks="Tabelle enthaelt die einzelnen Abteilungen.">
+<table-description/>
+<table-figure-bounds height="64" width="167" x="175" y="9"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="ID" remarks="">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="NAME" remarks="Name der Abteilung">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="false" name="DESCRIPTION" remarks="Kurze Beschreibung ueber die Abteilung">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_DEPARTMENT" remarks="">
+<primary-key-description/>
+<primary-key-column name="ID"/>
+</primary-key>
+<unique-key-list>
+<unique-key alias="" name="UQ_DEPARTMENT" remarks="Jeder Abteilungsname muss eindeutig sein.">
+<unique-key-description/>
+<unique-key-column name="NAME"/>
+</unique-key>
+</unique-key-list>
+<foreign-key-list/>
+<index-list/>
+</table>
+<table alias="" name="ROLE" remarks="Tabelle zur Definition von Rollen.">
+<table-description>Die Definition der Rollen ist Applikationsabhaengig. &#13;
+Das bedeutet, dass jede Applikation seine eigenen Rollen definieren kann.</table-description>
+<table-figure-bounds height="91" width="172" x="803" y="514"/>
+<column-list>
+<column alias="" auto-increment="true" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="ID" remarks="">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="NAME" remarks="Name, der die Rolle aussagekraeftig beschreibt.">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="false" name="DESCRIPTION" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="APP_ID" remarks="">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="1" decimal-digits="0" default-value="0" mandatory="false" name="IS_ADMIN" remarks="Flag, ob die Rolle Administrator-Rechte besitzt.">
+<column-description/>
+<data-type jdbc-type="-6" name="TINYINT" selected-variant-pattern="TINYINT(%n)">
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n)"/>
+<variant type-name-pattern="TINYINT"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) UNSIGNED"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) ZEROFILL"/>
+<variant type-name-pattern="TINYINT UNSIGNED"/>
+<variant type-name-pattern="TINYINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="TINYINT ZEROFILL"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_ROLE" remarks="">
+<primary-key-description/>
+<primary-key-column name="ID"/>
+</primary-key>
+<unique-key-list>
+<unique-key alias="" name="UQ_ROLENAME" remarks="Der Name jeder Rolle muss eindeutig sein.">
+<unique-key-description/>
+<unique-key-column name="NAME"/>
+<unique-key-column name="APP_ID"/>
+</unique-key>
+</unique-key-list>
+<foreign-key-list>
+<foreign-key alias="" name="FK_ROLE_TO_APP" on-delete="NO ACTION" on-update="CASCADE" referenced-key="PK_APPLICATION" referenced-table="APPLICATION" referenced-table-schema="DEFAULT_SCHEMA" remarks="ForeignKey von ROLE.APP_ID auf APPLICATION.ID" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="APP_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="APPLICATION" remarks="Tabelle zur Definition von Applikationen.">
+<table-description>In dieser Tabelle werden alle Applikationen aufgenommen, die die Benutzerverwaltung verwenden.</table-description>
+<table-figure-bounds height="69" width="166" x="800" y="119"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="ID" remarks="">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="NAME" remarks="Eindeutiger Name der Applikation.">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="false" name="DESCRIPTION" remarks="Kurze Beschreibung der Applikation.">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_APPLICATION" remarks="">
+<primary-key-description/>
+<primary-key-column name="ID"/>
+</primary-key>
+<unique-key-list>
+<unique-key alias="" name="UQ_APPNAME" remarks="Jeder Applikationsname muss eindeutig sein.">
+<unique-key-description/>
+<unique-key-column name="NAME"/>
+</unique-key>
+</unique-key-list>
+<foreign-key-list/>
+<index-list/>
+</table>
+<table alias="" name="USERROLE" remarks="Verknuepfungstabelle fuer die Tabellen USER und ROLE">
+<table-description>Jedem Benutzer koennen mehrere Rollen zugeordnet werden.</table-description>
+<table-figure-bounds height="64" width="116" x="208" y="515"/>
+<column-list>
+<column alias="" auto-increment="true" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="ID" remarks="">
+<column-description/>
+<data-type jdbc-type="4" name="INTEGER" selected-variant-pattern="INTEGER">
+<variant type-name-pattern="INTEGER"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n)"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) ZEROFILL"/>
+<variant type-name-pattern="INTEGER UNSIGNED"/>
+<variant type-name-pattern="INTEGER UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="INTEGER ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="USER_ID" remarks="ForeignKey auf die ID eines Users.">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="ROLE_ID" remarks="ForeignKey auf die ID einer Role">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_USERROLE" remarks="">
+<primary-key-description/>
+<primary-key-column name="ID"/>
+</primary-key>
+<unique-key-list>
+<unique-key alias="" name="UQ_USERROLE" remarks="">
+<unique-key-description/>
+<unique-key-column name="USER_ID"/>
+<unique-key-column name="ROLE_ID"/>
+</unique-key>
+</unique-key-list>
+<foreign-key-list>
+<foreign-key alias="" name="FK_UR_TO_USER" on-delete="CASCADE" on-update="CASCADE" referenced-key="PK_USER" referenced-table="USER" referenced-table-schema="DEFAULT_SCHEMA" remarks="ForeignKey von USERROLE.USER_ID auf USER.ID" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="USER_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+<foreign-key alias="" name="FK_UR_TO_ROLE" on-delete="NO ACTION" on-update="CASCADE" referenced-key="PK_ROLE" referenced-table="ROLE" referenced-table-schema="DEFAULT_SCHEMA" remarks="ForeignKey von USERROLE.ROLE_ID auf ROLE.ID" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="ROLE_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="USERSESSION" remarks="In dieser Tabelle werden die aktiven UserSessions protokolliert.">
+<table-description/>
+<table-figure-bounds height="142" width="184" x="512" y="13"/>
+<column-list>
+<column alias="" auto-increment="true" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="SESSION_ID" remarks="Eindeutige ID fuer die User-Session.">
+<column-description/>
+<data-type jdbc-type="4" name="INTEGER" selected-variant-pattern="INTEGER">
+<variant type-name-pattern="INTEGER"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n)"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) ZEROFILL"/>
+<variant type-name-pattern="INTEGER UNSIGNED"/>
+<variant type-name-pattern="INTEGER UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="INTEGER ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="USER_ID" remarks="ID des Users, der sich eingeloggt hat.">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="LOGIN_TIME" remarks="Zeitpunkt, zu dem sich der User eingeloggt hat.">
+<column-description/>
+<data-type jdbc-type="93" literal-prefix="'" literal-suffix="'" name="DATETIME" selected-variant-pattern="DATETIME">
+<variant type-name-pattern="DATETIME"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="DEPRECATION_TIME" remarks="Datum, ab dem die User-Session ungueltig ist.">
+<column-description/>
+<data-type jdbc-type="93" literal-prefix="'" literal-suffix="'" name="DATETIME" selected-variant-pattern="DATETIME">
+<variant type-name-pattern="DATETIME"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="false" name="HOSTUSER" remarks="Name des am Host angemeldeten Benutzers.">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="false" name="HOSTNAME" remarks="Host-Name, an dem der User eingeloggt ist.">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="15" decimal-digits="0" default-value="" mandatory="false" name="IP" remarks="IP-Adresse des Hosts, an dem der User eingeloggt ist.">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="APP_ID" remarks="">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="false" name="VERSION" remarks="Programm-Version">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_USERSESSION" remarks="">
+<primary-key-description/>
+<primary-key-column name="SESSION_ID"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="FK_USERSESSION_TO_USER" on-delete="CASCADE" on-update="CASCADE" referenced-key="PK_USER" referenced-table="USER" referenced-table-schema="DEFAULT_SCHEMA" remarks="ForeignKey von USERSESSION.USER_ID auf USER.ID" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="USER_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+<foreign-key alias="" name="FK_USERSESSION_TO_APP" on-delete="NO ACTION" on-update="NO ACTION" referenced-key="PK_APPLICATION" referenced-table="APPLICATION" referenced-table-schema="DEFAULT_SCHEMA" remarks="ForeignKey von USERSESSION.APP_ID auf APPLICATION.ID" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="APP_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="ACCOUNT" remarks="Tabelle, um die Datenbank-Accounts User- und Applikationsabhaengig zu verwalten">
+<table-description/>
+<table-figure-bounds height="168" width="211" x="575" y="366"/>
+<column-list>
+<column alias="" auto-increment="true" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="ID" remarks="">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="DB_ID" remarks="">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="APP_ID" remarks="">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="ACC_NAME" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="true" name="ACCOUNTUSER" remarks="Benutzername fuer die Datenbank, die ueber DBNAME definiert ist.">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="true" name="ACCOUNTPASSWORD" remarks="Passwort fuer die Datenbank, die ueber DBNAME definiert ist.">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="9" decimal-digits="0" default-value="" mandatory="false" name="MAX_ACTIVE" remarks="">
+<column-description/>
+<data-type jdbc-type="4" name="INTEGER" selected-variant-pattern="INTEGER(%n)">
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n)"/>
+<variant type-name-pattern="INTEGER"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) ZEROFILL"/>
+<variant type-name-pattern="INTEGER UNSIGNED"/>
+<variant type-name-pattern="INTEGER UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="INTEGER ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="9" decimal-digits="0" default-value="" mandatory="false" name="MAX_IDLE" remarks="">
+<column-description/>
+<data-type jdbc-type="4" name="INTEGER" selected-variant-pattern="INTEGER(%n)">
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n)"/>
+<variant type-name-pattern="INTEGER"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) ZEROFILL"/>
+<variant type-name-pattern="INTEGER UNSIGNED"/>
+<variant type-name-pattern="INTEGER UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="INTEGER ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="false" name="DESCRIPTION" remarks="Kurze Beschreibung fuer den account">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="false" name="FALLBACK_USER" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="false" name="FALLBACK_PASSWORD" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_ACCOUNT" remarks="">
+<primary-key-description/>
+<primary-key-column name="ID"/>
+</primary-key>
+<unique-key-list>
+<unique-key alias="" name="UQ_ACC_NAME" remarks="">
+<unique-key-description/>
+<unique-key-column name="ACC_NAME"/>
+</unique-key>
+</unique-key-list>
+<foreign-key-list>
+<foreign-key alias="" name="FK_DBACCOUNT_TO_APP" on-delete="" on-update="" referenced-key="PK_APPLICATION" referenced-table="APPLICATION" referenced-table-schema="DEFAULT_SCHEMA" remarks="ForeignKey von DBACCOUNT.APP_ID auf APPLICATION.ID" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="APP_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="PWHISTORY" remarks="Tabelle fuer die Historisierung von Passwoertern">
+<table-description>Jeder Benutzer muss sein Passwoerter nach einer gewissen Zeit (z.B. 6 Wochen) wechseln. &#13;
+Damit die Benutzer nicht staendig das gleiche Passwort verwenden, werden die Passwoerter&#13;
+in einer History abgelegt. Dadurch kann realisiert werden, dass die letzten x Passwoerter nicht&#13;
+verwendet werden duerfen.</table-description>
+<table-figure-bounds height="81" width="180" x="35" y="385"/>
+<column-list>
+<column alias="" auto-increment="true" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="ID" remarks="">
+<column-description/>
+<data-type jdbc-type="4" name="INTEGER" selected-variant-pattern="INTEGER">
+<variant type-name-pattern="INTEGER"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n)"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) ZEROFILL"/>
+<variant type-name-pattern="INTEGER UNSIGNED"/>
+<variant type-name-pattern="INTEGER UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="INTEGER ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="USER_ID" remarks="">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="PASSWORD" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="DEPRECATEDSINCE" remarks="Datum, seit dem das Passwort ungueltig ist.">
+<column-description/>
+<data-type jdbc-type="91" literal-prefix="'" literal-suffix="'" name="DATE" selected-variant-pattern="DATE">
+<variant type-name-pattern="DATE"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_PWHISTORY" remarks="">
+<primary-key-description/>
+<primary-key-column name="ID"/>
+</primary-key>
+<unique-key-list/>
+<foreign-key-list>
+<foreign-key alias="" name="FK_PWHISTORY_TO_USER" on-delete="CASCADE" on-update="CASCADE" referenced-key="PK_USER" referenced-table="USER" referenced-table-schema="DEFAULT_SCHEMA" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="USER_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="USERACCOUNT" remarks="Tabelle mappt User auf DBAccounts">
+<table-description/>
+<table-figure-bounds height="79" width="138" x="327" y="385"/>
+<column-list>
+<column alias="" auto-increment="true" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="ID" remarks="">
+<column-description/>
+<data-type jdbc-type="4" name="INTEGER" selected-variant-pattern="INTEGER">
+<variant type-name-pattern="INTEGER"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n)"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) ZEROFILL"/>
+<variant type-name-pattern="INTEGER UNSIGNED"/>
+<variant type-name-pattern="INTEGER UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="INTEGER ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="USER_ID" remarks="">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="ACCOUNT_ID" remarks="">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="DB_ID" remarks="">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_USERACCOUNT" remarks="">
+<primary-key-description/>
+<primary-key-column name="ID"/>
+</primary-key>
+<unique-key-list>
+<unique-key alias="" name="UQ_USERACCOUNT" remarks="">
+<unique-key-description/>
+<unique-key-column name="USER_ID"/>
+<unique-key-column name="ACCOUNT_ID"/>
+</unique-key>
+<unique-key alias="" name="UQ_USERACCOUNT_2" remarks="">
+<unique-key-description/>
+<unique-key-column name="USER_ID"/>
+<unique-key-column name="DB_ID"/>
+</unique-key>
+</unique-key-list>
+<foreign-key-list>
+<foreign-key alias="" name="FK_USERACCOUNT_TO_ACC" on-delete="" on-update="" referenced-key="PK_ACCOUNT" referenced-table="ACCOUNT" referenced-table-schema="DEFAULT_SCHEMA" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="ACCOUNT_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+<foreign-key alias="" name="FK_USERACCOUNT_TO_USER" on-delete="CASCADE" on-update="CASCADE" referenced-key="PK_USER" referenced-table="USER" referenced-table-schema="DEFAULT_SCHEMA" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="USER_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+<foreign-key alias="" name="FK_USERACC_2_DB" on-delete="NO ACTION" on-update="CASCADE" referenced-key="PK_DB" referenced-table="DB" referenced-table-schema="DEFAULT_SCHEMA" remarks="" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="DB_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="GUICOMPONENT" remarks="Table fuer GUI-Komponenten, deren Verhalten rollenabhaengig konfiguriert werden kann">
+<table-description/>
+<table-figure-bounds height="107" width="164" x="1042" y="269"/>
+<column-list>
+<column alias="" auto-increment="false" column-size="9" decimal-digits="0" default-value="" mandatory="true" name="ID" remarks="ID der GUI-Komponente">
+<column-description/>
+<data-type jdbc-type="4" name="INTEGER" selected-variant-pattern="INTEGER(%n)">
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n)"/>
+<variant type-name-pattern="INTEGER"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) ZEROFILL"/>
+<variant type-name-pattern="INTEGER UNSIGNED"/>
+<variant type-name-pattern="INTEGER UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="INTEGER ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="true" name="NAME" remarks="Name fuer die Komponente.">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="true" name="PARENT" remarks="Name (meist Klassenname) der uebergeordneten Komponente, z.B. von einem Panel oder Frame">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="false" name="TYPE" remarks="Kurze Angabe des Komponententyps, z.B. Button, TextField etc.">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="false" name="DESCRIPTION" remarks="Kurze Beschreibung fuer die Komponente">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="APP_ID" remarks="ID der Applikation, in der die Komponente verwendet wird.">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_GUICOMPONENT" remarks="">
+<primary-key-description/>
+<primary-key-column name="ID"/>
+</primary-key>
+<unique-key-list>
+<unique-key alias="" name="UQ_GUICOMPONENT" remarks="Kombination von Name, Parent und App-ID muss eindeutig sein.">
+<unique-key-description/>
+<unique-key-column name="NAME"/>
+<unique-key-column name="PARENT"/>
+<unique-key-column name="APP_ID"/>
+</unique-key>
+</unique-key-list>
+<foreign-key-list>
+<foreign-key alias="" name="FK_GUICOMPONENT_TO_APP" on-delete="" on-update="" referenced-key="PK_APPLICATION" referenced-table="APPLICATION" referenced-table-schema="DEFAULT_SCHEMA" remarks="ForeignKey von GUICOMPONENT.APP_ID auf APPLICATION.ID" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="APP_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="COMPBEHAVIOR" remarks="Tabelle definiert das Verhalten einer GUI-Komponente fuer eine best. Rolle">
+<table-description/>
+<table-figure-bounds height="93" width="162" x="1048" y="468"/>
+<column-list>
+<column alias="" auto-increment="true" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="ID" remarks="">
+<column-description/>
+<data-type jdbc-type="4" name="INTEGER" selected-variant-pattern="INTEGER">
+<variant type-name-pattern="INTEGER"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n)"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) ZEROFILL"/>
+<variant type-name-pattern="INTEGER UNSIGNED"/>
+<variant type-name-pattern="INTEGER UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="INTEGER ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="9" decimal-digits="0" default-value="" mandatory="true" name="COMP_ID" remarks="ID der GUI-Komponente">
+<column-description/>
+<data-type jdbc-type="4" name="INTEGER" selected-variant-pattern="INTEGER(%n)">
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n)"/>
+<variant type-name-pattern="INTEGER"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="10" precision-min="0" precision-variable="%n" type-name-pattern="INTEGER(%n) ZEROFILL"/>
+<variant type-name-pattern="INTEGER UNSIGNED"/>
+<variant type-name-pattern="INTEGER UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="INTEGER ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="ROLE_ID" remarks="ID einer Rolle">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="1" decimal-digits="0" default-value="" mandatory="true" name="VISIBLE" remarks="Gibt an, ob die GUI-Komponente fuer die Rolle sichtbar sein soll">
+<column-description/>
+<data-type jdbc-type="-6" name="TINYINT" selected-variant-pattern="TINYINT(%n)">
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n)"/>
+<variant type-name-pattern="TINYINT"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) UNSIGNED"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) ZEROFILL"/>
+<variant type-name-pattern="TINYINT UNSIGNED"/>
+<variant type-name-pattern="TINYINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="TINYINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="1" decimal-digits="0" default-value="" mandatory="true" name="EXECUTABLE" remarks="Gibt an, ob die GUI-Komponente fuer die Rolle ausfuehrbar sein soll">
+<column-description/>
+<data-type jdbc-type="-6" name="TINYINT" selected-variant-pattern="TINYINT(%n)">
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n)"/>
+<variant type-name-pattern="TINYINT"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) UNSIGNED"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="1" precision-min="0" precision-variable="%n" type-name-pattern="TINYINT(%n) ZEROFILL"/>
+<variant type-name-pattern="TINYINT UNSIGNED"/>
+<variant type-name-pattern="TINYINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="TINYINT ZEROFILL"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_COMPBEHAVIOR" remarks="">
+<primary-key-description/>
+<primary-key-column name="ID"/>
+</primary-key>
+<unique-key-list>
+<unique-key alias="" name="UQ_COMPBEHAVIOR" remarks="Jede Komponente darf nur einmal fuer eine Rolle konfiguriert werden.">
+<unique-key-description/>
+<unique-key-column name="COMP_ID"/>
+<unique-key-column name="ROLE_ID"/>
+</unique-key>
+</unique-key-list>
+<foreign-key-list>
+<foreign-key alias="" name="FK_COMPBEHAVIOR_TO_ROLE" on-delete="NO ACTION" on-update="CASCADE" referenced-key="PK_ROLE" referenced-table="ROLE" referenced-table-schema="DEFAULT_SCHEMA" remarks="ForeignKey von COMPBEHAVIOR.ROLE_ID auf ROLE.ID" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="ROLE_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+<foreign-key alias="" name="FK_COMPBEHAVIOR_TO_COMP" on-delete="CASCADE" on-update="CASCADE" referenced-key="PK_GUICOMPONENT" referenced-table="GUICOMPONENT" referenced-table-schema="DEFAULT_SCHEMA" remarks="ForeignKey von COMPBEHAVIOR.COMP_ID auf GUICOMPONENT.ID" source-entity-role="" source-multiplicity="0..*" source-relationship-type="" target-entity-role="" target-multiplicity="1" target-relationship-type="">
+<foreign-key-description/>
+<foreign-key-figure>
+<fk-fig-bendpoint-list/>
+</foreign-key-figure>
+<foreign-key-column column-name="COMP_ID" referenced-key-column-name="ID"/>
+</foreign-key>
+</foreign-key-list>
+<index-list/>
+</table>
+<table alias="" name="DB" remarks="">
+<table-description/>
+<table-figure-bounds height="-1" width="-1" x="466" y="170"/>
+<column-list>
+<column alias="" auto-increment="true" column-size="0" decimal-digits="0" default-value="" mandatory="true" name="ID" remarks="">
+<column-description/>
+<data-type jdbc-type="5" name="SMALLINT" selected-variant-pattern="SMALLINT">
+<variant type-name-pattern="SMALLINT"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n)"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) UNSIGNED ZEROFILL"/>
+<variant precision-max="5" precision-min="0" precision-variable="%n" type-name-pattern="SMALLINT(%n) ZEROFILL"/>
+<variant type-name-pattern="SMALLINT UNSIGNED"/>
+<variant type-name-pattern="SMALLINT UNSIGNED ZEROFILL"/>
+<variant type-name-pattern="SMALLINT ZEROFILL"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="50" decimal-digits="0" default-value="" mandatory="true" name="NAME" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="true" name="DRIVER" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="true" name="URL" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="false" name="SCHEMA" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="100" decimal-digits="0" default-value="" mandatory="false" name="HIBERNATE_DIALECT" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="false" name="DESCRIPTION" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="false" name="FALLBACK_DRIVER" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="false" name="FALLBACK_URL" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="255" decimal-digits="0" default-value="" mandatory="false" name="FALLBACK_SCHEMA" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+<column alias="" auto-increment="false" column-size="100" decimal-digits="0" default-value="" mandatory="false" name="FALLBACK_HIBERNATE_DIALECT" remarks="">
+<column-description/>
+<data-type jdbc-type="12" literal-prefix="'" literal-suffix="'" name="VARCHAR" selected-variant-pattern="VARCHAR(%n)">
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n)"/>
+<variant precision-max="255" precision-min="1" precision-variable="%n" type-name-pattern="VARCHAR(%n) BINARY"/>
+</data-type>
+</column>
+</column-list>
+<primary-key alias="" name="PK_DB" remarks="">
+<primary-key-description/>
+<primary-key-column name="ID"/>
+</primary-key>
+<unique-key-list>
+<unique-key alias="" name="UQ_DB_NAME" remarks="">
+<unique-key-description/>
+<unique-key-column name="NAME"/>
+</unique-key>
+</unique-key-list>
+<foreign-key-list/>
+<index-list/>
+</table>
+</table-list>
+</schema>
+</schema-list>
+</database-model>
+</clay-model>

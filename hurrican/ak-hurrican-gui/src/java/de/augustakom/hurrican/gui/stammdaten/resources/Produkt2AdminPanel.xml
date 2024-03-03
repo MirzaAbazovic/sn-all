@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Sub-Panel der administrativen Daten fuer die Produkte.
+-->
+<sf>
+
+    <Label name="projektierung.chain"><text>Projektierungs-Chain:</text></Label>
+    <ReferenceField name="projektierung.chain">
+        <tooltip>ServiceChain, die für Checks bei Projektierungen verwendet werden soll</tooltip>
+        <columns>20</columns>
+    </ReferenceField>
+
+    <Label name="verlauf.chain"><text>Verlaufs-Chain:</text></Label>
+    <ReferenceField name="verlauf.chain">
+        <tooltip>ServiceChain, die für die Verlaufserstellung verwendet werden soll</tooltip>
+        <columns>20</columns>
+    </ReferenceField>
+
+    <Label name="verlauf.cancel.chain"><text>Verlaufs-Chain (Künd.):</text></Label>
+    <ReferenceField name="verlauf.cancel.chain">
+        <tooltip>ServiceChain, die fuer die Verlaufserstellung bei Kündigungen verwendet werden soll</tooltip>
+        <columns>20</columns>
+    </ReferenceField>
+
+    <Label name="account.vorsatz"><text>Acc.-Vorsatz:</text></Label>
+    <TextField name="account.vorsatz">
+        <tooltip>Präfix für die Account-Daten</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="aktions.id"><text>Aktions-ID</text></Label>
+    <ComboBox name="aktions.id">
+        <tooltip>Definiert, wie Aufträge von Mistral nach Hurrican übernommen werden sollen</tooltip>
+    </ComboBox>
+
+    <Label name="buendel.produkt">
+        <text>Bündelprodukt:</text>
+    </Label>
+    <CheckBox name="buendel.produkt">
+        <tooltip>Definiert, ob das Produkt ein sog. Bündelprodukt ist.</tooltip>
+    </CheckBox>
+    <Label name="buendel.hauptauftrag">
+        <text>Bündel aus Billing-Hauptauftrag:</text>
+    </Label>
+    <CheckBox name="buendel.hauptauftrag">
+        <tooltip>Definiert, ob für das Produkt aus der Billing-Haupt-/Unterauftragslogik ein Hurrican-Auftragsbündel
+            ermittelt wird.
+        </tooltip>
+    </CheckBox>
+
+    <Label name="el.verlauf"><text>el. Verlauf:</text></Label>
+    <CheckBox name="el.verlauf">
+        <tooltip>Definiert, ob das Produkt einen elektronischen Verlauf besitzt.</tooltip>
+    </CheckBox>
+
+    <Label name="ba.ruecklaeufer"><text>BA-Rückl.:</text></Label>
+    <CheckBox name="ba.ruecklaeufer">
+        <tooltip>Definiert, ob für das Produkt auf jeden Fall ein Bauauftrags-Rückläufer verwendet werden soll</tooltip>
+    </CheckBox>
+
+    <Label name="abrechnung.hurrican"><text>Abrechnung Hurrican:</text></Label>
+    <CheckBox name="abrechnung.hurrican">
+        <tooltip>Definiert, ob die Kosten des Produkts über Hurrican abgerechnet werden</tooltip>
+    </CheckBox>
+
+    <Label name="endstellen.typ"><text>Endstellen-Typ:</text></Label>
+    <CheckBox name="endstellen.typ">
+        <tooltip>Definiert, welche Endstellen für das Produkt benötigt werden.</tooltip>
+    </CheckBox>
+
+    <Label name="auftragserstellung"><text>Auftragserstellung:</text></Label>
+    <CheckBox name="auftragserstellung">
+        <tooltip>Definiert, ob für einen Auftrag ein Mistral-Auftrag vorhanden sein muss (false) oder der Auftrag in Hurrican erstellt wird (true).</tooltip>
+    </CheckBox>
+
+    <Label name="vpn.physik"><text>VPN-Physik:</text></Label>
+    <CheckBox name="vpn.physik">
+        <tooltip>Definiert, ob das Produkt als physikalische Leitung fuer einen VPN-Auftrag verwendet werden kann.</tooltip>
+    </CheckBox>
+
+    <Label name="projektierung"><text>Projektierung:</text></Label>
+    <CheckBox name="projektierung">
+        <tooltip>Definiert, ob für das Produkt eine Projektierung durchgeführt werden kann.</tooltip>
+    </CheckBox>
+
+    <Label name="vier.draht"><text>Vier-Draht:</text></Label>
+    <CheckBox name="vier.draht">
+        <tooltip>Definiert, ob das Produkt eine Vier-Draht Physik benötigt.</tooltip>
+    </CheckBox>
+
+    <Label name="li.nr"><text>Account-Art:</text></Label>
+    <ComboBox name="li.nr">
+        <tooltip>Definiert, welche Account-Art dem Produkt zugeordnet wird.</tooltip>
+    </ComboBox>
+
+    <Label name="verteilung.durch"><text>Verteilung durch:</text></Label>
+    <ComboBox name="verteilung.durch">
+        <tooltip>Definiert, welche Abteilung den Bauauftrag verteilt.</tooltip>
+    </ComboBox>
+
+    <Label name="aenderungsgruppen"><text>Änderungsgruppen:</text></Label>
+
+    <Label name="ip.pool"><text>IP-Pool:</text></Label>
+    <ComboBox name="ip.pool">
+        <tooltip>Definiert die IP Produkt Gruppe.</tooltip>
+    </ComboBox>
+
+    <Label name="verwendungszweck.v4"><text>Verwendungszweck V4:</text></Label>
+    <ComboBox name="verwendungszweck.v4">
+        <tooltip>Verwendungszweck bei V4-Adressen.</tooltip>
+    </ComboBox>
+
+    <Label name="verwendungszweck.v4.editierbar"><text>Verwendungszweck V4 editierbar:</text></Label>
+    <CheckBox name="verwendungszweck.v4.editierbar">
+        <tooltip>Definiert, ob der Verwendungszweck bei V4 geändert werden kann.</tooltip>
+    </CheckBox>
+
+    <Label name="netzmaske.v4"><text>Größe Netzmaske V4:</text></Label>
+    <FormattedTextField name="netzmaske.v4">
+        <tooltip>Größe der Netzmaske für V4-Adressen.</tooltip>
+        <format type="number">##</format>
+        <columns>20</columns>
+    </FormattedTextField>
+
+    <Label name="netzmaske.v6"><text>Größe Netzmaske V6:</text></Label>
+    <FormattedTextField name="netzmaske.v6">
+        <tooltip>Größe der Netzmaske für V6-Adressen.</tooltip>
+        <format type="number">####</format>
+        <columns>20</columns>
+    </FormattedTextField>
+
+    <Label name="netzmaske.editierbar"><text>Größe der Netzmaske editierbar:</text></Label>
+    <CheckBox name="netzmaske.editierbar">
+        <tooltip>Definiert, ob die Größe der Netzmaske geändert werden kann.</tooltip>
+    </CheckBox>
+
+    <Label name="automation.possible"><text>Ist Automatisierung möglich:</text></Label>
+    <CheckBox name="automation.possible">
+        <tooltip>Definiert, ob die Automatisierung von dem Auftrag für dieses Produkt möglich ist.</tooltip>
+    </CheckBox>
+
+    <Label name="geoid.src"><text>Quelle ONKZ/ASB:</text></Label>
+    <ComboBox name="geoid.src">
+        <tooltip>Quelle ONKZ/ASB (Endstelle, GeoId, Keine)</tooltip>
+    </ComboBox>
+
+    <Label name="no.auto.hvt.zuordnung"><text>Keine autom. HVT-Zuordnung:</text></Label>
+    <CheckBox name="no.auto.hvt.zuordnung">
+        <tooltip>Definiert, ob einem Auftrag mit diesem Produkt automatisch ein HVT zugeordnet werden soll.</tooltip>
+    </CheckBox>
+
+    <Label name="auto.sms.versand"><text>Autom. SMS/E-Mail-Versand:</text></Label>
+    <CheckBox name="auto.sms.versand">
+        <tooltip>Definiert, ob für Aufträge mit diesem Produkt bei einer positiv zurückgemeldeten WITA Bestellung automatisch eine SMS bzw. E-Mail an den Kunden versendet werden soll.</tooltip>
+    </CheckBox>
+
+    <Label name="aftr.adresse"><text>AFTR Adresse:</text></Label>
+    <TextField name="aftr.adresse">
+        <tooltip>AFTR Adresse (FQDN)</tooltip>
+    </TextField>
+
+    <Label name="p.bit.daten"><text>p-bit Daten:</text></Label>
+    <TextField name="p.bit.daten">
+        <tooltip>PCP Wert für Daten (p-bit)</tooltip>
+    </TextField>
+
+    <Label name="p.bit.voip"><text>p-bit VoIP:</text></Label>
+    <TextField name="p.bit.voip">
+        <tooltip>PCP Wert für VoIP (p-bit)</tooltip>
+    </TextField>
+</sf>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse de.augustakom.hurrican.reporting.model.ReportTemplate
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.reporting">
+    <class name="ReportTemplate" table="t_report_template">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_REPORT_TEMPLATE_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Felder -->
+        <property name="reportId" column="REP_ID" type="long" not-null="true"/>
+         <property name="filename" column="FILENAME" type="string" not-null="true"/>
+         <property name="filenameOrig" column="FILENAME_ORIG" type="string" not-null="true"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date" not-null="true"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date" not-null="true"/>
+        <property name="userw" column="USERW" type="string" not-null="true"/>
+     </class>
+
+</hibernate-mapping>

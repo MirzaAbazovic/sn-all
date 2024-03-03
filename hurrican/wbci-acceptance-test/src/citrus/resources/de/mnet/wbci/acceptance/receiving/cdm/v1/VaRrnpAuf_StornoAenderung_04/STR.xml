@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <ns0:cancelCarrierChange xmlns:ns0="http://www.mnet.de/esb/cdm/SupplierPartner/CarrierNegotiationService/v1">
+            <ns0:STR-AEN-DON>
+                <ns0:absender>
+                    <ns0:carrierCode>${carrierCodeAbg}</ns0:carrierCode>
+                </ns0:absender>
+                <ns0:empfaenger>
+                    <ns0:carrierCode>${carrierCodeAuf}</ns0:carrierCode>
+                </ns0:empfaenger>
+                <ns0:version>0</ns0:version>
+                <ns0:endkundenvertragspartner>
+                    <ns0:EKPauf>
+                        <ns0:carrierCode>${carrierCodeAuf}</ns0:carrierCode>
+                    </ns0:EKPauf>
+                    <ns0:EKPabg>
+                        <ns0:carrierCode>${carrierCodeAbg}</ns0:carrierCode>
+                    </ns0:EKPabg>
+                </ns0:endkundenvertragspartner>
+                <ns0:stornoId>${stornoId}</ns0:stornoId>
+                <ns0:vorabstimmungsIdRef>${preAgreementId}</ns0:vorabstimmungsIdRef>
+                <ns0:name>
+                    <ns0:person>
+                        <ns0:anrede>1</ns0:anrede>
+                        <ns0:vorname>John</ns0:vorname>
+                        <ns0:nachname>McFly</ns0:nachname>
+                    </ns0:person>
+                </ns0:name>
+                <ns0:standort>
+                    <ns0:strasse>
+                        <ns0:strassenname>Emmy-Noether-Straße</ns0:strassenname>
+                        <ns0:hausnummer>2</ns0:hausnummer>
+                        <ns0:hausnummernZusatz>a</ns0:hausnummernZusatz>
+                    </ns0:strasse>
+                    <ns0:postleitzahl>80992</ns0:postleitzahl>
+                    <ns0:ort>München</ns0:ort>
+                </ns0:standort>
+                <ns0:stornogrund>Sag ich nicht</ns0:stornogrund>
+            </ns0:STR-AEN-DON>
+        </ns0:cancelCarrierChange>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns3:updatePortKennungTnbRequest xmlns:ns3="http://www.mnet.de/elektra/services/1.0/">
+    <billingOrderNoOrig>${billingOrderNoOrig}</billingOrderNoOrig>
+    <portKennungTnbAbg>D043</portKennungTnbAbg>
+    <portKennungTnbAuf>D001</portKennungTnbAuf>
+</ns3:updatePortKennungTnbRequest>

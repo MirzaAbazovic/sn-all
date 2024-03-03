@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions id="Definition" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:activiti="http://activiti.org/bpmn"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             targetNamespace="Examples"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
+
+  <!-- ids von Tasks in dem Enum de.mnet.wita.bpm.WorkflowTaskName festhalten -->
+  <process id="AbgebendPv" name="AbgebendPv">
+
+    <startEvent id="start" name="Start" />
+    <sequenceFlow sourceRef="start" targetRef="processAkmPv" id="start-processAkmPv" />
+
+    <serviceTask id="processAkmPv" name="Process AKM-PV" activiti:delegateExpression="${processAkmPvTask}" default="processAkmPv-waitForRuemPv" />
+    <sequenceFlow sourceRef="processAkmPv" targetRef="workflowError" id="processAkmPv-workflowError">
+      <conditionExpression xsi:type="tFormalExpression">
+                    <![CDATA[${workflowError.equals(true)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="processAkmPv" targetRef="sendRuemPv" id="processAkmPv-sendRuemPv">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"RUEM_PV".equals(witaMessageType)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="processAkmPv" targetRef="waitForRuemPv" id="processAkmPv-waitForRuemPv" />
+
+    <receiveTask id="waitForRuemPv" name="Wait for RUEM-PV" default="waitForRuemPv-workflowError" />
+    <sequenceFlow sourceRef="waitForRuemPv" targetRef="sendRuemPv" id="waitForRuemPv-sendRuemPv">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"RUEM_PV".equals(witaMessageType)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="waitForRuemPv" targetRef="processSecondAkmPvMessage" id="waitForRuemPv-processSecondAkmPvMessage">
+      <!-- erneute AKM-PV soll akzeptiert werden! -->
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"AKM_PV".equals(witaMessageType)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="waitForRuemPv" targetRef="processMessage" id="waitForRuemPv-processMessage">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"ABBM_PV".equals(witaMessageType) || "ABM_PV".equals(witaMessageType)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="waitForRuemPv" targetRef="workflowError" id="waitForRuemPv-workflowError">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${workflowError.equals(true)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <serviceTask id="sendRuemPv" name="Send RUEM-PV" activiti:delegateExpression="${sendRuemPvTask}" />
+    <sequenceFlow sourceRef="sendRuemPv" targetRef="waitForMessage" id="sendRuemPv-waitForMessage" />
+
+    <!-- Treat a second AKM-PV on an active workflow (second AKM-PV overrides the first one) -->
+    <serviceTask id="processSecondAkmPvMessage" name="Process second AKM-PV" activiti:delegateExpression="${processSecondAkmPvMessageTask}" default="processSecondAkmPvMessage-waitForRuemPv" />
+    <sequenceFlow sourceRef="processSecondAkmPvMessage" targetRef="waitForRuemPv" id="processSecondAkmPvMessage-waitForRuemPv"/>
+    <sequenceFlow sourceRef="processSecondAkmPvMessage" targetRef="workflowError" id="processSecondAkmPvMessage-workflowError">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${workflowError.equals(true)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <receiveTask id="waitForMessage" name="Wait for message" />
+    <sequenceFlow sourceRef="waitForMessage" targetRef="processMessage" id="waitForMessage-processMessage" />
+
+    <!-- Decide how to react to the incoming message -->
+    <serviceTask id="processMessage" name="Process message" activiti:delegateExpression="${processPvMessageTask}" />
+    <sequenceFlow sourceRef="processMessage" targetRef="workflowError" id="processMessage-workflowError">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${workflowError.equals(true)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <!-- just wait for next message at ABM-PV, VZM-PV or ERLM-PV message -->
+    <sequenceFlow sourceRef="processMessage" targetRef="waitForMessage" id="processMessage-waitForMessage">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"ABM_PV".equals(witaMessageType)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <sequenceFlow sourceRef="processMessage" targetRef="waitForMessage" id="processMessageVzmPv-waitForMessage">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"VZM_PV".equals(witaMessageType) }]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <sequenceFlow sourceRef="processMessage" targetRef="waitForEntmPvMessage" id="processMessage-waitForEntmPvMessage">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"ERLM_PV".equals(witaMessageType)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <!-- finish workflow at ABBM-PV -->
+    <sequenceFlow sourceRef="processMessage" targetRef="end" id="processMessage-end">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"ABBM_PV".equals(witaMessageType)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <receiveTask id="waitForEntmPvMessage" name="Wait for ENTM-PV" default="waitForEntmPvMessage-workflowError"/>
+    <sequenceFlow sourceRef="waitForEntmPvMessage" targetRef="workflowError" id="waitForEntmPvMessage-workflowError" />
+
+    <sequenceFlow sourceRef="waitForEntmPvMessage" targetRef="waitForEntmPvMessage" id="waitForEntmPvMessage-waitForEntmPvMessage">
+      <!-- ERLM + VZM message after ENTM allowed! -->
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"ERLM_PV".equals(witaMessageType) || "VZM".equals(witaMessageType)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <!-- finish workflow at ENTM-PV -->
+    <sequenceFlow sourceRef="waitForEntmPvMessage" targetRef="end" id="waitForEntmPvMessage-end">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"ENTM_PV".equals(witaMessageType)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+
+    <endEvent id="end" name="End">
+      <terminateEventDefinition />
+    </endEvent>
+
+    <userTask id="workflowError" name="Error State" activiti:candidateGroups="clearance" default="workflowError-workflowError" />
+    <sequenceFlow sourceRef="workflowError" targetRef="waitForRuemPv" id="workflowError-waitForRuemPv">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"WAIT_FOR_RUEMPV".equals(workflowErrorResetState)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="workflowError" targetRef="waitForMessage" id="workflowError-waitForMessage">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"WAIT_FOR_MESSAGE".equals(workflowErrorResetState)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="workflowError" targetRef="end" id="workflowError-end">
+      <conditionExpression xsi:type="tFormalExpression">
+                <![CDATA[${"CLOSED".equals(workflowErrorResetState)}]]>
+      </conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow sourceRef="workflowError" targetRef="workflowError" id="workflowError-workflowError" />
+
+
+  </process>
+</definitions>

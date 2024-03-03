@@ -1,0 +1,16 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://www.w3.org/2001/XMLSchema"
+  xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  jaxb:version="2.0">
+  <!-- Nur um das org.w3.www._2001 Package loszuwerden -->
+  <annotation><appinfo>
+    <jaxb:globalBindings>
+       <jaxb:javaType name="java.time.LocalDate" xmlType="xsd:date" parseMethod="de.mnet.common.webservice.tools.XmlSchemaDateToLocalDateBinder.parseDate"
+           printMethod="de.mnet.common.webservice.tools.XmlSchemaDateToLocalDateBinder.printDate" />
+    </jaxb:globalBindings>
+    <jaxb:schemaBindings>
+      <jaxb:package name="de.mnet.hurrican.webservice.common"/>
+    </jaxb:schemaBindings>
+  </appinfo></annotation>
+</schema>

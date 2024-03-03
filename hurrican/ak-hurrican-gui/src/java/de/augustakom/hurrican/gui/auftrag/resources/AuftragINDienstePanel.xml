@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den Endstellen-Daten.
+-->
+<sf>
+
+    <Label name="neuschaltung"><text>Neuschaltung:</text></Label>
+    <CheckBox name="neuschaltung">
+        <tooltip>Der IN-Dienst wird neu geschaltet</tooltip>
+    </CheckBox>
+    
+    <Label name="uebernahme"><text>Übernahme:</text></Label>
+    <CheckBox name="uebernahme">
+        <tooltip>Der IN-Dienst wird von einem anderen Anbieter übernommen</tooltip>
+    </CheckBox>
+    
+    <Label name="in.nummer"><text>Vorwahl/Rufnummer:</text></Label>
+    <TextField name="vorwahl">
+        <tooltip>Vorwahl für die IN-Rufnummer</tooltip>
+        <columns>7</columns>
+    </TextField>
+    <TextField name="rufnummer">
+        <tooltip>IN-Rufnummer</tooltip>
+        <columns>8</columns>
+    </TextField>
+    
+    <Label name="ziel"><text>Zielrufnummer:</text></Label>
+    <TextField name="ziel">
+        <tooltip>Zielrufnummer für den IN-Dienst</tooltip>
+    </TextField>
+    
+    <Label name="codenummer"><text>Code-Nummer:</text></Label>
+    <TextField name="codenummer">
+        <tooltip>Code-Nummer für den IN-Dienst</tooltip>
+    </TextField>
+    
+    <Label name="auftragseingang"><text>Auftragseingang:</text></Label>
+    <DateComponent name="auftragseingang">
+    	<tooltip>Datum, an dem der Auftrag eingegangen ist (Format: dd.MM.yyyy)</tooltip>
+    	<format type="date">dd.MM.yyyy</format>
+    	<columns>11</columns>	
+    </DateComponent>
+    
+    <Label name="an.reg.tp"><text>an Reg-TP:</text></Label>
+    <DateComponent name="an.reg.tp">
+    	<tooltip>Datum, an dem der IN-Dienst an die Reg-TP gemeldet wurde (Format: dd.MM.yyyy)</tooltip>
+    	<format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+    
+    <Label name="inbetriebnahme"><text>Inbetriebnahme:</text></Label>
+    <DateComponent name="inbetriebnahme">
+    	<tooltip>Datum, an dem der Auftrag aktiv geschaltet wurde (Format: dd.MM.yyyy)</tooltip>
+    	<format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+    
+    <Label name="wirksam.ab"><text>Wirksam ab:</text></Label>
+    <DateComponent name="wirksam.ab">
+    	<format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+    
+    <Label name="kuendigung"><text>Kündigung:</text></Label>
+    <DateComponent name="kuendigung">
+    	<tooltip>Datum, zu dem der Auftrag gekündigt wurde (Format: dd.MM.yyyy)</tooltip>
+    	<format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+    
+    <Label name="wunschtermin"><text>Wunschtermin:</text></Label>
+    <DateComponent name="wunschtermin">
+    	<tooltip>Wunschtermin des Kunden für die Realisierung (Format: dd.MM.yyyy)</tooltip>
+    	<format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+</sf>

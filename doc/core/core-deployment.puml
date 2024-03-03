@@ -1,0 +1,132 @@
+@startuml
+
+actor "Consumer M-net" as Consumer
+actor "Supplier DTAG" as Supplier
+
+frame Agreement_UI {
+
+}
+
+frame Party_UI {
+
+}
+
+frame OrderManagement_UI {
+
+}
+frame OrderCatalog_UI {
+
+}
+
+NODE Adlatus {
+
+    component WitaMocks {
+
+    }
+
+    component ConfigServer {
+
+    }
+
+    component PartyManagement {
+
+    }
+
+    database DB_PartyManagement {
+
+    }
+
+    component ResourceCatalog {
+
+    }
+
+    database DB_ResourceCatalog {
+
+    }
+
+    component ResourceOrderManagement {
+
+    }
+
+
+    database  DB_ResourceOrderManagement {
+
+    }
+
+    component ResourceInventory {
+          component Ambasador_RI {
+
+        }
+
+    }
+
+    database DB_ResourceInventory {
+        
+    }
+
+    component InterfaceTransformator {
+        component Ambasador {
+
+        }
+    }
+
+    component OrderValidator {
+
+    }
+
+    component AgreementAndProductResolver {
+
+    }
+
+    component AgreementManagement {
+
+    }
+
+
+    database DB_AgreementManagement {
+
+    }
+
+    hexagon API_GATEWAY {
+
+    }
+
+
+
+
+    Consumer -[#red]-(0 ResourceOrderManagement
+    Supplier -[#red]-(0 WitaMocks
+
+    PartyManagement .. ConfigServer
+    Ambasador .. ConfigServer
+    ResourceCatalog  .. ConfigServer
+    ResourceOrderManagement  .. ConfigServer
+    ResourceInventory  .. ConfigServer
+    AgreementManagement  .. ConfigServer
+
+    ResourceCatalog  --* DB_ResourceCatalog
+    ResourceOrderManagement --* DB_ResourceOrderManagement
+    PartyManagement --* DB_PartyManagement
+    AgreementManagement --* DB_AgreementManagement
+    ResourceInventory --* DB_ResourceInventory
+
+    Ambasador <-[#red]-> ResourceOrderManagement
+    ResourceOrderManagement --> PartyManagement
+    ResourceOrderManagement --> OrderValidator
+    OrderValidator --> ResourceCatalog
+    Ambasador_RI ..> ResourceOrderManagement
+    InterfaceTransformator <-[#red]-> WitaMocks
+    InterfaceTransformator --> AgreementAndProductResolver
+    AgreementAndProductResolver --> AgreementManagement
+
+    Agreement_UI --> API_GATEWAY
+    Party_UI --> API_GATEWAY
+    OrderManagement_UI --> API_GATEWAY
+    OrderCatalog_UI --> API_GATEWAY
+
+
+}
+
+
+
+@enduml

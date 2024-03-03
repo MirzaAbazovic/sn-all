@@ -1,0 +1,7 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <getOrderDetails xmlns="http://www.mnet.de/esb/cdm/Customer/CustomerOrderService/v1">
+            <lineContractId>${lineContractId}</lineContractId>
+        </getOrderDetails>
+    </soap:Body>
+</soap:Envelope>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GUI-Definitionen fuer das Panel zur Darstellung der Properties einer Abteilung. -->    
+<sf>
+    <Label name="department.id"><text>ID:</text></Label>
+    <FormattedTextField name="department.id">
+        <tooltip>ID der Abteilung</tooltip>
+        <format type="number">######</format>
+    </FormattedTextField>
+    
+    <Label name="department.name"><text>Name:</text></Label>
+    <TextField name="department.name">
+        <tooltip>Name der Abteilung</tooltip>
+        <columns>30</columns>
+    </TextField>
+    
+    <Label name="department.description"><text>Beschreibung:</text></Label>
+    <TextArea name="department.description">
+        <tooltip>Kurze Beschreibung der Abteilung (max. 255 Zeichen)</tooltip>
+        <columns>30</columns>
+        <rows>5</rows>
+    </TextArea>
+        
+    <Button name="button.new.team">
+        <text>Neues Team</text>
+        <tooltip>Neues Team erstellen und Abteilung zuordnen</tooltip>
+    </Button>
+
+    <Button name="button.edit.team">
+        <text>Team bearbeiten</text>
+        <tooltip>Selektiertes Team bearbeiten</tooltip>
+    </Button>
+
+    <Button name="button.delete.team">
+        <text>Team löschen</text>
+        <tooltip>Selektiertes Team löschen und Zuordnung zu Abteilung entfernen</tooltip>
+    </Button>
+</sf>

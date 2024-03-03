@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    
+    <MenuBar name="mdi.sample">
+        <items>
+            <item>menu.system</item>
+            <item>menu.edit</item>
+            <item>menu.window</item>
+            <item>menu.help</item>
+        </items>
+    </MenuBar>
+    
+    <Menu name="menu.system">
+        <text>System</text>
+        <tooltip>Menu for system operation</tooltip>
+        <mnemonic>VK_S</mnemonic>
+        <items>
+            <item>open</item>
+            <separator/>
+            <item>exit</item>
+        </items>
+    </Menu>
+    
+    <Menu name="menu.edit">
+        <text>Edit</text>
+        <mnemonic>VK_E</mnemonic>
+        <items>
+            <item>copy</item>
+            <item>paste</item>
+        </items>
+    </Menu>
+    
+    <Menu name="menu.window">
+        <text>Window</text>
+        <mnemonic>VK_W</mnemonic>
+        <items>
+            <item>close.all</item>
+            <item>minimize.all</item>
+            <item>maximize.all</item>
+        </items>
+    </Menu>
+    
+    <Menu name="menu.help">
+        <text>Help</text>
+        <mnemonic>VK_H</mnemonic>
+    </Menu>
+    
+    <MenuItem name="open">
+		<text>Open</text>
+		<tooltip>Tooltip for Open MenuItem</tooltip>
+		<icon>de/augustakom/common/gui/images/Test.gif</icon>
+		<mnemonic>VK_O</mnemonic>
+		<accelerator>alt shift O</accelerator>
+	</MenuItem>
+	
+	<MenuItem name="exit">
+		<text>Exit</text>
+		<mnemonic>VK_X</mnemonic>
+		<accelerator>alt shift X</accelerator>
+	</MenuItem>
+	
+	<MenuItem name="copy">
+		<text>Copy</text>
+		<mnemonic>VK_C</mnemonic>
+		<accelerator>alt shift C</accelerator>
+	</MenuItem>
+	
+	<MenuItem name="paste">
+		<text>Paste</text>
+		<mnemonic>VK_P</mnemonic>
+		<accelerator>alt shift P</accelerator>
+	</MenuItem>
+	
+	<MenuItem name="close.all">
+		<text>Close all</text>
+		<mnemonic>VK_C</mnemonic>
+		<accelerator>alt C</accelerator>
+	</MenuItem>
+	
+	<MenuItem name="minimize.all">
+		<text>Minimize all</text>
+		<mnemonic>VK_M</mnemonic>
+		<accelerator>alt M</accelerator>
+	</MenuItem>
+	
+	<MenuItem name="maximize.all">
+		<text>Maximize all</text>
+		<mnemonic>VK_A</mnemonic>
+		<accelerator>alt A</accelerator>
+	</MenuItem>
+	
+	
+    
+</sf>

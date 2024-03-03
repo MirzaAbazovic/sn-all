@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="Command" resourceRoot="" soapui-version="3.6.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="TestSuite" value="CommandLocationDataWebService_TestSuite"/>
+  <con:entry key="Report to Generate" value=""/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="soapui-setings.xml Password" value=""/>
+  <con:entry key="TestRunner Path" value=""/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="Ignore Errors" value="false"/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="Save Project" value="false"/>
+  <con:entry key="Enable UI" value="false"/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Coverage Report" value="false"/>
+  <con:entry key="Export JUnit Results" value="false"/>
+  <con:entry key="Open Report" value="false"/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="Project Password" value=""/>
+  <con:entry key="Export All" value="false"/>
+  <con:entry key="Report Format(s)" value=""/>
+  <con:entry key="TestCase" value="&lt;all>"/>
+  <con:entry key="Print Report" value="false"/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="Root Folder" value=""/>
+  <con:entry key="Save After" value="false"/>
+  <con:entry key="Add Settings" value="false"/>
+  <con:entry key="Endpoint" value=""/>
+</xml-fragment>]]></con:setting></con:settings><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CommandLocationDataWebServiceSoap11" type="wsdl" bindingName="{http://mnet.de/hurricanweb/command/location/types/}CommandLocationDataWebServiceSoap11" soapVersion="1_1" anonymous="optional" definition="file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandLocationData.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandLocationData.wsdl"><con:part><con:url>file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandLocationData.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://mnet.de/hurricanweb/command/location/types/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://mnet.de/hurricanweb/command/location/types" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://mnet.de/hurricanweb/command/location/types/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://mnet.de/hurricanweb/command/location/types" xmlns:ns0="http://mnet.de/hurricanweb/command/location/types" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="CommandLocationDataRequest" type="ns0:CommandLocationDataRequest"/>
+      <xs:element name="CommandLocationDataRequestResponse" type="ns0:CommandLocationDataRequestResponse"/>
+      <xs:element name="CommandLocationDataRequestFailure" type="ns0:CommandLocationDataRequestFailure"/>
+      <xs:complexType name="CommandLocationDataRequest">
+        <xs:sequence>
+          <xs:element name="bezeichnung" type="xs:string"/>
+          <xs:element name="strasse" type="xs:string"/>
+          <xs:element name="hausnummer" type="xs:string"/>
+          <xs:element name="hausnummerZusatz" type="xs:string"/>
+          <xs:element name="plz" type="xs:string"/>
+          <xs:element name="ort" type="xs:string"/>
+          <xs:element name="niederlassung" type="xs:string"/>
+          <xs:element name="betriebsraum" type="xs:string"/>
+          <xs:element name="fcRaum" type="xs:string"/>
+          <xs:element name="standorttyp" type="xs:string"/>
+          <xs:element name="onkz" type="xs:string"/>
+          <xs:element name="asb" type="xs:string"/>
+          <xs:element name="versorger" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommandLocationDataRequestResponse">
+        <xs:sequence>
+          <xs:element name="bezeichnung" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommandLocationDataRequestFailure">
+        <xs:sequence>
+          <xs:element name="bezeichnung" type="xs:string"/>
+          <xs:element name="errorMsg" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="CommandLocationDataRequest">
+    <wsdl:part element="sch:CommandLocationDataRequest" name="CommandLocationDataRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommandLocationDataRequestResponse">
+    <wsdl:part element="sch:CommandLocationDataRequestResponse" name="CommandLocationDataRequestResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CommandLocationDataWebService">
+    <wsdl:operation name="CommandLocationData">
+      <wsdl:input message="tns:CommandLocationDataRequest" name="CommandLocationDataRequest"></wsdl:input>
+      <wsdl:output message="tns:CommandLocationDataRequestResponse" name="CommandLocationDataRequestResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CommandLocationDataWebServiceSoap11" type="tns:CommandLocationDataWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CommandLocationData">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CommandLocationDataRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CommandLocationDataRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommandLocationData">
+    <wsdl:port binding="tns:CommandLocationDataWebServiceSoap11" name="CommandLocationDataWebServiceSoap11">
+      <soap:address location="http://localhost:8080/hurricanweb/command/location"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/hurricanweb/command/location</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="CommandLocationData" bindingOperationName="CommandLocationData" type="Request-Response" outputName="CommandLocationDataRequestResponse" inputName="CommandLocationDataRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/hurricanweb/command/location</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/command/location/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:CommandLocationDataRequest>
+         <typ:bezeichnung>AGB-DOTTM-085</typ:bezeichnung>
+         <typ:strasse>Dr.-Otto-Meyer-Str.</typ:strasse>
+         <typ:hausnummer>1</typ:hausnummer>
+         <typ:hausnummerZusatz>ZUSATZ</typ:hausnummerZusatz>
+         <typ:plz>86169</typ:plz>
+         <typ:ort>Augsburg</typ:ort>
+         <typ:niederlassung>Augsburg</typ:niederlassung>
+         <typ:betriebsraum>AGB-JOHAA-007A</typ:betriebsraum>
+         <typ:fcRaum>B-DOTTM-000</typ:fcRaum>
+         <typ:standorttyp>FTTH</typ:standorttyp>
+         <typ:onkz>0821</typ:onkz>
+         <typ:asb>70</typ:asb>
+         <typ:versorger>AGB-DOTTM-067</typ:versorger>
+      </typ:CommandLocationDataRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mnet.de/hurricanweb/command/location/types/CommandLocationDataWebService/CommandLocationDataRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CommandMDUCreateDataWebServiceSoap11" type="wsdl" bindingName="{http://mnet.de/hurricanweb/command/mdu/types/}CommandMDUCreateDataWebServiceSoap11" soapVersion="1_1" anonymous="optional" definition="file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandMDUCreateData.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandMDUCreateData.wsdl"><con:part><con:url>file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandMDUCreateData.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://mnet.de/hurricanweb/command/mdu/types/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://mnet.de/hurricanweb/command/mdu/types" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://mnet.de/hurricanweb/command/mdu/types/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://mnet.de/hurricanweb/command/mdu/types" xmlns:ns0="http://mnet.de/hurricanweb/command/mdu/types" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="CommandMDUCreateDataRequest" type="ns0:CommandMDUCreateDataRequest"/>
+      <xs:element name="CommandMDUCreateDataRequestResponse" type="ns0:CommandMDUCreateDataRequestResponse"/>
+      <xs:element name="CommandMDUCreateDataRequestFailure" type="ns0:CommandMDUCreateDataRequestFailure"/>
+      <xs:complexType name="CommandMDUCreateDataRequest">
+        <xs:sequence>
+          <xs:element name="bezeichnung" type="xs:string"/>
+          <xs:element name="hersteller" type="xs:string"/>
+          <xs:element name="seriennummer" type="xs:string"/>
+          <xs:element name="modellNummer" type="xs:string"/>
+          <xs:element name="bgTyp" type="xs:string"/>
+          <xs:element name="olt" type="xs:string"/>
+          <xs:element name="oltRack" type="xs:string"/>
+          <xs:element name="oltSubrack" type="xs:string"/>
+          <xs:element name="oltSlot" type="xs:string"/>
+          <xs:element name="oltPort" type="xs:string"/>
+          <xs:element name="gponId" type="xs:string"/>
+          <xs:element name="caTvOnline" type="xs:string"/>
+          <xs:element name="standort" type="xs:string"/>
+          <xs:element name="raumbezeichnung" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommandMDUCreateDataRequestResponse">
+        <xs:sequence>
+          <xs:element name="bezeichnung" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommandMDUCreateDataRequestFailure">
+        <xs:sequence>
+          <xs:element name="bezeichnung" type="xs:string"/>
+          <xs:element name="errorMsg" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="CommandMDUCreateDataRequest">
+    <wsdl:part element="sch:CommandMDUCreateDataRequest" name="CommandMDUCreateDataRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommandMDUCreateDataRequestResponse">
+    <wsdl:part element="sch:CommandMDUCreateDataRequestResponse" name="CommandMDUCreateDataRequestResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CommandMDUCreateDataWebService">
+    <wsdl:operation name="CommandMDUCreateData">
+      <wsdl:input message="tns:CommandMDUCreateDataRequest" name="CommandMDUCreateDataRequest"></wsdl:input>
+      <wsdl:output message="tns:CommandMDUCreateDataRequestResponse" name="CommandMDUCreateDataRequestResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CommandMDUCreateDataWebServiceSoap11" type="tns:CommandMDUCreateDataWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CommandMDUCreateData">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CommandMDUCreateDataRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CommandMDUCreateDataRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommandMDUCreateData">
+    <wsdl:port binding="tns:CommandMDUCreateDataWebServiceSoap11" name="CommandMDUCreateDataWebServiceSoap11">
+      <soap:address location="http://localhost:8080/hurricanweb/command/mdu"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/hurricanweb/command/mdu</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="CommandMDUCreateData" bindingOperationName="CommandMDUCreateData" type="Request-Response" outputName="CommandMDUCreateDataRequestResponse" inputName="CommandMDUCreateDataRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/hurricanweb/command/mdu</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/command/mdu/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:CommandMDUCreateDataRequest>
+         <typ:bezeichnung>MDU-4001335</typ:bezeichnung>
+         <typ:hersteller>Huawei</typ:hersteller>
+         <typ:seriennummer>485754438BCFC302</typ:seriennummer>
+         <typ:modellNummer>MA5652G</typ:modellNummer>
+         <typ:bgTyp>?</typ:bgTyp>
+         <typ:olt>OLT-400003</typ:olt>
+         <typ:oltRack>0</typ:oltRack>
+         <typ:oltSubrack></typ:oltSubrack>
+         <typ:oltSlot>1</typ:oltSlot>
+         <typ:oltPort>1</typ:oltPort>
+         <typ:gponId>000</typ:gponId>
+         <typ:caTvOnline>true</typ:caTvOnline>
+         <typ:standort>MUC-NIBEL-043</typ:standort>
+         <typ:raumbezeichnung>Zaehlerraum</typ:raumbezeichnung>
+      </typ:CommandMDUCreateDataRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mnet.de/hurricanweb/command/mdu/types/CommandMDUCreateDataWebService/CommandMDUCreateDataRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CommandMDUUpdateDataWebServiceSoap11" type="wsdl" bindingName="{http://mnet.de/hurricanweb/command/mdu/types/}CommandMDUUpdateDataWebServiceSoap11" soapVersion="1_1" anonymous="optional" definition="file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandMDUUpdateData.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandMDUUpdateData.wsdl"><con:part><con:url>file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandMDUUpdateData.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://mnet.de/hurricanweb/command/mdu/types/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://mnet.de/hurricanweb/command/mdu/types" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://mnet.de/hurricanweb/command/mdu/types/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://mnet.de/hurricanweb/command/mdu/types" xmlns:ns0="http://mnet.de/hurricanweb/command/mdu/types" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="CommandMDUUpdateDataRequest" type="ns0:CommandMDUUpdateDataRequest"/>
+      <xs:element name="CommandMDUUpdateDataRequestResponse" type="ns0:CommandMDUUpdateDataRequestResponse"/>
+      <xs:element name="CommandMDUUpdateDataRequestFailure" type="ns0:CommandMDUUpdateDataRequestFailure"/>
+      <xs:complexType name="CommandMDUUpdateDataRequest">
+        <xs:sequence>
+          <xs:element name="bezeichnung" type="xs:string"/>
+          <xs:element name="serienNummer" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommandMDUUpdateDataRequestResponse">
+        <xs:sequence>
+          <xs:element name="bezeichnung" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommandMDUUpdateDataRequestFailure">
+        <xs:sequence>
+          <xs:element name="bezeichnung" type="xs:string"/>
+          <xs:element name="errorMsg" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="CommandMDUUpdateDataRequestResponse">
+    <wsdl:part element="sch:CommandMDUUpdateDataRequestResponse" name="CommandMDUUpdateDataRequestResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommandMDUUpdateDataRequest">
+    <wsdl:part element="sch:CommandMDUUpdateDataRequest" name="CommandMDUUpdateDataRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CommandMDUUpdateDataWebService">
+    <wsdl:operation name="CommandMDUUpdateData">
+      <wsdl:input message="tns:CommandMDUUpdateDataRequest" name="CommandMDUUpdateDataRequest"></wsdl:input>
+      <wsdl:output message="tns:CommandMDUUpdateDataRequestResponse" name="CommandMDUUpdateDataRequestResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CommandMDUUpdateDataWebServiceSoap11" type="tns:CommandMDUUpdateDataWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CommandMDUUpdateData">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CommandMDUUpdateDataRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CommandMDUUpdateDataRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommandMDUUpdateData">
+    <wsdl:port binding="tns:CommandMDUUpdateDataWebServiceSoap11" name="CommandMDUUpdateDataWebServiceSoap11">
+      <soap:address location="http://localhost:8080/hurricanweb/command/mdu"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/hurricanweb/command/mdu</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="CommandMDUUpdateData" bindingOperationName="CommandMDUUpdateData" type="Request-Response" outputName="CommandMDUUpdateDataRequestResponse" inputName="CommandMDUUpdateDataRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/hurricanweb/command/mdu</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/command/mdu/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:CommandMDUUpdateDataRequest>
+         <typ:bezeichnung>MDU-4001335</typ:bezeichnung>
+         <typ:serienNummer>185754438BCFC305</typ:serienNummer>
+      </typ:CommandMDUUpdateDataRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mnet.de/hurricanweb/command/mdu/types/CommandMDUUpdateDataWebService/CommandMDUUpdateDataRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CommandPortDataWebServiceSoap11" type="wsdl" bindingName="{http://mnet.de/hurricanweb/command/port/types/}CommandPortDataWebServiceSoap11" soapVersion="1_1" anonymous="optional" definition="file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandPortData.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandPortData.wsdl"><con:part><con:url>file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandPortData.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://mnet.de/hurricanweb/command/port/types/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://mnet.de/hurricanweb/command/port/types" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://mnet.de/hurricanweb/command/port/types/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://mnet.de/hurricanweb/command/port/types" xmlns:ns0="http://mnet.de/hurricanweb/command/port/types" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="CommandPortDataRequest" type="ns0:CommandPortDataRequest"/>
+      <xs:element name="CommandPortDataRequestResponse" type="ns0:CommandPortDataRequestResponse"/>
+      <xs:element name="CommandPortDataRequestFailure" type="ns0:CommandPortDataRequestFailure"/>
+      <xs:complexType name="CommandPortDataRequest">
+        <xs:sequence>
+          <xs:element name="mdu" type="xs:string"/>
+          <xs:element name="ports">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" name="port">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="hardwareVariante" type="xs:string"/>
+                      <xs:element name="port" type="xs:string"/>
+                      <xs:element name="schnittstelle" type="xs:string"/>
+                      <xs:element name="leiste" type="xs:string"/>
+                      <xs:element name="stift" type="xs:string"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommandPortDataRequestResponse">
+        <xs:sequence>
+          <xs:element name="mdu" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommandPortDataRequestFailure">
+        <xs:sequence>
+          <xs:element name="mdu" type="xs:string"/>
+          <xs:element name="ports">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" name="port">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="port" type="xs:string"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="errorMsg" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="CommandPortDataRequest">
+    <wsdl:part element="sch:CommandPortDataRequest" name="CommandPortDataRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommandPortDataRequestResponse">
+    <wsdl:part element="sch:CommandPortDataRequestResponse" name="CommandPortDataRequestResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CommandPortDataWebService">
+    <wsdl:operation name="CommandPortData">
+      <wsdl:input message="tns:CommandPortDataRequest" name="CommandPortDataRequest"></wsdl:input>
+      <wsdl:output message="tns:CommandPortDataRequestResponse" name="CommandPortDataRequestResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CommandPortDataWebServiceSoap11" type="tns:CommandPortDataWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CommandPortData">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CommandPortDataRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CommandPortDataRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommandPortData">
+    <wsdl:port binding="tns:CommandPortDataWebServiceSoap11" name="CommandPortDataWebServiceSoap11">
+      <soap:address location="http://localhost:8080/hurricanweb/command/port"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/hurricanweb/command/port</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="CommandPortData" bindingOperationName="CommandPortData" type="Request-Response" outputName="CommandPortDataRequestResponse" inputName="CommandPortDataRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/hurricanweb/command/port</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/command/port/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:CommandPortDataRequest>
+         <typ:mdu>MDU-400295</typ:mdu>
+         <typ:ports>
+            <!--1 or more repetitions:-->
+            <typ:port>
+               <typ:hardwareVariante>?</typ:hardwareVariante>
+               <typ:port>VDSL2-00</typ:port>
+               <typ:schnittstelle>VDSL</typ:schnittstelle>
+               <typ:leiste>LMN-400069</typ:leiste>
+               <typ:stift>1</typ:stift>
+            </typ:port>
+         </typ:ports>
+      </typ:CommandPortDataRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mnet.de/hurricanweb/command/port/types/CommandPortDataWebService/CommandPortDataRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CommandStiftDataWebServiceSoap11" type="wsdl" bindingName="{http://mnet.de/hurricanweb/command/stift/types/}CommandStiftDataWebServiceSoap11" soapVersion="1_1" anonymous="optional" definition="file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandStiftData.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandStiftData.wsdl"><con:part><con:url>file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandStiftData.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://mnet.de/hurricanweb/command/stift/types/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://mnet.de/hurricanweb/command/stift/types" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://mnet.de/hurricanweb/command/stift/types/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://mnet.de/hurricanweb/command/stift/types" xmlns:ns0="http://mnet.de/hurricanweb/command/stift/types" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="CommandStiftDataRequest" type="ns0:CommandStiftDataRequest"/>
+      <xs:element name="CommandStiftDataRequestResponse" type="ns0:CommandStiftDataRequestResponse"/>
+      <xs:element name="CommandStiftDataRequestFailure" type="ns0:CommandStiftDataRequestFailure"/>
+      <xs:complexType name="CommandStiftDataRequest">
+        <xs:sequence>
+          <xs:element name="standort" type="xs:string"/>
+          <xs:element name="versorger" type="xs:string"/>
+          <xs:element name="typ" type="xs:string"/>
+          <xs:element name="leiste" type="xs:string"/>
+          <xs:element name="stifte">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" name="stift">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="stift" type="xs:string"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommandStiftDataRequestResponse">
+        <xs:sequence>
+          <xs:element name="leiste" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommandStiftDataRequestFailure">
+        <xs:sequence>
+          <xs:element name="leiste" type="xs:string"/>
+          <xs:element name="stifte">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" name="stift">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="stift" type="xs:string"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="errorMsg" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="CommandStiftDataRequestResponse">
+    <wsdl:part element="sch:CommandStiftDataRequestResponse" name="CommandStiftDataRequestResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommandStiftDataRequest">
+    <wsdl:part element="sch:CommandStiftDataRequest" name="CommandStiftDataRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CommandStiftDataWebService">
+    <wsdl:operation name="CommandStiftData">
+      <wsdl:input message="tns:CommandStiftDataRequest" name="CommandStiftDataRequest"></wsdl:input>
+      <wsdl:output message="tns:CommandStiftDataRequestResponse" name="CommandStiftDataRequestResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CommandStiftDataWebServiceSoap11" type="tns:CommandStiftDataWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CommandStiftData">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CommandStiftDataRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CommandStiftDataRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommandStiftData">
+    <wsdl:port binding="tns:CommandStiftDataWebServiceSoap11" name="CommandStiftDataWebServiceSoap11">
+      <soap:address location="http://localhost:8080/hurricanweb/command/stift"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/hurricanweb/command/stift</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="CommandStiftData" bindingOperationName="CommandStiftData" type="Request-Response" outputName="CommandStiftDataRequestResponse" inputName="CommandStiftDataRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/hurricanweb/command/stift</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/command/stift/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:CommandStiftDataRequest>
+         <typ:standort>MUC-WENDL-070</typ:standort>
+         <typ:versorger>MUC-WENDL-070</typ:versorger>
+         <typ:typ>FTTB_DTAG</typ:typ>
+         <typ:leiste>LDT-400069</typ:leiste>
+         <typ:stifte>
+            <!--1 or more repetitions:-->
+            <typ:stift>
+               <typ:stift>20</typ:stift>
+            </typ:stift>
+         </typ:stifte>
+      </typ:CommandStiftDataRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mnet.de/hurricanweb/command/stift/types/CommandStiftDataWebService/CommandStiftDataRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CommandCustomerDataWebServiceSoap11" type="wsdl" bindingName="{http://mnet.de/hurricanweb/command/customer/types/}CommandCustomerDataWebServiceSoap11" soapVersion="1_1" anonymous="optional" definition="file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandCustomerData.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandCustomerData.wsdl"><con:part><con:url>file:/C:/Dokumente%20und%20Einstellungen/eymilleran/Desktop/wsdl/commandCustomerData.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://mnet.de/hurricanweb/command/customer/types/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://mnet.de/hurricanweb/command/customer/types" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://mnet.de/hurricanweb/command/customer/types/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://mnet.de/hurricanweb/command/customer/types" xmlns:ns0="http://mnet.de/hurricanweb/command/customer/types" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="CommandCustomerDataRequest" type="ns0:CommandCustomerDataRequest"/>
+      <xs:element name="CommandCustomerDataRequestResponse" type="ns0:CommandCustomerDataRequestResponse"/>
+      <xs:element name="CommandCustomerDataRequestFailure" type="ns0:CommandCustomerDataRequestFailure"/>
+      <xs:complexType name="CommandCustomerDataRequest">
+        <xs:sequence>
+          <xs:element name="ontId" type="xs:string"/>
+          <xs:element name="leiste" type="xs:string"/>
+          <xs:element name="stift" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommandCustomerDataRequestResponse">
+        <xs:sequence>
+          <xs:element name="ontId" type="xs:string"/>
+          <xs:element name="leiste" type="xs:string"/>
+          <xs:element name="stift" type="xs:string"/>
+          <xs:element name="kundeAnrede" type="xs:string"/>
+          <xs:element name="kundeName" type="xs:string"/>
+          <xs:element name="kundeVorname" type="xs:string"/>
+          <xs:element name="kundeTelefon" type="xs:string"/>
+          <xs:element name="kundeMobil" type="xs:string"/>
+          <xs:element name="kundeMail" type="xs:string"/>
+          <xs:element name="esAnrede" type="xs:string"/>
+          <xs:element name="esName" type="xs:string"/>
+          <xs:element name="esVorname" type="xs:string"/>
+          <xs:element name="esTelefon" type="xs:string"/>
+          <xs:element name="esMobil" type="xs:string"/>
+          <xs:element name="esMail" type="xs:string"/>
+          <xs:element name="anschlussdoseLage" type="xs:string"/>
+          <xs:element name="anschlussdoseTyp" type="xs:string"/>
+          <xs:element name="egTyp" type="xs:string"/>
+          <xs:element name="egSeriennummer" type="xs:string"/>
+          <xs:element name="egCwmpId" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CommandCustomerDataRequestFailure">
+        <xs:sequence>
+          <xs:element name="ontId" type="xs:string"/>
+          <xs:element name="leiste" type="xs:string"/>
+          <xs:element name="stift" type="xs:string"/>
+          <xs:element name="errorMsg" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="CommandCustomerDataRequestResponse">
+    <wsdl:part element="sch:CommandCustomerDataRequestResponse" name="CommandCustomerDataRequestResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommandCustomerDataRequest">
+    <wsdl:part element="sch:CommandCustomerDataRequest" name="CommandCustomerDataRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CommandCustomerDataWebService">
+    <wsdl:operation name="CommandCustomerData">
+      <wsdl:input message="tns:CommandCustomerDataRequest" name="CommandCustomerDataRequest"></wsdl:input>
+      <wsdl:output message="tns:CommandCustomerDataRequestResponse" name="CommandCustomerDataRequestResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CommandCustomerDataWebServiceSoap11" type="tns:CommandCustomerDataWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CommandCustomerData">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="CommandCustomerDataRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CommandCustomerDataRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CommandCustomerData">
+    <wsdl:port binding="tns:CommandCustomerDataWebServiceSoap11" name="CommandCustomerDataWebServiceSoap11">
+      <soap:address location="http://localhost:8080/hurricanweb/command/customer"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/hurricanweb/command/customer</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="CommandCustomerData" bindingOperationName="CommandCustomerData" type="Request-Response" outputName="CommandCustomerDataRequestResponse" inputName="CommandCustomerDataRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/hurricanweb/command/customer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/command/customer/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:CommandCustomerDataRequest>
+         <typ:ontId>ONT-400011</typ:ontId>
+         <typ:leiste></typ:leiste>
+         <typ:stift></typ:stift>
+      </typ:CommandCustomerDataRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mnet.de/hurricanweb/command/customer/types/CommandCustomerDataWebService/CommandCustomerDataRequest"/><con:wsrmConfig version="1.2"/></con:call><con:call name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/hurricanweb/command/customer</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/command/customer/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:CommandCustomerDataRequest>
+         <typ:ontId></typ:ontId>
+         <typ:leiste>LWO-400051</typ:leiste>
+         <typ:stift>01</typ:stift>
+      </typ:CommandCustomerDataRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mnet.de/hurricanweb/command/customer/types/CommandCustomerDataWebService/CommandCustomerDataRequest"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/></con:soapui-project>

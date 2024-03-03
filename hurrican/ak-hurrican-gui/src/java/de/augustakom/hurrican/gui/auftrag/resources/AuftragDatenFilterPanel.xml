@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Auftragsdaten-Filterpanel.
+-->
+<sf>
+
+    <Label name="cc.auftrag.id"><text>Tech. Auftragsnr.:</text></Label>
+    <TextField name="cc.auftrag.id">
+        <tooltip>Auftragsnr. aus Hurrican</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="billing.auftrag.no"><text>Billing Auftrags-Nr:</text></Label>
+    <TextField name="billing.auftrag.no">
+        <tooltip>original Auftrags-Nr aus dem Billing-System</tooltip>
+    </TextField>
+
+    <Label name="bestell.nr"><text>Bestell-Nr:</text></Label>
+    <TextField name="bestell.nr">
+        <tooltip>Bestell-Nr des Kunden</tooltip>
+    </TextField>
+
+    <Label name="lbz.kunde"><text>LBZ-Kunde:</text></Label>
+    <TextField name="lbz.kunde">
+        <tooltip>Leitungsbezeichnung des Kunden</tooltip>
+    </TextField>
+
+    <Label name="sap.id"><text>SAP-Auftrags-ID:</text></Label>
+    <TextField name="sap.id">
+        <tooltip>Auftragsnummer SAP</tooltip>
+    </TextField>
+
+    <Label name="sap.debitor.id"><text>SAP Debitor-ID:</text></Label>
+    <TextField name="sap.debitor.id">
+        <tooltip>SAP Debitor ID, zu der die Auftraege ermittelt werden sollen</tooltip>
+    </TextField>
+
+    <Label name="int.account"><text>Account:</text></Label>
+    <TextField name="int.account">
+        <tooltip>Suche ueber einen Internet-Account (keine Wildcards!)</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="cc.auftrag.status"><text>Status:</text></Label>
+    <ComboBox name="cc.auftrag.status">
+        <tooltip>Suche über Aufträge eines bestimmten Status</tooltip>
+        <columns>15</columns>
+    </ComboBox>
+
+</sf>

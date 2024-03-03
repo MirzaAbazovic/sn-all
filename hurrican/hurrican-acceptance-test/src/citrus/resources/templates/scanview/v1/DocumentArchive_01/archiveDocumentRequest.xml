@@ -1,0 +1,43 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <archiveDocumentAsync
+                xmlns="http://www.mnet.de/esb/cdm/Customer/DocumentArchiveService/v1">
+            <endUserId>AIL_HURRICAN</endUserId>
+            <document>
+                <class>Auftraege / Unterlagen</class>
+                <item>
+                    <fileName>kundenauftrag.pdf</fileName>
+                    <fileData>@ignore@</fileData>
+                </item>
+            </document>
+            <archiveKey>
+                <name>Art des Dokuments</name>
+                <value>${archiveDocumentType}</value>
+            </archiveKey>
+            <archiveKey>
+                <name>Vertrag</name>
+                <value>${vertragsnummer}</value>
+            </archiveKey>
+            <archiveKey>
+                <name>Kundennr.</name>
+                <value>500331323</value>
+            </archiveKey>
+            <archiveKey>
+                <name>Debitornr.</name>
+                <value>M500596221</value>
+            </archiveKey>
+            <archiveKey>
+                <name>TAI_AuftragsNr</name>
+                <value>1679340</value>
+            </archiveKey>
+            <archiveKey>
+                <name>Dokumentendatum</name>
+                <value>citrus:currentDate('dd.MM.yyyy')</value>
+            </archiveKey>
+            <archiveKey>
+                <name>UUID</name>
+                <value>@ignore@</value>
+            </archiveKey>
+        </archiveDocumentAsync>
+    </soap:Body>
+</soap:Envelope>

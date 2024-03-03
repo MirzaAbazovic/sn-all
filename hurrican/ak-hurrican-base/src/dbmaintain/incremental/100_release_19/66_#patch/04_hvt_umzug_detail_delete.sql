@@ -1,0 +1,1 @@
+grant delete on T_HVT_UMZUG_DETAIL TO R_HURRICAN_USER;

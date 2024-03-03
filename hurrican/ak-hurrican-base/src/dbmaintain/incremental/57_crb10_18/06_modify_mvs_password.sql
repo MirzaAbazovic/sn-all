@@ -1,0 +1,1 @@
+alter table T_AUFTRAG_MVS modify PASSWORD VARCHAR2(8);

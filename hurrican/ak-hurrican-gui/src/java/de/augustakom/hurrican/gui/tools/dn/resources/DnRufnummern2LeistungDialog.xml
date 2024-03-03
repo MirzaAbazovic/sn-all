@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den About-Dialog.
+-->
+<sf>
+
+    <Label name="wert">
+        <text>Parameterwert:</text>
+    </Label>
+    <TextField name="wert">
+        <tooltip>Wert des Paramters</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="cc">
+        <text>CC:</text>
+    </Label>
+    <FormattedTextField name="cc">
+        <tooltip>Country Calling Code</tooltip>
+        <columns>3</columns>
+        <format type="regexp">[1-9][0-9]{0,4}</format>
+    </FormattedTextField>
+    <Label name="lac">
+        <text>LAC:</text>
+    </Label>
+    <FormattedTextField name="lac">
+        <tooltip>Local Area Code - Führende Null wird bei Hinzufügen entfernt (Ausnahme Italien)</tooltip>
+        <columns>6</columns>
+        <format type="regexp">[0-9]{0,12}</format>
+    </FormattedTextField>
+    <Label name="dn">
+        <text>DN:</text>
+    </Label>
+    <FormattedTextField name="dn">
+        <tooltip>Local Dial Number</tooltip>
+        <columns>11</columns>
+        <format type="regexp">[0-9]{0,12}</format>
+    </FormattedTextField>
+
+    <Button name="add">
+        <text>Hinzufügen</text>
+        <tooltip>Fügt die Rufnummer der Liste hinzu</tooltip>
+    </Button>
+    <Button name="addFromClipboard">
+        <text>aus Zwischenablage</text>
+        <tooltip>Fügt Rufnummern im Format "01-49-89-123456&amp;02-49-821-98765" aus der Zwischenablage in die Liste ein
+            (Copy/Paste)
+        </tooltip>
+    </Button>
+    <Button name="del">
+        <text>Entfernen</text>
+        <tooltip>Löscht die Rufnummer von Liste</tooltip>
+    </Button>
+
+    <Button name="ok">
+        <text>Ok</text>
+        <tooltip>Speichert die Parameterwerte und schliesst den Dialog</tooltip>
+    </Button>
+
+    <Button name="cancel">
+        <text>Abbrechen</text>
+        <tooltip>Schliesst den Dialog</tooltip>
+    </Button>
+
+
+</sf>

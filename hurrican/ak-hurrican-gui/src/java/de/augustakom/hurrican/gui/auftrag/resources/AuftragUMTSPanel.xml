@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das UMTS-Panel.
+-->
+<sf>
+
+    <Text name="title.umtsData">Daten</Text>
+
+    <Text name="default.mobilfunkanbieter">T-Mobile</Text>
+    <Text name="default.simKartennummer">8949020000-</Text>
+    <Text name="default.apn">celox.sa.t-mobile</Text>
+
+    <Button name="addData">
+        <tooltip>UMTS Daten fuer Auftrag anlegen</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+    </Button>
+
+    <Label name="mobilfunkanbieter"><text>Mobilfunkanbieter:</text></Label>
+    <TextField name="mobilfunkanbieter">
+        <tooltip>Bezeichnung des Mobilfunkanbieters</tooltip>
+    </TextField>
+
+    <Label name="simKartennummer"><text>SIM-Kartennummer:</text></Label>
+    <TextField name="simKartennummer">
+        <tooltip>Nummer der SIM-Karte</tooltip>
+    </TextField>
+
+    <Label name="mobilfunkrufnummer"><text>Mobilfunknummer:</text></Label>
+    <TextField name="mobilfunkrufnummer">
+        <tooltip>die Mobilfunkrufnummer</tooltip>
+    </TextField>
+
+    <Label name="rahmenvertragsnummer"><text>Rahmenvertragsnummer:</text></Label>
+    <TextField name="rahmenvertragsnummer">
+        <tooltip>Rahmenvertragsnummer des Mobilfunkanbieters</tooltip>
+    </TextField>
+
+    <Label name="apn"><text>APN:</text></Label>
+    <TextField name="apn">
+        <tooltip>Access-Point-Name, Auswahl des Peeringpartners und des Peers (nat / no-nat)</tooltip>
+    </TextField>
+
+</sf>

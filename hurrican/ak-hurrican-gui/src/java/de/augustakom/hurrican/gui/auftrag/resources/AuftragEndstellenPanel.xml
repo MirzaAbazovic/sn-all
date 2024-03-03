@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den Endstellen-Daten.
+-->
+<sf>
+
+    <Label name="es.typ"><text>Endstellentyp:</text></Label>
+    <TextField name="es.typ">
+        <tooltip>Typ der Endstelle (A oder B) - ID: </tooltip>
+        <columns>2</columns>
+    </TextField>
+
+    <Button name="copy.es.daten">
+        <icon>de/augustakom/hurrican/gui/images/copy.gif</icon>
+        <tooltip>Bietet eine Liste mit Endstellen des Kunden zu Auswahl an.</tooltip>
+    </Button>
+
+    <Label name="endstelle"><text>Endstelle:</text></Label>
+    <TextField name="endstelle">
+        <tooltip>Bezeichner für die Endstelle (meist Strasse/Nr)</tooltip>
+        <maxchars>100</maxchars>
+    </TextField>
+
+    <Label name="name"><text>Name:</text></Label>
+    <TextField name="name">
+        <tooltip>Name des Endstellen-Kunden</tooltip>
+        <maxchars>100</maxchars>
+    </TextField>
+
+    <Label name="geo.id"><text>GeoID:</text></Label>
+    <TextField name="geo.id">
+        <tooltip>Strasse, in der die Endstelle liegt</tooltip>
+    </TextField>
+
+    <Button name="search.geo.id">
+        <icon>de/augustakom/hurrican/gui/images/search.gif</icon>
+        <tooltip>Oeffnet einen Dialog, ueber den eine GeoID ermittelt werden kann</tooltip>
+    </Button>
+
+    <Label name="plz"><text>Land/PLZ/Ort:</text></Label>
+    <TextField name="plz">
+        <tooltip>PLZ für die Endstelle</tooltip>
+        <columns>5</columns>
+        <maxchars>10</maxchars>
+    </TextField>
+    <TextField name="ort">
+        <tooltip>Ort für die Endstelle</tooltip>
+        <columns>15</columns>
+        <maxchars>50</maxchars>
+    </TextField>
+    <TextField name="laenderkennung">
+        <tooltip>Länderkennung</tooltip>
+        <columns>2</columns>
+        <maxchars>2</maxchars>
+    </TextField>
+
+    <Label name="bemerkung"><text>Bemerkung:</text></Label>
+    <TextArea name="bemerkung">
+        <tooltip>Bemerkungen zu der Endstelle</tooltip>
+        <maxchars>1000</maxchars>
+    </TextArea>
+
+    <Label name="ansprechpartner"><text>Ansprechp.:</text></Label>
+
+    <Label name="schnittstelle"><text>Schnittstelle:</text></Label>
+    <ComboBox name="schnittstelle">
+        <tooltip>Angabe, über welche Schittstelle die Anbindung erfolgt</tooltip>
+    </ComboBox>
+
+    <Label name="leitungsart"><text>Leitungsart:</text></Label>
+    <ComboBox name="leitungsart">
+        <tooltip>Angabe, über welche Leitungsart die Anbindung erfolgt</tooltip>
+    </ComboBox>
+
+    <Label name="anschlussart"><text>Anschlussart:</text></Label>
+    <ComboBox name="anschlussart">
+        <tooltip>Angabe, über welche Technik die Anbindung erfolgt</tooltip>
+    </ComboBox>
+
+    <Label name="switch">
+        <text>Switchkennung:</text>
+    </Label>
+    <TextField name="switch">
+        <tooltip>Optionale Angabe einer auftragsbezogenen Switchkennung, die den Defaultwert der Rangierung bzw. des
+            Produktes übersteuert.
+        </tooltip>
+        <columns>10</columns>
+    </TextField>
+
+    <Label name="bandbreite"><text>Bandbreite:</text></Label>
+    <TextField name="bandbreite">
+        <tooltip>Bandbreite des Auftrags (Downstream/Upstream)</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="hvt.standort"><text>ASB (VT):</text></Label>
+    <ComboBox name="hvt.standort">
+        <tooltip>ASB des HVT-Standorts, an dem die Endstelle angschlossen ist</tooltip>
+    </ComboBox>
+
+    <Label name="hvt"><text>HVT:</text></Label>
+    <TextField name="hvt">
+        <tooltip>HVT-Gruppe, an dem die Endstelle angeschlossen ist (abhängig von der Strasse)</tooltip>
+        <columns>7</columns>
+    </TextField>
+
+    <Label name="hvt.type"><text>Typ:</text></Label>
+    <TextField name="hvt.type">
+        <tooltip>Art des Standorts</tooltip>
+    </TextField>
+
+    <Label name="kvz.nummer"><text>KVZ Nummer:</text></Label>
+    <TextField name="kvz.nummer">
+        <tooltip>die KVZ Nummer (z.B. A010)</tooltip>
+    </TextField>
+
+    <Button name="btn.edit.location">
+        <text>Standort ändern</text>
+        <tooltip>Öffnet einen Dialog, um einen anderen Standort auszuwählen</tooltip>
+        <mnemonic>VK_B</mnemonic>
+    </Button>
+
+    <Button name="btn.change.location.type">
+        <text>Standorttyp ändern</text>
+        <tooltip>Öffnet einen Dialog, um den Standorttyp zu ändern</tooltip>
+    </Button>
+
+    <Label name="sperreBemerkung">
+        <text></text>
+    </Label>
+
+
+    <Text name="produkt.not.possible">Das Produkt ist für die ausgewählte Strasse als nicht
+realisierbar konfiguriert.
+Bitte prüfen, ob der Auftrag wirklich an dieser Strasse realisert werden soll/kann.</Text>
+
+    <Text name="geo.id.change.not.possible">Der Endstelle sind bereits Stifte zugeordnet. Die ausgewählte GeoID ist jedoch für diesen Standort nicht konfiguriert.
+Die Änderung kann nicht durchgeführt werden.</Text>
+
+</sf>

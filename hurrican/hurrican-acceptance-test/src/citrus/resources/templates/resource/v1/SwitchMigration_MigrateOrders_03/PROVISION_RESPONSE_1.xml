@@ -1,0 +1,8 @@
+<ns:provisionResponse xmlns:ns="http://www.mnet.de/hurrican/cps/1.0/">
+    <result>
+        <query>
+            <billingOrderNo>${order.no.1}</billingOrderNo>
+        </query>
+        <cpsTxId>${cpsTransactionId}</cpsTxId>
+    </result>
+</ns:provisionResponse>

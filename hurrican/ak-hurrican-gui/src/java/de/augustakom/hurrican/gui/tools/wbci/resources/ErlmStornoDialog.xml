@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Beantwortung einer Abbruchmeldung
+-->
+<sf>
+
+  <Text name="dialog.title">Erledigtmeldung (ERLM) zur Stornoanfrage: %s</Text>
+
+  <Label name="dialog.info.label">
+    <text>Achtung:</text>
+  </Label>
+
+  <Label name="dialog.info.text">
+    <text>Die Stornoanfrage muss manuell in Taifun/Hurrican nachgepflegt werden.</text>
+  </Label>
+
+  <Label name="dialog.additional.info.text"/>
+
+  <Text name="send.txt">Storno mit ERLM bestätigen</Text>
+  <Text name="send.tooltip">Erledigtmeldung (ERLM) zur StornoAnfrage wird versendet.</Text>
+
+  <Text name="cancel.txt">Abbrechen</Text>
+  <Text name="cancel.tooltip">Schließt den Dialog ohne eine Erledigtmeldung (ERLM) zu versenden.</Text>
+
+</sf>

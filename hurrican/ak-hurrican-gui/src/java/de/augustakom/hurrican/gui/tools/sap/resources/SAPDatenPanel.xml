@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit SAP-Daten.
+-->
+<sf>
+  
+    <Text name="offene.posten">Offene Posten</Text>
+    <Text name="ausgegl.posten">Ausgeglichene Posten</Text>
+    <Text name="alle.posten">Alle Posten</Text>
+     
+       
+    <Label name="konto.no"><text>Kontonummer:</text></Label>
+    <TextField name="konto.no">
+        <tooltip>Kontonummer</tooltip>
+    </TextField>
+    
+    <Label name="blz"><text>Bankleitzahl:</text></Label>
+    <TextField name="blz">
+        <tooltip>Bankleitzahl</tooltip>
+    </TextField>
+    
+    <Label name="bankland"><text>Bankland:</text></Label>
+    <TextField name="bankland">
+        <tooltip>Bankland</tooltip>
+    </TextField>
+    
+    <Label name="saldo"><text>Saldo:</text></Label>
+    <TextField name="saldo">
+        <tooltip>Saldo</tooltip>
+    </TextField>
+    
+    <Label name="waehrung"><text>Währung:</text></Label>
+    <TextField name="waehrung">
+        <tooltip>Währung</tooltip>
+    </TextField>
+    
+    <Label name="debitor"><text>Debitor:</text></Label>
+    <TextField name="debitor">
+        <tooltip>Debitorennummer</tooltip>
+    </TextField>
+    
+    <Label name="mahnstufe"><text>Mahnstufe:</text></Label>
+    <TextField name="mahnstufe">
+        <tooltip>Mahnstufe</tooltip>
+    </TextField>  
+    
+    <Label name="bankname"><text>Name der Bank:</text></Label>
+    <TextField name="bankname">
+        <tooltip>Name der Bank</tooltip>
+    </TextField> 
+    
+    <Label name="lastschrift"><text>Lastschrift:</text></Label>
+    <CheckBox name="lastschrift">
+        <tooltip>Lastschrift?</tooltip>
+    </CheckBox>
+    
+    <Button name="search">
+        <text>Suche</text>
+        <tooltip>Suche nach Debitor</tooltip>
+    </Button>
+</sf>

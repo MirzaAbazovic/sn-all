@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen for the EGTyp2HwSwitchPanel
+-->
+<sf>
+
+    <Text name="title">Zuordnung Switchkenner</Text>
+    <Label name="certified.list">
+        <text>zertifiziert</text>
+    </Label>
+    <Label name="uncertified.list">
+        <text>nicht zertifiziert</text>
+    </Label>
+    <Button name="add.switch">
+        <icon>de/augustakom/hurrican/gui/images/left.gif</icon>
+        <tooltip>Fügt den selektierten Switchkenner hinzu</tooltip>
+    </Button>
+
+    <Button name="remove.switch">
+        <icon>de/augustakom/hurrican/gui/images/right.gif</icon>
+        <tooltip>Entfernt den selektierten Switchkenner</tooltip>
+    </Button>
+
+    <Button name="move.priority.up">
+        <icon>de/augustakom/hurrican/gui/images/up.gif</icon>
+        <tooltip>Verschiebt den selektierten Switchkenner nach oben (höhere Priorisierung)</tooltip>
+    </Button>
+
+    <Button name="move.priority.down">
+        <icon>de/augustakom/hurrican/gui/images/down.gif</icon>
+        <tooltip>Verschiebt den selektierten Switchkenner nach unten (niedrigere Priorisierung)</tooltip>
+    </Button>
+
+</sf>

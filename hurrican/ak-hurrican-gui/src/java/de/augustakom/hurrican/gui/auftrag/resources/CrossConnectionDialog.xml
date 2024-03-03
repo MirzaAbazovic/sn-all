@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Festlegung und Bearbeitung der Cross Connections
+-->
+<sf>
+
+    <Text name="title">Cross Connections zuordnen</Text>
+
+    <Button name="new.crossconnection">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Neue Cross Connection anlegen</tooltip>
+    </Button>
+
+    <Button name="delete.crossconnection">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Markierte Cross Connection löschen</tooltip>
+    </Button>
+
+    <CheckBox name="showOnlyCurrentlyValid">
+        <text>Nur gerade gültige Cross Connections anzeigen</text>
+        <tooltip>Zeigt nur die derzeitig gültigen Cross Connections an.</tooltip>
+    </CheckBox>
+
+    <CheckBox name="defaultCcs">
+        <text>Standard CrossConnections</text>
+        <tooltip>Falls die Standard CrossConnections aktiv sind, können CrossConnections nicht bearbeitet werden.</tooltip>
+    </CheckBox>
+
+    <!-- Panel zur Bearbeitung eines PortForwardings-->
+
+    <Label name="type"><text>Typ*:</text></Label>
+    <ComboBox name="type">
+        <tooltip>Typ der Cross Connection</tooltip>
+    </ComboBox>
+
+    <Label name="brasPool"><text>Bras Pool:</text></Label>
+    <ComboBox name="brasPool">
+        <tooltip>BrasPool der zur Generierung des VPs und des VCs verwendet werden soll</tooltip>
+    </ComboBox>
+
+    <Label name="brasOuter"><text>BrasOuter:</text></Label>
+    <FormattedTextField name="brasOuter">
+        <tooltip>Wert für Outer Tag BRAS</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Label name="vcRange"><text>VC Range:</text></Label>
+    <TextField name="vcRange">
+        <columns>20</columns>
+        <tooltip>VC Bereich, der für brasInner zur Verfügung steht</tooltip>
+    </TextField>
+
+    <Label name="brasInner"><text>BrasInner:</text></Label>
+    <FormattedTextField name="brasInner">
+        <tooltip>Wert für Inner Tag BRAS</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+   <!-- siehe AuftragInternPanel TODO: Kommentar entfernen -->
+
+    <Label name="ntOuter"><text>NtOuter:</text></Label>
+    <FormattedTextField name="ntOuter">
+        <tooltip>Wert für Outer Tag Netzseitig</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Label name="ntInner"><text>NtInner:</text></Label>
+    <FormattedTextField name="ntInner">
+        <tooltip>Wert für Inner Tag Netzseitig</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Label name="ltOuter"><text>LtOuter:</text></Label>
+    <FormattedTextField name="ltOuter">
+        <tooltip>Wert für Outer Tag CPE/IAD (Endgerät)</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Label name="ltInner"><text>LtInner:</text></Label>
+    <FormattedTextField name="ltInner">
+        <tooltip>Wert für Inner Tag CPE/IAD (Endgerät)</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Label name="gueltigVon"><text>Gültig von*:</text></Label>
+    <DateComponent name="gueltigVon">
+        <tooltip>Datum, ab dem die Cross Connection auf dem Port gültig ist</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="gueltigBis"><text>Gültig bis*:</text></Label>
+    <DateComponent name="gueltigBis">
+        <tooltip>Datum, bis zu dem die CC auf dem Port gültig ist</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="nasIdentifier"><text>NasIdentifier:</text></Label>
+    <TextField name="nasIdentifier">
+        <tooltip>Der Nas-Identifier des Bras-Pools</tooltip>
+        <columns>10</columns>
+    </TextField>
+
+    <Label name="port"><text>Port:</text></Label>
+    <FormattedTextField name="port">
+        <tooltip>Wert für den Port des Bras-Pools</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Label name="slot"><text>Slot:</text></Label>
+    <FormattedTextField name="slot">
+        <tooltip>Wert für den Slot des Bras-Pools</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Label name="backupNasIdentifier"><text>BackupNasIdentifier:</text></Label>
+    <TextField name="backupNasIdentifier">
+        <tooltip>Der Backup-Nas-Identifier des Bras-Pools</tooltip>
+        <columns>10</columns>
+    </TextField>
+
+    <Label name="backupPort"><text>BackupPort:</text></Label>
+    <FormattedTextField name="backupPort">
+        <tooltip>Wert für den Backup-Port des Bras-Pools</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Label name="backupSlot"><text>BackupSlot:</text></Label>
+    <FormattedTextField name="backupSlot">
+        <tooltip>Wert für den Backup-Slot des Bras-Pools</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Text name="ok.text">Speichern</Text>
+    <Text name="ok.tooltip">Speichert alle Cross Connections des Ports</Text>
+
+</sf>

@@ -1,0 +1,62 @@
+<project basedir="." name="migrations">
+
+    <import file="${basedir}/../common-build/common_ant.xml"/>
+    <import file="${basedir}/../common-build/common_build.xml"/>
+
+    <!-- override this property in order to do local migrations -->
+    <property name="run.classpath.basedir" value="${basedir}"/>
+
+    <path id="run.class.path" description="Java classpath for migrations">
+        <fileset dir="${run.classpath.basedir}" includes="*"/>
+    </path>
+
+
+    <target name="run.migrationSuite">
+        <property name="migration.base.package" value="de.mnet.migration"/>
+        <for list="${migrationSuiteStarters}" param="migrationStarter" trim="true">
+            <sequential>
+                <fail message="*** Migration @{migrationStarter} in Suite ${migrationSuiteName} aborted due to file ${migration.stop.filename} ***">
+                    <condition>
+                        <available file="${migration.stop.filename}"/>
+                    </condition>
+                </fail>
+                <var name="current.time" unset="true"/>
+                <tstamp>
+                    <format property="current.time" pattern="MM/dd/yyyy kk:mm:ss"/>
+                </tstamp>
+                <echo message="running migrationstarter at ${current.time}: @{migrationStarter}"/>
+                <java fork="true" maxmemory="${migration.max.memory}" classname="${migration.base.package}.@{migrationStarter}" classpathref="run.class.path" failonerror="${migration.failonerror}">
+                    <arg value="${migrationSuiteName}" />
+                    <sysproperty key="LoggerNameSuffix" value="${migrationSuiteName}"/>
+                    <syspropertyset>
+                        <propertyref builtin="all"/>
+                    </syspropertyset>
+                </java>
+            </sequential>
+        </for>
+    </target>
+	
+
+    <!-- Abfrage der Passwoerter, die fuer Migrationen am Produktiv-System benoetigt werden -->
+    <target name="query.passwordsForMigration" if="use.config" unless="skip.dbPasswordQuery" depends="init.input.task">
+        <echo message="*** Using config ${use.config} ***"/>
+        <echo message="Leave unused passwords empty."/>
+        <!--
+        Add properties that should be queried here
+        -->
+        <yainput outputproperty="migration.password" message="Hurrican Auth DB Password for migration user (config ${use.config}): " password="true" />
+    	
+        <!-- Futher password queries will be skipped if this target is called more than once -->
+        <property name="skip.dbPasswordQuery" value="true"/>
+    </target>
+	
+    <!-- ant input task fuer passwoerter einbinden -->
+    <target name="init.input.task">
+        <taskdef name="yainput" classname="com.shivprasad.anttask.YetAnotherInputTask">
+            <classpath>
+                <pathelement location="${common.basedir}/lib/ant-input-task/ya-ant-input-task.jar"/>
+            </classpath>
+        </taskdef>
+    </target>
+
+</project>

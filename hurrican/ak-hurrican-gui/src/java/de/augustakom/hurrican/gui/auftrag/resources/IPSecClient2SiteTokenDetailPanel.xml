@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den IPSec Client-to-Site Token Detail-Daten.
+-->
+<sf>
+    <Label name="auftrag.id"><text>Techn. Auftragsnr.:</text></Label>
+    <TextField name="auftrag.id">
+        <format type="number">##########</format>
+        <columns>10</columns>
+        <tooltip>Die technische Auftragsnummer die dem Token zugeordnet ist.</tooltip>
+    </TextField>
+
+    <Label name="serial.number"><text>Seriennummer:</text></Label>
+    <TextField name="serial.number">
+        <columns>15</columns>
+        <tooltip>Die Seriennummer des Tokens</tooltip>
+    </TextField>
+
+    <Label name="batch"><text>Batch:</text></Label>
+    <TextField name="batch">
+        <columns>15</columns>
+        <tooltip>Die Batch-Nr. des Tokens</tooltip>
+    </TextField>
+
+    <Label name="sap.order.id"><text>SAP Order:</text></Label>
+    <TextField name="sap.order.id">
+        <columns>15</columns>
+        <tooltip>Die SAP Order Id des Tokens</tooltip>
+    </TextField>
+
+    <Label name="laufzeit.in.monaten"><text>Laufzeit:</text></Label>
+    <TextField name="laufzeit.in.monaten">
+        <columns>3</columns>
+        <tooltip>Die Laufzeit in Monaten</tooltip>
+    </TextField>
+
+    <Label name="liefer.datum"><text>Lieferdatum:</text></Label>
+    <DateComponent name="liefer.datum">
+        <tooltip>Lieferdatum (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>8</columns>
+    </DateComponent>
+
+    <Label name="bemerkung"><text>Bemerkung:</text></Label>
+    <TextArea name="bemerkung">
+        <columns>15</columns>
+        <tooltip>Bemerkung</tooltip>
+    </TextArea>
+
+    <Label name="batterie.ende"><text>Batterie Ende:</text></Label>
+    <DateComponent name="batterie.ende">
+        <tooltip>Batterie Ende (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>8</columns>
+    </DateComponent>
+
+    <Label name="token.status"><text>Status:</text></Label>
+    <ReferenceField name="token.status">
+        <tooltip>Status</tooltip>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+        <columns>8</columns>
+    </ReferenceField>
+</sf>

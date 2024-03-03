@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zum Kopieren der Rolle
+eines AKUser-Objekts.
+-->
+<sf>
+    <Text name="title">Team anlegen/editieren</Text>
+    
+    <Button name="cancel">
+        <text>Abbrechen</text>
+        <tooltip>Verwirft alle Änderungen und schliesst den Dialog</tooltip>
+        <mnemonic>VK_A</mnemonic>
+    </Button>
+    
+    <Button name="save">
+        <text>Übernehmen</text>
+        <tooltip>Übernimmt das Team</tooltip>
+        <mnemonic>VK_N</mnemonic>
+    </Button>
+    
+</sf>

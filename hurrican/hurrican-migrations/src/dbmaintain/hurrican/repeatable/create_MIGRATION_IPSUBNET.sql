@@ -1,0 +1,25 @@
+--
+-- View zur Ermittlung der Subnet Masken der EG IPs und EG Routings, um diese als Praefix Laenge
+-- auf die Adresse zu migrieren
+--
+--create or replace force VIEW MIGRATION_IPSUBNET as
+--  select
+--    ip.ID as ID,
+--    ip.ADDRESS as IP_ADDRESS,
+--    ip.ADDRESS_TYPE as ADDRESS_TYPE,
+    --egip.SUBNET_MASK as EG_IP_SUBNET_MASK,
+--    NULL as EG_IP_SUBNET_MASK,
+    --routing.DESTINATION_NETMASK as ROUTING_NETMASK
+--    NULL as ROUTING_NETMASK
+--  from
+--    T_IP_ADDRESS ip
+--  left join T_EG_IP egip on ip.ID=egip.IP_ADDRESS_ID
+--  left join T_EG_ROUTING routing on ip.ID=routing.DESTINATION_ADRESS_ID
+--  where
+--    egip.SUBNET_MASK is not null or routing.DESTINATION_NETMASK is not null
+--  order by
+--    ip.ID ASC
+--;
+
+--grant select on MIGRATION_IPSUBNET to R_HURRICAN_USER;
+

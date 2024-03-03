@@ -1,0 +1,99 @@
+@startuml core system
+
+
+package ResourceCatalogManement {
+    object ResourceCatalog
+    object RelatedParty
+    object ResourceCategory
+    object ResourceCandidate
+    object ResourceSpecification
+}
+
+
+note top of ResourceCatalog : This models framework contract.\nFor example DTAG contract with M-net that has some period in validFor\nand RelatedParties are DTAG and M-net with roles Supplier, Customer 
+object ResourceCatalog {
+  lifecycleStatus : String [Active, Inactive]
+  description : String
+  validFor : TimePeriod
+  lastUpdate : DateTime
+  version : String
+}
+
+note left of RelatedParty : Party with whom telco has a contract for specific resource catalog.\nService provider or consumer depending of the role\nReferneces TMF Party mgm. api 
+object RelatedParty {
+    name : String as name1
+    role : String [Supplier, Customer, ContactPerson, ...]
+}
+
+
+note top of ResourceCategory : Category is used to group resource candidates in logical containers.\nExample: Network Logical Resources, Cloud Resources, VirtualStorageMedium,\nNetworkConnectivity, PhysicalLinks, Generic, L2Network
+object ResourceCategory {
+  name : String
+  description : String
+  isRoot : Boolean
+  lastUpdate : DateTime
+  lifecycleStatus : String
+  parentId : String
+  validFrom : TimePeriod 
+  verion : String
+}
+
+note right of ResourceCandidate : Makes resource specification available to a catalog.\nCandidate can be in any number of catalogs or in none.\nExample: Elastic Storage, Virtual Storage Medium
+object ResourceCandidate {
+  name : String
+  description : String
+  lastUpdate : DateTime
+  lifeycleStatus String
+  validFor : TimePeriod
+  version : String
+}
+
+note bottom of ResourceSpecification : ResourceSpecification is an abstract base class for representing a generic means for implementing a particular type of Resource.\nResourceSpecification defines the common attributes and relationships of a set of related Resources,\nwhile Resource defines a specific instance that is based on a particular ResourceSpecification
+object ResourceSpecification {
+  category: String
+  description : String
+  name : String
+  isBundle: Boolean
+  lastUpdate : DateTime
+  lifeycleStatus String
+  validFor : TimePeriod
+  version : String
+}
+
+ResourceCatalog *--> "0..*" RelatedParty: Party with role in catalog
+ResourceCatalog *--> "0..*" ResourceCategory: category
+ResourceCategory *..> "0..*" ResourceCategory: Category is selfrefernecing and categories can contain other categories
+ResourceCategory *..> "0..*" ResourceCandidate: resourceCandidate. Category can have collection of candidates
+ResourceCandidate *..> "0..1" ResourceSpecification: resourceSpecification\nCandidata can have max. one resource specification
+
+
+package ResourceOrderManagement {
+    object ResourceOrder {
+      
+    }
+    object ResourceOrderItem {
+      
+    }    
+}
+
+ResourceOrder *..> "0..1" ResourceOrderItem
+ResourceSpecification *..> "0..1" ResourceOrderItem: Resource specification is referenced by ResourceOrderItem\nResource defines a specific instance that is based on a particular ResourceSpecification.
+
+
+
+package ResourceInventory {
+    object Resource {
+      
+    } 
+}
+
+ResourceSpecification *..> "0..1" Resource: Resource specification is referenced by Resource
+
+
+legend top left
+1. Doted line is TMF relation with url as Ref 
+2. Solid line is "real" relation 
+3. Category relation with Related party is ommited for simplicity
+end legend
+
+@enduml

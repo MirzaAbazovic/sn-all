@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den TV Dialog
+-->
+<sf>
+
+    <Text name="tv.title">TV für: %s</Text>
+
+    <Label name="wechseltermin"><text>neuer Wechseltermin:</text></Label>
+    <DateComponent name="wechseltermin">
+        <tooltip>neuer Wechseltermin</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Text name="send.txt">TV senden</Text>
+    <Text name="send.tooltip">Terminverschiebung wird versendet</Text>
+
+    <Text name="cancel.txt">Abbrechen</Text>
+    <Text name="cancel.tooltip">Schliesst den Dialog ohne die Terminverschiebung zu senden</Text>
+</sf>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.IPSecSite2Site
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="IPSecSite2Site" table="T_IPSEC_S2S">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_IPSEC_S2S_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="auftragId" column="AUFTRAG_ID" type="long" not-null="true"/>
+        <property name="wanGateway" column="WAN_GATEWAY" type="string"/>
+        <property name="loopbackIp" column="LOOPBACK_IP" type="string"/>
+        <property name="loopbackIpPassive" column="LOOPBACK_IP_PASSIVE" type="string"/>
+        <property name="virtualLanIp" column="VIRTUAL_LAN_IP" type="string"/>
+        <property name="virtualLanSubmask" column="VIRTUAL_LAN_SUBMASK" type="string"/>
+        <property name="virtualWanIp" column="VIRTUAL_WAN_IP" type="string"/>
+        <property name="virtualWanSubmask" column="VIRTUAL_WAN_SUBMASK" type="string"/>
+        <property name="hostname" column="HOSTNAME" type="string"/>
+        <property name="isdnDialInNumber" column="ISDN_DIALIN_NUMBER" type="string"/>
+        <property name="splitTunnel" column="SPLIT_TUNNEL" type="boolean"/>
+        <property name="description" column="DESCRIPTION" type="string"/>
+        <property name="accessCarrier" column="ACCESS_CARRIER" type="string"/>
+        <property name="accessBandwidth" column="ACCESS_BANDWIDTH" type="string"/>
+        <property name="accessType" column="ACCESS_TYPE" type="string"/>
+        <property name="accessAuftragNr" column="ACCESS_AUFTRAG_NR" type="string"/>
+        <property name="hasPresharedKey" column="HAS_PRESHARED_KEY" type="boolean"/>
+        <property name="hasCertificate" column="HAS_CERTIFICATE" type="boolean"/>
+        <property name="hostnamePassive" column="HOSTNAME_PASSIVE" type="string"/>
+        <property name="virtualLan2Scramble" column="VIRTUAL_LAN_TO_SCRAMBLE" type="string"/>
+    </class>
+
+</hibernate-mapping>

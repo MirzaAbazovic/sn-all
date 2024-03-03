@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den Internet-Daten.
+-->
+<sf>
+
+    <Label name="verwaltungs.account"><text>Verwaltungsaccount:</text></Label>
+    <TextField name="verwaltungs.account">
+        <tooltip>Verwaltungsaccount des Kunden</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Button name="print.online">
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <text>Drucken</text>
+        <tooltip>Druckt die Daten aller AK-online Aufträge des Kunden aus</tooltip>
+    </Button>
+
+    <Text name="show.password.msg">Das Passwort für den Account {0} lautet:</Text>
+
+    <Button name="create.account">
+        <icon>de/augustakom/hurrican/gui/images/default.gif</icon>
+        <tooltip>Generiert einen neuen Einwahl-Account für den Auftrag</tooltip>
+    </Button>
+
+    <Button name="add.account">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Neuen Einwahl-Account für den Auftrag manuell anlegen</tooltip>
+    </Button>
+
+    <Button name="edit.account">
+        <icon>de/augustakom/hurrican/gui/images/edit.gif</icon>
+        <tooltip>Account bearbeiten</tooltip>
+    </Button>
+
+    <Button name="allocate.new.ip">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Eine neue IP-Adresse für diesen Auftrag reservieren</tooltip>
+    </Button>
+
+    <Button name="deallocate.ip">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>IP-Adresse zu sofort freigeben</tooltip>
+    </Button>
+</sf>

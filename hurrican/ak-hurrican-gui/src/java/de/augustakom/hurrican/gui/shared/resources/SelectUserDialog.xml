@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Abschlussdialog eines Bauauftrags.
+-->
+<sf>
+    
+	<Text name="title">Mitarbeiter auswählen</Text>
+
+    <Label name="users"><text>Mitarbeiter:</text></Label>
+    <ComboBox name="users">
+        <tooltip>Auswahl, wem der Bauauftrag zugeordnet werden soll</tooltip>
+    </ComboBox>
+    
+</sf>

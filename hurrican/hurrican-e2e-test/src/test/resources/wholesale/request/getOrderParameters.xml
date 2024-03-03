@@ -1,0 +1,4 @@
+<ns:getOrderParametersRequest xmlns:ns="http://www.mnet.de/hurrican/wholesale/workflow/1.0/">
+         <lineId>${lineId}</lineId>
+         <executionDate>${getOrderParamsExecutionDate}</executionDate>
+</ns:getOrderParametersRequest>

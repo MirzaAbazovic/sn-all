@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den Endstellen-Daten.
+-->
+<sf>
+    <Text name="title">Geo ID Standort</Text>
+    <Text name="edit.panel.border.title">Technischer Standort</Text>
+
+    <Label name="ref.location"><text>Standort:</text></Label>
+    <ReferenceField name="ref.location">
+        <tooltip>Zugeordneter Standort</tooltip>
+        <id.property>hvtIdStandort</id.property>
+        <name.property>ortsteil</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.view.HVTGruppeStdView</reference.class>
+        <selection.dialog.class>de.augustakom.hurrican.gui.hvt.HVTSelectionDialog</selection.dialog.class>
+    </ReferenceField>
+
+    <Label name="tf.tal.length"><text>TAL Länge (in Meter):</text></Label>
+    <FormattedTextField name="tf.tal.length">
+        <tooltip>Länge der TAL in Meter</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="tf.tal.length.trusted"><text>gesichert:</text></Label>
+    <CheckBox name="tf.tal.length.trusted">
+        <tooltip>Definiert, ob die TAL Länge gesichert ist (bspw. TAL Länge aus Carrierbestellung).</tooltip>
+    </CheckBox>
+
+    <Label name="tf.kvz"><text>KVZ Nummer:</text></Label>
+    <TextField name="tf.kvz">
+        <tooltip>Die Nummer des KVZ Standortes</tooltip>
+        <columns>1</columns>
+    </TextField>
+
+    <Label name="tf.max.bandwidth.adsl"><text>Max. Bandbreite ADSL (kbit/s):</text></Label>
+    <FormattedTextField name="tf.max.bandwidth.adsl">
+        <tooltip>Maximal mögliche ADSL Bandbreite</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="tf.max.bandwidth.sdsl"><text>Max. Bandbreite SDSL (kbit/s):</text></Label>
+    <FormattedTextField name="tf.max.bandwidth.sdsl">
+        <tooltip>Maximal mögliche SDSL Bandbreite</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="tf.max.bandwidth.vdsl"><text>Max. Bandbreite VDSL (kbit/s):</text></Label>
+    <FormattedTextField name="tf.max.bandwidth.vdsl">
+        <tooltip>Maximal mögliche VDSL Bandbreite</tooltip>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="tf.vdsl.on.hvt.available.since"><text>VDSL an HVT verfügbar:</text></Label>
+    <DateComponent name="tf.vdsl.on.hvt.available.since">
+        <tooltip>VDSL am HVT verfügbar seit (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+</sf>

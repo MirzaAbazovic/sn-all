@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE table [
+    <!ELEMENT table (column+)>
+    <!ELEMENT column EMPTY>
+    <!ATTLIST column name CDATA #REQUIRED>
+    <!ATTLIST column property CDATA #REQUIRED>
+    <!ATTLIST column type CDATA #REQUIRED>
+    <!ATTLIST column editable CDATA #REQUIRED>
+    <!ATTLIST column width CDATA #IMPLIED>
+]>
+<table>
+    <column name="auswählen"
+            property="selected"
+            type="java.lang.Boolean"
+            editable="true"
+            width="70"
+            />
+
+    <column name="Auftrag ID"
+            property="auftragId"
+            type="java.lang.Long"
+            editable="false"
+            width="150"
+            />
+
+    <column name="Produkt (Hurrican)"
+            property="anschlussart"
+            type="java.lang.String"
+            editable="false"
+            width="150"
+            />
+
+    <column name="(B) Managementbez."
+            property="esBMgmBez"
+            type="java.lang.String"
+            editable="false"
+            width="150"
+            />
+
+    <column name="(B) HW_EQN"
+            property="esBHW_EQN"
+            type="java.lang.String"
+            editable="false"
+            width="150"
+            />
+
+    <column name="(B) Leitungsbez."
+            property="esBLbz"
+            type="java.lang.String"
+            editable="false"
+            width="150"
+            />
+
+    <column name="(A) Managementbez."
+            property="esAMgmBez"
+            type="java.lang.String"
+            editable="false"
+            width="150"
+            />
+
+    <column name="(A) HW_EQN"
+            property="esAHW_EQN"
+            type="java.lang.String"
+            editable="false"
+            width="150"
+            />
+
+    <column name="(A) Leitungsbez."
+            property="esALbz"
+            type="java.lang.String"
+            editable="false"
+            width="150"
+            />
+
+</table>

@@ -1,0 +1,39 @@
+<xs:schema	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+			xmlns:ns0="http://www.evolving.com/wsdl/sa/v1/types"
+			targetNamespace="http://www.evolving.com/wsdl/sa/v1/types"
+			elementFormDefault="qualified"
+		  	attributeFormDefault="unqualified">
+		  	
+	<xs:element name="ServiceResponse" type="ns0:ServiceResponse" />
+	<xs:element name="ServiceResponseAcknowledgement" type="ns0:ServiceResponseAcknowledgement" />
+	<xs:element name="ServiceResponseFault" type="ns0:ServiceResponseFault" />
+		  	
+	<xs:complexType name="ServiceResponse">
+		<xs:sequence>
+			<xs:element name="ServiceResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TransactionId" type="xs:string"/>
+						<xs:element name="SOResult" type="xs:int"/>
+						<xs:element name="SOResponseData" type="xs:anyType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ServiceResponseAcknowledgement">
+		<xs:sequence>
+			<xs:element name="TransactionId" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+            
+	<xs:complexType name="ServiceResponseFault">
+		<xs:sequence>
+			<xs:element name="TransactionId" form="unqualified" type="xs:string"/>
+			<xs:element name="Code" form="unqualified" type="xs:string"/>
+			<xs:element name="Description" form="unqualified" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>

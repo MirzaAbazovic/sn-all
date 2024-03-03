@@ -1,0 +1,72 @@
+
+   Ueberlegungen zum CPS
+===========================
+
+Daten-Ermittlung:
+-----------------
+Bisher wurde davon ausgegangen, dass es lediglich die ServiceOrderTypes create, modify, cancel und query gibt. 
+In bestimmten Geschäftsfällen könnte dies aber ein Problem werden.
+
+Situation: 
+ - Auftrag ist (DB-technisch) gekündigt
+ - vor der Kündigung soll aber noch eine DN-Leistung oder ein DSLAM-Profil geändert werden
+ 
+Problem: 
+Wie kann sichergestellt werden, dass bei diesem modify keine relevanten Daten 'gelöscht' werden?
+
+Möglichkeiten:
+ - eigene ServiceOrderTypes, bei denen nur spezielle Daten (z.B. DSLAM-Profil) übergeben wird
+ oder
+ - bei der Ermittlung der Daten auch den ServiceOrderType berücksichtigen (damit z.B. Rufnummern bei
+   einem modify nicht mit Delete-Flag versehen werden. Dies würde aber schon wieder zu Problemen führen, 
+   wenn eine Rufnummer aus einem aktiven Vertrag gekündigt werden soll.)  
+
+--> zu klären!!!
+
+
+#####################
+
+Ablauf / Logging / Statushandling:
+----------------------------------
+Möglicher Ablauf:
+ - relevante Aufträge ermitteln und CPS-Transaktionen erstellen
+    - bei auftretenden Fehlern waehrend der Datenermittlung Log schreiben (T_CPS_LOG)
+ - CPS-Transaktionen ans CPS übermitteln
+    - Status der BAs auf 'bei CPS' aendern
+    - Status der Transaktion auf 'IN_PROVISIONING' aendern
+ - CPS-Rueckmeldungen bearbeiten
+    - Status der Transaktion entsprechend setzen
+    - bei Erfolg BAs abschliessen
+    
+
+######################
+
+Terminverschiebungen:
+---------------------
+Beim Verschieben von Bauauftraegen muss geprueft werden, ob eine CPS-Tx vorhanden ist. 
+Ist dies der Fall, darf der Termin nicht verschoben werden!!!
+
+
+######################
+
+manuelle Provisionierung:
+-------------------------
+Aufträge sollten auch aus der automatischen Provisionierung ausgeschlossen werden koennen.
+Dazu muss auf dem Auftrag ein entsprechendes Flag bereitgestellt werden.
+
+Evtl. waere dies auch einzeln auf T_VERLAUF sinnvoll, um nur eine spezielle Provisionierung vom CPS auszuschliessen.
+
+
+######################
+
+Sperren:
+--------
+Falls nicht alle Aufträge über den CPS gesperrt werden (z.B. wg. manueller Prov.) müssen
+entsprechende Sperrmasken für die Abteilungen angelegt werden.
+
+Klärung mit Christoph Luther notwendig, ob eigene ServiceOrderTypes fuer Sperren/Entsperren 
+geschaffen werden. 
+
+
+
+

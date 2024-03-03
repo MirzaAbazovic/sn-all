@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    <Label name="vorgabe.mnet">
+        <text>Vorgabedatum:</text>
+    </Label>
+
+    <Label name="montagehinweis"><text>Montagehinweis:</text></Label>
+    <TextArea name="montagehinweis">
+        <tooltip>Falls ein Montagehinweis übermittelt werden soll, muss auch ein Endstellenansprechpartner mit gültiger Adresse und Telefonnummer erfasst sein.</tooltip>
+        <rows>3</rows>
+        <columns>25</columns>
+        <prevented-keys>
+            <key-stroke>pressed ENTER</key-stroke>
+            <key-stroke>pressed TAB</key-stroke>
+            <key-stroke>typed ;</key-stroke>
+        </prevented-keys>
+    </TextArea>
+
+    <DateComponent name="vorgabe.mnet">
+        <tooltip>Neuer Termin (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+</sf>

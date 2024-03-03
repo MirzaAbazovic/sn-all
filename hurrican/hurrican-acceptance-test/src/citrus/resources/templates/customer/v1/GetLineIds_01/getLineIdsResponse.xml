@@ -1,0 +1,10 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <getLineIdsResponse xmlns="http://www.mnet.de/esb/cdm/Customer/CustomerOrderService/v1" xmlns:ns2="http://www.mnet.de/esb/cdm/Shared/Common/v1">
+            <lineIds>
+                <customerOrderId>${customerOrderId}</customerOrderId>
+                <lineId>${lineId}</lineId>
+            </lineIds>
+        </getLineIdsResponse>
+    </soap:Body>
+</soap:Envelope>

@@ -1,0 +1,1 @@
+alter table T_HW_BG_CHANGE_BG_TYPE modify HW_BAUGRUPPEN_ID NULL;

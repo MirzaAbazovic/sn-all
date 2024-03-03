@@ -1,0 +1,15 @@
+-- Zustands Automat
+-- 10          offen (S)
+--                    |
+-- 20 in Bearbeitung (T)
+--                    -
+--                   | |
+--                  |   |
+-- 30       gelöst (E) (E) geschlossen
+-- Der Zustand kann in der GUI nur von order_no kleiner zu größer geändert werden.
+-- Legende:
+--   S = Start
+--   T = transitiv
+--   E = Ende
+-- Somit hat sowohl gelöst als auch geschlossen die gleiche order_no
+update t_reference set order_no=30 where id=22301;

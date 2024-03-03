@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Endpoint definition for the 'LoadTest' Service -->
+    <bean id="loadTestEndpoint" class="de.mnet.hurrican.webservice.loadtest.endpoint.LoadTestEndpoint">
+        <property name="marshaller" ref="xmlBeanMarshaller" />
+        <property name="unmarshaller" ref="xmlBeanMarshaller" />
+    </bean>
+
+    <!-- Definition of the Endpoint-Mapping -->
+    <bean class="org.springframework.ws.server.endpoint.mapping.PayloadRootQNameEndpointMapping">
+        <property name="mappings">
+            <props>
+                <prop key="{http://mnet.de/hurricanweb/loadtest/types}LoadTestRequest">loadTestEndpoint</prop>
+            </props>
+        </property>
+        <property name="interceptors">
+            <list>
+                <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+                <bean class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Definition des zu verwendenden Marshallers -->
+    <bean id="xmlBeanMarshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller" />
+
+    <!-- Publishing the WSDL -->
+    <!-- WSDL Generierung ueber http://host:port/hurricanweb/loadtest/loadtest.wsdl -->
+    <bean id="loadtest" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+        <property name="schema" ref="loadtest-schema"/>
+        <property name="portTypeName" value="LoadTest"/>
+        <property name="locationUri" value="/LoadTestService/"/>
+        <property name="targetNamespace" value="http://mnet.de/hurricanweb/loadtest/types"/>
+    </bean>
+    <bean id="loadtest-schema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+        <property name="xsd" value="classpath:loadtest-service.xsd"/>
+    </bean>
+
+</beans>
+

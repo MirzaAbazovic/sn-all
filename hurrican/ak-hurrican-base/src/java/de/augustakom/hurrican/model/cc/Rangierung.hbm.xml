@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Rangierung
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Rangierung" table="T_RANGIERUNG">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="RANGIER_ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_RANGIERUNG_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="eqInId" column="EQ_IN_ID" type="long"/>
+        <property name="eqOutId" column="EQ_OUT_ID" type="long"/>
+        <property name="hvtIdStandort" column="HVT_ID_STANDORT" type="long"/>
+        <property name="physikTypId" column="PHYSIK_TYP" type="long"/>
+        <property name="freigegeben" column="FREIGEGEBEN">
+            <type name="de.augustakom.hurrican.model.cc.RangierungFreigegebenUserType"/>
+        </property>
+        <property name="freigabeAb" column="FREIGABE_AB" type="date"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date"/>
+        <property name="leitungGesamtId" column="LEITUNG_GESAMT_ID" type="integer"/>
+        <property name="leitungLfdNr" column="LEITUNG_LFD_NR" type="integer"/>
+        <property name="leitungLoeschen" column="LEITUNG_LOESCHEN" type="boolean"/>
+        <property name="bemerkung" column="BEMERKUNG" type="string"/>
+        <property name="userW" column="USERW" type="string"/>
+        <property name="dateW" column="DATEW" type="date"/>
+        <property name="esId" column="ES_ID" type="long"/>
+        <property name="historyFrom" column="HISTORY_FROM_RID" type="long"/>
+        <property name="historyCount" column="HISTORY_COUNT" type="integer"/>
+        <property name="rangierungsAuftragId" column="RAUFTRAG_ID" type="long"/>
+        <property name="ontId" column="ONT_ID" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

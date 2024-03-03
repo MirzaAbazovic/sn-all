@@ -1,0 +1,16 @@
+@startuml
+
+[*] --> Acknowledged
+Acknowledged --> Provision_In_Progress
+Provision_In_Progress --> Waiting_Order_Confirmation
+Waiting_Order_Confirmation --> fork_state
+state fork_state <<fork>>
+fork_state --> PAYMENT_NOTIFICATION_RECEIVED
+fork_state --> State3
+state join_state <<join>>
+PAYMENT_NOTIFICATION_RECEIVED --> join_state
+State3 --> join_state
+join_state --> State4
+State4 --> [*]
+
+@enduml

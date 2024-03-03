@@ -1,0 +1,14 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <soap:Fault>
+            <faultcode>soap:Server</faultcode>
+            <faultstring>${faultstring}</faultstring>
+            <detail>
+                <ns2:ESBFault xmlns:ns2="http://www.mnet.de/esb/cdm/Shared/Common/v1" xmlns="http://www.mnet.de/esb/cdm/Customer/CustomerOrderService/v1">
+                    <ns2:errorCode>${errorCode}</ns2:errorCode>
+                    <ns2:errorMessage>${errorMessage}</ns2:errorMessage>
+                </ns2:ESBFault>
+            </detail>
+        </soap:Fault>
+    </soap:Body>
+</soap:Envelope>

@@ -1,0 +1,1 @@
+alter table T_HVT_UMZUG_DETAIL drop constraint AUFTR_ENDST_T_HVT_UMZUG_DETAIL;

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fttb="http://wholesale.telekom.de/oss/v15/ng/fttb" xmlns:order="http://wholesale.telekom.de/oss/v15/ng/order" xmlns:message="http://wholesale.telekom.de/oss/v15/message" xmlns:complex="http://wholesale.telekom.de/oss/v15/complex" xmlns:simple="http://wholesale.telekom.de/oss/v15/simple" xmlns:enum="http://wholesale.telekom.de/oss/v15/enm" targetNamespace="http://wholesale.telekom.de/oss/v15/ng/fttb" version="15.00.03/2022-03-25">
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/ng/order" schemaLocation="oss-ng-order.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/message" schemaLocation="oss-message.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/complex" schemaLocation="oss-type-complex.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/simple" schemaLocation="oss-type-simple.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/enm" schemaLocation="oss-type-enum.xsd"/>
+
+	<!-- 
+		!
+		!	Bereitstellung
+		!
+	-->
+	<xsd:element name="NEU" type="fttb:FTTBBereitstellungType"/>
+	<xsd:complexType name="FTTBBereitstellungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:BereitstellungNgAuftragType">
+				<xsd:sequence>
+					<xsd:element name="kontaktErsteinrichtungslink" type="fttb:KontaktDatenType">
+						<xsd:annotation>
+							<xsd:documentation></xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<!-- 
+		!
+		!	Kündigung
+		!
+	-->
+	<xsd:element name="KUE-KD" type="fttb:FTTBKuendigungType"/>
+	<xsd:complexType name="FTTBKuendigungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:KuendigungNgAuftragType">
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>	
+	
+	<!-- 
+		!
+		!	Providerwechsel
+		!
+	-->
+	<xsd:element name="PV" type="fttb:FTTBProviderwechselType"/>
+	<xsd:complexType name="FTTBProviderwechselType">
+		<xsd:complexContent>
+			<xsd:extension base="order:ProviderwechselNgAuftragType">
+				<xsd:sequence>
+					<xsd:element name="kontaktErsteinrichtungslink" type="fttb:KontaktDatenType">
+						<xsd:annotation>
+							<xsd:documentation></xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	<!-- 
+		!
+		!	Verbundleistung
+		!
+	-->
+	<xsd:element name="VBL" type="fttb:FTTBVerbundleistungType"/>
+	<xsd:complexType name="FTTBVerbundleistungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:VerbundleistunglNgAuftragType">
+				<xsd:sequence>
+					<xsd:element name="kontaktErsteinrichtungslink" type="fttb:KontaktDatenType">
+						<xsd:annotation>
+							<xsd:documentation></xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<!-- 
+		!
+		!	Leistungsänderung
+		!
+	-->
+	<xsd:element name="LAE" type="fttb:FTTBLeistungsaenderungType"/>
+	<xsd:complexType name="FTTBLeistungsaenderungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:LeistungsaenderungNgAuftragType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<!-- 
+		!
+		!	Leistungsmerkmal-Änderung
+		!
+	-->
+	<xsd:element name="AEN-LMAE" type="fttb:FTTBLeistungsmerkmalAenderungType"/>
+	<xsd:complexType name="FTTBLeistungsmerkmalAenderungType">
+		<xsd:complexContent>
+			<xsd:extension base="order:LeistungsmerkmalAenderungNgAuftragType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<!-- 
+		!
+		!	Produktgruppenwechsel
+		!
+	-->
+	<xsd:element name="PGW" type="fttb:FTTBProduktgruppenWechselType"/>
+	<xsd:complexType name="FTTBProduktgruppenWechselType">
+		<xsd:complexContent>
+			<xsd:extension base="order:ProduktgruppenWechselNgAuftragType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+		
+	<xsd:complexType name="KontaktDatenType">
+		<xsd:sequence>
+			<xsd:element name="telefonnummer" type="simple:TelefonnummerType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Telefonnummer des Ansprechpartners</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="emailadresse" type="simple:EmailadresseType">
+				<xsd:annotation>
+					<xsd:documentation>E-Mail-Adresse des Ansprechpartners</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<!-- 
+		!
+		!	Produktattribute für Meldungen 
+		!
+	-->
+	<xsd:element name="produktMeldung" type="fttb:ProduktFTTBMeldungType"/>
+	<xsd:complexType name="ProduktFTTBMeldungType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungProduktType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	
+	<xsd:element name="ABM" type="fttb:MeldungsattributeFTTB-ABMType"/>
+	<xsd:complexType name="MeldungsattributeFTTB-ABMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeABMType">
+				<xsd:sequence>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType"/>
+					<xsd:element name="rnrPortierung" type="complex:RufnummernportierungEinzelanschlussMeldungType" minOccurs="0"/>
+					<xsd:element name="LineID" type="simple:LineIDType" minOccurs="0"/>						
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="AKM-PV" type="fttb:MeldungsattributeFTTB-AKM-PVType"/>
+	<xsd:complexType name="MeldungsattributeFTTB-AKM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeAKM-PVType">
+				<xsd:sequence>
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0"/>					
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="RUEM-PV" type="fttb:MeldungsattributeFTTB-RUEM-PVType"/>
+	<xsd:complexType name="MeldungsattributeFTTB-RUEM-PVType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeRUEM-PVType">
+				<xsd:sequence>
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0"/>					
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:element name="ZWM" type="fttb:MeldungsattributeFTTB-ZWMType"/>
+	<xsd:complexType name="MeldungsattributeFTTB-ZWMType">
+		<xsd:complexContent>
+			<xsd:extension base="message:MeldungsattributeZWMType">
+				<xsd:sequence>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Vertragsnummer</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+
+	
+</xsd:schema>
+
+
+

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    <Button name="btn.import.xls">
+        <text>XLS importieren</text>
+        <tooltip>eine Planung für einen KVZ importieren</tooltip>
+    </Button>
+
+    <Button name="btn.export.xls">
+        <text>XLS exportieren</text>
+        <tooltip>ausgewählte Planung als Excel-File exportieren</tooltip>
+    </Button>
+
+    <Button name="btn.planung.vollstaendig">
+        <text>Planung vollständig</text>
+        <tooltip>Planung als 'vollständig' markieren, um sie anschliessend ausfuehren zu können</tooltip>
+    </Button>
+
+    <Button name="btn.planung.ausfuehren">
+        <text>Planung ausführen</text>
+        <tooltip>schreibt die Rangierungen der Aufträge um</tooltip>
+    </Button>
+
+    <Button name="btn.planung.deaktivieren">
+        <text>Planung deaktivieren</text>
+        <tooltip>deaktiviert die selektierte Planung; reservierte Rangierungen werden freigegeben</tooltip>
+    </Button>
+
+    <Button name="close.umzug">
+        <text>Abschließen</text>
+    </Button>
+
+    <Button name="auto.port.planung">
+        <text>autom. Port-Planung</text>
+        <tooltip>autom. Port-Mapping für selektierte Aufträge</tooltip>
+    </Button>
+
+    <Button name="man.port.planung">
+        <text>man. Port-Planung</text>
+        <tooltip>manuelles Port-Mapping für einen selektierten Auftrag</tooltip>
+    </Button>
+
+    <Button name="cps.simulate">
+        <text>CPS simulieren</text>
+        <tooltip>simuliert die CPS-Tx Erstellung für die Aufträge</tooltip>
+    </Button>
+
+    <Button name="cps.modify">
+        <text>CPS modify</text>
+        <tooltip>CPS modifySub für selektierte Aufträge</tooltip>
+    </Button>
+
+    <Button name="find.auftrag">
+        <text>Auftrag suchen</text>
+        <tooltip>Versucht Zeilen ohne zugeordnetem Auftrag neu zuzuordnen</tooltip>
+    </Button>
+
+    <Button name="delete.detail">
+        <text>Auftrag/Port löschen</text>
+        <tooltip>Entfernt den selektierten Auftrag bzw. Port aus der Umzugs-Planung</tooltip>
+    </Button>
+
+</sf>

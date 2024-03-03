@@ -1,0 +1,2 @@
+update T_PRODUKT set ACCOUNT_VORS='XS' where PROD_ID=460;
+update T_PRODUKT set ACCOUNT_VORS='XA' where PROD_ID=461;

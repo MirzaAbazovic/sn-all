@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+            http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="de.mnet.hurrican.webservice.customerorder.services"/>
+
+    <jaxws:endpoint implementor="de.mnet.hurrican.webservice.customerorder.CustomerOrderServiceProvider"
+                    address="jms://">
+        <jaxws:features>
+            <bean class="org.apache.cxf.transport.jms.JMSConfigFeature">
+                <property name="jmsConfig">
+                    <bean id="jmsCustomerOrderConfig" class="org.apache.cxf.transport.jms.JMSConfiguration">
+                        <property name="connectionFactory" ref="atlasConsumerCachingConnectionFactory"/>
+                        <property name="targetDestination" value="mnet.Hurrican.op.cdm.dst.v1.CustomerOrderService"/>
+                        <property name="jmsProviderTibcoEms" value="true"/>
+                    </bean>
+                </property>
+            </bean>
+        </jaxws:features>
+        <jaxws:inInterceptors>
+            <bean class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+            <bean class="de.augustakom.hurrican.service.interceptor.SchemaValidationInterceptor">
+                <property name="errorCode" value="HURRICAN-TECH-009"/>
+                <property name="schema">
+                    <bean class="de.mnet.common.xml.WsdlXsdSchema">
+                        <property name="wsdl" value="classpath:/xsd/customer/CustomerOrderService.wsdl"/>
+                        <property name="soapSchema" value="classpath:/xsd/soap-envelope-1.1.xsd"/>
+                    </bean>
+                </property>
+            </bean>
+        </jaxws:inInterceptors>
+        <jaxws:outInterceptors>
+            <ref bean="esbTrackingOutInterceptor"/>
+        </jaxws:outInterceptors>
+        <jaxws:outFaultInterceptors>
+            <ref bean="esbTrackingOutInterceptor"/>
+        </jaxws:outFaultInterceptors>
+    </jaxws:endpoint>
+
+    <jaxws:endpoint implementor="de.mnet.hurrican.webservice.customerorder.CustomerOrderServiceProvider"
+                    address="/customerorder">
+        <jaxws:outInterceptors>
+            <ref bean="esbTrackingOutInterceptor" />
+        </jaxws:outInterceptors>
+        <jaxws:outFaultInterceptors>
+            <ref bean="esbTrackingOutInterceptor" />
+        </jaxws:outFaultInterceptors>
+    </jaxws:endpoint>
+
+</beans>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.HVTStandort2Technik
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="HVTStandort2Technik" table="T_HVT_STANDORT_2_TECHNIK">
+
+        <!-- PrimaryKey -->
+        <composite-id>
+            <key-property name="hvtIdStandort" column="HVT_ID_STANDORT" type="long"/>
+            <key-property name="hvtTechnikId" column="HVT_TECHNIK_ID" type="long"/>
+        </composite-id>
+
+    </class>
+
+</hibernate-mapping>

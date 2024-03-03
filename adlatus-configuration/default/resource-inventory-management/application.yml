@@ -1,0 +1,8 @@
+server:
+  port: '8181'
+spring:
+  data:
+    mongodb:
+      database: resource_inventory
+      port: '27017'
+      host: localhost

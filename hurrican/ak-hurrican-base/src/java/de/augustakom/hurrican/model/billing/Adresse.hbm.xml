@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.billing.Adresse
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="Adresse" table="ADDRESS">
+
+	    <!-- PrimaryKey -->
+		<id name="adresseNo" column="ADDR_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+
+		<!-- Sonstige Fields -->
+		<property name="kundeNo" column="CUST_NO" type="long"/>
+		<property name="active" column="IS_ACTIVE" type="boolean"/>
+		<property name="formatName" column="FORMAT_NAME" type="string"/>
+		<property name="anrede" column="SALUTATION" type="string"/>
+		<property name="format" column="FORMAT" type="string"/>
+		<property name="name" column="NAME" type="string"/>
+		<property name="name2" column="NAME2" type="string"/>
+		<property name="vorname" column="FIRSTNAME" type="string"/>
+		<property name="vorname2" column="VORNAME2" type="string"/>
+		<property name="vorsatzwort" column="VORSATZWORT" type="string"/>
+		<property name="titel" column="TITLE" type="string"/>
+		<property name="titel2" column="TITEL2" type="string"/>
+		<property name="strasse" column="STREET" type="string"/>
+		<property name="floor" column="FLOOR" type="string"/>
+		<property name="nummer" column="HOUSE_NUM" type="string"/>
+		<property name="hausnummerZusatz" column="HOUSE_NUM_ADD" type="string"/>
+		<property name="postfach" column="PO_BOX" type="string"/>
+		<property name="plz" column="ZIP_CODE" type="string"/>
+		<property name="ort" column="CITY" type="string"/>
+		<property name="ortsteil" column="DISTRICT" type="string"/>
+		<property name="ansprechpartner" column="ANSPRECHPARTNER" type="string"/>
+		<property name="nameAdd" column="NAME_ADD" type="string"/>
+		<property name="landId" column="GEO_COUNTRY_ID" type="string"/>
+		<property name="geoId" column="VENTO_GEO_ID" type="long"/>
+	</class>
+
+</hibernate-mapping>

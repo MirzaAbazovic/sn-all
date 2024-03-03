@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Frame zur Administration
+eines AKUser-Objekts.
+-->
+<sf>
+    
+    <Text name="title">Benutzer: </Text>
+    <Icon name="icon">de/augustakom/authentication/gui/images/user.gif</Icon>
+    
+    <Text name="new.user"> neu</Text>
+    
+    <Button name="save">
+        <text>Speichern</text>
+        <tooltip>Speichert alle Daten des Benutzers</tooltip>
+        <mnemonic>VK_S</mnemonic>
+    </Button>
+    
+    <Button name="cancel">
+        <text>Abbrechen</text>
+        <tooltip>Verwirft alle Änderungen und schliesst das Fenster</tooltip>
+        <mnemonic>VK_A</mnemonic>
+    </Button>
+    
+    <Text name="close.wihtout.save.title">Abbrechen?</Text>
+    <Text name="close.wihtout.save.msg">Wollen Sie das Fenster schliessen, 
+ohne zu speichern?</Text>
+</sf>

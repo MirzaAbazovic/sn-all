@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog, ueber den ein Verlauf gesplittet werden kann.
+-->
+<sf>
+>
+    <Text name="title">Aufträge heraus lösen</Text>
+
+    <Label name="sub.title"><text>Auswahl der Aufträge, die herausgelöst werden sollen:</text></Label>
+
+    <Text name="execute.split.title">Aufträge heraus lösen?</Text>
+    <Text name="execute.split.msg">Sollen die Aufträge mit den IDs {0} wirklich heraus gelöst werden?</Text>
+
+</sf>

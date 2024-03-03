@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.hardware.HWSubrackTyp
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.hardware">
+    <class name="HWSubrackTyp" table="T_HW_SUBRACK_TYP">
+        <cache usage="read-write"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_HW_SUBRACK_TYP_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="name" column="NAME" type="string" not-null="true"/>
+        <property name="description" column="DESCRIPTION" type="string" not-null="false"/>
+        <property name="rackTyp" column="RACK_TYP" type="string" not-null="true"/>
+        <property name="bgCount" column="BG_COUNT" type="integer" not-null="true"/>
+        <property name="portCount" column="PORT_COUNT" type="integer" not-null="true"/>
+        <property name="hwTypeName" column="HW_TYPE_NAME" type="string" not-null="false"/>
+    </class>
+</hibernate-mapping>

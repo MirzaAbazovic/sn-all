@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse de.augustakom.authentication.model.AKAccount
+-->
+
+<hibernate-mapping package="de.augustakom.authentication.model">
+    <class name="AKAccount" table="ACCOUNT">
+
+        <!-- PrimaryKey von AKAccount/ACCOUNT -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_ACCOUNT_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields von AKAccount/ACCOUNT -->
+        <property name="applicationId" column="APP_ID" type="long" not-null="true"/>
+        <property name="dbId" column="DB_ID" type="long" not-null="true"/>
+        <property name="name" column="ACC_NAME" type="string" not-null="true"/>
+        <property name="accountUser" column="ACCOUNTUSER" type="string" not-null="true"/>
+        <property name="accountPassword" column="ACCOUNTPASSWORD" type="string" not-null="true"/>
+        <property name="maxActive" column="MAX_ACTIVE" type="integer"/>
+        <property name="maxIdle" column="MAX_IDLE" type="integer"/>
+        <property name="description" column="DESCRIPTION" type="string" not-null="false"/>
+    </class>
+
+</hibernate-mapping>
+

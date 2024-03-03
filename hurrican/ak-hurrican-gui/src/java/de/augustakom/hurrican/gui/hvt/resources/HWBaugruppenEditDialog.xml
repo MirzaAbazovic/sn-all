@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Administration der HW-Baugruppen.
+-->
+<sf>
+    <Text name="title">Baugruppen-Details</Text>
+
+
+    <Label name="rack"><text>Rack:</text></Label>
+    <ReferenceField name="rack">
+        <tooltip>Name des Racks</tooltip>
+        <id.property>id</id.property>
+        <name.property>display</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.hardware.HWRack</reference.class>
+    </ReferenceField>
+
+    <Label name="subrack"><text>Subrack:</text></Label>
+    <ReferenceField name="subrack">
+        <tooltip>Subrack</tooltip>
+        <id.property>id</id.property>
+        <name.property>display</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.hardware.HWSubrack</reference.class>
+    </ReferenceField>
+
+    <Label name="type"><text>Typ:</text></Label>
+    <ReferenceField name="type">
+        <tooltip>Typ der Baugruppe</tooltip>
+        <id.property>id</id.property>
+        <name.property>displayName</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.hardware.HWBaugruppenTyp</reference.class>
+        <selection.dialog.class>de.augustakom.hurrican.gui.hvt.HVTBaugruppenTypAuswahlDialog</selection.dialog.class>
+    </ReferenceField>
+
+    <Label name="mod.number"><text>Modul Nr:</text></Label>
+    <TextField name="mod.number">
+        <tooltip>Modul Nr.</tooltip>
+    </TextField>
+
+    <Label name="inv.number"><text>Inventar Nr.:</text></Label>
+    <TextField name="inv.number">
+        <tooltip>Inventar Nr.</tooltip>
+    </TextField>
+
+    <Label name="bemerkung"><text>Bemerkung:</text></Label>
+    <TextField name="bemerkung">
+        <tooltip>Bemerkung</tooltip>
+    </TextField>
+
+    <Label name="eingebaut"><text>Eingebaut:</text></Label>
+    <CheckBox name="eingebaut">
+        <tooltip>Eingebaut</tooltip>
+    </CheckBox>
+
+
+</sf>

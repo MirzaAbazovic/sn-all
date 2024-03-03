@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.IPEndgeraetConfig
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="GewofagWohnung" table="T_GEWO_WHG">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_GEWO_WHG_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <many-to-one name="geoId" class="GeoId" column="GEO_ID" lazy="false"/>
+        <many-to-one name="equipment" class="Equipment" column="EQ_ID" lazy="false"/>
+        <property name="name" column="NAME" type="string" not-null="true"/>
+        <property name="etage" column="ETAGE" type="string" not-null="true"/>
+        <property name="lage" column="LAGE" type="string" not-null="true"/>
+        <property name="tae" column="TAE" type="string" not-null="true"/>
+    </class>
+
+</hibernate-mapping>

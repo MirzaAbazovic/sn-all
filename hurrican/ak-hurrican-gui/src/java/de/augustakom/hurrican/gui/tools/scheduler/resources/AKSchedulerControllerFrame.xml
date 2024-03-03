@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das HVT-Suchfenster.
+-->
+<sf>
+
+    <Text name="title">AK-Scheduler Controller</Text>
+
+</sf>

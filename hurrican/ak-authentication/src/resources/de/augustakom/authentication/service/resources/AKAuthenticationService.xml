@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Spring-Konfigurationsdatei fuer die Authentication-Services.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+                        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="de.augustakom.authentication"/>
+
+    <tx:annotation-driven proxy-target-class="true"/>
+
+    <!--
+    Diese Definition veranlasst das Framework dazu, Platzhalter - ${...} - durch
+    System-Properties zu ersetzen.
+    -->
+    <bean id="placeholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
+
+    <!-- Definition der Data-Source fuer das Authentication-System -->
+    <!-- authentication.dataSourceTarget nutzt eine abstrakte Parent Bean, da sie fuer TestNG
+         tests mit anderem username und password ueberschrieben wird -->
+    <bean id="authentication.dataSourceTargetParent" abstract="true"
+          class="de.augustakom.common.tools.dao.jdbc.AKBasicDataSource" destroy-method="close">
+        <property name="driverClassName">
+            <value>${authentication.jdbc.driver}</value>
+        </property>
+        <property name="url">
+            <value>${authentication.jdbc.url}</value>
+        </property>
+        <property name="username">
+            <value>${authentication.jdbc.user}</value>
+        </property>
+        <property name="password">
+            <value>${authentication.jdbc.password}</value>
+        </property>
+        <property name="initialSize">
+            <value>${authentication.jdbc.initial.size}</value>
+        </property>
+        <property name="maxActive">
+            <value>${authentication.jdbc.max.active}</value>
+        </property>
+        <property name="maxIdle">
+            <value>${authentication.jdbc.max.idle}</value>
+        </property>
+        <property name="maxWait">
+            <value>${db.pool.default.timeout}</value>
+        </property>
+        <property name="validationQuery">
+            <value>${db.pool.validation.query}</value>
+        </property>
+        <property name="validationQueryTimeout">
+            <value>${db.pool.validation.query.timeout}</value>
+        </property>
+    </bean>
+    <bean id="authentication.dataSourceTarget" parent="authentication.dataSourceTargetParent"/>
+    <bean id="authentication.setSchemaInterceptor" class="de.augustakom.common.tools.dao.SetDefaultSchemaInterceptor">
+        <property name="schemaName">
+            <value>${authentication.jdbc.schema}</value>
+        </property>
+    </bean>
+    <bean id="authentication.dataSource" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces">
+            <value>javax.sql.DataSource</value>
+        </property>
+        <property name="target" ref="authentication.dataSourceTarget"/>
+        <property name="interceptorNames">
+            <list>
+                <value>authentication.setSchemaInterceptor</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Deinition der Hibernate-SessionFactory -->
+    <bean id="authentication.sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="packagesToScan">
+            <list>
+                <value>de.augustakom.authentication.model</value>
+            </list>
+        </property>
+        <property name="mappingResources">
+            <list>
+                <value>de/augustakom/authentication/model/AKUser.hbm.xml</value>
+                <value>de/augustakom/authentication/model/AKApplication.hbm.xml</value>
+                <value>de/augustakom/authentication/model/AKUserSession.hbm.xml</value>
+                <value>de/augustakom/authentication/model/AKDb.hbm.xml</value>
+                <value>de/augustakom/authentication/model/AKAccount.hbm.xml</value>
+                <value>de/augustakom/authentication/model/AKUserAccount.hbm.xml</value>
+                <value>de/augustakom/authentication/model/AKUserRole.hbm.xml</value>
+                <value>de/augustakom/authentication/model/AKRole.hbm.xml</value>
+                <value>de/augustakom/authentication/model/AKGUIComponent.hbm.xml</value>
+                <value>de/augustakom/authentication/model/AKNiederlassungView.hbm.xml</value>
+                <value>de/augustakom/authentication/model/AKCompBehavior.hbm.xml</value>
+                <value>de/augustakom/authentication/model/AKExtServiceProviderView.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${authentication.hibernate.dialect}</prop>
+                <prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+                <prop key="hibernate.check_nullability">true</prop>
+                <prop key="jadira.usertype.databaseZone">jvm</prop>
+                <prop key="jadira.usertype.javaZone">jvm</prop>
+            </props>
+        </property>
+        <property name="dataSource">
+            <ref bean="authentication.dataSource"/>
+        </property>
+    </bean>
+
+    <!-- Transaction-Manager fuer die Hibernate-Session -->
+    <bean id="authentication.transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="authentication.sessionFactory"/>
+    </bean>
+
+    <!-- ****** Service-Definitionen ******* -->
+    <!-- Definition der ApplicationService-Implementierung -->
+    <bean id="de.augustakom.authentication.service.AKApplicationService"
+          class="de.augustakom.authentication.service.impl.AKApplicationServiceImpl"/>
+
+    <!-- Definition der AccountService-Implementierung -->
+    <bean id="de.augustakom.authentication.service.AKAccountService"
+          class="de.augustakom.authentication.service.impl.AKAccountServiceImpl"/>
+
+    <!-- Definition der DbService-Implementierung -->
+    <bean id="de.augustakom.authentication.service.AKDbService"
+          class="de.augustakom.authentication.service.impl.AKDbServiceImpl"/>
+
+    <!-- Definition der UserService-Implementierung -->
+    <bean id="de.augustakom.authentication.service.AKUserService"
+          class="de.augustakom.authentication.service.impl.AKUserServiceImpl">
+    </bean>
+
+    <!-- Definition der Service-Implementierung fuer den RoleService -->
+    <bean id="de.augustakom.authentication.service.AKRoleService"
+          class="de.augustakom.authentication.service.impl.AKRoleServiceImpl"/>
+
+    <!-- Definition der Service-Implementierung fuer den TeamService -->
+    <bean id="de.augustakom.authentication.service.AKTeamService"
+          class="de.augustakom.authentication.service.impl.AKTeamServiceImpl"/>
+
+    <!-- Definition der Service-Implementierung fuer den LoginService -->
+    <bean id="de.augustakom.authentication.service.AKLoginService"
+          class="de.augustakom.authentication.service.impl.AKLoginServiceImpl">
+        <!-- Anzahl Minuten, nachdem eine Session ungueltig sein soll. -->
+        <property name="sessionDeprecationMinutes">
+            <value>720</value>
+        </property>
+    </bean>
+
+    <!-- Definition der Service-Implementierung fuer den DepartmentService -->
+    <bean id="de.augustakom.authentication.service.AKDepartmentService"
+          class="de.augustakom.authentication.service.impl.AKDepartmentServiceImpl"/>
+
+    <!-- Definition der Service-Implementierung fuer den GUIService -->
+    <bean id="de.augustakom.authentication.service.AKGUIService"
+          class="de.augustakom.authentication.service.impl.AKGUIServiceImpl"/>
+
+    <!-- Definition der Service-Implementierung fuer den BereichService -->
+    <bean id="de.augustakom.authentication.service.AKBereichService"
+          class="de.augustakom.authentication.service.AKBereichService" />
+
+    <!-- ****** ENDE Service-Definitionen ******* -->
+
+
+    <!-- *********** DAO-Definitionen *************** -->
+
+    <!-- Definition der DAO-Klasse fuer ein AKUserSession-Objekt -->
+    <bean id="de.augustakom.authentication.dao.AKUserSessionDAO" class="de.augustakom.authentication.dao.impl.AKUserSessionDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein AKAccount-Objekt -->
+    <bean id="de.augustakom.authentication.dao.AKAccountDAO" class="de.augustakom.authentication.dao.impl.AKAccountDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein AKDb-Objekt -->
+    <bean id="de.augustakom.authentication.dao.AKDbDAO" class="de.augustakom.authentication.dao.impl.AKDbDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein AKUser-Objekt -->
+    <bean id="de.augustakom.authentication.dao.AKUserDAO" class="de.augustakom.authentication.dao.impl.AKUserDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein AKRole-Objekt -->
+    <bean id="de.augustakom.authentication.dao.AKRoleDAO" class="de.augustakom.authentication.dao.impl.AKRoleDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein AKTeam-Objekt -->
+    <bean id="de.augustakom.authentication.dao.AKTeamDAO" class="de.augustakom.authentication.dao.impl.AKTeamDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein AKApplication-Objekt -->
+    <bean id="de.augustakom.authentication.dao.AKApplicationDAO" class="de.augustakom.authentication.dao.impl.AKApplicationDAOImpl" />
+
+    <!-- Definition der DAO-Klasse fuer ein AKDepartment-Objekt -->
+    <bean id="de.augustakom.authentication.dao.AKDepartmentDAO" class="de.augustakom.authentication.dao.impl.AKDepartmentDAOImpl" />
+
+    <!-- DAO-Definition fuer ein AKGUIComponent-Objekt -->
+    <bean id="de.augustakom.authentication.dao.AKGUIComponentDAO" class="de.augustakom.authentication.dao.impl.AKGUIComponentDAOImpl" />
+
+    <!-- DAO-Definition fuer ein AKCompBehavior-Objekt -->
+    <bean id="de.augustakom.authentication.dao.AKCompBehaviorDAO" class="de.augustakom.authentication.dao.impl.AKCompBehaviorDAOImpl" />
+
+    <!-- DAO-Definition fuer ein AKBereich-Objekt -->
+    <bean id="de.augustakom.authentication.dao.AKBereichDAO" class="de.augustakom.authentication.dao.AKBereichDAO" />
+
+    <!-- *********** ENDE DAO-Definitionen *************** -->
+
+    <bean id="ldapActiveDirectoryAuthProvider"
+          class="org.springframework.security.ldap.authentication.ad.ActiveDirectoryLdapAuthenticationProvider">
+        <constructor-arg value="${ldap.domain}"/>
+        <constructor-arg value="${ldap.url}"/>
+        <property name="convertSubErrorCodesToExceptions" value="true"/>
+    </bean>
+
+    <security:authentication-manager alias="appControlAuthenticationManager">
+        <security:authentication-provider ref="ldapActiveDirectoryAuthProvider"/>
+    </security:authentication-manager>
+
+    <bean id="messageSource" class="org.springframework.security.core.SpringSecurityMessageSource">
+        <!--<property name="basename" value="classpath:org/springframework/core/messages"/>-->
+    </bean>
+
+
+    <!--<beans profile="dev">-->
+    <!--<security:user-service id="testUserService">-->
+    <!--<user name="citrus_admin" password="admin" authorities="Atlas_Admin" />-->
+    <!--<user name="citrus_support" password="support" authorities="Atlas_Support" />-->
+    <!--<user name="citrus_other" password="other" authorities="Atlas_Other" />-->
+    <!--</security:user-service>-->
+
+    <!--<authentication-manager alias="appControlAuthenticationManager">-->
+    <!--<authentication-provider ref="ldapActiveDirectoryAuthProvider"/>-->
+    <!--<authentication-provider user-service-ref="testUserService"/>-->
+    <!--</authentication-manager>-->
+    <!--</beans>-->
+
+</beans>

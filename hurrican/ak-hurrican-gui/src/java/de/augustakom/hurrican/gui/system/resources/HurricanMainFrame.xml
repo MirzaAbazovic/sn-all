@@ -1,0 +1,1471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+GUI-Definitionen fuer das MDIMainFrame.
+***************************************************
+File created: 11.05.2004 10:25:20
+-->
+<sf>
+    <!-- Titel fuer das MainFrame -->
+    <Text name="title">M-net HURRICAN</Text>
+    <Icon name="title">de/augustakom/hurrican/gui/images/hurrican.gif</Icon>
+
+    <!-- URL fuer das User-Icon -->
+    <Text name="user.icon">de/augustakom/hurrican/gui/images/user.gif</Text>
+    <Text name="admin.icon">de/augustakom/hurrican/gui/images/admin.gif</Text>
+
+    <!-- ********************** MENUBAR ************************* -->
+    <!-- Definition der MenuBar -->
+    <MenuBar name="main.menu.bar">
+        <items>
+            <item>menu.system</item>
+            <item>menu.administration</item>
+            <item>menu.search</item>
+            <item>menu.vpn</item>
+            <item>menu.el.verlauf</item>
+            <item>menu.tools</item>
+            <item>menu.window</item>
+            <item>menu.help</item>
+        </items>
+    </MenuBar>
+
+    <Menu name="menu.system">
+        <text>System</text>
+        <mnemonic>VK_Y</mnemonic>
+        <items>
+            <item>exit.application</item>
+        </items>
+    </Menu>
+
+    <Menu name="menu.administration">
+        <text>Administration</text>
+        <mnemonic>VK_T</mnemonic>
+        <items>
+            <item>admin.anschlussarten</item>
+            <item>admin.physiktypen</item>
+            <item>admin.sperre.info</item>
+            <item>admin.reference.info</item>
+            <item>admin.registry.info</item>
+            <item>admin.eg.types</item>
+            <separator/>
+            <item>admin.hvt</item>
+            <item>admin.produkte</item>
+            <item>admin.leistungen</item>
+            <item>admin.billing.produkte</item>
+            <item>admin.dn.leistung</item>
+            <item>admin.reports</item>
+            <item>admin.txtbausteine</item>
+            <item>admin.carrierdaten</item>
+            <item>admin.geoids</item>
+            <item>admin.wholesale</item>
+            <item>admin.peering.partner</item>
+            <item>admin.ia.levels</item>
+            <separator/>
+            <item>admin.service.chain</item>
+            <separator/>
+            <item>admin.rangierungsmatrix</item>
+        </items>
+    </Menu>
+
+    <Menu name="menu.search">
+        <text>Suche</text>
+        <mnemonic>VK_S</mnemonic>
+        <items>
+            <item>search.auftrag.kunde</item>
+            <item>search.geoid</item>
+        </items>
+    </Menu>
+
+    <Menu name="menu.vpn">
+        <text>VPN</text>
+        <mnemonic>VK_V</mnemonic>
+        <items>
+            <item>vpn.uebersicht</item>
+            <item>vpn.admin.c2s.tokens</item>
+        </items>
+    </Menu>
+
+    <Menu name="menu.el.verlauf">
+        <text>el. Verlauf</text>
+        <mnemonic>VK_E</mnemonic>
+        <items>
+            <submenu>menu.verlauf.konfig</submenu>
+            <separator/>
+            <item>auftrags.vorlauf</item>
+            <item>am.auftraege</item>
+            <item>cuda.vorschau</item>
+            <separator/>
+            <item>fieldservice.sperren</item>
+            <separator/>
+            <submenu>menu.bauauftraege</submenu>
+            <submenu>menu.projektierung</submenu>
+        </items>
+    </Menu>
+    <Menu name="menu.verlauf.konfig">
+        <text>Konfiguration</text>
+        <items>
+            <item>ba.config</item>
+        </items>
+    </Menu>
+    <Menu name="menu.bauauftraege">
+        <text>Bauaufträge</text>
+        <items>
+            <item>ba.dispo</item>
+            <item>ba.np</item>
+            <item>ba.stconnect</item>
+            <item>ba.stonline</item>
+            <item>ba.stvoice</item>
+            <item>ba.fieldservice</item>
+            <item>ba.ext</item>
+            <item>ba.ffm</item>
+            <item>ba.mqueue</item>
+            <item>ba.universal</item>
+            <separator/>
+            <item>ba.rl.dispo</item>
+            <item>ba.rl.np</item>
+            <item>ba.rl.am</item>
+        </items>
+    </Menu>
+    <Menu name="menu.projektierung">
+        <text>Projektierungen</text>
+        <items>
+            <item>projektierung.dispo</item>
+            <item>projektierung.np</item>
+            <item>projektierung.stconnect</item>
+            <item>projektierung.stonline</item>
+            <item>projektierung.stvoice</item>
+            <item>projektierung.fieldservice</item>
+            <item>projektierung.universal</item>
+            <separator/>
+            <item>projektierung.rl.dispo</item>
+            <item>projektierung.rl.np</item>
+            <item>projektierung.rl.am</item>
+        </items>
+    </Menu>
+
+    <Menu name="menu.tools">
+        <text>Tools</text>
+        <mnemonic>VK_T</mnemonic>
+        <items>
+            <submenu>hvt.tool</submenu>
+            <separator/>
+            <submenu>its.tools</submenu>
+            <separator/>
+            <submenu>fibu.tools</submenu>
+            <separator/>
+            <submenu>am.tools</submenu>
+            <separator/>
+            <submenu>tal.tools</submenu>
+            <separator/>
+            <submenu>wbci.tools</submenu>
+            <separator>
+                <feature>WBCI_ENABLED</feature>
+            </separator>
+            <submenu>sap.tools</submenu>
+            <separator/>
+            <submenu>cps.tools</submenu>
+            <separator/>
+            <submenu>import.tools</submenu>
+            <separator/>
+            <item>kubena</item>
+            <item>dialer</item>
+        </items>
+    </Menu>
+    <Menu name="hvt.tool">
+        <text>HVT</text>
+        <items>
+            <item>search.rangierung</item>
+            <item>admin.rangierungsklaerfaelle</item>
+            <separator/>
+            <item>open.port.statistics</item>
+            <separator/>
+            <item>hvt.rs.monitor</item>
+            <separator/>
+            <item>hvt.bestellung</item>
+            <separator/>
+            <item>hvt.rangierungs.auftrag</item>
+            <item>hvt.rangierungs.budgets</item>
+            <separator/>
+            <item>baugruppen.schwenk</item>
+            <item>switch.migration</item>
+            <item>hvt.umzug</item>
+            <separator/>
+            <item>hardware.tree</item>
+        </items>
+    </Menu>
+    <Menu name="its.tools">
+        <text>ITS-Tools</text>
+        <items>
+            <item>its.rangierung.kreuzen</item>
+            <item>its.remove.rangierung</item>
+            <item>its.move.account</item>
+            <item>its.move.vbz</item>
+            <separator/>
+            <item>its.scheduler.status</item>
+            <item>its.scheduler.controller</item>
+            <separator/>
+            <submenu>its.rechnungen</submenu>
+            <separator/>
+            <item>konsistenz.check</item>
+            <separator/>
+            <!--            <item>its.ip.dialog</item> -->
+            <!--            <item>ippurpose.migration</item>-->
+        </items>
+    </Menu>
+    <Menu name="its.rechnungen">
+        <text>Rechnungen/EVNs</text>
+        <items>
+            <item>its.signature.bills</item>
+            <item>its.evn.export</item>
+            <item>its.archive.export</item>
+            <separator/>
+            <item>its.print.statistic</item>
+        </items>
+    </Menu>
+    <Menu name="fibu.tools">
+        <text>Fibu-Tools</text>
+        <items>
+            <item>dtag.lbz.check</item>
+            <item>lock.overview</item>
+        </items>
+    </Menu>
+    <Menu name="am.tools">
+        <text>AM-Tools</text>
+        <items>
+            <item>am.db.checks</item>
+            <separator/>
+            <item>anschlussuebernahme.manuell</item>
+            <separator/>
+            <item>reports.notdownloaded</item>
+            <separator/>
+            <item>wita.clearing.tools</item>
+        </items>
+    </Menu>
+    <Menu name="tal.tools">
+        <text>TAL</text>
+        <items>
+            <item>tal.interne.bestellung</item>
+            <item>unfinished.carrierbestellungen</item>
+        </items>
+    </Menu>
+    <Menu name="wbci.tools">
+        <text>WBCI</text>
+        <items>
+            <item>wbci.vorabstimmungen</item>
+        </items>
+        <feature>WBCI_ENABLED</feature>
+    </Menu>
+    <Menu name="sap.tools">
+        <text>SAP</text>
+        <items>
+            <item>sap.daten</item>
+        </items>
+    </Menu>
+
+    <Menu name="cps.tools">
+        <text>CPS</text>
+        <items>
+            <item>cps.transaction</item>
+        </items>
+    </Menu>
+
+    <Menu name="import.tools">
+        <text>Import</text>
+        <items>
+            <item>command.import.strasse.kvz.action.item</item>
+            <item>command.import.strasse.vdsl.action.item</item>
+            <item>fttc.kvz.import.standorte</item>
+            <item>import.uevt.stifte</item>
+            <item>import.baugruppen</item>
+            <item>import.fttc.kvz.rangierungen.standorte</item>
+            <item>import.fttc.kvz.adressen</item>
+            <item>import.hvt.adressen</item>
+        </items>
+    </Menu>
+
+    <Menu name="menu.window">
+        <text>Fenster</text>
+        <mnemonic>VK_F</mnemonic>
+        <items>
+            <item>maximize.all</item>
+            <item>iconify.all</item>
+            <item>close.all</item>
+        </items>
+    </Menu>
+
+    <Menu name="menu.help">
+        <text>Hilfe</text>
+        <mnemonic>VK_F1</mnemonic>
+        <items>
+            <item>about</item>
+        </items>
+    </Menu>
+
+    <!-- ********** Items fuer Menu 'System'  ************* -->
+    <MenuItem name="exit.application">
+        <action>exit.action</action>
+    </MenuItem>
+
+    <!-- ******* Items fuer Menu 'Administration'  ******** -->
+    <MenuItem name="admin.anschlussarten">
+        <action>admin.anschlussarten.action</action>
+    </MenuItem>
+    <MenuItem name="admin.physiktypen">
+        <action>admin.physiktypen.action</action>
+    </MenuItem>
+    <MenuItem name="admin.hvt">
+        <action>admin.hvt.action</action>
+    </MenuItem>
+    <MenuItem name="admin.sperre.info">
+        <action>admin.sperre.info.action</action>
+    </MenuItem>
+    <MenuItem name="admin.reference.info">
+        <action>admin.reference.info.action</action>
+    </MenuItem>
+    <MenuItem name="admin.registry.info">
+        <action>admin.registry.info.action</action>
+    </MenuItem>
+    <MenuItem name="admin.eg.types">
+        <action>admin.eg.types.action</action>
+    </MenuItem>
+    <MenuItem name="admin.produkte">
+        <action>admin.produkte.action</action>
+    </MenuItem>
+    <MenuItem name="admin.leistungen">
+        <action>admin.leistungen.action</action>
+    </MenuItem>
+    <MenuItem name="admin.billing.produkte">
+        <action>admin.billing.produkte.action</action>
+    </MenuItem>
+    <MenuItem name="admin.dn.leistung">
+        <action>admin.dn.leistung.action</action>
+    </MenuItem>
+    <MenuItem name="admin.reports">
+        <action>admin.reports.action</action>
+    </MenuItem>
+    <MenuItem name="admin.txtbausteine">
+        <action>admin.txtbausteine.action</action>
+    </MenuItem>
+    <MenuItem name="admin.carrierdaten">
+        <action>admin.carrierdaten.action</action>
+    </MenuItem>
+    <MenuItem name="admin.geoids">
+        <action>admin.geoids.action</action>
+    </MenuItem>
+    <MenuItem name="admin.wholesale">
+        <action>admin.wholesale.action</action>
+    </MenuItem>
+    <MenuItem name="admin.peering.partner">
+        <action>admin.peering.partner.action</action>
+    </MenuItem>
+    <MenuItem name="admin.ia.levels">
+        <action>admin.ia.levels.action</action>
+    </MenuItem>
+    <MenuItem name="admin.service.chain">
+        <action>admin.service.chain.action</action>
+    </MenuItem>
+    <MenuItem name="admin.rangierungsmatrix">
+        <action>admin.rangierungsmatrix.action</action>
+    </MenuItem>
+    <MenuItem name="admin.rangierungsklaerfaelle">
+        <action>admin.rangierungsklaerfaelle.action</action>
+    </MenuItem>
+
+
+    <!-- ********** Items fuer Menu 'Suche'  ************* -->
+    <MenuItem name="search.auftrag.kunde">
+        <action>open.auftrag.search.frame.action</action>
+    </MenuItem>
+    <MenuItem name="search.geoid">
+        <action>open.geoid.search.frame.action</action>
+    </MenuItem>
+
+    <!-- ********** Items fuer Menu 'VPN' *********** -->
+    <MenuItem name="vpn.uebersicht">
+        <action>open.vpn.uebersicht.frame.action</action>
+    </MenuItem>
+
+    <MenuItem name="vpn.admin.c2s.tokens">
+        <action>open.vpn.admin.c2s.tokens.frame.action</action>
+    </MenuItem>
+
+
+    <MenuItem name="auftrags.vorlauf">
+        <action>open.auftrags.vorlauf.action</action>
+    </MenuItem>
+    <MenuItem name="am.auftraege">
+        <action>open.am.auftraege.action</action>
+    </MenuItem>
+    <MenuItem name="cuda.vorschau">
+        <action>cuda.vorschau.action</action>
+    </MenuItem>
+    <MenuItem name="fieldservice.sperren">
+        <action>fieldservice.sperren.action</action>
+    </MenuItem>
+
+    <!-- ********* Items fuer Menu 'Verlauf - Bauauftraege' ********* -->
+    <MenuItem name="ba.config">
+        <action>open.ba.config.action</action>
+    </MenuItem>
+    <MenuItem name="ba.dispo">
+        <action>open.ba.verlauf.dispo.action</action>
+    </MenuItem>
+    <MenuItem name="ba.np">
+        <action>open.ba.verlauf.np.action</action>
+    </MenuItem>
+    <MenuItem name="ba.rl.dispo">
+        <action>open.ba.verlauf.dispo.rl.action</action>
+    </MenuItem>
+    <MenuItem name="ba.rl.np">
+        <action>open.ba.verlauf.np.rl.action</action>
+    </MenuItem>
+    <MenuItem name="ba.rl.am">
+        <action>open.ba.verlauf.am.rl.action</action>
+    </MenuItem>
+    <MenuItem name="ba.stconnect">
+        <action>open.ba.verlauf.stconnect.action</action>
+    </MenuItem>
+    <MenuItem name="ba.stvoice">
+        <action>open.ba.verlauf.stvoice.action</action>
+    </MenuItem>
+    <MenuItem name="ba.fieldservice">
+        <action>open.ba.verlauf.fieldservice.action</action>
+    </MenuItem>
+    <MenuItem name="ba.stonline">
+        <action>open.ba.verlauf.stonline.action</action>
+    </MenuItem>
+    <MenuItem name="ba.ext">
+        <action>open.ba.verlauf.ext.action</action>
+    </MenuItem>
+    <MenuItem name="ba.ffm">
+        <action>open.ba.verlauf.ffm.action</action>
+    </MenuItem>
+    <MenuItem name="ba.mqueue">
+        <action>open.ba.verlauf.mqueue.action</action>
+    </MenuItem>
+    <MenuItem name="ba.universal">
+        <action>open.ba.verlauf.universal.action</action>
+    </MenuItem>
+
+    <!-- ********** Items fuer Menu 'Verlauf - Projektierungen' ********* -->
+    <MenuItem name="projektierung.dispo">
+        <action>open.projektierung.dispo.action</action>
+    </MenuItem>
+    <MenuItem name="projektierung.rl.dispo">
+        <action>open.projektierung.dispo.rl.action</action>
+    </MenuItem>
+    <MenuItem name="projektierung.np">
+        <action>open.projektierung.np.action</action>
+    </MenuItem>
+    <MenuItem name="projektierung.rl.np">
+        <action>open.projektierung.np.rl.action</action>
+    </MenuItem>
+    <MenuItem name="projektierung.stconnect">
+        <action>open.projektierung.stconnect.action</action>
+    </MenuItem>
+    <MenuItem name="projektierung.stvoice">
+        <action>open.projektierung.stvoice.action</action>
+    </MenuItem>
+    <MenuItem name="projektierung.fieldservice">
+        <action>open.projektierung.fieldservice.action</action>
+    </MenuItem>
+    <MenuItem name="projektierung.stonline">
+        <action>open.projektierung.stonline.action</action>
+    </MenuItem>
+    <MenuItem name="projektierung.rl.am">
+        <action>open.projektierung.am.rl.action</action>
+    </MenuItem>
+    <MenuItem name="projektierung.universal">
+        <action>open.projektierung.universal.action</action>
+    </MenuItem>
+
+    <!-- ********* Items fuer Menu 'Tools' -->
+    <MenuItem name="kubena">
+        <action>kubena.action</action>
+    </MenuItem>
+    <MenuItem name="dialer">
+        <action>dialer.action</action>
+    </MenuItem>
+
+
+    <!-- ********** Items fuer Menu 'Tools - HVT' ********* -->
+    <MenuItem name="search.rangierung">
+        <action>search.rangierung.action</action>
+    </MenuItem>
+    <MenuItem name="open.port.statistics">
+        <action>open.port.statistics.action</action>
+    </MenuItem>
+    <MenuItem name="hvt.bestellung">
+        <action>hvt.bestellung.action</action>
+    </MenuItem>
+    <MenuItem name="hvt.rs.monitor">
+        <action>hvt.rs.monitor.action</action>
+    </MenuItem>
+    <MenuItem name="hvt.rangierungs.auftrag">
+        <action>hvt.rangierungs.auftrag.action</action>
+    </MenuItem>
+    <MenuItem name="hvt.rangierungs.budgets">
+        <action>hvt.rangierungs.budgets.action</action>
+    </MenuItem>
+    <MenuItem name="baugruppen.schwenk">
+        <action>baugruppen.schwenk.action</action>
+    </MenuItem>
+    <MenuItem name="switch.migration">
+        <action>switch.migration.action</action>
+    </MenuItem>
+    <MenuItem name="hvt.umzug">
+        <action>hvt.umzug.action</action>
+    </MenuItem>
+    <MenuItem name="hardware.tree">
+        <action>hardware.tree.action</action>
+    </MenuItem>
+
+    <!-- ********** Items fuer Menu 'Tools - ITS-Tools' ******* -->
+    <MenuItem name="its.rangierung.kreuzen">
+        <action>its.rangierung.kreuzen.action</action>
+    </MenuItem>
+    <MenuItem name="its.remove.rangierung">
+        <action>its.remove.rangierung.action</action>
+    </MenuItem>
+    <MenuItem name="its.move.account">
+        <action>its.move.account.action</action>
+    </MenuItem>
+    <MenuItem name="its.move.vbz">
+        <action>its.move.vbz.action</action>
+    </MenuItem>
+    <MenuItem name="its.scheduler.status">
+        <action>its.scheduler.status.action</action>
+    </MenuItem>
+    <MenuItem name="its.scheduler.controller">
+        <action>its.scheduler.controller.action</action>
+    </MenuItem>
+    <MenuItem name="its.signature.bills">
+        <action>its.signature.bills.action</action>
+    </MenuItem>
+    <MenuItem name="its.evn.export">
+        <action>its.evn.export.action</action>
+    </MenuItem>
+    <MenuItem name="its.archive.export">
+        <action>its.archive.export.action</action>
+    </MenuItem>
+    <MenuItem name="its.print.statistic">
+        <action>its.print.statistic.action</action>
+    </MenuItem>
+    <MenuItem name="konsistenz.check">
+        <action>konsistenz.check.action</action>
+    </MenuItem>
+    <MenuItem name="its.ip.dialog">
+        <action>its.ip.dialog.action</action>
+    </MenuItem>
+    <!--     <MenuItem name="ippurpose.migration"> -->
+    <!--         <action>ippurpose.migration.action</action> -->
+    <!--     </MenuItem> -->
+    <!-- ********** Items fuer Menu 'Tools - Fibu-Tools' ****** -->
+    <MenuItem name="dtag.lbz.check">
+        <action>dtag.lbz.check.action</action>
+    </MenuItem>
+    <MenuItem name="lock.overview">
+        <action>lock.overview.action</action>
+    </MenuItem>
+
+    <!-- ********** Items fuer Menu 'Tools - AM-Tools' ****** -->
+    <MenuItem name="am.db.checks">
+        <action>am.db.checks.action</action>
+    </MenuItem>
+    <MenuItem name="anschlussuebernahme.manuell">
+        <action>anschlussuebernahme.manuell.action</action>
+    </MenuItem>
+    <MenuItem name="reports.notdownloaded">
+        <action>reports.notdownloaded.action</action>
+    </MenuItem>
+    <MenuItem name="wita.clearing.tools">
+        <action>wita.clearing.tools.action</action>
+    </MenuItem>
+
+    <!-- ********** Items fuer Menu 'Tools - TAL' ********** -->
+    <MenuItem name="tal.interne.bestellung">
+        <action>tal.interne.bestellung.action</action>
+    </MenuItem>
+    <MenuItem name="unfinished.carrierbestellungen">
+        <action>unfinished.carrierbestellungen.action</action>
+    </MenuItem>
+
+    <!-- ********** Items fuer Menu 'Tools - WBCI' ********** -->
+    <MenuItem name="wbci.vorabstimmungen">
+        <action>wbci.vorabstimmung.action</action>
+    </MenuItem>
+
+    <!-- ********** Items fuer Menu 'Tools - SAP' ********** -->
+    <MenuItem name="sap.daten">
+        <action>sap.daten.action</action>
+    </MenuItem>
+
+    <!-- ********** Items fuer Menu 'Tools - CPS' ********** -->
+    <MenuItem name="cps.transaction">
+        <action>cps.transaction.action</action>
+    </MenuItem>
+
+    <!-- ********** Items fuer Menu 'Tools - Import' ********** -->
+    <MenuItem name="command.import.strasse.kvz.action.item">
+        <action>command.import.strasse.kvz.action</action>
+    </MenuItem>
+    <MenuItem name="command.import.strasse.vdsl.action.item">
+        <action>command.import.strasse.vdsl.action</action>
+    </MenuItem>
+    <MenuItem name="fttc.kvz.import.standorte">
+        <action>fttc.kvz.standorte.import.action</action>
+    </MenuItem>
+    <MenuItem name="import.uevt.stifte">
+        <action>import.uevt.stifte.action</action>
+    </MenuItem>
+    <MenuItem name="import.baugruppen">
+        <action>import.baugruppen.action</action>
+    </MenuItem>
+    <MenuItem name="import.fttc.kvz.rangierungen.standorte">
+        <action>import.fttc.kvz.rangierungen.action</action>
+    </MenuItem>
+    <MenuItem name="import.fttc.kvz.adressen">
+        <action>import.fttc.kvz.adressen.action</action>
+    </MenuItem>
+    <MenuItem name="import.hvt.adressen">
+        <action>import.hvt.adressen.action</action>
+    </MenuItem>
+
+    <!-- ********** Items fuer Menu 'Window'  ************* -->
+    <MenuItem name="iconify.all">
+        <action>iconify.all.action</action>
+    </MenuItem>
+    <MenuItem name="maximize.all">
+        <action>maximize.all.action</action>
+    </MenuItem>
+    <MenuItem name="close.all">
+        <action>close.all.action</action>
+    </MenuItem>
+
+    <!-- ********** Items fuer Menu 'Help' **************** -->
+    <MenuItem name="about">
+        <action>open.about.dialog.action</action>
+    </MenuItem>
+
+    <!-- ********************** E N D E  MENUBAR ************************* -->
+
+
+    <!-- ********************** TOOLBAR ************************* -->
+    <!-- ToolBar-Definition -->
+    <ToolBar name="main.tool.bar">
+        <actions>
+            <action>open.auftrag.search.frame.action</action>
+            <action>open.geoid.search.frame.action</action>
+            <separator/>
+            <action>open.vpn.uebersicht.frame.action</action>
+            <separator/>
+            <action>kubena.action</action>
+            <separator/>
+            <action>open.ba.verlauf.dispo.action</action>
+            <action>open.ba.verlauf.np.action</action>
+            <action>open.ba.verlauf.stconnect.action</action>
+            <action>open.ba.verlauf.stonline.action</action>
+            <action>open.ba.verlauf.stvoice.action</action>
+            <action>open.ba.verlauf.fieldservice.action</action>
+            <action>open.ba.verlauf.ext.action</action>
+            <action>open.ba.verlauf.mqueue.action</action>
+            <action>open.ba.verlauf.universal.action</action>
+            <separator/>
+            <action>open.ba.verlauf.ffm.action</action>
+            <separator/>
+            <action>open.ba.verlauf.dispo.rl.action</action>
+            <action>open.ba.verlauf.np.rl.action</action>
+            <action>open.ba.verlauf.am.rl.action</action>
+            <separator/>
+            <action>unfinished.carrierbestellungen.action</action>
+            <separator>
+                <feature>WBCI_ENABLED</feature>
+            </separator>
+            <action>wbci.vorabstimmung.action</action>
+            <!--action>open.test.frame</action-->
+        </actions>
+    </ToolBar>
+    <!-- ********************** E N D E  TOOLBAR ************************* -->
+
+
+    <!-- ******************** ACTIIONS *********************** -->
+    <!-- Action, um die Applikation zu beenden -->
+    <Action name="exit.action">
+        <class>de.augustakom.hurrican.gui.system.actions.ExitAction</class>
+        <text>Exit</text>
+        <tooltip>Beendet die gesamte Applikation</tooltip>
+        <mnemonic>VK_X</mnemonic>
+        <accelerator>alt X</accelerator>
+    </Action>
+
+    <!-- Test-Action, um ein einfaches Frame zu oeffnen - nur fuer Testzwecke!!! -->
+    <Action name="open.test.frame">
+        <class>de.augustakom.hurrican.gui.system.actions.OpenTestFrameAction</class>
+        <text>Open Test-Frame</text>
+        <tooltip>Öffnet ein Test-Frame</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/test.gif</icon>
+    </Action>
+
+    <!-- Action, um alle Frames zu minimieren -->
+    <Action name="iconify.all.action">
+        <class>de.augustakom.hurrican.gui.system.actions.IconifyAllAction</class>
+        <text>alle minimieren</text>
+        <tooltip>Minimiert alle geöffneten Fenster</tooltip>
+        <mnemonic>VK_M</mnemonic>
+    </Action>
+
+    <!-- Action, um alle Frames zu maximieren -->
+    <Action name="maximize.all.action">
+        <class>de.augustakom.hurrican.gui.system.actions.MaximizeAllAction</class>
+        <text>alle maximieren</text>
+        <tooltip>Stellt alle geöffneten Fenster in ihrer ursprünglichen Größe dar</tooltip>
+        <mnemonic>VK_X</mnemonic>
+    </Action>
+
+    <!-- Action, um alle Frames zu schliessen -->
+    <Action name="close.all.action">
+        <class>de.augustakom.hurrican.gui.system.actions.CloseAllAction</class>
+        <text>alle schliessen</text>
+        <tooltip>Schliesst alle geöffneten Fenster</tooltip>
+        <mnemonic>VK_S</mnemonic>
+    </Action>
+
+    <!-- Action, um das 'Auftrag-Kunden-Suchframe' zu oeffnen -->
+    <Action name="open.auftrag.search.frame.action">
+        <class>de.augustakom.hurrican.gui.auftrag.actions.OpenAuftragSearchFrameAction</class>
+        <text>Auftrags-/Kundensuche...</text>
+        <tooltip>Öffnet ein Fenster, um nach Aufträgen und Kunden zu suchen</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/search.gif</icon>
+        <mnemonic>VK_K</mnemonic>
+    </Action>
+
+    <!-- Action, um das 'GeoID-Suchframe' zu oeffnen -->
+    <Action name="open.geoid.search.frame.action">
+        <class>de.augustakom.hurrican.gui.geoid.actions.OpenGeoIdAdminAction</class>
+        <text>Geo ID suchen...</text>
+        <tooltip>Öffnet ein Fenster, um nach Geo IDs zu suchen</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/hvt.gif</icon>
+        <mnemonic>VK_G</mnemonic>
+    </Action>
+
+    <!-- Action, um das Admin-Frame fuer 'Anschlussarten' zu oeffnen -->
+    <Action name="admin.anschlussarten.action">
+        <class>de.augustakom.hurrican.gui.stammdaten.actions.OpenAnschlussartenFrameAction</class>
+        <text>Anschlussarten...</text>
+        <tooltip>Öffnet ein Fenster, um nach die möglichen Anschlussarten zu verwalten</tooltip>
+    </Action>
+
+    <!-- Action, um das Admin-Frame fuer 'Physik-Typen' zu oeffnen -->
+    <Action name="admin.physiktypen.action">
+        <class>de.augustakom.hurrican.gui.stammdaten.actions.OpenPhysikTypenFrameAction</class>
+        <text>Physik-Typen...</text>
+        <tooltip>Öffnet ein Fenster, um nach die möglichen Physik-Typen zu verwalten</tooltip>
+    </Action>
+
+    <!-- Action, um das Admin-Frame fuer 'HVTs' zu oeffnen -->
+    <Action name="admin.hvt.action">
+        <class>de.augustakom.hurrican.gui.hvt.actions.OpenHVTFrameAction</class>
+        <text>HVTs...</text>
+        <tooltip>Öffnet ein Fenster, um nach die HVTs zu verwalten</tooltip>
+    </Action>
+
+    <!-- Action, um das Admin-Frame fuer 'Sperre-Infos' zu oeffnen -->
+    <Action name="admin.sperre.info.action">
+        <class>de.augustakom.hurrican.gui.stammdaten.actions.OpenSperreInfoFrameAction</class>
+        <text>Sperr-Benachrichtigungen...</text>
+        <tooltip>Öffnet ein Fenster, um die Sperr-Benachrichtigungen zu verwalten</tooltip>
+    </Action>
+
+    <!-- Action, um das Admin-Frame fuer 'Reference' zu oeffnen -->
+    <Action name="admin.reference.info.action">
+        <class>de.augustakom.hurrican.gui.stammdaten.actions.OpenReferenceFrameAction</class>
+        <text>Referenzen...</text>
+        <tooltip>Öffnet ein Fenster, um die Referenzen zu verwalten</tooltip>
+    </Action>
+
+    <!-- Action, um das Admin-Frame fuer 'Registry' zu oeffnen -->
+    <Action name="admin.registry.info.action">
+        <class>de.augustakom.hurrican.gui.stammdaten.actions.OpenRegistryFrameAction</class>
+        <text>Registry...</text>
+        <tooltip>Öffnet ein Fenster, um die Registry-Tabelle zu verwalten</tooltip>
+    </Action>
+
+    <!-- Action, um das Admin-Frame fuer 'Endgeraetetypen' zu oeffnen -->
+    <Action name="admin.eg.types.action">
+        <class>de.augustakom.hurrican.gui.egtypes.actions.OpenEGTypesAdminAction</class>
+        <text>Endgeräte...</text>
+        <tooltip>Öffnet ein Fenster, um Zuordnungen zwischen Endgeräten und Endgerätemodellen zu verwalten</tooltip>
+    </Action>
+
+    <!-- Action, um das Admin-Frame fuer die Produkte zu oeffnen -->
+    <Action name="admin.produkte.action">
+        <class>de.augustakom.hurrican.gui.stammdaten.actions.ProduktAdminAction</class>
+        <text>Produkte...</text>
+        <tooltip>Öffnet ein Fenster, um die Produkte zu verwalten</tooltip>
+    </Action>
+
+    <!-- Action, um das Admin-Frame fuer die Konfiguration der Billing-Leistungen zu oeffnen -->
+    <Action name="admin.leistungen.action">
+        <class>de.augustakom.hurrican.gui.stammdaten.actions.OpenTechLeistungKonfFrameAction</class>
+        <text>techn. Leistungen...</text>
+        <tooltip>Öffnet ein Fenster, um die techn. Leistungen zu konfigurieren</tooltip>
+    </Action>
+
+    <!-- Action, um das Admin-Frame fuer die Konfiguration der Billing-Produkte zu oeffnen -->
+    <Action name="admin.billing.produkte.action">
+        <class>de.augustakom.hurrican.gui.stammdaten.actions.ProduktBillingAdminAction</class>
+        <text>Billing-Produkte...</text>
+        <tooltip>Öffnet ein Fenster, um die Produkte aus dem Billing-System zu konfigurieren</tooltip>
+
+    </Action>
+
+    <Action name="admin.dn.leistung.action">
+        <class>de.augustakom.hurrican.gui.tools.dn.actions.DnLeistungKonfAction</class>
+        <text>DN-Leistungsbündel...</text>
+        <tooltip>Konfiguration der Rufnummernleistungen und -bündel</tooltip>
+    </Action>
+
+    <!-- Action, um das Admin-Frame fuer 'Reports' zu oeffnen -->
+    <Action name="admin.reports.action">
+        <class>de.augustakom.hurrican.gui.reporting.konfiguration.actions.OpenReportFrameAction</class>
+        <text>Reports...</text>
+        <tooltip>Öffnet ein Fenster, um die Reports zu verwalten</tooltip>
+    </Action>
+
+    <!-- Action, um das Admin-Frame fuer 'Text-Bausteine' zu oeffnen -->
+    <Action name="admin.txtbausteine.action">
+        <class>de.augustakom.hurrican.gui.reporting.konfiguration.actions.OpenTxtBausteineFrameAction</class>
+        <text>Text-Bausteine...</text>
+        <tooltip>Öffnet ein Fenster, um die Text-Bausteine zu verwalten</tooltip>
+    </Action>
+
+    <!-- Action, um das Admin-Frame fuer 'Carrier-Daten' zu oeffnen -->
+    <Action name="admin.carrierdaten.action">
+        <class>de.augustakom.hurrican.gui.stammdaten.actions.OpenCarrierDataFrameAction</class>
+        <text>Carrier-Daten...</text>
+        <tooltip>Öffnet ein Fenster, um die Carrier-Daten zu verwalten</tooltip>
+    </Action>
+
+    <!-- Action, um das Admin-Frame fuer die Produkte zu oeffnen -->
+    <Action name="admin.geoids.action">
+        <class>de.augustakom.hurrican.gui.geoid.actions.OpenGeoIdAdminAction</class>
+        <text>Geo IDs...</text>
+        <tooltip>Öffnet ein Fenster, um die Geo IDs zu verwalten</tooltip>
+    </Action>
+
+    <Action name="admin.wholesale.action">
+        <class>de.augustakom.hurrican.gui.wholesale.actions.OpenWholesaleAdminAction</class>
+        <text>EKPs / A10-NSPs...</text>
+        <tooltip>Öffnet ein Fenster, um die EKPs und die A10-NSPs für Wholesale zu verwalten</tooltip>
+    </Action>
+
+    <Action name="admin.peering.partner.action">
+        <class>de.augustakom.hurrican.gui.sip.peering.actions.OpenPeeringPartnerAdminAction</class>
+        <text>SIP Peering Partner...</text>
+        <tooltip>Öffnet ein Fenster, um die Peering Partner zu verwalten</tooltip>
+    </Action>
+
+    <Action name="admin.ia.levels.action">
+        <class>de.augustakom.hurrican.gui.innenauftrag.actions.OpenIaLevelAdminFrameAction</class>
+        <text>Innenauftrags-Ebenen...</text>
+        <tooltip>Öffnet ein Fenster, um die Innenauftrags-Ebenen zu verwalten</tooltip>
+    </Action>
+
+    <!-- Action, um die ServiceChain-Konfiguration zu oeffnen. -->
+    <Action name="admin.service.chain.action">
+        <class>de.augustakom.hurrican.gui.stammdaten.actions.OpenServiceChainConfigAction</class>
+        <text>Service-Chains...</text>
+        <tooltip>Öffnet ein Fenster zur Konfiguration von ServiceChains.</tooltip>
+    </Action>
+
+    <!-- Action, um das Admin-Frame fuer die Rangierungsmatrix zu oeffnen -->
+    <Action name="admin.rangierungsmatrix.action">
+        <class>de.augustakom.hurrican.gui.stammdaten.actions.OpenRMatrixFrameAction</class>
+        <text>Rangierungsmatrix...</text>
+        <tooltip>Öffnet das Fenster mit der Rangierungsmatrix</tooltip>
+    </Action>
+
+    <!-- Action, um das Admin-Frame fuer die Rangierungsklaerfaelle zu oeffnen -->
+    <Action name="admin.rangierungsklaerfaelle.action">
+        <class>de.augustakom.hurrican.gui.stammdaten.actions.OpenRKlaerfaelleFrameAction</class>
+        <text>Rangierungsklärfälle anzeigen...</text>
+        <tooltip>Öffnet ein Fenster, um freizugebende Rangierungen</tooltip>
+    </Action>
+
+    <!-- Action, um das Frame fuer den Bauauftragsverlauf zu oeffnen -->
+    <Action name="open.ba.config.action">
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenBAVerlaufConfigAction</class>
+        <text>Bauauftragskonfiguration...</text>
+        <tooltip>Öffnet ein Fenster, um die Verteilung der Bauaufträge zu definieren</tooltip>
+    </Action>
+
+    <!-- Action, um die Bauauftraege zur Verteilung fuer DISPO anzuzeigen -->
+    <Action name="open.ba.verlauf.dispo.action">
+        <icon>de/augustakom/hurrican/gui/images/bauauftrag_dispo.gif</icon>
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenBAVerlaufDISPO</class>
+        <text>Dispo...</text>
+        <tooltip>Öffnet die Maske für Dispo, um Bauaufträge zu verteilen</tooltip>
+    </Action>
+
+    <!-- Action, um die abteilungs-uebergreifende Bauauftraegs-Maske anzuzeigen -->
+    <Action name="open.ba.verlauf.universal.action">
+        <icon>de/augustakom/hurrican/gui/images/bauauftrag.gif</icon>
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenBAVerlaufUniversal</class>
+        <text>abteilungs-übergreifend...</text>
+        <tooltip>Öffnet die abteilungs-übergreifende Bauauftrags-Maske</tooltip>
+    </Action>
+
+    <!-- Action, um die Bauauftraege zur Verteilung fuer Netzplanung anzuzeigen -->
+    <Action name="open.ba.verlauf.np.action">
+        <icon>de/augustakom/hurrican/gui/images/bauauftrag_np.gif</icon>
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenBAVerlaufNP</class>
+        <text>Netzplanung...</text>
+        <tooltip>Öffnet die Maske für Netzplanung, um Bauaufträge zu verteilen</tooltip>
+    </Action>
+
+    <!-- Action, um die Bauauftrags-Ruecklaeufer fuer DISPO anzuzeigen -->
+    <Action name="open.ba.verlauf.dispo.rl.action">
+        <icon>de/augustakom/hurrican/gui/images/bauauftrag_rueck_dispo.gif</icon>
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenBAVerlaufDispoRL</class>
+        <text>Rückläufer Dispo...</text>
+        <tooltip>Öffnet die Bauauftrags-Rückläufer für Dispo</tooltip>
+    </Action>
+
+    <!-- Action, um die Bauauftrags-Ruecklaeufer fuer Netzplanung anzuzeigen -->
+    <Action name="open.ba.verlauf.np.rl.action">
+        <icon>de/augustakom/hurrican/gui/images/bauauftrag_rueck_np.gif</icon>
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenBAVerlaufNPRL</class>
+        <text>Rückläufer Netzplanung...</text>
+        <tooltip>Öffnet die Bauauftrags-Rückläufer für Netzplanung</tooltip>
+    </Action>
+
+    <!-- Action, um die Bauauftrags-Ruecklaeufer fuer AM anzuzeigen -->
+    <Action name="open.ba.verlauf.am.rl.action">
+        <icon>de/augustakom/hurrican/gui/images/bauauftrag_rueck_am.gif</icon>
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenBAVerlaufAmRl</class>
+        <text>Rückläufer AM...</text>
+        <tooltip>Öffnet die Bauauftrags-Rückläufer für das Auftragsmanagement</tooltip>
+    </Action>
+
+    <!-- Action, um die Bauauftraege fuer Systemtechnik Connect anzuzeigen. -->
+    <Action name="open.ba.verlauf.stconnect.action">
+        <icon>de/augustakom/hurrican/gui/images/bauauftrag_connect.gif</icon>
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenBAVerlaufStConnect</class>
+        <text>ST Connect...</text>
+        <tooltip>Öffnet die Bauaufträge der Abteilung Systemtechnik Connect</tooltip>
+    </Action>
+
+    <!-- Action, um die Bauauftraege fuer Systemtechnik Voice anzuzeigen. -->
+    <Action name="open.ba.verlauf.stvoice.action">
+        <icon>de/augustakom/hurrican/gui/images/bauauftrag_voice.gif</icon>
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenBAVerlaufStVoice</class>
+        <text>ST Voice...</text>
+        <tooltip>Öffnet die Bauaufträge der Abteilung Systemtechnik Voice</tooltip>
+    </Action>
+
+    <!-- Action, um die Bauauftraege fuer FieldService anzuzeigen. -->
+    <Action name="open.ba.verlauf.fieldservice.action">
+        <icon>de/augustakom/hurrican/gui/images/bauauftrag_field.gif</icon>
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenBAVerlaufFieldService</class>
+        <text>FieldService...</text>
+        <tooltip>Öffnet die Bauaufträge der Abteilung FieldService</tooltip>
+    </Action>
+
+    <!-- Action, um die Bauauftraege fuer Systemtechnik Online anzuzeigen. -->
+    <Action name="open.ba.verlauf.stonline.action">
+        <icon>de/augustakom/hurrican/gui/images/bauauftrag_online.gif</icon>
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenBAVerlaufStOnline</class>
+        <text>ST Online...</text>
+        <tooltip>Öffnet die Bauaufträge der Abteilung Systemtechnik Online</tooltip>
+    </Action>
+
+    <!-- Action, um die Bauauftraege fuer M-Queue anzuzeigen. -->
+    <Action name="open.ba.verlauf.mqueue.action">
+        <icon>de/augustakom/hurrican/gui/images/bauauftrag_mqueue.gif</icon>
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenBAVerlaufMQueue</class>
+        <text>M-Queue...</text>
+        <tooltip>Öffnet die Bauaufträge der Abteilung M-Queue</tooltip>
+    </Action>
+
+    <!-- Action, um die Bauauftraege fuer Extern anzuzeigen. -->
+    <Action name="open.ba.verlauf.ext.action">
+        <icon>de/augustakom/hurrican/gui/images/bauauftrag_extern.gif</icon>
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenBAVerlaufEXT</class>
+        <text>Extern...</text>
+        <tooltip>Öffnet die Bauaufträge der Abteilung Extern</tooltip>
+    </Action>
+
+    <!-- Action, um die Bauauftraege fuer FFM anzuzeigen. -->
+    <Action name="open.ba.verlauf.ffm.action">
+        <icon>de/augustakom/hurrican/gui/images/bauauftrag_ffm.gif</icon>
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenBAVerlaufFFM</class>
+        <text>FFM...</text>
+        <tooltip>Öffnet die Bauaufträge, die an das FFM-System übertragen sind</tooltip>
+    </Action>
+
+    <!-- Action, um die Projektierungen fuer DISPO anzuzeigen -->
+    <Action name="open.projektierung.dispo.action">
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenProjektierungDISPO</class>
+        <text>Dispo...</text>
+        <tooltip>Öffnet die Projektierungen der Abteilung DISPO</tooltip>
+    </Action>
+
+    <!-- Action, um die Projektierungs-Ruecklaeufer fuer DISPO anzuzeigen -->
+    <Action name="open.projektierung.dispo.rl.action">
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenProjektierungDispoRL</class>
+        <text>Rückläufer Dispo...</text>
+        <tooltip>Öffnet die Projektierungs-Rückläufer für Dispo</tooltip>
+    </Action>
+
+    <!-- Action, um die Projektierungen fuer NP anzuzeigen -->
+    <Action name="open.projektierung.np.action">
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenProjektierungNP</class>
+        <text>Netzplanung...</text>
+        <tooltip>Öffnet die Projektierungen der Abteilung Netzplanung</tooltip>
+    </Action>
+
+    <!-- Action, um die Projektierungs-Ruecklaeufer fuer NP anzuzeigen -->
+    <Action name="open.projektierung.np.rl.action">
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenProjektierungNPRL</class>
+        <text>Rückläufer Netzplanung...</text>
+        <tooltip>Öffnet die Projektierungs-Rückläufer der Abteilung Netzplanung</tooltip>
+    </Action>
+
+    <!-- Action, um die Projektierungen fuer ST Connect anzuzeigen -->
+    <Action name="open.projektierung.stconnect.action">
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenProjektierungStConnect</class>
+        <text>ST Connect...</text>
+        <tooltip>Öffnet die Projektierungen der Abteilung Systemtechnik Connect</tooltip>
+    </Action>
+
+    <!-- Action, um die Projektierungen fuer ST Voice anzuzeigen -->
+    <Action name="open.projektierung.stvoice.action">
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenProjektierungStVoice</class>
+        <text>ST Voice...</text>
+        <tooltip>Öffnet die Projektierungen der Abteilung Systemtechnik Voice</tooltip>
+    </Action>
+
+    <!-- Action, um die Projektierungen fuer FieldService anzuzeigen -->
+    <Action name="open.projektierung.fieldservice.action">
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenProjektierungFieldService</class>
+        <text>FieldService...</text>
+        <tooltip>Öffnet die Projektierungen der Abteilung FieldService</tooltip>
+    </Action>
+
+    <!-- Action, um die Projektierungen fuer Online anzuzeigen -->
+    <Action name="open.projektierung.stonline.action">
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenProjektierungStOnline</class>
+        <text>ST Online...</text>
+        <tooltip>Öffnet die Projektierungen der Abteilung Systemtechnik Online</tooltip>
+    </Action>
+
+    <!-- Action, um die Projektierungs-Ruecklaeufer fuer Auftragsmanagement anzuzeigen -->
+    <Action name="open.projektierung.am.rl.action">
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenProjektierungAmRl</class>
+        <text>Rückläufer AM...</text>
+        <tooltip>Öffnet die Projektierungs-Rückläufer der Abteilung AM</tooltip>
+    </Action>
+
+    <!-- Action, um die abteilungs-uebergreifende Projektierungs-Maske anzuzeigen -->
+    <Action name="open.projektierung.universal.action">
+        <class>de.augustakom.hurrican.gui.verlauf.actions.OpenProjektierungUniversal</class>
+        <text>abteilungs-übergreifend...</text>
+        <tooltip>Öffnet die abteilungs-übergreifende Projektierungs-Maske</tooltip>
+    </Action>
+
+    <!-- Action, um die noch nicht realisierten Auftraege anzuzeigen. -->
+    <Action name="open.auftrags.vorlauf.action">
+        <class>de.augustakom.hurrican.gui.auftrag.actions.OpenAuftragsVorlauf</class>
+        <text>Vorlauf...</text>
+        <tooltip>Zeigt eine Liste mit allen geplanten, noch nicht realisierten Aufträgen an</tooltip>
+    </Action>
+
+    <!-- Action, um die aktuellen (noch nicht abgeschlossenen) Auftraege fuer AM anzuzeigen. -->
+    <Action name="open.am.auftraege.action">
+        <class>de.augustakom.hurrican.gui.auftrag.actions.OpenAmAuftraege</class>
+        <text>AM Aufträge...</text>
+        <tooltip>Zeigt eine Liste mit allen Aufträgen an, bei denen noch Daten fehlen</tooltip>
+    </Action>
+
+    <!-- Action, um die CuDA-Vorschau durchzufuehren. -->
+    <Action name="cuda.vorschau.action">
+        <class>de.augustakom.hurrican.gui.auftrag.actions.CuDAVorschauAction</class>
+        <text>CuDA-Vorschau</text>
+        <tooltip>Ermittelt die Anzahl der bestellten CuDAs (bei DTAG) mit Vorgabe-AM > heute</tooltip>
+    </Action>
+
+    <!-- Action, um die FieldService-Sperren zu bearbeiten. -->
+    <Action name="fieldservice.sperren.action">
+        <class>de.augustakom.hurrican.gui.auftrag.actions.SperreFieldServiceAction</class>
+        <text>FieldService-Sperren</text>
+        <tooltip>Öffnet einen Dialog zur Anzeige/Bearbeitung der FieldService-Sperren</tooltip>
+    </Action>
+
+    <!-- Action, um eine Uebersicht ueber alle VPN-Auftraege anzuzeigen -->
+    <Action name="open.vpn.uebersicht.frame.action">
+        <class>de.augustakom.hurrican.gui.auftrag.vpn.actions.VPNUebersichtAction</class>
+        <text>VPN-Verträge...</text>
+        <icon>de/augustakom/hurrican/gui/images/vpn.gif</icon>
+        <tooltip>Zeigt eine Übersicht aller VPN-Verträge an</tooltip>
+    </Action>
+
+    <!-- Action,  -->
+    <Action name="open.vpn.admin.c2s.tokens.frame.action">
+        <class>de.augustakom.hurrican.gui.auftrag.vpn.actions.OpenClient2SiteTokenAdminFrameAction</class>
+        <text>Client2Site Tokens...</text>
+        <tooltip>Öffnet die Admin Ansicht für die Client2Site Tokens</tooltip>
+    </Action>
+
+    <!-- Action, um den 'About'-Dialog der Hurrican-GUI zu oeffnen -->
+    <Action name="open.about.dialog.action">
+        <class>de.augustakom.hurrican.gui.system.actions.ShowAboutDialogAction</class>
+        <text>Info...</text>
+        <tooltip>Öffnet einen Dialog mit Informationen über die Applikation</tooltip>
+    </Action>
+
+    <!-- Action, um die KuBena-Maske zu oeffnen. -->
+    <Action name="kubena.action">
+        <class>de.augustakom.hurrican.gui.kubena.actions.OpenKubenaAction</class>
+        <text>Kundenbenachrichtigung</text>
+        <tooltip>Öffnet ein Frame für die Kundenbenachrichtigung</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/message.gif</icon>
+    </Action>
+
+    <!-- Action, um das Dialer-Frame zu oeffnen. -->
+    <Action name="dialer.action">
+        <class>de.augustakom.hurrican.gui.tools.ewsd.actions.OpenDialerFrameAction</class>
+        <text>Dialer</text>
+        <tooltip>Öffnet ein Frame zur Anzeige und Bearbeitung von Sperrkennzahlen (Dialer)</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/phone.gif</icon>
+    </Action>
+
+    <!-- Action, um nach freien Rangierungen zu suchen -->
+    <Action name="search.rangierung.action">
+        <class>de.augustakom.hurrican.gui.hvt.actions.OpenSearchRangierungFrameAction</class>
+        <text>Freie Rangierungen suchen...</text>
+        <tooltip>Öffnet ein Fenster, um nach freien Rangierungen an HVTs zu suchen.</tooltip>
+    </Action>
+
+    <!-- Action, um den Portverbrauch anzuzeigen -->
+    <Action name="open.port.statistics.action">
+        <class>de.augustakom.hurrican.gui.hvt.actions.OpenPortStatisticsFrameAction</class>
+        <text>Portverbrauch anzeigen...</text>
+        <tooltip>Öffnet ein Fenster, um den Portverbrauch gruppiert nach ASB oder Niederlassung anzuzeigen.</tooltip>
+    </Action>
+
+    <!-- Action, um die HVT-Bestellungen zu oeffnen -->
+    <Action name="hvt.bestellung.action">
+        <class>de.augustakom.hurrican.gui.hvt.actions.HVTBestellungAction</class>
+        <text>Bestellungen...</text>
+        <tooltip>Öffnet eine Übersicht über alle aktuellen HVT-Bestellungen</tooltip>
+    </Action>
+
+    <!-- Action, um das Frame der Ressourcen-Monitor-Laeufe zu oeffnen -->
+    <Action name="hvt.rs.monitor.action">
+        <class>de.augustakom.hurrican.gui.tools.rs.monitor.actions.OpenRsMonitorAction</class>
+        <text>Ressourcen-Monitor...</text>
+        <tooltip>Öffnet den Ressourcen-Monitor</tooltip>
+    </Action>
+
+    <!-- Action, um das Frame mit den Rangierungs-Auftraegen zu oeffnen -->
+    <Action name="hvt.rangierungs.auftrag.action">
+        <class>de.augustakom.hurrican.gui.hvt.actions.OpenRangierungsAuftragAction</class>
+        <text>Rangierungsaufträge...</text>
+        <tooltip>Öffnet ein Fenster, über das die Rangierungsaufträge verwaltet werden können</tooltip>
+    </Action>
+
+    <!-- Action, um ein Search-Frame fuer die Rangierungs-Budgets zu oeffnen -->
+    <Action name="hvt.rangierungs.budgets.action">
+        <class>de.augustakom.hurrican.gui.hvt.actions.OpenRangierungBudgetSearchFrameAction</class>
+        <text>HVT-Erweiterung Budgets...</text>
+        <tooltip>Öffnet ein Fenster für die Suche nach HVT-Erweiterung Budgets</tooltip>
+    </Action>
+
+    <!-- Action, um ein Search-Frame fuer die Baugruppen-Schwenks zu oeffnen -->
+    <Action name="baugruppen.schwenk.action">
+        <class>de.augustakom.hurrican.gui.hvt.hardware.actions.OpenHWBaugruppenChangeFrameAction</class>
+        <text>Baugruppen-Schwenks...</text>
+        <tooltip>Öffnet ein Fenster für die Planung u. Ausführung von Baugruppen-Schwenks</tooltip>
+    </Action>
+
+    <!-- Action, um ein Frame fuer die Switch Migration zu oeffnen -->
+    <Action name="switch.migration.action">
+        <class>de.augustakom.hurrican.gui.hvt.switchmigration.actions.OpenSwitchMigrationFrameAction</class>
+        <text>Switch-Migration...</text>
+        <tooltip>Öffnet ein Fenster für die Switch Migration bestimmter Hardware an auszuwählenden Standorten</tooltip>
+    </Action>
+
+    <Action name="hvt.umzug.action">
+        <class>de.augustakom.hurrican.gui.hvt.umzug.actions.OpenHvtUmzugFrameAction</class>
+        <text>HVT-Umzug...</text>
+        <tooltip>Öffnet ein Fenster zur Durchführung eines HVT Umzugs</tooltip>
+    </Action>
+
+
+    <Action name="hardware.tree.action">
+        <class>de.augustakom.hurrican.gui.system.actions.OpenHWTreeFrameAction</class>
+        <text>HW-Tree...</text>
+        <tooltip>TEST</tooltip>
+    </Action>
+
+    <!-- Action, um die Stifte einer Rangierung zu kreuzen -->
+    <Action name="its.rangierung.kreuzen.action">
+        <class>de.augustakom.hurrican.gui.tools.physik.actions.RangierungKreuzenAction</class>
+        <text>Rangierungen kreuzen</text>
+    </Action>
+
+    <!-- Action, um eine Rangierung von einer Endstelle zu entfernen -->
+    <Action name="its.remove.rangierung.action">
+        <class>de.augustakom.hurrican.gui.tools.physik.actions.RemoveRangierungAction</class>
+        <text>Rangierung entfernen</text>
+        <tooltip>Tool, um von einer Endstelle die Rangierung zu entfernen</tooltip>
+    </Action>
+
+    <!-- Action, um einen IntAccount auf einen anderen Auftrag zu verschieben -->
+    <Action name="its.move.account.action">
+        <class>de.augustakom.hurrican.gui.tools.account.actions.MoveIntAccountAction</class>
+        <text>Account umhängen</text>
+        <tooltip>Tool, um einen Int-Account auf einen anderen Auftrag zu hängen</tooltip>
+    </Action>
+
+    <!-- Action, um eine Verbindungsbezeichnung auf einen anderen Auftrag zu verschieben -->
+    <Action name="its.move.vbz.action">
+        <class>de.augustakom.hurrican.gui.tools.vbz.actions.MoveVbzAction</class>
+        <text>Verbindungsbezeichnung umhängen</text>
+        <tooltip>Verschiebt eine best. Verbindungsbezeichnung auf einen anderen Auftrag</tooltip>
+    </Action>
+
+    <!-- Action, um den Status des AK-Schedulers anzuzeigen. -->
+    <Action name="its.scheduler.status.action">
+        <class>de.augustakom.hurrican.gui.tools.scheduler.actions.OpenSchedulerStatusDialog</class>
+        <text>Scheduler-Status...</text>
+        <tooltip>Zeigt den Status des AK-Schedulers an</tooltip>
+    </Action>
+
+    <!-- Action, um den AK-Scheduler Controller zu starten. -->
+    <Action name="its.scheduler.controller.action">
+        <class>de.augustakom.hurrican.gui.tools.scheduler.actions.OpenSchedulerControllerFrameAction</class>
+        <text>Scheduler-Controller...</text>
+        <tooltip>AK-Scheduler Jobs und Trigger bearbeiten</tooltip>
+    </Action>
+
+    <!-- Action, um den Rechnungskopierjob zu starten bzw. das zugehoerige Frame zu oeffnen. -->
+    <Action name="its.signature.bills.action">
+        <class>de.augustakom.hurrican.gui.tools.rechnung.actions.OpenRechnungKopierFrameAction</class>
+        <text>Rechnungen kopieren</text>
+        <tooltip>Öffnet ein Fenster für die Rechnungkopier-Definition</tooltip>
+    </Action>
+
+    <!-- Action, um die EVNs zum Kundenportal Muenchen zu exportieren -->
+    <Action name="its.evn.export.action">
+        <class>de.augustakom.hurrican.gui.tools.rechnung.actions.OpenEVNExportFrameAction</class>
+        <text>EVNs exportieren</text>
+        <tooltip>Exportiert alle EVNs (PDF und ASCII) auf das M-net-Kundenportal</tooltip>
+    </Action>
+
+    <!-- Action, um das Frame fuer den Archiv-Export (Rechnungen, EVNs) zu oeffnen -->
+    <Action name="its.archive.export.action">
+        <class>de.augustakom.hurrican.gui.tools.rechnung.actions.OpenExport4ArchiveFrameAction</class>
+        <text>Archiv-Export</text>
+        <tooltip>Archiviert alle Rechnungen und EVNs eines bestimmten Bill-Runs</tooltip>
+    </Action>
+
+    <!-- Action, um die Druckstatistik fuer die LMF zu erstellen. -->
+    <Action name="its.print.statistic.action">
+        <class>de.augustakom.hurrican.gui.tools.stats.actions.PrintStatisticLMFAction</class>
+        <text>LMF Druck-Statistik</text>
+        <tooltip>Erzeugt die Druckstatistik für LMF für einen bestimmten Monat</tooltip>
+    </Action>
+
+    <!-- Action, um das Frame fuer die Konsistenz-Checks zu oeffnen -->
+    <Action name="konsistenz.check.action">
+        <class>de.augustakom.hurrican.gui.tools.consistency.actions.ConsistenceCheckAction</class>
+        <text>Konsistenz-Check</text>
+        <tooltip>Tool, um die Konsistenz der Datenbank zu prüfen.</tooltip>
+    </Action>
+
+    <!-- Action, um das Frame fuer den IP-Dialog zu öffnen -->
+    <Action name="its.ip.dialog.action">
+        <class>de.augustakom.hurrican.gui.tools.ipTest.actions.IPTestAction</class>
+        <text>IP-Dialog</text>
+        <tooltip>Öffnet ein Test-Fenster für die IP-Komponente.</tooltip>
+    </Action>
+
+    <!-- Action, um das Frame fuer den LBZ-DTAG Check zu oeffnen -->
+    <Action name="dtag.lbz.check.action">
+        <class>de.augustakom.hurrican.gui.tools.carrier.actions.LBZCheckDTAGAction</class>
+        <text>LBZ-Check DTAG</text>
+        <tooltip>Öffnet ein Frame, um die LBZ-Einträge von DTAG auf Richtigkeit zu prüfen</tooltip>
+    </Action>
+
+    <!-- Action, um das Frame fuer die Sperrverwaltung zu oeffnen -->
+    <Action name="lock.overview.action">
+        <class>de.augustakom.hurrican.gui.lock.actions.OpenLockOverviewFrameAction</class>
+        <text>Sperrverwaltung</text>
+        <tooltip>Öffnet ein das Frame für die Sperrverwaltung</tooltip>
+    </Action>
+
+    <!-- Action, um ein Frame fuer div. Kontrollabfragen zu oeffnen -->
+    <Action name="am.db.checks.action">
+        <class>de.augustakom.hurrican.gui.tools.dbchecks.actions.OpenAmDBCheckFrameAction</class>
+        <text>Kontrollabfragen</text>
+        <tooltip>Öffnet ein Frame, um verschiedene Kontrollabfragen durchzuführen</tooltip>
+    </Action>
+
+    <!-- Action, um eine Anschlussuebernahme manuell durchzufuehren. -->
+    <Action name="anschlussuebernahme.manuell.action">
+        <class>de.augustakom.hurrican.gui.tools.physik.actions.AnschlussuebernahmeAction</class>
+        <text>Anschlussübernahme (manuell)...</text>
+        <tooltip>manuelle Anschlussübernahme für Anschlusskunden</tooltip>
+    </Action>
+
+    <!-- Action, um nicht heruntergeladene Reports anzuzeigen. -->
+    <Action name="reports.notdownloaded.action">
+        <class>de.augustakom.hurrican.gui.reporting.actions.ShowReportsNotDownloadedAction</class>
+        <text>Offene Reports...</text>
+        <tooltip>Anzeige nicht heruntergeladener Reports</tooltip>
+    </Action>
+
+    <Action name="wita.clearing.tools.action">
+        <class>de.augustakom.hurrican.gui.tools.tal.wita.actions.WitaClearingToolsAction</class>
+        <text>WITA Clearing-Tools...</text>
+        <tooltip>WITA Clearing-Tools um CB-Vorgänge und TAM-Usertasks zu manipulieren</tooltip>
+    </Action>
+
+
+    <!-- Action, um die interne TAL-Bestellung zu oeffnen. -->
+    <Action name="tal.interne.bestellung.action">
+        <icon>de/augustakom/hurrican/gui/images/mailbox.gif</icon>
+        <class>de.augustakom.hurrican.gui.tools.tal.actions.OpenCarrierBestellungInternAction</class>
+        <text>interne TAL-Bestellung...</text>
+        <tooltip>Öffnet das Frame mit den internen TAL-Bestellungen</tooltip>
+    </Action>
+
+    <!-- Action, um die nicht abgeschlossenen TAL-Bestellungen zu oeffnen. -->
+    <Action name="unfinished.carrierbestellungen.action">
+        <icon>de/augustakom/hurrican/gui/images/mailbox.gif</icon>
+        <class>de.augustakom.hurrican.gui.tools.tal.actions.OpenUnfinishedCarrierBestellungAction</class>
+        <text>offene TAL-Bestellung...</text>
+        <tooltip>Öffnet das Frame mit den noch offenen TAL-Bestellungen</tooltip>
+    </Action>
+
+    <!-- Action, um die WBCI-Vorabstimmungen zu oeffnen. -->
+    <Action name="wbci.vorabstimmung.action">
+        <icon>de/augustakom/hurrican/gui/images/wbci.gif</icon>
+        <class>de.augustakom.hurrican.gui.tools.wbci.actions.OpenPreAgreementOverviewAction</class>
+        <text>Vorabstimmungen</text>
+        <tooltip>Öffnet die Übersicht für die WBCI Vorabstimmungen</tooltip>
+        <feature>WBCI_ENABLED</feature>
+    </Action>
+
+
+    <!-- Action, um die SAP-Daten anzuzeigen. -->
+    <Action name="sap.daten.action">
+        <class>de.augustakom.hurrican.gui.tools.sap.actions.OpenSAPDatenAction</class>
+        <text>Debitoren-Posten...</text>
+        <tooltip>Öffnet Frame mit Debitoren-Posten</tooltip>
+    </Action>
+
+    <!-- Action, um die CPS-Transkationen anzuzeigen. -->
+    <Action name="cps.transaction.action">
+        <class>de.augustakom.hurrican.gui.cps.actions.OpenCPSTransactionAction</class>
+        <text>Transaktionen...</text>
+        <tooltip>Öffnet Frame mit CPS-Transaktionen</tooltip>
+    </Action>
+
+    <!-- Action, um Standort-Daten von Command zu importieren. -->
+    <Action name="command.import.standort.action">
+        <class>de.augustakom.hurrican.gui.tools.command.actions.CommandImportStandortAction</class>
+        <text>Import Standorte...</text>
+        <tooltip>Importiert Standort-Daten von Command</tooltip>
+    </Action>
+
+    <!-- Action, um MDU-Daten von Command zu importieren. -->
+    <Action name="command.import.mdu.action">
+        <class>de.augustakom.hurrican.gui.tools.command.actions.CommandImportMDUAction</class>
+        <text>Import MDU...</text>
+        <tooltip>Importiert MDU-Daten von Command</tooltip>
+    </Action>
+
+    <!-- Action, um Leisten-Daten von Command zu importieren. -->
+    <Action name="command.import.leisten.action">
+        <class>de.augustakom.hurrican.gui.tools.command.actions.CommandImportLeisteAction</class>
+        <text>Import Leisten...</text>
+        <tooltip>Importiert Leisten-Daten von Command</tooltip>
+    </Action>
+
+    <!-- Action, um Port-Daten von Command zu importieren. -->
+    <Action name="command.import.port.action">
+        <class>de.augustakom.hurrican.gui.tools.command.actions.CommandImportPortAction</class>
+        <text>Import Ports...</text>
+        <tooltip>Importiert Port-Daten von Command</tooltip>
+    </Action>
+
+    <!-- Action, um Straßen zu importieren. -->
+    <Action name="command.import.strasse.kvz.action">
+        <class>de.augustakom.hurrican.gui.tools.command.actions.ImportKVZGeoIdAction</class>
+        <text>Straßendaten für KVZ...</text>
+        <tooltip>Importiert KVZ Straßendaten</tooltip>
+    </Action>
+
+    <!-- Action, um Straßen für VDSL an HVT zu importieren. -->
+    <Action name="command.import.strasse.vdsl.action">
+        <class>de.augustakom.hurrican.gui.tools.command.actions.ImportVDSLGeoIdAction</class>
+        <text>Straßendaten für VDSL an HVT...</text>
+        <tooltip>Importiert Straßendaten für VDSL an HVT</tooltip>
+    </Action>
+
+    <!-- NACH DER MIGRATION ENTFERNEN (Mitte Januar 2012?) -->
+    <!-- Action für die Migration der IP-Adress-Verwendungszwecke aus monline -->
+    <Action name="ippurpose.migration.action">
+        <class>de.augustakom.hurrican.gui.tools.migrate.ip.IPPurposeMigrator</class>
+        <text>Migration IP-Adress-Verwendungszweck</text>
+        <tooltip>Migration der IP-Adress-Verwendungszwecke aus monline</tooltip>
+    </Action>
+
+
+    <!-- Action, um den Dialog zum Import von FTTC KVZ Standorten zu oeffnen -->
+    <Action name="fttc.kvz.standorte.import.action">
+        <class>de.augustakom.hurrican.gui.hvt.actions.ImportFttcKvzStandorteAction</class>
+        <text>Import FTTC KVZ Standorte...</text>
+        <tooltip>Öffnet einen Dialog, um FTTC KVZ Standorte zu importieren</tooltip>
+    </Action>
+
+    <!-- Action, um den Dialog zum Import von HVT Bestellungen zu oeffnen -->
+    <Action name="import.uevt.stifte.action">
+        <class>de.augustakom.hurrican.gui.hvt.actions.ImportUevtStifteAction</class>
+        <text>Import UEVT Stifte...</text>
+        <tooltip>Öffnet einen Dialog, um UEVT Stift Bestellungen zu importieren</tooltip>
+    </Action>
+
+    <!-- Action, um den Dialog zum Import von HVT Bestellungen zu oeffnen -->
+    <Action name="import.baugruppen.action">
+        <class>de.augustakom.hurrican.gui.hvt.actions.ImportBaugruppenAction</class>
+        <text>Import Baugruppen...</text>
+        <tooltip>Öffnet einen Dialog, um Baugruppen zu importieren</tooltip>
+    </Action>
+
+    <!-- Action, um den Dialog zum Import von Rangierungsaufträgen zu oeffnen -->
+    <Action name="import.fttc.kvz.rangierungen.action">
+        <class>de.augustakom.hurrican.gui.hvt.actions.ImportFttcKVZRangierungenAction</class>
+        <text>Import FTTC KVZ Rangierungen...</text>
+        <tooltip>Öffnet einen Dialog, um FTTC KVZ Rangierungen zu importieren</tooltip>
+    </Action>
+
+    <!-- Action, um den Dialog zum Import von KVZ Adressen zu oeffnen -->
+    <Action name="import.fttc.kvz.adressen.action">
+        <class>de.augustakom.hurrican.gui.hvt.actions.ImportKvzAdressenAction</class>
+        <text>Import DTAG KVZ Adressen...</text>
+        <tooltip>Öffnet einen Dialog, um KVZ Adressen aus einer DTAG XLS zu importieren</tooltip>
+    </Action>
+
+    <!-- Action, um den Dialog zum Import von HVT Adressen zu oeffnen -->
+    <Action name="import.hvt.adressen.action">
+        <class>de.augustakom.hurrican.gui.hvt.actions.ImportHvtAdressenAction</class>
+        <text>Import HVT Adressen...</text>
+        <tooltip>Öffnet einen Dialog, um HVT Adressen zu importieren</tooltip>
+    </Action>
+
+    <!-- ******************** E N D E  ACTIONS *********************** -->
+
+</sf>

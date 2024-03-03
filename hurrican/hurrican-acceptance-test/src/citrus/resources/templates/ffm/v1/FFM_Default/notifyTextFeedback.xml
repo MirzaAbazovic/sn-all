@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <wfns:notifyOrderFeedback xmlns:wfns="http://www.mnet.de/esb/cdm/Resource/WorkforceNotificationService/v1">
+            <wfns:orderId>${workforceOrderId}</wfns:orderId>
+            <wfns:workUnit>citrus:randomNumber(7)</wfns:workUnit>
+            <wfns:captured>citrus:currentDate('yyyy-MM-dd'T'HH:mm:00')</wfns:captured>
+            <wfns:text>${feedbackText}</wfns:text>
+        </wfns:notifyOrderFeedback>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

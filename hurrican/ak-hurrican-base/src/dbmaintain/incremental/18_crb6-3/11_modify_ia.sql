@@ -1,0 +1,1 @@
+alter table T_IA modify KOSTENSTELLE VARCHAR2(255);

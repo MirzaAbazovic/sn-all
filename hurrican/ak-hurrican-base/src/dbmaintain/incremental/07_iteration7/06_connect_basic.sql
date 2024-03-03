@@ -1,0 +1,9 @@
+--
+-- Modifies the T_AUFTRAG_TECHNIK
+--
+ALTER TABLE T_AUFTRAG_TECHNIK ADD VPLS_ID varchar2(30);
+
+--
+-- Modifies the T_ENDSTELLE
+--
+ALTER TABLE T_ENDSTELLE ADD VLAN varchar2(30);

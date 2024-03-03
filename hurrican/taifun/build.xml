@@ -1,0 +1,18 @@
+<project basedir="." name="taifun" default="updateDatabase">
+
+    <property name="db.property.name" value="taifun"/>
+    <property name="db.property.schema" value="taifun"/>
+
+    <import file="${basedir}/../common-build/common_create_database.xml" />
+    <import file="${basedir}/common_taifun.xml" />
+
+    <!-- Vorbedingung: use.config muss gesetzt sein -->
+    <target name="run.consistency.checks" description="runs the Taifun consistency checks" depends="init.schema.properties">
+        <stringutil string="${use.config}" property="use.config.uppercase">
+            <uppercase/>
+        </stringutil>
+        <executeevalscript dir="src/eval" taifun.config="${use.config.uppercase}" eval.script.to.execute="src/eval/consistency_check.eval"/>
+    </target>
+
+</project>
+

@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://wholesale.telekom.de/oss/v15/ng/order" xmlns:complex="http://wholesale.telekom.de/oss/v15/complex" xmlns:simple="http://wholesale.telekom.de/oss/v15/simple" xmlns:enum="http://wholesale.telekom.de/oss/v15/enm" xmlns:message="http://wholesale.telekom.de/oss/v15/message" targetNamespace="http://wholesale.telekom.de/oss/v15/ng/order" version="15.00.00/2020-05-09">
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/complex" schemaLocation="oss-type-complex.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/simple" schemaLocation="oss-type-simple.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/enm" schemaLocation="oss-type-enum.xsd"/>
+	<xsd:import namespace="http://wholesale.telekom.de/oss/v15/message" schemaLocation="oss-message.xsd"/>
+
+	<xsd:complexType name="AbstractNgAuftragType" abstract="true">
+		<xsd:sequence>
+			<xsd:element name="externeAuftragsnummer" type="simple:ExterneAuftragsnummerType">
+				<xsd:annotation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Die Auftragsnummer kann wieder verwendet werden, wenn Vorgängeraufträge mit gleicher Auftragsnummer abgeschlossen sind</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="kunde" type="complex:KundeType">
+				<xsd:annotation>
+					<xsd:documentation>Kundendaten (bei Beauftragung im Namen des Kunden ist der Kunde gemeint, für den bestellt wird)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="besteller" type="complex:KundeType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Angaben zum Besteller, für den Fall dass der Besteller im Namen eines anderen Kunden handelt (nur bei Beauftragung im Namen Dritter)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="BaseNgAuftragType" abstract="true">
+		<xsd:complexContent>
+			<xsd:extension base="tns:AbstractNgAuftragType">
+				<xsd:sequence>
+					<xsd:element name="kundenwunschtermin" type="tns:KundenwunschterminOhneZeitfensterType">
+						<xsd:annotation>
+							<xsd:documentation>Wunschtermin bei der Terminverschiebung</xsd:documentation>
+						</xsd:annotation>					
+					</xsd:element>
+					<xsd:element name="BKTO" type="simple:BuchungskontonummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>BKTO-Nummer, die zur Fakturierung heranzuziehen ist</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Wünscht Kunde, dass ein Auftrag auf eine andere als die Standard BKTO abgerechnet wird, kann Kunde hier eine ihm zugeteilte aktive BKTO angeben</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="anlagen" type="complex:AnlageMitTypType" minOccurs="0" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Anlagen entsprechend Geschäftsfall</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Bei PV, VBL: Pflichtangabe, falls keine Hafttungsfreistellung in den Dienstverträgen vereinbart ist</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="ansprechpartner" type="tns:AnsprechpartnerType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zu Ansprechpartnern</xsd:documentation>
+							<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Angaben zu  Ansprechpartner 'Auftragsmanagement Kunde' sind immer erforderlich.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>		
+					<xsd:element name="montagehinweis" type="simple:MontagehinweisType" minOccurs="0"/>	
+					<xsd:element name="kenner" type="complex:KennerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>ID zur Gruppierung von Aufträgen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>									
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:element name="ngStorno" type="tns:NgStornoType"/>
+	<xsd:complexType name="NgStornoType">
+		<xsd:complexContent>
+			<xsd:extension base="tns:AbstractNgAuftragType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:element name="ngTerminverschiebung" type="tns:NgTerminverschiebungType"/>
+	<xsd:complexType name="NgTerminverschiebungType">
+		<xsd:complexContent>
+			<xsd:extension base="tns:AbstractNgAuftragType">
+				<xsd:sequence>
+					<xsd:element name="kundenwunschtermin" type="tns:KundenwunschterminOhneZeitfensterType">
+						<xsd:annotation>
+							<xsd:documentation>Wunschtermin bei der Terminverschiebung</xsd:documentation>
+						</xsd:annotation>					
+					</xsd:element>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="BereitstellungNgAuftragType" abstract="true">
+		<xsd:complexContent>
+			<xsd:extension base="tns:BaseNgAuftragType">
+				<xsd:sequence>
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0"/>				
+					<xsd:element name="standortA" type="tns:StandortMitAdresseType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zum Standort A (Endkunde)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="produkt" type="tns:ProduktType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Produktinformationen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>	
+					<xsd:element name="vormieter" type="tns:VormieterType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>Daten zur Identifikation eines vorhandenen Netzanschlusses (Telefon, Anlagenanschluss)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>				
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="ProviderwechselNgAuftragType" abstract="true">
+		<xsd:complexContent>
+			<xsd:extension base="tns:BaseNgAuftragType">
+				<xsd:sequence>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation>bezeichnet den Einzelvertrag, auf den sich der Auftrag bezieht</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0"/>	
+					<xsd:element name="standortA" type="tns:StandortType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zum Standort A (Endkunde)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>				
+					<xsd:element name="produkt" type="tns:ProduktType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Produktinformationen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>											
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="VerbundleistunglNgAuftragType" abstract="true">
+	<xsd:complexContent>
+			<xsd:extension base="tns:BaseNgAuftragType">
+				<xsd:sequence>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType" minOccurs="0">
+						<xsd:annotation>
+							<xsd:documentation>bezeichnet den Einzelvertrag, auf den sich der Auftrag bezieht</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>					
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0"/>	
+					<xsd:element name="standortA" type="tns:StandortType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zum Standort A (Endkunde)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>				
+					<xsd:element name="produkt" type="tns:ProduktType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Produktinformationen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>												
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="LeistungsaenderungNgAuftragType" abstract="true">
+		<xsd:complexContent>
+			<xsd:extension base="tns:BaseNgAuftragType">
+				<xsd:sequence>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation>bezeichnet den Einzelvertrag, auf den sich der Auftrag bezieht</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>	
+					<xsd:element name="standortA" type="tns:StandortMitAdresseType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zum Standort A (Endkunde)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="produkt" type="tns:ProduktType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Produktinformationen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>																		
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="LeistungsmerkmalAenderungNgAuftragType" abstract="true">
+	<xsd:complexContent>
+			<xsd:extension base="tns:BaseNgAuftragType">
+				<xsd:sequence>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation>bezeichnet den Einzelvertrag, auf den sich der Auftrag bezieht</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>	
+					<xsd:element name="standortA" type="tns:StandortMitAdresseType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zum Standort A (Endkunde)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="produkt" type="tns:ProduktMitAktionscodeType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Produktinformationen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>																		
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="ProduktgruppenWechselNgAuftragType" abstract="true">
+		<xsd:complexContent>
+			<xsd:extension base="tns:BaseNgAuftragType">
+				<xsd:sequence>
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation>bezeichnet den Einzelvertrag, auf den sich der Auftrag bezieht</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="standortA" type="tns:StandortMitAdresseType">
+						<xsd:annotation>
+							<xsd:documentation>Angaben zum Standort A (Endkunde)</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="produkt" type="tns:ProduktType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Produktinformationen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>														
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="KuendigungNgAuftragType" abstract="true">
+		<xsd:complexContent>
+			<xsd:extension base="tns:BaseNgAuftragType">
+				<xsd:sequence>
+					<xsd:element name="vorabstimmungsID" type="simple:VorabstimmungsIdType" minOccurs="0"/>	
+					<xsd:element name="vertragsnummer" type="simple:VertragsnummerType">
+						<xsd:annotation>
+							<xsd:documentation>bezeichnet den Einzelvertrag, auf den sich der Auftrag bezieht</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>
+					<xsd:element name="produkt" type="tns:ProduktType" maxOccurs="99">
+						<xsd:annotation>
+							<xsd:documentation>Produktinformationen</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>										
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="StandortType">
+		<xsd:sequence>
+			<xsd:element name="anschlussinhaber" type="complex:StandortPersonType"/>
+			<xsd:element name="gebaeudeteil" type="complex:GebaeudeteilMitIdType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Eindeutige Id des Gebäudeteils</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="lageTAE_ONT" type="simple:LageTaeOntType" minOccurs="0"/>
+			<xsd:element name="homeID" type="simple:HomeIDType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="StandortMitAdresseType">
+		<xsd:complexContent>
+			<xsd:extension base="tns:StandortType">
+				<xsd:sequence>
+					<xsd:choice>
+						<xsd:element name="klsId" type="simple:KLSIDType"/>
+						<xsd:element name="adresse" type="tns:AdresseType"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="ProduktType">
+		<xsd:sequence>
+			<xsd:element name="bezeichner" type="simple:ProduktbezeichnerType">
+				<xsd:annotation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/notes">Nur zulässige Produktnamen aus Produktbezeichner-Anlage möglich</xsd:documentation>
+					<xsd:documentation source="http://wholesale.telekom.de/oss/doc/format">s. Anlage Produktbezeichner 
+Beispiele: "FTTH 200000", "FTTH 100000" </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="ProduktMitAktionscodeType">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ProduktType">
+				<xsd:sequence>
+					<xsd:element name="aktionscode" type="enum:AktionscodeType">
+						<xsd:annotation>
+							<xsd:documentation>Kenner für Zugang Wegfall oder Änderung des Produktes</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>					
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>	
+	
+	<xsd:complexType name="AdresseType">
+		<xsd:sequence>
+			<xsd:element name="postleitzahl" type="simple:PostleitzahlType">
+				<xsd:annotation>
+					<xsd:documentation>Postleitzahl</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ort" type="complex:OrtType">
+				<xsd:annotation>
+					<xsd:documentation>Ortsangaben</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="strasse" type="complex:StrasseType">
+				<xsd:annotation>
+					<xsd:documentation>Strassenangaben</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="land" type="simple:LandType" default="de" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Land des Standortes</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>			
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="AnsprechpartnerType">
+		<xsd:annotation>
+			<xsd:documentation/>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="complex:AnsprechpartnerType">
+				<xsd:sequence>
+					<xsd:element name="rolle" type="tns:AnsprechpartnerRolleType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:simpleType name="AnsprechpartnerRolleType">
+		<xsd:annotation>
+			<xsd:documentation>Spezifische Rolle des Ansprechpartners</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="20"/>
+			<xsd:enumeration value="Auftragsmanagement"/>
+			<xsd:enumeration value="Montage"/>
+			<xsd:enumeration value="Technik"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:complexType name="KundenwunschterminOhneZeitfensterType">
+		<xsd:annotation>
+			<xsd:documentation>Terminwunsch des Providers</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="datum" type="simple:TerminType">
+				<xsd:annotation>
+					<xsd:documentation>Terminwunsch des Providers, zu dem das Produkt betriebsfähig bereitgestellt werden soll</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="VormieterType">
+		<xsd:annotation>
+			<xsd:documentation>Daten zur Identifikation eines vorhandenen Netzanschlusses (Telefon / Anlagenanschluss)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="person" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Identifikation des Netzanschlusses anhand der Person</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="vorname" type="simple:VornameType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>Vorname des Vormieters</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="nachname" type="simple:NachnameType">
+							<xsd:annotation>
+								<xsd:documentation>Nachname des Vormieters</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="anschluss" type="complex:AnschlussType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Identifikation des Netzanschlusses anhand der Anschlussrufnummer
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

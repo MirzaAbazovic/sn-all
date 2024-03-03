@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer den TAL-Bereich.
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+     default-lazy-init="true">
+
+    <context:annotation-config />
+
+    <!-- Definition der Data-Source fuer die Production-Datenbank -->
+    <bean id="tal.dataSourceTarget" class="de.augustakom.common.tools.dao.jdbc.AKBasicDataSource" destroy-method="close"
+        autowire-candidate="false">
+        <property name="driverClassName"><value>${hurrican.tal.jdbc.driver}</value></property>
+        <property name="url"><value>${hurrican.tal.jdbc.url}</value></property>
+        <property name="username"><value>${hurrican.tal.jdbc.user}</value></property>
+        <property name="password"><value>${hurrican.tal.jdbc.password}</value></property>
+        <property name="maxActive"><value>${hurrican.tal.jdbc.max.active}</value></property>
+        <property name="maxIdle"><value>${hurrican.tal.jdbc.max.idle}</value></property>
+        <property name="maxWait"><value>${db.pool.default.timeout}</value></property>
+        <property name="validationQuery"><value>${db.pool.validation.query}</value></property>
+        <property name="validationQueryTimeout"><value>${db.pool.validation.query.timeout}</value></property>
+    </bean>
+    <!-- Interceptor, um das Default-Schema der Datenbank-Connection zu setzen. -->
+    <bean id="tal.setSchemaInterceptor" class="de.augustakom.common.tools.dao.SetDefaultSchemaInterceptor">
+        <property name="schemaName"><value>${hurrican.tal.schema}</value></property>
+    </bean>
+    <bean id="tal.dataSource" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces"><value>javax.sql.DataSource</value></property>
+        <property name="target" ref="tal.dataSourceTarget"/>
+        <property name="interceptorNames">
+            <list>
+                <value>tal.setSchemaInterceptor</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Definition der Hibernate-SessionFactory fuer die Billing-Datenbank -->
+    <bean id="tal.sessionFactory" class="de.augustakom.common.tools.dao.hibernate.AKLocalSessionFactoryBean">
+        <property name="mappingLocations">
+            <list>
+                <value>classpath*:de/augustakom/hurrican/model/exmodules/tal/**/*.hbm.xml</value>
+                <!-- FIXME MassenbenachrichtigungDao temporaer, entfernen und loeschen wenn Massenbenachrichtigung ueber BSI -->
+                <value>classpath*:de/augustakom/hurrican/model/exmodules/massenbenachrichtigung/**/*.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hurrican.tal.hibernate.dialect}</prop>
+                <prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+                <prop key="hibernate.jdbc.use_scrollable_resultset">false</prop>
+                <prop key="hibernate.default_schema">${hurrican.tal.schema}</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+                <prop key="hibernate.check_nullability">true</prop>
+                <prop key="jadira.usertype.databaseZone">jvm</prop>
+                <prop key="jadira.usertype.javaZone">jvm</prop>
+            </props>
+        </property>
+        <property name="dataSource" ref="tal.dataSource"/>
+    </bean>
+
+    <!-- Transaction-Manager fuer die Hibernate-Session -->
+    <bean id="tal.hibernateTxManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="tal.sessionFactory"/>
+    </bean>
+
+    <!-- ****** BEGINN Service-Definitionen ******* -->
+
+    <!-- Service-Definition fuer DataSource Status-Service -->
+    <bean id="de.augustakom.hurrican.service.exmodules.tal.DataSourceStatusService"
+        class="de.mnet.common.service.status.DataSourceStatusService">
+        <property name="dataSourceName" value="tal.dataSource"/>
+        <property name="tableName" value="TTALBESTELLUNG_STATUS"/>
+    </bean>
+
+    <!-- FIXME MassenbenachrichtigungDao temporaer, entfernen und loeschen wenn Massenbenachrichtigung ueber BSI -->
+    <bean id="de.augustakom.hurrican.dao.exmodules.massenbenachrichtigung.MassenbenachrichtigungDAO"
+        class="de.augustakom.hurrican.dao.exmodules.massenbenachrichtigung.impl.MassenbenachrichtigungDAOImpl" />
+
+    <!-- TALService (Target) -->
+    <bean id="de.augustakom.hurrican.service.exmodules.tal.TALService"
+          class="de.augustakom.hurrican.service.exmodules.tal.impl.TALServiceImpl">
+        <property name="DAO" ref="talBestellungDAO"/>
+
+        <!--
+        Data record type indicator der einzelnen Geschäftsvorfälle
+
+        Siehe Spezifikation der elektronischen Schnittstelle zum Austausch
+        von Auftragsdaten des TNB/VNB-Wechsel
+        Version:	3.0.0
+        Stand:		10.06.2003
+        -->
+
+        <!-- Auftrag (Preselection) -->
+        <property name="d01">
+            <list>
+                <value>B001</value>
+                <value>B002</value>
+                <value>B003</value>
+                <value>B004</value>
+                <value>B017</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- Storno (Preselection) -->
+           <property name="d02">
+               <list>
+                <value>B001</value>
+                <value>B017</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- Rufnummernmitnahme -->
+           <property name="d07">
+               <list>
+                <value>B001</value>
+                <value>B016</value>
+                <value>B002</value>
+                <value>B003</value>
+                <value>B004</value>
+                <value>B006</value>
+                <value>B008</value>
+                <value>B015</value>
+                <value>B017</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- TAL-Bestellung als reine Neuschaltung -->
+        <property name="d08">
+            <list>
+                <value>B001</value>
+                <value>B016</value>
+                <value>B002</value>
+                <value>B004</value>
+                <value>B007</value>
+                <value>B010</value>
+                <value>B011</value>
+                <value>B012</value>
+                <value>B013</value>
+                <value>B014</value>
+                <value>B015</value>
+                <value>B017</value>
+                <value>B021</value>
+                <value>B022</value>
+            </list>
+        </property>
+
+        <!-- TAL-Bestellung ohne Rufnummernmitnahme aber mit Kündigung -->
+           <property name="d09">
+               <list>
+                <value>B001</value>
+                <value>B016</value>
+                <value>B002</value>
+                <value>B003</value>
+                <value>B004</value>
+                <value>B007</value>
+                <value>B006</value>
+                <value>B008</value>
+                <value>B010</value>
+                <value>B011</value>
+                <value>B012</value>
+                <value>B013</value>
+                <value>B014</value>
+                <value>B015</value>
+                <value>B017</value>
+                <value>B021</value>
+                <value>B022</value>
+            </list>
+        </property>
+
+        <!-- TAL-Bestellung mit Rufnummernmitnahme -->
+           <property name="d10">
+               <list>
+                <value>B001</value>
+                <value>B016</value>
+                <value>B002</value>
+                <value>B003</value>
+                <value>B004</value>
+                <value>B007</value>
+                <value>B006</value>
+                <value>B008</value>
+                <value>B010</value>
+                <value>B011</value>
+                <value>B012</value>
+                <value>B013</value>
+                <value>B014</value>
+                <value>B015</value>
+                <value>B017</value>
+                <value>B021</value>
+                <value>B022</value>
+            </list>
+        </property>
+
+        <!-- TAL-Bestellung als reine Neuschaltung -->
+           <property name="d12">
+               <list>
+                   <value>B001</value>
+                   <value>B015</value>
+                   <value>B021</value>
+               </list>
+        </property>
+
+        <!-- TAL-Bestellung ohne Rufnummernmitnahme aber mit Kündigung -->
+        <property name="d13">
+            <list>
+                   <value>B001</value>
+                   <value>B015</value>
+                   <value>B021</value>
+               </list>
+        </property>
+
+        <!-- TAL-Bestellung mit Rufnummernmitnahme -->
+        <property name="d14">
+            <list>
+                   <value>B001</value>
+                   <value>B015</value>
+                   <value>B021</value>
+               </list>
+        </property>
+
+        <!-- Rufnummernmitnahme -->
+        <property name="d15">
+            <list>
+                   <value>B001</value>
+                   <value>B005</value>
+                   <value>B003</value>
+                   <value>B004</value>
+                   <value>B015</value>
+                   <value>B017</value>
+                   <value>B020</value>
+                   <value>B021</value>
+               </list>
+        </property>
+
+        <!-- TAL-Bestellung als reine Neuschaltung  Fälle Klassifizierung: B1+B2 -->
+        <property name="d16">
+            <list>
+                <value>B001</value>
+                <value>B005</value>
+                <value>B004</value>
+                <value>B009</value>
+                <value>B014</value>
+                <value>B015</value>
+                <value>B017</value>
+                <value>B021</value>
+                <value>B022</value>
+            </list>
+        </property>
+
+        <!-- TAL-Bestellung als reine Neuschaltung Fälle Klassifizierung: B3+B4 -->
+        <property name="d17">
+            <list>
+                <value>B001</value>
+                <value>B005</value>
+                <value>B004</value>
+                <value>B019</value>
+                <value>B015</value>
+                <value>B017</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- TAL-Bestellung ohne Rufnummernmitnahme aber mit Kündigung Fälle Klassifizierung: B1+B2 -->
+        <property name="d18">
+            <list>
+                <value>B001</value>
+                <value>B005</value>
+                <value>B003</value>
+                <value>B004</value>
+                <value>B009</value>
+                <value>B014</value>
+                <value>B015</value>
+                <value>B017</value>
+                <value>B021</value>
+                <value>B022</value>
+            </list>
+        </property>
+
+        <!-- TAL-Bestellung ohne Rufnummernmitnahme aber mit Kündigung Fälle Klassifizierung: B3+B4 -->
+        <property name="d19">
+            <list>
+                <value>B001</value>
+                <value>B005</value>
+                <value>B003</value>
+                <value>B004</value>
+                <value>B019</value>
+                <value>B015</value>
+                <value>B017</value>
+                <value>B020</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- TAL-Bestellung mit Rufnummernmitnahme Fälle Klassifizirung: B1 + B2 -->
+        <property name="d20">
+            <list>
+                <value>B001</value>
+                <value>B005</value>
+                <value>B003</value>
+                <value>B004</value>
+                <value>B009</value>
+                <value>B014</value>
+                <value>B015</value>
+                <value>B017</value>
+                <value>B021</value>
+                <value>B022</value>
+            </list>
+        </property>
+
+        <!-- TAL-Bestellung mit Rufnummernmitnahme Fälle Klassifizierung: B3+B4 -->
+        <property name="d21">
+            <list>
+                <value>B001</value>
+                <value>B005</value>
+                <value>B003</value>
+                <value>B004</value>
+                <value>B019</value>
+                <value>B015</value>
+                <value>B017</value>
+                <value>B020</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- TAL-Bestellung als reine Neuschaltung -->
+        <property name="d23">
+            <list>
+                <value>B001</value>
+                <value>B005</value>
+                <value>B003</value>
+                <value>B015</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- TAL-Bestellung ohne Rufnummernmitnahme aber mit Kündigung -->
+        <property name="d24">
+            <list>
+                <value>B001</value>
+                <value>B005</value>
+                <value>B015</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- TAL-Bestellung mit Rufnummernmitnahme -->
+        <property name="d25">
+            <list>
+                <value>B001</value>
+                <value>B005</value>
+                <value>B015</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- TAL-Bestellung als reine Neuschaltung -->
+        <property name="d26">
+            <list>
+                <value>B001</value>
+                <value>B018</value>
+                <value>B015</value>
+                <value>B017</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- TAL-Bestellung mit Rufnummernmitnahme -->
+        <property name="d28">
+            <list>
+                <value>B001</value>
+                <value>B018</value>
+                <value>B015</value>
+                <value>B017</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- Kündigung der TAL Auftrag -->
+        <property name="d41">
+            <list>
+                <value>B001</value>
+                <value>B002</value>
+                <value>B009</value>
+                <value>B007</value>
+                <value>B015</value>
+                <value>B017</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- Kündigung der TAL-Rückmeldung -->
+        <property name="d42">
+            <list>
+                <value>B001</value>
+                <value>B005</value>
+                <value>B015</value>
+                <value>B017</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- Kündigung durch ANE (TAL ohne Rufnummer) -->
+        <property name="d44">
+            <list>
+                <value>B001</value>
+                <value>B005</value>
+                <value>B015</value>
+                <value>B017</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- Bestellung der Nutzungsänderung CuDA -->
+        <property name="d54">
+            <list>
+                <value>B001</value>
+                <value>B016</value>
+                <value>B002</value>
+                <value>B023</value>
+                <value>B004</value>
+                <value>B014</value>
+                <value>B015</value>
+                <value>B017</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- Bestellung der Nutzungsänderung CuDA -->
+        <property name="d55">
+            <list>
+                <value>B001</value>
+                <value>B015</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- Bestellung der Nutzungsänderung CuDA -->
+        <property name="d56">
+            <list>
+                <value>B001</value>
+                <value>B005</value>
+                <value>B009</value>
+                <value>B017</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- Bestellung der Nutzungsänderung CuDA -->
+        <property name="d57">
+            <list>
+                <value>B001</value>
+                <value>B005</value>
+                <value>B015</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- Bestellung der Nutzungsänderung CuDA -->
+        <property name="d58">
+            <list>
+                <value>B001</value>
+                <value>B018</value>
+                <value>B017</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- Storno Kündigung TAL -->
+        <property name="d60">
+            <list>
+                <value>B001</value>
+                <value>B015</value>
+                <value>B021</value>
+            </list>
+        </property>
+
+        <!-- Stornorückmeldung Kündigung TAL -->
+        <property name="d61">
+            <list>
+                <value>B001</value>
+                <value>B005</value>
+                <value>B015</value>
+                <value>B021</value>
+                <!-- <value>B024</value> -->
+            </list>
+        </property>
+
+    </bean>
+
+    <!-- ****** BEGINN DAO-Definitionen *********** -->
+
+    <bean id="talBestellungDAO" class="de.augustakom.hurrican.dao.exmodules.tal.impl.TALBestellungDAOImpl">
+        <!--
+        Definition der Felder pro Segment
+        Es wird hier die Reihenfolge in der Liste festgelegt (TALSegment.values)
+        Der Name wird durch das Präfix <Segmentname>_ ergänzt, ergibt dann z.B. bei Segment B001 B001_TBS_ID, B001_2 usw.
+        -->
+        <property name="b001">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+                <value>5</value>
+                <value>6</value>
+                <value>7</value>
+            </list>
+        </property>
+
+        <property name="b002">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+                <value>5</value>
+            </list>
+        </property>
+
+        <property name="b003">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+                <value>5</value>
+                <value>6</value>
+            </list>
+        </property>
+
+        <property name="b004">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+                <value>5</value>
+                <value>6</value>
+                <value>7</value>
+                <value>8</value>
+                <value>9</value>
+            </list>
+        </property>
+
+        <property name="b005">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+                <value>5</value>
+                <value>6</value>
+            </list>
+        </property>
+
+        <property name="b006">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+            </list>
+        </property>
+
+        <property name="b007">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+            </list>
+        </property>
+
+        <property name="b008">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+            </list>
+        </property>
+
+        <property name="b009">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+                <value>5</value>
+                <value>6</value>
+                <value>7</value>
+                <value>8</value>
+                <value>9</value>
+                <value>10</value>
+                <value>11</value>
+                <value>12</value>
+                <value>13</value>
+            </list>
+        </property>
+
+        <property name="b010">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+                <value>5</value>
+                <value>6</value>
+                <value>7</value>
+                <value>8</value>
+            </list>
+        </property>
+
+        <property name="b011">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+            </list>
+        </property>
+
+        <property name="b012">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+                <value>5</value>
+                <value>6</value>
+            </list>
+        </property>
+
+        <property name="b013">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+            </list>
+        </property>
+
+        <property name="b014">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+                <value>5</value>
+                <value>6</value>
+                <value>7</value>
+            </list>
+        </property>
+
+        <property name="b015">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+                <value>5</value>
+                <value>6</value>
+                <value>7</value>
+                <value>8</value>
+                <value>9</value>
+            </list>
+        </property>
+
+        <property name="b016">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+            </list>
+        </property>
+
+        <property name="b017">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+            </list>
+        </property>
+
+        <property name="b018">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+            </list>
+        </property>
+
+        <property name="b019">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+            </list>
+        </property>
+
+        <property name="b020">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+            </list>
+        </property>
+
+        <property name="b021">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+            </list>
+        </property>
+
+        <property name="b022">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+            </list>
+        </property>
+
+        <property name="b023">
+            <list>
+                <value>TBS_ID</value>
+                <value>2</value>
+                <value>3</value>
+                <value>4</value>
+                <value>5</value>
+                <value>6</value>
+                <value>7</value>
+                <value>8</value>
+                <value>9</value>
+                <value>10</value>
+            </list>
+        </property>
+
+    </bean>
+</beans>

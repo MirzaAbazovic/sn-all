@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Lock History Dialog.
+-->
+<sf>
+
+    <Text name="title">Sperr-Historie</Text>
+    <Text name="title.locks">Sperrvorgänge</Text>
+    <Text name="title.lock.details">Details</Text>
+
+    <Label name="lock.description"><text>Sperr-Grund:</text></Label>
+    <TextArea name="lock.description">
+        <rows>5</rows>
+        <columns>20</columns>
+    </TextArea>
+
+</sf>

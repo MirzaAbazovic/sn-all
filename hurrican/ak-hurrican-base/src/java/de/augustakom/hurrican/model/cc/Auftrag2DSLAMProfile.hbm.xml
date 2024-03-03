@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Auftrag2DSLAMProfile
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Auftrag2DSLAMProfile" table="T_AUFTRAG_2_DSLAMPROFILE">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_AUFTRAG_2_DSLAMPROFIL_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="auftragId" column="AUFTRAG_ID" type="long" not-null="true"/>
+        <property name="dslamProfileId" column="DSLAM_PROFILE_ID" type="long" not-null="true"/>
+        <property name="changeReasonId" column="CHANGE_REASON_ID" type="long" not-null="true"/>
+        <property name="userW" column="USERW" type="string" not-null="true"/>
+        <property name="bemerkung" column="BEMERKUNG" type="string"/>
+        <property name="gueltigVon" column="GUELTIG_VON" type="date" not-null="true"/>
+        <property name="gueltigBis" column="GUELTIG_BIS" type="date" not-null="true"/>
+        <property name="auftragAktionsIdAdd" column="AKTIONS_ID_ADD" type="long"/>
+        <property name="auftragAktionsIdRemove" column="AKTIONS_ID_REMOVE" type="long"/>
+
+    </class>
+
+</hibernate-mapping>

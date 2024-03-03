@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xsi:schemaLocation="http://rmbench.com/xml/ns/rmbench http://rmbench.com/xml/ns/rmbench/rmb-1.0.xsd" version="1.0" name="TAL_BESTELLUNG" dbinfo="oracle" generator="default"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://rmbench.com/xml/ns/rmbench">
+    <schemas>
+        <schema name="MNETCALL">
+            <table name="TTALBESTELLERF">
+                <column name="LTG_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="LTG_TBV_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="LTG_AUF_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="LTG_NBT_ID1" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="LTG_NBT_ID2" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="LTG_TBS_ID" type="NUMBER" nullable="true" size="11" scale="0" />
+                <column name="LTG_ATQ_ID" type="NUMBER" nullable="true" size="11" scale="0" />
+                <column name="LTG_TERMIN" type="DATE" nullable="false" />
+                <column name="LTG_B017_2" type="VARCHAR2" nullable="true" size="255" />
+                <column name="LTG_TEXT1" type="VARCHAR2" nullable="true" size="255" />
+                <column name="LTG_TEXT2" type="VARCHAR2" nullable="true" size="255" />
+                <column name="LTG_TEXT3" type="VARCHAR2" nullable="true" size="255" />
+                <column name="LTG_TEXT4" type="VARCHAR2" nullable="true" size="255" />
+                <column name="LTG_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="LTG_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="LTG_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="LTG_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="SYS_C0010793">
+                    <columnref name="LTG_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLERF" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="LTG_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLERFPORT">
+                <column name="LTP_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="LTP_LTG_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="LTP_PORT_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="LTP_AUF_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="LTP_TEXT1" type="VARCHAR2" nullable="true" size="255" />
+                <column name="LTP_TEXT2" type="VARCHAR2" nullable="true" size="255" />
+                <column name="LTP_TEXT3" type="VARCHAR2" nullable="true" size="255" />
+                <column name="LTP_TEXT4" type="VARCHAR2" nullable="true" size="255" />
+                <column name="LTP_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="LTP_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="LTP_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="LTP_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="SYS_C0010799">
+                    <columnref name="LTP_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLERFPORT" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLERF" />
+                    <columnref name="LTP_LTG_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELL_KLASS">
+                <column name="TAK_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="TAK_WERT" type="VARCHAR2" nullable="false" size="2" />
+                <column name="TAK_NAME" type="VARCHAR2" nullable="false" size="127" />
+                <column name="TAK_ANWENDUNG" type="VARCHAR2" nullable="false" size="50" />
+                <column name="TAK_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="TAK_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="TAK_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="TAK_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="SYS_C0010804">
+                    <columnref name="TAK_ID" />
+                </primarykey>
+            </table>
+            <table name="TTALBESTELLUNG">
+                <column name="TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="TBS_TBV_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="TBS_AUF_ID" type="NUMBER" nullable="true" size="11" scale="0" />
+                <column name="TBS_LTG_ID" type="NUMBER" nullable="true" size="11" scale="0" />
+                <column name="TBS_SRC_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="TBS_TBS_ID" type="NUMBER" nullable="true" size="11" scale="0" />
+                <column name="TBS_TBS_FIRST_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="TBS_STATUS" type="NUMBER" nullable="false" size="11" scale="0">
+                    <default><![CDATA[0               ]]></default>
+                </column>
+                <column name="TBS_DATEI" type="VARCHAR2" nullable="true" size="50" />
+                <column name="TBS_SENDEVERSUCH" type="NUMBER" nullable="true" size="2" scale="0">
+                    <default><![CDATA[0]]></default>
+                </column>
+                <column name="TBS_SENDER" type="VARCHAR2" nullable="false" size="10" />
+                <column name="TBS_RECIPIENT" type="VARCHAR2" nullable="false" size="10" />
+                <column name="TBS_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="TBS_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="TBS_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="TBS_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_PK">
+                    <columnref name="TBS_ID" />
+                </primarykey>
+                <foreignkey name="C3_TTALBESTELLUNG_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="TBS_TBS_ID" />
+                </foreignkey>
+                <foreignkey name="C4_TTALBESTELLUNG_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="TBS_TBS_FIRST_ID" />
+                </foreignkey>
+                <foreignkey name="C6_TTALBESTELLUNG" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG_STATUS" />
+                    <columnref name="TBS_STATUS" />
+                </foreignkey>
+                <foreignkey name="C1_TTALBESTELLUNG_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG_VORFAELLE" />
+                    <columnref name="TBS_TBV_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B001">
+                <column name="B001_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B001_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B001_2" type="VARCHAR2" nullable="false" size="3" />
+                <column name="B001_3" type="VARCHAR2" nullable="false" size="8" />
+                <column name="B001_4" type="NUMBER" nullable="false" size="10" scale="0" />
+                <column name="B001_5" type="VARCHAR2" nullable="true" size="35" />
+                <column name="B001_6" type="VARCHAR2" nullable="false" size="4" />
+                <column name="B001_7" type="VARCHAR2" nullable="false" size="8" />
+                <column name="B00_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B00_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B001_PK">
+                    <columnref name="B001_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B001_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B001_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B002">
+                <column name="B002_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B002_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B002_2" type="VARCHAR2" nullable="false" size="8" />
+                <column name="B002_3" type="NUMBER" nullable="false" size="8" scale="0" />
+                <column name="B002_4" type="NUMBER" nullable="false" size="8" scale="0" />
+                <column name="B002_5" type="VARCHAR2" nullable="true" size="1" />
+                <column name="B00_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B00_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B002_PK">
+                    <columnref name="B002_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B002_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B002_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B003">
+                <column name="B003_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B003_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B003_2" type="VARCHAR2" nullable="false" size="6" />
+                <column name="B003_3" type="NUMBER" nullable="false" size="9" scale="0" />
+                <column name="B003_4" type="VARCHAR2" nullable="true" size="6" />
+                <column name="B003_5" type="VARCHAR2" nullable="true" size="6" />
+                <column name="B003_6" type="VARCHAR2" nullable="true" size="6" />
+                <column name="B00_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B00_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B003_PK">
+                    <columnref name="B003_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B003_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B003_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B004">
+                <column name="B004_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B004_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B004_2" type="VARCHAR2" nullable="false" size="60" />
+                <column name="B004_3" type="VARCHAR2" nullable="true" size="30" />
+                <column name="B004_4" type="VARCHAR2" nullable="false" size="40" />
+                <column name="B004_5" type="VARCHAR2" nullable="true" size="10" />
+                <column name="B004_6" type="VARCHAR2" nullable="false" size="10" />
+                <column name="B004_7" type="VARCHAR2" nullable="false" size="40" />
+                <column name="B004_8" type="VARCHAR2" nullable="false" size="2" />
+                <column name="B004_9" type="VARCHAR2" nullable="true" size="2" />
+                <column name="B00_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B00_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B004_PK">
+                    <columnref name="B004_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B004_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B004_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B005">
+                <column name="B005_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B005_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B005_2" type="VARCHAR2" nullable="false" size="2" />
+                <column name="B005_3" type="VARCHAR2" nullable="false" size="90" />
+                <column name="B005_4" type="NUMBER" nullable="true" size="8" scale="0" />
+                <column name="B005_5" type="VARCHAR2" nullable="true" size="3" />
+                <column name="B005_6" type="NUMBER" nullable="true" size="3" scale="0" />
+                <column name="B00_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B00_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B005_PK">
+                    <columnref name="B005_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B005_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B005_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B006">
+                <column name="B006_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B006_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B006_2" type="VARCHAR2" nullable="false" size="8" />
+                <column name="B006_3" type="VARCHAR2" nullable="true" size="1" />
+                <column name="B00_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B00_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B006_PK">
+                    <columnref name="B006_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B006_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B006_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B007">
+                <column name="B007_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B007_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B007_2" type="VARCHAR2" nullable="false" size="255" />
+                <column name="B00_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B00_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B007_PK">
+                    <columnref name="B007_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B007_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B007_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B008">
+                <column name="B008_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B008_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B008_2" type="VARCHAR2" nullable="false" size="1" />
+                <column name="B008_3" type="VARCHAR2" nullable="true" size="10" />
+                <column name="B008_4" type="VARCHAR2" nullable="true" size="10" />
+                <column name="B00_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B00_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B008_PK">
+                    <columnref name="B008_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B008_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B008_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B009">
+                <column name="B009_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B009_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B009_2" type="VARCHAR2" nullable="false" size="12" />
+                <column name="B009_3" type="VARCHAR2" nullable="false" size="32" />
+                <column name="B009_4" type="NUMBER" nullable="false" size="2" scale="0" />
+                <column name="B009_5" type="VARCHAR2" nullable="true" size="8" />
+                <column name="B009_6" type="VARCHAR2" nullable="true" size="8" />
+                <column name="B009_7" type="VARCHAR2" nullable="true" size="7" />
+                <column name="B009_8" type="VARCHAR2" nullable="true" size="7" />
+                <column name="B009_9" type="VARCHAR2" nullable="true" size="8" />
+                <column name="B009_10" type="VARCHAR2" nullable="true" size="8" />
+                <column name="B009_11" type="VARCHAR2" nullable="false" size="1" />
+                <column name="B009_12" type="VARCHAR2" nullable="true" size="60" />
+                <column name="B009_13" type="VARCHAR2" nullable="true" size="40" />
+                <column name="B00_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B00_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B00_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B009_PK">
+                    <columnref name="B009_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B009_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B009_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B010">
+                <column name="B010_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B010_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B010_2" type="NUMBER" nullable="false" size="1" scale="0" />
+                <column name="B010_3" type="VARCHAR2" nullable="false" size="1" />
+                <column name="B010_4" type="VARCHAR2" nullable="false" size="1" />
+                <column name="B010_5" type="VARCHAR2" nullable="false" size="1" />
+                <column name="B010_6" type="VARCHAR2" nullable="true" size="3" />
+                <column name="B010_7" type="VARCHAR2" nullable="false" size="8" />
+                <column name="B010_8" type="VARCHAR2" nullable="true" size="8" />
+                <column name="B01_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B01_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B010_PK">
+                    <columnref name="B010_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B010_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B010_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B011">
+                <column name="B011_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B011_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B011_2" type="NUMBER" nullable="false" size="1" scale="0" />
+                <column name="B011_3" type="VARCHAR2" nullable="false" size="8" />
+                <column name="B011_4" type="VARCHAR2" nullable="true" size="8" />
+                <column name="B01_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B01_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B011_PK">
+                    <columnref name="B011_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B011_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B011_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B012">
+                <column name="B012_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B012_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B012_2" type="VARCHAR2" nullable="false" size="5" />
+                <column name="B012_3" type="VARCHAR2" nullable="false" size="1" />
+                <column name="B012_4" type="VARCHAR2" nullable="false" size="1" />
+                <column name="B012_5" type="VARCHAR2" nullable="false" size="8" />
+                <column name="B012_6" type="VARCHAR2" nullable="true" size="8" />
+                <column name="B01_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B01_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B012_PK">
+                    <columnref name="B012_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B012_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B012_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B013">
+                <column name="B013_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B013_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B013_2" type="VARCHAR2" nullable="false" size="10" />
+                <column name="B01_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B01_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B013_PK">
+                    <columnref name="B013_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B013_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B013_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B014">
+                <column name="B014_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B014_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B014_2" type="VARCHAR2" nullable="false" size="6" />
+                <column name="B014_3" type="VARCHAR2" nullable="false" size="3" />
+                <column name="B014_4" type="VARCHAR2" nullable="false" size="10" />
+                <column name="B014_5" type="VARCHAR2" nullable="false" size="40" />
+                <column name="B014_6" type="VARCHAR2" nullable="false" size="40" />
+                <column name="B014_7" type="VARCHAR2" nullable="false" size="10" />
+                <column name="B01_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B01_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B014_PK">
+                    <columnref name="B014_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B014_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B014_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B015">
+                <column name="B015_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B015_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B015_2" type="VARCHAR2" nullable="false" size="60" />
+                <column name="B015_3" type="VARCHAR2" nullable="false" size="30" />
+                <column name="B015_4" type="VARCHAR2" nullable="false" size="30" />
+                <column name="B015_5" type="VARCHAR2" nullable="true" size="30" />
+                <column name="B015_6" type="VARCHAR2" nullable="true" size="60" />
+                <column name="B015_7" type="VARCHAR2" nullable="false" size="12" />
+                <column name="B015_8" type="VARCHAR2" nullable="true" size="10" />
+                <column name="B015_9" type="VARCHAR2" nullable="true" size="40" />
+                <column name="B01_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B01_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B015_PK">
+                    <columnref name="B015_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B015_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B015_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B016">
+                <column name="B016_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B016_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B016_2" type="VARCHAR2" nullable="false" size="10" />
+                <column name="B016_3" type="VARCHAR2" nullable="false" size="3" />
+                <column name="B01_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B01_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B016_PK">
+                    <columnref name="B016_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B016_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B016_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B017">
+                <column name="B017_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B017_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B017_2" type="VARCHAR2" nullable="false" size="255" />
+                <column name="B01_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B01_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B017_PK">
+                    <columnref name="B017_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B017_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B017_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B018">
+                <column name="B018_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B018_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B018_2" type="VARCHAR2" nullable="false" size="2" />
+                <column name="B018_3" type="NUMBER" nullable="true" size="12" scale="0" />
+                <column name="B01_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B01_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B018_PK">
+                    <columnref name="B018_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B018_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B018_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B019">
+                <column name="B019_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B019_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B019_2" type="NUMBER" nullable="false" size="2" scale="0" />
+                <column name="B01_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B01_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B01_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B019_PK">
+                    <columnref name="B019_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B019_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B019_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B020">
+                <column name="B020_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B020_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B020_2" type="NUMBER" nullable="false" size="8" scale="0" />
+                <column name="B020_3" type="NUMBER" nullable="false" size="8" scale="0" />
+                <column name="B02_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B02_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B02_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B02_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B020_PK">
+                    <columnref name="B020_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B020_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B020_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B021">
+                <column name="B021_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B021_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B021_2" type="VARCHAR2" nullable="false" size="255" />
+                <column name="B021_3" type="VARCHAR2" nullable="false" size="255" />
+                <column name="B02_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B02_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B02_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B02_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B021_PK">
+                    <columnref name="B021_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B021_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B021_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B022">
+                <column name="B022_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B022_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B022_2" type="VARCHAR2" nullable="false" size="1" />
+                <column name="B02_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B02_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B02_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B02_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B022_PK">
+                    <columnref name="B022_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B022_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B022_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_B023">
+                <column name="B023_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B023_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="B023_2" type="NUMBER" nullable="false" size="1" scale="0" />
+                <column name="B023_3" type="VARCHAR2" nullable="true" size="3" />
+                <column name="B023_4" type="VARCHAR2" nullable="true" size="3" />
+                <column name="B023_5" type="VARCHAR2" nullable="false" size="12" />
+                <column name="B023_6" type="VARCHAR2" nullable="false" size="32" />
+                <column name="B023_7" type="VARCHAR2" nullable="false" size="1" />
+                <column name="B023_8" type="VARCHAR2" nullable="false" size="8" />
+                <column name="B023_9" type="VARCHAR2" nullable="true" size="8" />
+                <column name="B023_10" type="VARCHAR2" nullable="false" size="1" />
+                <column name="B02_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B02_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="B02_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="B02_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C_TTALBESTELLUNG_B023_PK">
+                    <columnref name="B023_ID" />
+                </primarykey>
+                <foreignkey name="C1_TTALBESTELLUNG_B023_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="B023_TBS_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_EREIGNISSE">
+                <column name="TEG_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="TEG_DATENOBJECT" type="VARCHAR2" nullable="true" size="50" />
+                <column name="TEG_BESCHREIBUNG" type="VARCHAR2" nullable="true" size="100" />
+                <column name="TEG_REAKTION_EMPFAENGER" type="VARCHAR2" nullable="true" size="200" />
+                <column name="TEG_REAKTION_SENDER" type="VARCHAR2" nullable="true" size="200" />
+                <column name="TEG_CODE" type="VARCHAR2" nullable="true" size="200" />
+                <column name="TEG_KLASSIFIZIERUNG" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C1_TTALBESTELLUNG_EREIGN_PK">
+                    <columnref name="TEG_ID" />
+                </primarykey>
+            </table>
+            <table name="TTALBESTELLUNG_EXEC">
+                <column name="TAE_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="TAE_AKTION" type="VARCHAR2" nullable="false" size="20" />
+                <column name="TAE_AUF_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="TAE_AUFTRAGSNR" type="VARCHAR2" nullable="true" size="20" />
+                <column name="TAE_PARAMETER" type="VARCHAR2" nullable="true" size="250" />
+                <column name="TAE_ERGEBNIS" type="VARCHAR2" nullable="true" size="250" />
+                <column name="TAE_TBS_ID" type="NUMBER" nullable="true" size="11" scale="0" />
+                <column name="TAE_TIMESTAMP" type="DATE" nullable="true">
+                    <default><![CDATA[sysdate]]></default>
+                </column>
+                <column name="TAE_USER" type="VARCHAR2" nullable="true" size="200">
+                    <default><![CDATA[user]]></default>
+                </column>
+                <column name="TAE_VERBINDUNG_ID" type="NUMBER" nullable="true" size="11" scale="0" />
+                <column name="TAE_B017_2" type="VARCHAR2" nullable="true" size="255" />
+                <column name="TAE_REFERENZNR" type="VARCHAR2" nullable="true" size="35" />
+                <column name="TAE_TBV_ID" type="NUMBER" nullable="true" size="11" scale="0" />
+                <column name="TAE_B007_2" type="VARCHAR2" nullable="true" size="250" />
+                <column name="TAE_B002_4" type="DATE" nullable="true" />
+                <column name="TAE_RUECKMELDUNG" type="DATE" nullable="true" />
+                <column name="TAE_RUECKMELDUNG_USER" type="VARCHAR2" nullable="true" size="200" />
+                <primarykey name="SYS_C0010975">
+                    <columnref name="TAE_ID" />
+                </primarykey>
+            </table>
+            <table name="TTALBESTELLUNG_FEHLER">
+                <column name="TBF_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="TBF_TFC_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="TBF_TBS_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="TBF_ORIGINALDATEI" type="VARCHAR2" nullable="false" size="50" />
+                <column name="TBF_DATARECORD_1" type="VARCHAR2" nullable="true" size="4000" />
+                <column name="TBF_DATARECORD_2" type="VARCHAR2" nullable="true" size="4000" />
+                <column name="TBF_DATARECORD_3" type="VARCHAR2" nullable="true" size="124" />
+                <column name="TBF_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="TBF_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="TBF_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="TBF_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="SYS_C0010980">
+                    <columnref name="TBF_ID" />
+                </primarykey>
+                <foreignkey name="C2_TTALBESTELLUNG_FEHLER_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG" />
+                    <columnref name="TBF_TBS_ID" />
+                </foreignkey>
+                <foreignkey name="C1_TTALBESTELLUNG_FEHLER_RI" onDelete="RESTRICT" onUpdate="CASCADE">
+                    <target schema="MNETCALL" table="TTALBESTELLUNG_FEHLERCODES" />
+                    <columnref name="TBF_TFC_ID" />
+                </foreignkey>
+            </table>
+            <table name="TTALBESTELLUNG_FEHLERCODES">
+                <column name="TFC_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="TFC_NUMMER" type="NUMBER" nullable="false" size="3" scale="0" />
+                <column name="TFC_MELDUNG" type="VARCHAR2" nullable="false" size="100" />
+                <column name="TFC_REAKTION" type="VARCHAR2" nullable="false" size="100" />
+                <primarykey name="SYS_C0010985">
+                    <columnref name="TFC_ID" />
+                </primarykey>
+            </table>
+            <table name="TTALBESTELLUNG_FEHLERTYPEN">
+                <column name="TFE_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="TFE_KURZ" type="VARCHAR2" nullable="true" size="10" />
+                <column name="TFE_KLASSE" type="VARCHAR2" nullable="true" size="100" />
+                <column name="TFE_VERWENDUNG" type="VARCHAR2" nullable="true" size="100" />
+                <column name="TFE_BESCHREIBUNG" type="VARCHAR2" nullable="true" size="1500" />
+                <primarykey name="C1_TTALBESTELLUNG_FEHLERT_PK">
+                    <columnref name="TFE_ID" />
+                </primarykey>
+            </table>
+            <table name="TTALBESTELLUNG_STATUS">
+                <column name="BST_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="BST_NAME" type="VARCHAR2" nullable="false" size="20" />
+                <column name="BST_TEXT1" type="VARCHAR2" nullable="true" size="255" />
+                <column name="BST_TEXT2" type="VARCHAR2" nullable="true" size="255" />
+                <column name="BST_TEXT3" type="VARCHAR2" nullable="true" size="255" />
+                <column name="BST_TEXT4" type="VARCHAR2" nullable="true" size="255" />
+                <column name="BST_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="BST_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="BST_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="BST_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="SYS_C0010991">
+                    <columnref name="BST_ID" />
+                </primarykey>
+            </table>
+            <table name="TTALBESTELLUNG_TAUFTRAGCFG">
+                <column name="AUF_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="AUF_AUA_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="AUF_AUF_ID" type="NUMBER" nullable="true" size="11" scale="0" />
+                <column name="AUF_NR" type="VARCHAR2" nullable="false" size="50" />
+                <column name="AUF_NAME" type="VARCHAR2" nullable="false" size="127" />
+                <column name="AUF_TEXT" type="VARCHAR2" nullable="true" size="255" />
+                <column name="AUF_DCF_ID" type="NUMBER" nullable="true" size="11" scale="0" />
+                <column name="AUF_AM" type="DATE" nullable="true">
+                    <default><![CDATA[sysdate]]></default>
+                </column>
+                <column name="AUF_VON" type="VARCHAR2" nullable="true" size="50">
+                    <default><![CDATA[user]]></default>
+                </column>
+                <column name="AUF_ATR_ID" type="NUMBER" nullable="true" size="11" scale="0" />
+                <column name="AUF_VORGAENGER_ID" type="NUMBER" nullable="true" size="11" scale="0" />
+                <column name="AUF_ADR_ID" type="NUMBER" nullable="true" size="11" scale="0" />
+                <primarykey name="SYS_C0010995">
+                    <columnref name="AUF_ID" />
+                </primarykey>
+            </table>
+            <table name="TTALBESTELLUNG_VORFAELLE">
+                <column name="TBV_ID" type="NUMBER" nullable="false" size="11" scale="0" />
+                <column name="TBV_NAME" type="VARCHAR2" nullable="false" size="3" />
+                <column name="TBV_TYP" type="VARCHAR2" nullable="true" size="4" />
+                <column name="TBV_HEADER" type="VARCHAR2" nullable="false" size="3" />
+                <column name="TBV_MELDUNGSTYP" type="VARCHAR2" nullable="true" size="3" />
+                <column name="TBV_VORFALL" type="VARCHAR2" nullable="true" size="100" />
+                <column name="TBV_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="TBV_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <column name="TBV_UPD_TIMESTAMP" type="DATE" nullable="true" />
+                <column name="TBV_UPD_USERNAME" type="VARCHAR2" nullable="true" size="50" />
+                <primarykey name="C1_TTALBESTELLUNG_VORF_PK">
+                    <columnref name="TBV_ID" />
+                </primarykey>
+            </table>
+        </schema>
+    </schemas>
+    <diagrams>
+        <diagram name="TAL-Bestellung" schema="MNETCALL">
+            <tableref schema="MNETCALL" name="TTALBESTELLERF" collpased="false">
+                <location x="210" y="28" />
+                <foreignkeyref name="C1_TTALBESTELLERF">
+                    <source edge="0" slotNumber="0" />
+                    <target edge="4" slotNumber="4" />
+                </foreignkeyref>
+            </tableref>
+            <tableref schema="MNETCALL" name="TTALBESTELLERFPORT" collpased="false">
+                <location x="400" y="56" />
+                <foreignkeyref name="C1_TTALBESTELLERFPORT">
+                    <source edge="4" slotNumber="4" />
+                    <target edge="8" slotNumber="4" />
+                </foreignkeyref>
+            </tableref>
+            <tableref schema="MNETCALL" name="TTALBESTELL_KLASS" collpased="false">
+                <location x="288" y="650" />
+            </tableref>
+            <tableref schema="MNETCALL" name="TTALBESTELLUNG" collpased="false">
+                <location x="666" y="50" />
+                <foreignkeyref name="C3_TTALBESTELLUNG_RI">
+                    <source edge="1" slotNumber="7" />
+                    <target edge="8" slotNumber="1" />
+                </foreignkeyref>
+                <foreignkeyref name="C4_TTALBESTELLUNG_RI">
+                    <source edge="1" slotNumber="7" />
+                    <target edge="8" slotNumber="1" />
+                </foreignkeyref>
+                <foreignkeyref name="C6_TTALBESTELLUNG">
+                    <source edge="4" slotNumber="5" />
+                    <target edge="8" slotNumber="1" />
+                </foreignkeyref>
+                <foreignkeyref name="C1_TTALBESTELLUNG_RI">
+                    <source edge="2" slotNumber="0" />
+                    <target edge="1" slotNumber="6" />
+                </foreignkeyref>
+            </tableref>
+            <tableref schema="MNETCALL" name="TTALBESTELLUNG_B001" collpased="false">
+                <location x="983" y="7" />
+                <foreignkeyref name="C1_TTALBESTELLUNG_B001_RI">
+                    <source edge="4" slotNumber="5" />
+                    <target edge="8" slotNumber="4" />
+                </foreignkeyref>
+            </tableref>
+            <tableref schema="MNETCALL" name="TTALBESTELLUNG_B002" collpased="false">
+                <location x="1131" y="270" />
+                <foreignkeyref name="C1_TTALBESTELLUNG_B002_RI">
+                    <source edge="4" slotNumber="3" />
+                    <target edge="8" slotNumber="5" />
+                </foreignkeyref>
+            </tableref>
+            <tableref schema="MNETCALL" name="TTALBESTELLUNG_EREIGNISSE" collpased="false">
+                <location x="8" y="242" />
+            </tableref>
+            <tableref schema="MNETCALL" name="TTALBESTELLUNG_EXEC" collpased="false">
+                <location x="13" y="414" />
+            </tableref>
+            <tableref schema="MNETCALL" name="TTALBESTELLUNG_FEHLER" collpased="false">
+                <location x="735" y="562" />
+                <foreignkeyref name="C2_TTALBESTELLUNG_FEHLER_RI">
+                    <source edge="1" slotNumber="3" />
+                    <target edge="2" slotNumber="6" />
+                </foreignkeyref>
+                <foreignkeyref name="C1_TTALBESTELLUNG_FEHLER_RI">
+                    <source edge="1" slotNumber="7" />
+                    <target edge="2" slotNumber="3" />
+                </foreignkeyref>
+            </tableref>
+            <tableref schema="MNETCALL" name="TTALBESTELLUNG_FEHLERCODES" collpased="false">
+                <location x="854" y="390" />
+            </tableref>
+            <tableref schema="MNETCALL" name="TTALBESTELLUNG_FEHLERTYPEN" collpased="false">
+                <location x="1146" y="562" />
+            </tableref>
+            <tableref schema="MNETCALL" name="TTALBESTELLUNG_STATUS" collpased="false">
+                <location x="278" y="412" />
+            </tableref>
+            <tableref schema="MNETCALL" name="TTALBESTELLUNG_TAUFTRAGCFG" collpased="false">
+                <location x="920" y="561" />
+            </tableref>
+            <tableref schema="MNETCALL" name="TTALBESTELLUNG_VORFAELLE" collpased="false">
+                <location x="491" y="476" />
+            </tableref>
+        </diagram>
+    </diagrams>
+</model>

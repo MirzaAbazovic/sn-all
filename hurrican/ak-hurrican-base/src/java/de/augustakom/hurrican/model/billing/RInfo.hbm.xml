@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse 
+de.augustakom.hurrican.model.billing.RInfo
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="RInfo" table="BILL_SPEC">
+	    
+	    <!-- PrimaryKey -->
+		<id name="rinfoNo" column="BILL_SPEC_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<!--property name="rinfoNoOrig" column="R_INFO__NO" type="long"/-->
+        <property name="description" column="DESCRIPTION" type="string"/>
+        <property name="kundeNo" column="CUST_NO" type="long"/>
+        <property name="adresseNo" column="INV_ADDR_NO" type="long"/>
+		<property name="extDebitorId" column="EXT_DEBITOR_ID" type="string"/>
+		<property name="invElectronic" column="INV_ELECTRONIC" type="boolean"/>
+		<property name="invMaxi" column="INV_MAXI" type="boolean"/>
+		<property name="finanzNo" column="DEBIT_ACCOUNT_NO" type="long"/>
+		
+	</class>
+	
+</hibernate-mapping>

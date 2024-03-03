@@ -1,0 +1,1 @@
+update T_REFERENCE set INT_VALUE = 40 where ID = 8004;

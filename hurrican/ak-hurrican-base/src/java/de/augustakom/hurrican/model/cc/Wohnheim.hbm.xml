@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.Wohnheim
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="Wohnheim" table="T_WOHNHEIM">
+
+        <cache usage="read-only"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="assigned"/>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="name" column="NAME" type="string" not-null="true"/>
+        <property name="strasse" column="STRASSE" type="string" not-null="true"/>
+        <property name="plz" column="PLZ" type="string" not-null="true"/>
+        <property name="ort" column="ORT" type="string" not-null="true"/>
+        <property name="vbz" column="LEITUNGSNR" type="string" not-null="true"/>
+        <property name="kundeNo" column="KUNDE__NO" type="long" not-null="true"/>
+
+    </class>
+
+</hibernate-mapping>

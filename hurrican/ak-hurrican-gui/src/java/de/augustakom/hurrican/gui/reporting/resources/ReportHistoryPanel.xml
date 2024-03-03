@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den ReportHistory-Dialog.
+-->
+<sf>
+ 
+    <Label name="report.id"><text>ID:</text></Label>
+    <FormattedTextField name="report.id">
+        <tooltip>ID des Reports</tooltip>
+        <columns>20</columns>
+    </FormattedTextField>
+    
+    <Label name="report.buendel.no"><text>Bündelnr.:</text></Label>
+    <FormattedTextField name="report.buendel.no">
+        <tooltip>Bündelnummer des Reports</tooltip>
+        <columns>20</columns>
+    </FormattedTextField>
+    
+    <Label name="report.name"><text>Bezeichnung:</text></Label>
+    <TextField name="report.name">
+        <tooltip>Bezeichnung des Reports</tooltip>
+        <columns>100</columns>
+    </TextField>
+    
+    <Label name="report.desc"><text>Beschreibung:</text></Label>
+    <TextArea name="report.desc">
+        <tooltip>Beschreibung des Reports</tooltip>
+    </TextArea>
+
+    <Label name="request.error"><text>Fehler:</text></Label>
+    <TextArea name="request.error">
+        <tooltip>Fehler bei der Report-Erstellung</tooltip>
+    </TextArea>
+    
+    <Label name="request.from"><text>Report-Ersteller:</text></Label>
+    <TextField name="request.from">
+        <tooltip>Ersteller des Reports</tooltip>
+    </TextField>
+    
+    <Label name="filter.von"><text>Zeitraum vom</text></Label>
+    <DateComponent name="filter.von">
+        <tooltip>Zeitraum Beginn</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+    
+    <Label name="filter.bis"><text>bis</text></Label>
+    <DateComponent name="filter.bis">
+        <tooltip>Zeitraum Ende</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+  
+  	<Label name="request.at"><text>Erstellt am:</text></Label>
+    <DateComponent name="request.at">
+        <tooltip>Erstellt am:</tooltip>
+        <format type="date">dd.MM.yyyy HH:mm</format>
+    </DateComponent>
+    
+   	<Label name="request.archivstatus"><text>Archiv-Status:</text></Label>
+    <TextField name="request.archivstatus">
+        <tooltip>Archiv-Status</tooltip>
+  	</TextField>
+    
+   	<Label name="report.downloaded"><text>Heruntergeladen am:</text></Label>
+    <DateComponent name="report.downloaded">
+        <tooltip>Heruntergeladen am:</tooltip>
+        <format type="date">dd.MM.yyyy HH:mm</format>
+    </DateComponent>
+   
+   	<Label name="report.archived"><text>Archiviert am:</text></Label>
+    <DateComponent name="report.archived">
+        <tooltip>Archiviert am:</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+     
+   	<Button name="download.report">
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <text>Download Report</text>
+        <tooltip>Zeigt den aktuellen Report an</tooltip>
+    </Button>	
+    
+    <Button name="report.archiv">
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <text>Report nicht archivieren</text>
+        <tooltip>Report nicht archivieren</tooltip>
+    </Button>
+    
+    <Button name="download.serienbrief">
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <text>Download Serienbrief</text>
+        <tooltip>Zeigt den Serienbrief an, dem der aktuelle Report angehört</tooltip>
+    </Button>
+    
+    <Button name="refresh">
+        <icon>de/augustakom/hurrican/gui/images/refresh.png</icon>
+        <text>Aktualisieren</text>
+        <tooltip>Aktualisiert die Anzeige</tooltip>
+    </Button>
+    
+   
+</sf>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:citrus-jms="http://www.citrusframework.org/schema/jms/config"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.citrusframework.org/schema/jms/config http://www.citrusframework.org/schema/jms/config/citrus-jms-config.xsd">
+
+    <context:annotation-config/>
+
+    <!-- Spring App-Context Definition fuer Atlas ESB connectivity. -->
+    <bean id="atlasConnectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+        <property name="targetConnectionFactory" ref="atlasUserCredentialConnectionFactory"/>
+    </bean>
+
+    <bean id="atlasUserCredentialConnectionFactory"
+          class="org.springframework.jms.connection.UserCredentialsConnectionFactoryAdapter">
+        <property name="targetConnectionFactory" ref="atlasJndiConnectionFactory"/>
+        <!-- authenticate against jms provider -->
+        <property name="username" value="${atlas.ems.username}"/>
+        <property name="password" value="${atlas.ems.password}"/>
+    </bean>
+
+    <bean id="atlasJndiConnectionFactory" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiTemplate" ref="atlasEmsJndiTemplate"/>
+        <property name="jndiName" value="QueueConnectionFactory"/>
+    </bean>
+
+    <bean id="atlasEmsJndiTemplate" class="org.springframework.jndi.JndiTemplate" lazy-init="true">
+        <property name="environment">
+            <props>
+                <prop key="java.naming.provider.url">${atlas.ems.url}</prop>
+                <prop key="java.naming.factory.initial">${atlas.ems.initial.context.factory}</prop>
+                <!-- authenticate against jndi service -->
+                <prop key="java.naming.security.principal">${atlas.ems.username}</prop>
+                <prop key="java.naming.security.credentials">${atlas.ems.password}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="jmsSoapMessageConverter" class="com.consol.citrus.jms.message.SoapJmsMessageConverter"/>
+
+    <!-- Wita Line Order JMS endpoint -->
+    <citrus-jms:endpoint id="atlasLineOrderServiceSrcEndpoint"
+                         connection-factory="atlasConnectionFactory"
+                         message-converter="jmsSoapMessageConverter"
+                         destination-name="mnet.SupplierPartner.op.cdm.src.v1.LineOrderService"/>
+
+    <!-- WITA Line Order Notification outbound message endpoint -->
+    <citrus-jms:endpoint id="atlasLineOrderNotificationServiceDstEndpoint"
+                         connection-factory="atlasConnectionFactory"
+                         destination-name="mnet.Hurrican.op.cdm.dst.v1.LineOrderNotificationService"/>
+
+    <!-- ErrorHandling JMS endpoint -->
+    <citrus-jms:endpoint id="errorHandlingServiceEndpoint"
+                         connection-factory="atlasConnectionFactory"
+                         message-converter="jmsSoapMessageConverter"
+                         destination-name="mnet.Shared.x.cdm.src.v1.ErrorHandlingService"/>
+
+    <!-- DocumentArchive service endpoints -->
+    <citrus-jms:sync-endpoint id="atlasDocumentArchiveServiceSrcEndpoint"
+                              actor="atlasEsbTestActor"
+                              connection-factory="atlasConnectionFactory"
+                              timeout="10000"
+                              destination-name="mnet.Customer.op.cdm.src.v1.DocumentArchiveService"/>
+
+</beans>

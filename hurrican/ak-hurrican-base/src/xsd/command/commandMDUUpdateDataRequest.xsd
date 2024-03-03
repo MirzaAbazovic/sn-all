@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema  xmlns:ns0="http://mnet.de/hurricanweb/command/mdu/types"
+            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://mnet.de/hurricanweb/command/mdu/types">
+
+    <xs:element name="CommandMDUUpdateDataRequest" type="ns0:CommandMDUUpdateDataRequest"/>
+    <xs:element name="CommandMDUUpdateDataRequestResponse" type="ns0:CommandMDUUpdateDataRequestResponse"/>
+    <xs:element name="CommandMDUUpdateDataRequestFailure" type="ns0:CommandMDUUpdateDataRequestFailure"/>
+
+    <xs:complexType name="CommandMDUUpdateDataRequest">
+        <xs:sequence>
+            <xs:element name="bezeichnung" type="xs:string"/>
+            <xs:element name="serienNummer" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CommandMDUUpdateDataRequestResponse">
+        <xs:sequence>
+            <xs:element name="bezeichnung" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CommandMDUUpdateDataRequestFailure">
+        <xs:sequence>
+            <xs:element name="bezeichnung" type="xs:string"/>
+            <xs:element name="errorMsg" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,32 @@
+@startuml
+
+participant TMF_HUB
+participant Adlatus_Order_Processor
+database Adlatus_DB
+database WITA_INBOX_DB
+participant Adlatus_WITA_API
+group receive QEB
+DTAG -> Adlatus_WITA_API: QEB sent
+Adlatus_WITA_API -> Adlatus_WITA_API: Validate
+Adlatus_WITA_API -> DTAG: Ack
+Adlatus_WITA_API -> WITA_INBOX_DB: persist
+note left: ACK,\nPROCESSED
+end
+... n sec. later ...
+Adlatus_Order_Processor -> WITA_INBOX_DB: pull ACK
+Adlatus_Order_Processor -> Adlatus_DB : Update order
+Adlatus_Order_Processor -> TMF_HUB: notify state changed
+Adlatus_Order_Processor -> WITA_INBOX_DB: update to PROCESSED
+group receive ABM
+DTAG -> Adlatus_WITA_API: ABM sent
+Adlatus_WITA_API -> Adlatus_WITA_API: Validate
+Adlatus_WITA_API -> WITA_INBOX_DB: persist
+Adlatus_WITA_API -> DTAG: Ack
+end
+... n sec. later ...
+Adlatus_Order_Processor -> WITA_INBOX_DB: pull ACK
+Adlatus_Order_Processor -> Adlatus_DB : Update order
+Adlatus_Order_Processor -> TMF_HUB: notify state changed
+Adlatus_Order_Processor -> TMF_HUB: notify attribute changed
+Adlatus_Order_Processor -> WITA_INBOX_DB: update to PROCESSED
+@enduml

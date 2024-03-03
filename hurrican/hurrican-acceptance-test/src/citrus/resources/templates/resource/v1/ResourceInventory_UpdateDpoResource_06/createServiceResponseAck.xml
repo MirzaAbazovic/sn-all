@@ -1,0 +1,3 @@
+<ServiceResponseAcknowledgement xmlns="http://www.evolving.com/wsdl/sa/v1/types">
+    <TransactionId>${cpsTransactionId}</TransactionId>
+</ServiceResponseAcknowledgement>

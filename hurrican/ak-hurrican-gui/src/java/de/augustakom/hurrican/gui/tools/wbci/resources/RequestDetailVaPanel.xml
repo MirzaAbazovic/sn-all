@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+
+    <Text name="title">Vorabstimmungs Details</Text>
+
+    <Label name="va.typ"><text>VA-Typ:</text></Label>
+    <TextField name="va.typ">
+        <tooltip>Typ der Vorabstimmung</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="kwt"><text>KWT:</text></Label>
+    <DateComponent name="kwt">
+        <tooltip>angegebener Kundenwunschtermin</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="projektkenner"><text>Projektkenner:</text></Label>
+    <TextField name="projektkenner">
+        <tooltip>der in der Vorabstimmung angegebene Projektkenner</tooltip>
+    </TextField>
+
+    <Label name="endkunde"><text>Endkunde:</text></Label>
+    <TextField name="endkunde">
+        <columns>30</columns>
+        <tooltip>der in der Vorabstimmung angegebene Endkunde (Name/Vorname bzw. Firma)</tooltip>
+    </TextField>
+
+    <Label name="weitere.ai"><text>weitere AI:</text></Label>
+    <TextArea name="weitere.ai">
+        <tooltip>die in der Vorabstimmung angegebenen weiteren Anschlussinhaber (Name/Vorname bzw. Firma)</tooltip>
+        <rows>5</rows>
+    </TextArea>
+
+    <Label name="anschluss.identifikation"><text>Anschluss-Identifikation:</text></Label>
+    <TextField name="anschluss.identifikation">
+        <tooltip>bei KUE-ORN; optionale Angabe zur Anschluss-Identifikation</tooltip>
+    </TextField>
+
+</sf>

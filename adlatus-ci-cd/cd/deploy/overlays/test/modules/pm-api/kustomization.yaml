@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../../../base/modules/pm-api
+
+namespace: adl-test
+nameSuffix: "-test"
+
+images: 
+- name: pm-api
+  newName: docker.adl.dev.bitconex.com/bitconex-pm-api
+  newTag: latest
+
+patches:
+  -  path: ./patches/deployment.yaml

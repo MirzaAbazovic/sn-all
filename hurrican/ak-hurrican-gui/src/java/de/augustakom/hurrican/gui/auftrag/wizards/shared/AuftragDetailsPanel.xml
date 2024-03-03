@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Wizard-Panel mit den Auftrag-Details.
+-->
+<sf>
+    <Label name="details"><text>Auftrag-Details:</text></Label>
+
+    <Label name="angebot.am"><text>Angebot am:</text></Label>
+    <DateComponent name="angebot.am">
+        <tooltip>Datum, an dem das Angebot erstellt wurde (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>10</columns>
+    </DateComponent>
+
+    <Label name="auftrag.am"><text>Auftrag am:</text></Label>
+    <DateComponent name="auftrag.am">
+        <tooltip>Datum, an dem der Auftrag erstellt wurde (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="vorgabe.kunde">
+        <text>Vorgabe Kunde:</text>
+    </Label>
+    <DateComponent name="vorgabe.kunde">
+        <tooltip>Vorgabe des Kunden, an dem der Auftrag realisiert sein soll (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+        <columns>10</columns>
+    </DateComponent>
+
+    <Label name="vorgabe.am"><text>Vorgabe AM:</text></Label>
+    <DateComponent name="vorgabe.am">
+        <tooltip>Vorgabe von AM, an dem der Auftrag realisiert werden soll (Format: dd.MM.yyyy)</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+
+    <Label name="bestell.nr"><text>Bestell-Nr:</text></Label>
+    <TextField name="bestell.nr">
+        <tooltip>Bestell-Nr des Kunden für den Auftrag - falls vorhanden</tooltip>
+        <maxchars>50</maxchars>
+    </TextField>
+
+    <Text name="produkt.not.possible">Das Produkt ist für die ausgewählte Strasse als nicht
+realisierbar konfiguriert.
+Bitte prüfen, ob der Auftrag wirklich an dieser Strasse realisert werden soll/kann.</Text>
+
+    <Text name="daten.uebernahme">Es wurden Daten von Taifun bzw. vom Bündel-Auftrag übernommen.
+Bitte kontrollieren Sie diese Daten nochmals.</Text>
+
+</sf>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer die ESAA TAL-Services.
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+     default-lazy-init="true">
+
+    <context:annotation-config />
+
+    <!-- Service fuer TAL-Bestellungen ueber die ESAA Schnittstelle -->
+    <bean id="de.augustakom.hurrican.service.cc.ESAATalOrderService"
+          class="de.augustakom.hurrican.service.cc.impl.ESAATalOrderServiceImpl">
+        <property name="DAO" ref="cbVorgangDAO"/>
+    </bean>
+
+    <!-- Wird im Wita-Modus mit WitaTalOrderService ueberschrieben -->
+    <alias name="de.augustakom.hurrican.service.cc.ESAATalOrderService" alias="de.augustakom.hurrican.service.cc.TALOrderService"/>
+
+</beans>

@@ -1,0 +1,2 @@
+alter table T_HW_BG_CHANGE_DSLAM_SPLIT rename column SUBRACK_ID_OLD to HW_SUBRACK_ID_OLD;
+alter table T_HW_BG_CHANGE_DSLAM_SPLIT rename column SUBRACK_ID_NEW to HW_SUBRACK_ID_NEW;

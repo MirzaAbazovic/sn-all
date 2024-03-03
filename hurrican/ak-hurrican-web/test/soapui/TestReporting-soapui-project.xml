@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="TestReporting" resourceRoot="" soapui-version="3.6.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="TestSuite" value="Reporting_TestSuite"/>
+  <con:entry key="Report to Generate" value=""/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="soapui-setings.xml Password" value=""/>
+  <con:entry key="TestRunner Path" value=""/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="Ignore Errors" value="false"/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="Save Project" value="false"/>
+  <con:entry key="Enable UI" value="false"/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Coverage Report" value="false"/>
+  <con:entry key="Export JUnit Results" value="true"/>
+  <con:entry key="Open Report" value="false"/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="Project Password" value=""/>
+  <con:entry key="Export All" value="false"/>
+  <con:entry key="Report Format(s)" value=""/>
+  <con:entry key="TestCase" value="&lt;all>"/>
+  <con:entry key="Print Report" value="true"/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="Root Folder" value=""/>
+  <con:entry key="Save After" value="false"/>
+  <con:entry key="Add Settings" value="false"/>
+  <con:entry key="Endpoint" value="http://localhost:8080/hurricanweb/order/reporting"/>
+</xml-fragment>]]></con:setting><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.LoadTestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="TestSuite" value="&lt;all>"/>
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="Report to Generate" value=""/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="soapui-setings.xml Password" value=""/>
+  <con:entry key="TestRunner Path" value=""/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="LoadTest" value="&lt;all>"/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="Save Project" value="false"/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="Project Password" value=""/>
+  <con:entry key="Report Format(s)" value=""/>
+  <con:entry key="TestCase" value="&lt;all>"/>
+  <con:entry key="Print Report" value="false"/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="Root Folder" value=""/>
+  <con:entry key="Add Settings" value="false"/>
+  <con:entry key="Save After" value="false"/>
+  <con:entry key="Endpoint" value="http://localhost:8080/hurricanweb/order/reporting"/>
+  <con:entry key="ThreadCount" value="10"/>
+  <con:entry key="Limit" value="1000"/>
+</xml-fragment>]]></con:setting></con:settings><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="GetReportingValuesWebServiceSoap11" type="wsdl" bindingName="{http://mnet.de/hurricanweb/order/reporting/types/}GetReportingValuesWebServiceSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/hurricanweb/order/reporting/hurricanGetReportingValues.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/hurricanweb/order/reporting/hurricanGetReportingValues.wsdl"><con:part><con:url>http://localhost:8080/hurricanweb/order/reporting/hurricanGetReportingValues.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://mnet.de/hurricanweb/order/reporting/types/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://mnet.de/hurricanweb/order/reporting/types" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://mnet.de/hurricanweb/order/reporting/types/">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://mnet.de/hurricanweb/order/reporting/types" xmlns:ns0="http://mnet.de/hurricanweb/order/reporting/types" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="GetReportingValuesType" type="ns0:GetReportingValuesType"/>
+      <xs:element name="GetReportingValuesTypeAcknowledgement" type="ns0:GetReportingValuesTypeAcknowledgement"/>
+      <xs:complexType name="GetReportingValuesType">
+        <xs:sequence>
+          <xs:element name="orderNo" type="xs:long"/>
+          <xs:element name="reportingKey">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" name="reportingKey">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="reportingKeyName" type="xs:string"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="GetReportingValuesTypeAcknowledgement">
+        <xs:sequence>
+          <xs:element name="orderNo" type="xs:long"/>
+          <xs:element name="reportingValues">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="reportingKey">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="reportingKeyName" type="xs:string"/>
+                      <xs:element name="reportingKeyValues" type="xs:string"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="GetReportingValuesTypeAcknowledgement">
+    <wsdl:part element="sch:GetReportingValuesTypeAcknowledgement" name="GetReportingValuesTypeAcknowledgement"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetReportingValuesType">
+    <wsdl:part element="sch:GetReportingValuesType" name="GetReportingValuesType"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="GetReportingValuesWebService">
+    <wsdl:operation name="GetReportingValues">
+      <wsdl:input message="tns:GetReportingValuesType" name="GetReportingValuesType"></wsdl:input>
+      <wsdl:output message="tns:GetReportingValuesTypeAcknowledgement" name="GetReportingValuesTypeAcknowledgement"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GetReportingValuesWebServiceSoap11" type="tns:GetReportingValuesWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="GetReportingValues">
+      <soap:operation soapAction="getReportingValuesRequest"/>
+      <wsdl:input name="GetReportingValuesType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="GetReportingValuesTypeAcknowledgement">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GetReportingValues">
+    <wsdl:port binding="tns:GetReportingValuesWebServiceSoap11" name="GetReportingValuesWebServiceSoap11">
+      <soap:address location="http://localhost:8080/hurricanweb/order/reporting"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/hurricanweb/order/reporting</con:endpoint><con:endpoint>http://mnethc01.m-net.de:8080/hurricanweb/order/reporting</con:endpoint><con:endpoint>http://mnethc01.m-net.de:8180/hurricanweb/order/reporting</con:endpoint><con:endpoint>http://mnetcis01.intern.m-net.de:8888/hurricanweb/order/reporting</con:endpoint></con:endpoints><con:operation isOneWay="false" action="getReportingValuesRequest" name="GetReportingValues" bindingOperationName="GetReportingValues" type="Request-Response" outputName="GetReportingValuesTypeAcknowledgement" inputName="GetReportingValuesType" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://mnetcis01.intern.m-net.de:8888/hurricanweb/order/reporting</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/order/reporting/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:GetReportingValuesType>
+         <typ:orderNo>1234567890</typ:orderNo>
+         <typ:reportingKey>
+            <!--1 or more repetitions:-->
+            <typ:reportingKey>
+               <typ:reportingKeyName>1234567890</typ:reportingKeyName>
+            </typ:reportingKey>
+            <typ:reportingKey>
+               <typ:reportingKeyName>IP_ADDRESS</typ:reportingKeyName>
+            </typ:reportingKey>
+         </typ:reportingKey>
+      </typ:GetReportingValuesType>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="getReportingValuesRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="Reporting_TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="GetReportingValues TestCase" searchProperties="true" id="621a9363-d977-4e27-ad6e-441829cf4417"><con:settings/><con:testStep type="request" name="GetReportingValues"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>GetReportingValuesWebServiceSoap11</con:interface><con:operation>GetReportingValues</con:operation><con:request name="GetReportingValues"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/hurricanweb/order/reporting</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:typ="http://mnet.de/hurricanweb/order/reporting/types">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <typ:GetReportingValuesType>
+         <typ:orderNo>1050135</typ:orderNo>
+         <typ:reportingKey>
+            <!--1 or more repetitions:-->
+            <typ:reportingKey>
+               <typ:reportingKeyName>IP_ADDRESS</typ:reportingKeyName>
+            </typ:reportingKey>
+            <typ:reportingKey>
+               <typ:reportingKeyName>HABEDIEEHRE</typ:reportingKeyName>
+            </typ:reportingKey>
+         </typ:reportingKey>
+      </typ:GetReportingValuesType>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Fault Assertion"/><con:assertion type="XPath Match" name="Match OrderNo"><con:configuration><path>declare namespace typ="http://mnet.de/hurricanweb/order/reporting/types";
+//typ:GetReportingValuesTypeAcknowledgement[1]/typ:orderNo=1050135</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="Match FirstReportingKey"><con:configuration><path>declare namespace typ="http://mnet.de/hurricanweb/order/reporting/types";
+//typ:reportingValues[1]/typ:reportingKey[1]/typ:reportingKeyName='IP_ADDRESS'</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="Match FirstReportingValue"><con:configuration><path>declare namespace typ="http://mnet.de/hurricanweb/order/reporting/types";
+//typ:reportingValues[1]/typ:reportingKey[1]/typ:reportingKeyValues</path><content>213.179.156.232 - 213.179.156.235 / 80.81.2.110</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="Match SecondReportingKey"><con:configuration><path>declare namespace typ="http://mnet.de/hurricanweb/order/reporting/types";
+//typ:reportingValues[1]/typ:reportingKey[2]/typ:reportingKeyName='HABEDIEEHRE'</path><content>true</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:assertion type="XPath Match" name="Match SecondReportingValue"><con:configuration><path>declare namespace typ="http://mnet.de/hurricanweb/order/reporting/types";
+declare namespace xsi="http://www.w3.org/2001/XMLSchema-instance";
+//typ:reportingValues[1]/typ:reportingKey[2]/typ:reportingKeyValues[@xsi:nil="true"]</path><content>&lt;typ:reportingKeyValues xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:typ="http://mnet.de/hurricanweb/order/reporting/types" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"/></content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences></con:configuration></con:assertion><con:wsaConfig action="getReportingValuesRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/></con:soapui-project>

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.exmodules.massenbenachrichtigung.TServiceExp
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.exmodules.massenbenachrichtigung">
+    <class name="TServiceExp" table="TSERVICEEXP">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="TSX_ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">SEQ_TSERVICEEXP</param></generator>
+        </id>
+
+        <!-- Sonstige Fields -->
+        <property name="tsxStaId" column="TSX_STA_ID" type="long" not-null="true"/>
+        <property name="tsxTypId" column="TSX_TYP_ID" type="long" not-null="true"/>
+        <property name="tsxAufId" column="TSX_AUF_ID" type="long" not-null="true"/>
+        <property name="tsxDruckId" column="TSX_DRUCK_ID" type="long" not-null="true"/>
+        <property name="tsxVpvAsamPort" column="TSX_VPV_ASAMPORT" type="long" not-null="false"/>
+        <property name="tsxVon" column="TSX_VON" type="timestamp" not-null="true"/>
+        <property name="tsxTicketNrAm" column="TSX_TICKETNR_AM" type="timestamp" not-null="false" />
+        <property name="tsxIstTermin" column="TSX_ISTTERMIN" type="timestamp" not-null="false" />
+        <property name="tsxKuendigungZum" column="TSX_KUENDIGUNGZUM" type="timestamp" not-null="false" />
+        <property name="tsxTemplate" column="TSX_TEMPLATE" type="string" not-null="true" />
+        <property name="tsxTicketNr" column="TSX_TICKETNR" type="string" not-null="true" />
+        <property name="tsxTyp" column="TSX_TYP" type="string" not-null="false" />
+        <property name="tsxStatus" column="TSX_STATUS" type="string" not-null="false" />
+        <property name="tsxAuftragsnummer" column="TSX_AUFTRAGSNUMMER" type="string" not-null="false" />
+        <property name="tsxKunde" column="TSX_KUNDE" type="string" not-null="false" />
+        <property name="tsxProdukt" column="TSX_PRODUKT" type="string" not-null="false" />
+        <property name="tsxVpvAsambezeichnung" column="TSX_VPV_ASAMBEZEICHNUNG" type="string" not-null="false" />
+        <property name="tsxVpvAsamkarte" column="TSX_VPV_ASAMKARTE" type="string" not-null="false" />
+        <property name="tsxVpvDslTyp" column="TSX_VPV_DSLTYP" type="string" not-null="false" />
+        <property name="tsxPlz" column="TSX_PLZ" type="string" not-null="false" />
+        <property name="tsxOrt" column="TSX_ORT" type="string" not-null="false" />
+        <property name="tsxStrasse" column="TSX_STRASSE" type="string" not-null="false" />
+        <property name="tsxHausnr" column="TSX_HAUSNR" type="string" not-null="false" />
+        <property name="tsxWohnung" column="TSX_WOHNUNG" type="string" not-null="false" />
+        <property name="tsxAnspr1" column="TSX_ANSPR1" type="string" not-null="false" />
+        <property name="tsxAnsprTel1" column="TSX_ANSPR_TEL1" type="string" not-null="false" />
+        <property name="tsxAnsprFax1" column="TSX_ANSPR_FAX1" type="string" not-null="false" />
+        <property name="tsxAnsprEmail1" column="TSX_ANSPR_EMAIL1" type="string" not-null="false" />
+        <property name="tsxAnspr2" column="TSX_ANSPR2" type="string" not-null="false" />
+        <property name="tsxAnsprTel2" column="TSX_ANSPR_TEL2" type="string" not-null="false" />
+        <property name="tsxAnsprFax2" column="TSX_ANSPR_FAX2" type="string" not-null="false" />
+        <property name="tsxAnsprEmail2" column="TSX_ANSPR_EMAIL2" type="string" not-null="false" />
+        <property name="tsxAnspr3" column="TSX_ANSPR3" type="string" not-null="false" />
+        <property name="tsxAnsprTel3" column="TSX_ANSPR_TEL3" type="string" not-null="false" />
+        <property name="tsxAnsprFax3" column="TSX_ANSPR_FAX3" type="string" not-null="false" />
+        <property name="tsxAnsprEmail3" column="TSX_ANSPR_EMAIL3" type="string" not-null="false" />
+        <property name="tsxText1" column="TSX_TEXT1" type="string" not-null="false" />
+        <property name="tsxText2" column="TSX_TEXT2" type="string" not-null="false" />
+        <property name="tsxText3" column="TSX_TEXT3" type="string" not-null="false" />
+        <property name="tsxText4" column="TSX_TEXT4" type="string" not-null="false" />
+        <property name="tsxTimestamp" column="TSX_TIMESTAMP" type="timestamp" not-null="false" />
+        <property name="tsxUserName" column="TSX_USERNAME" type="string" not-null="false" />
+        <property name="tsxUpdateTimestamp" column="TSX_UPD_TIMESTAMP" type="timestamp" not-null="false" />
+        <property name="tsxUpdUsername" column="TSX_UPD_USERNAME" type="string" not-null="false" />
+    </class>
+
+</hibernate-mapping>

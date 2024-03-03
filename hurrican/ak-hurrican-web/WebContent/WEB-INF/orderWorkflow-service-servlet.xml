@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- Endpoint Definition, ueber den ein neuer technischer Auftrag angelegt wird -->
+    <bean id="createTechOrderRequestEndpoint"
+        class="de.mnet.hurrican.webservice.taifun.order.workflow.endpoint.CreateTechOrderRequestEndpoint">
+        <property name="marshaller" ref="xmlBeanMarshaller" />
+        <property name="unmarshaller" ref="xmlBeanMarshaller" />
+    </bean>
+    <bean id="terminateTechOrdersRequestEndpoint"
+          class="de.mnet.hurrican.webservice.taifun.order.workflow.endpoint.TerminateTechOrdersRequestEndpoint">
+        <property name="marshaller" ref="xmlBeanMarshaller"/>
+        <property name="unmarshaller" ref="xmlBeanMarshaller"/>
+    </bean>
+
+    <!-- Definition of the Endpoint-Mapping(s) -->
+    <bean class="org.springframework.ws.server.endpoint.mapping.PayloadRootQNameEndpointMapping">
+        <property name="mappings">
+            <props>
+                <prop key="{http://mnet.de/hurricanweb/order/workflow/types}CreateTechOrderType">createTechOrderRequestEndpoint</prop>
+                <prop key="{http://mnet.de/hurricanweb/order/workflow/types}TerminateTechOrdersType">
+                    terminateTechOrdersRequestEndpoint
+                </prop>
+            </props>
+        </property>
+        <property name="interceptors">
+            <list>
+                <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+                <bean class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="exceptionResolver"
+          class="de.mnet.hurrican.webservice.taifun.order.workflow.WorkflowSoapFaultDefinitionExceptionResolver">
+        <property name="defaultFault" value="SERVER"/>
+        <property name="exceptionMappings">
+            <props>
+                <prop key="de.mnet.hurrican.webservice.taifun.order.workflow.exceptions.CreateTechOrderException">
+                    SERVER,FaultMsg
+                </prop>
+                <prop key="de.mnet.hurrican.webservice.taifun.order.workflow.exceptions.TerminateTechOrdersException">
+                    SERVER,FaultMsg
+                </prop>
+            </props>
+
+        </property>
+    </bean>
+
+
+    <!-- Definition des zu verwendenden Marshallers -->
+    <bean id="xmlBeanMarshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller" />
+
+    <!-- Publishing the WSDL -->
+    <!-- WSDL Generierung ueber http://host:port/hurricanweb/order/hurricanOrderWorkflow.wsdl -->
+    <bean id="hurricanOrderWorkflow" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+        <property name="schema" ref="orderWorkflowSchema"/>
+        <property name="portTypeName" value="CreateTechOrderWebService"/>
+        <property name="serviceName" value="CreateTechOrder"/>
+        <property name="locationUri" value="http://localhost:8080/hurricanweb/order/workflow"/>
+        <property name="targetNamespace" value="http://mnet.de/hurricanweb/order/workflow/types/"/>
+        <property name="requestSuffix" value="Type" />
+        <property name="responseSuffix" value="TypeAcknowledgement" />
+        <property name="faultSuffix" value="TypeFault" />
+        <property name="createSoap12Binding" value="false"/>
+        <property name="soapActions">
+            <props>
+                <prop key="CreateTechOrder">createTechOrderRequest</prop>
+                <prop key="TerminateTechOrders">terminateTechOrdersRequest</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="orderWorkflowSchema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+        <property name="xsd" value="classpath:hurricanOrderWorkflowRequest.xsd"/>
+    </bean>
+
+    <!-- SOAP message factory. Configured to use SOAP 1.1 -->
+    <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+        <property name="soapVersion">
+            <util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_11"/>
+        </property>
+    </bean>
+
+</beans>
+

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+
+    <!-- Spring App-Context Remote Service Definitionen fuer den WITA Client Bereich. -->
+
+    <bean id="WitaConfigService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/wita/WitaConfigService"/>
+        <property name="serviceInterface" value="de.mnet.wita.service.WitaConfigService"/>
+    </bean>
+
+    <bean id="CCAuftragService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/AuftragService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.CCAuftragService"/>
+    </bean>
+
+    <bean id="ConnectService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/ConnectService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.ConnectService"/>
+    </bean>
+
+    <bean id="CCKundenService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/KundenService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.CCKundenService"/>
+    </bean>
+
+    <bean id="AnsprechpartnerService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/AnsprechpartnerService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.AnsprechpartnerService"/>
+    </bean>
+
+    <bean id="CarrierService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/CarrierService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.CarrierService"/>
+    </bean>
+
+    <bean id="EndstellenService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/EndstellenService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.EndstellenService"/>
+    </bean>
+
+    <bean id="RangierungsService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/RangierungsService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.RangierungsService"/>
+    </bean>
+
+    <bean id="CCRufnummernService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/CCRufnummernService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.CCRufnummernService"/>
+    </bean>
+    <bean id="RufnummerService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/billing/RufnummerService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.billing.RufnummerService"/>
+    </bean>
+
+    <bean id="CarrierElTALService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/wita/CarrierElTALService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.CarrierElTALService"/>
+    </bean>
+
+    <bean id="AvailabilityService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/AvailabilityService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.AvailabilityService"/>
+    </bean>
+
+    <bean id="HvtService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/HVTService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.HVTService"/>
+    </bean>
+
+    <bean id="MwfEntityService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/wita/MwfEntityService"/>
+        <property name="serviceInterface" value="de.mnet.wita.service.MwfEntityService"/>
+    </bean>
+
+    <bean id="HistoryService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/common/HistoryService"/>
+        <property name="serviceInterface" value="de.mnet.common.service.HistoryService"/>
+    </bean>
+
+    <bean id="ExceptionLogService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/exceptions/ExceptionLogService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.exceptions.ExceptionLogService"/>
+    </bean>
+
+    <bean id="MailService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/cc/MailService"/>
+        <property name="serviceInterface" value="de.augustakom.hurrican.service.cc.MailService"/>
+    </bean>
+
+    <bean id="WitaTalOrderService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/wita/WitaTalOrderService"/>
+        <property name="serviceInterface" value="de.mnet.wita.service.WitaTalOrderService"/>
+    </bean>
+
+    <bean id="WitaUserTaskService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/wita/WitaUsertaskService"/>
+        <property name="serviceInterface" value="de.mnet.wita.service.WitaUsertaskService"/>
+    </bean>
+
+    <bean id="WitaSendMessageService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/wita/WitaSendMessageService"/>
+        <property name="serviceInterface" value="de.mnet.wita.service.WitaSendMessageService"/>
+    </bean>
+
+    <bean id="WitaVorabstimmungService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/wita/WitaVorabstimmungService"/>
+        <property name="serviceInterface" value="de.mnet.wita.service.WitaVorabstimmungService"/>
+    </bean>
+
+    <bean id="TalOrderWorkflowService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/wita/TalOrderWorkflowService"/>
+        <property name="serviceInterface" value="de.mnet.wita.bpm.TalOrderWorkflowService"/>
+    </bean>
+
+    <bean id="AbgebendPvWorkflowService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/wita/AbgebendPvWorkflowService"/>
+        <property name="serviceInterface" value="de.mnet.wita.bpm.AbgebendPvWorkflowService"/>
+    </bean>
+
+    <bean id="CommonWorkflowService" class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/wita/CommonWorkflowService"/>
+        <property name="serviceInterface" value="de.mnet.wita.bpm.CommonWorkflowService"/>
+    </bean>
+
+    <bean id="WbciAutomationService"
+          class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+        <property name="serviceUrl"
+                  value="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/remoting/wbci/WbciAutomationService"/>
+        <property name="serviceInterface" value="de.mnet.wbci.service.WbciAutomationService"/>
+    </bean>
+
+</beans>

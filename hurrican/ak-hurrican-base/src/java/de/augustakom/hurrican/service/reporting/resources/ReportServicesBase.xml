@@ -1,0 +1,518 @@
+<!-- Spring-Konfiguratio fuer die Reporting-Hurrican-Services -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context
+                        http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="false">
+
+    <context:annotation-config />
+
+    <!-- Definition der Data-Source fuer die Reporting-Datenbank  -->
+    <bean id="reporting.dataSourceTarget" class="de.augustakom.common.tools.dao.jdbc.AKBasicDataSource" destroy-method="close"
+        autowire-candidate="false">
+        <property name="driverClassName"><value>${hurrican.reporting.jdbc.driver}</value></property>
+        <property name="url"><value>${hurrican.reporting.jdbc.url}</value></property>
+        <property name="username"><value>${hurrican.reporting.jdbc.user}</value></property>
+        <property name="password"><value>${hurrican.reporting.jdbc.password}</value></property>
+        <property name="maxActive"><value>${hurrican.reporting.jdbc.max.active}</value></property>
+        <property name="maxIdle"><value>${hurrican.reporting.jdbc.max.idle}</value></property>
+        <property name="maxWait"><value>${db.pool.default.timeout}</value></property>
+        <property name="validationQuery"><value>${db.pool.validation.query}</value></property>
+        <property name="validationQueryTimeout"><value>${db.pool.validation.query.timeout}</value></property>
+    </bean>
+    <!-- Interceptor, um das Default-Schema der Datenbank-Connection zu setzen. -->
+    <bean id="reporting.setSchemaInterceptor" class="de.augustakom.common.tools.dao.SetDefaultSchemaInterceptor">
+        <property name="schemaName"><value>${hurrican.reporting.schema}</value></property>
+    </bean>
+    <bean id="reporting.dataSource" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="proxyInterfaces"><value>javax.sql.DataSource</value></property>
+        <property name="target" ref="reporting.dataSourceTarget"/>
+        <property name="interceptorNames">
+            <list>
+                <value>reporting.setSchemaInterceptor</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Definition der Hibernate-SessionFactory fuer die Reporting-Datenbank -->
+    <bean id="reporting.sessionFactory" class="de.augustakom.common.tools.dao.hibernate.AKLocalSessionFactoryBean">
+        <property name="mappingLocations">
+            <value>classpath*:de/augustakom/hurrican/model/reporting/*.hbm.xml</value>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hurrican.reporting.hibernate.dialect}</prop>
+                <prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
+                <prop key="hibernate.jdbc.use_scrollable_resultset">false</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+                <prop key="hibernate.check_nullability">true</prop>
+                <prop key="jadira.usertype.databaseZone">jvm</prop>
+                <prop key="jadira.usertype.javaZone">jvm</prop>
+            </props>
+        </property>
+        <property name="dataSource">
+            <ref bean="reporting.dataSource"/>
+        </property>
+    </bean>
+
+    <!-- Transaction-Manager fuer die Hibernate-Session -->
+    <bean id="reporting.hibernateTxManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="reporting.sessionFactory"/>
+    </bean>
+
+    <!-- Validator fuer Objekte des Typs 'Report' -->
+    <bean id="reportValidator"
+        class="de.augustakom.hurrican.validation.reporting.ReportValidator"/>
+
+    <!-- ****** BEGINN Service-Definitionen ******* -->
+
+    <!-- Service-Definition fuer DataSource Status-Service -->
+    <bean id="de.augustakom.hurrican.service.reporting.DataSourceStatusService"
+        class="de.mnet.common.service.status.DataSourceStatusService">
+        <property name="dataSourceName" value="reporting.dataSource"/>
+        <property name="tableName" value="T_REPORT"/>
+    </bean>
+
+    <!-- Service-Definition fuer Report-Config-Service -->
+    <bean id="de.augustakom.hurrican.service.reporting.ReportConfigService"
+          class="de.augustakom.hurrican.service.reporting.impl.ReportConfigServiceImpl">
+        <property name="reportDAO"><ref bean="reportDAO"/></property>
+        <property name="report2ProdDAO"><ref bean="report2ProdDAO"/></property>
+        <property name="report2ProdStatiDAO"><ref bean="report2ProdStatiDAO"/></property>
+        <property name="report2TechLsDAO"><ref bean="report2TechLsDAO"/></property>
+        <property name="reportTemplateDAO"><ref bean="reportTemplateDAO"/></property>
+        <property name="txtBausteinDAO"><ref bean="txtBausteinDAO"/></property>
+        <property name="txtBausteinGruppeDAO"><ref bean="txtBausteinGruppeDAO"/></property>
+        <property name="txtBaustein2GruppeDAO"><ref bean="txtBaustein2GruppeDAO"/></property>
+        <property name="report2TxtBausteinGruppeDAO"><ref bean="report2TxtBausteinGruppeDAO"/></property>
+        <property name="report2UserRoleDAO"><ref bean="report2UserRoleDAO"/></property>
+        <property name="reportReasonDAO"><ref bean="reportReasonDAO"/></property>
+        <property name="reportGruppeDAO"><ref bean="reportGruppeDAO"/></property>
+        <property name="reportValidator"><ref bean="reportValidator"/></property>
+        <property name="reportPathTemplates" value="${report.path.templates}"/>
+    </bean>
+
+
+    <!-- ****** ENDE Service-Definitionen ******* -->
+
+
+    <!-- *********** BEGINN DAO-Definitionen *************** -->
+
+    <!-- Definition der DAO-Klasse fuer ein Reporting-Objekt vom Typ 'Report' -->
+    <bean id="reportDAO" class="de.augustakom.hurrican.dao.reporting.impl.ReportDAOImpl"/>
+
+    <!-- Definition der DAO-Klasse fuer ein Reporting-Objekt vom Typ 'ReportData' -->
+    <bean id="reportDataDAO" class="de.augustakom.hurrican.dao.reporting.impl.ReportDataDAOImpl"/>
+
+    <!-- Definition der DAO-Klasse fuer ein Reporting-Objekt vom Typ 'ReportRequest' -->
+    <bean id="reportRequestDAO" class="de.augustakom.hurrican.dao.reporting.impl.ReportRequestDAOImpl"/>
+
+    <!-- Definition der DAO-Klasse fuer ein Reporting-Objekt vom Typ 'Report2Prod' -->
+    <bean id="report2ProdDAO" class="de.augustakom.hurrican.dao.reporting.impl.Report2ProdDAOImpl"/>
+
+    <!-- Definition der DAO-Klasse fuer ein Reporting-Objekt vom Typ 'Report2ProdStati' -->
+    <bean id="report2ProdStatiDAO" class="de.augustakom.hurrican.dao.reporting.impl.Report2ProdStatiDAOImpl"/>
+
+    <!-- Definition der DAO-Klasse fuer ein Reporting-Objekt vom Typ 'Report2TechLs' -->
+    <bean id="report2TechLsDAO" class="de.augustakom.hurrican.dao.reporting.impl.Report2TechLsDAOImpl"/>
+
+    <!-- Definition der DAO-Klasse fuer ein Reporting-Objekt vom Typ 'ReportTemplate' -->
+    <bean id="reportTemplateDAO" class="de.augustakom.hurrican.dao.reporting.impl.ReportTemplateDAOImpl"/>
+
+    <!-- Definition der DAO-Klasse fuer ein Reporting-Objekt vom Typ 'TxtBaustein' -->
+    <bean id="txtBausteinDAO" class="de.augustakom.hurrican.dao.reporting.impl.TxtBausteinDAOImpl"/>
+
+    <!-- Definition der DAO-Klasse fuer ein Reporting-Objekt vom Typ 'TxtBausteinGruppe' -->
+    <bean id="txtBausteinGruppeDAO" class="de.augustakom.hurrican.dao.reporting.impl.TxtBausteinGruppeDAOImpl"/>
+
+    <!-- Definition der DAO-Klasse fuer ein Reporting-Objekt vom Typ 'TxtBaustein2Gruppe' -->
+    <bean id="txtBaustein2GruppeDAO" class="de.augustakom.hurrican.dao.reporting.impl.TxtBaustein2GruppeDAOImpl"/>
+
+    <!-- Definition der DAO-Klasse fuer ein Reporting-Objekt vom Typ 'Report2TxtBaustein' -->
+    <bean id="report2TxtBausteinGruppeDAO" class="de.augustakom.hurrican.dao.reporting.impl.Report2TxtBausteinGruppeDAOImpl"/>
+
+    <!-- Definition der DAO-Klasse fuer ein Reporting-Objekt vom Typ 'ReportPageFormat' -->
+    <bean id="reportPaperFormatDAO" class="de.augustakom.hurrican.dao.reporting.impl.ReportPaperFormatDAOImpl"/>
+
+    <!-- Definition der DAO-Klasse fuer ein Reporting-Objekt vom Typ 'Report2UserRole' -->
+    <bean id="report2UserRoleDAO" class="de.augustakom.hurrican.dao.reporting.impl.Report2UserRoleDAOImpl"/>
+
+    <!-- Definition der DAO-Klasse fuer ein Reporting-Objekt vom Typ 'ReportReason' -->
+    <bean id="reportReasonDAO" class="de.augustakom.hurrican.dao.reporting.impl.ReportReasonDAOImpl"/>
+
+    <!-- Definition der DAO-Klasse fuer ein Reporting-Objekt vom Typ 'ReportGruppe' -->
+    <bean id="reportGruppeDAO" class="de.augustakom.hurrican.dao.reporting.impl.ReportGruppeDAOImpl"/>
+
+    <!-- Definition der DAO-Klasse fuer ein Reporting-Objekt vom Typ 'Printer' -->
+    <bean id="printerDAO" class="de.augustakom.hurrican.dao.reporting.impl.PrinterDAOImpl"/>
+
+    <!-- *********** ENDE DAO-Definitionen *************** -->
+
+    <!-- ************************ Command-Definitionen *********************** -->
+
+    <!-- ServiceCommand um Auftragsdaten zu ermitteln -->
+    <bean id="getAuftragDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetAuftragDatenCommand"
+        autowire-candidate="false" scope="prototype" />
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetAuftragDatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getAuftragDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="getGewofagDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetGewofagDatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetGewofagDatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getGewofagDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="getAnsprechpartnerCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetAnsprechpartnerCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetAnsprechpartnerCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getAnsprechpartnerCommand</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="getAuftragLeistungenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetAuftragLeistungenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetAuftragLeistungenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getAuftragLeistungenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="getAuftragBankverbindungCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetAuftragBankverbindungCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetAuftragBankverbindungCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getAuftragBankverbindungCommand</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- ServiceCommand um Rufnummern-Daten zu ermitteln.  -->
+    <bean id="getRufnummernCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetRufnummernCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetRufnummernCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getRufnummernCommand</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- ServiceCommand um Kunden-Daten zu ermitteln.  -->
+    <bean id="getKundenDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetKundenDatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetKundenDatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getKundenDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="getResellerDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetResellerDatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetResellerDatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getResellerDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="getEndgeraeteDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetEndgeraeteDatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetEndgeraeteDatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getEndgeraeteDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- ServiceCommand um DSL-Account-Daten zu ermitteln.  -->
+    <bean id="getDSLAccountDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetDSLAccountDatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetDSLAccountDatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getDSLAccountDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- ServiceCommand um Email-Account-Daten zu ermitteln.  -->
+    <bean id="getOnlineAccountDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetOnlineAccountDatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetOnlineAccountDatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getOnlineAccountDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- ServiceCommand um Faktura-Daten zu ermitteln.  -->
+    <bean id="getAuftragFakturaDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetAuftragFakturaDatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetAuftragFakturaDatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getAuftragFakturaDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- ServiceCommand um Endstellen-Daten zu ermitteln.  -->
+    <bean id="getEndstellenDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetEndstellenDatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetEndstellenDatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getEndstellenDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="getEndstelleADatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetEndstelleADatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetEndstelleADatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getEndstelleADatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="getEndstelleBDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetEndstelleBDatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetEndstelleBDatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getEndstelleBDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- ServiceCommand um HVT-Daten zu ermitteln.  -->
+    <bean id="getHvtDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetHvtDatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetHvtDatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getHvtDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="getHvtEsADatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetHvtEsADatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetHvtEsADatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getHvtEsADatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="getHvtEsBDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetHvtEsBDatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetHvtEsBDatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getHvtEsBDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- ServiceCommand um Rangier-Daten zu ermitteln.  -->
+    <bean id="getRangierDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetRangierDatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetRangierDatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getRangierDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <!-- ServiceCommand um User-Daten zu ermitteln.  -->
+    <bean id="getUserDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetUserDatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetUserDatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getUserDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- ServiceCommand um Text-Bausteine zu ermitteln.  -->
+    <bean id="getTxtBausteineCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetTxtBausteineCommand" scope="prototype"
+        autowire-candidate="false">
+    </bean>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetTxtBausteineCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getTxtBausteineCommand</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- ServiceCommand um Report-Daten zu ermitteln.  -->
+    <bean id="getReportDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetReportDatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+    <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetReportDatenCommand"
+          class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+    <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getReportDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- ServiceCommand um MaxiPortal-Daten zu ermitteln.  -->
+    <bean id="getMaxiPortalDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetMaxiPortalDatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+     <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetMaxiPortalDatenCommand"
+           class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+     <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getMaxiPortalDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- ServiceCommand um Daten fuer Servicerufnummern zu ermitteln.  -->
+    <bean id="getSRNDatenCommand"
+        class="de.augustakom.hurrican.service.reporting.impl.command.GetSRNDatenCommand"
+        autowire-candidate="false" scope="prototype"/>
+     <bean id="de.augustakom.hurrican.service.reporting.impl.command.GetSRNDatenCommand"
+           class="org.springframework.aop.framework.ProxyFactoryBean" scope="prototype">
+     <property name="proxyInterfaces"><value>de.augustakom.common.service.iface.IServiceCommand</value></property>
+        <property name="singleton"><value>false</value></property>
+        <property name="interceptorNames">
+            <list>
+                 <value>getSRNDatenCommand</value>
+            </list>
+        </property>
+    </bean>
+
+
+
+</beans>

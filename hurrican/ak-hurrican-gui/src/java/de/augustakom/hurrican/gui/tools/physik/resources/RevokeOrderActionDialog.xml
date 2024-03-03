@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel, um eine Kündigung rückgängig zu machen.
+-->
+<sf>
+
+    <Text name="dialog.title.cancel">Kündigung rückgängig</Text>
+    <Text name="dialog.title.creation">Inbetriebnahme rückgängig</Text>
+
+    <Label name="auftragsnummer"><text>Auftragsnummer</text></Label>
+    <FormattedTextField name="auftragsnummer">
+        <tooltip>Auftragsnummer</tooltip>
+        <columns>20</columns>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Label name="auftragsstatus"><text>Auftragsstatus</text></Label>
+    <CheckBox name="auftragsstatus">
+        <tooltip>Auftragsstatus</tooltip>
+    </CheckBox>
+
+    <Label name="techleistung"><text>Tech-Leistungen</text></Label>
+    <CheckBox name="techleistung">
+        <tooltip>Tech-Leistung</tooltip>
+    </CheckBox>
+
+    <Label name="rangierung"><text>Rangierung</text></Label>
+    <CheckBox name="rangierung">
+        <tooltip>Rangierung</tooltip>
+    </CheckBox>
+
+    <Label name="auftragsart"><text>Auftragsart</text></Label>
+    <ReferenceField name="auftragsart">
+        <tooltip>Angabe der Auftragsart</tooltip>
+        <id.property>id</id.property>
+        <name.property>name</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.BAVerlaufAnlass</reference.class>
+    </ReferenceField>
+
+    <Label name="cps.so.type"><text>CPS SO-Type:</text></Label>
+    <ReferenceField name="cps.so.type">
+        <tooltip>Angabe des CPS ServiceOrderTypes</tooltip>
+        <id.property>id</id.property>
+        <name.property>strValue</name.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Button name="ok">
+        <text>Ok</text>
+    </Button>
+
+    <Button name="cancel">
+        <text>Abbrechen</text>
+    </Button>
+
+</sf>

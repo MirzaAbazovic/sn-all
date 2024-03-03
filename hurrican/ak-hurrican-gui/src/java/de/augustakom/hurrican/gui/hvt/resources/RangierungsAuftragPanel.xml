@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Verwaltung von Rangierungs-Auftraegen.
+-->
+<sf>
+
+    <Label name="hvt.standort"><text>HVT-Standort:</text></Label>
+    <ComboBox name="hvt.standort">
+        <tooltip>Auswahl des HVT-Standorts</tooltip>
+    </ComboBox>
+    <ReferenceField name="hvt.standort">
+		<tooltip>Auswahl des HVT-Standorts</tooltip>
+		<columns>25</columns>
+		<id.property>hvtIdStandort</id.property>
+		<name.property>ortsteil</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.view.HVTGruppeStdView</reference.class>
+		<selection.dialog.class>de.augustakom.hurrican.gui.hvt.HVTSelectionDialog</selection.dialog.class>
+	</ReferenceField>
+	
+	<Label name="anzahl.ports"><text>Anzahl Ports:</text></Label>
+    <FormattedTextField name="anzahl.ports">
+        <tooltip>Anzahl der aufzubauenden Rangierungen</tooltip>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+	<Label name="physiktyp.parent"><text>Physiktyp (Parent):</text></Label>
+    <ComboBox name="physiktyp.parent">
+        <tooltip>Auswahl des ersten Physiktyps</tooltip>
+    </ComboBox>
+	
+	<Label name="physiktyp.child"><text>Physiktyp (Child):</text></Label>
+    <ComboBox name="physiktyp.child">
+        <tooltip>Auswahl des zweiten Physiktyps (optional)</tooltip>
+    </ComboBox>
+	
+	<Label name="auftrag.von"><text>Auftrag von:</text></Label>
+    <TextField name="auftrag.von">
+        <tooltip>Name des Mitarbeiters, der den Rangierungsauftrag eingestellt hat</tooltip>
+		<columns>20</columns>
+    </TextField>
+	
+	<Label name="auftrag.am"><text>Auftrag am:</text></Label>
+    <DateComponent name="auftrag.am">
+        <tooltip>Datum, zu dem der Rangierungsauftrag angelegt wurde</tooltip>
+    </DateComponent>
+	
+	<Label name="faellig.am"><text>Faellig am:</text></Label>
+    <DateComponent name="faellig.am">
+        <tooltip>Datum, zu dem der Rangierungsauftrag faellig ist</tooltip>
+    </DateComponent>
+	
+	<Label name="definiert.von"><text>Definiert von:</text></Label>
+    <TextField name="definiert.von">
+        <tooltip>Name des Mitarbeiters, der die Rangierungen definiert hat</tooltip>
+		<columns>15</columns>
+    </TextField>
+	
+	<Label name="definiert.am"><text>Definiert am:</text></Label>
+    <DateComponent name="definiert.am">
+        <tooltip>Datum, zu dem die Rangierungen definiert wurden</tooltip>
+    </DateComponent>
+	
+	<Label name="ausgefuehrt.von"><text>Ausgeführt von:</text></Label>
+    <TextField name="ausgefuehrt.von">
+        <tooltip>Name des Mitarbeiters, der die Rangierungen technisch erstellt hat</tooltip>
+    </TextField>
+	
+	<Label name="ausgefuehrt.am"><text>Ausgeführt am:</text></Label>
+    <DateComponent name="ausgefuehrt.am">
+        <tooltip>Datum, zu dem die Rangierungen technisch erstellt wurden</tooltip>
+    </DateComponent>
+	
+	<Button name="do.definition">
+		<text>Rangierungen def.</text>
+		<tooltip>Öffnet ein Frame, um die Rangierungen zu definieren</tooltip>
+	</Button>
+	
+	<Button name="print.definitions">
+		<text>Print</text>
+		<tooltip>Druckt die Rangierungsliste aus</tooltip>
+	</Button>
+	
+	<Button name="show.budget">
+		<text>Budget</text>
+		<tooltip>Zeigt das zugehörige Budget an</tooltip>
+	</Button>
+	
+	<Button name="release.rangierungen">
+		<text>Ports freigeben</text>
+		<tooltip>Gibt die definierten Ports für die Vergabe frei</tooltip>
+	</Button>
+	
+	<Button name="work.on">
+		<text>in Bearbeitung</text>
+		<tooltip>Setzt den Auftrag auf -in Bearbeitung-</tooltip>
+	</Button>
+	
+	<Button name="cancel">
+		<text>Storno</text>
+		<tooltip>Storniert den Rangierungs-Auftrag</tooltip>
+	</Button>
+        
+</sf>

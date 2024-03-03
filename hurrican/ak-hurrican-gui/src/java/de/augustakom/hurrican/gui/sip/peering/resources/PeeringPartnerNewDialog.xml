@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sf>
+    <Text name="SipPeeringPartner.title">Peering Partner hinzufügen</Text>
+    <Label name="SipPeeringPartner.name">
+        <text>Name:</text>
+    </Label>
+    <Label name="SipPeeringPartner.isActive">
+        <text>Aktiv:</text>
+    </Label>
+</sf>

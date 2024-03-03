@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="VPNAccount" language="java" pageWidth="595" pageHeight="842" columnWidth="518" leftMargin="57" rightMargin="20" topMargin="71" bottomMargin="30">
+	<property name="com.jasperassistant.designer.DataSource" value="emptyDS"/>
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+	<property name="com.jasperassistant.designer.Units" value="Millimeters"/>
+	<property name="com.jasperassistant.designer.Grid" value="true"/>
+	<property name="com.jasperassistant.designer.GridHeight" value="12"/>
+	<property name="com.jasperassistant.designer.GridWidth" value="12"/>
+	<reportFont name="Font_Default" isDefault="true" fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<reportFont name="Font_Big" isDefault="false" fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<parameter name="AUFTRAG_ID" class="java.lang.Long">
+	</parameter>
+	<field name="PASSWORD" class="java.lang.String">
+	</field>
+	<field name="ES_ANSCHLUSSART" class="java.lang.String">
+	</field>
+	<field name="ES_TYP" class="java.lang.String">
+	</field>
+	<field name="ES_ENDSTELLE" class="java.lang.String">
+	</field>
+	<field name="ES_NAME" class="java.lang.String">
+	</field>
+	<field name="ES_ORT" class="java.lang.String">
+	</field>
+	<field name="ES_PLZ" class="java.lang.String">
+	</field>
+	<field name="PRODUKT" class="java.lang.String">
+	</field>
+	<field name="ACCOUNT" class="java.lang.String">
+	</field>
+	<field name="VPN_NR" class="java.lang.Long">
+	</field>
+	<title>
+		<band height="158">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="1" width="365" height="21"/>
+				<textElement verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VPN Accountdaten]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="69" width="70" height="16"/>
+				<textElement>
+					<font reportFont="Font_Big"/>
+				</textElement>
+				<text><![CDATA[VPN_NR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="87" width="70" height="16"/>
+				<textElement>
+					<font reportFont="Font_Big"/>
+				</textElement>
+				<text><![CDATA[Account:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="105" width="70" height="16"/>
+				<textElement>
+					<font reportFont="Font_Big"/>
+				</textElement>
+				<text><![CDATA[Passwort:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="140" width="79" height="18"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Endstellen:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="89" y="69" width="234" height="17">
+					<printWhenExpression><![CDATA[($F{VPN_NR} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font reportFont="Font_Big" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[""+$F{VPN_NR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="89" y="105" width="234" height="17">
+					<printWhenExpression><![CDATA[($F{PASSWORD} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font reportFont="Font_Big" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PASSWORD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="89" y="87" width="234" height="17">
+					<printWhenExpression><![CDATA[($F{ACCOUNT} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font reportFont="Font_Big" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ACCOUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="39" width="70" height="16"/>
+				<textElement>
+					<font reportFont="Font_Big"/>
+				</textElement>
+				<text><![CDATA[Produkt:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="89" y="39" width="234" height="17">
+					<printWhenExpression><![CDATA[($F{PRODUKT} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font reportFont="Font_Big" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PRODUKT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="98">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="3" width="75" height="14"/>
+				<textElement/>
+				<text><![CDATA[ES-Typ:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="73" width="76" height="14"/>
+				<textElement/>
+				<text><![CDATA[PLZ:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="59" width="75" height="14"/>
+				<textElement/>
+				<text><![CDATA[Ort:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="45" width="75" height="14"/>
+				<textElement/>
+				<text><![CDATA[Name:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="31" width="75" height="14"/>
+				<textElement/>
+				<text><![CDATA[Endstelle:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="17" width="75" height="14"/>
+				<textElement/>
+				<text><![CDATA[Anschlussart:]]></text>
+			</staticText>
+			<textField>
+				<reportElement positionType="Float" x="89" y="3" width="312" height="14">
+					<printWhenExpression><![CDATA[($F{ES_TYP} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Trebuchet MS" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ES_TYP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="89" y="73" width="312" height="14">
+					<printWhenExpression><![CDATA[($F{ES_PLZ} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Trebuchet MS" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ES_PLZ}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="89" y="59" width="312" height="14">
+					<printWhenExpression><![CDATA[($F{ES_ORT} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Trebuchet MS" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ES_ORT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="89" y="45" width="312" height="14">
+					<printWhenExpression><![CDATA[($F{ES_NAME} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Trebuchet MS" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ES_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="89" y="31" width="312" height="14">
+					<printWhenExpression><![CDATA[($F{ES_ENDSTELLE} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Trebuchet MS" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ES_ENDSTELLE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="89" y="17" width="312" height="14">
+					<printWhenExpression><![CDATA[($F{ES_ANSCHLUSSART} != null) ? new Boolean(true) : new Boolean(false)]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Trebuchet MS" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ES_ANSCHLUSSART}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="40">
+			<subreport>
+				<reportElement positionType="Float" x="0" y="18" width="501" height="20"/>
+				<dataSourceExpression><![CDATA[(JRDataSource) new de.augustakom.hurrican.service.cc.impl.reportdata.AKInetIPJasperDS($P{AUFTRAG_ID})]]></dataSourceExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["de/augustakom/hurrican/reports/auftrag/AKInetIP.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="4" width="84" height="13"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[IP-Adressen:]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

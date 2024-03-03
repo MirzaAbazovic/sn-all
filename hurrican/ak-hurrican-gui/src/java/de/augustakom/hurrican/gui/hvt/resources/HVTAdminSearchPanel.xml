@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Details einer HVT-Admin Search
+-->
+<sf>
+
+   <!-- ************ Panel fuer die Darstellung der HVT Admin Search **************** -->
+    <Label name="hvt.search.onkz"><text>ONKZ:</text></Label>
+    <TextField name="hvt.search.onkz">
+        <tooltip>Ortsnetzkennzahl</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="hvt.search.asb"><text>ASB:</text></Label>
+    <TextField name="hvt.search.asb">
+        <tooltip>ASB-Kennzahl für den HVT-Standort</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="hvt.search.name"><text>HVT-Name:</text></Label>
+    <TextField name="hvt.search.name">
+        <tooltip>Name des HVTs</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="hvt.search.ort"><text>Ort:</text></Label>
+    <TextField name="hvt.search.ort">
+        <tooltip>Ort, in dem sich der HVT befindet</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="hvt.search.standortTyp"><text>Standorttyp:</text></Label>
+    <ComboBox name="hvt.search.standortTyp">
+        <tooltip>Typ des Standorts</tooltip>
+        <columns>15</columns>
+    </ComboBox>
+
+    <Label name="hvt.search.clusterId"><text>Cluster-Kennung:</text></Label>
+    <TextField name="hvt.search.clusterId">
+        <tooltip>Clusterinformation für FttX</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Text name="hvt.search.standorte">HVT-Standorte</Text>
+    <Text name="hvt.search.gruppen">HVT-Gruppen</Text>
+
+    <Button name="hvt.search.doSearch">
+        <text>Suchen</text>
+        <tooltip>Suchen</tooltip>
+    </Button>
+
+
+</sf>

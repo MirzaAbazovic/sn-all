@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.gui.IAMaterialEntnahme
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.innenauftrag">
+    <class name="IAMaterialEntnahme" table="T_IA_MAT_ENTNAHME">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_IA_MAT_ENTNAHME_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="iaBudgetId" column="BUDGET_ID" type="long" not-null="true"/>
+        <property name="entnahmetyp" column="ENTNAHMETYP" type="short" not-null="true"/>
+        <property name="lagerId" column="LAGER_ID" type="long" not-null="true"/>
+        <property name="createdAt" column="CREATED_AT" type="date" not-null="true"/>
+        <property name="createdFrom" column="CREATED_FROM" type="string" not-null="true"/>
+        <property name="hvtIdStandort" column="HVT_ID_STANDORT" type="long"/>
+
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Darstellung der
+Standardeigenschaften eines DB-Accounts.
+-->
+<sf>
+    <Text name="border.title.1">Massenbenachrichtigung: Auftragsermittlung</Text>
+
+    <Text name="border.title.2">Massenbenachrichtigung: Durchführung</Text>
+
+    <Label name="auftraege.pot"><text>Potentiell relevante SDSL-Aufträge:</text></Label>
+    <TextField>
+        <tooltip>Anzahl der potentiell relevanten SDSL-Aufträge</tooltip>
+    </TextField>
+
+    <Label name="mb.beginn"><text>Beginn:</text></Label>
+    <DateComponent name="mb.beginn">
+        <columns>15</columns>
+        <format type="date">dd.MM.yyyy HH:mm</format>
+    </DateComponent>
+    <DateComponent name="mb.begin.time">
+        <format type="date">HH:mm</format>
+    </DateComponent>
+
+    <Label name="mb.ende"><text>TTS Eröffnung / Ende:</text></Label>
+    <DateComponent name="mb.ende">
+        <format type="date">dd.MM.yyyy HH:mm</format>
+    </DateComponent>
+
+    <Label name="auftraege"><text>Aufträge für diesen Zeitraum:</text></Label>
+
+    <Label name="mb.generieren.fax"><text>Fax generieren:</text></Label>
+    <CheckBox name="mb.generieren.fax">
+        <tooltip>Flag, ob ein Fax generiert werden soll</tooltip>
+    </CheckBox>
+
+    <Label name="mb.generieren.email"><text>E-Mail generieren:</text></Label>
+    <CheckBox name="mb.generieren.email">
+        <tooltip>Flag, ob eine E-Mail generiert werden soll</tooltip>
+    </CheckBox>
+
+    <Label name="mb.vorlage"><text>Vorlage:</text></Label>
+    <ComboBox name="mb.vorlage">
+        <tooltip>Vorlage, die gesendet werden soll</tooltip>
+    </ComboBox>
+
+    <Label name="mb.ticket"><text>Ticket Nummer:</text></Label>
+    <TextField name="mb.ticket">
+        <tooltip>Nummer des Tickets für die Störung</tooltip>
+        <columns>40</columns>
+    </TextField>
+
+    <Label name="mb.text"><text>Text:</text></Label>
+    <TextArea name="mb.text">
+        <tooltip>Text für die Benachrichtigung</tooltip>
+        <rows>10</rows>
+        <columns>40</columns>
+    </TextArea>
+
+    <Label name="mb.ids"><text>Technische Auftrags-Nummern:</text></Label>
+    <TextArea name="mb.ids">
+        <tooltip>Technische IDs der zu benachrichtigenden Aufträge</tooltip>
+        <rows>20</rows>
+        <columns>10</columns>
+    </TextArea>
+
+    <Button name="mb.start">
+        <text>Massenbenachrichtigung erstellen</text>
+        <tooltip>Erstellt eine Massenbenachrichtigung für die angegebenen Auftrags-IDs mit den eingegebenen Daten</tooltip>
+    </Button>
+
+    <Button name="mb.reset.auftraege">
+        <text>Daten korrigieren</text>
+        <tooltip>Löscht die Auftragsliste und ermöglicht es, die eingegebenen Daten zu korrigieren</tooltip>
+    </Button>
+
+    <Button name="mb.determine.auftraege">
+        <text>Aufträge ermitteln</text>
+        <tooltip>Ermittelt die Aufträge für die angegebenen Daten auf der ausgewählten Hardware</tooltip>
+    </Button>
+
+    <Button name="mb.auftraege.uebernehmen">
+        <text>Alle Aufträge Übernehmen</text>
+        <tooltip>Übernimmt alle ermittelten Aufträge in die Auftrags-ID-Liste</tooltip>
+    </Button>
+
+    <Button name="mb.auftraege.uebernehmen.selected">
+        <text>Ausgewählte Aufträge Übernehmen</text>
+        <tooltip>Übernimmt alle ausgewählten Aufträge in die Auftrags-ID-Liste</tooltip>
+    </Button>
+</sf>

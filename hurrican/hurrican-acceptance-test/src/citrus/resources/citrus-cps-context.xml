@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:citrus-ws="http://www.citrusframework.org/schema/ws/config"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+
+       http://www.citrusframework.org/schema/ws/config http://www.citrusframework.org/schema/ws/config/citrus-ws-config.xsd">
+
+    <citrus-ws:server id="cpsSyncWebServer"
+                      auto-start="true"
+                      timeout="30000"
+                      port="${cps.sync.web.server.port}"
+                      root-parent-context="true"
+                      context-config-location="classpath:cps-servlet-context.xml"/>
+
+    <citrus-ws:server id="cpsAsyncWebServer"
+                      auto-start="true"
+                      timeout="30000"
+                      port="${cps.async.web.server.port}"
+                      root-parent-context="true"
+                      context-config-location="classpath:cps-servlet-context.xml"/>
+
+    <citrus-ws:client id="cpsSourceAgentClient"
+                      request-url="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/sourceAgent"
+                      message-factory="messageFactory12"
+                      fault-strategy="propagateError"
+                      timeout="60000"/>
+
+    <!-- client for the hurrican web service /hurricanweb/cps-->
+    <citrus-ws:client id="cpsSubscriberClient"
+                      request-url="http://${hurricanweb.http.host}:${hurricanweb.http.port}/hurricanweb/cps"
+                      message-factory="messageFactory11"
+                      fault-strategy="propagateError"
+                      timeout="60000"/>
+
+</beans>

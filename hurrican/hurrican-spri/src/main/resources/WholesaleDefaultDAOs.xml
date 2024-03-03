@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Spring-Konfigurationsdatei fuer DAO-Objekte im CustomerCare-Bereich.
+Die Datei wird von WholesaleDefaultServices.xml auf Hurrican-base importiert!
+
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+
+    <context:annotation-config/>
+
+    <!-- Definition einer einfachen DAO-Klasse fuer Find-Operationen -->
+    <bean id="wholesaleAuditDAO" class="de.mnet.hurrican.wholesale.dao.impl.WholesaleAuditDAOImpl" />
+
+</beans>

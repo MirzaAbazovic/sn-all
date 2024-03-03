@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: SERVICE-APP-deployment
+  namespace: NAMESPACE
+spec:
+  template:
+    spec:
+      containers:
+        - name: SERVICE-APP
+          env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: "testenv"
+          - name: CONFIG_SERVER
+            value: http://config-server-service-ENV.NAMESPACE-ENV.svc.cluster.local:8888

@@ -1,0 +1,187 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Body>
+        <wfs:createOrder xmlns:wfs="http://www.mnet.de/esb/cdm/Resource/WorkforceService/v1">
+            <wfs:order>
+                <wfs:id>@startsWith('HUR_')@</wfs:id>
+                <wfs:displayId>@startsWith('${order.no}-')@</wfs:displayId>
+                <wfs:customerOrderId>${order.no}</wfs:customerOrderId>
+                <wfs:description>
+                    <wfs:summary>SDSL 10000</wfs:summary>
+                    <wfs:techParams>
+                        <wfs:common>
+                            <wfs:lineId>@ignore@</wfs:lineId>
+                            <wfs:contractId>@ignore@</wfs:contractId>
+                            <wfs:customerNumber>@ignore@</wfs:customerNumber>
+                            <wfs:additionalContractInfo>${order.no}</wfs:additionalContractInfo>
+                            <wfs:porting>
+                                <wfs:portingDate>@matchesDatePattern('dd.MM.yyyy')@</wfs:portingDate>
+                                <wfs:lastCarrier>DTAG</wfs:lastCarrier>
+                            </wfs:porting>
+                        </wfs:common>
+                        <wfs:CPE>
+                            <wfs:type>${device.type}</wfs:type>
+                            <wfs:manufacturer>${device.manufacturer}</wfs:manufacturer>
+                            <wfs:model>${device.model}</wfs:model>
+                            <wfs:serialNumber>${device.serial.no}</wfs:serialNumber>
+                        </wfs:CPE>
+                        <wfs:CPE>
+                            <wfs:type>Hurrican-CPE</wfs:type>
+                            <wfs:serialNumber>123-456-789</wfs:serialNumber>
+                            <wfs:NAT>nein</wfs:NAT>
+                            <wfs:DNS>nein</wfs:DNS>
+                            <wfs:SNMPMnet>nein</wfs:SNMPMnet>
+                            <wfs:SNMPCustomer>nein</wfs:SNMPCustomer>
+                            <wfs:QoS>nein</wfs:QoS>
+                        </wfs:CPE>
+                        <wfs:IPSecS2S>
+                            <wfs:hostName>@ignore@</wfs:hostName>
+                            <wfs:hostNamePassive>@ignore@</wfs:hostNamePassive>
+                            <wfs:WANIp>@ignore@</wfs:WANIp>
+                            <wfs:WANSubnet>@ignore@</wfs:WANSubnet>
+                            <wfs:WANGateway>@ignore@</wfs:WANGateway>
+                            <wfs:loopbackIp>@ignore@</wfs:loopbackIp>
+                            <wfs:loopbackIpPassive>@ignore@</wfs:loopbackIpPassive>
+                            <wfs:VLANIp>@ignore@</wfs:VLANIp>
+                            <wfs:encryptedNetwork>@ignore@</wfs:encryptedNetwork>
+                            <wfs:VLANSubnet>@ignore@</wfs:VLANSubnet>
+                            <wfs:dialInNumber>@ignore@</wfs:dialInNumber>
+                            <wfs:splitTunnel>nein</wfs:splitTunnel>
+                            <wfs:presharedKey>nein</wfs:presharedKey>
+                            <wfs:certificate>nein</wfs:certificate>
+                            <wfs:ipsDescription>@ignore@</wfs:ipsDescription>
+                            <wfs:carrier>@ignore@</wfs:carrier>
+                            <wfs:bandwidth>@ignore@</wfs:bandwidth>
+                            <wfs:ipsType>@ignore@</wfs:ipsType>
+                        </wfs:IPSecS2S>
+                        <wfs:IPAddress>
+                            <wfs:version>v6</wfs:version>
+                            <wfs:type>IPV6_full</wfs:type>
+                            <wfs:address>2001:0db8:a001::</wfs:address>
+                        </wfs:IPAddress>
+                        <wfs:dialUpAccess>
+                            <wfs:accountId>@ignore@</wfs:accountId>
+                            <wfs:realm>@dsl.mnet-online.de</wfs:realm>
+                            <wfs:password>nichtsogeheim</wfs:password>
+                        </wfs:dialUpAccess>
+                        <wfs:dialUpAccessVoIP>
+                            <wfs:account>${order.no}-VOIP</wfs:account>
+                            <wfs:password>voice</wfs:password>
+                        </wfs:dialUpAccessVoIP>
+                        <wfs:dialNumber>
+                            <wfs:areaDialingCode>${rufnummer.onkz.0}</wfs:areaDialingCode>
+                            <wfs:number>${rufnummer.dnbase.0}</wfs:number>
+                            <wfs:main>false</wfs:main>
+                            <wfs:portMode>PORTIERUNG_K</wfs:portMode>
+                            <wfs:validFrom>@ignore@</wfs:validFrom>
+                            <wfs:validTo>9999-12-31</wfs:validTo>
+                        </wfs:dialNumber>
+                        <wfs:technicalService>
+                            <wfs:tsType>@endsWith('STREAM')@</wfs:tsType>
+                            <wfs:tsName>@endsWith(' kbit/s')@</wfs:tsName>
+                        </wfs:technicalService>
+                        <wfs:technicalService>
+                            <wfs:tsType>@endsWith('STREAM')@</wfs:tsType>
+                            <wfs:tsName>@endsWith(' kbit/s')@</wfs:tsName>
+                        </wfs:technicalService>
+                        <wfs:site>
+                            <wfs:type>Endstelle_B</wfs:type>
+                            <wfs:location>
+                                <wfs:street>Komischweg</wfs:street>
+                                <wfs:houseNumber>@ignore@</wfs:houseNumber>
+                                <wfs:city>Freierfunden</wfs:city>
+                                <wfs:zipCode>99293</wfs:zipCode>
+                            </wfs:location>
+                            <wfs:device>
+                                <wfs:manufacturer>hersteller</wfs:manufacturer>
+                            </wfs:device>
+                            <wfs:HVT>@ignore@</wfs:HVT>
+                            <wfs:downstream>16000</wfs:downstream>
+                            <wfs:upstream>256</wfs:upstream>
+                            <wfs:wiringData>
+                                <wfs:type>EQ-In</wfs:type>
+                                <wfs:deviceName>@ignore@</wfs:deviceName>
+                                <wfs:moduleType>ABLTF</wfs:moduleType>
+                                <wfs:physicType>ADSL2+ (H)</wfs:physicType>
+                                <wfs:HWEQN>1-2-3-4</wfs:HWEQN>
+                                <wfs:panelPin1>L1 R1</wfs:panelPin1>
+                            </wfs:wiringData>
+                            <wfs:wiringData>
+                                <wfs:type>EQ-Out</wfs:type>
+                                <wfs:physicType>ADSL2+ (H)</wfs:physicType>
+                                <wfs:HWEQN>1-2-3-4</wfs:HWEQN>
+                                <wfs:panelPin1>01 56</wfs:panelPin1>
+                            </wfs:wiringData>
+                        </wfs:site>
+                        <wfs:site>
+                            <wfs:type>Endstelle_B</wfs:type>
+                            <wfs:location>
+                                <wfs:street>Komischweg</wfs:street>
+                                <wfs:houseNumber>@ignore@</wfs:houseNumber>
+                                <wfs:city>Freierfunden</wfs:city>
+                                <wfs:zipCode>99293</wfs:zipCode>
+                            </wfs:location>
+                            <wfs:device>
+                                <wfs:manufacturer>hersteller</wfs:manufacturer>
+                            </wfs:device>
+                            <wfs:HVT>@ignore@</wfs:HVT>
+                            <wfs:wiringData>
+                                <wfs:type>EQ-In</wfs:type>
+                                <wfs:deviceName>@ignore@</wfs:deviceName>
+                                <wfs:moduleType>ABLTF</wfs:moduleType>
+                                <wfs:physicType>ADSL2+ (H)</wfs:physicType>
+                                <wfs:HWEQN>1-2-3-4</wfs:HWEQN>
+                                <wfs:panelPin1>L1 R1</wfs:panelPin1>
+                            </wfs:wiringData>
+                            <wfs:wiringData>
+                                <wfs:type>EQ-Out</wfs:type>
+                                <wfs:physicType>ADSL2+ (H)</wfs:physicType>
+                                <wfs:HWEQN>1-2-3-4</wfs:HWEQN>
+                                <wfs:panelPin1>01 56</wfs:panelPin1>
+                            </wfs:wiringData>
+                        </wfs:site>
+                    </wfs:techParams>
+                </wfs:description>
+                <wfs:type>Surf+Fon-Flat</wfs:type>
+                <wfs:activityType>RTL_NEU_MK_Premium</wfs:activityType>
+                <wfs:activitySubtype>Neuschaltung</wfs:activitySubtype>
+                <wfs:contactPerson>
+                    <wfs:role>Endkunde Montageleistung</wfs:role>
+                    <wfs:firstName>Sepp</wfs:firstName>
+                    <wfs:lastName>Huber</wfs:lastName>
+                    <wfs:communication>
+                        <wfs:phone>+49 89 555222</wfs:phone>
+                        <wfs:mobile>+49 176 123456</wfs:mobile>
+                        <wfs:email>ncuhwniodvasdfhjn@mailinator.com</wfs:email>
+                        <wfs:fax>+49 89 321</wfs:fax>
+                    </wfs:communication>
+                </wfs:contactPerson>
+                <wfs:contactPerson>
+                    <wfs:role>Kunde</wfs:role>
+                    <wfs:firstName>Sepp</wfs:firstName>
+                    <wfs:lastName>Huber</wfs:lastName>
+                    <wfs:communication>
+                        <wfs:phone>+49 89 555222</wfs:phone>
+                        <wfs:mobile>+49 176 123456</wfs:mobile>
+                        <wfs:email>ncuhwniodvasdfhjn@mailinator.com</wfs:email>
+                        <wfs:fax>+49 89 321</wfs:fax>
+                    </wfs:communication>
+                </wfs:contactPerson>
+                <wfs:qualification>Endkundenservice HVT</wfs:qualification>
+                <wfs:qualification>SDSL</wfs:qualification>
+                <wfs:location>
+                    <wfs:street>Komischweg</wfs:street>
+                    <wfs:houseNumber>@ignore@</wfs:houseNumber>
+                    <wfs:zipCode>99293</wfs:zipCode>
+                    <wfs:city>Freierfunden</wfs:city>
+                    <wfs:country>DE</wfs:country>
+                </wfs:location>
+                <wfs:requestedTimeSlot>
+                    <wfs:earliestStart>@matches('${realisierungstermin}T13:00:00.000+.*')@</wfs:earliestStart>
+                    <wfs:latestStart>@matches('${realisierungstermin}T16:59:00.000+.*')@</wfs:latestStart>
+                    <wfs:latestEnd>@matches('${realisierungstermin}T18:14:00.000+.*')@</wfs:latestEnd>
+                </wfs:requestedTimeSlot>
+                <wfs:plannedDuration>75</wfs:plannedDuration>
+            </wfs:order>
+        </wfs:createOrder>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

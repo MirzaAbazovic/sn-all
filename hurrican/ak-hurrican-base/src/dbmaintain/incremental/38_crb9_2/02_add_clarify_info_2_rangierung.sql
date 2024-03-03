@@ -1,0 +1,3 @@
+ALTER TABLE T_RANGIERUNG ADD RELEASE_CLARIFY_INFO VARCHAR2(128);
+
+COMMENT ON COLUMN T_RANGIERUNG.RELEASE_CLARIFY_INFO IS 'Klärfall Info für Rangierungsfreigaben, die manuell geklärt werden müssen';

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Konfiguration der Rufnummernleistungen.
+-->
+<sf>
+	<Button name="new.leistung">
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Legt eine neue Rufnummernleistung an </tooltip>
+    </Button>
+    
+    <Button name="delete.leistung">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Löscht den aktuell ausgewählten Datensatz für die Leistung</tooltip>
+    </Button>
+</sf>

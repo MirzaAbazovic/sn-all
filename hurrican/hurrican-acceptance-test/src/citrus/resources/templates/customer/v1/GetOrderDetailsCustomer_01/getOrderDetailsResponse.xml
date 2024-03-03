@@ -1,0 +1,18 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <getOrderDetailsResponse xmlns="http://www.mnet.de/esb/cdm/Customer/CustomerOrderService/v1">
+            <customerId>${customerId}</customerId>
+            <customerOrderId>${customerOrderId}</customerOrderId>
+            <contactPerson>
+                <role>CUSTOMER</role>
+                <firstName>${customerFirstname}</firstName>
+                <lastName>${customerLastname}</lastName>
+                <communication>
+                    <phone>0123/445566</phone>
+                    <fax>0123/445566</fax>
+                    <eMail>@ignore@</eMail>
+                </communication>
+            </contactPerson>
+        </getOrderDetailsResponse>
+    </soap:Body>
+</soap:Envelope>

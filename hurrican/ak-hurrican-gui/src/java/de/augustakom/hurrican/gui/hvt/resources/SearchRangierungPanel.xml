@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definition fuer das Panel zur Ermittlung von freien Rangierungen
+an einem bestimmten HVT.    
+-->
+<sf>
+    
+    <Text name="search.title">Suchparameter:</Text>
+    <Label name="search.result"><text>Ergebnis (Anzahl freie Rangierungen):</text></Label>
+    <Label name="result.count"><text></text></Label>
+    
+    <Label name="hvt.standort"><text>HVT-Standort:</text></Label>
+    <ReferenceField name="hvt.standort">
+		<tooltip>Auswahl des HVT-Standorts, an dem nach freien Rangierungen gesucht werden soll</tooltip>
+		<columns>25</columns>
+		<id.property>hvtIdStandort</id.property>
+		<name.property>ortsteil</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.view.HVTGruppeStdView</reference.class>
+		<selection.dialog.class>de.augustakom.hurrican.gui.hvt.HVTSelectionDialog</selection.dialog.class>
+	</ReferenceField>
+    
+    <Label name="physiktyp"><text>Physiktyp:</text></Label>
+    <ComboBox name="physiktyp">
+        <tooltip>Auswahl des Physiktyps, für den nach freien Rangierungen gesucht werden soll</tooltip>
+    </ComboBox>
+    
+    <Label name="child.physik"><text>zug. Physiktyp:</text></Label>
+    <ComboBox name="child.physik">
+        <tooltip>Physiktyp des Child-Produkts (z.B. DSL-a/b), der für die Suche berücksichtigt werden soll</tooltip>
+    </ComboBox>
+    
+    <Button name="search">
+        <text>Suchen</text>
+        <tooltip>Führt die Suche nach freien Rangierungen durch</tooltip>
+    </Button>
+    
+</sf>

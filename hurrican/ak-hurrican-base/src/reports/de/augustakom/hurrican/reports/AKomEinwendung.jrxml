@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="AKomEinwendung" language="java" pageWidth="510" pageHeight="842" columnWidth="510" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="com.jasperassistant.designer.DataSource" value="emptyDS"/>
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+	<property name="com.jasperassistant.designer.Units" value="Millimeters"/>
+	<property name="com.jasperassistant.designer.Grid" value="true"/>
+	<property name="com.jasperassistant.designer.GridHeight" value="12"/>
+	<property name="com.jasperassistant.designer.GridWidth" value="12"/>
+	<detail>
+		<band height="23">
+			<staticText>
+				<reportElement positionType="Float" x="0" y="0" width="497" height="23">
+					<printWhenExpression><![CDATA[new Boolean(true)]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Bottom" isStyledText="true">
+					<font fontName="Arial" size="6" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Berechtigte Einwendungen gegen einzelne in der Rechnung gestellte Forderungen richten Sie bitte schriftlich oder zur Niederschrift an die M-net Telekommunikations GmbH. Zur Vermeidung von Rechtsnachteilen müssen die Einwendungen innerhalb von 8 Wochen nach Zugang der Rechnung erhoben werden, ansonsten gilt die Rechnung als genehmigt. 
+Gesetzliche Ansprüche bei begründeten Einwendungen nach Fristablauf bleiben unberührt.]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

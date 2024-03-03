@@ -1,0 +1,21 @@
+--
+-- In diesem File sind die vorzunehmenden Datentyp-Aenderungen
+-- bei der Migration MySQL --> Oracle angegeben.
+-- In dem generierten DDL-Script muessen die Datentypen anschliessend
+-- per Hand geaendert werden!
+--
+
+MySQL-Type  	-->	Oracle-Type
+INTEGER				NUMBER
+TINYINT				NUMBER
+SMALLINT			NUMBER
+FLOAT				NUMBER
+DECIMAL				NUMBER
+
+CHAR				VARCHAR2		- ausser eine feste Laenge wird benoetigt
+VARCHAR				VARCHAR2
+TEXT				VARCHAR2(4000)  - je nach notwendiger Laenge
+DATETIME			DATE
+BIT					NUMBER(1)
+
+DEFAULT 'null'		DEFAULT null

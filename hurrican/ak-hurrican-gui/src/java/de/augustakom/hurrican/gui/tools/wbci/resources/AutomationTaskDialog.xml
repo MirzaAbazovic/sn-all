@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den AutomationTask Dialog
+-->
+<sf>
+
+    <Text name="dialog.title">Automatisierungsschritt abschließen</Text>
+
+    <Label name="name">
+        <text>Name:</text>
+    </Label>
+    <TextField name="name">
+        <columns>40</columns>
+    </TextField>
+
+    <Label name="status">
+        <text>Status:</text>
+    </Label>
+    <TextField name="status">
+        <columns>40</columns>
+    </TextField>
+
+    <Label name="automatable">
+        <text>Automatisierbar:</text>
+    </Label>
+    <CheckBox name="automatable">
+        <tooltip>Angabe, ob es sich um einen automatisierbaren Schritt handelt</tooltip>
+    </CheckBox>
+
+    <Label name="created.at">
+        <text>Erzeugt am:</text>
+    </Label>
+    <DateComponent name="created.at">
+        <tooltip>Datum, zu dem der Protokolleintrag erzeugt wurde</tooltip>
+        <format type="date">dd.MM.yyyy HH:mm:ss</format>
+    </DateComponent>
+
+    <Label name="completed.at">
+        <text>Abgeschlossen am:</text>
+    </Label>
+    <DateComponent name="completed.at">
+        <tooltip>Datum, zu dem der Protokolleintrag abgeschlossen wurde</tooltip>
+        <format type="date">dd.MM.yyyy HH:mm:ss</format>
+    </DateComponent>
+
+    <Label name="execution.log">
+        <text>Ausführungslog:</text>
+    </Label>
+    <TextArea name="execution.log">
+        <columns>150</columns>
+        <rows>40</rows>
+    </TextArea>
+
+    <Label name="user">
+        <text>Benutzername:</text>
+    </Label>
+    <TextField name="user">
+        <columns>40</columns>
+    </TextField>
+
+    <Text name="save.txt">Erledigen</Text>
+    <Text name="save.tooltip">Automatisierungsschritt erledigen</Text>
+
+    <Text name="cancel.txt">Abbrechen</Text>
+    <Text name="cancel.tooltip">Schließt den Dialog ohne den Automatisierungsschritt zu erledigen</Text>
+
+</sf>

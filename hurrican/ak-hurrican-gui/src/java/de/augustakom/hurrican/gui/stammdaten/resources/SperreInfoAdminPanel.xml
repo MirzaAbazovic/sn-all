@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Admin-Panel fuer die Sperr-Infos.
+-->
+<sf>
+    
+    <Label name="id"><text>ID:</text></Label>
+    <TextField name="id">
+        <tooltip>ID des Datensatzes</tooltip>
+        <columns>15</columns>
+    </TextField>
+    
+    <Label name="email"><text>EMail:</text></Label>
+    <TextField name="email">
+        <tooltip>EMail, an die eine Sperr-Benachrichtigung geschickt werden soll</tooltip>
+    </TextField>
+    
+    <Label name="abteilung"><text>Abteilung:</text></Label>
+    <ComboBox name="abteilung">
+        <tooltip>Abteilung, zu der die EMail-Adresse (bzw. der Empfänger) gehört</tooltip>
+    </ComboBox>
+    
+    <Label name="active"><text>Aktiv:</text></Label>
+    <CheckBox name="active">
+        <tooltip>Flag, ob an die EMail-Adresse eine Benachrichtigung geschickt werden soll</tooltip>
+    </CheckBox>
+    
+</sf>

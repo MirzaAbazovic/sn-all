@@ -1,0 +1,1 @@
+update users set projektleiter='1' where lower(loginname)='projekt.mgm.np.agb';

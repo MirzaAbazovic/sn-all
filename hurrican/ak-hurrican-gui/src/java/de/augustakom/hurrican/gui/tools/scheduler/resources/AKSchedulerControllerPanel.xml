@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Scheduler-Controler Panel.
+-->
+<sf>
+
+    <Text name="border.url">URL</Text>
+    <Text name="border.summary">Summary</Text>
+    <Text name="border.scheduler">Scheduler</Text>
+    <Text name="border.table.jobs">Jobs und Triggers</Text>
+
+    <Label name="scheduler.name"><text>Instanz-Name:</text></Label>
+    <TextField name="scheduler.name">
+        <tooltip>Name der Scheduler-Instanz</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="scheduler.host"><text>RMI-Host:</text></Label>
+    <TextField name="scheduler.host">
+        <tooltip>Host, auf dem der Scheduler laeuft</tooltip>
+    </TextField>
+
+    <Label name="scheduler.port"><text>RMI-Port:</text></Label>
+    <TextField name="scheduler.port">
+        <tooltip>Port, ueber den der Scheduler erreichbar ist</tooltip>
+    </TextField>
+
+    <TextArea name="summary">
+        <tooltip>Zeigt eine Zusammenfassung ueber den Scheduler an</tooltip>
+        <rows>7</rows>
+        <columns>30</columns>
+    </TextArea>
+
+    <CheckBox name="scheduler.standby">
+        <text>Scheduler Standby Modus</text>
+        <tooltip>Versetzt den Scheduler in Standby Modus oder startet ihn wieder</tooltip>
+        <mnemonic>VK_S</mnemonic>
+    </CheckBox>
+
+    <Label name="jobs.caption"><text>Jobs</text></Label>
+    <CheckBox name="job.pause">
+        <text>Job Pause Modus</text>
+        <tooltip>Versetzt den gewaehlten Job in den Pause Modus oder startet ihn wieder</tooltip>
+        <mnemonic>VK_J</mnemonic>
+    </CheckBox>
+
+    <Button name="job.trigger">
+        <text>Job triggern</text>
+        <tooltip>Job unverzueglich ausfuehren</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/flag_complete.gif</icon>
+        <mnemonic>VK_R</mnemonic>
+    </Button>
+
+    <Label name="triggers.caption"><text>Triggers</text></Label>
+    <CheckBox name="trigger.pause">
+        <text>Trigger Pause Modus</text>
+        <tooltip>Versetzt den gewaehlten Trigger in den Pause Modus oder startet ihn wieder</tooltip>
+        <mnemonic>VK_T</mnemonic>
+    </CheckBox>
+
+    <Button name="trigger.edit">
+        <text>Bearbeiten</text>
+        <tooltip>Trigger bearbeiten</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/edit.gif</icon>
+        <mnemonic>VK_B</mnemonic>
+    </Button>
+
+    <Button name="trigger.add">
+        <text>Hinzufuegen</text>
+        <tooltip>Trigger hinzufuegen</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/plus.gif</icon>
+        <mnemonic>VK_H</mnemonic>
+    </Button>
+
+    <Button name="trigger.delete">
+        <text>Loeschen</text>
+        <tooltip>Trigger loeschen</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <mnemonic>VK_L</mnemonic>
+    </Button>
+
+</sf>

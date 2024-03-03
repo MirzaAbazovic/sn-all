@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema  xmlns:ns0="http://mnet.de/hurricanweb/command/port/types"
+            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://mnet.de/hurricanweb/command/port/types">
+
+    <xs:element name="CommandPortDataRequest" type="ns0:CommandPortDataRequest"/>
+    <xs:element name="CommandPortDataRequestResponse" type="ns0:CommandPortDataRequestResponse"/>
+    <xs:element name="CommandPortDataRequestFailure" type="ns0:CommandPortDataRequestFailure"/>
+
+    <xs:complexType name="CommandPortDataRequest">
+        <xs:sequence>
+            <xs:element name="mdu" type="xs:string"/>
+             <xs:element name="ports">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="port" minOccurs="1" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="bgTyp" type="xs:string"/>
+                                    <xs:element name="modulNummer" type="xs:string"/>
+                                    <xs:element name="hardwareVariante" type="xs:string"/>
+                                    <xs:element name="port" type="xs:string"/>
+                                    <xs:element name="schnittstelle" type="xs:string"/>
+                                    <xs:element name="leiste" type="xs:string"/>
+                                    <xs:element name="stift" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CommandPortDataRequestResponse">
+        <xs:sequence>
+            <xs:element name="mdu" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CommandPortDataRequestFailure">
+        <xs:sequence>
+            <xs:element name="mdu" type="xs:string"/>
+            <xs:element name="ports">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="port" minOccurs="1" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="port" type="xs:string"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="errorMsg" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

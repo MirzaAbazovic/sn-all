@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das VoIP-Panel.
+-->
+<sf>
+    <Label name="VoipDn2DnBlockView.anfang">
+        <text>Start:</text>
+    </Label>
+    <FormattedTextField name="FormattedTextField.anfang">
+        <tooltip>Startwert des Rufnummernblocks</tooltip>
+        <columns>20</columns>
+        <format type="number">#########</format>
+    </FormattedTextField>
+
+    <Label name="VoipDn2DnBlockView.ende">
+        <text>Ende:</text>
+    </Label>
+    <FormattedTextField name="FormattedTextField.ende">
+        <tooltip>Endwert des Rufnummernblocks</tooltip>
+        <columns>20</columns>
+        <format type="number">###############################</format>
+    </FormattedTextField>
+
+    <Label name="VoipDn2DnBlockView.zentrale">
+        <text>Zentrale:</text>
+    </Label>
+</sf>

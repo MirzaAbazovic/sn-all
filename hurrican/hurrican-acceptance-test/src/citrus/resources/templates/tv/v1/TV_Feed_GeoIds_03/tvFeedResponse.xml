@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns3:getTVFeedData4GeoIdsResponse xmlns:ns3="http://www.mnet.de/hurrican/tvfeed/1.0/">
+    <geoIdResponses>
+        <queriedGeoId>${mitversorgteGeoId}</queriedGeoId>
+        <resultSets>
+            <techOrder>@ignore@</techOrder>
+            <techOrderState>In Betrieb</techOrderState>
+            <billingOrder>${order.no}</billingOrder>
+            <techLocationName>@ignore@</techLocationName>
+            <geoId>
+                <geoId>${mitversorgteGeoId}</geoId>
+                <validFrom>@ignore@</validFrom>
+                <validTo>@ignore@</validTo>
+            </geoId>
+        </resultSets>
+        <resultSets>
+            <techOrder>@ignore@</techOrder>
+            <techOrderState>In Betrieb</techOrderState>
+            <billingOrder>919999995</billingOrder>
+            <techLocationName>${versorgeneOrtsteil}</techLocationName>
+            <deviceIdentifier>@ignore@</deviceIdentifier>
+            <portIdentifier>1-2-3-4</portIdentifier>
+            <geoId>
+                <geoId>${versorgendeGeoId}</geoId>
+                <validFrom>@ignore@</validFrom>
+                <validTo>@ignore@</validTo>
+            </geoId>
+        </resultSets>
+    </geoIdResponses>
+</ns3:getTVFeedData4GeoIdsResponse>

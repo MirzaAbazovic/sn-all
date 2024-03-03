@@ -1,0 +1,1 @@
+update t_feature set NAME='ORDER_AUTOMATION' where name='ORDER AUTOMATION';

@@ -1,0 +1,24 @@
+[
+  {
+      "name": "orderCreate",
+      "note": [
+        {
+          "date": "2023-10-27T00:00:00.000Z"
+        }
+      ],
+      "orderItem": [
+        {
+          "resource": {
+            "resourceCharacteristic": [
+              {
+                "name": "characteristic",
+                "valueType": "valueType"
+              }
+            ]
+          }
+        }
+      ]
+
+  }
+
+]

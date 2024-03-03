@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1">
+	<documentation>Version 1.0</documentation>    
+	<types>
+		<xsd:schema targetNamespace="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1">
+			<xsd:include schemaLocation="ResourceInventoryService.xsd"/>
+	</xsd:schema>
+	</types>
+    <message name="updateResource">
+        <part name="in" element="tns:updateResource"/>
+    </message>
+    <message name="updateResourceResponse">
+        <part name="out" element="tns:updateResourceResponse"/>
+    </message>
+    <message name="getResourceUsage">
+        <part name="in" element="tns:getResourceUsage"/>
+    </message>
+    <message name="getResourceUsageResponse">
+        <part name="out" element="tns:getResourceUsageResponse"/>
+    </message>
+    <message name="getResourceSpecs">
+        <part name="in" element="tns:getResourceSpecs"/>
+    </message>
+    <message name="getResourceSpecsResponse">
+        <part name="out" element="tns:getResourceSpecsResponse"/>
+    </message>
+    <message name="ServiceFault">
+		<part name="fault" element="tns:ServiceFault"/>
+	</message>
+    <portType name="ResourceInventoryService">
+        <operation name="updateResource">
+            <input message="tns:updateResource"/>
+            <output message="tns:updateResourceResponse"/>
+            <fault name="fault1" message="tns:ServiceFault"/>
+        </operation>
+        <operation name="getResourceUsage">
+            <input message="tns:getResourceUsage"/>
+            <output message="tns:getResourceUsageResponse"/>
+            <fault name="fault1" message="tns:ServiceFault"/>
+        </operation>
+        <operation name="getResourceSpecs">
+            <input message="tns:getResourceSpecs"/>
+            <output message="tns:getResourceSpecsResponse"/>
+            <fault name="fault1" message="tns:ServiceFault"/>
+        </operation>
+    </portType>
+    <binding name="ResourceInventoryServiceHTTPBinding"
+                 type="tns:ResourceInventoryService">
+      <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <operation name="updateResource">
+         <soap:operation style="document" soapAction="/ResourceInventoryService/updateResource"/>
+         <input>
+            <soap:body use="literal" parts="in"/>
+         </input>
+         <output>
+            <soap:body use="literal" parts="out"/>
+         </output>
+         <fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </fault>
+      </operation>
+      <operation name="getResourceUsage">
+         <soap:operation style="document" soapAction="/ResourceInventoryService/getResourceUsage"/>
+         <input>
+            <soap:body use="literal" parts="in"/>
+         </input>
+         <output>
+            <soap:body use="literal" parts="out"/>
+         </output>
+         <fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </fault>
+      </operation>
+      <operation name="getResourceSpecs">
+         <soap:operation style="document" soapAction="/ResourceInventoryService/getResourceSpecs"/>
+         <input>
+            <soap:body use="literal" parts="in"/>
+         </input>
+         <output>
+            <soap:body use="literal" parts="out"/>
+         </output>
+         <fault name="fault1">
+            <soap:fault use="literal" name="fault1"/>
+         </fault>
+      </operation>
+   </binding>
+    <service name="ResourceInventoryService">
+      <port name="ResourceInventoryServiceHTTP"
+                 binding="tns:ResourceInventoryServiceHTTPBinding">
+         <soap:address location="http://@domain.loadbalancer.url@/hurrican/Resource/ResourceInventoryService/v1"/>
+      </port>
+   </service>
+</definitions>

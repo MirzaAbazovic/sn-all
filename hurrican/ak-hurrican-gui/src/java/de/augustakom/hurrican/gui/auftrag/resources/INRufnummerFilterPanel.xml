@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das IN-Rufnummer-Filterpanel.
+-->
+<sf>
+    
+    <Label name="in.prefix"><text>IN-Vorwahl:</text></Label>
+    <TextField name="in.rufnummer">
+        <tooltip>Vorwahl der IN-Rufnummer (z.B. 0800)</tooltip>
+        <columns>15</columns>
+    </TextField>
+	
+	<Label name="in.business.nr"><text>IN-Nummer:</text></Label>
+    <TextField name="in.business.nr">
+        <tooltip>gesucht IN-Nummer</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+</sf>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updateResource xmlns="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1 /ResourceInventoryService.xsd">
+    <resource>
+        <id>ont-123</id>
+        <inventory>command</inventory>
+        <resourceSpec>
+            <id>ont-1</id>
+            <inventory>command</inventory>
+        </resourceSpec>
+        <name>ONT-af7f97bf</name>
+        <characteristic>
+            <name>hersteller</name>
+            <value>Huawei</value>
+        </characteristic>
+        <characteristic>
+            <name>modellnummer</name>
+            <value>HG865</value>
+        </characteristic>
+        <characteristic>
+            <name>olt</name>
+            <value>OLT-af7f97bf</value>
+        </characteristic>
+        <characteristic>
+            <name>oltRack</name>
+            <value>1</value>
+        </characteristic>
+        <characteristic>
+            <name>oltSubrack</name>
+            <value>2</value>
+        </characteristic>
+        <characteristic>
+            <name>oltSlot</name>
+            <value>3</value>
+        </characteristic>
+        <characteristic>
+            <name>oltPort</name>
+            <value>4</value>
+        </characteristic>
+        <characteristic>
+            <name>oltGponId</name>
+            <value>5</value>
+        </characteristic>
+        <characteristic>
+            <name>standort</name>
+            <value>OrtsteilExample</value>
+        </characteristic>
+        <characteristic>
+            <name>raumbezeichung</name>
+            <value>RaumExample</value>
+        </characteristic>
+    </resource>
+
+</updateResource>

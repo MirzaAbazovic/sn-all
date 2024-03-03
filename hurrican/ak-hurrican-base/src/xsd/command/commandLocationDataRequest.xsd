@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema  xmlns:ns0="http://mnet.de/hurricanweb/command/location/types"
+            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            attributeFormDefault="unqualified"
+            elementFormDefault="qualified"
+            targetNamespace="http://mnet.de/hurricanweb/command/location/types">
+
+    <xs:element name="CommandLocationDataRequest" type="ns0:CommandLocationDataRequest"/>
+    <xs:element name="CommandLocationDataRequestResponse" type="ns0:CommandLocationDataRequestResponse"/>
+    <xs:element name="CommandLocationDataRequestFailure" type="ns0:CommandLocationDataRequestFailure"/>
+
+    <xs:complexType name="CommandLocationDataRequest">
+        <xs:sequence>
+            <xs:element name="bezeichnung" type="xs:string"/>
+            <xs:element name="geoId" type="xs:long"/>
+            <xs:element name="strasse" type="xs:string"/>
+            <xs:element name="hausnummer" type="xs:string"/>
+            <xs:element name="hausnummerZusatz" type="xs:string" nillable="true"/>
+            <xs:element name="plz" type="xs:string"/>
+            <xs:element name="ort" type="xs:string"/>
+            <xs:element name="niederlassung" type="xs:string"/>
+            <xs:element name="betriebsraum" type="xs:string"/>
+            <xs:element name="fcRaum" type="xs:string"/>
+            <xs:element name="standorttyp" type="xs:string"/>
+            <xs:element name="onkz" type="xs:string"/>
+            <xs:element name="asb" type="xs:string"/>
+            <xs:element name="versorger" type="xs:string" nillable="true"/>
+            <xs:element name="clusterId" type="xs:string" nillable="true"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CommandLocationDataRequestResponse">
+        <xs:sequence>
+            <xs:element name="bezeichnung" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CommandLocationDataRequestFailure">
+        <xs:sequence>
+            <xs:element name="bezeichnung" type="xs:string"/>
+            <xs:element name="errorMsg" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das VPN Konfigurations-Panel.
+-->
+<sf>
+    <Label name="lock">
+        <text>Der Auftrag ist keinem VPN zugeordnet!</text>
+        <foreground>red</foreground>
+    </Label>
+    <Color name="red">
+        <red>255</red>
+        <green>0</green>
+        <blue>0</blue>
+    </Color>
+
+    <Label name="vpn.konf.kanalbuendelung"><text>Kanalbündelung:</text></Label>
+    <CheckBox name="vpn.konf.kanalbuendelung">
+        <tooltip>Bestimmt, ob der VPN-Zugang mit Kanalbündelung erfolgt</tooltip>
+    </CheckBox>
+
+    <Label name="vpn.konf.kanaele"><text>Anzahl Kanäle:</text></Label>
+    <ComboBox name="vpn.konf.kanaele">
+        <tooltip>Anzahl der Kanäle für den VPN-Zugang</tooltip>
+        <items>
+            <item> </item>
+            <item>0</item>
+            <item>1</item>
+            <item>2</item>
+            <item>4</item>
+            <item>6</item>
+            <item>8</item>
+        </items>
+    </ComboBox>
+
+    <Label name="vpn.konf.dialout"><text>Dial-Out:</text></Label>
+    <CheckBox name="vpn.konf.dialout">
+        <tooltip></tooltip>
+    </CheckBox>
+
+    <Label name="vpn.konf.vpls.id"><text>VPLS Id:</text></Label>
+    <TextField name="vpn.konf.vpls.id">
+        <tooltip>VPLS ID fuer das MetroEthernet (Layer 2)</tooltip>
+        <maxchars>32</maxchars>
+    </TextField>
+
+    <Label name="vpn.konf.vbz"><text>Physikal. Leitung:</text></Label>
+    <TextField name="vpn.konf.vbz">
+        <tooltip>Leitung für den VPN-Zugang</tooltip>
+        <columns>13</columns>
+    </TextField>
+
+    <Button name="vpn.konf.vbz">
+        <!--text>zuordnen</text-->
+        <icon>de/augustakom/hurrican/gui/images/new.gif</icon>
+        <tooltip>Ordnet dem VPN-Auftrag eine physikal. Leitung zu</tooltip>
+    </Button>
+
+    <Button name="vpn.konf.vbz.remove">
+        <icon>de/augustakom/hurrican/gui/images/delete.gif</icon>
+        <tooltip>Entfernt die Zuordnung zu der physikal. Leitung</tooltip>
+    </Button>
+
+    <Button name="print.vpn.account">
+        <icon>de/augustakom/hurrican/gui/images/printer.gif</icon>
+        <text>Drucken</text>
+        <tooltip>Druckt die Account-Daten des Auftrags, der dem VPN zugeordnet ist</tooltip>
+    </Button>
+
+    <Label name="vpn.name"><text>VPN Name:</text></Label>
+    <TextField name="vpn.name">
+        <tooltip>Eindeutiger Name des VPNs</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="vpn.type"><text>VPN-Typ:</text></Label>
+    <ReferenceField name="vpn.type">
+        <tooltip>Angabe des VPN-Typs</tooltip>
+    </ReferenceField>
+
+    <Label name="vpn.nr"><text>VPN ID:</text></Label>
+    <FormattedTextField name="vpn.nr">
+        <tooltip>VPN ID (entspricht der Taifun Auftragsnummer des VPN Rahmenvertrags)</tooltip>
+        <format type="number">0</format>
+    </FormattedTextField>
+
+    <Label name="vpn.projektleiter"><text>Projektleiter:</text></Label>
+    <TextField name="vpn.projektleiter">
+        <tooltip>Projektleiter des VPNs</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="vpn.einwahl"><text>Einwahl:</text></Label>
+    <TextField name="vpn.einwahl">
+        <tooltip>Einwahlrufnummer für das VPN</tooltip>
+    </TextField>
+
+    <Label name="vpn.bemerkung"><text>Bemerkung:</text></Label>
+    <TextArea name="vpn.bemerkung">
+        <tooltip>Bemerkungen zu dem VPN</tooltip>
+        <maxchars>4000</maxchars>
+    </TextArea>
+
+    <Button name="assign.vpn">
+        <text>VPN auswählen</text>
+        <tooltip>Öffnet einen Dialog, ueber den ein VPN ausgewählt werden kann</tooltip>
+    </Button>
+
+</sf>

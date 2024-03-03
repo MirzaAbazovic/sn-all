@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Kundendetail-Dialog.
+-->
+<sf>
+    <Text name="title">Details zu Kunde </Text>
+    
+    <Label name="kunde.no.orig"><text>Kunde__No:</text></Label>
+    <FormattedTextField name="kunde.no.orig">
+        <tooltip>Original Kundennummer</tooltip>
+		<format type="number">0</format>
+    </FormattedTextField>
+    
+    <Label name="haupt.kunde.no"><text>Hauptkunde-No:</text></Label>
+    <FormattedTextField name="haupt.kunde.no">
+        <tooltip>Kundennummer des Hauptkunden</tooltip>
+		<format type="number">0</format>
+    </FormattedTextField>
+    
+    <Label name="name"><text>Name:</text></Label>
+    <TextField name="name">
+        <tooltip>Name des Kunden</tooltip>
+        <columns>20</columns>
+    </TextField>
+    
+    <Label name="vorname"><text>Vorname:</text></Label>
+    <TextField name="vorname">
+        <tooltip>Vorname des Kunden</tooltip>
+    </TextField>
+    
+    <Label name="strasse"><text>Strasse/Nr:</text></Label>
+    <TextField name="strasse">
+        <tooltip>Strasse der Kundenanschrift</tooltip>
+    </TextField>
+    
+    <Label name="postfach"><text>Postfach:</text></Label>
+    <TextField name="postfach">
+        <tooltip>Postfach der Kundenanschrift</tooltip>
+    </TextField>
+    
+    <TextField name="plz">
+        <tooltip>PLZ der Kundenanschrift</tooltip>
+        <columns>5</columns>
+    </TextField>
+    
+    <Label name="ort"><text>PLZ/Ort:</text></Label>
+    <TextField name="ort">
+        <tooltip>Ort der Kundenanschrift</tooltip>
+        <columns>15</columns>
+    </TextField>
+    <Label name="ortsteil"><text>Ortsteil:</text></Label>
+    <TextField name="ortsteil">
+        <tooltip>Ortsteil der Kundenanschrift</tooltip>
+    </TextField>
+    
+    <Label name="betreuer"><text>K-Betreuer:</text></Label>
+    <TextField name="betreuer">
+        <tooltip>Name des Kundenbetreuers</tooltip>
+    </TextField>
+    
+    <Label name="rufnummer"><text>Hauptrufnummer:</text></Label>
+    <TextField name="rufnummer">
+        <tooltip>Hauptrufnummer des Kunden</tooltip>
+        <columns>20</columns>
+    </TextField>
+    
+    <Label name="mobil"><text>Mobil:</text></Label>
+    <TextField name="mobil">
+        <tooltip>Mobilrufnummer des Kunden</tooltip>
+    </TextField>
+    
+    <Label name="fax"><text>Fax:</text></Label>
+    <TextField name="fax">
+        <tooltip>Fax-Nummer des Kunden</tooltip>
+    </TextField>
+    
+    <Label name="email"><text>EMail:</text></Label>
+    <TextField name="email">
+        <tooltip>EMail-Adresse des Kunden</tooltip>
+    </TextField>
+    
+    <Label name="typ"><text>Kundentyp:</text></Label>
+    <TextField name="typ">
+        <tooltip>Kundentyp</tooltip>
+    </TextField>
+    
+    <Label name="vip"><text>VIP:</text></Label>
+    <TextField name="vip">
+        <tooltip>Kunde ist VIP</tooltip>
+    </TextField>
+    
+    <Label name="fernkatastrophe"><text>Fernkatastrophe</text></Label>
+    <CheckBox name="fernkatastrophe">
+        <tooltip>Kunde besitzt Fernkatastrophen-Status</tooltip>
+    </CheckBox>
+
+</sf>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Beantwortung einer Vorabstimung
+-->
+<sf>
+
+  <Text name="dialog.title">Beantwortung zur Vorabstimmung: %s</Text>
+
+  <Label name="details.label"><text>Details zur Vorabstimmung</text></Label>
+
+  <Button name="ruemva.btn">
+    <text>Rückmeldung (RUEM-VA)</text>
+    <tooltip>Weiter mit Rückmeldung zur Vorabstimmung</tooltip>
+  </Button>
+
+  <Button name="abbm.btn">
+    <text>Abbruchmeldung (ABBM)</text>
+    <tooltip>Weiter mit Abbruchmeldung zur Vorabstimmung</tooltip>
+  </Button>
+
+  <Button name="cancel.btn">
+    <text>Abbrechen</text>
+    <tooltip>Schliesst den Dialog ohne zu speichern</tooltip>
+  </Button>
+
+    <Label name="taifun.cancellation.date.info">
+        <foreground>red</foreground>
+        <style>bold</style>
+    </Label>
+    <Color name="red">
+        <red>255</red>
+        <green>0</green>
+        <blue>0</blue>
+    </Color>
+
+</sf>

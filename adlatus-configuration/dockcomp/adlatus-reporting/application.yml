@@ -1,0 +1,3 @@
+reporting: 
+  client: 
+   base-url: ${ADLATUS_URL:http://host.docker.internal:8080/reporting}

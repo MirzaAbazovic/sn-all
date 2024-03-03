@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Spring-Konfigurationsdatei fuer die Wholesale-Service-Mocks.
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="false">
+
+    <bean id="de.augustakom.hurrican.service.wholesale.WholesaleService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.wholesale.WholesaleService" />
+    </bean>
+    
+    <bean id="de.augustakom.hurrican.service.wholesale.WholesaleFaultClearanceService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="de.augustakom.hurrican.service.wholesale.WholesaleFaultClearanceService" />
+    </bean>
+
+</beans>

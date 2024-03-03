@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Verwaltung von Rangierungs-Auftraegen.
+-->
+<sf>
+
+    <Label name="hvt.standort"><text>HVT-Standort:</text></Label>
+    <ReferenceField name="hvt.standort">
+		<tooltip>Auswahl des HVT-Standorts</tooltip>
+		<columns>25</columns>
+		<id.property>hvtIdStandort</id.property>
+		<name.property>ortsteil</name.property>
+		<reference.class>de.augustakom.hurrican.model.cc.view.HVTGruppeStdView</reference.class>
+		<selection.dialog.class>de.augustakom.hurrican.gui.hvt.HVTSelectionDialog</selection.dialog.class>
+	</ReferenceField>
+	
+	<Label name="faellig.von"><text>Faellig von:</text></Label>
+    <DateComponent name="faellig.von">
+    </DateComponent>
+	
+	<Label name="faellig.bis"><text>Faellig bis:</text></Label>
+    <DateComponent name="faellig.bis">
+    </DateComponent>
+	
+	<Button name="search">
+		<text>Suchen</text>
+		<tooltip>Führt die Suche nach den Budgets durch</tooltip>
+	</Button>
+	
+	<Label name="result">
+		<text>Gefundene HVT-Erweiterung Budgets zu den Suchparametern</text>
+		<style>bold</style>
+	</Label>
+        
+</sf>

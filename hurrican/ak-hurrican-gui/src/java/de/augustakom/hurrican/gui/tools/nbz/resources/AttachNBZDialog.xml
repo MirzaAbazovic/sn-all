@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    GUI-Definitionen für den Dialog, über den eine Nutzerbezeichnung zugeordnet werden kann
+-->
+<sf>
+    <Label name="nbz"><text>Nutzerbezeichnung:</text></Label>
+    <TextField name="nbz">
+        <tooltip>Nutzerbezeichnung</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Text name="title.nbz">Nutzerbezeichnung eintragen</Text>
+</sf>

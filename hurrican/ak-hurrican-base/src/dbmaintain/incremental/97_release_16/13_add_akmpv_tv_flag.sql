@@ -1,0 +1,2 @@
+alter table T_USER_TASK add TERMINVERSCHIEBUNG CHAR(1);
+

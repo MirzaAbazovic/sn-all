@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Geo ID Klärungs Panel.
+-->
+<sf>
+    <Text name="border.table">Klärungen</Text>
+
+    <Label name="cb.change.states"><text>Status:</text></Label>
+    <ComboBox name="cb.change.states">
+        <tooltip>Stati die der selektierten Klärung zugewiesen werden dürfen</tooltip>
+    </ComboBox>
+    <Button name="btn.change.state">
+        <text>Status zuweisen</text>
+        <mnemonic>VK_S</mnemonic>
+        <tooltip>Selektierter Klärung neuen Status zuweisen</tooltip>
+    </Button>
+
+    <Label name="tf.filter.geoid"><text>Geo ID:</text></Label>
+    <TextField name="tf.filter.geoid">
+        <tooltip>Nach Geo ID filtern</tooltip>
+    </TextField>
+    <Label name="lst.filter.states"><text>Stati:</text></Label>
+    <List name="lst.filter.states">
+        <tooltip>Nach einem oder mehreren Stati filtern</tooltip>
+    </List>
+    <Label name="lst.filter.types"><text>Typen:</text></Label>
+    <List name="lst.filter.types">
+        <tooltip>Nach einem oder mehreren Typen filtern</tooltip>
+    </List>
+    <Label name="date.filter.from"><text>Ab:</text></Label>
+    <DateComponent name="date.filter.from">
+        <tooltip>Datum, ab dem gefilter werden soll</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+    <Label name="date.filter.to"><text>Bis:</text></Label>
+    <DateComponent name="date.filter.to">
+        <tooltip>Datum, bis zu dem gefilter werden soll</tooltip>
+        <format type="date">dd.MM.yyyy</format>
+    </DateComponent>
+    <Button name="btn.filter.clarifications">
+        <tooltip>Nach Klärungen filtern</tooltip>
+        <icon>de/augustakom/hurrican/gui/images/filter.png</icon>
+        <mnemonic>VK_F</mnemonic>
+    </Button>
+
+</sf>

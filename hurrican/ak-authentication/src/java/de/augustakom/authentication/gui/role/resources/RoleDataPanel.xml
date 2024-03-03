@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel zur Darstellung der
+Standardeigenschaften einer Rolle.
+-->    
+<sf>
+    <Label name="role.id"><text>ID:</text></Label>
+    <FormattedTextField name="role.id">
+        <tooltip>ID der Rolle</tooltip>
+        <format type="number">######</format>
+    </FormattedTextField>
+    
+    <Label name="role.name"><text>Name:</text></Label>
+    <TextField name="role.name">
+        <tooltip>Name der Rolle</tooltip>
+        <columns>30</columns>
+    </TextField>
+    
+    <Label name="role.description"><text>Beschreibung:</text></Label>
+    <TextArea name="role.description">
+    	<tooltip>Kurze Beschreibung der Rolle (max. 255 Zeichen)</tooltip>
+    	<columns>30</columns>
+    	<rows>5</rows>
+    </TextArea>
+    
+    <Label name="role.admin"><text>Ist Administrator:</text></Label>
+    <CheckBox name="role.admin">
+        <tooltip>Definiert, ob die Rolle Administrator-Rechte besitzt.</tooltip>
+    </CheckBox>
+
+    <Label name="applications"><text>Applikation:</text></Label>
+    <ComboBox name="applications">
+        <tooltip>Applikation, für die die Rolle bestimmt ist</tooltip>
+    </ComboBox>
+    
+</sf>

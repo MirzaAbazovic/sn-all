@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.RangierungsAuftrag
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+    <class name="RangierungsAuftrag" table="T_RANGIERUNGS_AUFTRAG">
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_RANGIERUNGS_AUFTRAG_0</param></generator>
+        </id>
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="hvtStandortId" column="HVT_STD_ID" type="long" not-null="true"/>
+        <property name="anzahlPorts" column="ANZAHL_PORTS" type="integer" not-null="true"/>
+        <property name="physiktypParent" column="PHYSIKTYP_PARENT" type="long" not-null="true"/>
+        <property name="physiktypChild" column="PHYSIKTYP_CHILD" type="long"/>
+        <property name="auftragVon" column="AUFTRAGGEBER" type="string" not-null="true"/>
+        <property name="auftragAm" column="AUFTRAG_AM" type="date" not-null="true"/>
+        <property name="faelligAm" column="FAELLIG_AM" type="date"/>
+        <property name="definiertVon" column="DATEN_DEFINIERT_VON" type="string"/>
+        <property name="definiertAm" column="DATEN_DEFINIERT_AM" type="date"/>
+        <property name="technikBearbeiter" column="TECHNIK_BEARBEITER" type="string"/>
+        <property name="ausgefuehrtVon" column="TECHNIK_AUSGEFUEHRT_VON" type="string"/>
+        <property name="ausgefuehrtAm" column="TECHNIK_AUSGEFUEHRT_AM" type="date"/>
+        <property name="technikStunden" column="TECHNIK_STUNDEN" type="float"/>
+        <property name="cancelled" column="CANCELLED" type="boolean"/>
+        <property name="cancelledFrom" column="CANCELLED_FROM" type="string"/>
+
+    </class>
+
+</hibernate-mapping>

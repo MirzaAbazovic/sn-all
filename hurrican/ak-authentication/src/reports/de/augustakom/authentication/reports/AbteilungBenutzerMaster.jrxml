@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created using an evaluation version of JasperAssistant (http://www.jasperassistant.com) -->
+<!DOCTYPE jasperReport PUBLIC "-//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport name="AbteilungBenutzerMaster" pageWidth="595" pageHeight="842" columnWidth="465" leftMargin="50" rightMargin="40" topMargin="30" bottomMargin="30">
+	<property name="com.jasperassistant.designer.GridWidth" value="12"/>
+	<property name="com.jasperassistant.designer.GridHeight" value="12"/>
+	<property name="com.jasperassistant.designer.DataSource" value="authentication (akom54)"/>
+	<property name="com.jasperassistant.designer.SnapToGrid" value="false"/>
+	<property name="com.jasperassistant.designer.Grid" value="true"/>
+	<queryString><![CDATA[select * from department]]></queryString>
+	<field name="DESCRIPTION" class="java.lang.String">
+	</field>
+	<field name="ID" class="java.lang.Short">
+	</field>
+	<field name="NAME" class="java.lang.String">
+	</field>
+	<title>
+		<band height="40">
+			<rectangle>
+				<reportElement positionType="Float" x="5" y="3" width="495" height="32" forecolor="#cfcfcf" backcolor="#cfcfcf"/>
+				<graphicElement/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="118" y="9" width="238" height="26"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Übersicht Abteilung - Benutzer]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="42">
+			<textField>
+				<reportElement positionType="Float" x="5" y="3" width="364" height="15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Benutzer in Abteilung: "+$F{DESCRIPTION}+" ("+$F{NAME}+")"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="Float" x="2" y="17" width="493" height="1"/>
+				<graphicElement/>
+			</line>
+			<subreport>
+				<reportElement positionType="Float" x="7" y="19" width="490" height="20"/>
+				<subreportParameter name="DEPARTMENT_ID">
+					<subreportParameterExpression><![CDATA[$F{ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["de/augustakom/authentication/reports/AbteilungBenutzerDetail.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="27">
+			<line>
+				<reportElement positionType="Float" x="1" y="4" width="501" height="1"/>
+				<graphicElement/>
+			</line>
+			<textField>
+				<reportElement positionType="Float" x="411" y="9" width="62" height="15"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{PAGE_NUMBER}+" von "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="0" y="9" width="135" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("dd.MM.yyyy").format(new Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="152" y="9" width="200" height="15"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[AugustaKom GmbH]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement positionType="Float" x="477" y="9" width="25" height="15"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

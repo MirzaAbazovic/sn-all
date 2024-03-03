@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definition fuer den Dialog zur Anlage eines neuen Konfigurationsdatensatzes.
+-->
+<sf>
+        
+    <Text name="title">Schwellwerteingabe</Text>
+  
+    <Label name="physiktyp"><text>Physiktyp:</text></Label>
+    <ComboBox name="physiktyp">
+        <tooltip>Auswahl des Physiktyps</tooltip>
+    </ComboBox>
+    
+    <Label name="physiktyp.add"><text>Zugehöriger Physiktyp:</text></Label>
+    <ComboBox name="physiktyp.add">
+        <tooltip>Auswahl des zugehörigen Physiktyps</tooltip>
+    </ComboBox>
+    
+</sf>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer das Panel mit den IPSec Site-to-Site Daten.
+-->
+<sf>
+
+    <Text name="ipsec.details">IPSec Site-to-Site Details:</Text>
+
+    <Label name="wan.gateway"><text>WAN Gateway:</text></Label>
+    <TextField name="wan.gateway">
+        <tooltip>Adresse des WAN Gateways</tooltip>
+        <maxchars>40</maxchars>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="loopback.ip"><text>Loopback IP:</text></Label>
+    <TextField name="loopback.ip">
+        <maxchars>40</maxchars>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="loopback.ip.passive"><text>Loopback IP passiv:</text></Label>
+    <TextField name="loopback.ip.passive">
+        <maxchars>40</maxchars>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="virtual.lan.ip"><text>Virtual LAN IP:</text></Label>
+    <TextField name="virtual.lan.ip">
+        <maxchars>40</maxchars>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="virtual.lan.to.scramble"><text>zu verschlüsselndes Netz:</text></Label>
+    <TextField name="virtual.lan.to.scramble">
+        <maxchars>40</maxchars>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="virtual.lan.submask"><text>Virtual LAN Subnetz:</text></Label>
+    <TextField name="virtual.lan.submask">
+        <maxchars>40</maxchars>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="wan.ip"><text>WAN IP:</text></Label>
+    <TextField name="wan.ip">
+        <maxchars>40</maxchars>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="wan.submask"><text>WAN Subnetz:</text></Label>
+    <TextField name="wan.submask">
+        <maxchars>40</maxchars>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="hostname"><text>Host-Name:</text></Label>
+    <TextField name="hostname">
+        <maxchars>40</maxchars>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="hostname.passive"><text>Host-Name (passiv):</text></Label>
+    <TextField name="hostname.passive">
+        <maxchars>40</maxchars>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="dialin.no"><text>DialIn No:</text></Label>
+    <TextField name="dialin.no">
+        <maxchars>20</maxchars>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="description"><text>Beschreibung:</text></Label>
+    <TextArea name="description">
+        <rows>5</rows>
+        <columns>30</columns>
+    </TextArea>
+
+    <Label name="certificate"><text>Zertifikat:</text></Label>
+    <RadioButton name="certificate">
+        <tooltip>Gibt an, dass ein Zertifikat vorhanden ist</tooltip>
+    </RadioButton>
+
+    <Label name="preshared.key"><text>Preshared Key:</text></Label>
+    <RadioButton name="preshared.key">
+        <tooltip>Gibt an, dass ein Preshared Key vorhanden ist</tooltip>
+    </RadioButton>
+
+    <Label name="split.tunnel"><text>Split Tunnel:</text></Label>
+    <CheckBox name="split.tunnel">
+    </CheckBox>
+
+    <Label name="access"><text>Internetanbindung:</text></Label>
+    <Label name="access.carrier"><text>Carrier:</text></Label>
+    <TextField name="access.carrier">
+        <tooltip>Carrier, über den der Internet-Zugang erfolgt</tooltip>
+        <maxchars>50</maxchars>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="access.bandwidth"><text>Bandbreite:</text></Label>
+    <TextField name="access.bandwidth">
+        <tooltip>Bandbreite des Internet-Zugangs</tooltip>
+        <maxchars>50</maxchars>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="access.type"><text>Typ:</text></Label>
+    <TextField name="access.type">
+        <tooltip>Art des Internet-Zugangs</tooltip>
+        <maxchars>50</maxchars>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="access.order"><text>Auftrags-Nr:</text></Label>
+    <TextField name="access.order">
+        <tooltip>Auftragsnr. aus Hurrican oder KuP. Wird später mal gerade gezogen.</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+</sf>

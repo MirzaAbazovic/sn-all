@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zum Klaerfall aufloesen
+-->
+<sf>
+    <Text name="dialog.title">Klärfall auflösen für: %s</Text>
+
+    <Label name="comment.label">
+        <text>Bemerkung:</text>
+    </Label>
+
+    <TextField name="comment.text">
+        <columns>60</columns>
+        <maxchars>255</maxchars>
+        <tooltip>optionale Bemerkung</tooltip>
+    </TextField>
+
+    <Text name="save.txt">Klärfall auflösen</Text>
+    <Text name="send.tooltip">Der Klärfall wird aufgelöst</Text>
+
+    <Text name="cancel.txt">Abbrechen</Text>
+    <Text name="cancel.tooltip">Schliesst den Dialog ohne den Klärfall aufzulösen</Text>
+</sf>

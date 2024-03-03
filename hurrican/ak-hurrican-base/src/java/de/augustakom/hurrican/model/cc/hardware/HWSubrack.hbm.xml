@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse
+de.augustakom.hurrican.model.cc.hardware.HWSubrack
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc.hardware">
+    <class name="HWSubrack" table="T_HW_SUBRACK">
+        <cache usage="read-write"/>
+
+        <!-- PrimaryKey -->
+        <id name="id" column="ID" unsaved-value="null" type="long">
+            <generator class="sequence"><param name="sequence">S_T_HW_SUBRACK_0</param></generator>
+        </id>
+
+        <version name="version" type="long" unsaved-value="null"/>
+
+        <!-- Sonstige Fields -->
+        <property name="rackId" column="RACK_ID" type="long" not-null="true"/>
+        <property name="modNumber" column="MOD_NUMBER" type="string" not-null="true"/>
+        <many-to-one name="subrackTyp" column="SUBRACK_TYP_ID"
+                class="de.augustakom.hurrican.model.cc.hardware.HWSubrackTyp" not-null="true" lazy="false"/>
+    </class>
+</hibernate-mapping>

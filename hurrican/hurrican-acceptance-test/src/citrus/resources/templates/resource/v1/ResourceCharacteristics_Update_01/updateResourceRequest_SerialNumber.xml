@@ -1,0 +1,15 @@
+<updateResource xmlns="http://www.mnet.de/hurrican/adm/ResourceInventoryService/v1">
+    <resource>
+        <id>@ignore@</id>
+        <inventory>command</inventory>
+        <resourceSpec>
+            <id>@ignore@</id>
+            <inventory>command</inventory>
+        </resourceSpec>
+        <name>${geraeteBezeichnung}</name>
+        <characteristic>
+            <name>seriennummer</name>
+            <value>${serialNumber}</value>
+        </characteristic>
+    </resource>
+</updateResource>

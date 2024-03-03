@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring App-Context Definition fuer den Wholessale S/PRI Client Bereich. -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-lazy-init="true">
+
+    <bean id="de.mnet.hurrican.wholesale.ws.outbound.WholesaleOrderOutboundService" class="${remoting.proxy}">
+        <property name="serviceUrl">
+            <value>${remoting.base.url}/cc/ws/WholesaleOrderOutboundService</value>
+        </property>
+        <property name="serviceInterface">
+            <value>de.mnet.hurrican.wholesale.ws.outbound.WholesaleOrderOutboundService</value>
+        </property>
+    </bean>
+
+</beans>

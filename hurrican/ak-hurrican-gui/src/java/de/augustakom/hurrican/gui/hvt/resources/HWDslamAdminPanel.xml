@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer die Administration der HW-DSLAMs.
+-->
+<sf>
+    <Label name="type"><text>DSLAM-Typ:</text></Label>
+    <ReferenceField name="type">
+        <tooltip>Typ des Racks</tooltip>
+        <id.property>strValue</id.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="erx.standort">
+        <text>ERX-Standort:</text>
+    </Label>
+    <ReferenceField name="erx.standort">
+        <tooltip>ERX-Standort</tooltip>
+        <id.property>strValue</id.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="physik.art">
+        <text>Physik Art:</text>
+    </Label>
+    <ReferenceField name="physik.art">
+        <tooltip>Physik Art</tooltip>
+        <id.property>strValue</id.property>
+        <reference.class>de.augustakom.hurrican.model.cc.Reference</reference.class>
+    </ReferenceField>
+
+    <Label name="dhcp82">
+        <text>DHCP82:</text>
+    </Label>
+    <TextField name="dhcp82">
+        <tooltip>DHCP82-Name</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="ip.address">
+        <text>IP-Adresse:</text>
+    </Label>
+    <TextField name="ip.address">
+        <tooltip>IP-Adresse</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="einbauplatz">
+        <text>Einbauplatz:</text>
+    </Label>
+    <TextField name="einbauplatz">
+        <tooltip>Einbauplatz</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="anschluss">
+        <text>Anschluss:</text>
+    </Label>
+    <TextField name="anschluss">
+        <tooltip>Anschluss</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="slot.port">
+        <text>Anschluss Slot/Port:</text>
+    </Label>
+    <TextField name="slot.port">
+        <tooltip>Anschluss Slot/Port</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="ans.art">
+        <text>Anschluss Art:</text>
+    </Label>
+    <TextField name="ans.art">
+        <tooltip>Anschluss Art</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="software.version">
+        <text>Version:</text>
+    </Label>
+    <TextField name="software.version">
+        <tooltip>Version</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="erx.iface">
+        <text>ERX-IFace:</text>
+    </Label>
+    <TextField name="erx.iface">
+        <tooltip>ERX-IFace</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="physik.wert">
+        <text>Physik Wert:</text>
+    </Label>
+    <TextField name="physik.wert">
+        <tooltip>Physik Wert</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="alt.gslam.bez">
+        <text>Alt. GSLAM Bez.:</text>
+    </Label>
+    <TextField name="alt.gslam.bez">
+        <tooltip>Alternative Gereatebezeichnung fuer GSLAMs in Command</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="atm.pattern">
+        <text>ATM-Pattern:</text>
+    </Label>
+    <TextField name="atm.pattern">
+        <tooltip>ATM-Pattern</tooltip>
+        <columns>20</columns>
+    </TextField>
+
+    <Label name="schmidt.konzept">
+        <text>Schmidtsches Konzept:</text>
+    </Label>
+    <CheckBox name="schmidt.konzept">
+        <tooltip>Schmidtsches Konzept</tooltip>
+        <columns>20</columns>
+    </CheckBox>
+
+    <Label name="vpi.ubr.adsl">
+        <text>VPI (ADSL):</text>
+    </Label>
+    <FormattedTextField name="vpi.ubr.adsl">
+        <tooltip>ADSL-VP</tooltip>
+        <columns>5</columns>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+    <Label name="vpi.sdsl">
+        <text>VPI (SDSL):</text>
+    </Label>
+    <FormattedTextField name="vpi.sdsl">
+        <tooltip>SDSL-VP</tooltip>
+        <columns>5</columns>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+    <Label name="vpi.cpe.mgmt">
+        <text>VPI (CPE Mgmt):</text>
+    </Label>
+    <FormattedTextField name="vpi.cpe.mgmt">
+        <tooltip>CPE-VP (Management)</tooltip>
+        <columns>5</columns>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+    <Label name="outer.tag.sdsl">
+        <text>Outer Tag (SDSL):</text>
+    </Label>
+    <FormattedTextField name="outer.tag.sdsl">
+        <tooltip>SDSL-SVLAN</tooltip>
+        <columns>5</columns>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+    <Label name="outer.tag.adsl">
+        <text>Outer Tag (ADSL):</text>
+    </Label>
+    <FormattedTextField name="outer.tag.adsl">
+        <tooltip>ADSL-SVLAN</tooltip>
+        <columns>5</columns>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+    <Label name="outer.tag.voip">
+        <text>Outer Tag (VoIP):</text>
+    </Label>
+    <FormattedTextField name="outer.tag.voip">
+        <tooltip>VoIP-SVLAN</tooltip>
+        <columns>5</columns>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+    <Label name="outer.tag.cpe.mgmt">
+        <text>Outer Tag (CPE Mgmt):</text>
+    </Label>
+    <FormattedTextField name="outer.tag.cpe.mgmt">
+        <tooltip>CPE-VLAN (Management)</tooltip>
+        <columns>5</columns>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+    <Label name="outer.tag.iad.mgmt">
+        <text>Outer Tag (IAD Mgmt):</text>
+    </Label>
+    <FormattedTextField name="outer.tag.iad.mgmt">
+        <tooltip>IAD-VLAN (Management)</tooltip>
+        <columns>5</columns>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+    <Label name="bras.vpi.adsl">
+        <text>BRAS VPI (ADSL):</text>
+    </Label>
+    <FormattedTextField name="bras.vpi.adsl">
+        <tooltip>ADSL-VP (BRAS-Seite)</tooltip>
+        <columns>5</columns>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+    <Label name="bras.outer.tag.sdsl">
+        <text>BRAS Outer Tag (SDSL):</text>
+    </Label>
+    <FormattedTextField name="bras.outer.tag.sdsl">
+        <tooltip>SDSL-SVLAN (BRAS-Seite)</tooltip>
+        <columns>5</columns>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+    <Label name="bras.outer.tag.adsl">
+        <text>BRAS Outer Tag (ADSL):</text>
+    </Label>
+    <FormattedTextField name="bras.outer.tag.adsl">
+        <tooltip>ADSL-SVLAN (BRAS-Seite)</tooltip>
+        <columns>5</columns>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+    <Label name="bras.outer.tag.voip">
+        <text>BRAS Outer Tag (VoIP):</text>
+    </Label>
+    <FormattedTextField name="bras.outer.tag.voip">
+        <tooltip>VoIP-SVLAN (BRAS-Seite)</tooltip>
+        <columns>5</columns>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+    <Label name="cc.offset">
+        <text>Offset:</text>
+    </Label>
+    <FormattedTextField name="cc.offset">
+        <tooltip>Im Falle eines KVZ-REMs, bitte hier Korrekturwert bezüglich Haupt-KVZ eintragen.</tooltip>
+        <columns>5</columns>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+    <Label name="svlan">
+        <text>S-Vlan (GPON):</text>
+    </Label>
+    <FormattedTextField name="svlan">
+        <tooltip>S-Vlan, eindeutig je Kaskade</tooltip>
+        <columns>5</columns>
+        <format type="number">#</format>
+    </FormattedTextField>
+
+</sf>

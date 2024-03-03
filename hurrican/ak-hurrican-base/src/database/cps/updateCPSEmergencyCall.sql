@@ -1,0 +1,64 @@
+--
+-- SQL-Script fuer die Konfiguration der Notrufgruppen 
+--
+
+CREATE TABLE T_EMERGENCYCALL_CONFIG (
+       ID NUMBER(10) NOT NULL
+     , ONKZ VARCHAR2(10) NOT NULL
+     , ASB VARCHAR2(10)
+     , TYP VARCHAR2(4)
+     , CODE VARCHAR2(15) NOT NULL
+     , EMERGENCYCALL_GROUP_REF_ID NUMBER(10) NOT NULL
+);
+
+COMMENT ON COLUMN T_EMERGENCYCALL_CONFIG.ONKZ IS 'ONKZ fuer die die Konfiguration ist';
+COMMENT ON COLUMN T_EMERGENCYCALL_CONFIG.ASB IS 'ASB fuer den die Konfiguration ist';
+COMMENT ON COLUMN T_EMERGENCYCALL_CONFIG.CODE IS 'Notrufcodierung';
+COMMENT ON COLUMN T_EMERGENCYCALL_CONFIG.EMERGENCYCALL_GROUP_REF_ID
+  IS 'Reference-ID gibt die Notrufgruppe (z.B. DEFAULT, ALT1) an';
+
+
+ALTER TABLE T_EMERGENCYCALL_CONFIG
+  ADD CONSTRAINT PK_T_EMERGENCYCALL_CONFIG
+      PRIMARY KEY (ID);
+
+CREATE INDEX IX_FK_EMCALLCFG_2_REF ON T_EMERGENCYCALL_CONFIG (EMERGENCYCALL_GROUP_REF_ID) TABLESPACE "I_HURRICAN";
+ALTER TABLE T_EMERGENCYCALL_CONFIG
+  ADD CONSTRAINT FK_EMCALLCFG_2_REF
+      FOREIGN KEY (EMERGENCYCALL_GROUP_REF_ID)
+      REFERENCES t_reference (ID);
+      
+ALTER TABLE T_EMERGENCYCALL_CONFIG ADD CONSTRAINT UK_EMERGENCYCALL_CONFIG UNIQUE (TYP, ONKZ, ASB);
+
+create sequence S_T_EMERGENCYCALL_CONFIG_0 start with 1;
+grant select on S_T_EMERGENCYCALL_CONFIG_0 to public;
+      
+-- TRIGGER
+drop trigger TRBI_EMERGENCYCALL_CONFIG;
+create trigger TRBI_EMERGENCYCALL_CONFIG BEFORE INSERT on T_EMERGENCYCALL_CONFIG
+for each row
+when (new.ID is null)
+begin
+ select S_T_EMERGENCYCALL_CONFIG_0.nextval into :new.ID from dual;
+end;
+/
+commit;
+
+-- Reference-Daten
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)  
+	values (1800, 'EMERGENCYCALL_GROUP', 'DEFAULT', '1', 10, 
+	'Wert definiert, die Standard EmergencyCall Gruppe');
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)  
+	values (1801, 'EMERGENCYCALL_GROUP', 'ALT1', '1', 20, 
+	'Wert definiert, eine alternative EmergencyCall Gruppe');
+insert into T_REFERENCE (ID, TYPE, STR_VALUE, GUI_VISIBLE, ORDER_NO, DESCRIPTION)  
+	values (1802, 'EMERGENCYCALL_GROUP', 'ALT2', '1', 30, 
+	'Wert definiert, eine weitere alternative EmergencyCall Gruppe');
+commit;
+
+
+--
+-- TODO 
+-- Daten ueber MigrationEmergencyCallCfgScript migrieren!!!
+
+

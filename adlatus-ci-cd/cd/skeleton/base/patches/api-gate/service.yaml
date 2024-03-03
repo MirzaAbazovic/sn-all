@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: SERVICE-APP-service
+  namespace: NAMESPACE
+spec:
+  $patch: replace
+  selector:
+    app: SERVICE-APP
+  ports:
+    - $patch: replace
+    - port: 80
+      targetPort: 80
+      name: http
+    - port: 443
+      targetPort: 443
+      name: https

@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: SERVICE-APP-ingress
+  namespace: NAMESPACE
+spec:
+  ingressClassName: adl-ingress-nginx
+  tls:
+    - hosts:
+      - SERVICE-APP.NAMESPACE-ENV.DOMAIN
+      secretName: tls-secret-SERVICE-APP
+  rules:
+    - host: SERVICE-APP.NAMESPACE-ENV.DOMAIN
+      http:
+        paths:
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: SERVICE-APP-service-ENV
+                port:
+                  number: 8080

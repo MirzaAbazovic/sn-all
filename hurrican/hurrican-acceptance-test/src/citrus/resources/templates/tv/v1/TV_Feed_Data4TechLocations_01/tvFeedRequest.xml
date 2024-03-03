@@ -1,0 +1,5 @@
+<ns:getTVFeedData4TechLocationsRequest xmlns:ns="http://www.mnet.de/hurrican/tvfeed/1.0/">
+    <techLocationQuerys>
+        <techLocationName>xyz</techLocationName>
+    </techLocationQuerys>
+</ns:getTVFeedData4TechLocationsRequest>

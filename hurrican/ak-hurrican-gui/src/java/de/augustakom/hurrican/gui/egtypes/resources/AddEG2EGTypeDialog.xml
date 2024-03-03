@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Konfiguration der
+moeglichen Endgeraete eines Produkts.
+-->
+<sf>
+
+    <Text name="title">Zuordnung Endgerät zu Endgerätemodell</Text>
+
+    <Label name="tf.eg.type.hersteller"><text>Hersteller:</text></Label>
+    <TextField name="tf.eg.type.hersteller">
+        <tooltip>Bezeichnung des Herstellers</tooltip>
+        <maxchars>20</maxchars>
+    </TextField>
+
+    <Label name="tf.eg.type.modell"><text>Modell:</text></Label>
+    <TextField name="tf.eg.type.modell">
+        <tooltip>Bezeichnung des Modells</tooltip>
+        <maxchars>20</maxchars>
+    </TextField>
+
+    <Label name="cb.eg"><text>Endgerät:</text></Label>
+    <ComboBox name="cb.eg">
+        <tooltip>Auswahl zuzuordnendes Endgerät</tooltip>
+    </ComboBox>
+
+</sf>

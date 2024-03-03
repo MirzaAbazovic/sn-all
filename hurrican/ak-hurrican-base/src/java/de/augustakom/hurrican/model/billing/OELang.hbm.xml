@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.OELang
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="OELang" table="OE_LANG">
+	    
+	    <!-- PrimaryKey -->
+		<composite-id>
+			<key-property name="oeNo" column="OE_NO" type="long"/>
+			<key-property name="language" column="LANGUAGE" type="string"/>
+		</composite-id>
+		
+		<!-- Sonstige Fields -->
+		<property name="name" column="NAME" type="string"/>
+
+	</class>
+	
+</hibernate-mapping>

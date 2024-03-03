@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+GUI-Definitionen fuer den Dialog zur Adress-Eingabe bzw. -Anzeige.
+-->
+<sf>
+
+    <Text name="title">Ports</Text>
+
+    <Label name="auftrag.id"><text>Tech. Auftragsnr.:</text></Label>
+    <TextField name="auftrag.id">
+        <tooltip>Hurrican Auftrags-ID</tooltip>
+        <columns>8</columns>
+    </TextField>
+
+    <Label name="auftrag.status"><text>Auftragstatus:</text></Label>
+    <TextField name="auftrag.status">
+        <tooltip>Status des Auftrags</tooltip>
+        <columns>15</columns>
+    </TextField>
+
+    <Label name="es.typ"><text>Endstellentyp:</text></Label>
+    <TextField name="es.typ">
+        <tooltip>Typ der Endstelle (A oder B) - ID: </tooltip>
+        <columns>2</columns>
+    </TextField>
+
+    <Label name="vbz"><text>VBZ:</text></Label>
+    <TextField name="vbz">
+        <tooltip>Verbindungsbezeichnung</tooltip>
+    </TextField>
+
+</sf>

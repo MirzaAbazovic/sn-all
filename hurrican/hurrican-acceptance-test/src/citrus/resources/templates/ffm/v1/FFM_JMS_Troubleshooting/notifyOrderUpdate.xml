@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header/>
+    <SOAP-ENV:Body>
+        <wfns:notifyUpdateOrder xmlns:wfns="http://www.mnet.de/esb/cdm/Resource/WorkforceNotificationService/v1">
+            <wfns:orderId>${workforceOrderId}</wfns:orderId>
+            <wfns:modified>citrus:currentDate('yyyy-MM-dd'T'HH:mm:00')</wfns:modified>
+            <wfns:requested>
+                <wfns:earliestStart>citrus:currentDate('yyyy-MM-dd'T'HH:mm:00', +5m)</wfns:earliestStart>
+            </wfns:requested>
+            <wfns:agreed>
+                <wfns:startTime>citrus:currentDate('yyyy-MM-dd'T'HH:mm:00', +5m)</wfns:startTime>
+                <wfns:endTime>citrus:currentDate('yyyy-MM-dd'T'HH:mm:00', +15m)</wfns:endTime>
+            </wfns:agreed>
+            <wfns:scheduled>
+                <wfns:startTime>citrus:currentDate('yyyy-MM-dd'T'HH:mm:00', +5m)</wfns:startTime>
+                <wfns:endTime>citrus:currentDate('yyyy-MM-dd'T'HH:mm:00', +15m)</wfns:endTime>
+                <wfns:fixed>false</wfns:fixed>
+            </wfns:scheduled>
+            <wfns:actual>
+                <wfns:startTime>citrus:currentDate('yyyy-MM-dd'T'HH:mm:00', +5m)</wfns:startTime>
+                <wfns:endTime>citrus:currentDate('yyyy-MM-dd'T'HH:mm:00', +15m)</wfns:endTime>
+            </wfns:actual>
+            <wfns:resource>
+                <wfns:id>DISPATCH_citrus:randomNumber(8)</wfns:id>
+                <wfns:fixed>false</wfns:fixed>
+            </wfns:resource>
+            <wfns:stateInfo>
+                <wfns:state>${state}</wfns:state>
+                <wfns:extended>CUST05</wfns:extended>
+            </wfns:stateInfo>
+        </wfns:notifyUpdateOrder>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

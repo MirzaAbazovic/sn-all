@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer die Klasse 
+de.augustakom.hurrican.model.cc.AuftragTechnik2Endstelle
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.cc">
+	<class name="AuftragTechnik2Endstelle" table="T_AUFTRAG_TECHNIK_2_ENDSTELLE">
+	    
+	    <!-- PrimaryKey -->
+		<id name="id" column="ID" unsaved-value="null" type="long">
+			<generator class="sequence"><param name="sequence">S_T_AUFTRAG_TECHNIK_2_END_0</param></generator>
+		</id>
+
+	</class>
+	
+</hibernate-mapping>

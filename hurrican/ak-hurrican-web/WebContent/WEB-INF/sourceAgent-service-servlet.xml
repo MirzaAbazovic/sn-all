@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="xmlBeansMarshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller" />
+
+    <bean id="xmlBeansUnMarshaller" class="org.springframework.oxm.xmlbeans.XmlBeansMarshaller" >
+        <property name="xmlOptions" ref="unmarshall.options"/>
+    </bean>
+    <bean id="unmarshall.options" class="org.springframework.oxm.xmlbeans.XmlOptionsFactoryBean">
+        <property name="options">
+            <map>
+                <entry>
+                    <!-- Namespace-Mapping fuer setLoadSubstitudeNamespaces definieren -->
+                    <key><value>LOAD_SUBSTITUTE_NAMESPACES</value></key>
+                    <ref bean="namespace.map"/>
+                </entry>
+            </map>
+        </property>
+    </bean>
+    <util:map id="namespace.map" map-class="java.util.Hashtable">
+        <entry key="" value="http://www.evolving.com/wsdl/sa/v1/types" />
+        <entry key="http://InputMessageNamespace" value="http://www.evolving.com/wsdl/sa/v1/types" />
+        <entry key="http://OutputMessageNamespace" value="http://www.evolving.com/wsdl/sa/v1/types" />
+        <entry key="http://FaultMessageNamespace" value="http://www.evolving.com/wsdl/sa/v1/types" />
+    </util:map>
+
+    <!-- Dummy-Endpoint Implementierung fuer Test-Zwecke -->
+    <bean class="org.springframework.ws.server.endpoint.mapping.PayloadRootQNameEndpointMapping">
+        <property name="mappings">
+            <props>
+                <prop key="{http://www.evolving.com/wsdl/sa/v1/types}ServiceRequest">serviceRequestEndpoint</prop>
+            </props>
+        </property>
+        <property name="interceptors">
+            <list>
+                <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+                <bean class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor"/>
+                <bean class="org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor">
+                    <property name="xsdSchemaCollection" ref="schemaCollection"/>
+                    <property name="validateRequest" value="true"/>
+                    <property name="validateResponse" value="true"/>
+                </bean>
+                <!-- ref bean="wsSecurityInterceptor"/ -->
+            </list>
+        </property>
+    </bean>
+
+    <!-- Endpoint des WebServices zur Entgegennahme von CPS-Responses -->
+    <bean class="org.springframework.ws.server.endpoint.mapping.PayloadRootQNameEndpointMapping">
+        <property name="mappings">
+            <props>
+                <prop key="{http://www.evolving.com/wsdl/sa/v1/types}ServiceResponse">serviceResponseEndpoint</prop>
+                <prop key="{http://InputMessageNamespace}ServiceResponse">serviceResponseEndpoint</prop>
+            </props>
+        </property>
+        <property name="interceptors">
+            <list>
+                <bean class="org.springframework.ws.server.endpoint.interceptor.PayloadLoggingInterceptor"/>
+                <bean class="org.springframework.ws.soap.server.endpoint.interceptor.SoapEnvelopeLoggingInterceptor"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Endpoint-Definition fuer den CPS-Response. -->
+    <bean id="serviceResponseEndpoint"
+        class="de.mnet.hurrican.webservice.sourceagent.endpoint.ServiceResponseMarshallingEndpoint">
+        <property name="marshaller" ref="xmlBeansMarshaller" />
+        <property name="unmarshaller" ref="xmlBeansUnMarshaller" />
+        <property name="resourceInventoryWsClient" ref="commandResourceInventoryWebserviceClient" />
+    </bean>
+
+    <!-- 'Dummy' Endpoint fuer CPS-Request Tests -->
+    <bean id="serviceRequestEndpoint" class="de.mnet.hurrican.webservice.sourceagent.endpoint.ServiceRequestMarshallingEndpoint">
+        <property name="marshaller" ref="xmlBeansMarshaller" />
+        <property name="unmarshaller" ref="xmlBeansUnMarshaller" />
+    </bean>
+
+    <bean id="sourceAgentRequest" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+        <property name="schema" ref="agentRequestSchema"/>
+        <property name="portTypeName" value="ServiceRequestPort"/>
+        <property name="locationUri" value="http://localhost:8080/hurricanweb/"/>
+        <property name="targetNamespace" value="http://www.evolving.com/wsdl/sa/provisioning/ServiceRequestImpl"/>
+        <property name="requestSuffix" value="Request" />
+        <property name="responseSuffix" value="Acknowledgement" />
+        <property name="faultSuffix" value="Fault" />
+    </bean>
+
+    <bean id="agentRequestSchema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+        <property name="xsd" value="classpath:sourceAgentRequest.xsd"/>
+    </bean>
+
+    <bean id="schemaCollection" class="org.springframework.xml.xsd.commons.CommonsXsdSchemaCollection">
+        <property name="xsds">
+            <list>
+                <value>classpath:sourceAgentRequest.xsd</value>
+                <value>classpath:sourceAgentResponse.xsd</value>
+            </list>
+        </property>
+          <property name="inline" value="true"/>
+    </bean>
+
+    <!-- Publishing the WSDL -->
+    <!-- WSDL Generierung ueber http://host:port/hurricanweb/sourceAgent/sourceAgentResponse.wsdl -->
+    <bean id="sourceAgentResponse" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+        <property name="schema" ref="agentResponseSchema"/>
+        <property name="portTypeName" value="ServiceResponsePort"/>
+        <property name="locationUri" value="http://localhost:8080/hurricanweb/sourceAgentResponse"/>
+        <property name="targetNamespace" value="http://www.evolving.com/wsdl/sa/provisioning/ServiceRequestImpl"/>
+        <property name="requestSuffix" value="Response" />
+        <property name="responseSuffix" value="Acknowledgement" />
+        <property name="faultSuffix" value="Fault" />
+    </bean>
+
+    <bean id="agentResponseSchema" class="org.springframework.xml.xsd.SimpleXsdSchema">
+        <property name="xsd" value="classpath:sourceAgentResponse.xsd"/>
+    </bean>
+
+    <!--
+    Zu verwendende MessageFactory, ueber die die SOAP-Version definiert wird.
+    Bean-ID nicht veraendern, da von MessageDispatcher angezogen!
+    -->
+    <bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory">
+        <property name="soapVersion">
+            <util:constant static-field="org.springframework.ws.soap.SoapVersion.SOAP_12"/>
+        </property>
+    </bean>
+
+
+<!--    <bean id="wsSecurityInterceptor" class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor">-->
+<!--		<property name="validationCallbackHandler" ref="callbackHandler"/>-->
+<!--		<property name="validationActions" value="UsernameToken"/>-->
+<!--	</bean>-->
+<!---->
+<!--	<bean id="callbackHandler" class="org.springframework.ws.soap.security.wss4j.callback.SimplePasswordValidationCallbackHandler">-->
+<!--		<property name="users">-->
+<!--			<props>-->
+<!--				<prop key="SourceAgentUsername">SourceAgentPassword</prop>-->
+<!--			</props>-->
+<!--		</property>-->
+<!--	</bean>-->
+</beans>

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ns0:notifyUpdateOrder xmlns:ns0="http://www.mnet.de/esb/cdm/SupplierPartner/LineOrderNotificationService/v1">
+    <ns0:order>
+        <ns0:geschaeftsfall>NEU</ns0:geschaeftsfall>
+        <ns0:aenderungsKennzeichen>Standard</ns0:aenderungsKennzeichen>
+        <ns0:geschaeftsfallart>Bereitstellung</ns0:geschaeftsfallart>
+    </ns0:order>
+    <ns0:message>
+        <ns0:ENTM>
+            <ns0:meldungsattribute>
+                <ns0:vertragsnummer>1235134545</ns0:vertragsnummer>
+                <ns0:externeAuftragsnummer>TAL.007.PV</ns0:externeAuftragsnummer>
+                <ns0:kundennummer>1100100122</ns0:kundennummer>
+                <ns0:kundennummerBesteller>BKundenNum</ns0:kundennummerBesteller>
+                <ns0:entgelttermin>2015-08-13</ns0:entgelttermin>
+                <ns0:produktpositionen>
+                    <ns0:position>
+                        <ns0:aktionscode>W</ns0:aktionscode>
+                        <ns0:produkt>
+                            <ns0:kategorie>TAL</ns0:kategorie>
+                            <ns0:bezeichner>tal123</ns0:bezeichner>
+                            <ns0:uebertragungsVerfahren>H18</ns0:uebertragungsVerfahren>
+                        </ns0:produkt>
+                    </ns0:position>
+                </ns0:produktpositionen>
+                <ns0:anlagen>
+                    <ns0:anlage>
+                        <ns0:dateiname>SomeFile</ns0:dateiname>
+                        <ns0:dateityp>image/tiff</ns0:dateityp>
+                        <ns0:beschreibung>Some description</ns0:beschreibung>
+                        <ns0:inhalt>UjBsR09EbGhjZ0dTQUxNQUFBUUNBRU1tQ1p0dU1GUXhEUzhi</ns0:inhalt>
+                        <ns0:anlagentyp>Portierungsanzeige</ns0:anlagentyp>
+                    </ns0:anlage>
+                </ns0:anlagen>
+            </ns0:meldungsattribute>
+            <ns0:meldungspositionen>
+                <ns0:position>
+                    <ns0:meldungscode>0041</ns0:meldungscode>
+                    <ns0:meldungstext>Der abgebende Provider hat die Kündigung seines Bestandes abgelehnt.
+                    </ns0:meldungstext>
+                </ns0:position>
+            </ns0:meldungspositionen>
+        </ns0:ENTM>
+    </ns0:message>
+</ns0:notifyUpdateOrder>

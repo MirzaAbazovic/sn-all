@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Body>
+        <v1:updateCarrierChange xmlns:v1="http://www.mnet.de/esb/cdm/SupplierPartner/CarrierNegotiationService/v1">
+            <v1:RUEM-VA>
+                <v1:absender>
+                    <v1:carrierCode>${carrierCodeAbg}</v1:carrierCode>
+                </v1:absender>
+                <v1:empfaenger>
+                    <v1:carrierCode>${carrierCodeAuf}</v1:carrierCode>
+                </v1:empfaenger>
+                <v1:version>${wbciVersion}</v1:version>
+                <v1:vorabstimmungsIdRef>${preAgreementId}</v1:vorabstimmungsIdRef>
+                <v1:endkundenvertragspartner>
+                    <v1:EKPauf>
+                        <v1:carrierCode>${carrierCodeAuf}</v1:carrierCode>
+                    </v1:EKPauf>
+                    <v1:EKPabg>
+                        <v1:carrierCode>${carrierCodeAbg}</v1:carrierCode>
+                    </v1:EKPabg>
+                </v1:endkundenvertragspartner>
+                <v1:geschaeftsfall>VA-KUE-ORN</v1:geschaeftsfall>
+                <v1:position>
+                    <v1:Meldungscode>8001</v1:Meldungscode>
+                    <v1:Meldungstext>Auftragsbestätigung (ZWA)</v1:Meldungstext>
+                </v1:position>
+                <v1:ressource>
+                    <v1:vertragsnummer>V123456</v1:vertragsnummer>
+                    <v1:identifizierer>I123456</v1:identifizierer>
+                    <v1:kennungTNBabg>D001</v1:kennungTNBabg>
+                </v1:ressource>
+                <v1:ressource>
+                    <v1:vertragsnummer>V123457</v1:vertragsnummer>
+                    <v1:identifizierer>I123457</v1:identifizierer>
+                </v1:ressource>
+                <v1:technologie>001 TAL ISDN</v1:technologie>
+                <v1:wechseltermin>${requestedCustomerDate}</v1:wechseltermin>
+            </v1:RUEM-VA>
+        </v1:updateCarrierChange>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

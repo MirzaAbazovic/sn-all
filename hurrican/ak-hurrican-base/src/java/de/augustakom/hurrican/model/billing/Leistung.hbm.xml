@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!--
+Hibernate-Mapping fuer das Modell
+de.augustakom.hurrican.model.billing.Leistung
+-->
+
+<hibernate-mapping package="de.augustakom.hurrican.model.billing">
+	<class name="Leistung" table="LEISTUNG">
+	    
+	    <!-- PrimaryKey -->
+		<id name="leistungNo" column="LEISTUNG_NO" unsaved-value="null" type="long">
+			<generator class="assigned"/>
+		</id>
+		
+		<!-- Sonstige Fields -->
+		<property name="leistungNoOrig" column="LEISTUNG__NO" type="long"/>
+        <property name="name" column="NAME" type="string"/>
+        <property name="oeNoOrig" column="OE__NO" type="long"/>
+		<property name="externProduktNo" column="EXT_PRODUKT__NO" type="long"/>
+		<property name="externLeistungNo" column="EXT_LEISTUNG__NO" type="long"/>
+		<property name="externMiscNo" column="EXT_MISC__NO" type="long"/>
+		<property name="fibuGebuehrenArt" column="FIBU_TAX_TYPE" type="string"/>
+		<property name="techExport" column="TECH_EXPORT" type="boolean"/>
+		<property name="preis" column="PREIS" type="float"/>
+		<property name="preisQuelle" column="BILLING_PRICE_SOURCE" type="string"/>
+		<property name="vatCode" column="VAT_CODE_ID" type="string"/>
+		<property name="leistungKat" column="LEISTUNGKAT" type="string"/>
+		<property name="billingCode" column="BILLING_CODE" type="string"/>
+		<property name="generateBillPos" column="GENERATE_BILLPOS" type="boolean"/>
+				
+        <property name="gueltigVon" column="VALID_FROM" type="date"/>
+        <property name="gueltigBis" column="VALID_TO" type="date"/>
+        <property name="histStatus" column="HIST_STATUS" type="string"/>
+        <property name="histCnt" column="HIST_CNT" type="integer"/>
+        <property name="histLast" column="HIST_LAST" type="boolean"/>
+		
+	</class>
+	
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE table [
+	<!ELEMENT table (column+)>
+	<!ELEMENT column EMPTY>
+	<!ATTLIST column name CDATA #REQUIRED>
+	<!ATTLIST column property CDATA #REQUIRED>
+	<!ATTLIST column type CDATA #REQUIRED>
+	<!ATTLIST column editable CDATA #REQUIRED>
+	<!ATTLIST column width CDATA #IMPLIED>
+]>
+<table>
+	<column name="id"
+			property="id"
+			type="java.lang.Long"
+			editable="false"
+			width="70"
+			/>
+	<column name="TX-Id"
+			property="cpsTxId"
+			type="java.lang.Long"
+			editable="false"
+			width="120"
+			/>
+	<column name="Message"
+			property="message"
+			type="java.lang.String"
+			editable="false"
+			width="150"
+			/>
+</table>

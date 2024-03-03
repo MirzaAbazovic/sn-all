@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xs:schema  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            xmlns:tns="http://user.api.webservice.namespace"
+            xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+            xmlns:cmd="http://common.api.command.fnt.de"
+            xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+            targetNamespace="http://user.api.webservice.namespace"
+            elementFormDefault="qualified">
+    <xs:import namespace="http://common.api.command.fnt.de" schemaLocation="CmdTypes.xsd"/>
+    <xs:import namespace="http://schemas.xmlsoap.org/soap/encoding/" schemaLocation="SoapEncoding.xsd"/>
+
+    <xs:element name="login" type="tns:inParamLogin"/>
+    <xs:element name="loginResponse" type="tns:outParam"/>
+
+    <xs:element name="logout" type="tns:inParamLogout"/>
+    <xs:element name="logoutResponse" type="cmd:CmdInfo"/>
+
+    <xs:complexType name="inParamLogin">
+        <xs:sequence>
+            <xs:element name="inParam" type="tns:LoginInType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="inParamLogout">
+        <xs:sequence>
+            <xs:element name="inParam" type="tns:LogoutInType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LoginInType">
+        <xs:sequence>
+            <xs:element name="username" type="xs:string"/>
+            <xs:element name="password" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="outParam">
+        <xs:sequence>
+            <xs:element name="outParam" type="tns:LoginOutType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+     <xs:complexType name="LoginOutType">
+        <xs:sequence>
+            <xs:element name="mandantInfo" type="tns:ArrayOfMandantInfo"/>
+            <xs:element name="sessionId" type="xs:string"/>
+            <xs:element name="defaultGroup" type="xs:string"/>
+            <xs:element name="language" type="xs:string"/>
+            <xs:element name="mandantId" type="xs:int"/>
+            <xs:element name="ugType" type="xs:string"/>
+            <xs:element name="userGroupId" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LogoutInType">
+        <xs:sequence>
+            <xs:element name="sessionId" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArrayOfMandantInfo">
+        <xs:complexContent>
+            <xs:restriction base="soapenc:Array">
+                <xs:attribute ref="soapenc:arrayType" wsdl:arrayType="tns:MandantInfo[]"/>
+            </xs:restriction>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>
